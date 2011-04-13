@@ -1,0 +1,39 @@
+// SqlDatabase.cs
+// Script#/Libraries/Web
+// Copyright (c) Nikhil Kothari.
+// Copyright (c) Microsoft Corporation.
+// This source code is subject to terms and conditions of the Microsoft 
+// Public License. A copy of the license can be found in License.txt.
+//
+
+using System;
+using System.Runtime.CompilerServices;
+
+namespace System.Html.Data {
+
+    public delegate bool SqlDatabaseCallback(SqlDatabase db);
+
+    [IgnoreNamespace]
+    [Imported]
+    public sealed class SqlDatabase {
+
+        private SqlDatabase() {
+        }
+
+        [IntrinsicProperty]
+        public string Version {
+            get {
+                return null;
+            }
+        }
+
+        public void ChangeVersion(string oldVersion, string newVersion, SqlTransactionCallback callback, SqlErrorCallback errorCallback, Action successCallback) {
+        }
+
+        public void ReadTransaction(SqlTransactionCallback callback, SqlErrorCallback errorCallback, Action successCallback) {
+        }
+
+        public void Transaction(SqlTransactionCallback callback, SqlErrorCallback errorCallback, Action successCallback) {
+        }
+    }
+}

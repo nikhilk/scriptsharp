@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3681A9A8-FC40-4125-B842-7775713C8DCE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>System</RootNamespace>
+    <AssemblyName>Script.Web</AssemblyName>
+    <NoStdLib>True</NoStdLib>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Libraries.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\bin\Debug\Script.Web.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\bin\Release\Script.Web.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <HintPath>..\..\..\bin\ref\mscorlib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Html\ActiveXObject.cs" />
+    <Compile Include="Html\AnchorElement.cs" />
+    <Compile Include="Html\AreaElement.cs" />
+    <Compile Include="Html\CheckBoxElement.cs" />
+    <Compile Include="Html\CanvasElement.cs" />
+    <Compile Include="Html\GestureEvent.cs" />
+    <Compile Include="Html\CustomEvent.cs" />
+    <Compile Include="Html\Media\Graphics\Rendering.cs" />
+    <Compile Include="Html\TouchInfo.cs" />
+    <Compile Include="Html\TouchEvent.cs" />
+    <Compile Include="Html\Data\ApplicationCache.cs" />
+    <Compile Include="Html\Data\ApplicationCacheStatus.cs" />
+    <Compile Include="Html\Data\ApplicationCacheEvent.cs" />
+    <Compile Include="Html\Data\SqlResultSet.cs" />
+    <Compile Include="Html\Data\SqlResultSetRow.cs" />
+    <Compile Include="Html\Data\SqlResultSetRowList.cs" />
+    <Compile Include="Html\Data\SqlError.cs" />
+    <Compile Include="Html\Data\SqlTransaction.cs" />
+    <Compile Include="Html\Data\SqlDatabase.cs" />
+    <Compile Include="Html\Media\Graphics\Pattern.cs" />
+    <Compile Include="Html\Media\Graphics\Gradient.cs" />
+    <Compile Include="Html\Orientation.cs" />
+    <Compile Include="Html\Data\Storage.cs" />
+    <Compile Include="Html\IElementEventHandler.cs" />
+    <Compile Include="Html\Editing\ControlRange.cs" />
+    <Compile Include="Html\DataFormat.cs" />
+    <Compile Include="Html\DataTransfer.cs" />
+    <Compile Include="Html\DivElement.cs" />
+    <Compile Include="Html\Document.cs" />
+    <Compile Include="Html\ElementAttribute.cs" />
+    <Compile Include="Html\ElementAttributeCollection.cs" />
+    <Compile Include="Html\ElementAttributeName.cs" />
+    <Compile Include="Html\DocumentInstance.cs" />
+    <Compile Include="Html\DocumentFragment.cs" />
+    <Compile Include="Html\Element.cs" />
+    <Compile Include="Html\ElementCollection.cs" />
+    <Compile Include="Html\ElementType.cs" />
+    <Compile Include="Html\ElementEventHandler.cs" />
+    <Compile Include="Html\DocumentImplementation.cs" />
+    <Compile Include="Html\DropEffect.cs" />
+    <Compile Include="Html\DropEffects.cs" />
+    <Compile Include="Html\ErrorHandler.cs" />
+    <Compile Include="Html\ElementEvent.cs" />
+    <Compile Include="Html\FormElement.cs" />
+    <Compile Include="Html\History.cs" />
+    <Compile Include="Html\IFrameElement.cs" />
+    <Compile Include="Html\ImageElement.cs" />
+    <Compile Include="Html\InputElement.cs" />
+    <Compile Include="Html\Location.cs" />
+    <Compile Include="Html\MapElement.cs" />
+    <Compile Include="Html\Media\Graphics\CompositeOperation.cs" />
+    <Compile Include="Html\Media\Graphics\CanvasContext2D.cs" />
+    <Compile Include="Html\Media\Graphics\CanvasContext.cs" />
+    <Compile Include="Html\Media\Graphics\ImageData.cs" />
+    <Compile Include="Html\Media\Graphics\PixelArray.cs" />
+    <Compile Include="Html\Media\Graphics\TextMetrics.cs" />
+    <Compile Include="Html\Media\Graphics\TextBaseline.cs" />
+    <Compile Include="Html\Media\Graphics\TextAlign.cs" />
+    <Compile Include="Html\Media\Graphics\LineJoin.cs" />
+    <Compile Include="Html\Media\Graphics\LineCap.cs" />
+    <Compile Include="Html\MessageEvent.cs" />
+    <Compile Include="Html\Navigator.cs" />
+    <Compile Include="Html\OptionElement.cs" />
+    <Compile Include="Html\Editing\Range.cs" />
+    <Compile Include="Html\Screen.cs" />
+    <Compile Include="Html\ScriptElement.cs" />
+    <Compile Include="Html\SelectElement.cs" />
+    <Compile Include="Html\Editing\Selection.cs" />
+    <Compile Include="Html\Services\GeolocationErrorCode.cs" />
+    <Compile Include="Html\Services\GeolocationOptions.cs" />
+    <Compile Include="Html\Services\GeolocationError.cs" />
+    <Compile Include="Html\Services\GeoCoordinates.cs" />
+    <Compile Include="Html\Services\Geolocation.cs" />
+    <Compile Include="Html\Services\GeolocationService.cs" />
+    <Compile Include="Html\Style.cs" />
+    <Compile Include="Html\TableCellElement.cs" />
+    <Compile Include="Html\TableElement.cs" />
+    <Compile Include="Html\TableRowElement.cs" />
+    <Compile Include="Html\TableSectionElement.cs" />
+    <Compile Include="Html\TextAreaElement.cs" />
+    <Compile Include="Html\TextElement.cs" />
+    <Compile Include="Html\Editing\TextRange.cs" />
+    <Compile Include="Html\Media\Filters\VisualFilter.cs" />
+    <Compile Include="Html\Media\Filters\VisualFilterCollection.cs" />
+    <Compile Include="Html\Media\Filters\VisualTransition.cs" />
+    <Compile Include="Html\Media\Filters\VisualTransitionState.cs" />
+    <Compile Include="Html\Window.cs" />
+    <Compile Include="Html\WindowInstance.cs" />
+    <Compile Include="Net\HttpVerb.cs" />
+    <Compile Include="Net\ReadyState.cs" />
+    <Compile Include="Net\XmlHttpRequest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Xml\XmlAttribute.cs" />
+    <Compile Include="Xml\XmlDocument.cs" />
+    <Compile Include="Xml\XmlDocumentParser.cs" />
+    <Compile Include="Xml\XmlNamedNodeMap.cs" />
+    <Compile Include="Xml\XmlNode.cs" />
+    <Compile Include="Xml\XmlNodeList.cs" />
+    <Compile Include="Xml\XmlNodeType.cs" />
+    <Compile Include="Xml\XmlText.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

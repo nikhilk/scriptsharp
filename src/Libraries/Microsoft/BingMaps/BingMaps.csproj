@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9600C55B-E14E-45EA-92C6-F453B19F5D7F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Maps</RootNamespace>
+    <AssemblyName>Script.Microsoft.BingMaps</AssemblyName>
+    <NoStdLib>True</NoStdLib>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\Libraries.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>..\..\..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\..\bin\Debug\Script.Microsoft.BingMaps.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\..\bin\Release\Script.Microsoft.BingMaps.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <HintPath>..\..\..\..\bin\ref\mscorlib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MapEventTarget.cs" />
+    <Compile Include="MapEventArgs.cs" />
+    <Compile Include="MapInfoboxOptions.cs" />
+    <Compile Include="MapInfobox.cs" />
+    <Compile Include="MapPointReference.cs" />
+    <Compile Include="MapKeyEventArgs.cs" />
+    <Compile Include="MapMouseEventArgs.cs" />
+    <Compile Include="MapTileSource.cs" />
+    <Compile Include="MapTileSourceOptions.cs" />
+    <Compile Include="MapTileLayer.cs" />
+    <Compile Include="MapPolygon.cs" />
+    <Compile Include="MapTileLayerOptions.cs" />
+    <Compile Include="MapPolygonOptions.cs" />
+    <Compile Include="MapPolylineOptions.cs" />
+    <Compile Include="MapPolyline.cs" />
+    <Compile Include="MapPushpinOptions.cs" />
+    <Compile Include="MapPushpin.cs" />
+    <Compile Include="MapAltitudeMode.cs" />
+    <Compile Include="MapEvents.cs" />
+    <Compile Include="MapColor.cs" />
+    <Compile Include="MapLabelOverlay.cs" />
+    <Compile Include="MapType.cs" />
+    <Compile Include="MapZoomRange.cs" />
+    <Compile Include="MapViewOptions.cs" />
+    <Compile Include="MapOptions.cs" />
+    <Compile Include="MapEntityCollectionOptions.cs" />
+    <Compile Include="MapEntityCollection.cs" />
+    <Compile Include="MapEntity.cs" />
+    <Compile Include="MapBounds.cs" />
+    <Compile Include="MapLocation.cs" />
+    <Compile Include="MapPoint.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\Common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Web\Web.csproj">
+      <Project>{3681A9A8-FC40-4125-B842-7775713C8DCE}</Project>
+      <Name>Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

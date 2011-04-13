@@ -1,0 +1,10 @@
+//! Script# Windows Scripting APIs
+//!
+
+#include "Shell.js"
+
+#include "FileSystem.js"
+
+#include "Feeds.js"
+
+#include "Gadgets.js"
