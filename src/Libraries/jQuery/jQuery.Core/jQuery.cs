@@ -660,8 +660,8 @@ namespace jQueryApi {
         /// <param name="value">The value to look for.</param>
         /// <param name="a">The array to look in.</param>
         /// <returns>The index of value if it is found; -1 if it is not.</returns>
-        public static bool InArray(object value, Array a) {
-            return false;
+        public static int InArray(object value, Array a) {
+            return 0;
         }
 
         /// <summary>
@@ -671,8 +671,8 @@ namespace jQueryApi {
         /// <param name="list">The list to look in.</param>
         /// <returns>The index of value if it is found; -1 if it is not.</returns>
         [ScriptName("inArray")]
-        public static bool InList<T>(T value, List<T> list) {
-            return false;
+        public static int InList<T>(T value, List<T> list) {
+            return 0;
         }
 
         /// <summary>
