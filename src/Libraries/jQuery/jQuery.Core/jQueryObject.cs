@@ -1609,6 +1609,16 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Sets the HTML content of the matched set of elements to the markup represented
+        /// by the specified element.
+        /// </summary>
+        /// <param name="html">The new HTML to set.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject Html(jQueryObject html) {
+            return null;
+        }
+
+        /// <summary>
         /// Sets the HTML content of the matched set of elements by calling the specified
         /// function.
         /// </summary>
