@@ -63,6 +63,13 @@ namespace System.Html {
         }
 
         [IntrinsicProperty]
+        public string Detail {
+            get {
+                return null;
+            }
+        }
+
+        [IntrinsicProperty]
         public Element FromElement {
             get {
                 return null;

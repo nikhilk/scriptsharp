@@ -258,6 +258,10 @@ namespace System.Html {
         public static void Close() {
         }
 
+        public static bool DispatchEvent(MutableEvent eventObject) {
+            return false;
+        }
+
         public static void Navigate(string url) {
         }
 

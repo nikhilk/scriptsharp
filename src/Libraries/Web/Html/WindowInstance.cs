@@ -134,20 +134,11 @@ namespace System.Html {
         public void AddEventListener(string eventName, ElementEventListener listener, bool useCapture) {
         }
 
-        /// <summary>
-        /// Attaches an event handler to the specified event.
-        /// </summary>
-        /// <param name="eventName">The name of the event such as 'onload'.</param>
-        /// <param name="handler">A delegate to the event handler that should be notified.</param>
-        /// <returns></returns>
-        public bool AttachEvent(string eventName, Delegate handler) {
-            return false;
-        }
-
         public void Close() {
         }
 
-        public void DetachEvent(string eventName, Delegate handler) {
+        public bool DispatchEvent(MutableEvent eventObject) {
+            return false;
         }
 
         public void Navigate(string url) {

@@ -145,7 +145,19 @@ namespace System.Html {
             return null;
         }
 
+        public static MutableEvent CreateEvent(string eventType) {
+            return null;
+        }
+
         public static Element CreateTextNode(string data) {
+            return null;
+        }
+
+        public static bool DispatchEvent(MutableEvent eventObject) {
+            return false;
+        }
+
+        public static Element ElementFromPoint(int x, int y) {
             return null;
         }
 

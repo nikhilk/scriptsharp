@@ -370,6 +370,10 @@ namespace System.Html {
             return false;
         }
 
+        public bool DispatchEvent(MutableEvent eventObject) {
+            return false;
+        }
+
         public bool DragDrop() {
             return false;
         }
