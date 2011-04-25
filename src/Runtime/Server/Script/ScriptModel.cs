@@ -25,7 +25,7 @@ namespace ScriptSharp.Web.Script {
         private ScriptInliner _scriptInliner;
 
         private List<Scriptlet> _scriptlets;
-        private List<ScriptBlock> _literals;
+        private List<ScriptBlock> _scriptBlocks;
         private List<ScriptReference> _references;
         private Dictionary<string, ScriptReference> _referenceMap;
 
@@ -54,14 +54,14 @@ namespace ScriptSharp.Web.Script {
             _scriptlets.Add(scriptlet);
         }
 
-        public void AddScriptLiteral(ScriptBlock scriptLiteral) {
-            Debug.Assert(scriptLiteral != null);
+        public void AddScriptBlock(ScriptBlock scriptBlock) {
+            Debug.Assert(scriptBlock != null);
 
-            if (_literals == null) {
-                _literals = new List<ScriptBlock>();
+            if (_scriptBlocks == null) {
+                _scriptBlocks = new List<ScriptBlock>();
             }
 
-            _literals.Add(scriptLiteral);
+            _scriptBlocks.Add(scriptBlock);
         }
 
         public void AddScriptReference(ScriptReference scriptReference) {
@@ -92,10 +92,10 @@ namespace ScriptSharp.Web.Script {
                 }
             }
 
-            if (_literals != null) {
-                foreach (ScriptBlock literal in _literals) {
-                    if (literal.Dependencies != null) {
-                        foreach (string dependency in literal.Dependencies) {
+            if (_scriptBlocks != null) {
+                foreach (ScriptBlock scriptBlock in _scriptBlocks) {
+                    if (scriptBlock.Dependencies != null) {
+                        foreach (string dependency in scriptBlock.Dependencies) {
                             dependencies.Enqueue(dependency);
                         }
                     }
@@ -151,10 +151,10 @@ namespace ScriptSharp.Web.Script {
                 }
             }
 
-            if (_literals != null) {
-                foreach (ScriptBlock scriptLiteral in _literals) {
-                    RenderScriptTag(writer, /* path */ null, /* name */ null, scriptLiteral.Dependencies,
-                                    ScriptMode.Startup, /* storage */ null, scriptLiteral.Code);
+            if (_scriptBlocks != null) {
+                foreach (ScriptBlock scriptBlock in _scriptBlocks) {
+                    RenderScriptTag(writer, /* path */ null, /* name */ null, scriptBlock.Dependencies,
+                                    ScriptMode.Startup, /* storage */ null, scriptBlock.Code);
                 }
             }
 

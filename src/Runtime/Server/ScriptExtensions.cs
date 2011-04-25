@@ -1,4 +1,4 @@
-﻿// Scriptlet.cs
+﻿// ScriptExtensions.cs
 // Script#/Runtime/Server
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -69,7 +69,7 @@ namespace ScriptSharp.Web {
                 throw new ArgumentNullException("script");
             }
 
-            scriptModel.AddScriptLiteral(new ScriptBlock(script, dependencies));
+            scriptModel.AddScriptBlock(new ScriptBlock(script, dependencies));
         }
 
         public static bool CanInlineScripts(this AjaxHelper ajaxHelper) {
