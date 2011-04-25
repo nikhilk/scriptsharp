@@ -71,7 +71,7 @@
     <Compile Include="ArrayIterationCallback.cs" />
     <Compile Include="jQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\..\..\Common\CommonAssemblyInfo.cs">
+    <Compile Include="..\..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>

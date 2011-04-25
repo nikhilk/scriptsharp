@@ -50,7 +50,7 @@
     <Compile Include="jQueryTemplateObject.cs" />
     <Compile Include="jQueryTemplating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\..\..\Common\CommonAssemblyInfo.cs">
+    <Compile Include="..\..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
