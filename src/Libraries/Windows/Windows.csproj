@@ -101,7 +101,7 @@
     <Compile Include="Html\Applications\ApplicationWindowState.cs" />
     <Compile Include="Html\Applications\YesNoState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
@@ -111,20 +111,5 @@
       <Name>Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Properties\Feeds.js" />
-    <Content Include="Properties\FileSystem.js" />
-    <Content Include="Properties\Gadgets.js" />
-    <Content Include="Properties\Shell.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\Windows.jsa" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-      ..\ref\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Properties\Windows.jsa /output:Script.Windows.debug.js
-      ..\ref\sspp.exe /nologo /input:$(ProjectDir)Properties\Windows.jsa /output:Script.Windows.js
-    </PostBuildEvent>
-  </PropertyGroup>
 </Project>
