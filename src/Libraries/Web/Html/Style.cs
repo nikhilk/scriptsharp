@@ -358,6 +358,16 @@ namespace System.Html {
             }
         }
 
+        /// <summary>The side of the object the text will flow.</summary>
+        [IntrinsicProperty]
+        public string CssFloat {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
         /// <summary>The persisted representation of this style.</summary>
         [IntrinsicProperty]
         public string CssText {
