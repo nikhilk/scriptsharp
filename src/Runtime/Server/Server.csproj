@@ -46,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\IJsonSerializable.cs" />
+    <Compile Include="ElementListQuery.cs" />
+    <Compile Include="ElementQuery.cs" />
+    <Compile Include="ElementReference.cs" />
     <Compile Include="ScriptLiteral.cs" />
     <Compile Include="Core\JsonArray.cs" />
     <Compile Include="Core\JsonObject.cs" />
