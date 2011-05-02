@@ -51,5 +51,8 @@ namespace System.Html {
             set {
             }
         }
+
+        public void Select() {
+        }
     }
 }
