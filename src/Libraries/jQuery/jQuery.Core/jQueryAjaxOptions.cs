@@ -183,10 +183,21 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Gets or sets the callback parameter name to use for JSONP requests.
+        /// </summary>
+        [IntrinsicProperty]
+        public string Jsonp {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the callback name to use for JSONP requests.
         /// </summary>
         [IntrinsicProperty]
-        [ScriptName("jsonp")]
         public string JsonpCallback {
             get {
                 return null;
