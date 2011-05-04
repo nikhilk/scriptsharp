@@ -1,4 +1,4 @@
-// jQueryXmlHttpRequest.cs
+// jQueryDataHttpRequest.cs
 // Script#/Libraries/jQuery/jQueryCore
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -18,9 +18,9 @@ namespace jQueryApi {
     /// </summary>
     [Imported]
     [IgnoreNamespace]
-    public sealed class jQueryXmlHttpRequest : IDeferred {
+    public sealed class jQueryDataHttpRequest<TData> : IDeferred {
 
-        private jQueryXmlHttpRequest() {
+        private jQueryDataHttpRequest() {
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="callbacks">The callbacsk to invoke (in order).</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Always(params Delegate[] callbacks) {
+        public jQueryDataHttpRequest<TData> Always(params Delegate[] callbacks) {
             return null;
         }
 
@@ -94,7 +94,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="callback">The callback to invoke.</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Complete(AjaxCompletedCallback callback) {
+        public jQueryDataHttpRequest<TData> Complete(AjaxCompletedCallback<TData> callback) {
             return null;
         }
 
@@ -104,7 +104,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="doneCallbacks">The callbacks to invoke (in order).</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Done(params Delegate[] doneCallbacks) {
+        public jQueryDataHttpRequest<TData> Done(params Delegate[] doneCallbacks) {
             return null;
         }
 
@@ -113,7 +113,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="callback">The callback to invoke.</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Error(AjaxErrorCallback callback) {
+        public jQueryDataHttpRequest<TData> Error(AjaxErrorCallback<TData> callback) {
             return null;
         }
 
@@ -123,7 +123,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="failCallbacks">The callbacks to invoke (in order).</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Fail(params Delegate[] failCallbacks) {
+        public jQueryDataHttpRequest<TData> Fail(params Delegate[] failCallbacks) {
             return null;
         }
 
@@ -156,7 +156,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="successFilter">The filter to invoke when the request successfully completes.</param>
         /// <returns>The current request object.</returns>
-        jQueryXmlHttpRequest Pipe(jQueryDeferredFilter successFilter) {
+        jQueryDataHttpRequest<TData> Pipe(jQueryDeferredFilter successFilter) {
             return null;
         }
 
@@ -166,7 +166,7 @@ namespace jQueryApi {
         /// <param name="successFilter">The filter to invoke when the request successfully completes.</param>
         /// <param name="failFilter">The filter to invoke when the request fails.</param>
         /// <returns>The current request object.</returns>
-        jQueryXmlHttpRequest Pipe(jQueryDeferredFilter successFilter, jQueryDeferredFilter failFilter) {
+        jQueryDataHttpRequest<TData> Pipe(jQueryDeferredFilter successFilter, jQueryDeferredFilter failFilter) {
             return null;
         }
 
@@ -183,7 +183,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="callback">The callback to invoke.</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Success(AjaxCallback callback) {
+        public jQueryDataHttpRequest<TData> Success(AjaxCallback<TData> callback) {
             return null;
         }
 
@@ -192,7 +192,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="callback">The callback to invoke.</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Success(AjaxRequestCallback callback) {
+        public jQueryDataHttpRequest<TData> Success(AjaxRequestCallback<TData> callback) {
             return null;
         }
 
@@ -203,7 +203,7 @@ namespace jQueryApi {
         /// <param name="doneCallback">The callback to invoke when the request completes successfully.</param>
         /// <param name="failCallback">The callback to invoke when the request completes with an error.</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Then(Delegate doneCallback, Delegate failCallback) {
+        public jQueryDataHttpRequest<TData> Then(Delegate doneCallback, Delegate failCallback) {
             return null;
         }
 
@@ -214,7 +214,7 @@ namespace jQueryApi {
         /// <param name="doneCallbacks">The callbacks to invoke when the request completes successfully.</param>
         /// <param name="failCallbacks">The callbacks to invoke when the request completes with an error.</param>
         /// <returns>The current deferred object.</returns>
-        public jQueryXmlHttpRequest Then(Delegate[] doneCallbacks, Delegate[] failCallbacks) {
+        public jQueryDataHttpRequest<TData> Then(Delegate[] doneCallbacks, Delegate[] failCallbacks) {
             return null;
         }
 

@@ -45,6 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BooleanFunction.cs" />
+    <Compile Include="jQueryDataHttpRequest.cs" />
+    <Compile Include="jQueryDeferredFilter.cs" />
     <Compile Include="jQueryXmlHttpRequest.cs" />
     <Compile Include="IDeferred.cs" />
     <Compile Include="jQueryDeferredInitializer.cs" />
@@ -57,6 +60,7 @@
     <Compile Include="EffectEasing.cs" />
     <Compile Include="EffectDuration.cs" />
     <Compile Include="jQueryNameValuePair.cs" />
+    <Compile Include="ObjectMapCallback.cs" />
     <Compile Include="PositionFunction.cs" />
     <Compile Include="jQueryPosition.cs" />
     <Compile Include="jQueryEventHandler.cs" />

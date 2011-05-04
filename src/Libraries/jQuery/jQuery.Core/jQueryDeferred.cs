@@ -22,6 +22,16 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Add handlers to be called when the deferred object is resolved or
+        /// rejected.
+        /// </summary>
+        /// <param name="callbacks">The callbacsk to invoke (in order).</param>
+        /// <returns>The current deferred object.</returns>
+        public jQueryDeferred Always(params Delegate[] callbacks) {
+            return null;
+        }
+
+        /// <summary>
         /// Add handlers to be called when the deferred object is resolved. If the
         /// deferred object is already resolved, the handlers are still invoked.
         /// </summary>
@@ -129,6 +139,10 @@ namespace jQueryApi {
 
         #region Implementation of IDeferred
 
+        IDeferred IDeferred.Always(params Delegate[] callbacks) {
+            return null;
+        }
+
         IDeferred IDeferred.Done(params Delegate[] doneCallbacks) {
             return null;
         }
@@ -145,7 +159,15 @@ namespace jQueryApi {
             return false;
         }
 
-        jQueryDeferred IDeferred.Reject(params object[] args) {
+        IDeferred IDeferred.Pipe(jQueryDeferredFilter successFilter) {
+            return null;
+        }
+
+        IDeferred IDeferred.Pipe(jQueryDeferredFilter successFilter, jQueryDeferredFilter failFilter) {
+            return null;
+        }
+
+        IDeferred IDeferred.Reject(params object[] args) {
             return null;
         }
 
@@ -161,7 +183,7 @@ namespace jQueryApi {
             return null;
         }
 
-        jQueryDeferred IDeferred.Then(Delegate doneCallback, Delegate failCallback) {
+        IDeferred IDeferred.Then(Delegate doneCallback, Delegate failCallback) {
             return null;
         }
 

@@ -632,6 +632,26 @@ namespace jQueryApi {
 
         /// <summary>
         /// Returns a new jQueryObject with the closest ancestor matching
+        /// the specified element.
+        /// </summary>
+        /// <param name="element">The element to match against.</param>
+        /// <returns>The new jQueryObject.</returns>
+        public jQueryObject Closest(Element element) {
+            return null;
+        }
+
+        /// <summary>
+        /// Returns a new jQueryObject with the closest ancestor matching
+        /// the specified set of elements.
+        /// </summary>
+        /// <param name="elements">The matched set of elements to lookup.</param>
+        /// <returns>The new jQueryObject.</returns>
+        public jQueryObject Closest(jQueryObject elements) {
+            return null;
+        }
+
+        /// <summary>
+        /// Returns a new jQueryObject with the closest ancestor matching
         /// the specified selector.
         /// </summary>
         /// <param name="selector">The selector used to match elements.</param>
@@ -1194,6 +1214,28 @@ namespace jQueryApi {
 
         /// <summary>
         /// Returns a new jQueryObject with descendents of each matched element filtered
+        /// by the specified element.
+        /// This traverses down multiple levels of the tree.
+        /// </summary>
+        /// <param name="element">The element to match against.</param>
+        /// <returns>The new jQueryObject.</returns>
+        public jQueryObject Find(Element element) {
+            return null;
+        }
+
+        /// <summary>
+        /// Returns a new jQueryObject with descendents of each matched element filtered
+        /// by the specified matched set of elements.
+        /// This traverses down multiple levels of the tree.
+        /// </summary>
+        /// <param name="elements">The matched set of elements to lookup.</param>
+        /// <returns>The new jQueryObject.</returns>
+        public jQueryObject Find(jQueryObject elements) {
+            return null;
+        }
+
+        /// <summary>
+        /// Returns a new jQueryObject with descendents of each matched element filtered
         /// by the specified selector. This traverses down multiple levels of the tree.
         /// </summary>
         /// <param name="selector">The selector used to match elements.</param>
@@ -1437,6 +1479,17 @@ namespace jQueryApi {
         [ScriptName("outerWidth")]
         public int GetOuterWidth(bool includeMargins) {
             return 0;
+        }
+
+        /// <summary>
+        /// Gets the value of the specified property from the first of the matched
+        /// set of elements.
+        /// </summary>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <returns>The value of the specified property.</returns>
+        [ScriptName("prop")]
+        public string GetProperty(string propertyName) {
+            return null;
         }
 
         /// <summary>
@@ -1721,6 +1774,36 @@ namespace jQueryApi {
         /// <returns>The resulting jQuery object</returns>
         public jQueryObject InsertBefore(jQueryObject jQueryObject) {
             return null;
+        }
+
+        /// <summary>
+        /// Gets whether the at least one of the matched set of elements matches the specified
+        /// filter function.
+        /// </summary>
+        /// <param name="filter">The filter function to invoke for each element.</param>
+        /// <returns>True if there is a matching element; false otherwise.</returns>
+        public bool Is(BooleanFunction filter) {
+            return false;
+        }
+
+        /// <summary>
+        /// Gets whether the at least one of the matched set of elements matches the specified
+        /// element.
+        /// </summary>
+        /// <param name="element">The element to compare against.</param>
+        /// <returns>True if there is a matching element; false otherwise.</returns>
+        public bool Is(Element element) {
+            return false;
+        }
+
+        /// <summary>
+        /// Gets whether the at least one of the matched set of elements matches the specified
+        /// matched set of elements.
+        /// </summary>
+        /// <param name="elements">The matched set of elements to compare against.</param>
+        /// <returns>True if there is a matching element; false otherwise.</returns>
+        public bool Is(jQueryObject elements) {
+            return false;
         }
 
         /// <summary>
@@ -2364,6 +2447,48 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Creates a deferred object to observe when all animations are completed.
+        /// </summary>
+        /// <returns>A deferred object.</returns>
+        public jQueryDeferred Promise() {
+            return null;
+        }
+
+        /// <summary>
+        /// Creates a deferred object to observe when all actions of the specified
+        /// type are completed.
+        /// </summary>
+        /// <param name="type">The type of actions to observe.</param>
+        /// <returns>A deferred object.</returns>
+        public jQueryDeferred Promise(string type) {
+            return null;
+        }
+
+        /// <summary>
+        /// Creates a deferred object to observe when all actions of the specified
+        /// type are completed. The specified target object is modified to contain
+        /// the deferred methods.
+        /// </summary>
+        /// <param name="type">The type of actions to observe.</param>
+        /// <param name="target">The target object to modify.</param>
+        /// <returns>The target object.</returns>
+        public jQueryDeferred Promise(string type, object target) {
+            return null;
+        }
+
+        /// <summary>
+        /// Sets the value of the specified property to the specified value on
+        /// the matched set of elements.
+        /// </summary>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <param name="value">The value to set the property to.</param>
+        /// <returns>The value of the specified property.</returns>
+        [ScriptName("prop")]
+        public string Property(string propertyName, object value) {
+            return null;
+        }
+
+        /// <summary>
         /// Removes the matched elements from the DOM, and removes jQuery data from elements.
         /// </summary>
         /// <returns>The current jQueryObject.</returns>
@@ -2438,6 +2563,16 @@ namespace jQueryApi {
         /// <param name="key">The name of the value to remove.</param>
         /// <returns>The current jQueryObject.</returns>
         public jQueryObject RemoveData(string key) {
+            return null;
+        }
+
+        /// <summary>
+        /// Removes the specified property from the matching set of elements.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to remove.</param>
+        /// <returns>The current jQueryObject.</returns>
+        [ScriptName("removeProp")]
+        public jQueryObject RemoveProperty(string propertyName) {
             return null;
         }
 
@@ -3188,6 +3323,16 @@ namespace jQueryApi {
         /// <param name="result">Should be false.</param>
         /// <returns>The current jQueryObject.</returns>
         public jQueryObject Unbind(string eventName, bool result) {
+            return null;
+        }
+
+        /// <summary>
+        /// Detaches all handlers from matching the specified namespace
+        /// from the matched set of elements.
+        /// </summary>
+        /// <param name="namespaceName">The namespace of the handler.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject Undelegate(string namespaceName) {
             return null;
         }
 

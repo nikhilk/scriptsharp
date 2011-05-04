@@ -51,7 +51,7 @@ namespace jQueryApi {
         /// Gets or sets the callback to invoke before the request is sent.
         /// </summary>
         [IntrinsicProperty]
-        public AjaxSendingCallback<object> BeforeSend {
+        public AjaxSendingCallback BeforeSend {
             get {
                 return null;
             }
@@ -76,7 +76,7 @@ namespace jQueryApi {
         /// and success or error callbacks have been invoked.
         /// </summary>
         [IntrinsicProperty]
-        public AjaxCompletedCallback<object> Complete {
+        public AjaxCompletedCallback Complete {
             get {
                 return null;
             }
@@ -136,7 +136,7 @@ namespace jQueryApi {
         /// Gets or sets the callback to be invoked if the request fails.
         /// </summary>
         [IntrinsicProperty]
-        public AjaxErrorCallback<object> Error {
+        public AjaxErrorCallback Error {
             get {
                 return null;
             }
@@ -258,7 +258,7 @@ namespace jQueryApi {
         /// Gets or sets the function to invoke upon successful completion of the request.
         /// </summary>
         [IntrinsicProperty]
-        public AjaxRequestCallback<object> Success {
+        public AjaxRequestCallback Success {
             get {
                 return null;
             }
@@ -331,7 +331,7 @@ namespace jQueryApi {
         /// </summary>
         [IntrinsicProperty]
         [ScriptName("xhr")]
-        public XmlHttpRequestCreator<object> XmlHttpRequestCreator {
+        public XmlHttpRequestCreator XmlHttpRequestCreator {
             get {
                 return null;
             }

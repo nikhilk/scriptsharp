@@ -7,15 +7,15 @@ must include the appropriate scripts into your page.
 
 Script.jQuery.dll
 -------------------------------------------------------------------------------
-This matches the API in jQuery Core 1.5.1. The corresponding scripts are at:
+This matches the API in jQuery Core 1.6. The corresponding scripts are at:
 Google CDNs:
-http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js
-http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js
-https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js
-https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js
+http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js
+http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.js
+https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js
+https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.js
 Download Locations:
-http://code.jquery.com/jquery-1.5.1.min.js
-http://code.jquery.com/jquery-1.5.1.js
+http://code.jquery.com/jquery-1.6.min.js
+http://code.jquery.com/jquery-1.6.js
 More information is on http://jquery.com.
 
 Script.jQuery.History.dll

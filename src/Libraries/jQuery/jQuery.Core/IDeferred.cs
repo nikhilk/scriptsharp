@@ -19,6 +19,14 @@ namespace jQueryApi {
     public interface IDeferred {
 
         /// <summary>
+        /// Add handlers to be called when the deferred object is resolved or
+        /// rejected.
+        /// </summary>
+        /// <param name="callbacks">The callbacsk to invoke (in order).</param>
+        /// <returns>The current deferred object.</returns>
+        IDeferred Always(params Delegate[] callbacks);
+
+        /// <summary>
         /// Add handlers to be called when the deferred object is resolved. If the
         /// deferred object is already resolved, the handlers are still invoked.
         /// </summary>
@@ -47,11 +55,26 @@ namespace jQueryApi {
         bool IsResolved();
 
         /// <summary>
+        /// Filters or chains deffered objects.
+        /// </summary>
+        /// <param name="successFilter">The filter to invoke when the deferred object is resolved.</param>
+        /// <returns>The current deferred object.</returns>
+        IDeferred Pipe(jQueryDeferredFilter successFilter);
+
+        /// <summary>
+        /// Filters or chains deffered objects.
+        /// </summary>
+        /// <param name="successFilter">The filter to invoke when the deferred object is resolved.</param>
+        /// <param name="failFilter">The filter to invoke when the deferred object is rejected.</param>
+        /// <returns>The current deferred object.</returns>
+        IDeferred Pipe(jQueryDeferredFilter successFilter, jQueryDeferredFilter failFilter);
+
+        /// <summary>
         /// Rejects the deferred object and call any failure callbacks with the specified arguments.
         /// </summary>
         /// <param name="args">The arguments to pass to the callbacks.</param>
         /// <returns>The current deferred object.</returns>
-        jQueryDeferred Reject(params object[] args);
+        IDeferred Reject(params object[] args);
 
         /// <summary>
         /// Rejects the deferred object and call any failure callbacks with the specified arguments
@@ -85,7 +108,7 @@ namespace jQueryApi {
         /// <param name="doneCallback">The callback to invoke when the object is resolved.</param>
         /// <param name="failCallback">The callback to invoke when the object is rejected.</param>
         /// <returns>The current deferred object.</returns>
-        jQueryDeferred Then(Delegate doneCallback, Delegate failCallback);
+        IDeferred Then(Delegate doneCallback, Delegate failCallback);
 
         /// <summary>
         /// Add handlers to be called when the deferred object is resolved or rejected.

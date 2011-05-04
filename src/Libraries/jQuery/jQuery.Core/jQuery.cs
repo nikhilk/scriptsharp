@@ -110,18 +110,6 @@ namespace jQueryApi {
         }
 
         /// <summary>
-        /// Gets or sets the number of waits delaying the ready event.
-        /// </summary>
-        [IntrinsicProperty]
-        public static int ReadyWait {
-            get {
-                return 0;
-            }
-            set {
-            }
-        }
-
-        /// <summary>
         /// Gets information about supported features and browser capabilities.
         /// </summary>
         [IntrinsicProperty]
@@ -160,7 +148,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="url">The endpoint to which the request is issued.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Ajax(string url) {
+        public static jQueryXmlHttpRequest Ajax(string url) {
             return null;
         }
 
@@ -170,7 +158,7 @@ namespace jQueryApi {
         /// <param name="url">The endpoint to which the request is issued.</param>
         /// <param name="options">The options and settings for the request to invoke.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Ajax(string url, jQueryAjaxOptions options) {
+        public static jQueryXmlHttpRequest Ajax(string url, jQueryAjaxOptions options) {
             return null;
         }
 
@@ -179,7 +167,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="options">The options and settings for the request to invoke.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Ajax(jQueryAjaxOptions options) {
+        public static jQueryXmlHttpRequest Ajax(jQueryAjaxOptions options) {
             return null;
         }
 
@@ -189,7 +177,7 @@ namespace jQueryApi {
         /// <param name="url">The endpoint to which the request is issued.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("ajax")]
-        public static jQueryXmlHttpRequest<TData> AjaxRequest<TData>(string url) {
+        public static jQueryDataHttpRequest<TData> AjaxRequest<TData>(string url) {
             return null;
         }
 
@@ -200,7 +188,7 @@ namespace jQueryApi {
         /// <param name="options">The options and settings for the request to invoke.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("ajax")]
-        public static jQueryXmlHttpRequest<TData> AjaxRequest<TData>(string url, jQueryAjaxOptions options) {
+        public static jQueryDataHttpRequest<TData> AjaxRequest<TData>(string url, jQueryAjaxOptions options) {
             return null;
         }
 
@@ -210,7 +198,7 @@ namespace jQueryApi {
         /// <param name="options">The options and settings for the request to invoke.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("ajax")]
-        public static jQueryXmlHttpRequest<TData> AjaxRequest<TData>(jQueryAjaxOptions options) {
+        public static jQueryDataHttpRequest<TData> AjaxRequest<TData>(jQueryAjaxOptions options) {
             return null;
         }
 
@@ -453,7 +441,7 @@ namespace jQueryApi {
         /// <param name="url">The URL to request.</param>
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Get(string url, AjaxCallback<object> callback) {
+        public static jQueryXmlHttpRequest Get(string url, AjaxCallback<object> callback) {
             return null;
         }
 
@@ -464,7 +452,7 @@ namespace jQueryApi {
         /// <param name="data">A string or dictionary containing the data sent with the request.</param>
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Get(string url, object data, AjaxCallback<object> callback) {
+        public static jQueryXmlHttpRequest Get(string url, object data, AjaxCallback<object> callback) {
             return null;
         }
 
@@ -475,19 +463,7 @@ namespace jQueryApi {
         /// <param name="data">A string or dictionary containing the data sent with the request.</param>
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Get(string url, object data, AjaxRequestCallback<object> callback) {
-            return null;
-        }
-
-        /// <summary>
-        /// Load data from the server using a HTTP GET request.
-        /// </summary>
-        /// <param name="url">The URL to request.</param>
-        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
-        /// <param name="callback">The callback to invoke with the response.</param>
-        /// <param name="dataType">The type of data expected in the response.</param>
-        /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Get(string url, object data, AjaxCallback<object> callback, string dataType) {
+        public static jQueryXmlHttpRequest Get(string url, object data, AjaxRequestCallback<object> callback) {
             return null;
         }
 
@@ -499,42 +475,7 @@ namespace jQueryApi {
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <param name="dataType">The type of data expected in the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Get(string url, object data, AjaxRequestCallback<object> callback, string dataType) {
-            return null;
-        }
-
-        /// <summary>
-        /// Load data from the server using a HTTP GET request.
-        /// </summary>
-        /// <param name="url">The URL to request.</param>
-        /// <param name="callback">The callback to invoke with the response.</param>
-        /// <returns>The jQueryXmlHttpRequest object.</returns>
-        [ScriptName("get")]
-        public static jQueryXmlHttpRequest<TData> GetData<TData>(string url, AjaxCallback<TData> callback) {
-            return null;
-        }
-
-        /// <summary>
-        /// Load data from the server using a HTTP GET request.
-        /// </summary>
-        /// <param name="url">The URL to request.</param>
-        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
-        /// <param name="callback">The callback to invoke with the response.</param>
-        /// <returns>The jQueryXmlHttpRequest object.</returns>
-        [ScriptName("get")]
-        public static jQueryXmlHttpRequest<TData> GetData<TData>(string url, object data, AjaxCallback<TData> callback) {
-            return null;
-        }
-
-        /// <summary>
-        /// Load data from the server using a HTTP GET request.
-        /// </summary>
-        /// <param name="url">The URL to request.</param>
-        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
-        /// <param name="callback">The callback to invoke with the response.</param>
-        /// <returns>The jQueryXmlHttpRequest object.</returns>
-        [ScriptName("get")]
-        public static jQueryXmlHttpRequest<TData> GetData<TData>(string url, object data, AjaxRequestCallback<TData> callback) {
+        public static jQueryXmlHttpRequest Get(string url, object data, AjaxCallback<object> callback, string dataType) {
             return null;
         }
 
@@ -546,8 +487,42 @@ namespace jQueryApi {
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <param name="dataType">The type of data expected in the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
+        public static jQueryXmlHttpRequest Get(string url, object data, AjaxRequestCallback<object> callback, string dataType) {
+            return null;
+        }
+
+        /// <summary>
+        /// Load data from the server using a HTTP GET request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <param name="callback">The callback to invoke with the response.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("get")]
-        public static jQueryXmlHttpRequest<TData> GetData<TData>(string url, object data, AjaxCallback<TData> callback, string dataType) {
+        public static jQueryDataHttpRequest<TData> GetData<TData>(string url, AjaxCallback<TData> callback) {
+            return null;
+        }
+
+        /// <summary>
+        /// Load data from the server using a HTTP GET request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
+        /// <param name="callback">The callback to invoke with the response.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        [ScriptName("get")]
+        public static jQueryDataHttpRequest<TData> GetData<TData>(string url, object data, AjaxCallback<TData> callback) {
+            return null;
+        }
+
+        /// <summary>
+        /// Load data from the server using a HTTP GET request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
+        /// <param name="callback">The callback to invoke with the response.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        [ScriptName("get")]
+        public static jQueryDataHttpRequest<TData> GetData<TData>(string url, object data, AjaxRequestCallback<TData> callback) {
             return null;
         }
 
@@ -560,7 +535,20 @@ namespace jQueryApi {
         /// <param name="dataType">The type of data expected in the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("get")]
-        public static jQueryXmlHttpRequest<TData> GetData<TData>(string url, object data, AjaxRequestCallback<TData> callback, string dataType) {
+        public static jQueryDataHttpRequest<TData> GetData<TData>(string url, object data, AjaxCallback<TData> callback, string dataType) {
+            return null;
+        }
+
+        /// <summary>
+        /// Load data from the server using a HTTP GET request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
+        /// <param name="callback">The callback to invoke with the response.</param>
+        /// <param name="dataType">The type of data expected in the response.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        [ScriptName("get")]
+        public static jQueryDataHttpRequest<TData> GetData<TData>(string url, object data, AjaxRequestCallback<TData> callback, string dataType) {
             return null;
         }
 
@@ -571,7 +559,7 @@ namespace jQueryApi {
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("getJSON")]
-        public static jQueryXmlHttpRequest<object> GetJson(string url, AjaxCallback<object> callback) {
+        public static jQueryXmlHttpRequest GetJson(string url, AjaxCallback<object> callback) {
             return null;
         }
 
@@ -583,7 +571,7 @@ namespace jQueryApi {
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("getJSON")]
-        public static jQueryXmlHttpRequest<object> GetJson(string url, object data, AjaxCallback<object> callback) {
+        public static jQueryXmlHttpRequest GetJson(string url, object data, AjaxCallback<object> callback) {
             return null;
         }
 
@@ -594,7 +582,7 @@ namespace jQueryApi {
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("getJSON")]
-        public static jQueryXmlHttpRequest<TData> GetJsonData<TData>(string url, AjaxCallback<TData> callback) {
+        public static jQueryDataHttpRequest<TData> GetJsonData<TData>(string url, AjaxCallback<TData> callback) {
             return null;
         }
 
@@ -606,7 +594,7 @@ namespace jQueryApi {
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("getJSON")]
-        public static jQueryXmlHttpRequest<TData> GetJsonData<TData>(string url, object data, AjaxCallback<TData> callback) {
+        public static jQueryDataHttpRequest<TData> GetJsonData<TData>(string url, object data, AjaxCallback<TData> callback) {
             return null;
         }
 
@@ -615,7 +603,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="url">The URL to request.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> GetScript(string url) {
+        public static jQueryXmlHttpRequest GetScript(string url) {
             return null;
         }
 
@@ -625,7 +613,7 @@ namespace jQueryApi {
         /// <param name="url">The URL to request.</param>
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> GetScript(string url, AjaxCallback<object> callback) {
+        public static jQueryXmlHttpRequest GetScript(string url, AjaxCallback<object> callback) {
             return null;
         }
 
@@ -653,6 +641,13 @@ namespace jQueryApi {
         }
 
         // TODO: Add generic version of Grep
+
+        /// <summary>
+        /// Holds or releases the execution of jQuery's ready event.
+        /// </summary>
+        /// <param name="hold">Indicates whether the ready hold is being requested or released.</param>
+        public static void HoldReady(bool hold) {
+        }
 
         /// <summary>
         /// Gets the index of the specified value within the specified array.
@@ -708,6 +703,17 @@ namespace jQueryApi {
         /// <param name="o">The object to turn into an array.</param>
         /// <returns>The resulting array.</returns>
         public static Array MakeArray(object o) {
+            return null;
+        }
+
+        /// <summary>
+        /// Returns a new object by mapping each item in the specified object
+        /// using the provided callback.
+        /// </summary>
+        /// <param name="o">The object to map.</param>
+        /// <param name="callback">The function that performs the mapping.</param>
+        /// <returns>The array of mapped values.</returns>
+        public static object Map(object o, ObjectMapCallback callback) {
             return null;
         }
 
@@ -778,6 +784,26 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Parses the specified well-formed json string into an object.
+        /// </summary>
+        /// <param name="json">The json string.</param>
+        /// <returns>The parsed document.</returns>
+        [ScriptName("parseJSON")]
+        public object ParseJson(string json) {
+            return null;
+        }
+
+        /// <summary>
+        /// Parses the specified well-formed json string into an object.
+        /// </summary>
+        /// <param name="json">The json string.</param>
+        /// <returns>The parsed document.</returns>
+        [ScriptName("parseJSON")]
+        public TData ParseJsonData<TData>(string json) {
+            return default(TData);
+        }
+
+        /// <summary>
         /// Parses the specified well-formed xml data into an XML document.
         /// </summary>
         /// <param name="data">The xml markup.</param>
@@ -792,7 +818,7 @@ namespace jQueryApi {
         /// <param name="url">The URL to request.</param>
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Post(string url, AjaxCallback<object> callback) {
+        public static jQueryXmlHttpRequest Post(string url, AjaxCallback<object> callback) {
             return null;
         }
 
@@ -803,7 +829,7 @@ namespace jQueryApi {
         /// <param name="data">A string or dictionary containing the data sent with the request.</param>
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Post(string url, object data, AjaxCallback<object> callback) {
+        public static jQueryXmlHttpRequest Post(string url, object data, AjaxCallback<object> callback) {
             return null;
         }
 
@@ -814,19 +840,7 @@ namespace jQueryApi {
         /// <param name="data">A string or dictionary containing the data sent with the request.</param>
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Post(string url, object data, AjaxRequestCallback<object> callback) {
-            return null;
-        }
-
-        /// <summary>
-        /// Post data to the server using a HTTP POST request.
-        /// </summary>
-        /// <param name="url">The URL to request.</param>
-        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
-        /// <param name="callback">The callback to invoke with the response.</param>
-        /// <param name="dataType">The type of data expected in the response.</param>
-        /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Post(string url, object data, AjaxCallback<object> callback, string dataType) {
+        public static jQueryXmlHttpRequest Post(string url, object data, AjaxRequestCallback<object> callback) {
             return null;
         }
 
@@ -838,42 +852,7 @@ namespace jQueryApi {
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <param name="dataType">The type of data expected in the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
-        public static jQueryXmlHttpRequest<object> Post(string url, object data, AjaxRequestCallback<object> callback, string dataType) {
-            return null;
-        }
-
-        /// <summary>
-        /// Post data to the server using a HTTP POST request.
-        /// </summary>
-        /// <param name="url">The URL to request.</param>
-        /// <param name="callback">The callback to invoke with the response.</param>
-        /// <returns>The jQueryXmlHttpRequest object.</returns>
-        [ScriptName("post")]
-        public static jQueryXmlHttpRequest<TData> PostRequest<TData>(string url, AjaxCallback<TData> callback) {
-            return null;
-        }
-
-        /// <summary>
-        /// Post data to the server using a HTTP POST request.
-        /// </summary>
-        /// <param name="url">The URL to request.</param>
-        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
-        /// <param name="callback">The callback to invoke with the response.</param>
-        /// <returns>The jQueryXmlHttpRequest object.</returns>
-        [ScriptName("post")]
-        public static jQueryXmlHttpRequest<TData> PostRequest<TData>(string url, object data, AjaxCallback<TData> callback) {
-            return null;
-        }
-
-        /// <summary>
-        /// Post data to the server using a HTTP POST request.
-        /// </summary>
-        /// <param name="url">The URL to request.</param>
-        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
-        /// <param name="callback">The callback to invoke with the response.</param>
-        /// <returns>The jQueryXmlHttpRequest object.</returns>
-        [ScriptName("post")]
-        public static jQueryXmlHttpRequest<TData> PostRequest<TData>(string url, object data, AjaxRequestCallback<TData> callback) {
+        public static jQueryXmlHttpRequest Post(string url, object data, AjaxCallback<object> callback, string dataType) {
             return null;
         }
 
@@ -885,8 +864,42 @@ namespace jQueryApi {
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <param name="dataType">The type of data expected in the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
+        public static jQueryXmlHttpRequest Post(string url, object data, AjaxRequestCallback<object> callback, string dataType) {
+            return null;
+        }
+
+        /// <summary>
+        /// Post data to the server using a HTTP POST request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <param name="callback">The callback to invoke with the response.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("post")]
-        public static jQueryXmlHttpRequest<TData> PostRequest<TData>(string url, object data, AjaxCallback<TData> callback, string dataType) {
+        public static jQueryDataHttpRequest<TData> PostRequest<TData>(string url, AjaxCallback<TData> callback) {
+            return null;
+        }
+
+        /// <summary>
+        /// Post data to the server using a HTTP POST request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
+        /// <param name="callback">The callback to invoke with the response.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        [ScriptName("post")]
+        public static jQueryDataHttpRequest<TData> PostRequest<TData>(string url, object data, AjaxCallback<TData> callback) {
+            return null;
+        }
+
+        /// <summary>
+        /// Post data to the server using a HTTP POST request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
+        /// <param name="callback">The callback to invoke with the response.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        [ScriptName("post")]
+        public static jQueryDataHttpRequest<TData> PostRequest<TData>(string url, object data, AjaxRequestCallback<TData> callback) {
             return null;
         }
 
@@ -899,7 +912,20 @@ namespace jQueryApi {
         /// <param name="dataType">The type of data expected in the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("post")]
-        public static jQueryXmlHttpRequest<TData> PostRequest<TData>(string url, object data, AjaxRequestCallback<TData> callback, string dataType) {
+        public static jQueryDataHttpRequest<TData> PostRequest<TData>(string url, object data, AjaxCallback<TData> callback, string dataType) {
+            return null;
+        }
+
+        /// <summary>
+        /// Post data to the server using a HTTP POST request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
+        /// <param name="callback">The callback to invoke with the response.</param>
+        /// <param name="dataType">The type of data expected in the response.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        [ScriptName("post")]
+        public static jQueryDataHttpRequest<TData> PostRequest<TData>(string url, object data, AjaxRequestCallback<TData> callback, string dataType) {
             return null;
         }
 
