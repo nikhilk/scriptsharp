@@ -2595,6 +2595,26 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Replace each element in the set of matched elements with the new content provided
+        /// by the specified element.
+        /// </summary>
+        /// <param name="content">The element containing the HTML to use.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject ReplaceWith(Element content) {
+            return null;
+        }
+
+        /// <summary>
+        /// Replace each element in the set of matched elements with the new content provided
+        /// by the specified set of matched elements.
+        /// </summary>
+        /// <param name="content">The object containing the HTML to use.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject ReplaceWith(jQueryObject content) {
+            return null;
+        }
+
+        /// <summary>
         /// Replace each element in the set of matched elements with the content returned from
         /// the specified function.
         /// </summary>
