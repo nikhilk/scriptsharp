@@ -15,4 +15,10 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="deferred">The deferred object being created.</param>
     public delegate void jQueryDeferredInitializer(jQueryDeferred deferred);
+
+    /// <summary>
+    /// A callback that can initialize a deferred object during construction.
+    /// </summary>
+    /// <param name="deferred">The deferred object being created.</param>
+    public delegate void jQueryDeferredInitializer<TData>(jQueryDeferred<TData> deferred);
 }

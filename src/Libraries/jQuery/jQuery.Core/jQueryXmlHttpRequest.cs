@@ -83,9 +83,18 @@ namespace jQueryApi {
         /// <summary>
         /// Add handlers to be called when the request completes or fails.
         /// </summary>
-        /// <param name="callbacks">The callbacsk to invoke (in order).</param>
+        /// <param name="callbacks">The callbacks to invoke (in order).</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Always(params Delegate[] callbacks) {
+        public jQueryXmlHttpRequest Always(params Action[] callbacks) {
+            return null;
+        }
+
+        /// <summary>
+        /// Add handlers to be called when the request completes or fails.
+        /// </summary>
+        /// <param name="callbacks">The callbacks to invoke (in order).</param>
+        /// <returns>The current request object.</returns>
+        public jQueryXmlHttpRequest Always(params Callback[] callbacks) {
             return null;
         }
 
@@ -104,7 +113,17 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="doneCallbacks">The callbacks to invoke (in order).</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Done(params Delegate[] doneCallbacks) {
+        public jQueryXmlHttpRequest Done(params Action[] doneCallbacks) {
+            return null;
+        }
+
+        /// <summary>
+        /// Add handlers to be called when the request is successfully completed. If the
+        /// request is already completed, the handlers are still invoked.
+        /// </summary>
+        /// <param name="doneCallbacks">The callbacks to invoke (in order).</param>
+        /// <returns>The current request object.</returns>
+        public jQueryXmlHttpRequest Done(params Callback[] doneCallbacks) {
             return null;
         }
 
@@ -123,7 +142,17 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="failCallbacks">The callbacks to invoke (in order).</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Fail(params Delegate[] failCallbacks) {
+        public jQueryXmlHttpRequest Fail(params Action[] failCallbacks) {
+            return null;
+        }
+
+        /// <summary>
+        /// Add handlers to be called when the request errors. If the
+        /// request is already completed, the handlers are still invoked.
+        /// </summary>
+        /// <param name="failCallbacks">The callbacks to invoke (in order).</param>
+        /// <returns>The current request object.</returns>
+        public jQueryXmlHttpRequest Fail(params Callback[] failCallbacks) {
             return null;
         }
 
@@ -156,7 +185,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="successFilter">The filter to invoke when the request successfully completes.</param>
         /// <returns>The current request object.</returns>
-        jQueryXmlHttpRequest Pipe(jQueryDeferredFilter successFilter) {
+        public jQueryXmlHttpRequest Pipe(jQueryDeferredFilter successFilter) {
             return null;
         }
 
@@ -166,7 +195,7 @@ namespace jQueryApi {
         /// <param name="successFilter">The filter to invoke when the request successfully completes.</param>
         /// <param name="failFilter">The filter to invoke when the request fails.</param>
         /// <returns>The current request object.</returns>
-        jQueryXmlHttpRequest Pipe(jQueryDeferredFilter successFilter, jQueryDeferredFilter failFilter) {
+        public jQueryXmlHttpRequest Pipe(jQueryDeferredFilter successFilter, jQueryDeferredFilter failFilter) {
             return null;
         }
 
@@ -203,7 +232,18 @@ namespace jQueryApi {
         /// <param name="doneCallback">The callback to invoke when the request completes successfully.</param>
         /// <param name="failCallback">The callback to invoke when the request completes with an error.</param>
         /// <returns>The current request object.</returns>
-        public jQueryXmlHttpRequest Then(Delegate doneCallback, Delegate failCallback) {
+        public jQueryXmlHttpRequest Then(Action doneCallback, Action failCallback) {
+            return null;
+        }
+
+        /// <summary>
+        /// Add handlers to be called when the request is completed. If the
+        /// request is already completed, the handlers are still invoked.
+        /// </summary>
+        /// <param name="doneCallback">The callback to invoke when the request completes successfully.</param>
+        /// <param name="failCallback">The callback to invoke when the request completes with an error.</param>
+        /// <returns>The current request object.</returns>
+        public jQueryXmlHttpRequest Then(Callback doneCallback, Callback failCallback) {
             return null;
         }
 
@@ -214,21 +254,44 @@ namespace jQueryApi {
         /// <param name="doneCallbacks">The callbacks to invoke when the request completes successfully.</param>
         /// <param name="failCallbacks">The callbacks to invoke when the request completes with an error.</param>
         /// <returns>The current deferred object.</returns>
-        public jQueryXmlHttpRequest Then(Delegate[] doneCallbacks, Delegate[] failCallbacks) {
+        public jQueryXmlHttpRequest Then(Action[] doneCallbacks, Action[] failCallbacks) {
+            return null;
+        }
+
+        /// <summary>
+        /// Add handlers to be called when the request is completed. If the
+        /// request is already completed, the handlers are still invoked.
+        /// </summary>
+        /// <param name="doneCallbacks">The callbacks to invoke when the request completes successfully.</param>
+        /// <param name="failCallbacks">The callbacks to invoke when the request completes with an error.</param>
+        /// <returns>The current deferred object.</returns>
+        public jQueryXmlHttpRequest Then(Callback[] doneCallbacks, Callback[] failCallbacks) {
             return null;
         }
 
         #region Implementation of IDeferred
 
-        IDeferred IDeferred.Always(params Delegate[] callbacks) {
+        IDeferred IDeferred.Always(params Action[] callbacks) {
             return null;
         }
 
-        IDeferred IDeferred.Done(params Delegate[] doneCallbacks) {
+        IDeferred IDeferred.Always(params Callback[] callbacks) {
             return null;
         }
 
-        IDeferred IDeferred.Fail(params Delegate[] failCallbacks) {
+        IDeferred IDeferred.Done(params Action[] doneCallbacks) {
+            return null;
+        }
+
+        IDeferred IDeferred.Done(params Callback[] doneCallbacks) {
+            return null;
+        }
+
+        IDeferred IDeferred.Fail(params Action[] failCallbacks) {
+            return null;
+        }
+
+        IDeferred IDeferred.Fail(params Callback[] failCallbacks) {
             return null;
         }
 
@@ -248,27 +311,19 @@ namespace jQueryApi {
             return null;
         }
 
-        IDeferred IDeferred.Reject(params object[] args) {
+        IDeferred IDeferred.Then(Action doneCallback, Action failCallback) {
             return null;
         }
 
-        IDeferred IDeferred.RejectWith(object context, params object[] args) {
+        IDeferred IDeferred.Then(Callback doneCallback, Callback failCallback) {
             return null;
         }
 
-        IDeferred IDeferred.Resolve(params object[] args) {
+        IDeferred IDeferred.Then(Action[] doneCallbacks, Action[] failCallbacks) {
             return null;
         }
 
-        IDeferred IDeferred.ResolveWith(object context, params object[] args) {
-            return null;
-        }
-
-        IDeferred IDeferred.Then(Delegate doneCallback, Delegate failCallback) {
-            return null;
-        }
-
-        IDeferred IDeferred.Then(Delegate[] doneCallbacks, Delegate[] failCallbacks) {
+        IDeferred IDeferred.Then(Callback[] doneCallbacks, Callback[] failCallbacks) {
             return null;
         }
 

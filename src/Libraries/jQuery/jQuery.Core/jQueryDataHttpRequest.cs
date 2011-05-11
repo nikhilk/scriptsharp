@@ -18,7 +18,7 @@ namespace jQueryApi {
     /// </summary>
     [Imported]
     [IgnoreNamespace]
-    public sealed class jQueryDataHttpRequest<TData> : IDeferred {
+    public sealed class jQueryDataHttpRequest<TData> : IDeferred<TData> {
 
         private jQueryDataHttpRequest() {
         }
@@ -83,9 +83,18 @@ namespace jQueryApi {
         /// <summary>
         /// Add handlers to be called when the request completes or fails.
         /// </summary>
-        /// <param name="callbacks">The callbacsk to invoke (in order).</param>
+        /// <param name="callbacks">The callbacks to invoke (in order).</param>
         /// <returns>The current request object.</returns>
-        public jQueryDataHttpRequest<TData> Always(params Delegate[] callbacks) {
+        public jQueryDataHttpRequest<TData> Always(params Action[] callbacks) {
+            return null;
+        }
+
+        /// <summary>
+        /// Add handlers to be called when the request completes or fails.
+        /// </summary>
+        /// <param name="callbacks">The callbacks to invoke (in order).</param>
+        /// <returns>The current request object.</returns>
+        public jQueryDataHttpRequest<TData> Always(params Action<TData>[] callbacks) {
             return null;
         }
 
@@ -104,7 +113,17 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="doneCallbacks">The callbacks to invoke (in order).</param>
         /// <returns>The current request object.</returns>
-        public jQueryDataHttpRequest<TData> Done(params Delegate[] doneCallbacks) {
+        public jQueryDataHttpRequest<TData> Done(params Action[] doneCallbacks) {
+            return null;
+        }
+
+        /// <summary>
+        /// Add handlers to be called when the request is successfully completed. If the
+        /// request is already completed, the handlers are still invoked.
+        /// </summary>
+        /// <param name="doneCallbacks">The callbacks to invoke (in order).</param>
+        /// <returns>The current request object.</returns>
+        public jQueryDataHttpRequest<TData> Done(params Action<TData>[] doneCallbacks) {
             return null;
         }
 
@@ -123,7 +142,17 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="failCallbacks">The callbacks to invoke (in order).</param>
         /// <returns>The current request object.</returns>
-        public jQueryDataHttpRequest<TData> Fail(params Delegate[] failCallbacks) {
+        public jQueryDataHttpRequest<TData> Fail(params Action[] failCallbacks) {
+            return null;
+        }
+
+        /// <summary>
+        /// Add handlers to be called when the request errors. If the
+        /// request is already completed, the handlers are still invoked.
+        /// </summary>
+        /// <param name="failCallbacks">The callbacks to invoke (in order).</param>
+        /// <returns>The current request object.</returns>
+        public jQueryDataHttpRequest<TData> Fail(params Action<TData>[] failCallbacks) {
             return null;
         }
 
@@ -156,7 +185,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="successFilter">The filter to invoke when the request successfully completes.</param>
         /// <returns>The current request object.</returns>
-        jQueryDataHttpRequest<TData> Pipe(jQueryDeferredFilter successFilter) {
+        public jQueryDataHttpRequest<TTargetData> Pipe<TTargetData>(jQueryDeferredFilter<TTargetData, TData> successFilter) {
             return null;
         }
 
@@ -166,7 +195,7 @@ namespace jQueryApi {
         /// <param name="successFilter">The filter to invoke when the request successfully completes.</param>
         /// <param name="failFilter">The filter to invoke when the request fails.</param>
         /// <returns>The current request object.</returns>
-        jQueryDataHttpRequest<TData> Pipe(jQueryDeferredFilter successFilter, jQueryDeferredFilter failFilter) {
+        public jQueryDataHttpRequest<TTargetData> Pipe<TTargetData>(jQueryDeferredFilter<TTargetData, TData> successFilter, jQueryDeferredFilter<TTargetData> failFilter) {
             return null;
         }
 
@@ -203,7 +232,18 @@ namespace jQueryApi {
         /// <param name="doneCallback">The callback to invoke when the request completes successfully.</param>
         /// <param name="failCallback">The callback to invoke when the request completes with an error.</param>
         /// <returns>The current request object.</returns>
-        public jQueryDataHttpRequest<TData> Then(Delegate doneCallback, Delegate failCallback) {
+        public jQueryDataHttpRequest<TData> Then(Action doneCallback, Action failCallback) {
+            return null;
+        }
+
+        /// <summary>
+        /// Add handlers to be called when the request is completed. If the
+        /// request is already completed, the handlers are still invoked.
+        /// </summary>
+        /// <param name="doneCallback">The callback to invoke when the request completes successfully.</param>
+        /// <param name="failCallback">The callback to invoke when the request completes with an error.</param>
+        /// <returns>The current request object.</returns>
+        public jQueryDataHttpRequest<TData> Then(Action<TData> doneCallback, Action<TData> failCallback) {
             return null;
         }
 
@@ -214,61 +254,76 @@ namespace jQueryApi {
         /// <param name="doneCallbacks">The callbacks to invoke when the request completes successfully.</param>
         /// <param name="failCallbacks">The callbacks to invoke when the request completes with an error.</param>
         /// <returns>The current deferred object.</returns>
-        public jQueryDataHttpRequest<TData> Then(Delegate[] doneCallbacks, Delegate[] failCallbacks) {
+        public jQueryDataHttpRequest<TData> Then(Action[] doneCallbacks, Action[] failCallbacks) {
+            return null;
+        }
+
+        /// <summary>
+        /// Add handlers to be called when the request is completed. If the
+        /// request is already completed, the handlers are still invoked.
+        /// </summary>
+        /// <param name="doneCallbacks">The callbacks to invoke when the request completes successfully.</param>
+        /// <param name="failCallbacks">The callbacks to invoke when the request completes with an error.</param>
+        /// <returns>The current deferred object.</returns>
+        public jQueryDataHttpRequest<TData> Then(Action<TData>[] doneCallbacks, Action<TData>[] failCallbacks) {
             return null;
         }
 
         #region Implementation of IDeferred
 
-        IDeferred IDeferred.Always(params Delegate[] callbacks) {
+        IDeferred<TData> IDeferred<TData>.Always(params Action[] callbacks) {
             return null;
         }
 
-        IDeferred IDeferred.Done(params Delegate[] doneCallbacks) {
+        IDeferred<TData> IDeferred<TData>.Always(params Action<TData>[] callbacks) {
             return null;
         }
 
-        IDeferred IDeferred.Fail(params Delegate[] failCallbacks) {
+        IDeferred<TData> IDeferred<TData>.Done(params Action[] doneCallbacks) {
             return null;
         }
 
-        bool IDeferred.IsRejected() {
+        IDeferred<TData> IDeferred<TData>.Done(params Action<TData>[] doneCallbacks) {
+            return null;
+        }
+
+        IDeferred<TData> IDeferred<TData>.Fail(params Action[] failCallbacks) {
+            return null;
+        }
+
+        IDeferred<TData> IDeferred<TData>.Fail(params Action<TData>[] failCallbacks) {
+            return null;
+        }
+
+        bool IDeferred<TData>.IsRejected() {
             return false;
         }
 
-        bool IDeferred.IsResolved() {
+        bool IDeferred<TData>.IsResolved() {
             return false;
         }
 
-        IDeferred IDeferred.Pipe(jQueryDeferredFilter successFilter) {
+        IDeferred<TTargetData> IDeferred<TData>.Pipe<TTargetData>(jQueryDeferredFilter<TTargetData, TData> successFilter) {
             return null;
         }
 
-        IDeferred IDeferred.Pipe(jQueryDeferredFilter successFilter, jQueryDeferredFilter failFilter) {
+        IDeferred<TTargetData> IDeferred<TData>.Pipe<TTargetData>(jQueryDeferredFilter<TTargetData, TData> successFilter, jQueryDeferredFilter<TTargetData> failFilter) {
             return null;
         }
 
-        IDeferred IDeferred.Reject(params object[] args) {
+        IDeferred<TData> IDeferred<TData>.Then(Action doneCallback, Action failCallback) {
             return null;
         }
 
-        IDeferred IDeferred.RejectWith(object context, params object[] args) {
+        IDeferred<TData> IDeferred<TData>.Then(Action<TData> doneCallback, Action<TData> failCallback) {
             return null;
         }
 
-        IDeferred IDeferred.Resolve(params object[] args) {
+        IDeferred<TData> IDeferred<TData>.Then(Action[] doneCallbacks, Action[] failCallbacks) {
             return null;
         }
 
-        IDeferred IDeferred.ResolveWith(object context, params object[] args) {
-            return null;
-        }
-
-        IDeferred IDeferred.Then(Delegate doneCallback, Delegate failCallback) {
-            return null;
-        }
-
-        IDeferred IDeferred.Then(Delegate[] doneCallbacks, Delegate[] failCallbacks) {
+        IDeferred<TData> IDeferred<TData>.Then(Action<TData>[] doneCallbacks, Action<TData>[] failCallbacks) {
             return null;
         }
 

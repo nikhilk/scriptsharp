@@ -220,9 +220,26 @@ namespace jQueryApi {
         /// <summary>
         /// Creates a new instance of a deferred object.
         /// </summary>
+        [PreserveCase]
+        public static jQueryDeferred<TData> DeferredData<TData>() {
+            return null;
+        }
+
+        /// <summary>
+        /// Creates a new instance of a deferred object.
+        /// </summary>
         /// <param name="initializer">An initializer callback to initialize the new deferred object.</param>
         [PreserveCase]
         public static jQueryDeferred Deferred(jQueryDeferredInitializer initializer) {
+            return null;
+        }
+
+        /// <summary>
+        /// Creates a new instance of a deferred object.
+        /// </summary>
+        /// <param name="initializer">An initializer callback to initialize the new deferred object.</param>
+        [PreserveCase]
+        public static jQueryDeferred<TData> DeferredData<TData>(jQueryDeferredInitializer<TData> initializer) {
             return null;
         }
 
@@ -439,6 +456,15 @@ namespace jQueryApi {
         /// Load data from the server using a HTTP GET request.
         /// </summary>
         /// <param name="url">The URL to request.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        public static jQueryXmlHttpRequest Get(string url) {
+            return null;
+        }
+
+        /// <summary>
+        /// Load data from the server using a HTTP GET request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         public static jQueryXmlHttpRequest Get(string url, AjaxCallback<object> callback) {
@@ -488,6 +514,16 @@ namespace jQueryApi {
         /// <param name="dataType">The type of data expected in the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         public static jQueryXmlHttpRequest Get(string url, object data, AjaxRequestCallback<object> callback, string dataType) {
+            return null;
+        }
+
+        /// <summary>
+        /// Load data from the server using a HTTP GET request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        [ScriptName("get")]
+        public static jQueryDataHttpRequest<TData> GetData<TData>(string url) {
             return null;
         }
 
@@ -556,6 +592,16 @@ namespace jQueryApi {
         /// Load JSON data from the server using a HTTP GET request.
         /// </summary>
         /// <param name="url">The URL to request.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        [ScriptName("getJSON")]
+        public static jQueryXmlHttpRequest GetJson(string url) {
+            return null;
+        }
+
+        /// <summary>
+        /// Load JSON data from the server using a HTTP GET request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("getJSON")]
@@ -572,6 +618,16 @@ namespace jQueryApi {
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         [ScriptName("getJSON")]
         public static jQueryXmlHttpRequest GetJson(string url, object data, AjaxCallback<object> callback) {
+            return null;
+        }
+
+        /// <summary>
+        /// Load JSON data from the server using a HTTP GET request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        [ScriptName("getJSON")]
+        public static jQueryDataHttpRequest<TData> GetJsonData<TData>(string url) {
             return null;
         }
 
@@ -816,9 +872,28 @@ namespace jQueryApi {
         /// Post data to the server using a HTTP POST request.
         /// </summary>
         /// <param name="url">The URL to request.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        public static jQueryXmlHttpRequest Post(string url) {
+            return null;
+        }
+
+        /// <summary>
+        /// Post data to the server using a HTTP POST request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
         /// <param name="callback">The callback to invoke with the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         public static jQueryXmlHttpRequest Post(string url, AjaxCallback<object> callback) {
+            return null;
+        }
+
+        /// <summary>
+        /// Post data to the server using a HTTP POST request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <param name="data">A string or dictionary containing the data sent with the request.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        public static jQueryXmlHttpRequest Post(string url, object data) {
             return null;
         }
 
@@ -865,6 +940,16 @@ namespace jQueryApi {
         /// <param name="dataType">The type of data expected in the response.</param>
         /// <returns>The jQueryXmlHttpRequest object.</returns>
         public static jQueryXmlHttpRequest Post(string url, object data, AjaxRequestCallback<object> callback, string dataType) {
+            return null;
+        }
+
+        /// <summary>
+        /// Post data to the server using a HTTP POST request.
+        /// </summary>
+        /// <param name="url">The URL to request.</param>
+        /// <returns>The jQueryXmlHttpRequest object.</returns>
+        [ScriptName("post")]
+        public static jQueryDataHttpRequest<TData> PostRequest<TData>(string url) {
             return null;
         }
 
@@ -1015,6 +1100,16 @@ namespace jQueryApi {
         /// <param name="deferreds">The set of deferred objects.</param>
         /// <returns>A deferred object representing the individual deferred objects.</returns>
         public static IDeferred When(params object[] deferreds) {
+            return null;
+        }
+
+        /// <summary>
+        /// Creates a deferred object representing the aggregate of the specified
+        /// deferred objects.
+        /// </summary>
+        /// <param name="deferreds">The set of deferred objects.</param>
+        /// <returns>A deferred object representing the individual deferred objects.</returns>
+        public static IDeferred<TData> WhenData<TData>(params IDeferred<TData>[] deferreds) {
             return null;
         }
     }
