@@ -23,6 +23,55 @@ namespace jQueryApi {
         private jQueryEvent() {
         }
 
+        [IntrinsicProperty]
+        public bool AltKey {
+            get {
+                return false;
+            }
+        }
+
+        [IntrinsicProperty]
+        public bool Bubbles {
+            get {
+                return false;
+            }
+        }
+
+        [IntrinsicProperty]
+        public int Button {
+            get {
+                return 0;
+            }
+        }
+
+        [IntrinsicProperty]
+        public bool Cancelable {
+            get {
+                return false;
+            }
+        }
+
+        [IntrinsicProperty]
+        public bool CtrlKey {
+            get {
+                return false;
+            }
+        }
+
+        [IntrinsicProperty]
+        public int ClientX {
+            get {
+                return 0;
+            }
+        }
+
+        [IntrinsicProperty]
+        public int ClientY {
+            get {
+                return 0;
+            }
+        }
+
         /// <summary>
         /// Gets the current DOM element within the event bubbling phase.
         /// </summary>
@@ -53,6 +102,27 @@ namespace jQueryApi {
             }
         }
 
+        [IntrinsicProperty]
+        public int OffsetX {
+            get {
+                return 0;
+            }
+        }
+
+        [IntrinsicProperty]
+        public int OffsetY {
+            get {
+                return 0;
+            }
+        }
+
+        [IntrinsicProperty]
+        public Element OriginalTarget {
+            get {
+                return null;
+            }
+        }
+
         /// <summary>
         /// Gets the mouse position relative to left edge of the document.
         /// </summary>
@@ -68,6 +138,20 @@ namespace jQueryApi {
         /// </summary>
         [IntrinsicProperty]
         public int PageY {
+            get {
+                return 0;
+            }
+        }
+
+        [IntrinsicProperty]
+        public int ScreenX {
+            get {
+                return 0;
+            }
+        }
+
+        [IntrinsicProperty]
+        public int ScreenY {
             get {
                 return 0;
             }
@@ -90,6 +174,13 @@ namespace jQueryApi {
         public object Result {
             get {
                 return null;
+            }
+        }
+
+        [IntrinsicProperty]
+        public bool ShiftKey {
+            get {
+                return false;
             }
         }
 
@@ -128,9 +219,9 @@ namespace jQueryApi {
         /// Gets the key or button that was pressed.
         /// </summary>
         [IntrinsicProperty]
-        public string Which {
+        public int Which {
             get {
-                return null;
+                return 0;
             }
         }
 
