@@ -49,6 +49,7 @@
     <Compile Include="Html\ActiveXObject.cs" />
     <Compile Include="Html\AnchorElement.cs" />
     <Compile Include="Html\AreaElement.cs" />
+    <Compile Include="Html\AudioElement.cs" />
     <Compile Include="Html\CheckBoxElement.cs" />
     <Compile Include="Html\CanvasElement.cs" />
     <Compile Include="Html\GestureEvent.cs" />
