@@ -34,15 +34,15 @@ namespace System.Html.Services {
         public void GetCurrentPosition(GeolocationSuccessCallback successCallback, GeolocationErrorCallback errorCallback, GeolocationOptions options) {
         }
 
-        public object WatchCurrentPosition(GeolocationSuccessCallback successCallback) {
+        public object WatchPosition(GeolocationSuccessCallback successCallback) {
             return null;
         }
 
-        public object WatchCurrentPosition(GeolocationSuccessCallback successCallback, GeolocationErrorCallback errorCallback) {
+        public object WatchPosition(GeolocationSuccessCallback successCallback, GeolocationErrorCallback errorCallback) {
             return null;
         }
 
-        public object WatchCurrentPosition(GeolocationSuccessCallback successCallback, GeolocationErrorCallback errorCallback, GeolocationOptions options) {
+        public object WatchPosition(GeolocationSuccessCallback successCallback, GeolocationErrorCallback errorCallback, GeolocationOptions options) {
             return null;
         }
     }
