@@ -40,11 +40,6 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mscorlib">
-      <HintPath>..\..\..\..\bin\ref\mscorlib.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="MapEventTarget.cs" />
     <Compile Include="MapEventArgs.cs" />
     <Compile Include="MapInfoboxOptions.cs" />
@@ -83,6 +78,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CoreLib\CoreLib.csproj">
+      <Project>{36D4B098-A21C-4725-ACD3-400922885F38}</Project>
+      <Name>CoreLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Web\Web.csproj">
       <Project>{3681A9A8-FC40-4125-B842-7775713C8DCE}</Project>
       <Name>Web</Name>

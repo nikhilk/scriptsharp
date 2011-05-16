@@ -41,11 +41,6 @@
     <NoWarn>1591, 0661, 0660, 1684</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mscorlib">
-      <HintPath>..\..\..\bin\ref\mscorlib.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Html\ActiveXObject.cs" />
     <Compile Include="Html\AnchorElement.cs" />
     <Compile Include="Html\AreaElement.cs" />
@@ -151,6 +146,12 @@
     <Compile Include="Xml\XmlNodeList.cs" />
     <Compile Include="Xml\XmlNodeType.cs" />
     <Compile Include="Xml\XmlText.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoreLib\CoreLib.csproj">
+      <Project>{36D4B098-A21C-4725-ACD3-400922885F38}</Project>
+      <Name>CoreLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
