@@ -142,7 +142,7 @@ namespace System.Html {
             return null;
         }
 
-        public DocumentInstance CreateDocumentFragment() {
+        public DocumentFragment CreateDocumentFragment() {
             return null;
         }
 
