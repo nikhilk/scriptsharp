@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Rules FriendlyName="Script Rules">
+  <Rule TypeName="ScriptAvoidEval" Category="Script.General" CheckId="SS0001">
+    <Name>Avoid Script.Eval if possible.</Name>
+    <Description>Avoid Script.Eval (i.e. eval) for performance reasons when possible. If you need to output literal script using Script#, use Script.Literal instead. If you need to parse a JSON string, use Json.Parse instead.</Description>
+    <Owner></Owner>
+    <Email></Email>
+    <Url></Url>
+    <Resolution>Use Script.Literal or Json.Parse when possible.</Resolution>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule TypeName="ScriptAvoidLiteralScript" Category="Script.General" CheckId="SS0002">
+    <Name>Avoid Script.Literal if possible.</Name>
+    <Description>Avoid Script.Literal as it prevents type checking at compile time. Report any missing metadata APIs needed to avoid Script.Literal.</Description>
+    <Owner></Owner>
+    <Email></Email>
+    <Url></Url>
+    <Resolution>Add any strongly typed APIs if possible.</Resolution>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule TypeName="ScriptUnusedFields" Category="Script.General" CheckId="SS0003">
+    <Name>Do not declare visible instance fields on non-Record classes</Name>
+    <Description>Instance fields that are visible outside of the type that declares them, limit your ability to change the implementation details for those data items. Use properties instead. They do not compromise usability or performance and they do provide flexibility in that they conceal the implementation details of the underlying data.</Description>
+    <Owner></Owner>
+    <Email></Email>
+    <Url></Url>
+    <Resolution>Because field {0} is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Resolution>
+    <MessageLevel Certainty="90">Error</MessageLevel>
+    <FixCategories>Breaking</FixCategories>
+  </Rule>
+</Rules>

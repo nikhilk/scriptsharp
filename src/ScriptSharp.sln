@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{37239BB8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Tools\Testing\Testing.csproj", "{31456150-1093-407F-9231-58D0F663945D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FxCop", "Tools\FxCop\FxCop.csproj", "{B87E403B-354D-47A1-9876-14C618A80A41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -151,6 +153,16 @@ Global
 		{31456150-1093-407F-9231-58D0F663945D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31456150-1093-407F-9231-58D0F663945D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{31456150-1093-407F-9231-58D0F663945D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B87E403B-354D-47A1-9876-14C618A80A41}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{B87E403B-354D-47A1-9876-14C618A80A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B87E403B-354D-47A1-9876-14C618A80A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B87E403B-354D-47A1-9876-14C618A80A41}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B87E403B-354D-47A1-9876-14C618A80A41}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B87E403B-354D-47A1-9876-14C618A80A41}.Release|.NET.ActiveCfg = Release|Any CPU
+		{B87E403B-354D-47A1-9876-14C618A80A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B87E403B-354D-47A1-9876-14C618A80A41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B87E403B-354D-47A1-9876-14C618A80A41}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B87E403B-354D-47A1-9876-14C618A80A41}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -168,5 +180,6 @@ Global
 		{ECBDD6E0-44E4-42AA-81C1-E510C9798F8E} = {B82D80A3-6436-46B5-A78C-E4AFAD853CEE}
 		{8780581F-7C26-4B64-9235-BA1C458DF36E} = {F08ABF8F-6A05-4C42-9C09-9CAC7B4DC1D0}
 		{31456150-1093-407F-9231-58D0F663945D} = {37239BB8-2FA4-4831-A7EA-AF89D74EA10E}
+		{B87E403B-354D-47A1-9876-14C618A80A41} = {37239BB8-2FA4-4831-A7EA-AF89D74EA10E}
 	EndGlobalSection
 EndGlobal
