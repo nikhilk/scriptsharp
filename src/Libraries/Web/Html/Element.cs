@@ -347,9 +347,9 @@ namespace System.Html {
             return null;
         }
 
-    	[AlternateSignature]
-		public extern Element AppendChild(DocumentFragment child);
-		
+        public Element AppendChild(DocumentFragment child) {
+            return null;
+        }
 
         [ScriptSkip]
         public TElement As<TElement>() where TElement : Element {
