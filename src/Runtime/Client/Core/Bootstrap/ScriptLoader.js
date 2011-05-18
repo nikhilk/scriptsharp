@@ -482,12 +482,11 @@
     init: registerInitCallback,
     ready: registerReadyCallback
   };
-  if (document.addEventListener) {
-    document.readyState == 'complete' ? _startup() : document.addEventListener('DOMContentLoaded', _startup, false);
-  }
-  else if (window.attachEvent) {
-    window.attachEvent('onload', function () {
-      _startup();
-    });
-  }
+
+  // If the document is already loaded, invoke the startup callbacks,
+  // otherwise register for DOMContentLoaded (if addEventListener exists),
+  // or window.onload as a fallback.
+  document.readyState == 'complete' ? _startup() :
+  document.addEventListener ? document.addEventListener('DOMContentLoaded', _startup, false) :
+                              window.attachEvent('onload', _startup);
 })();
