@@ -205,6 +205,12 @@ namespace System {
         public void SetFullYear(int year) {
         }
 
+        public void SetFullYear(int year, int month) {
+        }
+
+        public void SetFullYear(int year, int month, int day) {
+        }
+
         public void SetHours(int hours) {
         }
 
@@ -248,6 +254,10 @@ namespace System {
         }
 
         public string ToDateString() {
+            return null;
+        }
+
+        public string ToISOString() {
             return null;
         }
 
