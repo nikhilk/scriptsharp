@@ -346,6 +346,15 @@ namespace jQueryApi {
         /// <summary>
         /// Insert content to the end of each element of the matching elements.
         /// </summary>
+        /// <param name="content">The DOM element to append.</param>
+        /// <returns>The current jQueryObject</returns>
+        public jQueryObject Append(Element content) {
+            return null;
+        }
+
+        /// <summary>
+        /// Insert content to the end of each element of the matching elements.
+        /// </summary>
         /// <param name="content">The jQueryObject containing the content.</param>
         /// <returns>The current jQueryObject</returns>
         public jQueryObject Append(jQueryObject content) {
@@ -448,6 +457,15 @@ namespace jQueryApi {
         /// <param name="content">The content to insert.</param>
         /// <returns>The current jQueryObject</returns>
         public jQueryObject Before(string content) {
+            return null;
+        }
+
+        /// <summary>
+        /// Insert content before each element of the matching elements.
+        /// </summary>
+        /// <param name="content">The DOM element to insert.</param>
+        /// <returns>The current jQueryObject</returns>
+        public jQueryObject Before(Element content) {
             return null;
         }
 
@@ -2372,6 +2390,24 @@ namespace jQueryApi {
         /// <summary>
         /// Prepend content to the beginning of each element of the matching elements.
         /// </summary>
+        /// <param name="content">The DOM element to prepend.</param>
+        /// <returns>The current jQueryObject</returns>
+        public jQueryObject Prepend(Element content) {
+            return null;
+        }
+
+        /// <summary>
+        /// Prepend content to the beginning of each element of the matching elements.
+        /// </summary>
+        /// <param name="content">The DOM elements to prepend.</param>
+        /// <returns>The current jQueryObject</returns>
+        public jQueryObject Prepend(Element[] content) {
+            return null;
+        }
+
+        /// <summary>
+        /// Prepend content to the beginning of each element of the matching elements.
+        /// </summary>
         /// <param name="content">The jQueryObject containing the content.</param>
         /// <returns>The current jQueryObject</returns>
         public jQueryObject Prepend(jQueryObject content) {
@@ -2395,6 +2431,33 @@ namespace jQueryApi {
         /// <param name="contentFunction">The function that returns the content to prepend.</param>
         /// <returns>The current jQueryObject</returns>
         public jQueryObject Prepend(StringReplaceFunction contentFunction) {
+            return null;
+        }
+
+        /// <summary>
+        /// Prepends every element of the matching set to the beginning of each element of the matching elements.
+        /// </summary>
+        /// <param name="target">The target to prepend to.</param>
+        /// <returns>The current jQueryObject</returns>
+        public jQueryObject PrependTo(string target) {
+            return null;
+        }
+
+        /// <summary>
+        /// Prepends every element of the matching set to the beginning of each element of the matching elements.
+        /// </summary>
+        /// <param name="target">The DOM element to prepend to.</param>
+        /// <returns>The current jQueryObject</returns>
+        public jQueryObject PrependTo(Element target) {
+            return null;
+        }
+
+        /// <summary>
+        /// Prepends every element of the matching set to the beginning of each element of the matching elements.
+        /// </summary>
+        /// <param name="target">The jQueryObject to prepend to.</param>
+        /// <returns>The current jQueryObject</returns>
+        public jQueryObject PrependTo(jQueryObject target) {
             return null;
         }
 
@@ -3467,6 +3530,24 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Wraps a DOM element around each of the matched set of elements.
+        /// </summary>
+        /// <param name="element">A DOM element specifying the structure.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject Wrap(Element element) {
+            return null;
+        }
+
+        /// <summary>
+        /// Wraps a jQueryObject around each of the matched set of elements.
+        /// </summary>
+        /// <param name="element">A jQueryObject specifying the structure.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject Wrap(jQueryObject element) {
+            return null;
+        }
+
+        /// <summary>
         /// Wraps an HTML structure around each of the matched set of elements as
         /// returned from the specified wrapping function.
         /// </summary>
@@ -3477,11 +3558,56 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Wraps an HTML structure around all elements in the set of matched elements.
+        /// </summary>
+        /// <param name="htmlSnippet">The HTML to wrap with.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject WrapAll(string htmlSnippet) {
+            return null;
+        }
+
+        /// <summary>
+        /// Wraps an HTML structure around all elements in the set of matched elements.
+        /// </summary>
+        /// <param name="element">A DOM element specifying the structure.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject WrapAll(Element element) {
+            return null;
+        }
+
+        /// <summary>
+        /// Wraps an HTML structure around all elements in the set of matched elements.
+        /// </summary>
+        /// <param name="element">A jQueryObject specifying the structure.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject WrapAll(jQueryObject element) {
+            return null;
+        }
+
+        /// <summary>
         /// Wraps an HTML structure around the content of each of the matched set of elements.
         /// </summary>
         /// <param name="htmlSnippet">The HTML to wrap with.</param>
         /// <returns>The current jQueryObject.</returns>
         public jQueryObject WrapInner(string htmlSnippet) {
+            return null;
+        }
+
+        /// <summary>
+        /// Wraps a DOM element around the content of each of the matched set of elements.
+        /// </summary>
+        /// <param name="element">A DOM element specifying the structure.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject WrapInner(Element element) {
+            return null;
+        }
+
+        /// <summary>
+        /// Wraps a jQueryObject around the content of each of the matched set of elements.
+        /// </summary>
+        /// <param name="element">A jQueryObject specifying the structure.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject WrapInner(jQueryObject element) {
             return null;
         }
 
