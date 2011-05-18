@@ -347,6 +347,10 @@ namespace System.Html {
             return null;
         }
 
+        public Element AppendChild(DocumentFragment child) {
+            return null;
+        }
+
         [ScriptSkip]
         public TElement As<TElement>() where TElement : Element {
             return null;
