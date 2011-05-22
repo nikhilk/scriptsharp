@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Html;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -1021,7 +1022,7 @@ namespace jQueryApi {
         /// <param name="selector">The selector to match elements.</param>
         /// <returns>The resulting jQueryObject instance.</returns>
         [ScriptAlias("$")]
-        public static jQueryObject Select(string selector) {
+        public static jQueryObject Select([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -1034,7 +1035,7 @@ namespace jQueryApi {
         /// <param name="document">The document to search within.</param>
         /// <returns>The resulting jQueryObject instance.</returns>
         [ScriptAlias("$")]
-        public static jQueryObject Select(string selector, DocumentInstance document) {
+        public static jQueryObject Select([SyntaxValidation("cssSelector")] string selector, DocumentInstance document) {
             return null;
         }
 
@@ -1047,7 +1048,7 @@ namespace jQueryApi {
         /// <param name="rootElement">The root element to begin the search at.</param>
         /// <returns>The resulting jQueryObject instance.</returns>
         [ScriptAlias("$")]
-        public static jQueryObject Select(string selector, Element rootElement) {
+        public static jQueryObject Select([SyntaxValidation("cssSelector")] string selector, Element rootElement) {
             return null;
         }
 
@@ -1060,7 +1061,7 @@ namespace jQueryApi {
         /// <param name="context">The context to scope the selection.</param>
         /// <returns>The resulting jQueryObject instance.</returns>
         [ScriptAlias("$")]
-        public static jQueryObject Select(string selector, jQueryObject context) {
+        public static jQueryObject Select([SyntaxValidation("cssSelector")] string selector, jQueryObject context) {
             return null;
         }
 

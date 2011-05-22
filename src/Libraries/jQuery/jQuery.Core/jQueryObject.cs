@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Html;
 using System.Runtime.CompilerServices;
 
@@ -92,7 +93,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The set of elements to select and add.</param>
         /// <returns>The new jQueryObject with added elements.</returns>
-        public jQueryObject Add(string selector) {
+        public jQueryObject Add([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -102,7 +103,7 @@ namespace jQueryApi {
         /// <param name="selector">The set of elements to select and add.</param>
         /// <param name="context">The document to select elements from.</param>
         /// <returns>The new jQueryObject with added elements.</returns>
-        public jQueryObject Add(string selector, DocumentInstance context) {
+        public jQueryObject Add([SyntaxValidation("cssSelector")] string selector, DocumentInstance context) {
             return null;
         }
 
@@ -112,7 +113,7 @@ namespace jQueryApi {
         /// <param name="selector">The set of elements to select and add.</param>
         /// <param name="context">The root element to select elements from.</param>
         /// <returns>The new jQueryObject with added elements.</returns>
-        public jQueryObject Add(string selector, Element context) {
+        public jQueryObject Add([SyntaxValidation("cssSelector")] string selector, Element context) {
             return null;
         }
 
@@ -396,7 +397,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The elements to append to.</param>
         /// <returns>The resulting jQuery object</returns>
-        public jQueryObject AppendTo(string selector) {
+        public jQueryObject AppendTo([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -587,7 +588,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match children against.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Children(string selector) {
+        public jQueryObject Children([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -674,7 +675,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector used to match elements.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Closest(string selector) {
+        public jQueryObject Closest([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -685,7 +686,7 @@ namespace jQueryApi {
         /// <param name="selector">The selector used to match elements.</param>
         /// <param name="context">The element within which to search.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Closest(string selector, Element context) {
+        public jQueryObject Closest([SyntaxValidation("cssSelector")] string selector, Element context) {
             return null;
         }
 
@@ -772,7 +773,7 @@ namespace jQueryApi {
         /// <param name="eventName">The name of the event.</param>
         /// <param name="eventHandler">The event handler to be invoked.</param>
         /// <returns></returns>
-        public jQueryObject Delegate(string selector, string eventName, jQueryEventHandler eventHandler) {
+        public jQueryObject Delegate([SyntaxValidation("cssSelector")] string selector, string eventName, jQueryEventHandler eventHandler) {
             return null;
         }
 
@@ -785,7 +786,7 @@ namespace jQueryApi {
         /// <param name="eventData">Any data that needs to be passed to the event handler.</param>
         /// <param name="eventHandler">The event handler to be invoked.</param>
         /// <returns></returns>
-        public jQueryObject Delegate(string selector, string eventName, Dictionary eventData, jQueryEventHandler eventHandler) {
+        public jQueryObject Delegate([SyntaxValidation("cssSelector")] string selector, string eventName, Dictionary eventData, jQueryEventHandler eventHandler) {
             return null;
         }
 
@@ -804,7 +805,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to use to filter the elements to remove.</param>
         /// <returns>The current jQueryObject.</returns>
-        public jQueryObject Detach(string selector) {
+        public jQueryObject Detach([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -1216,7 +1217,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector used to match elements.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Filter(string selector) {
+        public jQueryObject Filter([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -1258,7 +1259,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector used to match elements.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Find(string selector) {
+        public jQueryObject Find([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -1561,7 +1562,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector used to match elements.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Has(string selector) {
+        public jQueryObject Has([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -1734,7 +1735,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector used to match elements.</param>
         /// <returns>The index of the first matching element.</returns>
-        public int Index(string selector) {
+        public int Index([SyntaxValidation("cssSelector")] string selector) {
             return 0;
         }
 
@@ -1753,7 +1754,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The elements to insert after.</param>
         /// <returns>The resulting jQuery object</returns>
-        public jQueryObject InsertAfter(string selector) {
+        public jQueryObject InsertAfter([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -1781,7 +1782,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The elements to insert before.</param>
         /// <returns>The resulting jQuery object</returns>
-        public jQueryObject InsertBefore(string selector) {
+        public jQueryObject InsertBefore([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -1830,7 +1831,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to check for.</param>
         /// <returns>True if there is a matching element; false otherwise.</returns>
-        public bool Is(string selector) {
+        public bool Is([SyntaxValidation("cssSelector")] string selector) {
             return false;
         }
 
@@ -2181,7 +2182,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match children against.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Next(string selector) {
+        public jQueryObject Next([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2200,7 +2201,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match children against.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject NextAll(string selector) {
+        public jQueryObject NextAll([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2210,7 +2211,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match children against.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject NextUntil(string selector) {
+        public jQueryObject NextUntil([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2240,7 +2241,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector used to match elements to remove.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Not(string selector) {
+        public jQueryObject Not([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2327,7 +2328,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match elements.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Parent(string selector) {
+        public jQueryObject Parent([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2345,7 +2346,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match elements.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Parents(string selector) {
+        public jQueryObject Parents([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2355,7 +2356,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match elements.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject ParentsUntil(string selector) {
+        public jQueryObject ParentsUntil([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2476,7 +2477,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match children against.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Prev(string selector) {
+        public jQueryObject Prev([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2495,7 +2496,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match children against.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject PrevAll(string selector) {
+        public jQueryObject PrevAll([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2505,7 +2506,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match children against.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject PrevUntil(string selector) {
+        public jQueryObject PrevUntil([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2564,7 +2565,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to use to filter the elements to remove.</param>
         /// <returns>The current jQueryObject.</returns>
-        public jQueryObject Remove(string selector) {
+        public jQueryObject Remove([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2644,7 +2645,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match elements to be replaced.</param>
         /// <returns>The current jQueryObject.</returns>
-        public jQueryObject ReplaceAll(string selector) {
+        public jQueryObject ReplaceAll([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -2869,7 +2870,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="selector">The selector to match elements.</param>
         /// <returns>The new jQueryObject.</returns>
-        public jQueryObject Siblings(string selector) {
+        public jQueryObject Siblings([SyntaxValidation("cssSelector")] string selector) {
             return null;
         }
 
@@ -3426,7 +3427,7 @@ namespace jQueryApi {
         /// <param name="selector">The selector to match elements.</param>
         /// <param name="eventName">The name of the event.</param>
         /// <returns>The current jQueryObject.</returns>
-        public jQueryObject Undelegate(string selector, string eventName) {
+        public jQueryObject Undelegate([SyntaxValidation("cssSelector")] string selector, string eventName) {
             return null;
         }
 
@@ -3438,7 +3439,7 @@ namespace jQueryApi {
         /// <param name="eventName">The name of the event.</param>
         /// <param name="eventHandler">The event handler to be invoked.</param>
         /// <returns>The current jQueryObject.</returns>
-        public jQueryObject Undelegate(string selector, string eventName, jQueryEventHandler eventHandler) {
+        public jQueryObject Undelegate([SyntaxValidation("cssSelector")] string selector, string eventName, jQueryEventHandler eventHandler) {
             return null;
         }
 
