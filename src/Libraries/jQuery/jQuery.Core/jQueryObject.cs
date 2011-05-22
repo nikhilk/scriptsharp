@@ -472,8 +472,9 @@ namespace jQueryApi {
         /// <summary>
         /// Insert content before each element of the matching elements.
         /// </summary>
-        /// <param name="content">The jQueryObject containing the content.</param>        /// <returns>The current jQueryObject</returns>
-        /// <returns>The current jQueryObject</returns>        public jQueryObject Before(jQueryObject content) {
+        /// <param name="content">The jQueryObject containing the content.</param>
+        /// <returns>The current jQueryObject</returns>
+        public jQueryObject Before(jQueryObject content) {
             return null;
         }
 
