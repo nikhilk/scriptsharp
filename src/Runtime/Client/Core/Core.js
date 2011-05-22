@@ -2,6 +2,7 @@
 //!
 
 (function(global) {
+"use strict";
 
 function extend(o, items) {
   for (var n in items) {

@@ -18,30 +18,29 @@ function createTypes(ns) {
   // [ fn, name ]
 
   var typeInfos = Array.prototype.slice.call(arguments, 1);
-  for (var i = typeInfos.Length - 1; i >= 0; i--) {
+  for (var i = 0, types = typeInfos.length; i < types; i++) {
     var typeInfo = typeInfos[i];
     var type = typeInfo[0];
     var name = typeInfo[1];
     var isClass = (typeInfo.length > 2);
 
     type.$type = type[isClass ? '$class' : '$interface'] = true;
-    type.name = name;
     type.fullName = ns ? ns.$name + '.' + name : name;
     (ns || global)[name] = type;
 
     if (isClass) {
-      type.baseType = Object;
-      extend(type.prototype, typeInfo[2]);
-
       var baseType = typeInfo[3];
       if (baseType) {
         var anonymous = function() {
         };
         anonymous.prototype = baseType.prototype;
         type.prototype = new anonymous();
-        type.prototype.constructor = fn;
-        type.baseType = baseType;
+        type.prototype.constructor = type;
       }
+
+      type.baseType = baseType || Object;
+      extend(type.prototype, typeInfo[2]);
+
       if (typeInfo[4]) {
         type.$interfaces = typeInfo[4];
       }
@@ -124,21 +123,11 @@ function safeCast(instance, type) {
   return isOfType(instance, type) ? instance : null;
 }
 
-var scriptTypes = {
-  'Error': Error,
-  'Array': Array,
-  'String': String,
-  'Number': Number,
-  'Boolean': Boolean,
-  'RegExp': RegExp,
-  'Date': Date,
-  'Function': Function,
-  'Object': Object
-};
-for (var n in scriptTypes) {
-  var type = scriptTypes[n];
+var scriptTypes = [Error, Array, String, Number, Boolean, RegExp, Date, Function, Object];
+for (var i = scriptTypes.length - 1; i >= 0; i--) {
+  var type = scriptTypes[i];
   type.$type = type.$class = true;
   type.baseType = Object;
-  type.fullName = type.name = n;
+  type.fullName = type.name;
 }
 Object.baseType = null;
