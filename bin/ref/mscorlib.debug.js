@@ -7,7 +7,7 @@
 
 (function () {
   var globals = {
-    version: '0.7.1.0',
+    version: '0.7.2.0',
 
     isUndefined: function (o) {
       return (o === undefined);
@@ -1737,6 +1737,18 @@ ss.CancelEventArgs = function CancelEventArgs$() {
 ss.CancelEventArgs.registerClass('CancelEventArgs', ss.EventArgs);
 
 ///////////////////////////////////////////////////////////////////////////////
+// Tuple
+
+ss.Tuple = function (first, second, third) {
+  this.first = first;
+  this.second = second;
+  if (arguments.length == 3) {
+    this.third = third;
+  }
+}
+ss.Tuple.registerClass('Tuple');
+
+///////////////////////////////////////////////////////////////////////////////
 // Observable
 
 ss.Observable = function(v) {
@@ -1860,3 +1872,21 @@ ss.ObservableCollection.prototype = {
   }
 }
 ss.ObservableCollection.registerClass('ObservableCollection', null, ss.IEnumerable);
+
+///////////////////////////////////////////////////////////////////////////////
+// Interfaces
+
+ss.IApplication = function() { };
+ss.IApplication.registerInterface('IApplication');
+
+ss.IContainer = function () { };
+ss.IContainer.registerInterface('IContainer');
+
+ss.IObjectFactory = function () { };
+ss.IObjectFactory.registerInterface('IObjectFactory');
+
+ss.IEventManager = function () { };
+ss.IEventManager.registerInterface('IEventManager');
+
+ss.IInitializable = function () { };
+ss.IInitializable.registerInterface('IInitializable');
