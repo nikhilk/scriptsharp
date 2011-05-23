@@ -33,6 +33,7 @@ test('type registration', function() {
 
   QUnit.equal(Test.Shape != null, true, 'Expected Shape to be an registered.');
   QUnit.equal(Test.Shape.$class, true, 'Expected Shape to be a class.');
+  QUnit.equal(Test.Shape.fullName, 'Test.Shape', 'Expected Shape to be have Test.Shape as full name.');
   QUnit.equal(Test.Shape.prototype['draw'] != null, true, 'Expected Shape to have a draw member.');
   QUnit.equal(Test.Shape.prototype['get_type'] != null, true, 'Expected Shape to have a get_type member.');
 
@@ -42,6 +43,9 @@ test('type registration', function() {
   QUnit.equal(Test.Circle.prototype['draw'] != null, true, 'Expected Circle to have a draw member.');
   QUnit.equal(Test.Circle.prototype['get_type'] != null, true, 'Expected Circle to have a get_type member.');
   QUnit.equal(Test.Circle.prototype['get_radius'] != null, true, 'Expected Circle to have a get_radius member.');
+
+  QUnit.equal(Object.baseType, null, 'Expected Object to not have a base type.');
+  QUnit.equal(Array.baseType, Object, 'Expected Array to have Object as base type.');
 });
 
 test('parse type name', function() {
@@ -51,9 +55,22 @@ test('parse type name', function() {
   QUnit.equal(ss.parseType('Xyz.Circle') == null, true, 'Should have not found Xyz.Circle');
 });
 
+test('get instance type', function() {
+  var a = [];
+  var c = new Test.Circle();
+  var xc = new Test.XCircle();
+
+  QUnit.equal(ss.getType(a), Array, 'Expected Array type.');
+  QUnit.equal(ss.getType({}), Object, 'Expected Object type.');
+  QUnit.equal(ss.getType(c), Test.Circle, 'Expected Circle type.');
+  QUnit.equal(ss.getType(xc), Test.XCircle, 'Expected XCircle type.');
+});
+
 test('canAssign', function() {
   QUnit.equal(ss.canAssign(Test.Shape, Test.Circle), true, 'Should be able to assign Circle to Shape.');
   QUnit.equal(ss.canAssign(Test.Shape, Test.XCircle), true, 'Should be able to assign XCircle to Shape.');
+  QUnit.equal(ss.canAssign(Test.Shape, Object), false, 'Object should not be assignable to a Shape.');
+  QUnit.equal(ss.canAssign(Object, Test.Shape), true, 'Should be able to assign Shape to Object.');
   QUnit.equal(ss.canAssign(Test.IDrawable, Test.Shape), true, 'Should be able to assign Shape to IDrawable');
   QUnit.equal(ss.canAssign(Test.IDrawable, Test.Circle), true, 'Should be able to assign Circle to IDrawable');
   QUnit.equal(ss.canAssign(Foo, Test.Circle), false, 'Circle should not be assignable to a Foo');
@@ -70,6 +87,7 @@ test('isOfType', function() {
   QUnit.equal(ss.isOfType(xc, Test.XCircle), true, 'xc should be of type XCircle');
   QUnit.equal(ss.isOfType(c, Test.IDrawable), true, 'c should be of type Circle');
   QUnit.equal(ss.isOfType(c, Foo), false, 'c should not be of type Foo');
+  QUnit.equal(ss.isOfType(c, Object), true, 'c should be of type Object');
 });
 
 test('casts', function() {
@@ -83,6 +101,7 @@ test('casts', function() {
   QUnit.equal(ss.safeCast(c, Foo), null, 'c should not be of type Foo');
   QUnit.equal(ss.canCast(c, Test.XCircle), false, 'c should not be of type XCircle');
   QUnit.equal(ss.canCast(xc, Test.XCircle), true, 'xc should be of type XCircle');
+  QUnit.equal(ss.canCast(xc, Object), true, 'xc should be of type Object');
 });
 
 test('base ctor', function() {
