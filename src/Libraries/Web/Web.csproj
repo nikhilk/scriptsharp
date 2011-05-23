@@ -47,10 +47,12 @@
     <Compile Include="Html\AudioElement.cs" />
     <Compile Include="Html\CheckBoxElement.cs" />
     <Compile Include="Html\CanvasElement.cs" />
+    <Compile Include="Html\ClientRectList.cs" />
     <Compile Include="Html\GestureEvent.cs" />
     <Compile Include="Html\CustomEvent.cs" />
     <Compile Include="Html\Media\Graphics\Rendering.cs" />
     <Compile Include="Html\MutableEvent.cs" />
+    <Compile Include="Html\ClientRect.cs" />
     <Compile Include="Html\TouchInfo.cs" />
     <Compile Include="Html\TouchEvent.cs" />
     <Compile Include="Html\Data\ApplicationCache.cs" />
@@ -152,6 +154,9 @@
       <Project>{36D4B098-A21C-4725-ACD3-400922885F38}</Project>
       <Name>CoreLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Script.Web, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
