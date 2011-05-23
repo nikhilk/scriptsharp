@@ -485,5 +485,10 @@ namespace System.Html {
         public ElementAttribute SetAttributeNode(ElementAttribute attribute) {
             return null;
         }
+
+        public ClientRectList GetClientRects()
+        {
+            return null;
+        }
     }
 }
