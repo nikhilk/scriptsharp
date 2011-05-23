@@ -486,8 +486,7 @@ namespace System.Html {
             return null;
         }
 
-        public ClientRectList GetClientRects()
-        {
+        public ClientRectList GetClientRects() {
             return null;
         }
     }
