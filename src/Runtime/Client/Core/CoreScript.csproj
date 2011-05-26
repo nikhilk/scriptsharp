@@ -14,6 +14,13 @@
     <OutputPath>..\..\..\..\bin\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Base\BCL.js" />
+    <Content Include="Base\ComponentModel.js" />
+    <Content Include="Base\Misc.js" />
+    <Content Include="Base\Error.js" />
+    <Content Include="Base\Parse.js" />
+    <Content Include="Base\Enumerate.js" />
+    <Content Include="Base\Delegate.js" />
     <Content Include="Base\Startup.js" />
     <Content Include="Base\TypeSystem.js" />
     <Content Include="Bootstrap\ScriptLoader.js" />
@@ -24,7 +31,6 @@
     <Exec Command="..\..\..\..\bin\ref\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Loader.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Loader.debug.js" />
     <Exec Command="..\..\..\..\bin\ref\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Loader.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Loader.rel.js" />
     <Exec Command="..\..\..\..\bin\ref\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.Loader.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.Loader.js" />
-
     <Exec Command="..\..\..\..\bin\ref\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Core.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.debug.js" />
     <Exec Command="..\..\..\..\bin\ref\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Core.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.rel.js" />
     <Exec Command="..\..\..\..\bin\ref\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.js" />

@@ -10,15 +10,6 @@ function extend(o, items) {
   }
 }
 
-function contains(items, o) {
-  for (var i = 0, len = items.length; i < len; i++) {
-    if (items[i] == o) {
-      return true;
-    }
-  }
-  return false;
-}
-
 function isValue(o) {
   return (o !== undefined) && (o !== null);
 }
@@ -39,7 +30,40 @@ if (!ss) {
   };
 }
 
+// Core Type System - namespaces, classes and interfaces
+
 #include "Base\TypeSystem.js"
+
+
+// C# Patterns
+
+#include "Base\Delegate.js";
+#include "Base\Enumerate.js";
+#include "Base\BCL.js"
+#include "Base\ComponentModel.js"
+#include "Base\Error.js"
+#include "Base\Parse.js"
+#include "Base\Misc.js"
+
+createTypes(ss,
+  [ IDisposable, 'IDisposable' ],
+  [ IEnumerable, 'IEnumerable' ],
+  [ IEnumerator, 'IEnumerator' ],
+  [ IApplication, 'IApplication' ],
+  [ IContainer, 'IContainer' ],
+  [ IObjectFactory, 'IObjectFactory' ],
+  [ IEventManager, 'IEventManager' ],
+  [ IInitializable, 'IInitializable' ],
+  [ IObserver, 'IObserver' ],
+  [ Tuple, 'Tuple', null ],
+  [ StringBuilder, 'StringBuilder', StringBuilder$proto ],
+  [ EventArgs, 'EventArgs', null ],
+  [ CancelEventArgs, 'CancelEventArgs', null, EventArgs ],
+  [ Observable, 'Observable', Observable$proto, null ],
+  [ ObservableCollection, 'ObservableCollection', ObservableCollection$proto, null, [ IEnumerable ] ]);
+
+EventArgs.empty = new EventArgs();
+
 
 // Finally populate the ss object with the public APIs
 
@@ -54,7 +78,17 @@ extend(ss, {
   isOfType: isOfType,
   safeCast: safeCast,
   canCast: canCast,
-  canAssign: canAssign
+  canAssign: canAssign,
+  bind: bindObject,
+  bindName: bindName,
+  delegate: combineDelegates,
+  undelegate: removeDelegate,
+  enumerate: enumerate,
+  number: parseNumber,
+  date: parseDate,
+  boolean: parseBoolean,
+  regExp: parseRegExp,
+  error: createError,
+  int: coerceInteger
 });
-
 })(window);

@@ -1,5 +1,3 @@
-// Type System Implementation
-
 var _namespaces = {
   ss: ss
 };
@@ -39,7 +37,10 @@ function createTypes(ns) {
       }
 
       type.baseType = baseType || Object;
-      extend(type.prototype, typeInfo[2]);
+
+      if (typeInfo[2]) {
+        extend(type.prototype, typeInfo[2]);
+      }
 
       if (typeInfo[4]) {
         type.$interfaces = typeInfo[4];
@@ -93,7 +94,7 @@ function canAssign(type, otherType) {
     var baseType = otherType;
     while (baseType) {
       var interfaces = baseType.$interfaces;
-      if (interfaces && contains(interfaces, type)) {
+      if (interfaces && (interfaces.indexOf(type) >= 0)) {
         return true;
       }
       baseType = baseType.baseType;

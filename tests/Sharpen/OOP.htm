@@ -22,12 +22,12 @@ function Foo() {
 
 module('OOP');
 
-test('namespace Registration', function() {
+test('namespaceRegistration', function() {
   QUnit.equal(window.Test != null, true, 'Expected Test namespace to be registered');
   QUnit.equal(window.Test.$name, 'Test', 'Expected Test namespace to be registered with "Test" as name.');
 });
 
-test('type registration', function() {
+test('typeRegistration', function() {
   QUnit.equal(Test.IDrawable != null, true, 'Expected IDrawable to be an registered.');
   QUnit.equal(Test.IDrawable.$interface, true, 'Expected IDrawable to be an interface.');
 
@@ -48,14 +48,14 @@ test('type registration', function() {
   QUnit.equal(Array.baseType, Object, 'Expected Array to have Object as base type.');
 });
 
-test('parse type name', function() {
+test('parseTypeName', function() {
   QUnit.equal(ss.parseType('Test.IDrawable'), Test.IDrawable, 'Should have matched IDrawable');
   QUnit.equal(ss.parseType('Test.Shape'), Test.Shape, 'Should have matched Shape');
   QUnit.equal(ss.parseType('Circle') == null, true, 'Should have not found Circle');
   QUnit.equal(ss.parseType('Xyz.Circle') == null, true, 'Should have not found Xyz.Circle');
 });
 
-test('get instance type', function() {
+test('getInstanceType', function() {
   var a = [];
   var c = new Test.Circle();
   var xc = new Test.XCircle();
@@ -104,7 +104,7 @@ test('casts', function() {
   QUnit.equal(ss.canCast(xc, Object), true, 'xc should be of type Object');
 });
 
-test('base ctor', function() {
+test('baseCtor', function() {
   var c = new Test.Circle(10);
   var xc = new Test.XCircle(11);
 
@@ -113,7 +113,7 @@ test('base ctor', function() {
   QUnit.equal(xc.get_type(), 'circle', 'Expected circle to be passed to Shape ctor.');
 });
 
-test('invoke base methods', function() {
+test('invokeBaseMethods', function() {
   var c = new Test.Circle(10);
   var xc = new Test.XCircle(11);
   

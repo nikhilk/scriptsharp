@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test - Enumeration</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+  <script type="text/javascript" src="Scripts/Sharpen.debug.js"></script>
+  <script type="text/javascript">
+  function Generator(count) {
+    this._count = count;
+    this._index = -1;
+  }
+  var Generator$proto = {
+    getEnumerator: function() {
+      return this;
+    },
+    get_current: function() {
+      return this._index;
+    },
+    moveNext: function() {
+      this._index++;
+      return this._index < this._count;
+    },
+    reset: function() {
+      this._index = -1;
+    }
+  };
+
+  var Test = ss.ns('Test');
+  ss.type(Test, [ Generator, 'Generator', Generator$proto, null, [ ss.IEnumerable, ss.IEnumerator ] ]);
+
+  
+  module('Enumeration');
+  test('array', function() {
+    QUnit.expect(8);
+
+    var a = [ 1, 2, 3, 4 ];
+    var a2 = [];
+    ss.enumerate(a, function(item) {
+      QUnit.equal(true, true);
+      a2.push(item);
+    });
+    for (var i = 0; i < 4; i++) {
+      QUnit.equal(a[i], a2[i], 'Expected equal values in array; values were ' + a[i] + ' and ' +  a2[i]);
+    }
+  });
+  test('arrayWithBreak', function() {
+    QUnit.expect(2);
+
+    var a = [ 1, 2, 3, 4 ];
+    ss.enumerate(a, function(item) {
+      QUnit.equal(true, true);
+      if (item == 2) {
+        return true;
+      }
+    });
+  });
+  test('arrayLike', function() {
+    QUnit.expect(4);
+
+    var a = { length: 2 };
+    a[0] = 'abc';
+    a[1] = 'def';
+    
+    var a2 = [];
+    ss.enumerate(a, function(item) {
+      QUnit.equal(true, true);
+      a2.push(item);
+    });
+    for (var i = 0; i < 2; i++) {
+      QUnit.equal(a[i], a2[i], 'Expected equal values in array; values were ' + a[i] + ' and ' +  a2[i]);
+    }
+  });
+  test('object', function() {
+    QUnit.expect(6);
+
+    var a = { abc: 123, xyz: 455 };
+    var a2 = [];
+    ss.enumerate(a, function(item) {
+      QUnit.equal(true, true);
+      a2.push(item.key);
+      a2.push(item.value);
+    });
+    
+    QUnit.equal(a2.indexOf('abc') >= 0, true);
+    QUnit.equal(a2.indexOf(123) >= 0, true);
+    QUnit.equal(a2.indexOf('xyz') >= 0, true);
+    QUnit.equal(a2.indexOf(455) >= 0, true);
+  });
+  test('enumerable', function() {
+    QUnit.expect(6);
+
+    var a = new Test.Generator(3);
+    var a2 = [];
+    ss.enumerate(a, function(item) {
+      QUnit.equal(true, true);
+      a2.push(item);
+    });
+    
+    QUnit.equal(a2[0] == 0, true, 'Expected 0; [0] = ' + a2[0]);
+    QUnit.equal(a2[1] == 1, true, 'Expected 1; [1] = ' + a2[1]);
+    QUnit.equal(a2[2] == 2, true, 'Expected 2; [2] = ' + a2[2]);
+  });
+
+  </script>
+</body>
+
+</html>
