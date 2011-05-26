@@ -124,7 +124,10 @@ function safeCast(instance, type) {
   return isOfType(instance, type) ? instance : null;
 }
 
-var scriptTypes = [Error, Array, String, Number, Boolean, RegExp, Date, Function, Object];
+// NOTE: Use /./.constructor to get a reference to the RegExp type
+//       since explicitly referencing RegExp can turn off script minimization
+//       optimizations.
+var scriptTypes = [Error, Array, String, Number, Boolean, /./.constructor, Date, Function, Object];
 for (var i = scriptTypes.length - 1; i >= 0; i--) {
   var type = scriptTypes[i];
   type.$type = type.$class = true;

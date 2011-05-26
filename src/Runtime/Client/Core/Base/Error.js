@@ -26,7 +26,7 @@ function _popStackFrame(e) {
   stackFrames.shift();
   e.stack = stackFrames.join("\n");
   e.fileName = nextFrameParts[1];
-  e.lineNumber = parseInt(nextFrameParts[2]);
+  e.lineNumber = parseInt(nextFrameParts[2], 10);
 }
 
 function createError(message, errorInfo, innerError) {

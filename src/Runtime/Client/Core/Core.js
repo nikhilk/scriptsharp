@@ -86,9 +86,9 @@ extend(ss, {
   enumerate: enumerate,
   number: parseNumber,
   date: parseDate,
-  boolean: parseBoolean,
+  bool: parseBoolean,
   regExp: parseRegExp,
   error: createError,
-  int: coerceInteger
+  truncate: truncateNumber
 });
 })(window);
