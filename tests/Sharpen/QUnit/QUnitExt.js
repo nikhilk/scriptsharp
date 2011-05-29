@@ -28,6 +28,7 @@
   
   QUnit.testDone = function(name, failures, total) {
     appendLog('  Test Done: ' + name + '; failures = ' + failures + '; total = ' + total);
+    appendLog('');
   }
 
   QUnit.moduleStart = function(name, testEnv) {

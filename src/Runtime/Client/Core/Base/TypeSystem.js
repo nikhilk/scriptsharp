@@ -1,5 +1,3 @@
-// Type System Implementation
-
 var _namespaces = {
   ss: ss
 };
@@ -39,7 +37,10 @@ function createTypes(ns) {
       }
 
       type.baseType = baseType || Object;
-      extend(type.prototype, typeInfo[2]);
+
+      if (typeInfo[2]) {
+        extend(type.prototype, typeInfo[2]);
+      }
 
       if (typeInfo[4]) {
         type.$interfaces = typeInfo[4];
@@ -93,7 +94,7 @@ function canAssign(type, otherType) {
     var baseType = otherType;
     while (baseType) {
       var interfaces = baseType.$interfaces;
-      if (interfaces && contains(interfaces, type)) {
+      if (interfaces && (interfaces.indexOf(type) >= 0)) {
         return true;
       }
       baseType = baseType.baseType;
@@ -123,7 +124,10 @@ function safeCast(instance, type) {
   return isOfType(instance, type) ? instance : null;
 }
 
-var scriptTypes = [Error, Array, String, Number, Boolean, RegExp, Date, Function, Object];
+// NOTE: Use /./.constructor to get a reference to the RegExp type
+//       since explicitly referencing RegExp can turn off script minimization
+//       optimizations.
+var scriptTypes = [Error, Array, String, Number, Boolean, /./.constructor, Date, Function, Object];
 for (var i = scriptTypes.length - 1; i >= 0; i--) {
   var type = scriptTypes[i];
   type.$type = type.$class = true;
