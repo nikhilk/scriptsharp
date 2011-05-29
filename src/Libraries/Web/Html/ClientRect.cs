@@ -5,8 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace System.Html
-{
+namespace System.Html {
     /// <summary>
     /// 
     /// </summary>
@@ -16,44 +15,34 @@ namespace System.Html
     [IgnoreNamespace]
     [Imported]
     [ScriptName("Object")]
-    public sealed class ClientRect
-    {
-        private ClientRect()
-        {
+    public sealed class ClientRect {
+        private ClientRect() {
         }
 
         [IntrinsicProperty]
-        public float Top
-        {
-            get
-            {
+        public float Top {
+            get {
                 return 0;
             }
         }
 
         [IntrinsicProperty]
-        public float Right
-        {
-            get
-            {
+        public float Right {
+            get {
                 return 0;
             }
         }
 
         [IntrinsicProperty]
-        public float Bottom
-        {
-            get
-            {
+        public float Bottom {
+            get {
                 return 0;
             }
         }
 
         [IntrinsicProperty]
-        public float Left
-        {
-            get
-            {
+        public float Left {
+            get {
                 return 0;
             }
         }

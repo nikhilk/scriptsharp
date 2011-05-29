@@ -5,8 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace System.Html
-{
+namespace System.Html {
     /// <summary>
     /// 
     /// </summary>
@@ -20,26 +19,21 @@ namespace System.Html
     [IgnoreNamespace]
     [Imported]
     [ScriptName("Object")]
-    public class ClientRectList : IEnumerable<ClientRect>
-    {
-        private ClientRectList()
-        {
-            
+    public class ClientRectList : IEnumerable<ClientRect> {
+        private ClientRectList() {
+
         }
 
         [IntrinsicProperty]
-        public ulong Length
-        {
+        public ulong Length {
             get { return 0; }
         }
-        
-        public ClientRect Item(ulong index)
-        {
+
+        public ClientRect Item(ulong index) {
             return null;
         }
 
-        public IEnumerator<ClientRect> GetEnumerator()
-        {
+        public IEnumerator<ClientRect> GetEnumerator() {
             return null;
         }
     }
