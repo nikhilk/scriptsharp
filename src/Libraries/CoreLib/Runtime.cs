@@ -558,6 +558,26 @@ namespace System.Runtime.CompilerServices {
         public CompilerGeneratedAttribute() {
         }
     }
+
+    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field, Inherited = false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [NonScriptable]
+    [Imported]
+    public sealed class DecimalConstantAttribute : Attribute {
+
+        public DecimalConstantAttribute(byte scale, byte sign, int hi, int mid, int low) {
+        }
+
+        [CLSCompliant(false)]
+        public DecimalConstantAttribute(byte scale, byte sign, uint hi, uint mid, uint low) {
+        }
+
+        public decimal Value {
+            get {
+                return 0m;
+            }
+        }
+    }
 }
 
 namespace System.Runtime.InteropServices {
