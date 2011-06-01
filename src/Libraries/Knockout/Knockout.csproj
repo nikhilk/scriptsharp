@@ -42,6 +42,9 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DependentObservableOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="KnockoutMapping.cs" />
     <Compile Include="ObservableArray.cs" />
     <Compile Include="DependentObservable.cs" />
