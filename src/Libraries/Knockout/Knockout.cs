@@ -33,6 +33,16 @@ namespace KnockoutApi {
         }
 
         /// <summary>
+        /// Provides access to the currently registered binding handlers.
+        /// </summary>
+        [IntrinsicProperty]
+        public static Dictionary<string, IBindingHandler> BindingHandlers {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Sets up bindings using the specified model.
         /// </summary>
         /// <param name="model">The model.</param>
