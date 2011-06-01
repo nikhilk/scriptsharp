@@ -16,6 +16,9 @@
   <ItemGroup>
     <Content Include="Base\BCL.js" />
     <Content Include="Base\ComponentModel.js" />
+    <Content Include="Base\Global.js" />
+    <Content Include="Base\Debug.js" />
+    <Content Include="Base\String.js" />
     <Content Include="Base\Misc.js" />
     <Content Include="Base\Error.js" />
     <Content Include="Base\Parse.js" />
@@ -24,7 +27,11 @@
     <Content Include="Base\Startup.js" />
     <Content Include="Base\TypeSystem.js" />
     <Content Include="Bootstrap\ScriptLoader.js" />
+    <Content Include="Global.js" />
     <Content Include="Core.js" />
+    <Content Include="Global\Date.js" />
+    <Content Include="Global\Number.js" />
+    <Content Include="Global\Culture.js" />
     <Content Include="Loader.js" />
   </ItemGroup>
   <Target Name="Build">
@@ -34,6 +41,9 @@
     <Exec Command="..\..\..\..\bin\ref\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Core.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.debug.js" />
     <Exec Command="..\..\..\..\bin\ref\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Core.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.rel.js" />
     <Exec Command="..\..\..\..\bin\ref\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.js" />
+    <Exec Command="..\..\..\..\bin\ref\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Global.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Global.debug.js" />
+    <Exec Command="..\..\..\..\bin\ref\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Global.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Global.rel.js" />
+    <Exec Command="..\..\..\..\bin\ref\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.Global.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.Global.js" />
   </Target>
   <Target Name="Clean">
     <Exec Command="rd /s /q $(OutputPath)" Condition="Exists($(OutputPath))" />
