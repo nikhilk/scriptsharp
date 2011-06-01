@@ -25,7 +25,7 @@ function IObserver() { }
 
 var _observerStack = [];
 var _observerRegistration = {
-  dispose: function () {
+  dispose: function() {
     _observerStack.pop();
   }
 }
@@ -86,55 +86,55 @@ function ObservableCollection(items) {
   this._observers = null;
 }
 var ObservableCollection$proto = {
-  get_item: function (index) {
+  get_item: function(index) {
     this._observers = _captureObservers(this._observers);
     return this._items[index];
   },
-  set_item: function (index, item) {
+  set_item: function(index, item) {
     this._items[index] = item;
     this._updated();
   },
-  get_length: function () {
+  get_length: function() {
     this._observers = _captureObservers(this._observers);
     return this._items.length;
   },
-  add: function (item) {
+  add: function(item) {
     this._items.push(item);
     this._updated();
   },
-  clear: function () {
+  clear: function() {
     this._items.clear();
     this._updated();
   },
-  contains: function (item) {
+  contains: function(item) {
     return this._items.indexOf(item) >= 0;
   },
-  getEnumerator: function () {
+  getEnumerator: function() {
     this._observers = _captureObservers(this._observers);
     return this._items.getEnumerator();
   },
-  indexOf: function (item) {
+  indexOf: function(item) {
     return this._items.indexOf(item);
   },
-  insert: function (index, item) {
+  insert: function(index, item) {
     this._items.insert(index, item);
     this._updated();
   },
-  remove: function (item) {
+  remove: function(item) {
     if (this._items.remove(item)) {
       this._updated();
       return true;
     }
     return false;
   },
-  removeAt: function (index) {
+  removeAt: function(index) {
     this._items = index == 0 ? this._items.splice(1) : this._items.splice(0, index).concat(this._items.splice(index + 1));
     this._updated();
   },
-  toArray: function () {
+  toArray: function() {
     return this._items;
   },
-  _updated: function () {
+  _updated: function() {
     var observers = this._observers;
     if (observers) {
       this._observers = null;

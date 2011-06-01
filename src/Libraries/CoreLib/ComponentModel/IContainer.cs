@@ -31,7 +31,7 @@ namespace System.ComponentModel {
         /// </summary>
         /// <param name="objectType">The type of object this instance corresponds to.</param>
         /// <param name="objectInstance">The object to register.</param>
-        void RegisterService(Type objectType, object objectInstance);
+        void RegisterObject(Type objectType, object objectInstance);
 
         /// <summary>
         /// Registers an object factory for the specified type with the container.
