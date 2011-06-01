@@ -50,12 +50,21 @@ namespace KnockoutApi {
         /// <summary>
         /// Creates an observable with a value computed from one or more other values.
         /// </summary>
-        /// <typeparam name="T">The type of the observable value/</typeparam>
+        /// <typeparam name="T">The type of the observable value.</typeparam>
         /// <param name="function">A function to compute the value.</param>
         public static DependentObservable<T> DependentObservable<T>(Func<T> function) {
             return null;
         }
-        
+
+        /// <summary>
+        /// Creates an observable with a value computed from one or more other values.
+        /// </summary>
+        /// <typeparam name="T">The type of the observable value.</typeparam>
+        /// <param name="options">Options for the dependent observable.</param>
+        public static DependentObservable<T> DependentObservable<T>(DependentObservableOptions<T> options) {
+            return null;
+        }
+
         /// <summary>
         /// Creates an observable value.
         /// </summary>
@@ -90,6 +99,23 @@ namespace KnockoutApi {
         /// <param name="initialItems">A sequence of initial items.</param>
         public static ObservableArray<T> ObservableArray<T>(IEnumerable<T> initialItems) {
             return null;
+        }
+
+        /// <summary>
+        /// Returns true if the value is an observable, false otherwise.
+        /// </summary>
+        /// <param name="value">The value to check.</param>
+        public static bool IsObservable(object value) {
+            return false;
+        }
+
+        /// <summary>
+        /// If the provided value is an observable, return its value, otherwise just pass it through.
+        /// </summary>
+        /// <param name="value">The value to unwrap.</param>
+        [ScriptAlias("ko.utils.unwrapObservable")]
+        public static T UnwrapObservable<T>(object value) {
+            return default(T);
         }
     }
 }
