@@ -54,7 +54,7 @@ function bindName(fn, multiUse, name, root) {
 }
 
 function _createDelegate(fnList) {
-  var d = function () {
+  var d = function() {
     var args = arguments;
     var r = null;
     for (var i = 0, l = fnList.length; i < l; i++) {

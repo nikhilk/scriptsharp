@@ -12,7 +12,7 @@ function enumerate(o, cb) {
     }
   }
   else if (o.forEach) {
-    o.forEach(function (item) {
+    o.forEach(function(item) {
       if (!cancel) {
         cancel = cb(item);
       }

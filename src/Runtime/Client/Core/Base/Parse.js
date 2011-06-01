@@ -1,4 +1,4 @@
-// Parsing utliities
+// Parsing utilities
 
 function parseNumber(s) {
   if (!s || !s.length) {
