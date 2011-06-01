@@ -45,7 +45,7 @@
     <Compile Include="DependentObservableOptions.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IBindingHandler.cs" />
+    <Compile Include="BindingHandler.cs" />
     <Compile Include="KnockoutMapping.cs" />
     <Compile Include="ObservableArray.cs" />
     <Compile Include="DependentObservable.cs" />
