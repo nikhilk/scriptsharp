@@ -18,20 +18,24 @@ namespace System.Html {
     /// </remarks>
     [IgnoreNamespace]
     [Imported]
-    [ScriptName("Object")]
-    public class ClientRectList : IEnumerable<ClientRect> {
+    public sealed class ClientRectList {
         private ClientRectList() {
 
         }
 
         [IntrinsicProperty]
-        public ulong Length {
+        public int Length {
             get { return 0; }
         }
 
-        public ClientRect Item(ulong index) {
-            return null;
-        }
+		[IntrinsicProperty]
+    	public ClientRect this[ulong index]
+    	{
+			get
+			{
+				return null;
+			}
+    	}
 
         public IEnumerator<ClientRect> GetEnumerator() {
             return null;
