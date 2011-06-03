@@ -7,6 +7,7 @@
 //
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Html;
 using System.Runtime.CompilerServices;
@@ -55,6 +56,25 @@ namespace KnockoutApi {
         /// <param name="model">The model.</param>
         /// <param name="rootElement">The element to bind to.</param>
         public static void ApplyBindings(object model, Element rootElement) {
+        }
+
+        /// <summary>
+        /// Set up bindings on a single node without binding any of its descendents.
+        /// </summary>
+        /// <param name="node">The node to bind to.</param>
+        /// <param name="bindings">An optional dictionary of bindings, pass null to let Knockout gather them from the element.</param>
+        /// <param name="viewModel">The view model instance.</param>
+        /// <param name="bindingAttributeName">The name of the attribute which has the binding definitions.</param>
+        public static void ApplyBindingsToNode(Element node, Dictionary bindings, object viewModel, string bindingAttributeName) {
+        }
+
+        /// <summary>
+        /// Set up bindings on a single node without binding any of its descendents.
+        /// </summary>
+        /// <param name="node">The node to bind to.</param>
+        /// <param name="bindings">An optional dictionary of bindings, pass null to let Knockout gather them from the element.</param>
+        /// <param name="viewModel">The view model instance.</param>
+        public static void ApplyBindingsToNode(Element node, Dictionary bindings, object viewModel) {
         }
 
         /// <summary>
