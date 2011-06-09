@@ -846,7 +846,7 @@ namespace jQueryApi {
         /// <param name="json">The json string.</param>
         /// <returns>The parsed document.</returns>
         [ScriptName("parseJSON")]
-        public object ParseJson(string json) {
+        public static object ParseJson(string json) {
             return null;
         }
 
@@ -856,7 +856,7 @@ namespace jQueryApi {
         /// <param name="json">The json string.</param>
         /// <returns>The parsed document.</returns>
         [ScriptName("parseJSON")]
-        public TData ParseJsonData<TData>(string json) {
+        public static TData ParseJsonData<TData>(string json) {
             return default(TData);
         }
 
@@ -865,7 +865,8 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="data">The xml markup.</param>
         /// <returns>The parsed document.</returns>
-        public XmlDocument ParseXml(string data) {
+        [ScriptName("parseXML")]
+        public static XmlDocument ParseXml(string data) {
             return null;
         }
 
