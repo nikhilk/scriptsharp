@@ -62,9 +62,10 @@ namespace ScriptSharp.Testing.WebServer {
         }
 
         private void WaitForPendingCallsToFinish() {
-            for (; ; ) {
-                if (_pendingCallsCount <= 0)
+            for (;;) {
+                if (_pendingCallsCount <= 0) {
                     break;
+                }
 
                 Thread.Sleep(250);
             }
@@ -150,7 +151,7 @@ namespace ScriptSharp.Testing.WebServer {
             return false;
         }
 
-        public bool IsVirtualPathAppPath(String path) {
+        public bool IsVirtualPathAppPath(string path) {
             if (path == null) {
                 return false;
             }

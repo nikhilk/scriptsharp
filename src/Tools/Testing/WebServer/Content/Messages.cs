@@ -15,9 +15,9 @@ namespace ScriptSharp.Testing.WebServer.Content {
 
     internal static class Messages {
 
-        public static string VersionString = typeof(Messages).Assembly.GetName().Version.ToString();
+        public static readonly string VersionString = typeof(Messages).Assembly.GetName().Version.ToString();
 
-        private const string _httpErrorFormat =
+        private const string HttpErrorFormat =
 @"<html>
 <head>
   <title>{0}</title>
@@ -43,7 +43,7 @@ namespace ScriptSharp.Testing.WebServer.Content {
 </html>
 ";
 
-        private const string _dirListingFormat =
+        private const string DirListingFormat =
 @"<html>
 <head>
   <title>Directory Listing -- {0}</title>
@@ -66,7 +66,7 @@ namespace ScriptSharp.Testing.WebServer.Content {
   <pre>
 ";
 
-        private static string _dirListingTail =
+        private static string DirListingTail =
 @"  </pre>
   <hr width=100% size=1 color=silver>
   <b>Version Information:</b>&nbsp;ASP.NET Web Server {0}</b>
@@ -74,53 +74,51 @@ namespace ScriptSharp.Testing.WebServer.Content {
 </html>
 ";
 
-        private const string _dirListingParentFormat =
+        private const string DirListingParentFormat =
 @"<a href=""{0}"">[To Parent Directory]</a>
 
 ";
 
-        private const string _dirListingFileFormat =
+        private const string DirListingFileFormat =
 @"{0,38:dddd, MMMM dd, yyyy hh:mm tt} {1,12:n0} <a href=""{2}"">{3}</a>
 ";
 
-        private const string _dirListingDirFormat =
+        private const string DirListingDirFormat =
 @"{0,38:dddd, MMMM dd, yyyy hh:mm tt}        &lt;dir&gt; <a href=""{1}/"">{2}</a>
 ";
 
 
-        public static string FormatErrorMessageBody(int statusCode, String appName) {
+        public static string FormatErrorMessageBody(int statusCode, string appName) {
             string desc = HttpWorkerRequest.GetStatusDescription(statusCode);
-            return String.Format(_httpErrorFormat, desc, appName, statusCode, desc, VersionString);
+            return String.Format(HttpErrorFormat, desc, appName, statusCode, desc, VersionString);
         }
 
-        public static string FormatDirectoryListing(String dirPath, String parentPath, FileSystemInfo[] elements) {
+        public static string FormatDirectoryListing(string dirPath, string parentPath, FileSystemInfo[] elements) {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendFormat(_dirListingFormat, dirPath);
+            sb.AppendFormat(DirListingFormat, dirPath);
 
             if (parentPath != null) {
                 if (!parentPath.EndsWith("/")) {
                     parentPath += "/";
                 }
-                sb.Append(String.Format(_dirListingParentFormat, parentPath));
+                sb.Append(String.Format(DirListingParentFormat, parentPath));
             }
 
             if (elements != null) {
                 for (int i = 0; i < elements.Length; i++) {
                     if (elements[i] is FileInfo) {
                         FileInfo fi = (FileInfo)elements[i];
-                        sb.AppendFormat(_dirListingFileFormat,
-                                        fi.LastWriteTime, fi.Length, fi.Name, fi.Name);
+                        sb.AppendFormat(DirListingFileFormat, fi.LastWriteTime, fi.Length, fi.Name, fi.Name);
                     }
                     else if (elements[i] is DirectoryInfo) {
                         DirectoryInfo di = (DirectoryInfo)elements[i];
-                        sb.AppendFormat(_dirListingDirFormat,
-                                        di.LastWriteTime, di.Name, di.Name);
+                        sb.AppendFormat(DirListingDirFormat, di.LastWriteTime, di.Name, di.Name);
                     }
                 }
             }
 
-            sb.AppendFormat(_dirListingTail, VersionString);
+            sb.AppendFormat(DirListingTail, VersionString);
             return sb.ToString();
         }
     }
