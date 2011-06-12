@@ -211,6 +211,18 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Creates an instance of a custom jQueryEvent object that contains custom
+        /// data members.
+        /// </summary>
+        /// <param name="eventName">The name of the event.</param>
+        /// <typeparam name="TEvent">The type of the event to create.</typeparam>
+        /// <returns>A new jQueryEvent object.</returns>
+        [ScriptName("event")]
+        public static TEvent CustomEvent<TEvent>(string eventName) where TEvent : jQueryEvent {
+            return null;
+        }
+
+        /// <summary>
         /// Creates a new instance of a deferred object.
         /// </summary>
         [PreserveCase]
