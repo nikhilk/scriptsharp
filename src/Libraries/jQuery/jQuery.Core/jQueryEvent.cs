@@ -18,9 +18,9 @@ namespace jQueryApi {
     /// </summary>
     [Imported]
     [IgnoreNamespace]
-    public sealed class jQueryEvent {
+    public class jQueryEvent {
 
-        private jQueryEvent() {
+        protected jQueryEvent() {
         }
 
         [IntrinsicProperty]
