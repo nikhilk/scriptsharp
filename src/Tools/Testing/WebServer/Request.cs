@@ -19,13 +19,16 @@ using Microsoft.Win32.SafeHandles;
 using ScriptSharp.Testing.WebServer.Content;
 
 namespace ScriptSharp.Testing.WebServer {
-	
+
     internal sealed class Request : SimpleWorkerRequest {
 
-        private static char[] badPathChars = new char[] { '%', '>', '<', ':', '\\' };
-        private static string[] defaultFileNames = new string[] { "default.aspx", "default.htm", "default.html" };
+        private static readonly char[] BadPathChars = new char[] { '%', '>', '<', ':', '\\' };
+        private static readonly string[] DefaultFileNames = new string[] { "default.aspx", "default.htm", "default.html" };
+        private static readonly char[] IntToHex = new char[16] {
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
+        };
 
-        private static string[] restrictedDirs = new string[] { 
+        private static readonly string[] restrictedDirs = new string[] { 
                 "/bin",
                 "/app_browsers", 
                 "/app_code", 
@@ -35,6 +38,7 @@ namespace ScriptSharp.Testing.WebServer {
                 "/app_webreferences" };
 
         private const int MaxChunkLength = 64 * 1024;
+        private const int MaxHeaderBytes = 32 * 1024;
 
         private Server _server;
         private Host _host;
@@ -44,7 +48,6 @@ namespace ScriptSharp.Testing.WebServer {
         private IStackWalk _connectionPermission = new PermissionSet(PermissionState.Unrestricted);
 
         // raw request data
-        private const int maxHeaderBytes = 32*1024;
         private byte[] _headerBytes;
         private int _startHeadersOffset;
         private int _endHeadersOffset;
@@ -108,7 +111,7 @@ namespace ScriptSharp.Testing.WebServer {
 
             // special case for /Log.axd
             if ((_verb == "POST") && (_filePath == "/Log.axd")) {
-                bool success = (String.CompareOrdinal(_pathInfo, "/Success") == 0);
+                bool success = String.CompareOrdinal(_pathInfo, "/Success") == 0;
                 string log = Encoding.UTF8.GetString(_preloadedContent);
                 _server.RaiseLogEvent(success, log);
 
@@ -209,16 +212,18 @@ namespace ScriptSharp.Testing.WebServer {
 
         private bool TryReadAllHeaders() {
             // read the first packet (up to 32K)
-            byte[] headerBytes = _connection.ReadRequestBytes(maxHeaderBytes);
+            byte[] headerBytes = _connection.ReadRequestBytes(MaxHeaderBytes);
 
-            if (headerBytes == null || headerBytes.Length == 0)
+            if (headerBytes == null || headerBytes.Length == 0) {
                 return false;
+            }
 
             if (_headerBytes != null) {
                 // previous partial read
                 int len = headerBytes.Length + _headerBytes.Length;
-                if (len > maxHeaderBytes)
+                if (len > MaxHeaderBytes) {
                     return false;
+                }
 
                 byte[] bytes = new byte[len];
                 Buffer.BlockCopy(_headerBytes, 0, bytes, 0, _headerBytes.Length);
@@ -284,7 +289,7 @@ namespace ScriptSharp.Testing.WebServer {
 
             ByteString urlBytes = elems[1];
             _url = urlBytes.GetString();
-			
+            
             if (elems.Length == 3) {
                 _prot = elems[2].GetString();
             }
@@ -296,7 +301,7 @@ namespace ScriptSharp.Testing.WebServer {
 
             int iqs = urlBytes.IndexOf('?');
             if (iqs > 0) {
-                _queryStringBytes = urlBytes.Substring(iqs+1).GetBytes();
+                _queryStringBytes = urlBytes.Substring(iqs + 1).GetBytes();
             }
             else {
                 _queryStringBytes = new byte[0];
@@ -305,7 +310,7 @@ namespace ScriptSharp.Testing.WebServer {
             iqs = _url.IndexOf('?');
             if (iqs > 0) {
                 _path = _url.Substring(0, iqs);
-                _queryString = _url.Substring(iqs+1);
+                _queryString = _url.Substring(iqs + 1);
             }
             else {
                 _path = _url;
@@ -324,7 +329,7 @@ namespace ScriptSharp.Testing.WebServer {
                 else {
                     _url = _path;
                 }
-			}
+            }
 
             // path info
 
@@ -345,7 +350,7 @@ namespace ScriptSharp.Testing.WebServer {
         }
 
         private bool IsBadPath() {
-            if (_path.IndexOfAny(badPathChars) >= 0) {
+            if (_path.IndexOfAny(BadPathChars) >= 0) {
                 return true;
             }
 
@@ -402,7 +407,7 @@ namespace ScriptSharp.Testing.WebServer {
             // remember all raw headers as one string
 
             if (_headerByteStrings.Count > 1) {
-                _allRawHeaders = Encoding.UTF8.GetString(_headerBytes, _startHeadersOffset, _endHeadersOffset-_startHeadersOffset);
+                _allRawHeaders = Encoding.UTF8.GetString(_headerBytes, _startHeadersOffset, _endHeadersOffset - _startHeadersOffset);
             }
             else {
                 _allRawHeaders = String.Empty;
@@ -438,7 +443,7 @@ namespace ScriptSharp.Testing.WebServer {
 
         private void SkipAllPostedContent() {
             if (_contentLength > 0 && _preloadedContentLength < _contentLength) {
-                int bytesRemaining = (_contentLength - _preloadedContentLength);
+                int bytesRemaining = _contentLength - _preloadedContentLength;
 
                 while (bytesRemaining > 0) {
                     byte[] bytes = _connection.ReadRequestBytes(bytesRemaining);
@@ -451,13 +456,13 @@ namespace ScriptSharp.Testing.WebServer {
         }
 
         private bool IsRequestForRestrictedDirectory() {
-            String p = CultureInfo.InvariantCulture.TextInfo.ToLower(_path);
+            string p = CultureInfo.InvariantCulture.TextInfo.ToLower(_path);
 
             if (_host.VirtualPath != "/") {
                 p = p.Substring(_host.VirtualPath.Length);
             }
 
-            foreach (String dir in restrictedDirs) {
+            foreach (string dir in restrictedDirs) {
                 if (p.StartsWith(dir, StringComparison.Ordinal)) {
                     if (p.Length == dir.Length || p[dir.Length] == '/') {
                         return true;
@@ -473,7 +478,7 @@ namespace ScriptSharp.Testing.WebServer {
                 return false;
             }
 
-            String dirPathTranslated = _pathTranslated;
+            string dirPathTranslated = _pathTranslated;
 
             if (_pathInfo.Length > 0) {
                 // directory path can never have pathInfo
@@ -497,7 +502,7 @@ namespace ScriptSharp.Testing.WebServer {
             }
 
             // check for the default file
-            foreach (string filename in defaultFileNames) {
+            foreach (string filename in DefaultFileNames) {
                 string defaultFilePath = dirPathTranslated + "\\" + filename;
 
                 if (File.Exists(defaultFilePath)) {
@@ -522,9 +527,9 @@ namespace ScriptSharp.Testing.WebServer {
             string parentPath = null;
 
             if (_path.Length > 1) {
-                int i = _path.LastIndexOf('/', _path.Length-2);
+                int i = _path.LastIndexOf('/', _path.Length - 2);
 
-                parentPath = (i > 0) ?_path.Substring(0, i) : "/";
+                parentPath = (i > 0) ? _path.Substring(0, i) : "/";
                 if (!_host.IsVirtualPathInApp(parentPath)) {
                     parentPath = null;
                 }
@@ -535,10 +540,6 @@ namespace ScriptSharp.Testing.WebServer {
                                                       false);
             return true;
         }
-
-        private static char[] IntToHex = new char[16] {
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
-        };
 
         private static string UrlEncodeRedirect(string path) {
             // this method mimics the logic in HttpResponse.Redirect (which relies on internal methods)
@@ -556,7 +557,7 @@ namespace ScriptSharp.Testing.WebServer {
             // encode all non-ascii characters using UTF-8 %XX
             if (countNonAscii > 0) {
                 // expand not 'safe' characters into %XX, spaces to +s
-                byte[] expandedBytes = new byte[count + countNonAscii * 2];
+                byte[] expandedBytes = new byte[count + (countNonAscii * 2)];
                 int pos = 0;
                 for (int i = 0; i < count; i++) {
                     byte b = bytes[i];
@@ -588,9 +589,6 @@ namespace ScriptSharp.Testing.WebServer {
             _responseHeadersBuilder = new StringBuilder();
             _responseBodyBytes = new ArrayList();
         }
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////
-        // Implementation of HttpWorkerRequest
 
         public override string GetUriPath() {
             return _path;
@@ -667,10 +665,10 @@ namespace ScriptSharp.Testing.WebServer {
         }
 
         public override bool IsEntireEntityBodyIsPreloaded() {
-            return (_contentLength == _preloadedContentLength);
+            return _contentLength == _preloadedContentLength;
         }
 
-        public override int ReadEntityBody(byte[] buffer, int size)  {
+        public override int ReadEntityBody(byte[] buffer, int size) {
             int bytesRead = 0;
 
             _connectionPermission.Assert();
@@ -684,7 +682,7 @@ namespace ScriptSharp.Testing.WebServer {
             return bytesRead;
         }
 
-        public override string GetKnownRequestHeader(int index)  {
+        public override string GetKnownRequestHeader(int index) {
             return _knownRequestHeaders[index];
         }
 
@@ -757,7 +755,7 @@ namespace ScriptSharp.Testing.WebServer {
             mappedPath = mappedPath.Replace('/', '\\');
 
             if (mappedPath.EndsWith("\\", StringComparison.Ordinal) && !mappedPath.EndsWith(":\\", StringComparison.Ordinal)) {
-                mappedPath = mappedPath.Substring(0, mappedPath.Length-1);
+                mappedPath = mappedPath.Substring(0, mappedPath.Length - 1);
             }
 
             return mappedPath;
@@ -879,7 +877,7 @@ namespace ScriptSharp.Testing.WebServer {
             }
         }
 
-        private void SendResponseFromFileStream(FileStream f, long offset, long length)  {
+        private void SendResponseFromFileStream(FileStream f, long offset, long length) {
             long fileSize = f.Length;
 
             if (length == -1) {
@@ -1032,11 +1030,11 @@ namespace ScriptSharp.Testing.WebServer {
                 }
             }
 
-            public String GetString() {
+            public string GetString() {
                 return GetString(Encoding.UTF8);
             }
 
-            public String GetString(Encoding enc) {
+            public string GetString(Encoding enc) {
                 if (IsEmpty) {
                     return String.Empty;
                 }

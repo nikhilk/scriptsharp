@@ -37,6 +37,7 @@ namespace ScriptSharp.Testing {
 </body>
 </html>
 ";
+
         private const string ScriptFormat =
 @"  <script type=""text/javascript"" src=""{0}""></script>";
 
