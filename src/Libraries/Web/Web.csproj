@@ -47,10 +47,12 @@
     <Compile Include="Html\AudioElement.cs" />
     <Compile Include="Html\CheckBoxElement.cs" />
     <Compile Include="Html\CanvasElement.cs" />
+    <Compile Include="Html\ClientRectList.cs" />
     <Compile Include="Html\GestureEvent.cs" />
     <Compile Include="Html\CustomEvent.cs" />
     <Compile Include="Html\Media\Graphics\Rendering.cs" />
     <Compile Include="Html\MutableEvent.cs" />
+    <Compile Include="Html\ClientRect.cs" />
     <Compile Include="Html\TouchInfo.cs" />
     <Compile Include="Html\TouchEvent.cs" />
     <Compile Include="Html\Data\ApplicationCache.cs" />
