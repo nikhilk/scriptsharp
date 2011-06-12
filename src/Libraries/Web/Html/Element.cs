@@ -401,6 +401,10 @@ namespace System.Html {
             return null;
         }
 
+        public ClientRectList GetClientRects() {
+            return null;
+        }
+
         public ElementCollection GetElementsByClassName(string className) {
             return null;
         }
@@ -483,10 +487,6 @@ namespace System.Html {
         }
 
         public ElementAttribute SetAttributeNode(ElementAttribute attribute) {
-            return null;
-        }
-
-        public ClientRectList GetClientRects() {
             return null;
         }
     }
