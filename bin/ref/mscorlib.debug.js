@@ -805,12 +805,12 @@ Date.prototype.localeFormat = function Date$localeFormat(format) {
 }
 
 Date.prototype._netFormat = function Date$_netFormat(format, useLocale) {
+    var dt = this;
     var dtf = useLocale ? ss.CultureInfo.CurrentCulture.dateFormat : ss.CultureInfo.InvariantCulture.dateFormat;
-    var useUTC = false;
 
     if (format.length == 1) {
         switch (format) {
-            case 'f': format = dtf.longDatePattern + ' ' + dtf.shortTimePattern;
+            case 'f': format = dtf.longDatePattern + ' ' + dtf.shortTimePattern; break;
             case 'F': format = dtf.dateTimePattern; break;
 
             case 'd': format = dtf.shortDatePattern; break;
@@ -822,9 +822,13 @@ Date.prototype._netFormat = function Date$_netFormat(format, useLocale) {
             case 'g': format = dtf.shortDatePattern + ' ' + dtf.shortTimePattern; break;
             case 'G': format = dtf.shortDatePattern + ' ' + dtf.longTimePattern; break;
 
-            case 'R': case 'r': format = dtf.gmtDateTimePattern; useUTC = true; break;
-            case 'u': format = dtf.universalDateTimePattern; useUTC = true; break;
-            case 'U': format = dtf.dateTimePattern; useUTC = true; break;
+            case 'R': case 'r': format = dtf.gmtDateTimePattern; break;
+            case 'u': format = dtf.universalDateTimePattern; break;
+            case 'U':
+                format = dtf.dateTimePattern;
+                dt = new Date(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate(),
+                              dt.getUTCHours(), dt.getUTCMinutes(), dt.getUTCSeconds(), dt.getUTCMilliseconds());
+                break;
 
             case 's': format = dtf.sortableDateTimePattern; break;
         }
@@ -835,16 +839,11 @@ Date.prototype._netFormat = function Date$_netFormat(format, useLocale) {
     }
 
     if (!Date._formatRE) {
-        Date._formatRE = /'[^']+'|dddd|ddd|dd|d|MMMM|MMM|MM|M|yyyy|yy|y|hh|h|HH|H|mm|m|ss|s|tt|t|fff|ff|f|zzz|zz|z/g;
+        Date._formatRE = /'.*?[^\\]'|dddd|ddd|dd|d|MMMM|MMM|MM|M|yyyy|yy|y|hh|h|HH|H|mm|m|ss|s|tt|t|fff|ff|f|zzz|zz|z/g;
     }
 
-    var re = Date._formatRE;    
+    var re = Date._formatRE;
     var sb = new ss.StringBuilder();
-    var dt = this;
-    if (useUTC) {
-        dt = new Date(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate(),
-                      dt.getUTCHours(), dt.getUTCMinutes(), dt.getUTCSeconds(), dt.getUTCMilliseconds());
-    }
 
     re.lastIndex = 0;
     while (true) {
@@ -947,7 +946,7 @@ Date.prototype._netFormat = function Date$_netFormat(format, useLocale) {
                 break;
             default:
                 if (part.charAt(0) == '\'') {
-                    part = part.substr(1, part.length - 2);
+                    part = part.substr(1, part.length - 2).replace(/\\'/g, '\'');
                 }
                 break;
         }
