@@ -42,6 +42,10 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DependentObservableOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BindingHandler.cs" />
     <Compile Include="KnockoutMapping.cs" />
     <Compile Include="ObservableArray.cs" />
     <Compile Include="DependentObservable.cs" />
@@ -61,6 +65,9 @@
       <Project>{3681A9A8-FC40-4125-B842-7775713C8DCE}</Project>
       <Name>Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Script.Web, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
