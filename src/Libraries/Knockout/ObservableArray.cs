@@ -45,6 +45,10 @@ namespace KnockoutApi {
         public void DestroyAll(params T[] values) {
         }
 
+        /// <summary>
+        /// Gets the underlying items within the observable array.
+        /// </summary>
+        /// <returns>The collection of items.</returns>
         [ScriptName("")]
         public IReadonlyCollection<T> GetItems() {
             return null;

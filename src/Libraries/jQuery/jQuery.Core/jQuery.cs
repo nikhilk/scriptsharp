@@ -211,6 +211,18 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Creates an instance of a custom jQueryEvent object that contains custom
+        /// data members.
+        /// </summary>
+        /// <param name="eventName">The name of the event.</param>
+        /// <typeparam name="TEvent">The type of the event to create.</typeparam>
+        /// <returns>A new jQueryEvent object.</returns>
+        [ScriptName("event")]
+        public static TEvent CustomEvent<TEvent>(string eventName) where TEvent : jQueryEvent {
+            return null;
+        }
+
+        /// <summary>
         /// Creates a new instance of a deferred object.
         /// </summary>
         [PreserveCase]
@@ -846,7 +858,7 @@ namespace jQueryApi {
         /// <param name="json">The json string.</param>
         /// <returns>The parsed document.</returns>
         [ScriptName("parseJSON")]
-        public object ParseJson(string json) {
+        public static object ParseJson(string json) {
             return null;
         }
 
@@ -856,7 +868,7 @@ namespace jQueryApi {
         /// <param name="json">The json string.</param>
         /// <returns>The parsed document.</returns>
         [ScriptName("parseJSON")]
-        public TData ParseJsonData<TData>(string json) {
+        public static TData ParseJsonData<TData>(string json) {
             return default(TData);
         }
 
@@ -865,7 +877,8 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="data">The xml markup.</param>
         /// <returns>The parsed document.</returns>
-        public XmlDocument ParseXml(string data) {
+        [ScriptName("parseXML")]
+        public static XmlDocument ParseXml(string data) {
             return null;
         }
 

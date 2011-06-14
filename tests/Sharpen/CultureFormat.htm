@@ -56,9 +56,18 @@
     QUnit.equal(s, 'Amount: $123.500');
   });
 
-  test('formatDateGMT', function() {
-    var s = String.format(ss.neutralCulture, 'New Year: {0:r}', new Date(2011, 0, 1));
-    QUnit.equal(s, 'New Year: Sat, 01 Jan 2011 08:00:00 GMT');
+  test('formatDate', function() {
+    var s = String.format(ss.neutralCulture, 'New Year in GMT: {0:r}', new Date(2011, 0, 1));
+    QUnit.equal(s, 'New Year in GMT: Sat, 01 Jan 2011 00:00:00 GMT');
+
+    var s2 = String.format(ss.neutralCulture, 'New Year in universal: {0:u}', new Date(2011, 0, 1));
+    QUnit.equal(s2, 'New Year in universal: 2011-01-01 00:00:00Z');
+
+    var s3 = String.format(ss.neutralCulture, 'New Year in UTC: {0:U}', new Date(2011, 0, 1));
+    QUnit.equal(s3, 'New Year in UTC: Saturday, January 01, 2011 8:00:00 AM');
+
+    var s4 = String.format(ss.neutralCulture, 'New Year as sortable: {0:s}', new Date(2011, 0, 1));
+    QUnit.equal(s4, 'New Year as sortable: 2011-01-01T00:00:00');
   });
   </script>
 </body>

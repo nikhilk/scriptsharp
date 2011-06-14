@@ -34,6 +34,7 @@ namespace KnockoutApi {
         /// <summary>
         /// Sets the value within the observable object.
         /// </summary>
+        /// <param name="value">The new value.</param>
         [ScriptName("")]
         public void SetValue(T value) {
         }
