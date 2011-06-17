@@ -109,6 +109,14 @@ namespace KnockoutApi {
         }
 
         /// <summary>
+        /// Returns true if the value is an observable, false otherwise.
+        /// </summary>
+        /// <param name="value">The value to check.</param>
+        public static bool IsObservable(object value) {
+            return false;
+        }
+
+        /// <summary>
         /// Creates an observable value.
         /// </summary>
         /// <typeparam name="T">The type of the observable.</typeparam>
@@ -144,14 +152,6 @@ namespace KnockoutApi {
         /// <typeparam name="T">The type of items in the array.</typeparam>
         public static ObservableArray<T> ObservableArray<T>(IEnumerable<T> initialItems) {
             return null;
-        }
-
-        /// <summary>
-        /// Returns true if the value is an observable, false otherwise.
-        /// </summary>
-        /// <param name="value">The value to check.</param>
-        public static bool IsObservable(object value) {
-            return false;
         }
 
         /// <summary>
