@@ -23,6 +23,16 @@ namespace KnockoutApi {
     public static class Knockout {
 
         /// <summary>
+        /// Provides access to the currently registered binding handlers.
+        /// </summary>
+        [IntrinsicProperty]
+        public static Dictionary<string, BindingHandler> BindingHandlers {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Gets the mapping plugin which allows converting models to plain
         /// objects and JSON and vice-versa.
         /// </summary>
@@ -34,10 +44,12 @@ namespace KnockoutApi {
         }
 
         /// <summary>
-        /// Provides access to the currently registered binding handlers.
+        /// Gets the current model.
         /// </summary>
+        /// <returns>The object represented by 'this' within a handler.</returns>
+        [ScriptAlias("this")]
         [IntrinsicProperty]
-        public static Dictionary<string, BindingHandler> BindingHandlers {
+        public static object Model {
             get {
                 return null;
             }
@@ -64,8 +76,7 @@ namespace KnockoutApi {
         /// <param name="node">The node to bind to.</param>
         /// <param name="bindings">An optional dictionary of bindings, pass null to let Knockout gather them from the element.</param>
         /// <param name="viewModel">The view model instance.</param>
-        /// <param name="bindingAttributeName">The name of the attribute which has the binding definitions.</param>
-        public static void ApplyBindingsToNode(Element node, Dictionary bindings, object viewModel, string bindingAttributeName) {
+        public static void ApplyBindingsToNode(Element node, Dictionary bindings, object viewModel) {
         }
 
         /// <summary>
@@ -74,7 +85,8 @@ namespace KnockoutApi {
         /// <param name="node">The node to bind to.</param>
         /// <param name="bindings">An optional dictionary of bindings, pass null to let Knockout gather them from the element.</param>
         /// <param name="viewModel">The view model instance.</param>
-        public static void ApplyBindingsToNode(Element node, Dictionary bindings, object viewModel) {
+        /// <param name="bindingAttributeName">The name of the attribute which has the binding definitions.</param>
+        public static void ApplyBindingsToNode(Element node, Dictionary bindings, object viewModel, string bindingAttributeName) {
         }
 
         /// <summary>
