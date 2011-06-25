@@ -27,7 +27,10 @@ ss.formatters.Date = function (dt, format, culture) {
       case 'g': format = dtf.sd + ' ' + dtf.st; break;
       case 'G': format = dtf.sd + ' ' + dtf.lt; break;
 
-      case 'R': case 'r': format = dtf.gmt; break;
+      case 'R': case 'r':
+        dtf = ss.neutralCulture.dtf;
+        format = dtf.gmt;
+        break;
       case 'u': format = dtf.uni; break;
       case 'U':
         format = dtf.dt;

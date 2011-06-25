@@ -822,7 +822,10 @@ Date.prototype._netFormat = function Date$_netFormat(format, useLocale) {
             case 'g': format = dtf.shortDatePattern + ' ' + dtf.shortTimePattern; break;
             case 'G': format = dtf.shortDatePattern + ' ' + dtf.longTimePattern; break;
 
-            case 'R': case 'r': format = dtf.gmtDateTimePattern; break;
+            case 'R': case 'r':
+                dtf = ss.CultureInfo.InvariantCulture.dateFormat;
+                format = dtf.gmtDateTimePattern;
+                break;
             case 'u': format = dtf.universalDateTimePattern; break;
             case 'U':
                 format = dtf.dateTimePattern;
