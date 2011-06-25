@@ -44,6 +44,11 @@ namespace System {
             return null;
         }
 
+        [ScriptAlias("parseFloat")]
+        public static decimal Parse(string s) {
+            return 0m;
+        }
+
         /// <summary>
         /// Converts the value to its string representation.
         /// </summary>
