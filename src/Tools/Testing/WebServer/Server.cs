@@ -25,8 +25,8 @@ namespace ScriptSharp.Testing.WebServer {
 
         private Dictionary<string, string> _registeredContent;
 
-        private WaitCallback _onStart;
-        private WaitCallback _onSocketAccept;
+        private WaitCallback _startCallback;
+        private WaitCallback _socketAcceptCallback;
 
         private bool _shutdownInProgress;
 
@@ -41,8 +41,8 @@ namespace ScriptSharp.Testing.WebServer {
             _physicalPath = physicalPath.EndsWith("\\", StringComparison.Ordinal) ? physicalPath : physicalPath + "\\";
             _registeredContent = new Dictionary<string, string>();
 
-            _onSocketAccept = new WaitCallback(OnSocketAccept);
-            _onStart = new WaitCallback(OnStart);
+            _socketAcceptCallback = new WaitCallback(OnSocketAccept);
+            _startCallback = new WaitCallback(OnStart);
 
             _appManager = ApplicationManager.GetApplicationManager();
         }
@@ -115,7 +115,7 @@ namespace ScriptSharp.Testing.WebServer {
 
             _socket.Listen((int)SocketOptionName.MaxConnections);
 
-            ThreadPool.QueueUserWorkItem(_onStart);
+            ThreadPool.QueueUserWorkItem(_startCallback);
         }
 
         public void Stop() {
@@ -181,7 +181,7 @@ namespace ScriptSharp.Testing.WebServer {
             while (!_shutdownInProgress) {
                 try {
                     Socket socket = _socket.Accept();
-                    ThreadPool.QueueUserWorkItem(_onSocketAccept, socket);
+                    ThreadPool.QueueUserWorkItem(_socketAcceptCallback, socket);
                 }
                 catch {
                     Thread.Sleep(100);

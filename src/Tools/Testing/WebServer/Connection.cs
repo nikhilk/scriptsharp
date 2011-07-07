@@ -20,10 +20,10 @@ namespace ScriptSharp.Testing.WebServer {
 
     internal sealed class Connection : MarshalByRefObject {
 
+        private static string _localServerIP;
+
         private Server _server;
         private Socket _socket;
-
-        private static string _localServerIP;
 
         internal Connection(Server server, Socket socket) {
             _server = server;
@@ -125,12 +125,12 @@ namespace ScriptSharp.Testing.WebServer {
             return sb.ToString();
         }
 
-        private static string MakeContentTypeHeader(String fileName) {
+        private static string MakeContentTypeHeader(string fileName) {
             Debug.Assert(File.Exists(fileName));
             string contentType = null;
 
             FileInfo info = new FileInfo(fileName);
-            String extension = info.Extension.ToLowerInvariant();
+            string extension = info.Extension.ToLowerInvariant();
 
             switch (extension) {
                 case ".css":

@@ -1,6 +1,6 @@
 // Date Formatting Functionality
 
-var _dateFormatRE = /'[^']+'|dddd|ddd|dd|d|MMMM|MMM|MM|M|yyyy|yy|y|hh|h|HH|H|mm|m|ss|s|tt|t|fff|ff|f|zzz|zz|z/g;
+var _dateFormatRE = /'.*?[^\\]'|dddd|ddd|dd|d|MMMM|MMM|MM|M|yyyy|yy|y|hh|h|HH|H|mm|m|ss|s|tt|t|fff|ff|f|zzz|zz|z/g;
 
 ss.formatters.Date = function (dt, format, culture) {
   if (format == 'iso') {
@@ -12,11 +12,10 @@ ss.formatters.Date = function (dt, format, culture) {
   }
 
   var dtf = culture.dtf;
-  var useUTC = false;
 
   if (format.length == 1) {
     switch (format) {
-      case 'f': format = dtf.ld + ' ' + dtf.st;
+      case 'f': format = dtf.ld + ' ' + dtf.st; break;
       case 'F': format = dtf.dt; break;
 
       case 'd': format = dtf.sd; break;
@@ -28,9 +27,16 @@ ss.formatters.Date = function (dt, format, culture) {
       case 'g': format = dtf.sd + ' ' + dtf.st; break;
       case 'G': format = dtf.sd + ' ' + dtf.lt; break;
 
-      case 'R': case 'r': format = dtf.gmt; useUTC = true; break;
-      case 'u': format = dtf.uni; useUTC = true; break;
-      case 'U': format = dtf.dt; useUTC = true; break;
+      case 'R': case 'r':
+        dtf = ss.neutralCulture.dtf;
+        format = dtf.gmt;
+        break;
+      case 'u': format = dtf.uni; break;
+      case 'U':
+        format = dtf.dt;
+        dt = new Date(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate(),
+                      dt.getUTCHours(), dt.getUTCMinutes(), dt.getUTCSeconds(), dt.getUTCMilliseconds());
+        break;
 
       case 's': format = dtf.sort; break;
     }
@@ -41,10 +47,6 @@ ss.formatters.Date = function (dt, format, culture) {
   }
 
   var sb = new ss.StringBuilder();
-  if (useUTC) {
-    dt = new Date(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate(),
-                  dt.getUTCHours(), dt.getUTCMinutes(), dt.getUTCSeconds(), dt.getUTCMilliseconds());
-  }
 
   _dateFormatRE.lastIndex = 0;
   while (true) {
@@ -147,7 +149,7 @@ ss.formatters.Date = function (dt, format, culture) {
         break;
       default:
         if (part.charAt(0) == '\'') {
-          part = part.substr(1, part.length - 2);
+          part = part.substr(1, part.length - 2).replace(/\\'/g, '\'');
         }
         break;
     }

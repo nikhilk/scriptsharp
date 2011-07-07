@@ -401,6 +401,10 @@ namespace System.Html {
             return null;
         }
 
+        public ClientRectList GetClientRects() {
+            return null;
+        }
+
         public ElementCollection GetElementsByClassName(string className) {
             return null;
         }

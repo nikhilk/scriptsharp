@@ -7,6 +7,7 @@
 //
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Html;
 using System.Runtime.CompilerServices;
@@ -22,11 +23,33 @@ namespace KnockoutApi {
     public static class Knockout {
 
         /// <summary>
+        /// Provides access to the currently registered binding handlers.
+        /// </summary>
+        [IntrinsicProperty]
+        public static Dictionary<string, BindingHandler> BindingHandlers {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Gets the mapping plugin which allows converting models to plain
         /// objects and JSON and vice-versa.
         /// </summary>
         [IntrinsicProperty]
         public static KnockoutMapping Mapping {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the current model.
+        /// </summary>
+        /// <returns>The object represented by 'this' within a handler.</returns>
+        [ScriptAlias("this")]
+        [IntrinsicProperty]
+        public static object Model {
             get {
                 return null;
             }
@@ -48,14 +71,51 @@ namespace KnockoutApi {
         }
 
         /// <summary>
+        /// Set up bindings on a single node without binding any of its descendents.
+        /// </summary>
+        /// <param name="node">The node to bind to.</param>
+        /// <param name="bindings">An optional dictionary of bindings, pass null to let Knockout gather them from the element.</param>
+        /// <param name="viewModel">The view model instance.</param>
+        public static void ApplyBindingsToNode(Element node, Dictionary bindings, object viewModel) {
+        }
+
+        /// <summary>
+        /// Set up bindings on a single node without binding any of its descendents.
+        /// </summary>
+        /// <param name="node">The node to bind to.</param>
+        /// <param name="bindings">An optional dictionary of bindings, pass null to let Knockout gather them from the element.</param>
+        /// <param name="viewModel">The view model instance.</param>
+        /// <param name="bindingAttributeName">The name of the attribute which has the binding definitions.</param>
+        public static void ApplyBindingsToNode(Element node, Dictionary bindings, object viewModel, string bindingAttributeName) {
+        }
+
+        /// <summary>
         /// Creates an observable with a value computed from one or more other values.
         /// </summary>
-        /// <typeparam name="T">The type of the observable value/</typeparam>
+        /// <typeparam name="T">The type of the observable value.</typeparam>
         /// <param name="function">A function to compute the value.</param>
+        /// <returns>A new dependent observable instance.</returns>
         public static DependentObservable<T> DependentObservable<T>(Func<T> function) {
             return null;
         }
-        
+
+        /// <summary>
+        /// Creates an observable with a value computed from one or more other values.
+        /// </summary>
+        /// <typeparam name="T">The type of the observable value.</typeparam>
+        /// <param name="options">Options for the dependent observable.</param>
+        public static DependentObservable<T> DependentObservable<T>(DependentObservableOptions<T> options) {
+            return null;
+        }
+
+        /// <summary>
+        /// Returns true if the value is an observable, false otherwise.
+        /// </summary>
+        /// <param name="value">The value to check.</param>
+        public static bool IsObservable(object value) {
+            return false;
+        }
+
         /// <summary>
         /// Creates an observable value.
         /// </summary>
@@ -78,6 +138,7 @@ namespace KnockoutApi {
         /// <summary>
         /// Creates an empty observable array.
         /// </summary>
+        /// <returns>A new observable array.</returns>
         /// <typeparam name="T">The type of items in the array.</typeparam>
         public static ObservableArray<T> ObservableArray<T>() {
             return null;
@@ -86,10 +147,20 @@ namespace KnockoutApi {
         /// <summary>
         /// Creates an observable array with some initial items.
         /// </summary>
-        /// <typeparam name="T">The type of items in the array.</typeparam>
         /// <param name="initialItems">A sequence of initial items.</param>
+        /// <returns>A new observable array.</returns>
+        /// <typeparam name="T">The type of items in the array.</typeparam>
         public static ObservableArray<T> ObservableArray<T>(IEnumerable<T> initialItems) {
             return null;
+        }
+
+        /// <summary>
+        /// If the provided value is an observable, return its value, otherwise just pass it through.
+        /// </summary>
+        /// <param name="value">The value to unwrap.</param>
+        [ScriptAlias("ko.utils.unwrapObservable")]
+        public static T UnwrapObservable<T>(object value) {
+            return default(T);
         }
     }
 }

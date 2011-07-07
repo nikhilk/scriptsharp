@@ -6,6 +6,8 @@
 // Public License. A copy of the license can be found in License.txt.
 //
 
+using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace System {
@@ -30,12 +32,21 @@ namespace System {
         public Decimal(long n) {
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Decimal(int lo, int mid, int hi, bool isNegative, byte scale) {
+        }
+
         public string Format(string format) {
             return null;
         }
 
         public string LocaleFormat(string format) {
             return null;
+        }
+
+        [ScriptAlias("parseFloat")]
+        public static decimal Parse(string s) {
+            return 0m;
         }
 
         /// <summary>
