@@ -94,6 +94,7 @@ namespace KnockoutApi {
         /// </summary>
         /// <typeparam name="T">The type of the observable value.</typeparam>
         /// <param name="function">A function to compute the value.</param>
+        /// <returns>A new dependent observable instance.</returns>
         public static DependentObservable<T> DependentObservable<T>(Func<T> function) {
             return null;
         }
@@ -137,6 +138,7 @@ namespace KnockoutApi {
         /// <summary>
         /// Creates an empty observable array.
         /// </summary>
+        /// <returns>A new observable array.</returns>
         /// <typeparam name="T">The type of items in the array.</typeparam>
         public static ObservableArray<T> ObservableArray<T>() {
             return null;
@@ -145,8 +147,9 @@ namespace KnockoutApi {
         /// <summary>
         /// Creates an observable array with some initial items.
         /// </summary>
-        /// <typeparam name="T">The type of items in the array.</typeparam>
         /// <param name="initialItems">A sequence of initial items.</param>
+        /// <returns>A new observable array.</returns>
+        /// <typeparam name="T">The type of items in the array.</typeparam>
         public static ObservableArray<T> ObservableArray<T>(IEnumerable<T> initialItems) {
             return null;
         }
