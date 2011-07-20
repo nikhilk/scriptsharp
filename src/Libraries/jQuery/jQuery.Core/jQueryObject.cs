@@ -3304,6 +3304,18 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Bind two or more handlers to the matched elements, to be executed on alternate clicks.
+        /// </summary>
+        /// <param name="Handler">A function to execute every even time the element is clicked.</param>
+        /// <param name="AnotherHandler">A function to execute every odd time the element is clicked.</param>
+        /// <param name="Handlers">Additional handlers to cycle through after clicks.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject Toggle(jQueryEventHandler Handler, jQueryEventHandler AnotherHandler, jQueryEventHandler[] Handlers = null)
+        {
+            return null;
+        }
+
+        /// <summary>
         /// Toggles the specified class from each of the set of matched elements.
         /// </summary>
         /// <param name="className">The class to toggle.</param>
