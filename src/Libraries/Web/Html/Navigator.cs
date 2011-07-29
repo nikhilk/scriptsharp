@@ -23,7 +23,7 @@ namespace System.Html {
         /// Returns the name of the browser.
         /// </summary>
         [IntrinsicProperty]
-        public static string AppName {
+        public string AppName {
             get {
                 return null;
             }
@@ -43,7 +43,7 @@ namespace System.Html {
         /// (Gecko, Chrome, Opera, WebKit) Returns a string representing the language of the browser.
         /// </summary>
         [IntrinsicProperty]
-        public static string Language {
+        public string Language {
             get {
                 return null;
             }
@@ -53,7 +53,7 @@ namespace System.Html {
         /// (IE, Opera) Retrieves the operating system's natural language setting.
         /// </summary>
         [IntrinsicProperty]
-        public static string UserLanguage {
+        public string UserLanguage {
             get {
                 return null;
             }
@@ -63,7 +63,7 @@ namespace System.Html {
         /// (IE) Retrieves the default language used by the operating system.
         /// </summary>
         [IntrinsicProperty]
-        public static string SystemLanguage {
+        public string SystemLanguage {
             get {
                 return null;
             }
