@@ -40,37 +40,7 @@ namespace System.Html {
         }
 
         /// <summary>
-        /// (Gecko, Chrome, Opera, WebKit) Returns a string representing the language of the browser.
-        /// </summary>
-        [IntrinsicProperty]
-        public string Language {
-            get {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// (IE, Opera) Retrieves the operating system's natural language setting.
-        /// </summary>
-        [IntrinsicProperty]
-        public string UserLanguage {
-            get {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// (IE) Retrieves the default language used by the operating system.
-        /// </summary>
-        [IntrinsicProperty]
-        public string SystemLanguage {
-            get {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// (IE, Opera) Retrieves the current language.
+        /// Retrieves the current language (applies to IE and Opera).
         /// </summary>
         [IntrinsicProperty]
         public string BrowserLanguage {
@@ -83,6 +53,36 @@ namespace System.Html {
         public bool CookieEnabled {
             get {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Returns a string representing the language of the browser (applies to Gecko, Opera, and WebKit).
+        /// </summary>
+        [IntrinsicProperty]
+        public string Language {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the default language used by the operating system (applies to IE).
+        /// </summary>
+        [IntrinsicProperty]
+        public string SystemLanguage {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the operating system's natural language setting (applies to IE and Opera).
+        /// </summary>
+        [IntrinsicProperty]
+        public string UserLanguage {
+            get {
+                return null;
             }
         }
 

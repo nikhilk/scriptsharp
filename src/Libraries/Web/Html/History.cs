@@ -29,6 +29,16 @@ namespace System.Html {
         }
 
         /// <summary>
+        /// Retrieves the current state object.
+        /// </summary>
+        [IntrinsicProperty]
+        public object State {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Navigates to the previous page in history.
         /// </summary>
         public void Back() {
@@ -45,16 +55,6 @@ namespace System.Html {
         /// </summary>
         /// <param name="delta">The number of pages in history to go back (negative) or forward (positive).</param>
         public void Go(int delta) {
-        }
-
-        /// <summary>
-        /// Retrieves the current state object.
-        /// </summary>
-        [IntrinsicProperty]
-        public object State {
-            get {
-                return null;
-            }
         }
 
         /// <summary>

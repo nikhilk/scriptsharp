@@ -89,8 +89,8 @@ namespace System.Html {
         /// <summary>
         /// Reload the current document.
         /// </summary>
-        [AlternateSignature]
-        public extern void Reload();
+        public void Reload() {
+        }
 
         /// <summary>
         /// Reload the current document.
