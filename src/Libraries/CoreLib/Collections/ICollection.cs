@@ -8,7 +8,7 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System.Collections.Generic {
+namespace System.Collections {
 
     [Imported]
     [ScriptNamespace("ss")]
