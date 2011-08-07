@@ -19,6 +19,19 @@ namespace System.Html {
         private Navigator() {
         }
 
+        /// <summary>
+        /// Returns the name of the browser.
+        /// </summary>
+        [IntrinsicProperty]
+        public string AppName {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Returns the version of the browser.
+        /// </summary>
         [IntrinsicProperty]
         public string AppVersion {
             get {
@@ -26,6 +39,39 @@ namespace System.Html {
             }
         }
 
+        /// <summary>
+        /// (Gecko, Chrome, Opera, WebKit) Returns a string representing the language of the browser.
+        /// </summary>
+        [IntrinsicProperty]
+        public string Language {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// (IE, Opera) Retrieves the operating system's natural language setting.
+        /// </summary>
+        [IntrinsicProperty]
+        public string UserLanguage {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// (IE) Retrieves the default language used by the operating system.
+        /// </summary>
+        [IntrinsicProperty]
+        public string SystemLanguage {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// (IE, Opera) Retrieves the current language.
+        /// </summary>
         [IntrinsicProperty]
         public string BrowserLanguage {
             get {
@@ -54,6 +100,9 @@ namespace System.Html {
             }
         }
 
+        /// <summary>
+        /// Returns the name of the platform.
+        /// </summary>
         [IntrinsicProperty]
         public string Platform {
             get {
@@ -68,6 +117,9 @@ namespace System.Html {
             }
         }
 
+        /// <summary>
+        /// Returns the complete User-Agent header.
+        /// </summary>
         [IntrinsicProperty]
         public string UserAgent {
             get {

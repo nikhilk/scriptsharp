@@ -80,6 +80,26 @@ namespace System.Html {
         }
 
         /// <summary>
+        /// Navigates the window to a new location and updates the browser's history.
+        /// </summary>
+        /// <param name="url">The URL to navigate to.</param>
+        public void Assign(string url) {
+        }
+
+        /// <summary>
+        /// Reload the current document.
+        /// </summary>
+        [AlternateSignature]
+        public extern void Reload();
+
+        /// <summary>
+        /// Reload the current document.
+        /// </summary>
+        /// <param name="forceGet">If true, the document will be reloaded from the server, otherwise it may be loaded from the browser's cache.</param>
+        public void Reload(bool forceGet) {
+        }
+
+        /// <summary>
         /// Navigates the window to a new location without updating the browser's history.
         /// </summary>
         /// <param name="url">The URL to navigate to.</param>
