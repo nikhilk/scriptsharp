@@ -1,0 +1,21 @@
+<configuration>
+  <configSections>
+    <section name="scriptSharp" type="ScriptSharp.Web.Configuration.ScriptSharpSection, ScriptSharp.Web"
+             allowDefinition="MachineToApplication" requirePermission="false" />
+  </configSections>
+  <system.web>
+    <pages>
+      <namespaces>
+        <add namespace="ScriptSharp.Web" />
+      </namespaces>
+    </pages>
+  </system.web>
+  <scriptSharp clientScriptStorageCookie="scripts">
+    <script name="loader" url="/Content/Scripts/ssloader.js" version="0.7" />
+    <script name="loader.debug" url="/Content/Scripts/ssloader.debug.js" version="0.7" />
+    <script name="core" url="/Content/Scripts/mscorlib.js" version="0.7" />
+    <script name="core.debug" url="/Content/Scripts/mscorlib.debug.js" version="0.7" />
+    <script name="jquery" url="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" />
+    <script name="jquery.debug" url="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js" />
+  </scriptSharp>
+</configuration>
