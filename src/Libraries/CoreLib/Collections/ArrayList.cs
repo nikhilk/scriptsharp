@@ -27,6 +27,9 @@ namespace System.Collections {
         public ArrayList(int capacity) {
         }
 
+        public ArrayList(params object[] items) {
+        }
+
         [IntrinsicProperty]
         [ScriptName("length")]
         public int Count {

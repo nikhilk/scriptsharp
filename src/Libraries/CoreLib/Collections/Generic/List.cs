@@ -24,6 +24,9 @@ namespace System.Collections.Generic {
         public List(int capacity) {
         }
 
+        public List(params T[] items) {
+        }
+
         [IntrinsicProperty]
         [ScriptName("length")]
         public int Count {
