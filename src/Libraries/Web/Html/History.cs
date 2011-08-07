@@ -29,6 +29,16 @@ namespace System.Html {
         }
 
         /// <summary>
+        /// Retrieves the current state object.
+        /// </summary>
+        [IntrinsicProperty]
+        public object State {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Navigates to the previous page in history.
         /// </summary>
         public void Back() {
@@ -48,22 +58,12 @@ namespace System.Html {
         }
 
         /// <summary>
-        /// Retrieves the current state object.
-        /// </summary>
-        [IntrinsicProperty]
-        public object State {
-            get {
-                return null;
-            }
-        }
-
-        /// <summary>
         /// Pushes the given data onto the session history stack.
         /// </summary>
         /// <param name="data">The data to serialize into JSON format.</param>
         /// <param name="title">The title to place into history.</param>
-        [AlternateSignature]
-        public extern void PushState(object data, string title);
+        public void PushState(object data, string title) {
+        }
 
         /// <summary>
         /// Pushes the given data onto the session history stack.
@@ -79,8 +79,8 @@ namespace System.Html {
         /// </summary>
         /// <param name="data">The data to serialize into JSON format.</param>
         /// <param name="title">The title to place into history.</param>
-        [AlternateSignature]
-        public extern void ReplaceState(object data, string title);
+        public void ReplaceState(object data, string title) {
+        }
 
         /// <summary>
         /// Updates the most recent entry on the history stack.
