@@ -1,8 +1,6 @@
-Script# Microsoft API Assemblies
+Bing Maps Control
 ===============================================================================
 
-Script.Microsoft.BingMaps.dll
--------------------------------------------------------------------------------
 This matches the API provided by Microsoft for the Bing Maps v7 control.
 More information about the control can be found at:
 http://msdn.microsoft.com/en-us/library/gg427610.aspx

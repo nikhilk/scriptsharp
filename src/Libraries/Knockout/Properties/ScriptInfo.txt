@@ -1,0 +1,10 @@
+Knockout
+===============================================================================
+
+This assembly provides access to Knockout APIs. This is only meant for use at
+development time, so you can reference and compile your c# code against the
+Knockout APIs. You must include the appropriate Knockout scripts in your page for
+runtime functionality.
+
+More information is on http://knockoutjs.com/ and
+https://github.com/SteveSanderson/knockout.

@@ -48,6 +48,7 @@
     <Compile Include="..\..\..\ScriptSharp.cs">
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
+    <ScriptInfo Include="Properties\ScriptInfo.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CoreLib\CoreLib.csproj">
@@ -64,4 +65,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="@(ScriptInfo)" DestinationFiles="$(OutputPath)$(AssemblyName).txt" />
+  </Target>
 </Project>

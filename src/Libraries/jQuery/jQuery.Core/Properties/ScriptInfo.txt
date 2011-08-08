@@ -1,0 +1,22 @@
+jQuery Core
+===============================================================================
+
+This assembly provides access to jQuery APIs. This is only meant for use at
+development time, so you can reference and compile your c# code against jQuery
+APIs. You must include the appropriate jQuery scripts in your page for
+runtime functionality.
+
+More information is on http://jquery.com.
+
+-------------------------------------------------------------------------------
+
+This matches the API in jQuery Core 1.6.1. The corresponding scripts are at:
+Google CDNs:
+http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js
+http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js
+https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js
+https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js
+
+Download Locations:
+http://code.jquery.com/jquery-1.6.1.min.js
+http://code.jquery.com/jquery-1.6.1.js
