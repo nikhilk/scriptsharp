@@ -1,0 +1,33 @@
+<VSTemplate Version="2.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>Sidebar Gadget</Name>
+    <Description>A Windows Sidebar Gadget.</Description>
+    <Icon>Gadget.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <SortOrder>20</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Gadget</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="Gadget.csproj" ReplaceParameters="true">
+      <ProjectItem TargetFileName="Properties\$safeprojectname$.ruleset">Gadget.ruleset</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\$safeprojectname$.script">Gadget.script</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true">GadgetScriptlet.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">FlyoutScriptlet.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">SettingsScriptlet.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="Content\Gadget.xml">Gadget.xml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="Content\Gadget.htm">Gadget.htm</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Content\Flyout.htm">Flyout.htm</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Content\Settings.htm">Settings.htm</ProjectItem>
+      <ProjectItem TargetFileName="Content\Core.css">Core.css</ProjectItem>
+      <ProjectItem TargetFileName="Content\Gadget.css">Gadget.css</ProjectItem>
+      <ProjectItem TargetFileName="Content\Flyout.css">Flyout.css</ProjectItem>
+      <ProjectItem TargetFileName="Content\Settings.css">Settings.css</ProjectItem>
+      <ProjectItem TargetFileName="Content\Gadget.png">Gadget.png</ProjectItem>
+      <ProjectItem TargetFileName="Content\GadgetIcon.png">GadgetIcon.png</ProjectItem>
+      <ProjectItem TargetFileName="Content\Logo.png">Logo.png</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

@@ -1,0 +1,6 @@
+ClassLibrary.vstemplate
+ClassLibrary.csproj
+..\AssemblyInfo.cs:AssemblyInfo.cs
+..\ClassLibrary.ruleset:ClassLibrary.ruleset
+ClassLibrary.script
+Class1.cs

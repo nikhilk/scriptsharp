@@ -1,0 +1,24 @@
+<VSTemplate Version="2.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>jQuery Page Script</Name>
+    <Description>A new jQuery-based script within a web application project associated with a specific page.</Description>
+    <Icon Package="{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}" ID="4515" />
+    <ProjectType>CSharp</ProjectType>
+    <SortOrder>20</SortOrder>
+    <DefaultName>Page.cs</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <References>
+      <Reference>
+        <Assembly>mscorlib, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL</Assembly>
+      </Reference>
+      <Reference>
+        <Assembly>Script.Web</Assembly>
+      </Reference>
+      <Reference>
+        <Assembly>Script.jQuery</Assembly>
+      </Reference>
+    </References>
+    <ProjectItem ReplaceParameters="true">Page.cs</ProjectItem>
+  </TemplateContent>
+</VSTemplate>
