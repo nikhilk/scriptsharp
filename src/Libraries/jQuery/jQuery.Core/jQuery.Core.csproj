@@ -11,7 +11,7 @@
     <RootNamespace>jQueryApi</RootNamespace>
     <AssemblyName>Script.jQuery</AssemblyName>
     <NoStdLib>True</NoStdLib>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\ScriptSharp.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
