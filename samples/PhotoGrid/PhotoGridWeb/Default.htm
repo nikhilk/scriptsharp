@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Photo Grid</title>
+  <style type="text/css">
+    body { background-color: white; text-align: center; }
+    h1 { font-family: Calibri; font-size: 32pt; font-weight: normal; color: black; margin-bottom: 20px; }
+    input, button { font-family: Segoe UI; font-size: 11pt; }
+    #searchForm, #thumbsList { margin-bottom: 10px; }
+    #thumbsList { font-size: 0pt; }
+    #thumbsList li { display: inline-block; margin: 10px; padding: 4px; border: solid 1px #AAA; background: white; }
+    #thumbsList li a { text-decoration: none; }
+    #thumbsList img.thumbnail { border: none; }
+    
+    .isotope, .isotope .isotope-item { -webkit-transition-duration: 0.8s; -moz-transition-duration: 0.8s; transition-duration: 0.8s; }
+    .isotope { -webkit-transition-property: height, width; -moz-transition-property: height, width; transition-property: height, width; }
+    .isotope .isotope-item { -webkit-transition-property: -webkit-transform, opacity; -moz-transition-property: -moz-transform, opacity; transition-property: transform, opacity; }
+  </style>
+  <link rel="stylesheet" type="text/css" href="/Content/jquery.lightbox-0.5.css" />
+</head>
+<body data-flickr-key="be9b6f66bd7a1c0c0f1465a1b7e8a764">
+  <h1>Photo Grid</h1>
+  <form id="searchForm">
+    <input type="search" id="tagsTextBox" size="40" placeholder="tags" />
+    <button type="submit" id="searchButton">Search</button><br />
+  </form>
+  <ul id="thumbsList"></ul>
+  <script type="text/html" id="thumbnailTemplate">
+    <li>
+      <a href="${imageUrl}" title="${title}"><img class="thumbnail" src="${thumbnailUrl}" title="${title}" width="${parseInt(thumbnailWidth*1.25)}" height="${parseInt(thumbnailHeight*1.25)}" /></a>
+    </li>
+  </script>
+  <script type="text/javascript" src="/Content/Scripts/mscorlib.debug.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+  <script type="text/javascript" src="/Content/Scripts/jquery.tmpl.js"></script>
+  <script type="text/javascript" src="/Content/Scripts/jquery.isotope.min.js"></script>
+  <script type="text/javascript" src="/Content/Scripts/jquery.lightbox-0.5.js"></script>
+  <script type="text/javascript" src="/Content/Scripts/PhotoGrid.debug.js"></script>
+</body>
+</html>

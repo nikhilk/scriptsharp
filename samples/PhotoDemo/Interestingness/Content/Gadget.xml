@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>Interestingness</name>
+  <namespace>Interestingness</namespace>
+  <version>1.0.0.0</version>
+  <author name="Nikhil Kothari">
+    <info url="http://www.nikhilk.net" />
+    <logo src="Logo.png" />
+  </author>
+  <copyright>Copyright (c) 2007</copyright>
+  <description>A look at what is interesting on Flickr!</description>
+  <icons>
+    <icon height="48" width="48" src="GadgetIcon.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="Gadget.htm" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="1.0" />
+      <defaultImage src="Gadget.png" />
+    </host>
+  </hosts>
+</gadget>

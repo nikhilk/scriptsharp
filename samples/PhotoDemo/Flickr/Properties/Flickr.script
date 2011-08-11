@@ -1,0 +1,6 @@
+//! #= ScriptFile ##
+//
+
+(function() {
+#include[as-is] "%code%"
+})();

@@ -1,0 +1,44 @@
+// Interestingness.js
+//
+
+(function() {
+  function __createNativeAPI(api) {
+    try {
+      return new ActiveXObject(api);
+    }
+    catch (ex) {
+    }
+    return null;
+  }
+  
+  function Shell() {
+    return __createNativeAPI('WScript.Shell');
+  }
+
+  function FileSystemObject() {
+    return __createNativeAPI('Scripting.FileSystemObject');
+  }
+
+  function FeedsManager() {
+    return __createNativeAPI('Microsoft.FeedsManager');
+  }
+
+  ss.Debug.assert = function(condition, message) {
+    if (!condition) {
+      message = message + '\r\n\r\nBreak into debugger?';
+
+      var shell = new Shell();
+      if (shell.Popup(message, 0, 'Assert Failed', 20) == 6) {
+        ss.Debug._fail(message);
+      }
+    }
+  };
+
+  ss.Debug.writeln = function(message) {
+    System.Debug.outputString(message + '\r\n');
+  }
+
+#include[as-is] "%code%"
+})();
+
+//! This script was generated using Script# v#= CompilerVersion ##
