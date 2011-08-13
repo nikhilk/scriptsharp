@@ -42,6 +42,7 @@
     <Reference Include="Microsoft.Build.Utilities" />
     <Reference Include="ScriptSharp">
       <HintPath>..\..\..\bin\ref\ScriptSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
