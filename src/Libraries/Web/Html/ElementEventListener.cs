@@ -1,4 +1,4 @@
-// ElementEventHandler.cs
+// ElementEventListener.cs
 // Script#/Libraries/Web
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -13,5 +13,5 @@ namespace System.Html {
 
     [IgnoreNamespace]
     [Imported]
-    public delegate void ElementEventHandler();
+    public delegate void ElementEventListener(ElementEvent e);
 }

@@ -134,7 +134,13 @@ namespace System.Html {
         public void AddEventListener(string eventName, ElementEventListener listener, bool useCapture) {
         }
 
+        public void AttachEvent(string eventName, ElementEventHandler handler) {
+        }
+
         public void Close() {
+        }
+
+        public void DetachEvent(string eventName, ElementEventHandler handler) {
         }
 
         public bool DispatchEvent(MutableEvent eventObject) {

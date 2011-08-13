@@ -133,6 +133,9 @@ namespace System.Html {
         public static void AddEventListener(string eventName, ElementEventListener listener, bool useCapture) {
         }
 
+        public static void AttachEvent(string eventName, ElementEventHandler handler) {
+        }
+
         public static ElementAttribute CreateAttribute(string name) {
             return null;
         }
@@ -151,6 +154,9 @@ namespace System.Html {
 
         public static Element CreateTextNode(string data) {
             return null;
+        }
+
+        public static void DetachEvent(string eventName, ElementEventHandler handler) {
         }
 
         public static bool DispatchEvent(MutableEvent eventObject) {

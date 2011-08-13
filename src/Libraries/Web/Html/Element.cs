@@ -356,6 +356,9 @@ namespace System.Html {
             return null;
         }
 
+        public void AttachEvent(string eventName, ElementEventHandler handler) {
+        }
+
         public void Blur() {
         }
 
@@ -372,6 +375,9 @@ namespace System.Html {
 
         public bool Contains(Element element) {
             return false;
+        }
+
+        public void DetachEvent(string eventName, ElementEventHandler handler) {
         }
 
         public bool DispatchEvent(MutableEvent eventObject) {

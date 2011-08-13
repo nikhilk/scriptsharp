@@ -249,6 +249,9 @@ namespace System.Html {
         public static void AddEventListener(string eventName, ElementEventListener listener, bool useCapture) {
         }
 
+        public static void AttachEvent(string eventName, ElementEventHandler handler) {
+        }
+
         public static void ClearInterval(int intervalID) {
         }
 
@@ -256,6 +259,9 @@ namespace System.Html {
         }
 
         public static void Close() {
+        }
+
+        public static void DetachEvent(string eventName, ElementEventHandler handler) {
         }
 
         public static bool DispatchEvent(MutableEvent eventObject) {
