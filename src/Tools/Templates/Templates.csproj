@@ -33,7 +33,7 @@
     <ProjectImportLibrary Include="ProjectTemplates\ImportLibrary\*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ScriptSharp.VSTDIR">
+    <Content Include="Script#.VSTDIR">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
