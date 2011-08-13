@@ -89,7 +89,7 @@ EventArgs.empty = new EventArgs();
 
 extend(ss, {
   $name: 'ss',
-  $version: '0.7.2.0',
+  $version: '0.7.3.0',
   extend: extend,
   remove: remove,
   clear: clear,
