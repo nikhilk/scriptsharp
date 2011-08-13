@@ -37,13 +37,13 @@
   <Target Name="Build">
     <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Loader.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Loader.debug.js" />
     <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Loader.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Loader.rel.js" />
-    <Exec Command="..\..\..\..\bin\ref\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.Loader.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.Loader.js" />
+    <Exec Command="..\..\..\..\tools\bin\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.Loader.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.Loader.js" />
     <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Core.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.debug.js" />
     <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Core.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.rel.js" />
-    <Exec Command="..\..\..\..\bin\ref\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.js" />
+    <Exec Command="..\..\..\..\tools\bin\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.js" />
     <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Global.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Global.debug.js" />
     <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Global.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Global.rel.js" />
-    <Exec Command="..\..\..\..\bin\ref\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.Global.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.Global.js" />
+    <Exec Command="..\..\..\..\tools\bin\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.Global.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.Global.js" />
   </Target>
   <Target Name="Clean">
     <Exec Command="rd /s /q $(OutputPath)" Condition="Exists($(OutputPath))" />
