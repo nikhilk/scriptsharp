@@ -1,7 +1,10 @@
 Changelog
 ===============================================================================
 
-v0.7.3.0 [In Progress]
+v0.7.3.1 [in progress]
+    - Fix bing maps metadata bug
+
+v0.7.3.0 [8/14/2011]
     - [git #71] Fix formatting of GMT dates
     - [git #70] Support for const decimal
     - [git #69] Fix LocaleFormat typo

@@ -14,6 +14,7 @@ namespace Microsoft.Maps {
     // TODO: Members
 
     [Imported]
+    [ScriptName("Color")]
     public sealed class MapColor {
 
         public MapColor(int a, int r, int g, int b) {
