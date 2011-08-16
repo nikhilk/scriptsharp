@@ -59,13 +59,13 @@ copy /y Debug\Script.Microsoft.BingMaps.dll "%InstallDir%\ScriptSharp\v1.0\Frame
 copy /y Debug\Script.Microsoft.BingMaps.xml "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.Microsoft.BingMaps.txt "%InstallDir%\ScriptSharp\v1.0\Framework"
 
-if "%1" neq "templates" goto Done
+if "%1" neq "includeTemplates" goto Done
 
 :Templates
 @echo Setting up templates...
-set IDEDir="%VSINSTALLDIR%"\Common7\IDE
-mkdir "%VSINSTALLDIR%"\Common7\IDE\ProjectTemplates\CSharp\Script#
-mkdir "%VSINSTALLDIR%"\Common7\IDE\ItemTemplates\CSharp\Script#
+set IDEDir="%VSINSTALLDIR%"Common7\IDE
+mkdir "%IDEDir%"\ProjectTemplates\CSharp\Script#
+mkdir "%IDEDir%"\ItemTemplates\CSharp\Script#
 copy /y Debug\Templates\Script#.VSTDIR %IDEDir%\ProjectTemplates\CSharp\Script#
 copy /y Debug\Templates\ProjectTemplates\ClassLibrary.zip %IDEDir%\ProjectTemplates\CSharp\Script#
 copy /y Debug\Templates\ProjectTemplates\jQueryClassLibrary.zip %IDEDir%\ProjectTemplates\CSharp\Script#
@@ -80,5 +80,6 @@ copy /y Debug\Templates\ItemTemplates\jQueryPlugin.zip %IDEDir%\ItemTemplates\CS
 copy /y Debug\Templates\ItemTemplates\Resource.zip %IDEDir%\ItemTemplates\CSharp\Script#
 copy /y Debug\Templates\ItemTemplates\Scriptlet.zip %IDEDir%\ItemTemplates\CSharp\Script#
 copy /y Debug\Templates\ItemTemplates\TestClass.zip %IDEDir%\ItemTemplates\CSharp\Script#
+%IDEDir%\devenv.exe /installvstemplates
 
 :Done
