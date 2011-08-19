@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DFF9B9D5-5CE0-448E-ADAF-47E26A72017E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStdLib>True</NoStdLib>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <LangVersion>ISO-2</LangVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AroundMe</RootNamespace>
+    <AssemblyName>AroundMe</AssemblyName>
+    <TemplateFile>Properties\AroundMe.script</TemplateFile>
+    <CodeAnalysisRuleSet>Properties\AroundMe.ruleset</CodeAnalysisRuleSet>
+    <ReferencePath>$(ProgramFiles)\ScriptSharp\v1.0\Framework\</ReferencePath>
+    <DeploymentPath>..\AroundMeWeb\Content\Scripts</DeploymentPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0028, 1591, 1684</NoWarn>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0028, 1591, 1684</NoWarn>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
+    <Reference Include="Script.Microsoft.BingMaps, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Script.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\PropertyChangedEventArgs.cs" />
+    <Compile Include="Core\Model.cs" />
+    <Compile Include="Graphs\Graph.cs" />
+    <Compile Include="Graphs\GraphEdge.cs" />
+    <Compile Include="Graphs\GraphLayout.cs" />
+    <Compile Include="Graphs\GraphNode.cs" />
+    <Compile Include="PhotoView.cs" />
+    <Compile Include="Services\Base58.cs" />
+    <Compile Include="Services\HtmlStorageService.cs" />
+    <Compile Include="Services\IStorageService.cs" />
+    <Compile Include="Services\FlickrService.cs" />
+    <Compile Include="Services\IFlickrService.cs" />
+    <Compile Include="Tests\MockFlickrService.cs" />
+    <Compile Include="Tests\PageModelTests.cs" />
+    <Content Include="Properties\AroundMe.ruleset" />
+    <Content Include="Properties\AroundMe.script" />
+    <Compile Include="PageModel.cs" />
+    <Compile Include="Page.cs" />
+    <Compile Include="Core\Utility.cs" />
+    <Compile Include="DataModel\Photo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Twitter\Twitter.csproj">
+      <Project>{135E07CB-462D-4014-BD74-FF565C60A46D}</Project>
+      <Name>Twitter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(ProgramFiles)\ScriptSharp\v1.0\ScriptSharp.targets" />
+</Project>
