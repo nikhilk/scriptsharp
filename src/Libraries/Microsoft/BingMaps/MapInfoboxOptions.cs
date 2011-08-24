@@ -1,4 +1,4 @@
-// MapInfoBoxOptions.cs
+// MapInfoboxOptions.cs
 // Script#/Libraries/Microsoft/BingMaps
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -18,12 +18,13 @@ namespace Microsoft.Maps {
     [ScriptName("Object")]
     public sealed class MapInfoboxOptions {
 
+        public MapInfoBoxAction[] Actions;
         public string Description;
         public int Height;
         public string HtmlContent;
         public string ID;
-        public MapLocation location;
-        public MapPoint offset;
+        public MapLocation Location;
+        public MapPoint Offset;
         public bool ShowCloseButton;
         public bool ShowPointer;
         public string Title;

@@ -40,6 +40,9 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MapInfoboxAction.cs" />
+    <Compile Include="MapAnimationVisibility.cs" />
+    <Compile Include="MapShape.cs" />
     <Compile Include="MapEventTarget.cs" />
     <Compile Include="MapEventArgs.cs" />
     <Compile Include="MapInfoboxOptions.cs" />

@@ -15,12 +15,19 @@ namespace Microsoft.Maps {
 
     [Imported]
     [ScriptName("Polygon")]
-    public sealed class MapPolygon : MapEntity {
+    public sealed class MapPolygon : MapShape {
 
         public MapPolygon(MapLocation[] locations) {
         }
 
         public MapPolygon(MapLocation[] locations, MapPolygonOptions options) {
+        }
+
+        public MapColor GetFillColor() {
+            return null;
+        }
+
+        public void SetOptions(MapPolygonOptions options) {
         }
     }
 }

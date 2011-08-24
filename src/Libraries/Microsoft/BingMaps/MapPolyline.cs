@@ -15,12 +15,15 @@ namespace Microsoft.Maps {
 
     [Imported]
     [ScriptName("Polyline")]
-    public sealed class MapPolyline : MapEntity {
+    public sealed class MapPolyline : MapShape {
 
         public MapPolyline(MapLocation[] locations) {
         }
 
         public MapPolyline(MapLocation[] locations, MapPolylineOptions options) {
+        }
+
+        public void SetOptions(MapPolylineOptions options) {
         }
     }
 }

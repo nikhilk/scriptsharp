@@ -1,4 +1,4 @@
-// MapEntity.cs
+// MapInfoboxAction.cs
 // Script#/Libraries/Microsoft/BingMaps
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -11,13 +11,14 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
+    // TODO: Make properties
+
     [Imported]
-    public abstract class MapEntity {
+    [IgnoreNamespace]
+    [ScriptName("Object")]
+    public sealed class MapInfoBoxAction {
 
-        public object Data;
-
-        public bool GetVisible() {
-            return false;
-        }
+        public string Label;
+        public string EventHandler;
     }
 }

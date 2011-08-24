@@ -47,6 +47,9 @@ namespace Microsoft.Maps {
         public void Insert(MapEntity entity, int index) {
         }
 
+        public void Insert(MapEntityCollection entities, int index) {
+        }
+
         public MapEntity Pop() {
             return null;
         }
@@ -58,6 +61,10 @@ namespace Microsoft.Maps {
         }
 
         public MapEntity Remove(MapEntity entity) {
+            return null;
+        }
+
+        public MapEntity Remove(MapEntityCollection entities) {
             return null;
         }
 

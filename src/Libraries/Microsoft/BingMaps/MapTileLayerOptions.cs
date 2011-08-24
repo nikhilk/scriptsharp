@@ -21,5 +21,7 @@ namespace Microsoft.Maps {
         public double Opacity;
         public int ZIndex;
         public MapTileSource Mercator;
+        public bool Visible;
+        public MapAnimationVisibility AnimationDisplay;
     }
 }

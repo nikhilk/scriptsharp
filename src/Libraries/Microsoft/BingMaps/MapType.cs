@@ -21,6 +21,8 @@ namespace Microsoft.Maps {
 
         Aerial,
 
-        Birdseye
+        Birdseye,
+
+        Mercator
     }
 }

@@ -23,6 +23,10 @@ namespace Microsoft.Maps {
         public MapPushpin(MapLocation location, MapPushpinOptions options) {
         }
 
+        public MapLocation GetLocation() {
+            return null;
+        }
+
         public void SetLocation(MapLocation location) {
         }
 

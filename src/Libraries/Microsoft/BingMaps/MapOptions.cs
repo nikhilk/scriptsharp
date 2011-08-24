@@ -18,6 +18,7 @@ namespace Microsoft.Maps {
     [IgnoreNamespace]
     public sealed class MapOptions {
 
+        public MapColor BackgroundColor;
         public bool ShowDashboard;
         public bool ShowBreadcrumb;
         public int Zoom;
@@ -33,6 +34,16 @@ namespace Microsoft.Maps {
         public bool ShowNavControl;
         public bool ShowLogo;
         public bool DisableUserInput;
+        public bool DisableBirdseye;
+        public bool DisableKeyboardInput;
+        public bool DisableMouseInput;
+        public bool DisablePanning;
+        public bool DisableTouchInput;
+        public bool DisableZooming;
+        public bool FixedMapPosition;
+        public bool UseInertia;
+        public double InertiaIntensity;
+        public int TileBuffer;
         [ScriptName("mapTypeId")]
         public MapType MapType;
     }

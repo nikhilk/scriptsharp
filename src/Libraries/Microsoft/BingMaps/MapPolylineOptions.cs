@@ -20,6 +20,7 @@ namespace Microsoft.Maps {
 
         public int StrokeThickness;
         public MapColor StrokeColor;
+        public string StrokeDashArray;
         public bool Visible;
     }
 }

@@ -1,4 +1,4 @@
-// MapInfobox.cs
+// MapEntity.cs
 // Script#/Libraries/Microsoft/BingMaps
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -11,22 +11,26 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
-    // TODO: Other members
-
     [Imported]
-    [ScriptName("Infobox")]
-    public sealed class MapInfobox : MapEntity {
+    public abstract class MapShape : MapEntity {
 
-        public MapInfobox(MapLocation location) {
+        public MapLocation[] GetLocations() {
+            return null;
         }
 
-        public MapInfobox(MapLocation location, MapInfoboxOptions options) {
+        public MapColor GetStrokeColor() {
+            return null;
         }
 
-        public void SetLocation(MapLocation location) {
+        public string GetStrokeDashArray() {
+            return null;
         }
 
-        public void SetOptions(MapInfoboxOptions options) {
+        public int GetStrokeThickness() {
+            return 0;
+        }
+
+        public void SetLocations(MapLocation[] locations) {
         }
     }
 }

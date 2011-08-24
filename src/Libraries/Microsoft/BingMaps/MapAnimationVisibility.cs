@@ -1,4 +1,4 @@
-// MapEntity.cs
+// MapAnimationVisibility.cs
 // Script#/Libraries/Microsoft/BingMaps
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -12,12 +12,13 @@ using System.Runtime.CompilerServices;
 namespace Microsoft.Maps {
 
     [Imported]
-    public abstract class MapEntity {
+    [ScriptName("AnimationVisibility")]
+    public enum MapAnimationVisibility {
 
-        public object Data;
+        Auto,
 
-        public bool GetVisible() {
-            return false;
-        }
+        Hide,
+
+        Show
     }
 }

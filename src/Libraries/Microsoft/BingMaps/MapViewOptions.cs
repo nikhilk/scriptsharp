@@ -21,6 +21,8 @@ namespace Microsoft.Maps {
         [ScriptName("mapTypeId")]
         public MapType MapType;
         public MapLocation Center;
+        public MapPoint CenterOffset;
+        public int Heading;
         public int Zoom;
         public int Padding;
         public MapBounds Bounds;
