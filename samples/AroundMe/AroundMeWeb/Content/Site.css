@@ -82,6 +82,9 @@
   font-size: 0px;
   cursor: default;
 }
+#searchButton.reset {
+  background-image: url(Reset.png);
+}
 #searchProgress {
   position: absolute;
   left: -8px;
@@ -166,4 +169,13 @@ div.photoInfobox {
   background-color: White;
   cursor: default;
   -webkit-box-shadow: 0px 0px 10px black;
+}
+body.map div.photoInfobox, body.map #mapContainer svg {
+  opacity: 0.5;
+}
+body.photos #mapContainer img {
+  opacity: 0.5;
+}
+#mapContainer svg, div.photoInfobox, #mapContainer img {
+  -webkit-transition: opacity .25s ease-in-out;
 }

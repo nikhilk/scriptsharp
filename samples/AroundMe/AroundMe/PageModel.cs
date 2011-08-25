@@ -97,6 +97,10 @@ namespace AroundMe {
             Photos = _favoritePhotos;
         }
 
+        public void ResetSearch() {
+            Photos = new List<Photo>();
+        }
+
         public void SearchLocation(string tags, double latitude, double longitude) {
             Searching = true;
             _flickr.SearchLocation(tags, latitude, longitude, SearchCompleted);

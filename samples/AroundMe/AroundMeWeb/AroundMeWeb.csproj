@@ -70,6 +70,7 @@
     <Content Include="Content\Location.png" />
     <Content Include="Content\PlaceHolder.png" />
     <Content Include="Content\Pushpin.png" />
+    <Content Include="Content\Reset.png" />
     <Content Include="Content\Scripts\AroundMe.debug.js" />
     <Content Include="Content\Scripts\AroundMe.js" />
     <Content Include="Content\Scripts\AroundMe.test.js" />

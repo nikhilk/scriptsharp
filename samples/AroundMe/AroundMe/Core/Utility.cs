@@ -12,9 +12,19 @@ namespace AroundMe.Core {
             return Document.GetElementById(id);
         }
 
+        public static void SubscribeBlur(string id, ElementEventListener listener) {
+            Element e = Document.GetElementById(id);
+            e.AddEventListener("blur", listener, false);
+        }
+
         public static void SubscribeClick(string id, ElementEventListener listener) {
             Element e = Document.GetElementById(id);
             e.AddEventListener("click", listener, false);
+        }
+
+        public static void SubscribeKey(string id, ElementEventListener listener) {
+            Element e = Document.GetElementById(id);
+            e.AddEventListener("keyup", listener, false);
         }
     }
 }

@@ -18,15 +18,20 @@ namespace AroundMe {
 
     internal static class Page {
 
+        private const string MapModeClassName = "map";
+        private const string PhotosModeClassName = "photos";
+
         private static PageModel _model;
         private static Map _map;
         private static MapEntityCollection _mapEntities;
 
+        private static Element _mapContainer;
         private static Graph _graph;
         private static Dictionary<string, PhotoView> _photoViews;
 
         private static bool _viewChanging;
         private static int _zoomLevel;
+        private static string _oldMode;
 
         static Page() {
             string flickrKey = (string)Document.Body.GetAttribute("data-flickr-key");
@@ -64,7 +69,7 @@ namespace AroundMe {
             mapOptions.ShowLogo = false;
             mapOptions.MapType = MapType.Road;
             mapOptions.Zoom = 2;
-            mapOptions.BackgroundColor = new MapColor(0, 0, 0, 0);
+            mapOptions.BackgroundColor = new MapColor(255, 255, 255, 255);
             _map = new Map(Utility.GetElement("mapContainer"), mapOptions);
 
             MapEvents.AddHandler(_map, "viewchangestart", delegate(MapEventArgs e) {
@@ -78,9 +83,28 @@ namespace AroundMe {
                     UpdatePhotos(/* newPhotos */ false);
                 }
             }, 250);
+            MapEvents.AddHandler(_map, "mousedown", delegate(MapEventArgs e) {
+                _oldMode = Document.Body.ClassName;
+                Document.Body.ClassName = MapModeClassName;
+            });
+            MapEvents.AddHandler(_map, "mouseup", delegate(MapEventArgs e) {
+                Document.Body.ClassName = _oldMode;
+            });
 
+            Utility.SubscribeKey("searchBox", delegate(ElementEvent e) {
+                Window.SetTimeout(delegate() {
+                    Document.GetElementById("searchButton").ClassName =
+                        String.IsNullOrEmpty(Utility.GetElement("searchBox").As<InputElement>().Value) ? "reset" : "";
+                }, 0);
+            });
+            Utility.SubscribeBlur("searchBox", delegate(ElementEvent e) {
+                Window.SetTimeout(delegate() {
+                    Document.GetElementById("searchButton").ClassName = "";
+                }, 0);
+            });
             Utility.SubscribeClick("searchButton", delegate(ElementEvent e) {
                 Search(Utility.GetElement("searchBox").As<InputElement>().Value);
+                Document.ActiveElement.Blur();
             });
             Utility.SubscribeClick("locateMeButton", delegate(ElementEvent e) {
                 ShowLocation();
@@ -120,6 +144,11 @@ namespace AroundMe {
         }
 
         private static void Search(string text) {
+            if (String.IsNullOrEmpty(text)) {
+                _model.ResetSearch();
+                return;
+            }
+
             MapBounds bounds = _map.GetBounds();
             _model.SearchRegion(text, bounds.GetWest(), bounds.GetSouth(),
                                       bounds.GetEast(), bounds.GetNorth());
@@ -243,8 +272,11 @@ namespace AroundMe {
             }
 
             if (_model.Photos.Count == 0) {
+                Document.Body.ClassName = MapModeClassName;
                 return;
             }
+
+            Document.Body.ClassName = PhotosModeClassName;
 
             _graph = new Graph();
             _model.Photos.ForEach(delegate(Photo photo) {

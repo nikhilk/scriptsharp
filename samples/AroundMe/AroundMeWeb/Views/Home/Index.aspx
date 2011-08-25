@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Schoolbell:regular" />
   <link rel="stylesheet" type="text/css" href="/Content/Site.css" />
 </head>
-<body class="app" data-flickr-key="<%= Model.flickrApiKey %>" data-bingmaps-key="<%= Model.bingMapsKey %>">
+<body class="map" data-flickr-key="<%= Model.flickrApiKey %>" data-bingmaps-key="<%= Model.bingMapsKey %>">
   <div id="mapContainer"></div>
   <div id="inputContainer">
     <div id="titleLabel">Photos Around Me</div>
