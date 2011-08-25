@@ -154,3 +154,16 @@ button.photoAction {
   right: -14px;
   top: -14px;
 }
+div.locationPushpin {
+  font-size: 0pt;
+}
+div.photoInfobox {
+  font-size: 0pt;
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: White;
+  cursor: default;
+  -webkit-box-shadow: 0px 0px 10px black;
+}

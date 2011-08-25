@@ -20,19 +20,16 @@ namespace AroundMe {
 
         private static PageModel _model;
         private static Map _map;
+        private static MapEntityCollection _mapEntities;
 
         private static Graph _graph;
         private static ImageElement _placeHolderPhoto;
-        private static CanvasElement _canvas;
         private static Dictionary<string, PhotoView> _photoViews;
 
         private static bool _viewChanging;
+        private static int _zoomLevel;
 
         static Page() {
-            if (Document.Body.ClassName != "app") {
-                return;
-            }
-
             string flickrKey = (string)Document.Body.GetAttribute("data-flickr-key");
             Debug.Assert(String.IsNullOrEmpty(flickrKey) == false);
 
@@ -41,6 +38,8 @@ namespace AroundMe {
 
             _model = new PageModel(new FlickrService(flickrKey), new HtmlStorageService());
             _model.PropertyChanged += OnModelPropertyChanged;
+
+            _zoomLevel = 2;
 
             MapOptions mapOptions = new MapOptions();
             mapOptions.Credentials = bingMapsKey;
@@ -51,9 +50,10 @@ namespace AroundMe {
             mapOptions.ShowLogo = false;
             mapOptions.MapType = MapType.Road;
             mapOptions.Zoom = 2;
+            mapOptions.BackgroundColor = new MapColor(0, 0, 0, 0);
             _map = new Map(Utility.GetElement("mapContainer"), mapOptions);
             MapEvents.AddHandler(_map, "viewchangestart", OnMapViewChangeStart);
-            MapEvents.AddHandler(_map, "viewchangeend", OnMapViewChangeEnd);
+            MapEvents.AddThrottledHandler(_map, "viewchangeend", OnMapViewChangeEnd, 250);
 
             Utility.SubscribeClick("searchButton", OnSearchButtonClick);
             Utility.SubscribeClick("locateMeButton", OnLocateMeButtonClick);
@@ -85,26 +85,37 @@ namespace AroundMe {
             });
         }
 
-        private static void OnMapPushpinClick(MapEventArgs e) {
-            MapMouseEventArgs mouseEvent = (MapMouseEventArgs)e;
-            Photo photo = (Photo)((MapPushpin)mouseEvent.Target).Data;
+        private static void OnMapPhotoInfoboxClick(MapEventArgs e) {
+            MapInfobox photoInfobox = (MapInfobox)((MapMouseEventArgs)e).Target;
+            Photo clickedPhoto = (Photo)photoInfobox.Data;
 
-            ShowPhoto(photo);
+            if (clickedPhoto != null) {
+                Window.SetTimeout(delegate() {
+                    ShowPhoto(clickedPhoto);
+                }, 0);
+            }
         }
 
         private static void OnMapViewChangeEnd(MapEventArgs e) {
             _viewChanging = false;
-            if (_canvas != null) {
-                _canvas.Style.Display = "";
-                ShowPhotoPushpins(false);
+
+            // if (_mapEntities != null) {
+            //     _map.Entities.Push(_mapEntities);
+            // }
+
+            if (_zoomLevel != _map.GetZoom()) {
+                ShowPhotoPushpins(/* newPhotos */ false);
             }
         }
 
         private static void OnMapViewChangeStart(MapEventArgs e) {
             _viewChanging = true;
-            if (_canvas != null) {
-                _canvas.Style.Display = "none";
-            }
+
+            // if (_mapEntities != null) {
+            //     _map.Entities.Remove(_mapEntities);
+            // }
+
+            _zoomLevel = _map.GetZoom();
         }
 
         private static void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e) {
@@ -122,7 +133,7 @@ namespace AroundMe {
                     ShowPhoto(null);
                 }
 
-                ShowPhotoPushpins(true);
+                ShowPhotoPushpins(/* newPhotos */ true);
             }
         }
 
@@ -211,158 +222,99 @@ namespace AroundMe {
         }
 
         private static void ShowPhotoPushpins(bool newPhotos) {
-            if (_model.Photos.Count == 0) {
-                if (_canvas != null) {
-                    _canvas.Style.Display = "none";
-                }
-                return;
-            }
-
-            if (_canvas == null) {
-                _canvas = Document.CreateElement("canvas").As<CanvasElement>();
-                _canvas.Style.Width = "100%";
-                _canvas.Style.Height = "100%";
-                _canvas.Style.ZIndex = 100;
-                _canvas.Style.Position = "absolute";
-                _canvas.Style.Left = "0px";
-                _canvas.Style.Top = "0px";
-                _canvas.Style.Display = "";
-                Document.QuerySelector(".MicrosoftMap").AppendChild(_canvas);
-                _canvas.AddEventListener("click", OnCanvasClick, false);
-            }
-
-            _graph = new Graph();
             if (newPhotos) {
+                if (_mapEntities != null) {
+                    _map.Entities.Remove(_mapEntities);
+                }
+
+                _mapEntities = new MapEntityCollection();
+                _map.Entities.Push(_mapEntities);
+
                 _photoViews = new Dictionary<string, PhotoView>();
             }
 
-            int width = _canvas.OffsetWidth;
-            int height = _canvas.OffsetHeight;
+            if (_model.Photos.Count == 0) {
+                return;
+            }
 
+            _graph = new Graph();
             _model.Photos.ForEach(delegate(Photo photo) {
+                MapLocation location = new MapLocation(photo.latitude, photo.longitude);
+                MapPoint point = _map.TryLocationToPixel(location, MapPointReference.Control);
+
                 PhotoView photoView;
-
                 if (newPhotos) {
+                    MapPolylineOptions polylineOptions = new MapPolylineOptions();
+                    polylineOptions.StrokeColor = new MapColor(255, 0x4E, 0xD3, 0x4E);
+                    polylineOptions.StrokeThickness = 2;
+
+                    MapInfoboxOptions photoInfoboxOptions = new MapInfoboxOptions();
+                    photoInfoboxOptions.Width = 50;
+                    photoInfoboxOptions.Height = 50;
+                    photoInfoboxOptions.ShowPointer = false;
+                    photoInfoboxOptions.ShowCloseButton = false;
+                    photoInfoboxOptions.Offset = new MapPoint(-25, 25);
+                    photoInfoboxOptions.HtmlContent = "<div class=\"photoInfobox\" style=\"background-image: url(" + photo.thumbnailUrl + ")\" title=\"" + photo.title.HtmlEncode() + "\"></div>";
+                    photoInfoboxOptions.Visible = true;
+
+                    MapPushpinOptions locationPushpinOptions = new MapPushpinOptions();
+                    locationPushpinOptions.Icon = "/Content/Dot.png";
+                    locationPushpinOptions.Width = 10;
+                    locationPushpinOptions.Height = 10;
+                    locationPushpinOptions.Anchor = new MapPoint(5, 5);
+                    locationPushpinOptions.TypeName = "locationPushpin";
+
                     photoView = new PhotoView();
+                    photoView.locationPushpin = new MapPushpin(location, locationPushpinOptions);
+                    photoView.calloutLine = new MapPolyline(new MapLocation[] { location, location }, polylineOptions);
+                    photoView.photoInfobox = new MapInfobox(location, photoInfoboxOptions);
+                    photoView.photoInfobox.Data = photo;
 
-                    photoView.image = Document.CreateElement("img").As<ImageElement>();
-                    photoView.image.Src = photo.thumbnailUrl;
-
+                    _mapEntities.Insert(photoView.calloutLine, 0);
+                    _mapEntities.Insert(photoView.photoInfobox, 0);
+                    _mapEntities.Insert(photoView.locationPushpin, 0);
+                    MapEvents.AddHandler(photoView.photoInfobox, "click", OnMapPhotoInfoboxClick);
                     _photoViews[photo.id] = photoView;
                 }
                 else {
                     photoView = _photoViews[photo.id];
                 }
 
-                MapLocation location = new MapLocation(photo.latitude, photo.longitude);
-                MapPoint point = _map.TryLocationToPixel(location, MapPointReference.Control);
+                photoView.locationNode = new GraphNode();
+                photoView.locationNode.x = point.X;
+                photoView.locationNode.y = point.Y;
+                photoView.locationNode.moveable = false;
 
-                photoView.hidden = (point.X < 0) || (point.X > width) ||
-                                   (point.Y < 0) || (point.Y > height);
-                if (photoView.hidden == false) {
-                    photoView.pushpin = new GraphNode();
-                    photoView.pushpin.x = point.X;
-                    photoView.pushpin.y = point.Y;
-                    photoView.pushpin.moveable = false;
+                photoView.photoNode = new GraphNode();
+                photoView.photoNode.x = point.X;
+                photoView.photoNode.y = point.Y;
 
-                    photoView.photo = new GraphNode();
-                    photoView.photo.x = point.X;
-                    photoView.photo.y = point.Y;
+                GraphEdge edge = new GraphEdge(photoView.locationNode, photoView.photoNode, 10 + Math.Random() * 15);
 
-                    GraphEdge edge = new GraphEdge(photoView.pushpin, photoView.photo, 10 + Math.Random() * 15);
-
-                    _graph.AddNode(photoView.pushpin);
-                    _graph.AddNode(photoView.photo);
-                    _graph.AddEdge(edge);
-                }
+                _graph.AddNode(photoView.locationNode);
+                _graph.AddNode(photoView.photoNode);
+                _graph.AddEdge(edge);
             });
 
             Window.SetTimeout(OnLayoutTick, 30);
         }
 
-        private static void OnCanvasClick(ElementEvent e) {
-            Photo clickedPhoto = null;
-
-            int x = e.OffsetX;
-            int y = e.OffsetY;
-            foreach (Photo photo in _model.Photos) {
-                PhotoView photoView = _photoViews[photo.id];
-
-                if ((photoView.photo.x - 25 < x) && (photoView.photo.x + 25 > x) &&
-                    (photoView.photo.y - 25 < y) && (photoView.photo.y + 25 > y)) {
-                    clickedPhoto = photo;
-                    break;
-                }
-            }
-
-            if (clickedPhoto != null) {
-                e.StopPropagation();
-
-                Window.SetTimeout(delegate() {
-                    ShowPhoto(clickedPhoto);
-                }, 0);
-            }
-        }
-
         private static void OnLayoutTick() {
             if (_viewChanging) {
-                Window.SetTimeout(OnLayoutTick, 30);
+                return;
             }
 
-            int width = _canvas.OffsetWidth;
-            int height = _canvas.OffsetHeight;
+            bool continueLayout = _graph.Layout.PerformLayout();
 
-            bool continueLayout = _graph.Layout.PerformLayout(width, height);
-
-            _canvas.Width = width;
-            _canvas.Height = height;
-
-            CanvasContext2D ctx = (CanvasContext2D)_canvas.GetContext(Rendering.Render2D);
-
-            ctx.ClearRect(0, 0, width, height);
-            ctx.Save();
-
-            ctx.FillStyle = "#4ED34E";
-            ctx.StrokeStyle = "#4ED34E";
-            ctx.LineWidth = 2;
-
-            ctx.BeginPath();
             _model.Photos.ForEach(delegate(Photo photo) {
                 PhotoView photoView = _photoViews[photo.id];
-                if (photoView.hidden) {
-                    return;
-                }
 
-                ctx.MoveTo(photoView.pushpin.x, photoView.pushpin.y);
-                ctx.Arc(photoView.pushpin.x, photoView.pushpin.y, 4, 0, Math.PI * 2, true);
+                MapPoint photoPoint = new MapPoint(photoView.photoNode.x, photoView.photoNode.y);
+                MapLocation photoLocation = _map.TryPixelToLocation(photoPoint, MapPointReference.Control);
 
-                ctx.MoveTo(photoView.pushpin.x, photoView.pushpin.y);
-                ctx.LineTo(photoView.photo.x, photoView.photo.y);
+                photoView.photoInfobox.SetLocation(photoLocation);
+                photoView.calloutLine.SetLocations(new MapLocation[] { photoView.locationPushpin.GetLocation(), photoLocation });
             });
-            ctx.ClosePath();
-            ctx.Fill();
-            ctx.Stroke();
-
-            ctx.FillStyle = "white";
-            ctx.ShadowBlur = 10;
-            ctx.ShadowColor = "black";
-            _model.Photos.ForEach(delegate(Photo photo) {
-                PhotoView photoView = _photoViews[photo.id];
-                if (photoView.hidden) {
-                    return;
-                }
-
-                ImageElement img = (ImageElement)photoView.image;
-                if ((bool)Type.GetField(img, "complete")) {
-                    ctx.FillRect(photoView.photo.x - 25, photoView.photo.y - 25, 50, 50);
-                    ctx.DrawImage(img, 0, 0, 75, 75, photoView.photo.x - 25, photoView.photo.y - 25, 50, 50);
-                }
-                else {
-                    ctx.DrawImage(_placeHolderPhoto, 0, 0, 20, 20, photoView.photo.x - 10, photoView.photo.y - 10, 20, 20);
-                }
-            });
-
-            ctx.Restore();
 
             if (continueLayout) {
                 Window.SetTimeout(OnLayoutTick, 30);

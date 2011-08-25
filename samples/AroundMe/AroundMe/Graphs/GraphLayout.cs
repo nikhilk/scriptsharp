@@ -2,6 +2,7 @@
 //
 
 using System;
+using System.Diagnostics;
 
 namespace AroundMe.Graphs {
 
@@ -121,7 +122,7 @@ namespace AroundMe.Graphs {
             }
         }
 
-        public bool PerformLayout(double width, double height) {
+        public bool PerformLayout() {
             if (!(_damper < 0.1 && _damping && _maxMotion < MotionLimit)) {
                 for (int i = 0; i < 5; i++) {
                     RelaxEdges();
@@ -181,8 +182,10 @@ namespace AroundMe.Graphs {
             double vy = node1.y - node2.y;
             double distance = vx * vx + vy * vy;
 
-            // if (distance == 0) {
-            if (distance < 25 * 25 * 2) {
+            // TODO: 36 should be a property instead of hardcoded
+            // This is the radius of a node.
+
+            if (distance < 36 * 36 * 2) {
                 // If two nodes are right on top of each other, separate them
                 // apart randomly
                 dx = Math.Random();
@@ -201,7 +204,6 @@ namespace AroundMe.Graphs {
                 dy = vy / distance;
             }
 
-            // double totalRepulsion = node1.repulsion * node2.repulsion / 100;
             double totalRepulsion = DefaultRepulsion * DefaultRepulsion / 100;
             double factor = totalRepulsion * _rigidity;
 

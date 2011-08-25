@@ -77,8 +77,6 @@
     <Content Include="Content\Scripts\mscorlib.js" />
     <Content Include="Content\Search.png" />
     <Content Include="Content\ProgressBar.gif" />
-    <Content Include="Content\Scripts\ssloader.debug.js" />
-    <Content Include="Content\Scripts\ssloader.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Twitter.png" />
     <Content Include="Global.asax" />
