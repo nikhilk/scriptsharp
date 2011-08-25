@@ -10,11 +10,11 @@ namespace AroundMe.DataModel {
 
     internal sealed class PhotoView : Record {
 
-        public GraphNode locationNode;
-        public GraphNode photoNode;
+        public GraphNode pushpinNode;
+        public GraphNode calloutNode;
 
-        public MapPushpin locationPushpin;
-        public MapInfobox photoInfobox;
-        public MapPolyline calloutLine;
+        public MapPushpin pushpin;
+        public MapInfobox callout;
+        public MapPolyline connector;
     }
 }
