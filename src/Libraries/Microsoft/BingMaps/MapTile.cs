@@ -1,4 +1,4 @@
-// MapTileSourceOptions.cs
+// MapTile.cs
 // Script#/Libraries/Microsoft/BingMaps
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -16,13 +16,13 @@ namespace Microsoft.Maps {
     [Imported]
     [IgnoreNamespace]
     [ScriptName("Object")]
-    public sealed class MapTileSourceOptions {
+    public sealed class MapTile {
 
-        public double Width;
-        public double Height;
-        [ScriptName("uriConstructor")]
-        public string UriFormat;
-        [ScriptName("uriConstructor")]
-        public MapTileUriGenerator UriGenerator;
+        private MapTile() {
+        }
+
+        public int LevelOfDetail;
+        public int X;
+        public int Y;
     }
 }

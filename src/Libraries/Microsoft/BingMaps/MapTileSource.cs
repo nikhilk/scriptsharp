@@ -14,10 +14,22 @@ namespace Microsoft.Maps {
     // TODO: Other members
 
     [Imported]
-    [ScriptName("TileLayer")]
+    [ScriptName("TileSource")]
     public class MapTileSource {
 
         public MapTileSource(MapTileSourceOptions options) {
+        }
+
+        public int GetHeight() {
+            return 0;
+        }
+
+        public string GetUriConstructor() {
+            return null;
+        }
+
+        public int GetWidth() {
+            return 0;
         }
     }
 }

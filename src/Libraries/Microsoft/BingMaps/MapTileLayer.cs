@@ -15,9 +15,24 @@ namespace Microsoft.Maps {
 
     [Imported]
     [ScriptName("TileLayer")]
-    public class MapTileLayer {
+    public class MapTileLayer : MapEntity {
 
         public MapTileLayer(MapTileLayerOptions options) {
+        }
+
+        public double GetOpacity() {
+            return 0;
+        }
+
+        public MapTileSource GetTileSource() {
+            return null;
+        }
+
+        public int GetZIndex() {
+            return 0;
+        }
+
+        public void SetOptions(MapTileLayerOptions options) {
         }
     }
 }
