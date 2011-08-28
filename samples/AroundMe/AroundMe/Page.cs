@@ -24,8 +24,9 @@ namespace AroundMe {
         private static PageModel _model;
         private static Map _map;
         private static MapEntityCollection _mapEntities;
+        private static MapPushpin _currentPushpin;
+        private static string _tileUrlFormat;
 
-        private static Element _mapContainer;
         private static Graph _graph;
         private static Dictionary<string, PhotoView> _photoViews;
 
@@ -39,6 +40,9 @@ namespace AroundMe {
 
             string bingMapsKey = (string)Document.Body.GetAttribute("data-bingmaps-key");
             Debug.Assert(String.IsNullOrEmpty(bingMapsKey) == false);
+
+            _tileUrlFormat = (string)Document.Body.GetAttribute("data-tile-url");
+            Debug.Assert(String.IsNullOrEmpty(_tileUrlFormat) == false);
 
             _model = new PageModel(new FlickrService(flickrKey), new HtmlStorageService());
             _model.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e) {
@@ -67,10 +71,17 @@ namespace AroundMe {
             mapOptions.ShowScalebar = false;
             mapOptions.ShowCopyright = false;
             mapOptions.ShowLogo = false;
-            mapOptions.MapType = MapType.Road;
+            mapOptions.MapType = MapType.Mercator;
             mapOptions.Zoom = 2;
             mapOptions.BackgroundColor = new MapColor(255, 255, 255, 255);
             _map = new Map(Utility.GetElement("mapContainer"), mapOptions);
+
+            MapTileSourceOptions sourceOptions = new MapTileSourceOptions();
+            sourceOptions.UriGenerator = CreateTileUrl;
+
+            MapTileLayerOptions layerOptions = new MapTileLayerOptions();
+            layerOptions.Mercator = new MapTileSource(sourceOptions);
+            _map.Entities.Push(new MapTileLayer(layerOptions));
 
             MapEvents.AddHandler(_map, "viewchangestart", delegate(MapEventArgs e) {
                 _viewChanging = true;
@@ -132,6 +143,13 @@ namespace AroundMe {
             ShowLocation();
         }
 
+        private static string CreateTileUrl(MapTile tile) {
+            int index = Math.Floor(Math.Random() * 3 + 1);
+            string domain = (index == 1) ? "a" : (index == 2) ? "b" : "c";
+
+            return String.Format(_tileUrlFormat, domain, tile.LevelOfDetail, tile.X, tile.Y);
+        }
+
         private static void FavoritePhoto() {
             Debug.Assert(_model.SelectedPhoto != null);
             _model.AddFavorite();
@@ -186,6 +204,22 @@ namespace AroundMe {
 
         private static void ShowFavorites() {
             _model.ShowFavorites();
+
+            int favoriteCount = _model.Photos.Count;
+            if (favoriteCount != 0) {
+                MapLocation[] locations = new MapLocation[favoriteCount];
+
+                for (int i = 0; i < favoriteCount; i++) {
+                    locations[i] = new MapLocation(_model.Photos[i].latitude, _model.Photos[i].longitude);
+                }
+
+                MapViewOptions viewOptions = new MapViewOptions();
+                viewOptions.Bounds = MapBounds.FromLocations(locations);
+                viewOptions.Animate = true;
+
+                _map.SetView(viewOptions);
+                UpdatePhotos(/* newPhotos */ false);
+            }
         }
 
         private static void ShowLocation() {
@@ -197,6 +231,22 @@ namespace AroundMe {
                 viewOptions.Animate = true;
 
                 _map.SetView(viewOptions);
+                UpdatePhotos(/* newPhotos */ false);
+
+                if (_currentPushpin == null) {
+                    MapPushpinOptions pushpinOptions = new MapPushpinOptions();
+                    pushpinOptions.Icon = "/Content/Pushpin.png";
+                    pushpinOptions.Anchor = new MapPoint(12, 14);
+                    pushpinOptions.Width = 25;
+                    pushpinOptions.Height = 28;
+                    pushpinOptions.TypeName = "currentPushpin";
+
+                    _currentPushpin = new MapPushpin(viewOptions.Center, pushpinOptions);
+                    _map.Entities.Push(_currentPushpin);
+                }
+                else {
+                    _currentPushpin.SetLocation(viewOptions.Center);
+                }
             });
         }
 

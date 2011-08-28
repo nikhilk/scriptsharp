@@ -15,7 +15,8 @@ namespace AroundMeWeb.Controllers {
         public ActionResult Index() {
             var apiKeys = new {
                 flickrApiKey = ConfigurationManager.AppSettings["flickrApiKey"],
-                bingMapsKey = ConfigurationManager.AppSettings["bingMapsKey"]
+                bingMapsKey = ConfigurationManager.AppSettings["bingMapsKey"],
+                tileUrl = ConfigurationManager.AppSettings["tileUrl"]
             };
             return View(apiKeys);
         }

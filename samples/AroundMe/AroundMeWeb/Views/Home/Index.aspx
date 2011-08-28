@@ -6,7 +6,10 @@
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Schoolbell:regular" />
   <link rel="stylesheet" type="text/css" href="/Content/Site.css" />
 </head>
-<body class="map" data-flickr-key="<%= Model.flickrApiKey %>" data-bingmaps-key="<%= Model.bingMapsKey %>">
+<body class="map"
+  data-flickr-key="<%= Model.flickrApiKey %>"
+  data-bingmaps-key="<%= Model.bingMapsKey %>"
+  data-tile-url="<%= Model.tileUrl %>">
   <div id="mapContainer"></div>
   <div id="inputContainer">
     <div id="titleLabel">Photos Around Me</div>
@@ -33,7 +36,6 @@
   </div>
   <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
   <script type="text/javascript" src="http://platform.twitter.com/anywhere.js?id=BDvnYA8jh6osbRb83Ybw&v=1"></script>
-  <script type="text/javascript" src="/Content/Scripts/ssloader.debug.js"></script>
   <script type="text/javascript" src="/Content/Scripts/mscorlib.debug.js"></script>
   <script type="text/javascript" src="/Content/Scripts/AroundMe.debug.js"></script>
 </body>

@@ -140,7 +140,7 @@ button.photoAction {
   background-image: url(Heart.png);
 }
 #photoAroundButton {
-  background-image: url(Pushpin.png);
+  background-image: url(Location.png);
 }
 #photoShareButton {
   background-image: url(Twitter.png);
@@ -157,7 +157,7 @@ button.photoAction {
   right: -14px;
   top: -14px;
 }
-div.locationPushpin {
+div.locationPushpin, div.currentPushpin {
   font-size: 0pt;
 }
 div.photoInfobox {
@@ -171,10 +171,13 @@ div.photoInfobox {
   -webkit-box-shadow: 0px 0px 10px black;
 }
 body.map div.photoInfobox, body.map #mapContainer svg {
-  opacity: 0.5;
+  opacity: 0.15;
 }
 body.photos #mapContainer img {
   opacity: 0.5;
+}
+body.photos #mapContainer div.currentPushpin img, body.photos #mapContainer div.locationPushpin img {
+  opacity: 1;
 }
 #mapContainer svg, div.photoInfobox, #mapContainer img {
   -webkit-transition: opacity .25s ease-in-out;
