@@ -1,4 +1,4 @@
-// MapType.cs
+// VenueType.cs
 // Script#/Libraries/Microsoft/BingMaps
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -12,18 +12,9 @@ using System.Runtime.CompilerServices;
 namespace Microsoft.Maps {
 
     [Imported]
-    [ScriptName("MapTypeId")]
-    public enum MapType {
+    [NamedValues]
+    public enum VenueType {
 
-        Auto,
-
-        Road,
-
-        Aerial,
-
-        Birdseye,
-
-        [ScriptName("mercator")]
-        Custom
+        Mall
     }
 }

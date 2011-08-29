@@ -71,7 +71,7 @@ namespace AroundMe {
             mapOptions.ShowScalebar = false;
             mapOptions.ShowCopyright = false;
             mapOptions.ShowLogo = false;
-            mapOptions.MapType = MapType.Mercator;
+            mapOptions.MapType = MapType.Custom;
             mapOptions.Zoom = 2;
             mapOptions.BackgroundColor = new MapColor(255, 255, 255, 255);
             _map = new Map(Utility.GetElement("mapContainer"), mapOptions);

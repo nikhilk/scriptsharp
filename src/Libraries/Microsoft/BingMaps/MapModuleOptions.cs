@@ -1,4 +1,4 @@
-// MapType.cs
+// MapModuleOptions.cs
 // Script#/Libraries/Microsoft/BingMaps
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -12,18 +12,10 @@ using System.Runtime.CompilerServices;
 namespace Microsoft.Maps {
 
     [Imported]
-    [ScriptName("MapTypeId")]
-    public enum MapType {
+    [IgnoreNamespace]
+    [ScriptName("Object")]
+    public sealed class MapModuleOptions {
 
-        Auto,
-
-        Road,
-
-        Aerial,
-
-        Birdseye,
-
-        [ScriptName("mercator")]
-        Custom
+        public Action Callback;
     }
 }

@@ -1,4 +1,4 @@
-// MapType.cs
+// TrafficLayer.cs
 // Script#/Libraries/Microsoft/BingMaps
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -9,21 +9,22 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace Microsoft.Maps {
+namespace Microsoft.Maps.Traffic {
 
     [Imported]
-    [ScriptName("MapTypeId")]
-    public enum MapType {
+    public sealed class TrafficLayer {
 
-        Auto,
+        public TrafficLayer(Map map) {
+        }
 
-        Road,
+        public MapTileLayer GetTileLayer() {
+            return null;
+        }
 
-        Aerial,
+        public void Hide() {
+        }
 
-        Birdseye,
-
-        [ScriptName("mercator")]
-        Custom
+        public void Show() {
+        }
     }
 }

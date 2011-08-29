@@ -1,4 +1,4 @@
-// MapType.cs
+// VenueMapFactory.cs
 // Script#/Libraries/Microsoft/BingMaps
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -9,21 +9,19 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace Microsoft.Maps {
+namespace Microsoft.Maps.VenueMaps {
 
     [Imported]
-    [ScriptName("MapTypeId")]
-    public enum MapType {
+    public sealed class VenueMapFactory {
 
-        Auto,
+        public VenueMapFactory(Map map) {
+        }
 
-        Road,
+        public void Create(VenueMapOptions options) {
+        }
 
-        Aerial,
-
-        Birdseye,
-
-        [ScriptName("mercator")]
-        Custom
+        [ScriptName("getNearbyVenues")]
+        public void Search(VenueMapSearchOptions searchOptions) {
+        }
     }
 }

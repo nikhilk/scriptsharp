@@ -40,6 +40,8 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MapModuleOptions.cs" />
+    <Compile Include="MapModule.cs" />
     <Compile Include="MapTileUriGenerator.cs" />
     <Compile Include="MapTile.cs" />
     <Compile Include="MapInfoboxAction.cs" />
@@ -77,6 +79,21 @@
     <Compile Include="MapLocation.cs" />
     <Compile Include="MapPoint.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="Traffic\TrafficLayer.cs" />
+    <Compile Include="VenueMaps\VenueEntity.cs" />
+    <Compile Include="VenueMaps\VenueEntityPolygon.cs" />
+    <Compile Include="VenueMaps\VenueFootprint.cs" />
+    <Compile Include="VenueMaps\VenueType.cs" />
+    <Compile Include="VenueMaps\VenueFloor.cs" />
+    <Compile Include="VenueMaps\VenueMetadata.cs" />
+    <Compile Include="VenueMaps\Venue.cs" />
+    <Compile Include="VenueMaps\VenueMapSuccessCallback.cs" />
+    <Compile Include="VenueMaps\VenueMapErrorCallback.cs" />
+    <Compile Include="VenueMaps\VenueMapSearchCallback.cs" />
+    <Compile Include="VenueMaps\VenueMapSearchOptions.cs" />
+    <Compile Include="VenueMaps\VenueMap.cs" />
+    <Compile Include="VenueMaps\VenueMapOptions.cs" />
+    <Compile Include="VenueMaps\VenueMapFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

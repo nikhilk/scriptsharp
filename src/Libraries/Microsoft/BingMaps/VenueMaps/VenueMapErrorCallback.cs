@@ -1,4 +1,4 @@
-// MapType.cs
+// VenueMapErrorCallback.cs
 // Script#/Libraries/Microsoft/BingMaps
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -9,21 +9,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace Microsoft.Maps {
+namespace Microsoft.Maps.VenueMaps {
 
-    [Imported]
-    [ScriptName("MapTypeId")]
-    public enum MapType {
-
-        Auto,
-
-        Road,
-
-        Aerial,
-
-        Birdseye,
-
-        [ScriptName("mercator")]
-        Custom
-    }
+    public delegate void VenueMapErrorCallback(int errorCode, VenueMapOptions options);
 }

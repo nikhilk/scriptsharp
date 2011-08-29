@@ -135,6 +135,10 @@ namespace Microsoft.Maps {
             return false;
         }
 
+        [ScriptAlias("Microsoft.Maps.loadModule")]
+        public static void LoadModule(MapModule module, MapModuleOptions options) {
+        }
+
         public void SetOptions(MapOptions options) {
         }
 
