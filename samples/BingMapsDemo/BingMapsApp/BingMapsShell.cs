@@ -37,7 +37,7 @@ namespace BingMapsApp {
             _pushpin = new MapPushpin(mapOptions.Center, pushpinOptions);
 
             MapInfoboxOptions infoboxOptions = new MapInfoboxOptions();
-            infoboxOptions.Title = "Seattle";
+            infoboxOptions.Title = "Bellevue";
             infoboxOptions.Visible = false;
             infoboxOptions.Offset = new MapPoint(0, 20);
             infoboxOptions.Height = 48;

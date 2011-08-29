@@ -40,6 +40,11 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Location\GeoLocationError.cs" />
+    <Compile Include="Location\GeoLocation.cs" />
+    <Compile Include="Location\GeoLocationCircleOptions.cs" />
+    <Compile Include="Location\GeoLocationOptions.cs" />
+    <Compile Include="Location\GeoLocationProvider.cs" />
     <Compile Include="MapModuleOptions.cs" />
     <Compile Include="MapModule.cs" />
     <Compile Include="MapTileUriGenerator.cs" />
