@@ -6,7 +6,9 @@
 // Public License. A copy of the license can be found in License.txt.
 //
 
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace System {
@@ -21,7 +23,17 @@ namespace System {
         }
 
         /// <internalonly />
+        public static implicit operator Dictionary<string, object>(Record r) {
+            return null;
+        }
+
+        /// <internalonly />
         public static implicit operator Record(Dictionary d) {
+            return null;
+        }
+
+        /// <internalonly />
+        public static implicit operator Record(Dictionary<string, object> d) {
             return null;
         }
     }

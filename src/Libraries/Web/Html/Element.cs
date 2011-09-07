@@ -419,6 +419,14 @@ namespace System.Html {
             return null;
         }
 
+        public bool HasAttribute(string name) {
+            return false;
+        }
+
+        public bool HasAttribute(ElementAttributeName name) {
+            return false;
+        }
+
         public bool HasChildNodes() {
             return false;
         }

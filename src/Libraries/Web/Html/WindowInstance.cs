@@ -53,6 +53,20 @@ namespace System.Html {
         }
 
         [IntrinsicProperty]
+        public int InnerHeight {
+            get {
+                return 0;
+            }
+        }
+
+        [IntrinsicProperty]
+        public int InnerWidth {
+            get {
+                return 0;
+            }
+        }
+
+        [IntrinsicProperty]
         public Location Location {
             get {
                 return null;
@@ -70,6 +84,20 @@ namespace System.Html {
         public WindowInstance Opener {
             get {
                 return null;
+            }
+        }
+
+        [IntrinsicProperty]
+        public static int OuterHeight {
+            get {
+                return 0;
+            }
+        }
+
+        [IntrinsicProperty]
+        public static int OuterWidth {
+            get {
+                return 0;
             }
         }
 

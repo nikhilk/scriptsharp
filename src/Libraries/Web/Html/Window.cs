@@ -96,14 +96,14 @@ namespace System.Html {
         }
 
         [IntrinsicProperty]
-        public int InnerHeight {
+        public static int InnerHeight {
             get {
                 return 0;
             }
         }
 
         [IntrinsicProperty]
-        public int InnerWidth {
+        public static int InnerWidth {
             get {
                 return 0;
             }
@@ -161,14 +161,14 @@ namespace System.Html {
         }
 
         [IntrinsicProperty]
-        public int OuterHeight {
+        public static int OuterHeight {
             get {
                 return 0;
             }
         }
 
         [IntrinsicProperty]
-        public int OuterWidth {
+        public static int OuterWidth {
             get {
                 return 0;
             }
