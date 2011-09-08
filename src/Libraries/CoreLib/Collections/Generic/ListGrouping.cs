@@ -89,11 +89,13 @@ namespace System.Collections.Generic {
             return null;
         }
 
+        /*
         // HACK: This should be T instead of object, but we have a problem
         //       handling partial generic types in the compiler.
         public Dictionary<string, object> Index(ListItemKeyGenerator<T> keyCallback) {
             return null;
         }
+        */
 
         public int IndexOf(T item) {
             return 0;
