@@ -9,6 +9,7 @@ v0.7.3.1 [in progress]
                 even in debug builds (for symmetry with release builds)
                 Also, at the same type skip generating types for internal enums marked
                 as Named/NumericValues, since their values have been inlined as well.
+    - [git #96] Handle '+' unary operator
     - [git #97] Unable to generate code for projects that don't reference Script.Web.dll.
 
 v0.7.3.0 [8/14/2011]
