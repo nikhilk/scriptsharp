@@ -5,6 +5,10 @@ v0.7.3.1 [in progress]
     - Fix/update bing maps metadata bug
     - Fix observable bug where access to an observed property without an observer
       registration would drop existing observers.
+    - [git #92] Don't generate internal consts since their values have been inlined
+                even in debug builds (for symmetry with release builds)
+                Also, at the same type skip generating types for internal enums marked
+                as Named/NumericValues, since their values have been inlined as well.
     - [git #97] Unable to generate code for projects that don't reference Script.Web.dll.
 
 v0.7.3.0 [8/14/2011]
