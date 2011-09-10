@@ -141,6 +141,24 @@
     items.removeAt(1);
     QUnit.equal(binding.invalidateCount, 2);
   });
+
+  test('unobservedAccessPreservesExistingObservers', function() {
+    var model = new Model();
+    model.set_name('Foo');
+    
+    var binding = new Binding(model, 'name');
+    binding.updateTarget();
+
+    QUnit.equal(binding.value, 'Foo');
+    QUnit.equal(binding.invalidateCount, 0);
+
+    var s = model.get_name();
+
+    model.set_name('Bar');
+    binding.updateTarget();
+    QUnit.equal(binding.invalidateCount, 1);
+    QUnit.equal(binding.value, 'Bar');
+  });
   </script>
 </body>
 

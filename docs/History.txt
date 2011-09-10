@@ -2,7 +2,9 @@ Changelog
 ===============================================================================
 
 v0.7.3.1 [in progress]
-    - Fix bing maps metadata bug
+    - Fix/update bing maps metadata bug
+    - Fix observable bug where access to an observed property without an observer
+      registration would drop existing observers.
 
 v0.7.3.0 [8/14/2011]
     - [git #71] Fix formatting of GMT dates
