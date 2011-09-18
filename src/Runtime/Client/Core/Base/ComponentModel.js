@@ -42,9 +42,8 @@ function _captureObservers(observers) {
         observers.push(observer);
       }
     }
-    return observers;
   }
-  return null;
+  return observers;
 }
 
 function _invalidateObservers(observers) {
