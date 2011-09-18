@@ -1512,6 +1512,17 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Gets the value of the specified property from the first of the matched
+        /// set of elements.
+        /// </summary>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <returns>The value of the specified property.</returns>
+        [ScriptName("prop")]
+        public TValue GetProperty<TValue>(string propertyName) {
+            return default(TValue);
+        }
+
+        /// <summary>
         /// Gets the current horizontal scrollbar position of the first matched element.
         /// </summary>
         /// <returns>The horizontal scroll position of the element.</returns>
