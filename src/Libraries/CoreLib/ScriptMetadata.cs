@@ -16,7 +16,7 @@ namespace System.Runtime.CompilerServices {
     /// This attribute can be placed on types in system script assemblies that should not
     /// be imported. It is only meant to be used within mscorlib.dll.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Delegate, Inherited = false, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Delegate | AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
     [NonScriptable]
     [Imported]
     [EditorBrowsable(EditorBrowsableState.Never)]
