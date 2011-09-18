@@ -26,5 +26,12 @@ namespace System.Html {
             set {
             }
         }
+
+        [IntrinsicProperty]
+        public bool DefaultChecked {
+            get {
+                return false;
+            }
+        }
     }
 }

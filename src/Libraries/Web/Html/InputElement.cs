@@ -19,6 +19,13 @@ namespace System.Html {
         }
 
         [IntrinsicProperty]
+        public string DefaultValue {
+            get {
+                return null;
+            }
+        }
+
+        [IntrinsicProperty]
         public FormElement Form {
             get {
                 return null;
