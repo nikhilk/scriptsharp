@@ -30,6 +30,10 @@ namespace System {
             }
         }
 
+        public T GetValueOrDefault() {
+            return default(T);
+        }
+
         public static implicit operator T?(T value) {
             return null;
         }

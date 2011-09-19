@@ -21,19 +21,19 @@ Copyright (C) 2011. Nikhil Kothari. All rights reserved.
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <AutoUnifyAssemblyReferences>false</AutoUnifyAssemblyReferences>
+    <BuildingProject>true</BuildingProject>
+    <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
   </PropertyGroup>
 
   <Target Name="BeforeCompile">
     <Delete Files="@(IntermediateAssembly)" />
   </Target>
 
-  <Target Name="AfterCompile"
-    DependsOnTargets="$(CoreCompile)">
-
+  <Target Name="AfterCompile" DependsOnTargets="$(CoreCompile)">
     <ScriptCompilerTask
       Sources="@(Compile)"
       Resources="@(EmbeddedResource)"
-      References="@(ReferencePath)"
+      References="@(ReferencePath);@(ReferenceDependencyPaths)"
       Defines="$(DefineConstants)"
       OutputPath="$(OutputPath)"
       DeploymentPath="$(DeploymentPath)"
@@ -50,10 +50,8 @@ Copyright (C) 2011. Nikhil Kothari. All rights reserved.
   </Target>
 
   <Target Name="CopyFilesToOutputDirectory">
-    <Copy SourceFiles="@(IntermediateAssembly)"
-      DestinationFolder="$(OutDir)" />
-    <Copy SourceFiles="@(ScriptFile)"
-      DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="@(IntermediateAssembly)" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="@(ScriptFile)" DestinationFolder="$(OutDir)" />
   </Target>
 
 </Project>

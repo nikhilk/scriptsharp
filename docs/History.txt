@@ -5,12 +5,23 @@ v0.7.3.1 [in progress]
     - Fix/update bing maps metadata bug
     - Fix observable bug where access to an observed property without an observer
       registration would drop existing observers.
+    - [git #56] Switch statement when used with more then 6 cases will generate a compile error
+    - [git #66] Support Nullable.GetValueOrDefault which is needed for ?? operator on
+                nullables.
     - [git #92] Don't generate internal consts since their values have been inlined
                 even in debug builds (for symmetry with release builds)
                 Also, at the same type skip generating types for internal enums marked
                 as Named/NumericValues, since their values have been inlined as well.
+                Also fixes [git #42] indirectly.
+    - [git #93] Error compiling cross-referenced projects in 0.7.3
+                Fix by requiring explicit references, and reporting failure on not doing so
+                instead of silent failure (this is temporary ... there must be a better
+                msbuild way of including transitive closure of assemblies, but even
+                referencing indirect references in the targets file raises an error to
+                include explicit references).
     - [git #96] Handle '+' unary operator
     - [git #97] Unable to generate code for projects that don't reference Script.Web.dll.
+    - [git #103] Fix generation of custom delegates to use "Function" as generated script name
 
 v0.7.3.0 [8/14/2011]
     - [git #71] Fix formatting of GMT dates

@@ -24,6 +24,10 @@ namespace System.Collections.Generic {
         public Dictionary(params object[] nameValuePairs) {
         }
 
+        [Obsolete("This is only for use by the c# compiler, and cannot be used for generating script.", /* error */ true)]
+        public Dictionary(int count) {
+        }
+
         public int Count {
             get {
                 return 0;
@@ -45,6 +49,10 @@ namespace System.Collections.Generic {
             }
         }
 
+        [Obsolete("This is only for use by the c# compiler, and cannot be used for generating script.", /* error */ true)]
+        public void Add(TKey key, TValue value) {
+        }
+
         public void Clear() {
         }
 
@@ -61,6 +69,12 @@ namespace System.Collections.Generic {
         }
 
         public void Remove(TKey key) {
+        }
+
+        [Obsolete("This is only for use by the c# compiler, and cannot be used for generating script.", /* error */ true)]
+        public bool TryGetValue(TKey key, out TValue value) {
+            value = default(TValue);
+            return false;
         }
 
         public static implicit operator Dictionary(Dictionary<TKey, TValue> dictionary) {

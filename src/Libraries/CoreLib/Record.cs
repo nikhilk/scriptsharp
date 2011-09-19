@@ -22,23 +22,19 @@ namespace System {
             return null;
         }
 
-        /*
         /// <internalonly />
         public static implicit operator Dictionary<string, object>(Record r) {
             return null;
         }
-        */
 
         /// <internalonly />
         public static implicit operator Record(Dictionary d) {
             return null;
         }
 
-        /*
         /// <internalonly />
         public static implicit operator Record(Dictionary<string, object> d) {
             return null;
         }
-        */
     }
 }
