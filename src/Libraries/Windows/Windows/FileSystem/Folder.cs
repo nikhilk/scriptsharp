@@ -39,9 +39,9 @@ namespace System.Windows.FileSystem {
         /// </summary>
         [IntrinsicProperty]
         [PreserveCase]
-        public DateTime DateCreated {
+        public Date DateCreated {
             get {
-                return DateTime.Now;
+                return null;
             }
         }
 
@@ -50,9 +50,9 @@ namespace System.Windows.FileSystem {
         /// </summary>
         [IntrinsicProperty]
         [PreserveCase]
-        public DateTime DateLastAccessed {
+        public Date DateLastAccessed {
             get {
-                return DateTime.Now;
+                return null;
             }
         }
 
@@ -61,9 +61,9 @@ namespace System.Windows.FileSystem {
         /// </summary>
         [IntrinsicProperty]
         [PreserveCase]
-        public DateTime DateLastModified {
+        public Date DateLastModified {
             get {
-                return DateTime.Now;
+                return null;
             }
         }
 

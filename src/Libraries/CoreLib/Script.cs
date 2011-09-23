@@ -39,7 +39,7 @@ namespace System {
         /// into a string.
         /// </summary>
         /// <param name="d">The date to display.</param>
-        public static void Alert(DateTime d) {
+        public static void Alert(Date d) {
         }
 
         /// <summary>

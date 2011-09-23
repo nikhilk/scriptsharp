@@ -1,4 +1,4 @@
-// DateTime.cs
+// Date.cs
 // Script#/Libraries/CoreLib
 // Copyright (c) Nikhil Kothari.
 // Copyright (c) Microsoft Corporation.
@@ -15,60 +15,59 @@ namespace System {
     /// </summary>
     [IgnoreNamespace]
     [Imported]
-    [ScriptName("Date")]
-    public struct DateTime {
+    public sealed class Date {
 
         /// <summary>
         /// Represents a null date.
         /// </summary>
-        public static readonly DateTime Empty;
+        public static readonly Date Empty;
 
         /// <summary>
-        /// Creates a new instance of DateTime initialized from the specified number of milliseconds.
+        /// Creates a new instance of Date initialized from the specified number of milliseconds.
         /// </summary>
         /// <param name="milliseconds">Milliseconds since January 1st, 1970.</param>
-        public DateTime(int milliseconds) {
+        public Date(int milliseconds) {
         }
 
         /// <summary>
-        /// Creates a new instance of DateTime initialized from parsing the specified date.
+        /// Creates a new instance of Date initialized from parsing the specified date.
         /// </summary>
         /// <param name="date"></param>
-        public DateTime(string date) {
+        public Date(string date) {
         }
 
         /// <summary>
-        /// Creates a new instance of DateTime.
+        /// Creates a new instance of Date.
         /// </summary>
         /// <param name="year">The full year.</param>
         /// <param name="month">The month (0 through 11)</param>
         /// <param name="date">The day of the month (1 through # of days in the specified month)</param>
-        public DateTime(int year, int month, int date) {
+        public Date(int year, int month, int date) {
         }
 
         /// <summary>
-        /// Creates a new instance of DateTime.
+        /// Creates a new instance of Date.
         /// </summary>
         /// <param name="year">The full year.</param>
         /// <param name="month">The month (0 through 11)</param>
         /// <param name="date">The day of the month (1 through # of days in the specified month)</param>
         /// <param name="hours">The hours (0 through 23)</param>
-        public DateTime(int year, int month, int date, int hours) {
+        public Date(int year, int month, int date, int hours) {
         }
 
         /// <summary>
-        /// Creates a new instance of DateTime.
+        /// Creates a new instance of Date.
         /// </summary>
         /// <param name="year">The full year.</param>
         /// <param name="month">The month (0 through 11)</param>
         /// <param name="date">The day of the month (1 through # of days in the specified month)</param>
         /// <param name="hours">The hours (0 through 23)</param>
         /// <param name="minutes">The minutes (0 through 59)</param>
-        public DateTime(int year, int month, int date, int hours, int minutes) {
+        public Date(int year, int month, int date, int hours, int minutes) {
         }
 
         /// <summary>
-        /// Creates a new instance of DateTime.
+        /// Creates a new instance of Date.
         /// </summary>
         /// <param name="year">The full year.</param>
         /// <param name="month">The month (0 through 11)</param>
@@ -76,11 +75,11 @@ namespace System {
         /// <param name="hours">The hours (0 through 23)</param>
         /// <param name="minutes">The minutes (0 through 59)</param>
         /// <param name="seconds">The seconds (0 through 59)</param>
-        public DateTime(int year, int month, int date, int hours, int minutes, int seconds) {
+        public Date(int year, int month, int date, int hours, int minutes, int seconds) {
         }
 
         /// <summary>
-        /// Creates a new instance of DateTime.
+        /// Creates a new instance of Date.
         /// </summary>
         /// <param name="year">The full year.</param>
         /// <param name="month">The month (0 through 11)</param>
@@ -89,24 +88,24 @@ namespace System {
         /// <param name="minutes">The minutes (0 through 59)</param>
         /// <param name="seconds">The seconds (0 through 59)</param>
         /// <param name="milliseconds">The milliseconds (0 through 999)</param>
-        public DateTime(int year, int month, int date, int hours, int minutes, int seconds, int milliseconds) {
+        public Date(int year, int month, int date, int hours, int minutes, int seconds, int milliseconds) {
         }
 
         /// <summary>
         /// Returns the current date and time.
         /// </summary>
-        public static DateTime Now {
+        public static Date Now {
             get {
-                return default(DateTime);
+                return null;
             }
         }
 
         /// <summary>
         /// Returns the current date with the time part set to 00:00:00.
         /// </summary>
-        public static DateTime Today {
+        public static Date Today {
             get {
-                return default(DateTime);
+                return null;
             }
         }
 
@@ -186,7 +185,7 @@ namespace System {
             return 0;
         }
 
-        public static bool IsEmpty(DateTime d) {
+        public static bool IsEmpty(Date d) {
             return false;
         }
 
@@ -195,8 +194,8 @@ namespace System {
         }
 
         [ScriptName("parseDate")]
-        public static DateTime Parse(string value) {
-            return default(DateTime);
+        public static Date Parse(string value) {
+            return null;
         }
 
         public void SetDate(int date) {
@@ -308,49 +307,49 @@ namespace System {
         /// <summary>
         /// Returns the difference in milliseconds between two dates.
         /// </summary>
-        public static int operator -(DateTime a, DateTime b) {
+        public static int operator -(Date a, Date b) {
             return 0;
         }
 
         /// <summary>
         /// Compares two dates
         /// </summary>
-        public static bool operator ==(DateTime a, DateTime b) {
+        public static bool operator ==(Date a, Date b) {
             return false;
         }
 
         /// <summary>
         /// Compares two dates
         /// </summary>
-        public static bool operator !=(DateTime a, DateTime b) {
+        public static bool operator !=(Date a, Date b) {
             return false;
         }
 
         /// <summary>
         /// Compares two dates
         /// </summary>
-        public static bool operator <(DateTime a, DateTime b) {
+        public static bool operator <(Date a, Date b) {
             return false;
         }
 
         /// <summary>
         /// Compares two dates
         /// </summary>
-        public static bool operator >(DateTime a, DateTime b) {
+        public static bool operator >(Date a, Date b) {
             return false;
         }
 
         /// <summary>
         /// Compares two dates
         /// </summary>
-        public static bool operator <=(DateTime a, DateTime b) {
+        public static bool operator <=(Date a, Date b) {
             return false;
         }
 
         /// <summary>
         /// Compares two dates
         /// </summary>
-        public static bool operator >=(DateTime a, DateTime b) {
+        public static bool operator >=(Date a, Date b) {
             return false;
         }
     }

@@ -45,9 +45,9 @@ namespace System.Gadgets {
 
         [IntrinsicProperty]
         [PreserveCase]
-        public DateTime DSTDate {
+        public Date DSTDate {
             get {
-                return default(DateTime);
+                return null;
             }
         }
 
@@ -67,9 +67,9 @@ namespace System.Gadgets {
         }
 
         [IntrinsicProperty]
-        public DateTime StandardDate {
+        public Date StandardDate {
             get {
-                return default(DateTime);
+                return null;
             }
         }
 

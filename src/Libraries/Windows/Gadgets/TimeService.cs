@@ -32,8 +32,8 @@ namespace System.Gadgets {
             }
         }
 
-        public static DateTime GetLocalTime(SidebarTimeZone timeZone) {
-            return default(DateTime);
+        public static Date GetLocalTime(SidebarTimeZone timeZone) {
+            return null;
         }
     }
 }
