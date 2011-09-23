@@ -71,7 +71,7 @@ namespace FishTankApp {
 
         public void Update() {
             // Calculate next position of fish
-            double fps = _tank.FramesPerSecond;
+            double fps = FishTank.FramesPerSecond;
             _velocity = Math.Max(Math.Floor(fps * fps * .5 / 3), 1);
 
             double nextX = _x + _xAngle * _velocity * FishTank.TimeDelta;

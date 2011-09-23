@@ -20,7 +20,8 @@ namespace FishTankApp {
         public const int FishSpecies = 3;
         public const int CellsInFishStrip = 16;
 
-        public const double TimeDelta = 0.1;
+        public const int FramesPerSecond = 60;
+        public const double TimeDelta = 1.0 / FramesPerSecond;
         public const double ZFar = 100;
         public const double ZNear = 1;
         public const double ZClose = 1;
@@ -41,14 +42,6 @@ namespace FishTankApp {
         private int _height;
 
         private Action _tickHandler;
-
-        public int FramesPerSecond {
-            get {
-                // TODO: This should be computed on the fly based on actual
-                //       speed, rather than being fixed.
-                return 60;
-            }
-        }
 
         public int Height {
             get {
@@ -89,7 +82,7 @@ namespace FishTankApp {
             Window.AddEventListener("resize", OnWindowResize, false);
 
             _tickHandler = OnTick;
-            Window.SetTimeout(_tickHandler, (int)(3600 / FramesPerSecond));
+            QueueUpdate();
         }
 
         private void Draw() {
@@ -123,7 +116,7 @@ namespace FishTankApp {
                 fish.Update();
             }
 
-            Window.SetTimeout(_tickHandler, (int)(3600 / FramesPerSecond));
+            QueueUpdate();
         }
 
         private void OnWindowResize(ElementEvent e) {
@@ -136,6 +129,10 @@ namespace FishTankApp {
             _fishesCanvas.Height = _height;
 
             Draw();
+        }
+
+        private void QueueUpdate() {
+            Window.SetTimeout(_tickHandler, (int)(1000 / FramesPerSecond));
         }
     }
 }
