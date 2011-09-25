@@ -5,9 +5,15 @@ v0.7.3.1 [in progress]
     - Fix/update bing maps metadata bug
     - Fix observable bug where access to an observed property without an observer
       registration would drop existing observers.
+    - Remove /copyRefs flag from ssc.exe (script references are no longer copied to output folder)
+      Same applies to ScriptCompilerExec task. The normal ScriptCompilerTask continues to provide
+      this capability.
+    - Added Sharpen.dom.js - a minimal set of helper APIs on top of HTML5 DOM APIs.
     - [git #56] Switch statement when used with more then 6 cases will generate a compile error
     - [git #66] Support Nullable.GetValueOrDefault which is needed for ?? operator on
                 nullables.
+    - [git #84] Raise error for code which calls Type.CreateInstance with the results of a method
+                call/property access directly.
     - [git #92] Don't generate internal consts since their values have been inlined
                 even in debug builds (for symmetry with release builds)
                 Also, at the same type skip generating types for internal enums marked
