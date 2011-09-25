@@ -31,7 +31,6 @@ Usage:
       [/minimize]
       [/D:<variable>]
       [/template:<template text file>]
-      [/copyrefs]
       [/doc:<file>]
       [/res:<resource file>]
       /ref:<assembly path>
@@ -57,8 +56,6 @@ Usage:
 /ref        One or more references to C# assemblies to be used
             to import metadata corresponding to dependency script files.
             (Note you must include a reference to mscorlib.dll)
-/copyrefs   Copies script files associated with references to the
-            output directory.
 /doc        XML Documentation to embed into the resulting script file.
 /res        The set of one or more resources to compile in. These should be
             .resx files. You should pass in both the language-neutral
@@ -76,7 +73,6 @@ Usage:
             bool debug = false;
             bool includeTests = false;
             bool minimize = true;
-            bool copyRefs = false;
             IStreamSource scriptFile = null;
             IStreamSource templateFile = null;
             IStreamSource docCommentFile = null;
@@ -157,7 +153,6 @@ Usage:
 
             includeTests = commandLine.Options.Contains("tests");
             minimize = commandLine.Options.Contains("minimize");
-            copyRefs = commandLine.Options.Contains("copyRefs");
 
             CompilerOptions compilerOptions = new CompilerOptions();
             compilerOptions.DebugFlavor = debug;
@@ -170,7 +165,6 @@ Usage:
             compilerOptions.ScriptFile = scriptFile;
             compilerOptions.TemplateFile = templateFile;
             compilerOptions.DocCommentFile = docCommentFile;
-            compilerOptions.CopyReferences = copyRefs;
 
             compilerOptions.InternalTestMode = commandLine.Options.Contains("test");
             if (compilerOptions.InternalTestMode) {

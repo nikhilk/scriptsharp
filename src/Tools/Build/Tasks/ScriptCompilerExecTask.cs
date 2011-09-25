@@ -36,21 +36,11 @@ namespace ScriptSharp.Tasks {
         private bool _tests;
         private string _defines;
         private string _locale;
-        private bool _copyReferences;
 
         private string _outputPath;
         private ITaskItem _script;
 
         private bool _hasErrors;
-
-        public bool CopyReferences {
-            get {
-                return _copyReferences;
-            }
-            set {
-                _copyReferences = value;
-            }
-        }
 
         public bool DebugFlavor {
             get {
@@ -188,7 +178,6 @@ namespace ScriptSharp.Tasks {
             else {
                 options.Minimize = Minimize;
             }
-            options.CopyReferences = CopyReferences;
             options.Defines = GetDefines();
             options.References = GetReferences();
             options.Sources = GetSources(_sources);
