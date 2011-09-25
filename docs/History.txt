@@ -5,6 +5,10 @@ v0.7.3.1 [in progress]
     - Fix/update bing maps metadata bug
     - Fix observable bug where access to an observed property without an observer
       registration would drop existing observers.
+    - Remove /copyRefs flag from ssc.exe (script references are no longer copied to output folder)
+      Same applies to ScriptCompilerExec task. The normal ScriptCompilerTask continues to provide
+      this capability.
+    - Added Sharpen.dom.js - a minimal set of helper APIs on top of HTML5 DOM APIs.
     - [git #56] Switch statement when used with more then 6 cases will generate a compile error
     - [git #66] Support Nullable.GetValueOrDefault which is needed for ?? operator on
                 nullables.
@@ -19,6 +23,8 @@ v0.7.3.1 [in progress]
                 msbuild way of including transitive closure of assemblies, but even
                 referencing indirect references in the targets file raises an error to
                 include explicit references).
+    - [git #94] Raise error for code which calls Type.CreateInstance with the results of a method
+                call/property access directly.
     - [git #96] Handle '+' unary operator
     - [git #97] Unable to generate code for projects that don't reference Script.Web.dll.
     - [git #103] Fix generation of custom delegates to use "Function" as generated script name
