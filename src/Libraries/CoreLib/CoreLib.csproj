@@ -72,7 +72,6 @@
     <Compile Include="ComponentModel\IEventManager.cs" />
     <Compile Include="ComponentModel\DependencyAttribute.cs" />
     <Compile Include="ComponentModel\IInitializable.cs" />
-    <Compile Include="ComponentModel\IObjectFactory.cs" />
     <Compile Include="ComponentModel\IContainer.cs" />
     <Compile Include="ComponentModel\ObserverManager.cs" />
     <Compile Include="ComponentModel\IObserver.cs" />

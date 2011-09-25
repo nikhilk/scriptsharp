@@ -8,9 +8,6 @@ function IContainer() { }
 // registerObject(objectType, o)
 // registerFactory(objectType, factory)
 
-function IObjectFactory() { }
-// createInstance(objectType, container)
-
 function IEventManager() { }
 // publishEvent(eventArgs)
 // subscribeEvent(eventArgsType, eventHandler)

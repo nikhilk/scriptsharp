@@ -1,5 +1,5 @@
 ﻿// AssemblyInfo.cs
-// Script#/Runtime/Web
+// Script#/Libraries/Web
 //
 
 using System;

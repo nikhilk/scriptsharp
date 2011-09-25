@@ -23,6 +23,12 @@ namespace System {
         public static readonly Date Empty;
 
         /// <summary>
+        /// Creates a new instance of Date initialized from the current time.
+        /// </summary>
+        public Date() {
+        }
+
+        /// <summary>
         /// Creates a new instance of Date initialized from the specified number of milliseconds.
         /// </summary>
         /// <param name="milliseconds">Milliseconds since January 1st, 1970.</param>

@@ -38,6 +38,6 @@ namespace System.ComponentModel {
         /// </summary>
         /// <param name="objectType">The type of object this factory corresponds to.</param>
         /// <param name="objectFactory">The factory to register.</param>
-        void RegisterFactory(Type objectType, IObjectFactory objectFactory);
+        void RegisterFactory(Type objectType, Func<IContainer, Type, object> objectFactory);
     }
 }
