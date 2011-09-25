@@ -105,16 +105,6 @@ extend(String.prototype, {
   },
   replaceAll: function(oldValue, newValue) {
     return this.split(oldValue).join(newValue || '');
-  },
-  htmlDecode: function() {
-    var div = document.createElement('div');
-    div.innerHTML = this;
-    return div.textContent || div.innerText;
-  },
-  htmlEncode: function() {
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(this));
-    return div.innerHTML.replace(/\"/g, '&quot;');
   }
 });
 
