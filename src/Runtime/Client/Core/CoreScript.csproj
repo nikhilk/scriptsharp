@@ -39,18 +39,18 @@
     <Content Include="Loader.js" />
   </ItemGroup>
   <Target Name="Build">
-    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Loader.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.loader.debug.js" />
-    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Loader.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.loader.rel.js" />
-    <Exec Command="..\..\..\..\tools\bin\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.loader.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.loader.js" />
+    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Loader.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Loader.debug.js" />
+    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Loader.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Loader.rel.js" />
+    <Exec Command="..\..\..\..\tools\bin\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.Loader.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.Loader.js" />
     <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Core.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.debug.js" />
     <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Core.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.rel.js" />
     <Exec Command="..\..\..\..\tools\bin\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.js" />
-    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Global.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.global.debug.js" />
-    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Global.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.global.rel.js" />
-    <Exec Command="..\..\..\..\tools\bin\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.global.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.global.js" />
-    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)DOM.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.dom.debug.js" />
-    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)DOM.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.dom.rel.js" />
-    <Exec Command="..\..\..\..\tools\bin\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.dom.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.dom.js" />
+    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Global.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Global.debug.js" />
+    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Global.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.Global.rel.js" />
+    <Exec Command="..\..\..\..\tools\bin\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.Global.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.Global.js" />
+    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)DOM.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.DOM.debug.js" />
+    <Exec Command="..\..\..\..\bin\$(Configuration)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)DOM.js /output:..\..\..\..\bin\$(Configuration)\Sharpen.DOM.rel.js" />
+    <Exec Command="..\..\..\..\tools\bin\ajaxmin.exe -clobber:true -hc ..\..\..\..\bin\$(Configuration)\Sharpen.DOM.rel.js -out ..\..\..\..\bin\$(Configuration)\Sharpen.DOM.js" />
   </Target>
   <Target Name="Clean">
     <Exec Command="rd /s /q $(OutputPath)" Condition="Exists($(OutputPath))" />

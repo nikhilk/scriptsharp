@@ -462,6 +462,13 @@ namespace ScriptSharp.Tasks {
                 string outputPath = OutputPath;
                 string extension = "js";
 
+                if ((assemblyFile.Length > 7) && assemblyFile.StartsWith("Script.", StringComparison.OrdinalIgnoreCase)) {
+                    // Resulting script files don't need a "Script." prefix, since that
+                    // is mostly a naming convention used to separate out script# managed binaries.
+
+                    assemblyFile = assemblyFile.Substring(7);
+                }
+
                 if (_configSubFolders == false) {
                     extension = includeTests ? "test.js" : (debug ? "debug.js" : "js");
                 }
@@ -516,6 +523,45 @@ namespace ScriptSharp.Tasks {
         private void OnScriptFileGenerated(ITaskItem scriptItem, CompilerOptions options, bool copyReferences) {
             _scripts.Add(scriptItem);
 
+            Func<string, bool, string> getScriptFile = delegate(string reference, bool debug) {
+                string scriptFile = Path.ChangeExtension(reference, debug ? ".debug.js" : ".js");
+                if (File.Exists(scriptFile)) {
+                    return scriptFile;
+                }
+
+                string fileName = Path.GetFileName(scriptFile);
+                if ((fileName.Length > 7) && fileName.StartsWith("Script.", StringComparison.OrdinalIgnoreCase)) {
+                    fileName = fileName.Substring(7);
+                    scriptFile = Path.Combine(Path.GetDirectoryName(scriptFile), fileName);
+
+                    if (File.Exists(scriptFile)) {
+                        return scriptFile;
+                    }
+                }
+
+                return null;
+            };
+
+            Action<string, string> safeCopyFile = delegate(string sourceFilePath, string targetFilePath) {
+                try {
+                    if (File.Exists(targetFilePath)) {
+                        // If the file already exists, make sure it is not read-only, so
+                        // it can be overrwritten.
+                        File.SetAttributes(targetFilePath, FileAttributes.Normal);
+                    }
+
+                    File.Copy(sourceFilePath, targetFilePath, /* overwrite */ true);
+
+                    // Copy the file, and then make sure it is not read-only (for example, if the
+                    // source file for a referenced script is read-only).
+                    File.SetAttributes(targetFilePath, FileAttributes.Normal);
+                }
+                catch (Exception e) {
+                    Log.LogError("Unable to copy referenced script '" + sourceFilePath + "' as '" + targetFilePath + "' (" + e.Message + ")");
+                    _hasErrors = true;
+                }
+            };
+
             string projectName = (_projectPath != null) ? Path.GetFileNameWithoutExtension(_projectPath) : String.Empty;
             string scriptFileName = Path.GetFileName(scriptItem.ItemSpec);
             string scriptPath = Path.GetFullPath(scriptItem.ItemSpec);
@@ -525,16 +571,16 @@ namespace ScriptSharp.Tasks {
 
             if (copyReferences) {
                 foreach (string reference in options.References) {
-                    string releaseScriptFile = Path.ChangeExtension(reference, ".js");
-                    if (File.Exists(releaseScriptFile)) {
+                    string releaseScriptFile = getScriptFile(reference, /* debug */ false);
+                    if (releaseScriptFile != null) {
                         string path = Path.Combine(scriptFolder, Path.GetFileName(releaseScriptFile));
-                        SafeCopyFile(releaseScriptFile, path);
+                        safeCopyFile(releaseScriptFile, path);
                     }
 
-                    string debugScriptFile = Path.ChangeExtension(reference, ".debug.js");
-                    if (File.Exists(debugScriptFile)) {
+                    string debugScriptFile = getScriptFile(reference, /* debug */ true);
+                    if (debugScriptFile != null) {
                         string path = Path.Combine(scriptFolder, Path.GetFileName(debugScriptFile));
-                        SafeCopyFile(debugScriptFile, path);
+                        safeCopyFile(debugScriptFile, path);
                     }
                 }
             }
@@ -542,43 +588,23 @@ namespace ScriptSharp.Tasks {
             string deploymentPath = DeploymentPath;
             if (DeploymentPath.Length != 0) {
                 string deployedScriptPath = Path.Combine(deploymentPath, scriptFileName);
-                SafeCopyFile(scriptPath, deployedScriptPath);
+                safeCopyFile(scriptPath, deployedScriptPath);
 
                 if (copyReferences) {
                     foreach (string reference in options.References) {
-                        string releaseScriptFile = Path.ChangeExtension(reference, ".js");
-                        if (File.Exists(releaseScriptFile)) {
+                        string releaseScriptFile = getScriptFile(reference, /* debug */ false);
+                        if (releaseScriptFile != null) {
                             string path = Path.Combine(deploymentPath, Path.GetFileName(releaseScriptFile));
-                            SafeCopyFile(releaseScriptFile, path);
+                            safeCopyFile(releaseScriptFile, path);
                         }
 
-                        string debugScriptFile = Path.ChangeExtension(reference, ".debug.js");
-                        if (File.Exists(debugScriptFile)) {
+                        string debugScriptFile = getScriptFile(reference, /* debug */ true);
+                        if (debugScriptFile != null) {
                             string path = Path.Combine(deploymentPath, Path.GetFileName(debugScriptFile));
-                            SafeCopyFile(debugScriptFile, path);
+                            safeCopyFile(debugScriptFile, path);
                         }
                     }
                 }
-            }
-        }
-
-        private void SafeCopyFile(string sourceFilePath, string targetFilePath) {
-            try {
-                if (File.Exists(targetFilePath)) {
-                    // If the file already exists, make sure it is not read-only, so
-                    // it can be overrwritten.
-                    File.SetAttributes(targetFilePath, FileAttributes.Normal);
-                }
-
-                File.Copy(sourceFilePath, targetFilePath, /* overwrite */ true);
-
-                // Copy the file, and then make sure it is not read-only (for example, if the
-                // source file for a referenced script is read-only).
-                File.SetAttributes(targetFilePath, FileAttributes.Normal);
-            }
-            catch (Exception e) {
-                Log.LogError("Unable to copy referenced script '" + sourceFilePath + "' as '" + targetFilePath + "' (" + e.Message + ")");
-                _hasErrors = true;
             }
         }
 

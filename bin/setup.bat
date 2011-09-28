@@ -31,10 +31,14 @@ copy /y ref\mscorlib.js "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y ref\mscorlib.debug.js "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Sharpen.js "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Sharpen.debug.js "%InstallDir%\ScriptSharp\v1.0\Framework"
-copy /y Debug\Sharpen.loader.js "%InstallDir%\ScriptSharp\v1.0\Framework"
-copy /y Debug\Sharpen.loader.debug.js "%InstallDir%\ScriptSharp\v1.0\Framework"
-copy /y Debug\Sharpen.global.js "%InstallDir%\ScriptSharp\v1.0\Framework"
-copy /y Debug\Sharpen.global.debug.js "%InstallDir%\ScriptSharp\v1.0\Framework"
+copy /y Debug\Sharpen.Loader.js "%InstallDir%\ScriptSharp\v1.0\Framework"
+copy /y Debug\Sharpen.Loader.debug.js "%InstallDir%\ScriptSharp\v1.0\Framework"
+copy /y Debug\Sharpen.Global.js "%InstallDir%\ScriptSharp\v1.0\Framework"
+copy /y Debug\Sharpen.Global.debug.js "%InstallDir%\ScriptSharp\v1.0\Framework"
+copy /y Debug\Sharpen.DOM.js "%InstallDir%\ScriptSharp\v1.0\Framework"
+copy /y Debug\Sharpen.DOM.debug.js "%InstallDir%\ScriptSharp\v1.0\Framework"
+copy /y Debug\Sharpen.Framework.js "%InstallDir%\ScriptSharp\v1.0\Framework"
+copy /y Debug\Sharpen.Framework.debug.js "%InstallDir%\ScriptSharp\v1.0\Framework"
 
 @echo Copying assemblies...
 copy /y Debug\mscorlib.dll "%InstallDir%\ScriptSharp\v1.0\Framework"
@@ -58,6 +62,8 @@ copy /y Debug\Script.Knockout.txt "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.Microsoft.BingMaps.dll "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.Microsoft.BingMaps.xml "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.Microsoft.BingMaps.txt "%InstallDir%\ScriptSharp\v1.0\Framework"
+copy /y Debug\Script.Sharpen.Framework.dll "%InstallDir%\ScriptSharp\v1.0\Framework"
+copy /y Debug\Script.Sharpen.Framework.xml "%InstallDir%\ScriptSharp\v1.0\Framework"
 
 if "%1" neq "includeTemplates" goto Done
 
