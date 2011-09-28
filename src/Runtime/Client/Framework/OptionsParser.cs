@@ -28,7 +28,24 @@ namespace Sharpen {
         private static readonly RegularExpression _optionsParserRegex =
             new RegularExpression("(true|false|null|-?[0-9.]+)|('[^']*'|\\\"[^\"]*\\\")|([#\\.][a-z][a-z0-9]*)|(\\,|\\[|\\]|\\{|\\})|([a-z][a-z0-9]*\\:)", "gi");
 
-        public static Dictionary<string, object> Parse(string optionsText) {
+        public static Dictionary<string, object> GetOptions(Element element, string name) {
+            // Options can be specified using a pseudo-JSON/css-esque syntax
+            // as the value of a data-<name> attribute on the element.
+
+            string optionsText = (string)element.GetAttribute("data-" + name);
+            if (String.IsNullOrEmpty(optionsText) == false) {
+                return Parse(optionsText);
+            }
+            else {
+                // Create an empty object if no options were declaratively specified
+                // so that behaviors always get an object instance in the call to
+                // Initialize.
+
+                return new Dictionary<string, object>();
+            }
+        }
+
+        private static Dictionary<string, object> Parse(string optionsText) {
             Debug.Assert(String.IsNullOrEmpty(optionsText) == false);
 
             bool resolveElements = false;

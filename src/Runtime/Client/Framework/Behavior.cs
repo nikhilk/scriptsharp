@@ -29,23 +29,6 @@ namespace Sharpen {
 
         private Element _element;
 
-        static Behavior() {
-            // Automatically setup behaviors on all elements in the document.
-            // Subsequent modifications to the DOM need to be handled explicitly by calling
-            // SetupBehaviors.
-
-            Script.OnReady(delegate() {
-                // Use window.setTimeout to defer, in case the framework script and other
-                // app scripts are loaded using regular script tags, rather than using the
-                // script loader (in which case, OnReady could fire before all scripts are
-                // loaded).
-
-                Window.SetTimeout(delegate() {
-                    SetupBehaviors(Document.Body, /* recursive */ true);
-                }, 0);
-            });
-        }
-
         /// <summary>
         /// Gets the element that this behavior is attached to.
         /// </summary>
@@ -72,22 +55,7 @@ namespace Sharpen {
                     Debug.Assert(registration != null, "Unknown behavior '" + name + "'");
 
                     if (registration != null) {
-                        Dictionary<string, object> options = null;
-
-                        // Behavior options can be specified using a pseudo-JSON/css-esque syntax
-                        // as the value of a data-<behaviorName> attribute on the element.
-
-                        string optionsText = (string)element.GetAttribute("data-" + name);
-                        if (String.IsNullOrEmpty(optionsText) == false) {
-                            options = OptionsParser.Parse(optionsText);
-                        }
-                        else {
-                            // Create an empty object if no options were declaratively specified
-                            // so that behaviors always get an object instance in the call to
-                            // Initialize.
-
-                            options = new Dictionary<string, object>();
-                        }
+                        Dictionary<string, object> options = OptionsParser.GetOptions(element, name);
 
                         // Use the Application's IoC capabilities to create behaviors.
                         // This allows satisfying dependencies behaviors have to other services,

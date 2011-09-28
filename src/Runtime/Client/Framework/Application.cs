@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Html;
 
 namespace Sharpen {
 
@@ -25,8 +26,31 @@ namespace Sharpen {
         /// </summary>
         public static readonly Application Current = new Application();
 
+        private static readonly Dictionary<string, ServiceRegistration> _registeredServices = new Dictionary<string, ServiceRegistration>();
+
         private Dictionary<string, object> _catalog;
         private Dictionary<string, Dictionary<string, Callback>> _eventHandlers;
+
+        static Application() {
+            // Instantiate global services declared on the document body.
+            //
+            // Also, setup behaviors on all elements in the document.
+            // Subsequent modifications to the DOM need to be handled explicitly by calling
+            // Behavior.SetupBehaviors.
+
+            Script.OnReady(delegate() {
+                // Use window.setTimeout to defer, in case the framework script and other
+                // app scripts are loaded using regular script tags, rather than using the
+                // script loader (in which case, OnReady could fire before all scripts are
+                // loaded).
+
+                Window.SetTimeout(delegate() {
+                    Application.Current.InitializeServices();
+
+                    Behavior.SetupBehaviors(Document.Body, /* recursive */ true);
+                }, 0);
+            });
+        }
 
         private Application() {
             _catalog = new Dictionary<string, object>();
@@ -39,6 +63,48 @@ namespace Sharpen {
 
         private string GetTypeKey(Type type) {
             return type.FullName;
+        }
+
+        internal void InitializeServices() {
+            string servicesAttribute = (string)Document.Body.GetAttribute("data-services");
+            if (String.IsNullOrEmpty(servicesAttribute)) {
+                return;
+            }
+
+            string[] serviceNames = servicesAttribute.Split(",");
+            int serviceCount = serviceNames.Length;
+
+            if (serviceCount != 0) {
+                for (int i = 0; i < serviceCount; i++) {
+                    string name = serviceNames[i];
+
+                    ServiceRegistration registration = _registeredServices[name];
+                    Debug.Assert(registration != null, "Unknown service '" + name + "'");
+
+                    object service = GetObject(registration.ServiceImplementationType);
+
+                    IService initializableService = service as IService;
+                    if (initializableService != null) {
+                        Dictionary<string, object> options = OptionsParser.GetOptions(Document.Body, name);
+                        initializableService.Initialize(options);
+                    }
+
+                    RegisterObject(registration.ServiceType, service);
+                }
+            }
+        }
+
+        public static void RegisterService(string name, Type serviceImplementationType, Type serviceType) {
+            Debug.Assert(String.IsNullOrEmpty(name) == false);
+            Debug.Assert(serviceImplementationType != null);
+            Debug.Assert(serviceType != null);
+            Debug.Assert(_registeredServices.ContainsKey(name) == false, "A service with name '" + name + "' was already registered.");
+
+            ServiceRegistration registration = new ServiceRegistration();
+            registration.ServiceImplementationType = serviceImplementationType;
+            registration.ServiceType = serviceType;
+
+            _registeredServices[name] = registration;
         }
 
         #region Implementation of IApplication

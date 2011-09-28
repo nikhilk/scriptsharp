@@ -54,6 +54,8 @@
     <Compile Include="Application.cs" />
     <Compile Include="Behavior.cs" />
     <Compile Include="BehaviorRegistration.cs" />
+    <Compile Include="IService.cs" />
+    <Compile Include="ServiceRegistration.cs" />
     <Compile Include="OptionsParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\..\ScriptSharp.cs">
