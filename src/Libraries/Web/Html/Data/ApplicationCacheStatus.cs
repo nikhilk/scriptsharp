@@ -44,6 +44,11 @@ namespace System.Html.Data {
         /// Resources have finished downloading and the new cache
         /// is ready to be used.
         /// </summary>
-        UpdateReady = 4
+        UpdateReady = 4,
+
+        /// <summary>
+        /// Resources hare finished downloading, but are obsolete.
+        /// </summary>
+        Obsolete = 5
     }
 }

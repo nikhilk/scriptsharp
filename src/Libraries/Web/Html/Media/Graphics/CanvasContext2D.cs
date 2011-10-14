@@ -99,6 +99,18 @@ namespace System.Html.Media.Graphics {
             set;
         }
 
+        [IntrinsicProperty]
+        public TextAlign TextAlign {
+            get;
+            set;
+        }
+
+        [IntrinsicProperty]
+        public TextBaseline TextBaseline {
+            get;
+            set;
+        }
+
         public void Arc(double x, double y, double radius, double startAngle, double endAngle, bool anticlockwise) {
         }
 

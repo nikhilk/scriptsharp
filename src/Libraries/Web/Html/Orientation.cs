@@ -20,6 +20,8 @@ namespace System.Html {
 
         LeftLandscape = 90,
 
-        RightLandscape = -90
+        RightLandscape = -90,
+
+        UpsideDownPortrait = 180
     }
 }

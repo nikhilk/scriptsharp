@@ -22,47 +22,47 @@ namespace System.Html.Data {
         /// <summary>
         /// Raised when the update process finishes for the first time
         /// </summary>
-        [ScriptName("oncached")]
-        OnCached,
+        [ScriptName("cached")]
+        Cached,
 
         /// <summary>
         /// Raised when the cache update process begins.
         /// </summary>
-        [ScriptName("onchecking")]
-        OnChecking,
+        [ScriptName("checking")]
+        Checking,
 
         /// <summary>
         /// Raised when the update process begins downloading resources
         /// in the manifest file.
         /// </summary>
-        [ScriptName("ondownloading")]
-        OnDownloading,
+        [ScriptName("downloading")]
+        Downloading,
 
         /// <summary>
         /// Raised when an error occurs.
         /// </summary>
-        [ScriptName("onerror")]
-        OnError,
+        [ScriptName("error")]
+        Error,
 
         /// <summary>
         /// Raised when the update process finishes but the manifest
         /// file does not change.
         /// </summary>
-        [ScriptName("onnoupdate")]
-        OnNoUpdate,
+        [ScriptName("noupdate")]
+        NoUpdate,
 
         /// <summary>
         /// Raised when each resource in the manifest file begins to download.
         /// </summary>
-        [ScriptName("onprogress")]
-        OnProgress,
+        [ScriptName("progress")]
+        Progress,
 
         /// <summary>
         /// Raised when there is an existing application cache,
         /// the update process finishes, and there is a new application
         /// cache ready for use.
         /// </summary>
-        [ScriptName("onupdateready")]
-        OnUpdateReady
+        [ScriptName("updateready")]
+        UpdateReady
     }
 }
