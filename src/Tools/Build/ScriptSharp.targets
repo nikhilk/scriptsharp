@@ -11,10 +11,7 @@ Copyright (C) 2011. Nikhil Kothari. All rights reserved.
 
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 
-  <PropertyGroup Condition="'$(ScriptSharpPath)' == ''">
-    <ScriptSharpPath>$(ProgramFiles)\ScriptSharp\v1.0\</ScriptSharpPath>
-  </PropertyGroup>
-  <UsingTask TaskName="ScriptCompilerTask" AssemblyFile="$(ScriptSharpPath)ScriptSharp.Build.dll" />
+  <UsingTask TaskName="ScriptCompilerTask" AssemblyFile="ScriptSharp.Build.dll" />
 
   <PropertyGroup>
     <DebugSymbols>true</DebugSymbols>

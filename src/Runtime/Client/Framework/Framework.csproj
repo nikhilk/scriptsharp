@@ -62,5 +62,5 @@
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
   </ItemGroup>
-  <Import Project="$(ProgramFiles)\ScriptSharp\v1.0\ScriptSharp.targets" />
+  <Import Project="..\..\..\..\bin\$(Configuration)\ScriptSharp.targets" />
 </Project>
