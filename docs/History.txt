@@ -1,7 +1,7 @@
 Changelog
 ===============================================================================
 
-v0.7.3.1 [in progress]
+v0.7.4.0 [in progress]
     - Fix/update bing maps metadata bug
     - Fix observable bug where access to an observed property without an observer
       registration would drop existing observers.
@@ -9,7 +9,15 @@ v0.7.3.1 [in progress]
       Same applies to ScriptCompilerExec task. The normal ScriptCompilerTask continues to provide
       this capability.
     - Added Sharpen.dom.js - a minimal set of helper APIs on top of HTML5 DOM APIs.
+    - Some enum related changes:
+      ToString/Enum parsing support removed (it didn't work for internal enums anyway)
+      ToString on named enums (and on strings) skipped as it is redundant
+      Inline enum values in generated script
+      Skip generating internal enum types
+    - [git #25] Importing multi-dimensional arrays
     - [git #56] Switch statement when used with more then 6 cases will generate a compile error
+    - [git #62] Compile error due to assembly name sort order (with generic types being
+                imported, assembly load order starts to matter)
     - [git #66] Support Nullable.GetValueOrDefault which is needed for ?? operator on
                 nullables.
     - [git #84] Raise error for code which calls Type.CreateInstance with the results of a method
@@ -30,6 +38,8 @@ v0.7.3.1 [in progress]
     - [git #96] Handle '+' unary operator
     - [git #97] Unable to generate code for projects that don't reference Script.Web.dll.
     - [git #103] Fix generation of custom delegates to use "Function" as generated script name
+    - [git #107] ScriptAlias is not respected on types defined in the current assembly
+    - [git #114] Window.ApplicationCache.Status.ToString() generates invalid JavaScript
 
 v0.7.3.0 [8/14/2011]
     - [git #71] Fix formatting of GMT dates
