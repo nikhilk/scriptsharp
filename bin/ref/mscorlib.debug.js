@@ -7,7 +7,7 @@
 
 (function () {
   var globals = {
-    version: '0.7.3.0',
+    version: '0.7.4.0',
 
     isUndefined: function (o) {
       return (o === undefined);
