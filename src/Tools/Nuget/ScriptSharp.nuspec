@@ -15,10 +15,10 @@
   </metadata>
   <files>
     <file src="..\..\..\bin\Release\ScriptSharp.Web.dll" target="lib" />
-    <file src="..\..\..\bin\Release\mscorlib.js" target="content\Content\Scripts" />
-    <file src="..\..\..\bin\Release\mscorlib.debug.js" target="content\Content\Scripts" />
-    <file src="..\..\..\bin\Release\ssloader.js" target="content\Content\Scripts" />
-    <file src="..\..\..\bin\Release\ssloader.debug.js" target="content\Content\Scripts" />
+    <file src="..\..\..\bin\ref\mscorlib.js" target="content\Content\Scripts" />
+    <file src="..\..\..\bin\ref\mscorlib.debug.js" target="content\Content\Scripts" />
+    <file src="..\..\..\bin\ref\ssloader.js" target="content\Content\Scripts" />
+    <file src="..\..\..\bin\ref\ssloader.debug.js" target="content\Content\Scripts" />
     <file src="web.config.transform" target="content" />
   </files>
 </package>
