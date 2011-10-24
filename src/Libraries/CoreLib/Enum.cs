@@ -13,9 +13,5 @@ namespace System {
     [Imported]
     [ScriptNamespace("ss")]
     public abstract class Enum : ValueType {
-
-        public static Enum Parse(Type type, string s) {
-            return null;
-        }
     }
 }
