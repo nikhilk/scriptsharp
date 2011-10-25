@@ -1,0 +1,1 @@
+"%~dp0CreateExpInstance.exe" /Reset /VSInstance=10.0 /RootSuffix=Exp
