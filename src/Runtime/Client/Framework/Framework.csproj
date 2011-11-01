@@ -14,9 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sharpen</RootNamespace>
     <AssemblyName>Script.Sharpen.Framework</AssemblyName>
-    <TemplateFile>Properties\Framework.script</TemplateFile>
     <CodeAnalysisRuleSet>Properties\Framework.ruleset</CodeAnalysisRuleSet>
-    <SuppressDocumentation>True</SuppressDocumentation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,5 +60,9 @@
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
   </ItemGroup>
-  <Import Project="..\..\..\..\bin\$(Configuration)\ScriptSharp.targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterCompile" DependsOnTargets="$(CoreCompile)">
+    <Exec Command="$(OutputPath)ssc.exe /nologo /ref:$(OutputPath)mscorlib.dll  /ref:$(OutputPath)Script.Web.dll /out:$(OutputPath)Sharpen.Framework.debug.js /debug /template:Properties\Framework.script @(Compile, ' ')" />
+    <Exec Command="$(OutputPath)ssc.exe /nologo /ref:$(OutputPath)mscorlib.dll  /ref:$(OutputPath)Script.Web.dll /out:$(OutputPath)Sharpen.Framework.js /minimize /template:Properties\Framework.script @(Compile, ' ')" />
+  </Target>
 </Project>
