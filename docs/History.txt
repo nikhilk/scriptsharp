@@ -20,6 +20,9 @@ v0.7.4.0 [in progress]
                 imported, assembly load order starts to matter)
     - [git #66] Support Nullable.GetValueOrDefault which is needed for ?? operator on
                 nullables.
+    - [git #67] BREAKING CHANGE: DateTime -> Date. Date is also no longer a value type.
+                (partially fixes #67, and also makes Date more representative of script semantics
+                which are not that of a value type)
     - [git #84] Raise error for code which calls Type.CreateInstance with the results of a method
                 call/property access directly.
     - [git #92] Don't generate internal consts since their values have been inlined
