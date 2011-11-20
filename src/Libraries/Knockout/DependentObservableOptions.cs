@@ -38,6 +38,20 @@ namespace KnockoutApi {
             set;
         }
 
+        //
+        // Summary:
+        //  Gets or sets the function to compute the value.
+        [ScriptName("write")]
+        [IntrinsicProperty]
+        public Action<T> SetValueFunction { get; set; }
+
+        //
+        // Summary:
+        //  Gets or sets the function to compute the value.
+        [ScriptName("write")]
+        [IntrinsicProperty]
+        public Action<T[]> SetArrayValueFunction { get; set; }
+
         /// <summary>
         /// Gets the model instance which acts as 'this' in the get value function.
         /// </summary>
@@ -47,5 +61,25 @@ namespace KnockoutApi {
             get;
             set;
         }
+
+        /// <summary>
+        /// "disposeWhenNodeIsRemoved" option both proactively disposes as soon as the node is removed using ko.removeNode(),    
+        /// plus adds a "disposeWhen" callback that, on each evaluation, disposes if the node was removed by some other means.
+        /// </summary>
+        [IntrinsicProperty]
+        public object DisposeWhenNodeIsRemoved {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Pass in a function that evaluates when the Dependency can be disposed
+        /// </summary>
+        [IntrinsicProperty]
+        public Func<bool> DisposeWhen {
+            get;
+            set;
+        }
+
     }
 }
