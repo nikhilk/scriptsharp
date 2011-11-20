@@ -8,6 +8,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using System.Collections;
 
 namespace KnockoutApi {
 
@@ -17,7 +18,7 @@ namespace KnockoutApi {
     /// <typeparam name="T">The type of the contained value.</typeparam>
     [Imported]
     [IgnoreNamespace]
-    public sealed class DependentObservable<T> {
+    public sealed class DependentObservable<T> : IDisposable {
 
         private DependentObservable() {
         }
@@ -39,5 +40,19 @@ namespace KnockoutApi {
         public IDisposable Subscribe(Action<T> changeCallback) {
             return null;
         }
+
+        /// <summary>
+        /// For dependent observables, we throttle *evaluations* so that, no matter how fast its dependencies        
+        /// notify updates, the target doesn't re-evaluate (and hence doesn't notify) faster than a certain rate
+        /// For writable targets (observables, or writable dependent observables), we throttle *writes*        
+        /// so the target cannot change value synchronously or faster than a certain rate
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns>Extend is Chainable</returns>
+        public DependentObservable<T> Extend(Dictionary options) { return null; }
+
+        public int GetDependenciesCount() { return 0; }
+
+        public void Dispose() { }
     }
 }
