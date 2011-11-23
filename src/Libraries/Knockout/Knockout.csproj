@@ -42,13 +42,16 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CompareResult.cs" />
     <Compile Include="DependentObservableOptions.cs" />
     <Compile Include="BindingHandler.cs" />
     <Compile Include="KnockoutMapping.cs" />
+    <Compile Include="KnockoutUtils.cs" />
     <Compile Include="ObservableArray.cs" />
     <Compile Include="DependentObservable.cs" />
     <Compile Include="Knockout.cs" />
     <Compile Include="Observable.cs" />
+    <Compile Include="Subscribable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
