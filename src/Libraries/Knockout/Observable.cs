@@ -20,7 +20,7 @@ namespace KnockoutApi {
     [IgnoreNamespace]
     public class Observable<T> : Subscribable<T> {
 
-        protected Observable() : base() {
+        internal Observable() {
         }
 
         /// <summary>

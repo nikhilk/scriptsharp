@@ -1,44 +1,41 @@
 // BindingContext.cs
+// Script#/Libraries/Knockout
 //
 
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace KnockoutApi
-{
+namespace KnockoutApi {
+
     [Imported]
     [IgnoreNamespace]
-    public class BindingContext<TRoot, TParent, T>
-    {
+    public class BindingContext<TRoot, TParent, T> {
+
         [IntrinsicProperty]
         [ScriptName("$data")]
-        public T Data
-        {
+        public T Data {
             get;
             set;
         }
 
         [IntrinsicProperty]
         [ScriptName("$parent")]
-        public TParent Parent
-        {
+        public TParent Parent {
             get;
             set;
         }
 
         [IntrinsicProperty]
         [ScriptName("$parents")]
-        public TParent[] Parents
-        {
+        public TParent[] Parents {
             get;
             set;
         }
 
         [IntrinsicProperty]
         [ScriptName("$root")]
-        public TRoot[] Root
-        {
+        public TRoot[] Root {
             get;
             set;
         }

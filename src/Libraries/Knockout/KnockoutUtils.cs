@@ -12,18 +12,12 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Html;
 
-namespace KnockoutApi
-{
+namespace KnockoutApi {
+
     [Imported]
     [IgnoreNamespace]
     [ScriptName("ko.utils")]
-    public static class KnockoutUtils
-    {
-        /// <summary>
-        /// Applies the Action to each item in the given array
-        /// </summary>
-        public static void ArrayForEach<T>(IEnumerable<T> array, Action<T> action) {
-        }
+    public static class KnockoutUtils {
 
         /// <summary>
         /// Returns the First Matching Item (predicate function) from the given array
@@ -37,6 +31,12 @@ namespace KnockoutApi
         /// </summary>
         public static T[] ArrayFilter<T>(IEnumerable<T> array, Func<T, bool> predicate) {
             return null;
+        }
+
+        /// <summary>
+        /// Applies the Action to each item in the given array
+        /// </summary>
+        public static void ArrayForEach<T>(IEnumerable<T> array, Action<T> action) {
         }
 
         /// <summary>
@@ -107,15 +107,6 @@ namespace KnockoutApi
         }
 
         /// <summary>
-        /// Makes a Post Request to the specified url or using the specified Form element
-        /// </summary>
-        /// <param name="urlOrForm"></param>
-        /// <param name="data"></param>
-        /// <param name="options">{ "params": [], "includeFields": [], "submitter": [] }</param>
-        public static void PostJson(object urlOrForm, object data, Dictionary options) {
-        }
-
-        /// <summary>
         /// Parses the Json String into a native javascript object
         /// </summary>
         /// <param name="jsonString"></param>
@@ -124,17 +115,12 @@ namespace KnockoutApi
         }
 
         /// <summary>
-        /// Registers an Event Handler for the given element
+        /// Makes a Post Request to the specified url or using the specified Form element
         /// </summary>
-        public static void RegisterEventHandler(Element element, string eventType, EventHandler handler) {
-        }
-
-        /// <summary>
-        /// Returns a json string from the specified object
-        /// Requires Native JSON support or json2.js
-        /// </summary>
-        public static string StringifyJson(object obj) {
-            return null;
+        /// <param name="urlOrForm"></param>
+        /// <param name="data"></param>
+        /// <param name="options">{ "params": [], "includeFields": [], "submitter": [] }</param>
+        public static void PostJson(object urlOrForm, object data, Dictionary options) {
         }
 
         /// <summary>
@@ -148,6 +134,20 @@ namespace KnockoutApi
         /// Returns an Array of numbers starting from the specified minimum to the maximum
         /// </summary>
         public static int[] Range(Observable<int> min, Observable<int> max) {
+            return null;
+        }
+
+        /// <summary>
+        /// Registers an Event Handler for the given element
+        /// </summary>
+        public static void RegisterEventHandler(Element element, string eventType, EventHandler handler) {
+        }
+
+        /// <summary>
+        /// Returns a json string from the specified object
+        /// Requires Native JSON support or json2.js
+        /// </summary>
+        public static string StringifyJson(object obj) {
             return null;
         }
 

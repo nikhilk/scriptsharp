@@ -7,9 +7,9 @@
 //
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Collections;
 
 namespace KnockoutApi {
 
@@ -22,7 +22,7 @@ namespace KnockoutApi {
     [IgnoreNamespace]
     public sealed class ObservableArray<T> : Observable<T[]> {
 
-        protected ObservableArray() : base() {
+        private ObservableArray() {
         }
 
         /// <summary>

@@ -42,6 +42,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BindingContext.cs" />
     <Compile Include="CompareResult.cs" />
     <Compile Include="DependentObservableOptions.cs" />
     <Compile Include="BindingHandler.cs" />

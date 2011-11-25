@@ -1,16 +1,16 @@
 // CompareResult.cs
+// Script#/Libraries/Knockout
 //
 
 using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace KnockoutApi
-{
+namespace KnockoutApi {
+
     [Imported]
     [IgnoreNamespace]
-    public class CompareResult<T>
-    {
+    public class CompareResult<T> {
+
         [IntrinsicProperty]
         public string Status {
             get;

@@ -8,60 +8,24 @@ using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 
-namespace KnockoutApi
-{
+namespace KnockoutApi {
+
     /// <summary>
     /// Represents an object containing an subscribable value.
     /// </summary>
     /// <typeparam name="T">The type of the contained value.</typeparam>
     [Imported]
     [IgnoreNamespace]
-    public class Subscribable<T> : IDisposable
-    {
-        protected Subscribable() { }
+    public abstract class Subscribable<T> : IDisposable {
+
+        internal Subscribable() {
+        }
 
         /// <summary>
-        /// Subscribes to change notifications raised when the value changes.
+        /// Disposes this Subscribable
         /// </summary>
-        /// <param name="changeCallback">The callback to invoke.</param>
-        /// <returns>A subscription cookie that can be disposed to unsubscribe.</returns>
-        public IDisposable Subscribe(Action<T> changeCallback) { return null; }
-
-        /// <summary>
-        /// Subscribes to change notifications raised when the value changes.
-        /// </summary>
-        /// <param name="changeCallback">The callback to invoke.</param>
-        /// <param name="callBackTarget">callback target</param>
-        /// <returns>A subscription cookie that can be disposed to unsubscribe.</returns>
-        public IDisposable Subscribe(Action<T> changeCallback, object callBackTarget) { return null; }
-
-        /// <summary>
-        /// Subscribes to change notifications raised when the value changes.
-        /// </summary>
-        /// <param name="changeCallback">The callback to invoke.</param>
-        /// <param name="callBackTarget">callback target</param>
-        /// <param name="eventName">event registration</param>
-        /// <returns>A subscription cookie that can be disposed to unsubscribe.</returns>
-        public IDisposable Subscribe(Action<T> changeCallback, object callBackTarget, string eventName) { return null; }
-
-        /// <summary>
-        /// Sets the Value and Notifies all of the Subscribers
-        /// </summary>
-        /// <param name="value">The Value to be Set</param>
-        public void NotifySubscribers(T value) { }
-
-        /// <summary>
-        /// Sets the Value and Notifies all of the Subscribers for the Specified Event
-        /// </summary>
-        /// <param name="value">The Value to be Set</param>
-        /// <param name="eventName">[Optional] Event Name</param>
-        public void NotifySubscribers(T value, string eventName) { }
-
-        /// <summary>
-        /// Get Subscription Count
-        /// </summary>
-        /// <returns>Returns the Number of Subscribers</returns>
-        public int GetSubscriptionsCount() { return 0; }
+        public void Dispose() {
+        }
 
         /// <summary>
         /// For dependent observables, we throttle *evaluations* so that, no matter how fast its dependencies        
@@ -71,11 +35,61 @@ namespace KnockoutApi
         /// </summary>
         /// <param name="options"></param>
         /// <returns>Extend is Chainable</returns>
-        public Subscribable<T> Extend(Dictionary options) { return null; }
+        public Subscribable<T> Extend(Dictionary options) {
+            return null;
+        }
 
         /// <summary>
-        /// Disposes this Subscribable
+        /// Get Subscription Count
         /// </summary>
-        public void Dispose() { }
+        /// <returns>Returns the Number of Subscribers</returns>
+        public int GetSubscriptionsCount() {
+            return 0;
+        }
+
+        /// <summary>
+        /// Sets the Value and Notifies all of the Subscribers
+        /// </summary>
+        /// <param name="value">The Value to be Set</param>
+        public void NotifySubscribers(T value) {
+        }
+
+        /// <summary>
+        /// Sets the Value and Notifies all of the Subscribers for the Specified Event
+        /// </summary>
+        /// <param name="value">The Value to be Set</param>
+        /// <param name="eventName">[Optional] Event Name</param>
+        public void NotifySubscribers(T value, string eventName) {
+        }
+
+        /// <summary>
+        /// Subscribes to change notifications raised when the value changes.
+        /// </summary>
+        /// <param name="changeCallback">The callback to invoke.</param>
+        /// <returns>A subscription cookie that can be disposed to unsubscribe.</returns>
+        public IDisposable Subscribe(Action<T> changeCallback) {
+            return null;
+        }
+
+        /// <summary>
+        /// Subscribes to change notifications raised when the value changes.
+        /// </summary>
+        /// <param name="changeCallback">The callback to invoke.</param>
+        /// <param name="callBackTarget">callback target</param>
+        /// <returns>A subscription cookie that can be disposed to unsubscribe.</returns>
+        public IDisposable Subscribe(Action<T> changeCallback, object callBackTarget) {
+            return null;
+        }
+
+        /// <summary>
+        /// Subscribes to change notifications raised when the value changes.
+        /// </summary>
+        /// <param name="changeCallback">The callback to invoke.</param>
+        /// <param name="callBackTarget">callback target</param>
+        /// <param name="eventName">event registration</param>
+        /// <returns>A subscription cookie that can be disposed to unsubscribe.</returns>
+        public IDisposable Subscribe(Action<T> changeCallback, object callBackTarget, string eventName) {
+            return null;
+        }
     }
 }

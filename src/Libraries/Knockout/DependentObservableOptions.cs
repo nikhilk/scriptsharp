@@ -29,6 +29,25 @@ namespace KnockoutApi {
         }
 
         /// <summary>
+        /// Pass in a function that evaluates when the Dependency can be disposed
+        /// </summary>
+        [IntrinsicProperty]
+        public Func<bool> DisposeWhen {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// "disposeWhenNodeIsRemoved" option both proactively disposes as soon as the node is removed using ko.removeNode(),    
+        /// plus adds a "disposeWhen" callback that, on each evaluation, disposes if the node was removed by some other means.
+        /// </summary>
+        [IntrinsicProperty]
+        public object DisposeWhenNodeIsRemoved {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the function to compute the value.
         /// </summary>
         [ScriptName("read")]
@@ -64,25 +83,6 @@ namespace KnockoutApi {
         [ScriptName("owner")]
         [IntrinsicProperty]
         public object Model {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// "disposeWhenNodeIsRemoved" option both proactively disposes as soon as the node is removed using ko.removeNode(),    
-        /// plus adds a "disposeWhen" callback that, on each evaluation, disposes if the node was removed by some other means.
-        /// </summary>
-        [IntrinsicProperty]
-        public object DisposeWhenNodeIsRemoved {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Pass in a function that evaluates when the Dependency can be disposed
-        /// </summary>
-        [IntrinsicProperty]
-        public Func<bool> DisposeWhen {
             get;
             set;
         }
