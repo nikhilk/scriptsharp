@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Collections;
 
 namespace KnockoutApi {
 
@@ -19,9 +20,9 @@ namespace KnockoutApi {
     /// <typeparam name="T">The type of the contained values.</typeparam>
     [Imported]
     [IgnoreNamespace]
-    public sealed class ObservableArray<T> {
+    public sealed class ObservableArray<T> : Observable<T[]> {
 
-        private ObservableArray() {
+        protected ObservableArray() : base() {
         }
 
         /// <summary>
@@ -47,11 +48,19 @@ namespace KnockoutApi {
 
         /// <summary>
         /// Gets the underlying items within the observable array.
+        /// This is a Copy of the Values in the Observable
         /// </summary>
         /// <returns>The collection of items.</returns>
         [ScriptName("")]
-        public IReadonlyCollection<T> GetItems() {
+        public T[] GetItems() {
             return null;
+        }
+
+        /// <summary>
+        /// Sets the underlying items within the observable array.
+        /// </summary>
+        [ScriptName("")]
+        public void SetItems(T[] values) {
         }
 
         /// <summary>
@@ -76,6 +85,12 @@ namespace KnockoutApi {
         /// </summary>
         /// <param name="value">The value to add.</param>
         public void Push(T value) {
+        }
+
+        /// <summary>
+        /// Replaces the Specified Item with the NewItem
+        /// </summary>
+        public void Replace(T oldItem, T newItem) {
         }
 
         /// <summary>
@@ -120,6 +135,16 @@ namespace KnockoutApi {
         }
 
         /// <summary>
+        /// Native Javascript Splice Function
+        /// Modifies the Existing Sequence
+        /// </summary>
+        /// <param name="index">Required. An integer that specifies at what position to add/remove elements</param>
+        /// <param name="howmany">Required. The number of elements to be removed. If set to 0, no elements will be removed</param>
+        /// <param name="args">Optional. The new element(s) to be added to the array</param>
+        public void Splice(int index, int howmany, params T[] args) {
+        }
+
+        /// <summary>
         /// Returns elements from start index to the end of the array.
         /// </summary>
         /// <param name="start">Starting point of the sequence, if negative then it starts from the end.</param>
@@ -145,15 +170,6 @@ namespace KnockoutApi {
         }
 
         /// <summary>
-        /// Subscribes to change notifications raised when the value changes.
-        /// </summary>
-        /// <param name="changeCallback">The callback to invoke.</param>
-        /// <returns>A subscription cookie that can be disposed to unsubscribe.</returns>
-        public IDisposable Subscribe(Action<T> changeCallback) {
-            return null;
-        }
-
-        /// <summary>
         /// Performs a sort using the comparator function.
         /// </summary>
         /// <param name="comparator">The comparing function.</param>
@@ -165,6 +181,18 @@ namespace KnockoutApi {
         /// </summary>
         /// <param name="value">The value to insert.</param>
         public void Unshift(T value) {
+        }
+
+        /// <summary>
+        /// For dependent observables, we throttle *evaluations* so that, no matter how fast its dependencies        
+        /// notify updates, the target doesn't re-evaluate (and hence doesn't notify) faster than a certain rate
+        /// For writable targets (observables, or writable dependent observables), we throttle *writes*        
+        /// so the target cannot change value synchronously or faster than a certain rate
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns>Extend is Chainable</returns>
+        public new ObservableArray<T> Extend(Dictionary options) {
+            return null;
         }
     }
 }
