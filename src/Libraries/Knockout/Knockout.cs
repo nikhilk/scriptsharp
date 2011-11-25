@@ -90,6 +90,32 @@ namespace KnockoutApi {
         }
 
         /// <summary>
+        /// Set up bindings on a single node without binding any of its descendents.
+        /// </summary>
+        /// <param name="rootNode">The root node to bind to.</param>
+        /// <param name="bindings">An optional dictionary of bindings, pass null to let Knockout gather them from the element.</param>
+        /// <param name="viewModel">The view model instance.</param>
+        /// <param name="bindingAttributeName">The name of the attribute which has the binding definitions.</param>
+        public static void ApplyBindingsToDescendants(Element rootNode, Dictionary bindings, object viewModel, string bindingAttributeName) {
+        }
+
+        /// <summary>
+        /// Returns the entire binding context associated with the DOM element
+        /// </summary>
+        /// <param name="node"></param>
+        public static BindingContext<TRoot, TParent, T> ContextFor<TRoot, TParent, T>(Element node) {
+            return null;
+        }
+
+        /// <summary>
+        /// Returns the data item associated with a particular DOM element 
+        /// </summary>
+        /// <param name="node"></param>
+        public static T DataFor<T>(Element node) {
+            return default(T);
+        }
+
+        /// <summary>
         /// Creates an observable with a value computed from one or more other values.
         /// </summary>
         /// <typeparam name="T">The type of the observable value.</typeparam>
@@ -109,11 +135,36 @@ namespace KnockoutApi {
         }
 
         /// <summary>
+        /// Returns true if the value is subscribable, false otherwise.
+        /// </summary>
+        /// <param name="value">The value to check.</param>
+        public static bool IsSubscribable(object value) {
+            return false;
+        }
+
+        /// <summary>
         /// Returns true if the value is an observable, false otherwise.
         /// </summary>
         /// <param name="value">The value to check.</param>
         public static bool IsObservable(object value) {
             return false;
+        }
+
+        /// <summary>
+        /// Returns true if the value is an writable observable, false otherwise.
+        /// </summary>
+        /// <param name="value">The value to check.</param>
+        public static bool IsWriteableObservable(object value) {
+            return false;
+        }
+
+        /// <summary>
+        /// Creates an subscribable value.
+        /// </summary>
+        /// <typeparam name="T">The type of the subscribable.</typeparam>
+        /// <returns>A new subscribable value instance.</returns>
+        public static Subscribable<T> Subscribable<T>() {
+            return null;
         }
 
         /// <summary>

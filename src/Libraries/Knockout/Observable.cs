@@ -8,6 +8,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using System.Collections;
 
 namespace KnockoutApi {
 
@@ -17,9 +18,9 @@ namespace KnockoutApi {
     /// <typeparam name="T">The type of the contained value.</typeparam>
     [Imported]
     [IgnoreNamespace]
-    public sealed class Observable<T> {
+    public class Observable<T> : Subscribable<T> {
 
-        private Observable() {
+        protected Observable() : base() {
         }
 
         /// <summary>
@@ -40,11 +41,39 @@ namespace KnockoutApi {
         }
 
         /// <summary>
-        /// Subscribes to change notifications raised when the value changes.
+        /// Notifies All Subscribers that the Value has Changed
+        /// Called internally with SetValue
         /// </summary>
-        /// <param name="changeCallback">The callback to invoke.</param>
-        /// <returns>A subscription cookie that can be disposed to unsubscribe.</returns>
-        public IDisposable Subscribe(Action<T> changeCallback) {
+        public void ValueHasMutated() {
+        }
+
+        /// <summary>
+        /// Notifies All Subscribers BEFORE the Value has Changed
+        /// Called internally with SetValue
+        /// </summary>
+        public void ValueWillMutated() {
+        }
+
+        /// <summary>
+        /// For Primitive Types ko will handle Equality internally
+        /// For complex types a supplied function can be assigned to improve 
+        /// change (mutation) detection
+        /// </summary>
+        [IntrinsicProperty]
+        public Func<T, T, bool> EqualityComparer {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// For dependent observables, we throttle *evaluations* so that, no matter how fast its dependencies        
+        /// notify updates, the target doesn't re-evaluate (and hence doesn't notify) faster than a certain rate
+        /// For writable targets (observables, or writable dependent observables), we throttle *writes*        
+        /// so the target cannot change value synchronously or faster than a certain rate
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns>Returns 'this' inorder to support chaining methods</returns>
+        public new Observable<T> Extend(Dictionary options) {
             return null;
         }
     }
