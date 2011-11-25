@@ -44,5 +44,14 @@ namespace System.Html {
             set {
             }
         }
+        
+        [IntrinsicProperty]
+        public string Download {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
     }
 }
