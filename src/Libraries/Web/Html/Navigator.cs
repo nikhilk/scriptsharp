@@ -110,6 +110,16 @@ namespace System.Html {
             }
         }
 
+        /// <summary>
+        /// Returns a PluginArray object, listing the plugins installed in the application.
+        /// </summary>
+        [IntrinsicProperty]
+        public PluginArray Plugins {
+            get {
+                return null;
+            }
+        }
+
         [IntrinsicProperty]
         public bool Standalone {
             get {
