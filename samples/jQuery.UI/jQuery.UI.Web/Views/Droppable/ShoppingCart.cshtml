@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/Shared/_DroppableLayout.cshtml";
+}
+<style>
+    h1
+    {
+        padding: .2em;
+        margin: 0;
+        font-size: 14px;
+    }
+    #products
+    {
+        font-size: 12px;
+    }
+    #cart
+    {
+        width: 200px;
+        float: left;
+        font-size: 12px;
+    }
+    #cart ol
+    {
+        margin: 0;
+        padding: 1em 0 1em 3em;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <div id="products">
+            <h1 class="ui-widget-header">
+                Products</h1>
+            <div id="catalog">
+                <h3>
+                    <a href="#">T-Shirts</a></h3>
+                <div>
+                    <ul>
+                        <li>Lolcat Shirt</li>
+                        <li>Cheezeburger Shirt</li>
+                        <li>Buckit Shirt</li>
+                    </ul>
+                </div>
+                <h3>
+                    <a href="#">Bags</a></h3>
+                <div>
+                    <ul>
+                        <li>Zebra Striped</li>
+                        <li>Black Leather</li>
+                        <li>Alligator Leather</li>
+                    </ul>
+                </div>
+                <h3>
+                    <a href="#">Gadgets</a></h3>
+                <div>
+                    <ul>
+                        <li>iPhone</li>
+                        <li>iPod</li>
+                        <li>iPad</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="cart">
+            <h1 class="ui-widget-header">
+                Shopping Cart</h1>
+            <div class="ui-widget-content">
+                <ol>
+                    <li class="placeholder">Add your items here</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Demonstrate how to use an accordion to structure products into a catalog and make
+        use drag and drop for adding them to a shopping cart, where they are sortable.</p>
+</div>

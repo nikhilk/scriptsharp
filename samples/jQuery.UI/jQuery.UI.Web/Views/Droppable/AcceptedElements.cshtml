@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "~/Views/Shared/_DroppableLayout.cshtml";
+}
+<style>
+    #droppableAcceptedElements
+    {
+        width: 150px;
+        height: 150px;
+        padding: 0.5em;
+        float: left;
+        margin: 10px;
+        font-size: 12px;
+    }
+    #draggableAcceptedElements, #draggable-nonvalid
+    {
+        width: 100px;
+        height: 100px;
+        padding: 0.5em;
+        float: left;
+        margin: 10px 10px 10px 0;
+        font-size: 12px;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <div id="draggable-nonvalid" class="ui-widget-content">
+            <p>
+                I'm draggable but can't be dropped</p>
+        </div>
+        <div id="draggableAcceptedElements" class="ui-widget-content">
+            <p>
+                Drag me to my target</p>
+        </div>
+        <div id="droppableAcceptedElements" class="ui-widget-header">
+            <p>
+                accept: '#draggable'</p>
+        </div>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Specify using the <code>accept</code> option which element (or group of elements)
+        is accepted by the target droppable.</p>
+</div>

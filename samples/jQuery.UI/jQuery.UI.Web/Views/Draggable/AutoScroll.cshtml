@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_DraggableLayout.cshtml";
+}
+<style>
+    #draggableAutoScroll1, #draggableAutoScroll2, #draggableAutoScroll3
+    {
+        width: 100px;
+        height: 100px;
+        padding: 0.5em;
+        float: left;
+        margin: 0 10px 10px 0;
+        font-size:12px;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <div id="draggableAutoScroll1" class="ui-widget-content">
+            <p>
+                Scroll set to true, default settings</p>
+        </div>
+        <div id="draggableAutoScroll2" class="ui-widget-content">
+            <p>
+                scrollSensitivity set to 100</p>
+        </div>
+        <div id="draggableAutoScroll3" class="ui-widget-content">
+            <p>
+                scrollSpeed set to 100</p>
+        </div>
+        <div style='height: 5000px; width: 1px;'>
+        </div>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Automatically scroll the document when the draggable is moved beyond the viewport.
+        Set the <code>scroll</code> option to true to enable auto-scrolling, and fine-tune
+        when scrolling is triggered and its speed with the <code>scrollSensitivity</code>
+        and <code>scrollSpeed</code> options.</p>
+</div>

@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Views/Shared/_DroppableLayout.cshtml";
+}
+<style>
+    #draggableVisualFeedback1, #draggableVisualFeedback2
+    {
+        width: 90px;
+        height: 90px;
+        padding: 0.5em;
+        float: left;
+        margin: 10px 10px 10px 0;
+        font-size: 12px;
+    }
+    #droppableVisualFeedback1, #droppableVisualFeedback2
+    {
+        width: 120px;
+        height: 120px;
+        padding: 0.5em;
+        float: left;
+        margin: 10px;
+        font-size: 12px;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <h3 class="docs">
+            Feedback on hover:</h3>
+        <div id="draggableVisualFeedback1" class="ui-widget-content">
+            <p>
+                Drag me to my target</p>
+        </div>
+        <div id="droppableVisualFeedback1" class="ui-widget-header">
+            <p>
+                Drop here</p>
+        </div>
+        <h3 class="docs">
+            Feedback on activating draggable:</h3>
+        <div id="draggableVisualFeedback2" class="ui-widget-content">
+            <p>
+                Drag me to my target</p>
+        </div>
+        <div id="droppableVisualFeedback2" class="ui-widget-header">
+            <p>
+                Drop here</p>
+        </div>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Change the droppable's appearance on hover, or when the droppable is active (an
+        acceptable draggable is dropped on it). Use the <code>hoverClass</code> or <code>activeClass</code>
+        options to specify respective classes.</p>
+</div>

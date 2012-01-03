@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_DroppableLayout.cshtml";
+}
+<style>
+    #droppableDraggableDefault
+    {
+        width: 100px;
+        height: 100px;
+        padding: 0.5em;
+        float: left;
+        margin: 10px 10px 10px 0;
+        font-size: 12px;
+    }
+    #droppableDroppableDefault
+    {
+        width: 150px;
+        height: 150px;
+        padding: 0.5em;
+        float: left;
+        margin: 10px;
+        font-size: 12px;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <div id="droppableDraggableDefault" class="ui-widget-content">
+            <p>
+                Drag me to my target</p>
+        </div>
+        <div id="droppableDroppableDefault" class="ui-widget-header">
+            <p>
+                Drop here</p>
+        </div>
+    </div>
+</div>
+<div class="demo-description" style="display: none;">
+    <p>
+        Enable any DOM element to be droppable, a target for draggable elements.</p>
+</div>

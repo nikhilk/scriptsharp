@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_DraggableLayout.cshtml";
+}
+<style>
+    #draggableRevert1, #draggableRevert2
+    {
+        width: 100px;
+        height: 100px;
+        padding: 0.5em;
+        float: left;
+        margin: 0 10px 10px 0;
+        font-size:12px;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <div id="draggableRevert1" class="ui-widget-content">
+            <p>
+                Revert the original</p>
+        </div>
+        <div id="draggableRevert2" class="ui-widget-content">
+            <p>
+                Revert the helper</p>
+        </div>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Return the draggable (or it's helper) to its original location when dragging stops
+        with the boolean <code>revert</code> option.</p>
+</div>

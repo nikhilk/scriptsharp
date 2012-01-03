@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{824C1FEC-2455-4183-AFC6-891EDB88213A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>jQueryApi.UI</RootNamespace>
+    <AssemblyName>Script.jQuery.UI</AssemblyName>
+    <NoStdLib>True</NoStdLib>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\ScriptSharp.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\..\bin\Debug\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\..\bin\Debug\Script.jQuery.UI.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\..\bin\Release\Script.jQuery.UI.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Accordion\AccordionEvent.cs" />
+    <Compile Include="Accordion\AccordionEventData.cs" />
+    <Compile Include="Accordion\AccordionEventHandler.cs" />
+    <Compile Include="Accordion\AccordionIcons.cs" />
+    <Compile Include="Accordion\AccordionMethod.cs" />
+    <Compile Include="Accordion\AccordionObject.cs" />
+    <Compile Include="Accordion\AccordionOption.cs" />
+    <Compile Include="Accordion\AccordionOptions.cs" />
+    <Compile Include="Autocomplete\AutocompleteEvent.cs" />
+    <Compile Include="Autocomplete\AutocompleteEventData.cs" />
+    <Compile Include="Autocomplete\AutocompleteEventHandler.cs" />
+    <Compile Include="Autocomplete\AutocompleteItem.cs" />
+    <Compile Include="Autocomplete\AutocompleteMethod.cs" />
+    <Compile Include="Autocomplete\AutocompleteObject.cs" />
+    <Compile Include="Autocomplete\AutocompleteOption.cs" />
+    <Compile Include="Autocomplete\AutocompleteOptions.cs" />
+    <Compile Include="Button\ButtonEvent.cs" />
+    <Compile Include="Button\ButtonIcons.cs" />
+    <Compile Include="Button\ButtonMethod.cs" />
+    <Compile Include="Button\ButtonObject.cs" />
+    <Compile Include="Button\ButtonOption.cs" />
+    <Compile Include="Button\ButtonOptions.cs" />
+    <Compile Include="Datepicker\DatepickerEvent.cs" />
+    <Compile Include="Datepicker\DatepickerEventHandlers.cs" />
+    <Compile Include="Datepicker\DatepickerMethod.cs" />
+    <Compile Include="Datepicker\DatepickerObject.cs" />
+    <Compile Include="Datepicker\DatepickerOption.cs" />
+    <Compile Include="Datepicker\DatepickerOptions.cs" />
+    <Compile Include="Dialog\DialogEvent.cs" />
+    <Compile Include="Dialog\DialogEventData.cs" />
+    <Compile Include="Dialog\DialogEventHandler.cs" />
+    <Compile Include="Dialog\DialogMethod.cs" />
+    <Compile Include="Dialog\DialogObject.cs" />
+    <Compile Include="Dialog\DialogOption.cs" />
+    <Compile Include="Dialog\DialogOptions.cs" />
+    <Compile Include="Draggable\DraggableEvent.cs" />
+    <Compile Include="Draggable\DraggableEventData.cs" />
+    <Compile Include="Draggable\DraggableEventHandler.cs" />
+    <Compile Include="Draggable\DraggableMethod.cs" />
+    <Compile Include="Draggable\DraggableObject.cs" />
+    <Compile Include="Draggable\DraggableOption.cs" />
+    <Compile Include="Draggable\DraggableOptions.cs" />
+    <Compile Include="Droppable\DroppableEvent.cs" />
+    <Compile Include="Droppable\DroppableEventData.cs" />
+    <Compile Include="Droppable\DroppableEventHandler.cs" />
+    <Compile Include="Droppable\DroppableMethod.cs" />
+    <Compile Include="Droppable\DroppableObject.cs" />
+    <Compile Include="Droppable\DroppableOption.cs" />
+    <Compile Include="Droppable\DroppableOptions.cs" />
+    <Compile Include="jQueryUI.cs" />
+    <Compile Include="Progressbar\ProgressbarEvent.cs" />
+    <Compile Include="Progressbar\ProgressbarEventData.cs" />
+    <Compile Include="Progressbar\ProgressbarEventHandler.cs" />
+    <Compile Include="Progressbar\ProgressbarMethod.cs" />
+    <Compile Include="Progressbar\ProgressbarObject.cs" />
+    <Compile Include="Progressbar\ProgressbarOption.cs" />
+    <Compile Include="Progressbar\ProgressbarOptions.cs" />
+    <Compile Include="Resizable\jQuerySize.cs" />
+    <Compile Include="Resizable\ResizableEvent.cs" />
+    <Compile Include="Resizable\ResizableEventData.cs" />
+    <Compile Include="Resizable\ResizableEventHandler.cs" />
+    <Compile Include="Resizable\ResizableMethod.cs" />
+    <Compile Include="Resizable\ResizableObject.cs" />
+    <Compile Include="Resizable\ResizableOption.cs" />
+    <Compile Include="Resizable\ResizableOptions.cs" />
+    <Compile Include="Selectable\SelectableEvent.cs" />
+    <Compile Include="Selectable\SelectableEventData.cs" />
+    <Compile Include="Selectable\SelectableEventHandler.cs" />
+    <Compile Include="Selectable\SelectableMethod.cs" />
+    <Compile Include="Selectable\SelectableObject.cs" />
+    <Compile Include="Selectable\SelectableOption.cs" />
+    <Compile Include="Selectable\SelectableOptions.cs" />
+    <Compile Include="Slider\SliderEvent.cs" />
+    <Compile Include="Slider\SliderEventData.cs" />
+    <Compile Include="Slider\SliderEventHandler.cs" />
+    <Compile Include="Slider\SliderMethod.cs" />
+    <Compile Include="Slider\SliderObject.cs" />
+    <Compile Include="Slider\SliderOption.cs" />
+    <Compile Include="Slider\SliderOptions.cs" />
+    <Compile Include="Slider\SliderOrientation.cs" />
+    <Compile Include="Sortable\SortableEvent.cs" />
+    <Compile Include="Sortable\SortableEventData.cs" />
+    <Compile Include="Sortable\SortableEventHandler.cs" />
+    <Compile Include="Sortable\SortableMethod.cs" />
+    <Compile Include="Sortable\SortableObject.cs" />
+    <Compile Include="Sortable\SortableOption.cs" />
+    <Compile Include="Sortable\SortableOptions.cs" />
+    <Compile Include="Tabs\TabsEvent.cs" />
+    <Compile Include="Tabs\TabsEventData.cs" />
+    <Compile Include="Tabs\TabsEventHandler.cs" />
+    <Compile Include="Tabs\TabsMethod.cs" />
+    <Compile Include="Tabs\TabsObject.cs" />
+    <Compile Include="Tabs\TabsOption.cs" />
+    <Compile Include="Tabs\TabsOptions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\ScriptSharp.cs">
+      <Link>Properties\ScriptSharp.cs</Link>
+    </Compile>
+    <ScriptInfo Include="Properties\ScriptInfo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CoreLib\CoreLib.csproj">
+      <Project>{36D4B098-A21C-4725-ACD3-400922885F38}</Project>
+      <Name>CoreLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Web\Web.csproj">
+      <Project>{3681A9A8-FC40-4125-B842-7775713C8DCE}</Project>
+      <Name>Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\jQuery.Core\jQuery.Core.csproj">
+      <Project>{4A9F7CE0-5A45-4B28-AD01-05528709B6E4}</Project>
+      <Name>jQuery.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="@(ScriptInfo)" DestinationFiles="$(OutputPath)$(AssemblyName).txt" />
+  </Target>
+</Project>

@@ -1,0 +1,21 @@
+jQuery UI
+===============================================================================
+
+This assembly provides access to jQuery UI APIs. This is only meant for use at
+development time, so you can reference and compile your c# code against jQuery
+UI APIs. You must include the appropriate jQuery UI 1.8.16 scripts and its 
+dependent jQuery 1.3.2+ scripts in your page for runtime functionality.
+
+More information is on http://jqueryui.com.
+
+-------------------------------------------------------------------------------
+
+This matches the API in jQuery UI 1.8.16. The corresponding scripts are at:
+
+Google CDNs:
+https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js
+https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js
+
+Download Locations:
+http://jqueryui.com/download
+http://jqueryui.com/download/jquery-ui-1.8.16.custom.zip

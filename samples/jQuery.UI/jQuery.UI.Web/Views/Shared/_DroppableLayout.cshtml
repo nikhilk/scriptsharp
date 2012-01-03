@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="demo-header">
+    <h2>
+        Droppable</h2>
+</div>
+<div id="demo-config">
+    <div id="demo-frame-wrapper">
+        <div id="theme-switcher"></div>
+        @RenderBody()
+    </div>
+    <div id="demo-config-menu">
+        <div class="demos-nav">
+            <h4>
+                Examples</h4>
+            <ul>
+                <li>@Html.ActionLink("Default functionality", "Default", "Droppable")</li>
+                <li>@Html.ActionLink("Accepted elements", "AcceptedElements", "Droppable")</li>
+                <li>@Html.ActionLink("Prevent propagation", "PreventPropagation", "Droppable")</li>
+                <li>@Html.ActionLink("Visual feedback", "VisualFeedback", "Droppable")</li>
+                <li>@Html.ActionLink("Revert draggable position", "Revert", "Droppable")</li>
+                <li>@Html.ActionLink("Shopping Cart", "ShoppingCart", "Droppable")</li>
+                <li>@Html.ActionLink("Simple photo manager", "PhotoManager", "Droppable")</li>
+            </ul>
+        </div>
+    </div>
+</div>

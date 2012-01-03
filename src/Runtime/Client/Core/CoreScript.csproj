@@ -55,5 +55,5 @@
   <Target Name="Clean">
     <Exec Command="rd /s /q $(OutputPath)" Condition="Exists($(OutputPath))" />
   </Target>
-  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+  <Target Name="Rebuild" DependsOnTargets="Build" />
 </Project>

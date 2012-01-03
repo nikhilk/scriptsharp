@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>jQuery UI Demos</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+        type="text/javascript"></script>
+    <script src="http://jqueryui.com/themeroller/themeswitchertool/" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/mscorlib.debug.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jQuery.UI.Sample.debug.js")" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('#theme-switcher').themeswitcher();
+        });
+    </script>
+</head>
+<body id="demos">
+    <div id="wrapper">
+        <div id="banner">
+            <div class="logo">
+                <img src="../../Content/images/jQueryUI.gif" alt="jQuery UI" style="float: left;
+                    padding: 1em;" />
+                <img src="../../Content/images/ScriptSharp.png" alt="Script#" style="float: right;" />
+            </div>
+        </div>
+        <div id="content-wrapper">
+            <div id="content">
+                <div class="content">
+                    <div class="content-body">
+                        <table cellspacing="0" cellpadding="0" class="layout-grid">
+                            <tr>
+                                <td>
+                                    <table class="layout-grid" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td class="left-nav">
+                                                <dl class="demos-nav">
+                                                    <dt>Interactions</dt>
+                                                    <dd>@Html.ActionLink("Draggable", "Default", "Draggable")</dd>
+                                                    <dd>@Html.ActionLink("Droppable", "Default", "Droppable")</dd>
+                                                    <dd>@Html.ActionLink("Resizable", "Default", "Resizable")</dd>
+                                                    <dd>@Html.ActionLink("Selectable", "Default", "Selectable")</dd>
+                                                    <dd>@Html.ActionLink("Sortable", "Default", "Sortable")</dd>
+                                                    <dt>Widgets</dt>
+                                                    <dd>Accordion</dd>
+                                                    <dd>Autocomplete</dd>
+                                                    <dd>Button</dd>
+                                                    <dd>Datepicker</dd>
+                                                    <dd>Dialog</dd>
+                                                    <dd>Progressbar</dd>
+                                                    <dd>Slider</dd>
+                                                    <dd>Tabs</dd>
+                                                    @*<dd>@Html.ActionLink("Accordion", "Default", "Accordion")</dd>
+                                                    <dd>@Html.ActionLink("Autocomplete", "Default", "Autocomplete")</dd>
+                                                    <dd>@Html.ActionLink("Button", "Default", "Button")</dd>
+                                                    <dd>@Html.ActionLink("Datepicker", "Default", "Datepicker")</dd>
+                                                    <dd>@Html.ActionLink("Dialog", "Default", "Dialog")</dd>
+                                                    <dd>@Html.ActionLink("Progressbar", "Default", "Progressbar")</dd>
+                                                    <dd>@Html.ActionLink("Slider", "Default", "Slider")</dd>
+                                                    <dd>@Html.ActionLink("Tabs", "Default", "Tabs")</dd>*@
+                                                </dl>
+                                            </td>
+                                            <td class="normal">
+                                                @RenderBody()
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

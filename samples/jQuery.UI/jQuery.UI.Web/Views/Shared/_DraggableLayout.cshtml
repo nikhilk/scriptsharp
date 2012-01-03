@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="demo-header">
+    <h2>Draggable</h2>
+</div>
+<div id="demo-config">
+    <div id="demo-frame-wrapper">
+        <div id="theme-switcher"></div>
+        @RenderBody()
+    </div>
+    <div id="demo-config-menu">
+        <div class="demos-nav">
+            <h4>
+                Examples</h4>
+            <ul>
+                <li>@Html.ActionLink("Default functionality", "Default", "Draggable")</li>
+                <li>@Html.ActionLink("Events", "Events", "Draggable")</li>
+                <li>@Html.ActionLink("Constrain movement", "ConstrainMovement", "Draggable")</li>
+                <li>@Html.ActionLink("Delay start", "DelayStart", "Draggable")</li>
+                <li>@Html.ActionLink("Snap to element or grid", "Snap", "Draggable")</li>
+                <li>@Html.ActionLink("Auto-scroll", "AutoScroll", "Draggable")</li>
+                <li>@Html.ActionLink("Revert position", "RevertPosition", "Draggable")</li>
+                <li>@Html.ActionLink("Visual feedback", "VisualFeedback", "Draggable")</li>
+                <li>@Html.ActionLink("Drag handle", "DragHandle", "Draggable")</li>
+                <li>@Html.ActionLink("Cursor style", "CursorStyle", "Draggable")</li>
+                <li>@Html.ActionLink("Draggable + Sortable", "DraggableSortable", "Draggable")</li>
+            </ul>
+        </div>
+    </div>
+</div>

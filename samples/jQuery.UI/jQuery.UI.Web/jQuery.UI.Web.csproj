@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4ECB834B-B9C5-4555-80E0-7BE1CFCF870F}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>jQuery.UI.Web</RootNamespace>
+    <AssemblyName>jQuery.UI.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\DraggableController.cs" />
+    <Compile Include="Controllers\DroppableController.cs" />
+    <Compile Include="Controllers\ResizableController.cs" />
+    <Compile Include="Controllers\SelectableController.cs" />
+    <Compile Include="Controllers\SortableController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\images\droppable\high_tatras.jpg" />
+    <Content Include="Content\images\droppable\high_tatras2.jpg" />
+    <Content Include="Content\images\droppable\high_tatras2_min.jpg" />
+    <Content Include="Content\images\droppable\high_tatras3.jpg" />
+    <Content Include="Content\images\droppable\high_tatras3_min.jpg" />
+    <Content Include="Content\images\droppable\high_tatras4.jpg" />
+    <Content Include="Content\images\droppable\high_tatras4_min.jpg" />
+    <Content Include="Content\images\droppable\high_tatras_min.jpg" />
+    <Content Include="Content\images\jQueryUI.gif" />
+    <Content Include="Content\images\ScriptSharp.png" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jQuery.UI.Sample.debug.js" />
+    <Content Include="Scripts\jQuery.UI.Sample.js" />
+    <Content Include="Scripts\mscorlib.debug.js" />
+    <Content Include="Scripts\mscorlib.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_DraggableLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Draggable\Events.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Draggable\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Draggable\ConstrainMovement.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Draggable\DelayStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Draggable\Snap.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Draggable\AutoScroll.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Draggable\RevertPosition.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Draggable\VisualFeedback.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Draggable\DragHandle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Draggable\CursorStyle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Draggable\DraggableSortable.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_SortableLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_DroppableLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ResizableLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_SelectableLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Droppable\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resizable\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Selectable\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sortable\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Droppable\AcceptedElements.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Droppable\PreventPropagation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Droppable\VisualFeedback.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Droppable\Revert.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Droppable\ShoppingCart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Droppable\PhotoManager.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resizable\PreserveAspectRatio.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resizable\MaxMinSize.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resizable\ResizeHelper.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resizable\Animate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resizable\SynchronousResize.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resizable\VisualFeedback.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resizable\SnapToGrid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resizable\DelayStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resizable\ResizeArea.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resizable\Textarea.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Selectable\Serialize.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Selectable\DisplayAsGrid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sortable\DropPlaceholder.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sortable\Portlets.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sortable\DispalyAsGrid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sortable\DelayStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sortable\IncludeExclude.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sortable\EmptyLists.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sortable\ConnectListsTabs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sortable\ConnectLists.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1057</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

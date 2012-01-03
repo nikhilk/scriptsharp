@@ -1,0 +1,8 @@
+//! #= ScriptFile ##
+//
+
+(function($) {
+#include[as-is] "%code%"
+})(jQuery);
+
+//! This script was generated using Script# v#= CompilerVersion ##
