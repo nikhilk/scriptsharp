@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_DraggableLayout.cshtml";
+}
+<style>
+    #draggableEvents
+    {
+        width: 16em;
+        padding: 0 1em;
+        font-size: 12px;
+    }
+    #draggableEvents ul li
+    {
+        margin: 1em 0;
+        padding: 0.5em 0;
+    }
+    * html #draggableEvents ul li
+    {
+        height: 1%;
+    }
+    #draggableEvents ul li span.ui-icon
+    {
+        float: left;
+    }
+    #draggableEvents ul li span.count
+    {
+        font-weight: bold;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <div id="draggableEvents" class="ui-widget ui-widget-content">
+            <p>
+                Drag me to trigger the chain of events.</p>
+            <ul class="ui-helper-reset">
+                <li id="event-start" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-play">
+                </span>"start" invoked <span class="count">0</span>x</li>
+                <li id="event-drag" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-arrow-4">
+                </span>"drag" invoked <span class="count">0</span>x</li>
+                <li id="event-stop" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-stop">
+                </span>"stop" invoked <span class="count">0</span>x</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Layer functionality onto the draggable using the <code>start</code>, <code>drag</code>,
+        and <code>stop</code> events. Start is fired at the start of the drag; drag during
+        the drag; and stop when dragging stops.</p>
+</div>

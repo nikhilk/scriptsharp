@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="demo-header">
+    <h2>
+        Sortable</h2>
+</div>
+<div id="demo-config">
+    <div id="demo-frame-wrapper">
+        <div id="theme-switcher"></div>
+        @RenderBody()
+    </div>
+    <div id="demo-config-menu">
+        <div class="demos-nav">
+            <h4>
+                Examples</h4>
+            <ul>
+                <li>@Html.ActionLink("Default functionality", "Default", "Sortable")</li>
+                <li>@Html.ActionLink("Drop placeholder", "DropPlaceholder", "Sortable")</li>
+                <li>@Html.ActionLink("Connect lists", "ConnectLists", "Sortable")</li>
+                <li>@Html.ActionLink("Connect lists through tabs", "ConnectListsTabs", "Sortable")</li>
+                <li>@Html.ActionLink("Snap to element or grid", "EmptyLists", "Sortable")</li>
+                <li>@Html.ActionLink("Include / exclude items", "IncludeExclude", "Sortable")</li>
+                <li>@Html.ActionLink("Delay start", "DelayStart", "Sortable")</li>
+                <li>@Html.ActionLink("Display as grid", "DispalyAsGrid", "Sortable")</li>
+                <li>@Html.ActionLink("Portlets", "Portlets", "Sortable")</li>
+            </ul>
+        </div>
+    </div>
+</div>

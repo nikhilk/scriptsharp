@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_DraggableLayout.cshtml";
+}
+<style>
+    .demo ul
+    {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    .demo li
+    {
+        margin: 5px;
+        padding: 5px;
+        width: 150px;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <ul>
+            <li id="draggableSortable" class="ui-state-highlight">Drag me down</li>
+        </ul>
+        <ul id="sortable">
+            <li class="ui-state-default">Item 1</li>
+            <li class="ui-state-default">Item 2</li>
+            <li class="ui-state-default">Item 3</li>
+            <li class="ui-state-default">Item 4</li>
+            <li class="ui-state-default">Item 5</li>
+        </ul>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Draggables are built to interact seamlessly with @Html.ActionLink("sortables", "Default", "Sortable").</p>
+</div>

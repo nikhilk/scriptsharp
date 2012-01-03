@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "~/Views/Shared/_DroppableLayout.cshtml";
+}
+<style>
+    #draggableRevert10, #draggableRevert20
+    {
+        width: 100px;
+        height: 100px;
+        padding: 0.5em;
+        float: left;
+        margin: 10px 10px 10px 0;
+        font-size:12px;
+    }
+    #droppableRevert10
+    {
+        width: 150px;
+        height: 150px;
+        padding: 0.5em;
+        float: left;
+        margin: 10px;
+        font-size:12px;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <div id="draggableRevert10" class="ui-widget-content">
+            <p>
+                I revert when I'm dropped</p>
+        </div>
+        <div id="draggableRevert20" class="ui-widget-content">
+            <p>
+                I revert when I'm not dropped</p>
+        </div>
+        <div id="droppableRevert10" class="ui-widget-header">
+            <p>
+                Drop me here</p>
+        </div>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Return the draggable (or it's helper) to its original location when dragging stops
+        with the boolean <code>revert</code> option set on the draggable.</p>
+</div>

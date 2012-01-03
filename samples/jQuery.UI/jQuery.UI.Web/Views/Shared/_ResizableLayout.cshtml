@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="demo-header">
+    <h2>
+        Resizable</h2>
+</div>
+<div id="demo-config">
+    <div id="demo-frame-wrapper">
+        <div id="theme-switcher"></div>
+        @RenderBody()
+    </div>
+    <div id="demo-config-menu">
+        <div class="demos-nav">
+            <h4>
+                Examples</h4>
+            <ul>
+                <li>@Html.ActionLink("Default functionality", "Default", "Resizable")</li>
+                <li>@Html.ActionLink("Preserve aspect ratio", "PreserveAspectRatio", "Resizable")</li>
+                <li>@Html.ActionLink("Maximum / minimum size", "MaxMinSize", "Resizable")</li>
+                <li>@Html.ActionLink("Constrain resize area", "ResizeArea", "Resizable")</li>
+                <li>@Html.ActionLink("Delay start", "DelayStart", "Resizable")</li>
+                <li>@Html.ActionLink("Snap to grid", "SnapToGrid", "Resizable")</li>
+                <li>@Html.ActionLink("Visual feedback", "VisualFeedback", "Resizable")</li>
+                <li>@Html.ActionLink("Synchronous resize", "SynchronousResize", "Resizable")</li>
+                <li>@Html.ActionLink("Animate", "Animate", "Resizable")</li>
+                <li>@Html.ActionLink("Resize Helper", "ResizeHelper", "Resizable")</li>
+                <li>@Html.ActionLink("Textarea", "Textarea", "Resizable")</li>
+            </ul>
+        </div>
+    </div>
+</div>
