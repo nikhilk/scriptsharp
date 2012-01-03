@@ -21,7 +21,7 @@ namespace jQueryApi.UI
         /// The current helper element (most often a clone of the item)
         /// </summary>
         [IntrinsicProperty]
-        public jQuery Helper { get { return null; } set { } }
+        public jQueryObject Helper { get { return null; } set { } }
 
         /// <summary>
         /// Current position of the helper

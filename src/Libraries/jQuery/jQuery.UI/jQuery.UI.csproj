@@ -89,6 +89,7 @@
     <Compile Include="Droppable\DroppableObject.cs" />
     <Compile Include="Droppable\DroppableOption.cs" />
     <Compile Include="Droppable\DroppableOptions.cs" />
+    <Compile Include="jQueryUI.cs" />
     <Compile Include="Progressbar\ProgressbarEvent.cs" />
     <Compile Include="Progressbar\ProgressbarEventData.cs" />
     <Compile Include="Progressbar\ProgressbarEventHandler.cs" />

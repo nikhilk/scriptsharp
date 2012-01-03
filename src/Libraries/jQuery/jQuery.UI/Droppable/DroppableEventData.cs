@@ -20,13 +20,13 @@ namespace jQueryApi.UI
         /// Current draggable element, a jQuery object.
         /// </summary>
         [IntrinsicProperty]
-        public jQuery Draggable { get { return null; } set { } }
+        public jQueryObject Draggable { get { return null; } set { } }
 
         /// <summary>
         /// Current draggable helper, a jQuery object
         /// </summary>
         [IntrinsicProperty]
-        public jQuery Helper { get { return null; } set { } }
+        public jQueryObject Helper { get { return null; } set { } }
 
         /// <summary>
         /// Current position of the draggable helper { top: , left: }

@@ -20,7 +20,7 @@ namespace jQueryApi.UI
         /// A jQuery object containing the helper element
         /// </summary>
         [IntrinsicProperty]
-        public jQuery Helper { get { return null; } set { } }
+        public jQueryObject Helper { get { return null; } set { } }
 
         /// <summary>
         /// Position before resizing started.
