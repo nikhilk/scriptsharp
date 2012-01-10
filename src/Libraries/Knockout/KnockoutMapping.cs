@@ -71,26 +71,6 @@ namespace KnockoutApi {
         }
 
         /// <summary>
-        /// Converts a model into the equivalent JSON representation.
-        /// </summary>
-        /// <param name="model">The model object to convert.</param>
-        /// <returns>The JSON string representing the model data.</returns>
-        [ScriptAlias("ko.toJSON")]
-        public string ToJson(object model) {
-            return null;
-        }
-
-        /// <summary>
-        /// Converts a model into the equivalent vanilla script object.
-        /// </summary>
-        /// <param name="model">The model object to convert.</param>
-        /// <returns>The vanilla script object representing the model data.</returns>
-        [ScriptAlias("ko.toJS")]
-        public object ToObject(object model) {
-            return null;
-        }
-
-        /// <summary>
         /// Updates the specified model with the specified JSON string.
         /// </summary>
         /// <typeparam name="TModel">The tyoe of the model.</typeparam>
