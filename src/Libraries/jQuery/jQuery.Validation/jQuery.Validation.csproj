@@ -44,15 +44,15 @@
     <Compile Include="ValidatorOptions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Libraries\CoreLib\CoreLib.csproj">
+    <ProjectReference Include="..\..\CoreLib\CoreLib.csproj">
       <Project>{36D4B098-A21C-4725-ACD3-400922885F38}</Project>
       <Name>CoreLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Libraries\jQuery\jQuery.Core\jQuery.Core.csproj">
+    <ProjectReference Include="..\jQuery.Core\jQuery.Core.csproj">
       <Project>{4A9F7CE0-5A45-4B28-AD01-05528709B6E4}</Project>
       <Name>jQuery.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Libraries\Web\Web.csproj">
+    <ProjectReference Include="..\..\Web\Web.csproj">
       <Project>{3681A9A8-FC40-4125-B842-7775713C8DCE}</Project>
       <Name>Web</Name>
     </ProjectReference>

@@ -52,7 +52,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Runtime\Client
 		{B87E403B-354D-47A1-9876-14C618A80A41} = {B87E403B-354D-47A1-9876-14C618A80A41}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jQuery.Validation", "jQuery.Validation\jQuery.Validation.csproj", "{967A6FD7-E14B-4DB0-81D9-86E0DC12291A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jQuery.Validation", "Libraries\jQuery\jQuery.Validation\jQuery.Validation.csproj", "{967A6FD7-E14B-4DB0-81D9-86E0DC12291A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
