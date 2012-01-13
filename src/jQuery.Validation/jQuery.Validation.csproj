@@ -57,8 +57,5 @@
       <Name>Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Script.Web, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
