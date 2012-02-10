@@ -71,6 +71,21 @@ namespace KnockoutApi {
         }
 
         /// <summary>
+        /// Updates a model instance from the specified script object and a
+        /// custom mapping.
+        /// </summary>
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <param name="data">The vanilla script object.</param>
+        /// <param name="mapping">The mapping rules to apply.</param>
+        /// <param name="target">The mapping rules to apply.</param>
+        /// <returns>A new instance of the model.</returns>
+        [ScriptName("fromJS")]
+        public TModel ModelFromObject<TModel>(object data, object mapping, TModel target)
+        {
+            return default(TModel);
+        }
+
+        /// <summary>
         /// Converts a model into the equivalent JSON representation.
         /// </summary>
         /// <param name="model">The model object to convert.</param>
