@@ -2266,55 +2266,6 @@ namespace jQueryApi {
             return null;
         }
 
-		/// <summary>
-		/// Removes an event handler which has been created by called On()
-		/// </summary>
-		/// <param name="eventsMap">A dictionary in which the string keys represent the event names, and the values represent the handler which was previously attached to that event</param>
-		/// <returns>The current jQueryObject.</returns>
-		public jQueryObject Off(Dictionary eventsMap) {
-			return null;
-		}
-
-		/// <summary>
-		/// Removes an event handler which has been created by called On()
-		/// </summary>
-		/// <param name="eventsMap">A dictionary in which the string keys represent the event names, and the values represent the handler which was previously attached to that event</param>
-		/// <param name="selector">A selector which should match the one originally passed to On()</param>
-		/// <returns>The current jQueryObject.</returns>
-		public jQueryObject Off(Dictionary eventsMap, string selector) {
-			return null;
-		}
-
-		/// <summary>
-		/// Removes an event handler which has been created by called On()
-		/// </summary>
-		/// <param name="events">One or more space-separated event types and optional namespaces</param>
-		/// <returns>The current jQueryObject.</returns>
-		public jQueryObject Off(string events) {
-			return null;
-		}
-
-		/// <summary>
-		/// Removes an event handler which has been created by called On()
-		/// </summary>
-		/// <param name="events">One or more space-separated event types and optional namespaces</param>
-		/// <param name="selector">A selector which should match the one originally passed to On()</param>
-		/// <returns>The current jQueryObject.</returns>
-		public jQueryObject Off(string events, string selector) {
-			return null;
-		}
-
-		/// <summary>
-		/// Removes an event handler which has been created by called On()
-		/// </summary>
-		/// <param name="events">One or more space-separated event types and optional namespaces</param>
-		/// <param name="selector">A selector which should match the one originally passed to On()</param>
-		/// <param name="eventHandler">A handler function previously attached for the event(s)</param>
-		/// <returns>The current jQueryObject.</returns>
-		public jQueryObject Off(string events, string selector, jQueryEventHandler eventHandler) {
-			return null;
-		}
-
         /// <summary>
         /// Sets the position of the matched elements relative to the document.
         /// </summary>
@@ -2351,69 +2302,6 @@ namespace jQueryApi {
         public jQueryObject OffsetParent() {
             return null;
         }
-
-		/// <summary>
-		/// Attaches an event handler function for one or more events to the selected elements.
-		/// </summary>
-		/// <param name="eventName">The name of the event</param>
-		/// <param name="eventHandler">The event handler to be invoked</param>
-		/// <returns>The current jQueryObject.</returns>
-		public jQueryObject On(string eventName, jQueryEventHandler eventHandler) {
-			return null;
-		}
-
-		/// <summary>
-		/// Attaches an event handler function for one or more events to the selected elements.
-		/// </summary>
-		/// <param name="eventName">The name of the event</param>
-		/// <param name="selector">A selector string to filter the descendants of the selected elements that trigger the event.</param>
-		/// <param name="eventHandler">The event handler to be invoked</param>
-		/// <returns>The current jQueryObject.</returns>
-		public jQueryObject On(string eventName, string selector, jQueryEventHandler eventHandler) {
-			return null;
-		}
-
-		/// <summary>
-		/// Attaches an event handler function for one or more events to the selected elements.
-		/// </summary>
-		/// <param name="eventName">The name of the event</param>
-		/// <param name="selector">A selector string to filter the descendants of the selected elements that trigger the event.</param>
-		/// <param name="data">A custom data structure to be passed to the handler</param>
-		/// <param name="eventHandler">The event handler to be invoked</param>
-		/// <returns>The current jQueryObject.</returns>
-		public jQueryObject On(string eventName, string selector, object data, jQueryEventHandler eventHandler) {
-			return null;
-		}
-
-		/// <summary>
-		/// Attaches an event handler function for one or more events to the selected elements.
-		/// </summary>
-		/// <param name="eventsMap">A dictionary in which the string keys represent the event names, and the values represent the handler for that event.</param>
-		/// <returns>The current jQueryObject</returns>
-		public jQueryObject On(Dictionary eventsMap) {
-			return null;
-		}
-
-		/// <summary>
-		/// Attaches an event handler function for one or more events to the selected elements.
-		/// </summary>
-		/// <param name="eventsMap">A dictionary in which the string keys represent the event names, and the values represent the handler for that event.</param>
-		/// <param name="selector">A selector string to filter the descendants of the selected elements that trigger the event.</param>
-		/// <returns>The current jQueryObject</returns>
-		public jQueryObject On(Dictionary eventsMap, string selector) {
-			return null;
-		}
-
-		/// <summary>
-		/// Attaches an event handler function for one or more events to the selected elements.
-		/// </summary>
-		/// <param name="eventsMap">A dictionary in which the string keys represent the event names, and the values represent the handler for that event.</param>
-		/// <param name="selector">A selector string to filter the descendants of the selected elements that trigger the event.</param>
-		/// <param name="data">A custom data structure to be passed to the handler</param>
-		/// <returns>The current jQueryObject</returns>
-		public jQueryObject On(Dictionary eventsMap, string selector, object data) {
-			return null;
-		}
 
         /// <summary>
         /// Attaches a handler for the handling the specified event once on the matched
