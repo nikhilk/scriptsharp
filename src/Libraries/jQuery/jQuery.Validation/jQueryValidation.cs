@@ -12,12 +12,12 @@ namespace jQueryApi.Validation
 	public class jQueryValidation
 	{
 		[ScriptAlias("$.fn.validate.call")]
-		public Validator Validate(jQueryObject form) {
+		public static Validator Validate(jQueryObject form) {
 			return null;
 		}
 
 		[ScriptAlias("$.fn.valid.call")]
-		public bool Valid(jQueryObject form) {
+		public static bool Valid(jQueryObject form) {
 			return false;
 		}
 

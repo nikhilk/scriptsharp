@@ -10,7 +10,8 @@ namespace jQueryApi.Validation
 {
 	[Imported]
 	[IgnoreNamespace]
-	public class ValidatorOptions {
+	[ScriptName("Object")]
+	public sealed class ValidatorOptions {
 
 		[IntrinsicProperty]
 		public bool Debug {

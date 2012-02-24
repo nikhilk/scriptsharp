@@ -17,6 +17,7 @@ namespace jQueryApi.Validation
 		/// Add compound class methods
 		/// </summary>
 		/// <param name="rules">A map of class name - rules pairs.</param>
+		[ScriptAlias("jQuery.validator.addClassRules")]
 		public static void AddClassRules(Dictionary rules) {
 		}
 
@@ -25,6 +26,7 @@ namespace jQueryApi.Validation
 		/// </summary>
 		/// <param name="name">The name of the class rule to add</param>
 		/// <param name="rules">The compound rules</param>
+		[ScriptAlias("jQuery.validator.addClassRules")]
 		public static void AddClassRules(string name, Dictionary rules) {
 		}
 
@@ -34,6 +36,7 @@ namespace jQueryApi.Validation
 		/// <param name="name">The name of the method. Must be a valid Javascript identifier</param>
 		/// <param name="callback">The method callback to invoke during validation</param>
 		/// <param name="message">The default message to display for this method.</param>
+		[ScriptAlias("jQuery.validator.addMethod")]
 		public static void AddMethod(string name, CustomValidationMethodHandler callback, string message)	{
 		}
 
@@ -56,6 +59,7 @@ namespace jQueryApi.Validation
 		/// Sets the default settings for validation
 		/// </summary>
 		/// <param name="options">The validation options to by used by default during validation</param>
+		[ScriptAlias("jQuery.validator.setDefaults")]
 		public static void SetDefaults(ValidatorOptions options) {
 		}
 
