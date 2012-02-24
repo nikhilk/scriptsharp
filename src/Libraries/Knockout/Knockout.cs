@@ -225,6 +225,16 @@ namespace KnockoutApi {
 			return null;
 		}
 
+		/// <summary>
+		/// Converts a model into the equivalent vanilla script object.
+		/// </summary>
+		/// <param name="model">The model object to convert.</param>
+		/// <returns>The vanilla script object representing the model data.</returns>
+		[ScriptName("toJS")]
+		public static T ToObject<T>(T model) {
+			return default(T);
+		}
+		
         /// <summary>
         /// If the provided value is an observable, return its value, otherwise just pass it through.
         /// </summary>
