@@ -86,7 +86,7 @@ namespace KnockoutApi {
 		/// <param name="model">The model to unwrap</param>
 		/// <returns>The unwrapped view model</returns>
 		[ScriptName("toJS")]
-		public T ModelToObject<T>(T model) {
+		public T ModelToObject<T>(object model) {
 			return default(T);
 		}
 		
