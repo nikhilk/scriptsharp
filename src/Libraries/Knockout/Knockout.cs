@@ -205,26 +205,6 @@ namespace KnockoutApi {
             return null;
         }
 
-		/// <summary>
-		/// Converts a model into the equivalent JSON representation.
-		/// </summary>
-		/// <param name="model">The model object to convert.</param>
-		/// <returns>The JSON string representing the model data.</returns>
-		[ScriptName("toJSON")]
-		public static string ToJson(object model) {
-			return null;
-		}
-
-		/// <summary>
-		/// Converts a model into the equivalent vanilla script object.
-		/// </summary>
-		/// <param name="model">The model object to convert.</param>
-		/// <returns>The vanilla script object representing the model data.</returns>
-		[ScriptName("toJS")]
-		public static object ToObject(object model) {
-			return null;
-		}
-
         /// <summary>
         /// If the provided value is an observable, return its value, otherwise just pass it through.
         /// </summary>
