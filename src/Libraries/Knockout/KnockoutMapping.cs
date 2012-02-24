@@ -69,7 +69,27 @@ namespace KnockoutApi {
         public TModel ModelFromObject<TModel>(object data, object mapping) {
             return default(TModel);
         }
-
+		
+		/// <summary>
+		/// Unwraps the given view model
+		/// </summary>
+		/// <param name="model">The model to unwrap</param>
+		/// <returns>The unwrapped view model</returns>
+		[ScriptName("toJS")]
+		public object ModelToObject(object model) {
+			return null;
+		}
+		
+		/// <summary>
+		/// Unwraps the given view model
+		/// </summary>
+		/// <param name="model">The model to unwrap</param>
+		/// <returns>The unwrapped view model</returns>
+		[ScriptName("toJS")]
+		public T ModelToObject<T>(T model) {
+			return default(T);
+		}
+		
         /// <summary>
         /// Updates the specified model with the specified JSON string.
         /// </summary>
