@@ -231,7 +231,7 @@ namespace KnockoutApi {
 		/// <param name="model">The model object to convert.</param>
 		/// <returns>The vanilla script object representing the model data.</returns>
 		[ScriptName("toJS")]
-		public static T ToObject<T>(T model) {
+		public static T ToObject<T>(object model) {
 			return default(T);
 		}
 		
