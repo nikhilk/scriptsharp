@@ -40,7 +40,7 @@
   <ItemGroup>
     <Compile Include="ValidationMessageOptions.cs" />
     <Compile Include="CustomValidationMethodHandler.cs" />
-    <Compile Include="jQueryValidation.cs" />
+    <Compile Include="jQueryValidationObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationMethodOptions.cs" />
     <Compile Include="Validator.cs" />
