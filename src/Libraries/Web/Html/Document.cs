@@ -87,6 +87,13 @@ namespace System.Html {
         }
 
         [IntrinsicProperty]
+        public static string ReadyState {
+            get {
+                return null;
+            }
+        }
+        
+        [IntrinsicProperty]
         public static string Referrer {
             get {
                 return null;
