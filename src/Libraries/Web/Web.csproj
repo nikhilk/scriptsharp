@@ -54,6 +54,8 @@
     <Compile Include="Html\Media\Graphics\Rendering.cs" />
     <Compile Include="Html\MutableEvent.cs" />
     <Compile Include="Html\ClientRect.cs" />
+    <Compile Include="Html\Plugin.cs" />
+    <Compile Include="Html\PluginArray.cs" />
     <Compile Include="Html\TouchInfo.cs" />
     <Compile Include="Html\TouchEvent.cs" />
     <Compile Include="Html\Data\ApplicationCache.cs" />
