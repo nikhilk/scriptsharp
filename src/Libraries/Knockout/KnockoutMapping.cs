@@ -71,23 +71,37 @@ namespace KnockoutApi {
         }
 
         /// <summary>
-        /// Converts a model into the equivalent JSON representation.
+        /// Updates a model instance from the specified script object and a
+        /// custom mapping.
         /// </summary>
-        /// <param name="model">The model object to convert.</param>
-        /// <returns>The JSON string representing the model data.</returns>
-        [ScriptAlias("ko.toJSON")]
-        public string ToJson(object model) {
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <param name="data">The vanilla script object.</param>
+        /// <param name="mapping">The mapping rules to apply.</param>
+        /// <param name="target">The mapping rules to apply.</param>
+        /// <returns>A new instance of the model.</returns>
+        [ScriptName("fromJS")]
+        public TModel ModelFromObject<TModel>(object data, object mapping, TModel target) {
+            return default(TModel);
+        }
+
+        /// <summary>
+        /// Unwraps the given view model
+        /// </summary>
+        /// <param name="model">The model to unwrap</param>
+        /// <returns>The unwrapped view model</returns>
+        [ScriptName("toJS")]
+        public object ModelToObject(object model) {
             return null;
         }
 
         /// <summary>
-        /// Converts a model into the equivalent vanilla script object.
+        /// Unwraps the given view model
         /// </summary>
-        /// <param name="model">The model object to convert.</param>
-        /// <returns>The vanilla script object representing the model data.</returns>
-        [ScriptAlias("ko.toJS")]
-        public object ToObject(object model) {
-            return null;
+        /// <param name="model">The model to unwrap</param>
+        /// <returns>The unwrapped view model</returns>
+        [ScriptName("toJS")]
+        public T ModelToObject<T>(object model) {
+            return default(T);
         }
 
         /// <summary>
