@@ -1,7 +1,14 @@
 Changelog
 ===============================================================================
 
-v0.7.4.0 [in progress]
+v0.7.5.0 [in progress]
+    - DOM metadata update (readyState property on Document,
+                           plugins on Navigator)
+    - jQuery API update (on/off methods)
+    - Knockout API updates for missing APIs
+    - Addition of support for jQuery validation plugin
+
+v0.7.4.0
     - Fix/update bing maps metadata bug
     - Fix observable bug where access to an observed property without an observer
       registration would drop existing observers.
