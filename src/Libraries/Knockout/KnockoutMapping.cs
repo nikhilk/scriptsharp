@@ -69,27 +69,27 @@ namespace KnockoutApi {
         public TModel ModelFromObject<TModel>(object data, object mapping) {
             return default(TModel);
         }
-
-        /// <summary>
-        /// Converts a model into the equivalent JSON representation.
-        /// </summary>
-        /// <param name="model">The model object to convert.</param>
-        /// <returns>The JSON string representing the model data.</returns>
-        [ScriptAlias("ko.toJSON")]
-        public string ToJson(object model) {
-            return null;
-        }
-
-        /// <summary>
-        /// Converts a model into the equivalent vanilla script object.
-        /// </summary>
-        /// <param name="model">The model object to convert.</param>
-        /// <returns>The vanilla script object representing the model data.</returns>
-        [ScriptAlias("ko.toJS")]
-        public object ToObject(object model) {
-            return null;
-        }
-
+		
+		/// <summary>
+		/// Unwraps the given view model
+		/// </summary>
+		/// <param name="model">The model to unwrap</param>
+		/// <returns>The unwrapped view model</returns>
+		[ScriptName("toJS")]
+		public object ModelToObject(object model) {
+			return null;
+		}
+		
+		/// <summary>
+		/// Unwraps the given view model
+		/// </summary>
+		/// <param name="model">The model to unwrap</param>
+		/// <returns>The unwrapped view model</returns>
+		[ScriptName("toJS")]
+		public T ModelToObject<T>(object model) {
+			return default(T);
+		}
+		
         /// <summary>
         /// Updates the specified model with the specified JSON string.
         /// </summary>
