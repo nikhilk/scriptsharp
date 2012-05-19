@@ -8,7 +8,7 @@
     <ProjectGuid>{000BA94F-E6E2-4734-B708-015592B0C36F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStdLib>True</NoStdLib>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <LangVersion>ISO-2</LangVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
