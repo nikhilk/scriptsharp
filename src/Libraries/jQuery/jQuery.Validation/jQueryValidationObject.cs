@@ -21,7 +21,7 @@ namespace jQueryApi.Validation {
         /// </summary>
         /// <returns>The rules which have been assigned to the specified element.</returns>
         [ScriptName("rules")]
-        public ValidationMethodOptions GetRules() {
+        public jQueryValidationRules GetRules() {
             return null;
         }
 
@@ -42,7 +42,7 @@ namespace jQueryApi.Validation {
         /// <param name="action">The action to perform. Should be 'add' or 'remove'</param>
         /// <param name="rules">The rules to add or remove to the specified element.</param>
         /// <returns>The current state of the rules collection for the first matched element.</returns>
-        public ValidationMethodOptions Rules(string action, ValidationMethodOptions rules) {
+        public jQueryValidationRules Rules(string action, jQueryValidationRules rules) {
             return null;
         }
 
@@ -58,7 +58,7 @@ namespace jQueryApi.Validation {
         /// Validates the selected form.
         /// </summary>
         /// <returns>An instance of the validation controller for the specified form.</returns>
-        public Validator Validate() {
+        public jQueryValidator Validate() {
             return null;
         }
 
@@ -67,7 +67,7 @@ namespace jQueryApi.Validation {
         /// </summary>
         /// <param name="options">The validation options</param>
         /// <returns>An instance of the validation controller for the specified form.</returns>
-        public Validator Validate(ValidatorOptions options) {
+        public jQueryValidator Validate(jQueryValidatorOptions options) {
             return null;
         }
     }

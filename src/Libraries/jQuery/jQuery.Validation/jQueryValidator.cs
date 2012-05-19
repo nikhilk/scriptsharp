@@ -1,4 +1,4 @@
-// Validator.cs
+// jQueryValidator.cs
 // Script#/Libraries/jQuery/jQueryValidation
 // This source code is subject to terms and conditions of the Microsoft 
 // Public License. A copy of the license can be found in License.txt.
@@ -13,9 +13,9 @@ namespace jQueryApi.Validation {
 
     [Imported]
     [IgnoreNamespace]
-    public sealed class Validator {
+    public sealed class jQueryValidator {
 
-        private Validator() {
+        private jQueryValidator() {
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace jQueryApi.Validation {
         /// <param name="name">The name of the method. Must be a valid Javascript identifier</param>
         /// <param name="callback">The method callback to invoke during validation</param>
         [ScriptAlias("$.validator.addMethod")]
-        public static void AddMethod(string name, CustomValidationMethodHandler callback) {
+        public static void AddMethod(string name, jQueryValidationMethod callback) {
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace jQueryApi.Validation {
         /// <param name="callback">The method callback to invoke during validation</param>
         /// <param name="message">The default message to display for this method.</param>
         [ScriptAlias("$.validator.addMethod")]
-        public static void AddMethod(string name, CustomValidationMethodHandler callback, string message) {
+        public static void AddMethod(string name, jQueryValidationMethod callback, string message) {
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace jQueryApi.Validation {
         /// </summary>
         /// <param name="options">The validation options to by used by default during validation</param>
         [ScriptAlias("$.validator.setDefaults")]
-        public static void SetDefaults(ValidatorOptions options) {
+        public static void SetDefaults(jQueryValidatorOptions options) {
         }
 
         /// <summary>

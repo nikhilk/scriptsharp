@@ -1,4 +1,4 @@
-﻿// ValidationMessageOptions.cs
+﻿// jQueryValidationRules.cs
 // Script#/Libraries/jQuery/jQueryValidation
 // This source code is subject to terms and conditions of the Microsoft 
 // Public License. A copy of the license can be found in License.txt.
@@ -12,13 +12,16 @@ namespace jQueryApi.Validation {
     [Imported]
     [IgnoreNamespace]
     [ScriptName("Object")]
-    public sealed class ValidationMessageOptions : Record {
+    public sealed class jQueryValidationRules {
+
+        private jQueryValidationRules() {
+        }
 
         /// <summary>
         /// Makes the element require a certain file extension
         /// </summary>
         [IntrinsicProperty]
-        public object Accept {
+        public string Accept {
             get {
                 return null;
             }
@@ -31,7 +34,7 @@ namespace jQueryApi.Validation {
         /// </summary>
         [IntrinsicProperty]
         [ScriptName("creditcard")]
-        public object CreditCard {
+        public bool CreditCard {
             get {
                 return false;
             }
@@ -43,7 +46,7 @@ namespace jQueryApi.Validation {
         /// Makes the element require a date
         /// </summary>
         [IntrinsicProperty]
-        public object Date {
+        public bool Date {
             get {
                 return false;
             }
@@ -56,7 +59,7 @@ namespace jQueryApi.Validation {
         /// </summary>
         [IntrinsicProperty]
         [ScriptName("dateISO")]
-        public object DateISO {
+        public bool DateISO {
             get {
                 return false;
             }
@@ -68,7 +71,7 @@ namespace jQueryApi.Validation {
         /// Makes the element require digits only
         /// </summary>
         [IntrinsicProperty]
-        public object Digits {
+        public bool Digits {
             get {
                 return false;
             }
@@ -80,7 +83,7 @@ namespace jQueryApi.Validation {
         /// Makes the element require a valid email address
         /// </summary>
         [IntrinsicProperty]
-        public object Email {
+        public bool Email {
             get {
                 return false;
             }
@@ -92,7 +95,7 @@ namespace jQueryApi.Validation {
         /// Requires the element to be the same as another one
         /// </summary>
         [IntrinsicProperty]
-        public object EqualTo {
+        public string EqualTo {
             get {
                 return null;
             }
@@ -104,7 +107,7 @@ namespace jQueryApi.Validation {
         /// Makes the element require a given maximum
         /// </summary>
         [IntrinsicProperty]
-        public object Max {
+        public int Max {
             get {
                 return 0;
             }
@@ -116,7 +119,7 @@ namespace jQueryApi.Validation {
         /// Makes the element require a given maximum length
         /// </summary>
         [IntrinsicProperty]
-        public object MaxLength {
+        public int MaxLength {
             get {
                 return 0;
             }
@@ -128,7 +131,7 @@ namespace jQueryApi.Validation {
         /// Makes the element require given minimum
         /// </summary>
         [IntrinsicProperty]
-        public object Min {
+        public int Min {
             get {
                 return 0;
             }
@@ -140,7 +143,7 @@ namespace jQueryApi.Validation {
         /// Makes the element require a given minimum length
         /// </summary>
         [IntrinsicProperty]
-        public object MinLength {
+        public int MinLength {
             get {
                 return 0;
             }
@@ -152,7 +155,7 @@ namespace jQueryApi.Validation {
         /// Makes the element require a decimal number
         /// </summary>
         [IntrinsicProperty]
-        public object Number {
+        public bool Number {
             get {
                 return false;
             }
@@ -162,7 +165,7 @@ namespace jQueryApi.Validation {
 
         [IntrinsicProperty]
         [ScriptName("phoneUS")]
-        public object PhoneUS {
+        public bool PhoneUS {
             get {
                 return false;
             }
@@ -174,7 +177,7 @@ namespace jQueryApi.Validation {
         /// Makes the value require a given value range
         /// </summary>
         [IntrinsicProperty]
-        public object Range {
+        public int[] Range {
             get {
                 return null;
             }
@@ -186,7 +189,7 @@ namespace jQueryApi.Validation {
         /// Makes the element require a given value range
         /// </summary>
         [IntrinsicProperty]
-        public object RangeLength {
+        public int[] RangeLength {
             get {
                 return null;
             }
@@ -207,10 +210,36 @@ namespace jQueryApi.Validation {
         }
 
         /// <summary>
+        /// Makes the element required, depending on the result of the given callback
+        /// </summary>
+        [IntrinsicProperty]
+        [ScriptName("required")]
+        public Func<bool> RequiredCallback {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
+        /// Makes the element required, depending on the result of the given expression
+        /// </summary>
+        [IntrinsicProperty]
+        [ScriptName("required")]
+        public string RequiredExpression {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
         /// Makes the element always required
         /// </summary>
         [IntrinsicProperty]
-        public object Required {
+        public bool Required {
             get {
                 return false;
             }
@@ -222,7 +251,7 @@ namespace jQueryApi.Validation {
         /// Makes the element require a valid url
         /// </summary>
         [IntrinsicProperty]
-        public object Url {
+        public bool Url {
             get {
                 return false;
             }

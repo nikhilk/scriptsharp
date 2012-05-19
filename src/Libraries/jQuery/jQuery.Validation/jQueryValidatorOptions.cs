@@ -1,4 +1,4 @@
-// ValidatorOptions.cs
+// jQueryValidatorOptions.cs
 // Script#/Libraries/jQuery/jQueryValidation
 // This source code is subject to terms and conditions of the Microsoft 
 // Public License. A copy of the license can be found in License.txt.
@@ -13,7 +13,7 @@ namespace jQueryApi.Validation {
     [Imported]
     [IgnoreNamespace]
     [ScriptName("Object")]
-    public sealed class ValidatorOptions {
+    public sealed class jQueryValidatorOptions {
 
         [IntrinsicProperty]
         public bool Debug {
@@ -98,7 +98,7 @@ namespace jQueryApi.Validation {
         }
 
         [IntrinsicProperty]
-        public Action<jQueryEvent, Validator> InvalidHandler {
+        public Action<jQueryEvent, jQueryValidator> InvalidHandler {
             get {
                 return null;
             }
