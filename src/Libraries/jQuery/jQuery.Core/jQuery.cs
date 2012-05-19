@@ -234,6 +234,7 @@ namespace jQueryApi {
         /// Creates a new instance of a deferred object.
         /// </summary>
         [PreserveCase]
+        [ScriptName("Deferred")]
         public static jQueryDeferred<TData> DeferredData<TData>() {
             return null;
         }
@@ -252,6 +253,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="initializer">An initializer callback to initialize the new deferred object.</param>
         [PreserveCase]
+        [ScriptName("Deferred")]
         public static jQueryDeferred<TData> DeferredData<TData>(jQueryDeferredInitializer<TData> initializer) {
             return null;
         }
