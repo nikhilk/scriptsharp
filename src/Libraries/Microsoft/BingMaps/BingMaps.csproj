@@ -40,6 +40,8 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MapEntityEventArgs.cs" />
+    <Compile Include="MapEntityCollectionEventArgs.cs" />
     <Compile Include="Location\GeoLocationError.cs" />
     <Compile Include="Location\GeoLocation.cs" />
     <Compile Include="Location\GeoLocationCircleOptions.cs" />
