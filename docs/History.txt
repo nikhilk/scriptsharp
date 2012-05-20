@@ -7,6 +7,16 @@ v0.7.5.0 [in progress]
     - jQuery API update (on/off methods)
     - Knockout API updates for missing APIs
     - Addition of support for jQuery validation plugin
+    - [git #130] ReadyState property on Document
+    - [git #132] DOM metadata for plugins
+    - [git #139] jQuery on/off APIs
+    - [git #141] Bing maps metadata missing APIs
+    - [git #145] Knockout additions
+    - [git #152] Knockout additions
+    - [git #155] ReadyState property on Document
+    - [git #156] Changed projects (incl. templates) to target .net framework v2.0
+    - [git #166] Fix generic Deffered API on jQuery
+    - [git #169] Missing jQuery API overload added
     - [git #170] Fix bing maps metadata bug
 
 v0.7.4.0
