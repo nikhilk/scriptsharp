@@ -1,0 +1,423 @@
+<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+  xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  <Product Name="Script#" Id="C8DDAF63-E1FD-40b2-8B07-D4884E6C6A93"
+      UpgradeCode="4AA80412-099C-4bb5-B763-76DC99A9A16D" 
+      Manufacturer="Nikhil Kothari"
+      Version="0.7.4.0"
+      Language="1033">
+    <Package
+       Comments="This msi installs Script#."
+       Description="Script# Compiler, Frameworks, Build Tools and Visual Studio project template files."
+       Manufacturer="Nikhil Kothari"
+       Languages="1033"
+       Compressed="yes" AdminImage="yes"
+       InstallerVersion="200" />
+
+    <!-- Conditions -->
+    <Condition Message="You need to be an administrator to install this product.">
+      Privileged
+    </Condition>
+
+    <PropertyRef Id="NETFRAMEWORK40FULL" />
+    <Condition Message="You must first install the .NET 4.0 Framework on this computer.">Installed OR NETFRAMEWORK40FULL</Condition>
+
+    <!-- Media -->
+    <Media Id="1" Cabinet="ssc.cab" EmbedCab="yes" CompressionLevel="high" />
+
+    <Property Id="PRODUCTVERSION">0.7.0.0</Property>
+    <Property Id="ALLUSERS">1</Property>
+
+
+    <!-- Detect Visual Web Developer Folders -->
+    <Property Id="VWDEXP10_INSTALLDIR">
+      <RegistrySearch Id="VWDExp10_InstallDirRegSearch" Type="directory"
+        Root="HKLM" Key="SOFTWARE\Microsoft\VWDExpress\10.0" Name="InstallDir" />
+    </Property>
+    <Property Id="VWDEXP10_PROJTEMPLATEFOLDER">
+      <RegistrySearch Id="VWDExp10_ProjTemplateFolderRegSearch" Type="directory"
+        Root="HKLM" Key="SOFTWARE\Microsoft\VWDExpress\10.0\VSTemplate\Project" Name="UserFolder" />
+    </Property>
+    <Property Id="VWDEXP10_ITEMTEMPLATEFOLDER">
+      <RegistrySearch Id="VWDExp10_ItemTemplateFolderRegSearch" Type="directory"
+        Root="HKLM" Key="SOFTWARE\Microsoft\VWDExpress\10.0\VSTemplate\Item" Name="UserFolder" />
+    </Property>
+    <Property Id='VWDEXP10_CSHARPPROJTEMPLATEFOLDER'>
+      <DirectorySearch Id='VWDExp10_CSharpProjTemplateFolder' Path='[VWDEXP10_PROJTEMPLATEFOLDER]CSharp'/>
+    </Property>
+    <Property Id='VWDEXP10_CSHARPITEMTEMPLATEFOLDER'>
+      <DirectorySearch Id='VWDExp10_CSharpItemTemplateFolder' Path='[VWDEXP10_ITEMTEMPLATEFOLDER]CSharp'/>
+    </Property>
+
+    <!-- Detect Visual Studio Folders -->
+    <Property Id="VS10_INSTALLDIR">
+      <RegistrySearch Id="VS10_InstallDirRegSearch" Type="directory"
+        Root="HKLM" Key="SOFTWARE\Microsoft\VisualStudio\10.0" Name="InstallDir" />
+    </Property>
+    <Property Id="VS10_PROJTEMPLATEFOLDER">
+      <RegistrySearch Id="VS10_ProjTemplateFolderRegSearch" Type="directory"
+        Root="HKLM" Key="SOFTWARE\Microsoft\VisualStudio\10.0\VSTemplate\Project" Name="UserFolder" />
+    </Property>
+    <Property Id="VS10_ITEMTEMPLATEFOLDER">
+      <RegistrySearch Id="VS10_ItemTemplateFolderRegSearch" Type="directory"
+        Root="HKLM" Key="SOFTWARE\Microsoft\VisualStudio\10.0\VSTemplate\Item" Name="UserFolder" />
+    </Property>
+    <Property Id="VS10_CSHARPPROJTEMPLATEFOLDER">
+      <DirectorySearch Id="VS10_CSharpProjTemplateFolder" Path="[VS10_PROJTEMPLATEFOLDER]CSharp" />
+    </Property>
+    <Property Id="VS10_CSHARPITEMTEMPLATEFOLDER">
+      <DirectorySearch Id="VS10_CSharpItemTemplateFolder" Path="[VS10_ITEMTEMPLATEFOLDER]CSharp" />
+    </Property>
+
+
+    <!-- Directory Structure -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder" Name="PFiles">
+        <Directory Id="ScriptSharpFolder" Name="ScriptSharp">
+          <Directory Id="VersionFolder" Name="v1.0">
+            <Directory Id="FrameworkFolder" Name="Framework" />
+            <Directory Id="AnalysisFolder" Name="CodeAnalysis" />
+            <Directory Id="GacFolder" Name="GAC" />
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="VWDEXP10_CSHARPPROJTEMPLATEFOLDER" Name="VWDCSharpProjTemplateFolder">
+        <Directory Id="VWDExp10_ScriptSharpClassLibTemplateFolder" Name="Script#" />
+      </Directory>
+      <Directory Id="VWDEXP10_CSHARPITEMTEMPLATEFOLDER" Name="VWDCSharpItemTemplateFolder">
+        <Directory Id="VWDExp10_ScriptSharpClassTemplateFolder" Name="Script#" />
+      </Directory>
+      <Directory Id="VS10_CSHARPPROJTEMPLATEFOLDER" Name="VS10_CSharpProjTemplateFolder">
+        <Directory Id="VS10_ScriptSharpClassLibTemplateFolder" Name="Script#" />
+      </Directory>
+      <Directory Id="VS10_CSHARPITEMTEMPLATEFOLDER" Name="VS10_CSharpItemTemplateFolder">
+        <Directory Id="VS10_ScriptSharpClassTemplateFolder" Name="Script#" />
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ShortcutsFolder" Name="Script#" />
+      </Directory>
+    </Directory>
+
+    <!-- Shortcuts -->
+    <DirectoryRef Id="ShortcutsFolder">
+      <Component Id="ShortcutsComponent" Guid="040D1984-EF9B-4338-9529-437053CFF166">
+        <RegistryValue Root='HKCU' Key='SOFTWARE\ScriptSharp' Type='string' Value='[PRODUCTVERSION]' KeyPath='yes' />
+        <File Id="ProjLink" Name="Script# Project.url" Vital="yes" Source="ScriptSharpLink.txt" />
+        <File Id="TwitterLink" Name="Script# on Twitter.url" Vital="yes" Source="ScriptSharpTwitterLink.txt" />
+        <RemoveFolder Id="RemoveShortcutsFolder" Directory="ShortcutsFolder" On="uninstall" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- Core Tools Component -->
+    <DirectoryRef Id="VersionFolder">
+      <Component Id="CoreToolsComponent" Guid="4945264F-2AED-4027-98B2-E35F6D00CFA7">
+        <!-- ssc.exe and sspp.exe -->
+        <File Id="CompilerEXE" Name="ssc.exe" Vital="yes" Source="ssc.exe" />
+        <File Id="PreprocessorEXE" Name="sspp.exe" Vital="yes" Source="sspp.exe" />
+
+        <!-- ScriptSharp.dll -->
+        <File Id="CompilerDLL" Name="ScriptSharp.dll" Vital="yes" Source="ScriptSharp.dll" />
+
+        <!-- ScriptSharp.Build.dll -->
+        <File Id="BuildDLL" Name="ScriptSharp.Build.dll" Vital="yes" Source="ScriptSharp.Build.dll" />
+
+        <!-- ScriptSharp.targets -->
+        <File Id="ScriptSharpTarget" Name="ScriptSharp.targets" Vital="yes" Source="ScriptSharp.targets" />
+
+        <!-- ScriptSharp.Web.dll -->
+        <File Id="ServerDLL" Name="ScriptSharp.Web.dll" Vital="yes" Source="ScriptSharp.Web.dll" />
+
+        <!-- ScriptSharp.Testing.dll -->
+        <File Id="TestingDLL" Name="ScriptSharp.Testing.dll" Vital="yes" Source="ScriptSharp.Testing.dll" />
+
+        <!-- ScriptSharp.VisualStudio.dll -->
+        <File Id="VSIntegrationDLL" Name="ScriptSharp.VisualStudio.dll" Vital="yes" Source="ScriptSharp.VisualStudio.dll" />
+      </Component>
+    </DirectoryRef>
+
+
+    <!-- GAC Components -->
+    <DirectoryRef Id="GacFolder">
+      <Component Id="GACComponent1" Guid="89E23E2E-9C1A-4b2a-AF03-45319425DDF1">
+        <!-- ScriptSharp.dll -->
+        <File Id="GACCompilerDLL" Name="ScriptSharp.dll" Assembly=".net" KeyPath="yes" Vital="yes" Source="ScriptSharp.dll" />
+      </Component>
+      <Component Id="GACComponent2" Guid="EC32E09D-8C71-458D-8F76-38D65A6697BE">
+        <!-- ScriptSharp.Build.dll -->
+        <File Id="GACBuildDLL" Name="ScriptSharp.Build.dll" Assembly=".net" KeyPath="yes" Vital="yes" Source="ScriptSharp.Build.dll" />
+      </Component>
+      <Component Id="GACComponent3" Guid="64049038-33B2-46B9-AFCC-4AA6A63050EC">
+        <!-- ScriptSharp.Testing.dll -->
+        <File Id="GACTestingDLL" Name="ScriptSharp.Testing.dll" Assembly=".net" KeyPath="yes" Vital="yes" Source="ScriptSharp.Testing.dll" />
+      </Component>
+      <Component Id="GACComponent4" Guid="A3679D21-4F86-45BA-BDC6-110F9364E0CC">
+        <!-- ScriptSharp.VisualStudio.dll -->
+        <File Id="GACVSDLL" Name="ScriptSharp.VisualStudio.dll" Assembly=".net" KeyPath="yes" Vital="yes" Source="ScriptSharp.VisualStudio.dll" />
+      </Component>
+    </DirectoryRef>
+
+
+    <!-- CodeAnalysis Assemblies -->
+    <DirectoryRef Id="AnalysisFolder">
+      <Component Id="AnalysisComponent" Guid="7327D064-663B-442D-A50A-229DE321A36D">
+        <!-- ScriptSharp.FxCop.dll -->
+        <File Id="FxCopDLL" Name="ScriptSharp.FxCop.dll" Vital="yes" Source="ScriptSharp.FxCop.dll" />
+      </Component>
+    </DirectoryRef>
+    
+    <!-- Script# Framework Assemblies -->
+    <DirectoryRef Id="FrameworkFolder">
+      <Component Id="FrameworkComponent" Guid="A5C999B6-4BA8-400b-BD3A-B84B72E30E92">
+        <!-- mscorlib/mscompat -->
+        <File Id="MSCorlibDllFile" Name="mscorlib.dll" Vital="yes" Source="mscorlib.dll" />
+        <File Id="MSCorlibDocFile" Name="mscorlib.xml" Vital="yes" Source="mscorlib.xml" />
+        <File Id="MSCorlibRJsFile" Name="mscorlib.js" Vital="yes" Source="..\ref\mscorlib.js" />
+        <File Id="MSCorlibDJsFile" Name="mscorlib.debug.js" Vital="yes" Source="..\ref\mscorlib.debug.js" />
+        <File Id="SSLoaderRJsFile" Name="ssloader.js" Vital="yes" Source="..\ref\ssloader.js" />
+        <File Id="SSLoaderDJsFile" Name="ssloader.debug.js" Vital="yes" Source="..\ref\ssloader.debug.js" />
+
+        <!-- Script.Web -->
+        <File Id="WebDllFile" Name="Script.Web.dll" Vital="yes" Source="Script.Web.dll" />
+        <File Id="WebDocFile" Name="Script.Web.xml" Vital="yes" Source="Script.Web.xml" />
+
+        <!-- Script.Windows -->
+        <File Id="WindowsDllFile" Name="Script.Windows.dll" Vital="yes" Source="Script.Windows.dll" />
+        <File Id="WindowsDocFile" Name="Script.Windows.xml" Vital="yes" Source="Script.Windows.xml" />
+
+        <!-- Script.jQuery -->
+        <File Id="jQueryDllFile" Name="Script.jQuery.dll" Vital="yes" Source="Script.jQuery.dll" />
+        <File Id="jQueryDocFile" Name="Script.jQuery.xml" Vital="yes" Source="Script.jQuery.xml" />
+        <File Id="jQueryTxtFile" Name="Script.jQuery.txt" Vital="yes" Source="Script.jQuery.txt" />
+
+        <!-- Script.jQuery.History -->
+        <File Id="jQueryHistoryDllFile" Name="Script.jQuery.History.dll" Vital="yes" Source="Script.jQuery.History.dll" />
+        <File Id="jQueryHistoryDocFile" Name="Script.jQuery.History.xml" Vital="yes" Source="Script.jQuery.History.xml" />
+        <File Id="jQueryHistoryTxtFile" Name="Script.jQuery.History.txt" Vital="yes" Source="Script.jQuery.History.txt" />
+
+        <!-- Script.jQuery.Templating -->
+        <File Id="jQueryTemplatingDllFile" Name="Script.jQuery.Templating.dll" Vital="yes" Source="Script.jQuery.Templating.dll" />
+        <File Id="jQueryTemplatingDocFile" Name="Script.jQuery.Templating.xml" Vital="yes" Source="Script.jQuery.Templating.xml" />
+        <File Id="jQueryTemplatingTxtFile" Name="Script.jQuery.Templating.txt" Vital="yes" Source="Script.jQuery.Templating.txt" />
+
+        <!-- Script.Microsoft.BingMaps -->
+        <File Id="BingMapsDllFile" Name="Script.Microsoft.BingMaps.dll" Vital="yes" Source="Script.Microsoft.BingMaps.dll" />
+        <File Id="BingMapsDocFile" Name="Script.Microsoft.BingMaps.xml" Vital="yes" Source="Script.Microsoft.BingMaps.xml" />
+        <File Id="BingMapsTxtFile" Name="Script.Microsoft.BingMaps.txt" Vital="yes" Source="Script.Microsoft.BingMaps.txt" />
+
+        <!-- Script.Knockout -->
+        <File Id="KnockoutDllFile" Name="Script.Knockout.dll" Vital="yes" Source="Script.Knockout.dll" />
+        <File Id="KnockoutDocFile" Name="Script.Knockout.xml" Vital="yes" Source="Script.Knockout.xml" />
+        <File Id="KnockoutTxtFile" Name="Script.Knockout.txt" Vital="yes" Source="Script.Knockout.txt" />
+
+        <RegistryKey Id="FrameworkPathReg" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\.NETFramework\AssemblyFolders\ScriptSharp">
+          <RegistryValue Type="string" Value="[%ProgramFiles]\ScriptSharp\v1.0\Framework\" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+
+    <!-- Visual Web Developer Integration -->
+    <DirectoryRef Id="VWDExp10_ScriptSharpClassLibTemplateFolder">
+      <Component Id="VWDExp10_ClassLibProjTemplate" Guid="80E7C3F4-651A-4c42-8E80-2BC0C20988BC">
+        <File Id="VWDExp10_ClassLibTemplateIndex" Name="Script#.VSTDIR" Source="Templates\Script#.VSTDIR" />
+        <File Id="VWDExp10_ClassLibTemplateZip" Name="ClassLibrary.zip" Source="Templates\ProjectTemplates\ClassLibrary.zip" />
+        <File Id="VWDExp10_JQueryClassLibTemplateZip" Name="JQueryClassLibrary.zip" Source="Templates\ProjectTemplates\JQueryClassLibrary.zip" />
+        <File Id="VWDExp10_GadgetTemplateZip" Name="Gadget.zip" Source="Templates\ProjectTemplates\Gadget.zip" />
+        <File Id="VWDExp10_UnitTestTemplateZip" Name="UnitTest.zip" Source="Templates\ProjectTemplates\UnitTest.zip" />
+        <File Id="VWDExp10_ImportLibTemplateZip" Name="ImportLibrary.zip" Source="Templates\ProjectTemplates\ImportLibrary.zip" />
+
+        <RegistryValue Id="VWDExp10_ScriptSharpTargetReg" Root="HKLM" Key="Software\Microsoft\VWDExpress\9.0\MSBuild\SafeImports"
+          Name="ScriptSharp" Type="string" KeyPath="yes"
+          Value="[%ProgramFiles]\ScriptSharp\v1.0\ScriptSharp.targets" />
+
+        <RegistryKey Id="VWDExp10_ResxCLSID" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\VWDExpress\9.0\CLSID\{33FA0BF4-CBBA-4fdd-9300-0F5A6BDE7E33}">
+          <RegistryValue Type="string" Value="ScriptSharp.VisualStudio.Generators.ResXInternalScriptGenerator" />
+          <RegistryValue Type="string" Name="InprocServer32" Value="[%SystemRoot]\System32\mscoree.dll" />
+          <RegistryValue Type="string" Name="Class" Value="ScriptSharp.VisualStudio.Generators.ResXInternalScriptGenerator" />
+          <RegistryValue Type="string" Name="Assembly" Value="ScriptSharp.VisualStudio, Version=[PRODUCTVERSION], Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4" />
+          <RegistryValue Type="string" Name="ThreadingModel" Value="Both" />
+        </RegistryKey>
+
+        <RegistryKey Id="VWDExp10_ResxPublicCLSID" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\VWDExpress\9.0\CLSID\{33FA0BF5-CBBA-4fdd-9300-0F5A6BDE7E33}">
+          <RegistryValue Type="string" Value="ScriptSharp.VisualStudio.Generators.ResXPublicScriptGenerator" />
+          <RegistryValue Type="string" Name="InprocServer32" Value="[%SystemRoot]\System32\mscoree.dll" />
+          <RegistryValue Type="string" Name="Class" Value="ScriptSharp.VisualStudio.Generators.ResXPublicScriptGenerator" />
+          <RegistryValue Type="string" Name="Assembly" Value="ScriptSharp.VisualStudio, Version=[PRODUCTVERSION], Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4" />
+          <RegistryValue Type="string" Name="ThreadingModel" Value="Both" />
+        </RegistryKey>
+
+        <RegistryKey Id="VWDExp10_ResxGenerator" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\VWDExpress\9.0\Generators\{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}\ResXFileScriptGenerator">
+          <RegistryValue Type="string" Value="Script# ResX File Internal Script Generator" />
+          <RegistryValue Type="string" Name="CLSID" Value="{33FA0BF4-CBBA-4fdd-9300-0F5A6BDE7E33}" />
+          <RegistryValue Type="integer" Name="GeneratesDesignTimeSource" Value="1" />
+        </RegistryKey>
+
+        <RegistryKey Id="VWDExp10_ResxPublicGenerator" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\VWDExpress\9.0\Generators\{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}\PublicResXFileScriptGenerator">
+          <RegistryValue Type="string" Value="Script# ResX File Public Script Generator" />
+          <RegistryValue Type="string" Name="CLSID" Value="{33FA0BF5-CBBA-4fdd-9300-0F5A6BDE7E33}" />
+          <RegistryValue Type="integer" Name="GeneratesDesignTimeSource" Value="1" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VWDExp10_ScriptSharpClassTemplateFolder">
+      <Component Id="VWDExp10_ClassItemTemplate" Guid="E7B67B49-266B-4959-B2D6-292101173C86">
+        <File Id="VWDExp10_ClassTemplateIndex" Name="Script#.VSTDIR" Source="Templates\Script#.VSTDIR" />
+        <File Id="VWDExp10_ClassTemplateZip" Name="Class.zip" Source="Templates\ItemTemplates\Class.zip" />
+        <File Id="VWDExp10_JQueryPluginTemplateZip" Name="JQueryPlugin.zip" Source="Templates\ItemTemplates\JQueryPlugin.zip" />
+        <File Id="VWDExp10_ScriptletTemplateZip" Name="Scriptlet.zip" Source="Templates\ItemTemplates\Scriptlet.zip" />
+        <File Id="VWDExp10_PageTemplateZip" Name="Page.zip" Source="Templates\ItemTemplates\Page.zip" />
+        <File Id="VWDExp10_JQueryPageTemplateZip" Name="JQueryPage.zip" Source="Templates\ItemTemplates\JQueryPage.zip" />
+        <File Id="VWDExp10_TestClassTemplateZip" Name="TestClass.zip" Source="Templates\ItemTemplates\TestClass.zip" />
+        <File Id="VWDExp10_ResourceTemplateZip" Name="Resource.zip" Source="Templates\ItemTemplates\Resource.zip" />
+      </Component>
+    </DirectoryRef>
+
+
+    <!-- Visual Studio Integration -->
+    <DirectoryRef Id="VS10_ScriptSharpClassLibTemplateFolder">
+      <Component Id="VS10_ClassLibProjTemplate" Guid="4087E4C9-984E-41B0-8A4C-8EE1606441B9">
+        <File Id="VS10_ClassLibTemplateIndex" Name="Script#.VSTDIR" Source="Templates\Script#.VSTDIR" />
+        <File Id="VS10_ClassLibTemplateZip" Name="ClassLibrary.zip" Source="Templates\ProjectTemplates\ClassLibrary.zip" />
+        <File Id="VS10_JQueryClassLibTemplateZip" Name="JQueryClassLibrary.zip" Source="Templates\ProjectTemplates\JQueryClassLibrary.zip" />
+        <File Id="VS10_GadgetTemplateZip" Name="Gadget.zip" Source="Templates\ProjectTemplates\Gadget.zip" />
+        <File Id="VS10_UnitTestTemplateZip" Name="UnitTest.zip" Source="Templates\ProjectTemplates\UnitTest.zip" />
+        <File Id="VS10_ImportLibTemplateZip" Name="ImportLibrary.zip" Source="Templates\ProjectTemplates\ImportLibrary.zip" />
+
+        <RegistryValue Id="VS10_ScriptSharpTargetReg" Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\MSBuild\SafeImports"
+          Name="ScriptSharp" Type="string" KeyPath="yes"
+          Value="[%ProgramFiles]\ScriptSharp\v1.0\ScriptSharp.targets" />
+
+        <RegistryKey Id="VS10_SiteScriptletAspx" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\Projects\{E24C65DC-7377-472b-9ABA-BC803B73C61A}\RelatedFiles\.aspx\.scriptlet" />
+        <RegistryKey Id="VS10_SiteScriptletAscx" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\Projects\{E24C65DC-7377-472b-9ABA-BC803B73C61A}\RelatedFiles\.ascx\.scriptlet" />
+        <RegistryKey Id="VS10_SiteScriptletMaster" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\Projects\{E24C65DC-7377-472b-9ABA-BC803B73C61A}\RelatedFiles\.master\.scriptlet" />
+
+        <RegistryValue Id="VS10_AppScripletAspx" Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\Projects\{FAE04EC0-301F-11d3-BF4B-00C04F79EFBC}\RelatedFiles\.aspx"
+          Name=".scriptlet" Type="integer" Value="2" />
+        <RegistryValue Id="VS10_AppScripletAscx" Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\Projects\{FAE04EC0-301F-11d3-BF4B-00C04F79EFBC}\RelatedFiles\.ascx"
+          Name=".scriptlet" Type="integer" Value="2" />
+        <RegistryValue Id="VS10_AppScripletMaster" Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\Projects\{FAE04EC0-301F-11d3-BF4B-00C04F79EFBC}\RelatedFiles\.master"
+          Name=".scriptlet" Type="integer" Value="2" />
+
+        <RegistryKey Id="VS10_ResxCLSID" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\CLSID\{33FA0BF4-CBBA-4fdd-9300-0F5A6BDE7E33}">
+          <RegistryValue Type="string" Value="ScriptSharp.VisualStudio.Generators.ResXInternalScriptGenerator" />
+          <RegistryValue Type="string" Name="InprocServer32" Value="[%SystemRoot]\System32\mscoree.dll" />
+          <RegistryValue Type="string" Name="Class" Value="ScriptSharp.VisualStudio.Generators.ResXInternalScriptGenerator" />
+          <RegistryValue Type="string" Name="Assembly" Value="ScriptSharp.VisualStudio, Version=[PRODUCTVERSION], Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4" />
+          <RegistryValue Type="string" Name="ThreadingModel" Value="Both" />
+        </RegistryKey>
+
+        <RegistryKey Id="VS10_ResxPublicCLSID" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\CLSID\{33FA0BF5-CBBA-4fdd-9300-0F5A6BDE7E33}">
+          <RegistryValue Type="string" Value="ScriptSharp.VisualStudio.Generators.ResXPublicScriptGenerator" />
+          <RegistryValue Type="string" Name="InprocServer32" Value="[%SystemRoot]\System32\mscoree.dll" />
+          <RegistryValue Type="string" Name="Class" Value="ScriptSharp.VisualStudio.Generators.ResXPublicScriptGenerator" />
+          <RegistryValue Type="string" Name="Assembly" Value="ScriptSharp.VisualStudio, Version=[PRODUCTVERSION], Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4" />
+          <RegistryValue Type="string" Name="ThreadingModel" Value="Both" />
+        </RegistryKey>
+
+        <RegistryKey Id="VS10_ResxGenerator" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\Generators\{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}\ResXFileScriptGenerator">
+          <RegistryValue Type="string" Value="Script# ResX File Internal Script Generator" />
+          <RegistryValue Type="string" Name="CLSID" Value="{33FA0BF4-CBBA-4fdd-9300-0F5A6BDE7E33}" />
+          <RegistryValue Type="integer" Name="GeneratesDesignTimeSource" Value="1" />
+        </RegistryKey>
+
+        <RegistryKey Id="VS10_ResxPublicGenerator" Action="createAndRemoveOnUninstall"
+          Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\Generators\{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}\PublicResXFileScriptGenerator">
+          <RegistryValue Type="string" Value="Script# ResX File Public Script Generator" />
+          <RegistryValue Type="string" Name="CLSID" Value="{33FA0BF5-CBBA-4fdd-9300-0F5A6BDE7E33}" />
+          <RegistryValue Type="integer" Name="GeneratesDesignTimeSource" Value="1" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS10_ScriptSharpClassTemplateFolder">
+      <Component Id="VS10_ClassItemTemplate" Guid="A22FFF4C-9D48-49FC-A5DF-69A8DA8FC9A2">
+        <File Id="VS10_ClassTemplateIndex" Name="Script#.VSTDIR" Source="Templates\Script#.VSTDIR" />
+        <File Id="VS10_ClassTemplateZip" Name="Class.zip" Source="Templates\ItemTemplates\Class.zip" />
+        <File Id="VS10_JQueryPluginTemplateZip" Name="JQueryPlugin.zip" Source="Templates\ItemTemplates\JQueryPlugin.zip" />
+        <File Id="VS10_ScriptletTemplateZip" Name="Scriptlet.zip" Source="Templates\ItemTemplates\Scriptlet.zip" />
+        <File Id="VS10_PageTemplateZip" Name="Page.zip" Source="Templates\ItemTemplates\Page.zip" />
+        <File Id="VS10_JQueryPageTemplateZip" Name="JQueryPage.zip" Source="Templates\ItemTemplates\JQueryPage.zip" />
+        <File Id="VS10_TestClassTemplateZip" Name="TestClass.zip" Source="Templates\ItemTemplates\TestClass.zip" />
+        <File Id="VS10_ResourceTemplateZip" Name="Resource.zip" Source="Templates\ItemTemplates\Resource.zip" />
+      </Component>
+    </DirectoryRef>
+
+
+    <!-- Feature Hierarchy -->
+    <Feature Id="CompleteFeature" Level="1"
+      Display="expand" Absent="disallow" AllowAdvertise="no" TypicalDefault="install" InstallDefault="local"
+      Title="Script#" Description="The complete Script# product.">
+      
+      <Feature Id="CoreFeature" Level="1"
+        Absent="disallow" InstallDefault="local" TypicalDefault="install" AllowAdvertise="no"
+        Title="Core Tools and Framework" Description="The Script# compiler, runtime assemblies and script framework.">
+        <ComponentRef Id="CoreToolsComponent" />
+        <ComponentRef Id="AnalysisComponent" />
+        <ComponentRef Id="ShortcutsComponent" />
+        <ComponentRef Id="FrameworkComponent" />
+        <ComponentRef Id="GACComponent1" />
+        <ComponentRef Id="GACComponent2" />
+        <ComponentRef Id="GACComponent3" />
+        <ComponentRef Id="GACComponent4" />
+      </Feature>
+
+      <Feature Id="VWDExp10_Feature" Level="1"
+        InstallDefault="local" TypicalDefault="install" AllowAdvertise="no"
+        Title="Visual Web Developer Integration" Description="Support for Visual Web Developer Express and associated project templates.">
+        <ComponentRef Id="VWDExp10_ClassLibProjTemplate" />
+        <ComponentRef Id="VWDExp10_ClassItemTemplate" />
+        <Condition Level="0">NOT VWDEXP10_INSTALLDIR</Condition>
+      </Feature>
+
+      <Feature Id="VS10_Feature" Level="1"
+        InstallDefault="local" TypicalDefault="install" AllowAdvertise="no"
+        Title="Visual Studio Integration" Description="Support for Visual Studio 2010 and associated project templates.">
+        <ComponentRef Id="VS10_ClassLibProjTemplate" />
+        <ComponentRef Id="VS10_ClassItemTemplate" />
+        <Condition Level="0">NOT VS10_INSTALLDIR</Condition>
+      </Feature>
+    </Feature>
+
+
+    <Property Id="VWDEXPRESS10">TBD</Property>
+    <CustomAction Id="AssignVWDExpress10" Property="VWDEXPRESS10" Value="[VWDEXP10_INSTALLDIR]VWDExpress.exe"></CustomAction>
+    <CustomAction Id="InstallVWDExpress10Templates" Property="VWDEXPRESS10" ExeCommand="/InstallVSTemplates"
+      Return="asyncWait" Execute="deferred" Impersonate="no" />
+
+    <Property Id="DEVENV10">TBD</Property>
+    <CustomAction Id="AssignDevEnv10" Property="DEVENV10" Value="[VS10_INSTALLDIR]devenv.exe"></CustomAction>
+    <CustomAction Id="InstallVS10Templates" Property="DEVENV10" ExeCommand="/InstallVSTemplates"
+      Return="asyncWait" Execute="deferred" Impersonate="no" />
+
+    <InstallExecuteSequence>
+      <LaunchConditions After='AppSearch' />
+
+      <Custom Action="AssignVWDExpress10" Before="InstallVWDExpress10Templates">VWDEXP10_INSTALLDIR AND NOT (!VWDExp10_Feature = -1)</Custom>
+      <Custom Action="InstallVWDExpress10Templates" Before="InstallFinalize">VWDEXP10_INSTALLDIR AND NOT (!VWDExp10_Feature = -1)</Custom>
+
+      <Custom Action="AssignDevEnv10" Before="InstallVS10Templates">VS10_INSTALLDIR AND NOT (!VS10_Feature = -1)</Custom>
+      <Custom Action="InstallVS10Templates" Before="InstallFinalize">VS10_INSTALLDIR AND NOT (!VS10_Feature = -1)</Custom>
+    </InstallExecuteSequence>
+
+    <Icon Id="Icon" SourceFile="ScriptSharp.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="Icon" />
+
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    <WixVariable Id="WixUIDialogBmp" Value="DialogBackground.bmp" />
+    <WixVariable Id="WixUIBannerBmp" Value="DialogHeader.bmp" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALTEXT" Value="Thank you for installing Script#. You can find out more about Script# at http://www.scriptsharp.com or by following Script# by following @scriptsharp on Twitter." />
+    <UIRef Id="WixUI_Minimal" />
+    
+  </Product>
+</Wix>
