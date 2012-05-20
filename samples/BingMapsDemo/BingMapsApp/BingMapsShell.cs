@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Html;
 using Microsoft.Maps;
+using Microsoft.Maps.Location;
 using Microsoft.Maps.Traffic;
 using Microsoft.Maps.VenueMaps;
 
@@ -86,6 +87,18 @@ namespace BingMapsApp {
                 venueMapFactory.Search(searchOptions);
             };
             Map.LoadModule(MapModule.VenueMaps, venueMapOptions);
+
+            Element locateMeButton = Document.GetElementById("locateMeButton");
+            locateMeButton.AddEventListener("click", OnLocateMeClick, false);
+        }
+
+        private void OnLocateMeClick(ElementEvent e) {
+            GeoLocationProvider geoLocationProvider = new GeoLocationProvider(_map);
+
+            GeoLocationOptions options = new GeoLocationOptions();
+            options.UpdateMapView = true;
+
+            geoLocationProvider.GetCurrentPosition(options);
         }
 
         private void OnPushpinClick(EventArgs e) {
