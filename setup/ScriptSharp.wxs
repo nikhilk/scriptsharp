@@ -199,6 +199,11 @@
         <File Id="jQueryTemplatingDocFile" Name="Script.jQuery.Templating.xml" Vital="yes" Source="Script.jQuery.Templating.xml" />
         <File Id="jQueryTemplatingTxtFile" Name="Script.jQuery.Templating.txt" Vital="yes" Source="Script.jQuery.Templating.txt" />
 
+        <!-- Script.jQuery.Validation -->
+        <File Id="jQueryValidationDllFile" Name="Script.jQuery.Validation.dll" Vital="yes" Source="Script.jQuery.Validation.dll" />
+        <File Id="jQueryValidationDocFile" Name="Script.jQuery.Validation.xml" Vital="yes" Source="Script.jQuery.Validation.xml" />
+        <File Id="jQueryValidationTxtFile" Name="Script.jQuery.Validation.txt" Vital="yes" Source="Script.jQuery.Validation.txt" />
+
         <!-- Script.Microsoft.BingMaps -->
         <File Id="BingMapsDllFile" Name="Script.Microsoft.BingMaps.dll" Vital="yes" Source="Script.Microsoft.BingMaps.dll" />
         <File Id="BingMapsDocFile" Name="Script.Microsoft.BingMaps.xml" Vital="yes" Source="Script.Microsoft.BingMaps.xml" />
