@@ -91,6 +91,15 @@ namespace jQueryApi {
         /// <summary>
         /// Adds elements to the set of matched elements.
         /// </summary>
+        /// <param name="elements">The jQuery object representing the elements to add.</param>
+        /// <returns>The new jQueryObject with added elements.</returns>
+        public jQueryObject Add(jQueryObject elements) {
+            return null;
+        }
+
+        /// <summary>
+        /// Adds elements to the set of matched elements.
+        /// </summary>
         /// <param name="selector">The set of elements to select and add.</param>
         /// <returns>The new jQueryObject with added elements.</returns>
         public jQueryObject Add([SyntaxValidation("cssSelector")] string selector) {
