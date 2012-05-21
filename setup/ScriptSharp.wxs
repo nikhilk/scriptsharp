@@ -124,9 +124,6 @@
         <!-- ScriptSharp.targets -->
         <File Id="ScriptSharpTarget" Name="ScriptSharp.targets" Vital="yes" Source="ScriptSharp.targets" />
 
-        <!-- ScriptSharp.Web.dll -->
-        <File Id="ServerDLL" Name="ScriptSharp.Web.dll" Vital="yes" Source="ScriptSharp.Web.dll" />
-
         <!-- ScriptSharp.Testing.dll -->
         <File Id="TestingDLL" Name="ScriptSharp.Testing.dll" Vital="yes" Source="ScriptSharp.Testing.dll" />
 

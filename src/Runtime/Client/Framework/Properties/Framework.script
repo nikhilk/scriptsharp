@@ -1,9 +1,0 @@
-//! Sharpen Framework
-//! Application Framework
-//
-
-(function() {
-"use strict";
-
-#include[as-is] "%code%"
-})();
