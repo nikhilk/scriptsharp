@@ -1,9 +1,6 @@
-// AssemblyInfo.cs
+// ScriptSharp.cs
 // Script#/Common
-// Copyright (c) Nikhil Kothari.
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using System;
@@ -12,7 +9,7 @@ using System.Reflection;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("http://www.scriptsharp.com")]
 [assembly: AssemblyProduct("Script#")]
-[assembly: AssemblyCopyright("Copyright © 2011")]
+[assembly: AssemblyCopyright("Copyright © 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyVersion("0.7.0.0")]

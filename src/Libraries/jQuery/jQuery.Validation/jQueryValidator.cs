@@ -1,7 +1,6 @@
 // jQueryValidator.cs
-// Script#/Libraries/jQuery/jQueryValidation
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// Script#/Libraries/jQuery/Validation
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using System;

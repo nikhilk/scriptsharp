@@ -1,9 +1,6 @@
 ﻿// AssemblyInfo.cs
-// Script#/Preprocessor
-// Copyright (c) Nikhil Kothari.
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft
-// Public License. A copy of the license can be found in License.txt.
+// Script#/Tools/Preprocessor
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using System.Reflection;

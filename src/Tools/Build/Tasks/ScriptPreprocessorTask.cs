@@ -1,9 +1,6 @@
 // ScriptPreprocessorTask.cs
 // Script#/Tools/Build
-// Copyright (c) Nikhil Kothari.
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using System;
@@ -14,7 +11,6 @@ using System.IO;
 using Microsoft.Build;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using ScriptSharp.Preprocessor;
 
 namespace ScriptSharp.Tasks {
 

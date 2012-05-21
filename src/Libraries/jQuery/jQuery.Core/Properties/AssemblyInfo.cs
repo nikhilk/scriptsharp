@@ -1,8 +1,6 @@
 ﻿// AssemblyInfo.cs
-// Script#/Runtime/jQuery
-// Copyright (c) Nikhil Kothari, 2006
-//
-// Assembly Metadata
+// Script#/Libraries/jQuery/Core
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using System;
