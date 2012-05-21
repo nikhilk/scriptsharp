@@ -7,6 +7,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace System.ComponentModel {
@@ -22,7 +23,8 @@ namespace System.ComponentModel {
         /// <summary>
         /// Signals the object that initialization is starting.
         /// </summary>
-        void BeginInitialization();
+        /// <param name="options">An optional set of name/value pairs containing initialization data.</param>
+        void BeginInitialization(Dictionary<string, object> options);
 
         /// <summary>
         /// Signals the object that initialization is complete.
