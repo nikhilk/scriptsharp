@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test - Startup</title>
+  <link rel="stylesheet" href="QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit.js"></script>
+  <script type="text/javascript" src="QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+  <script type="text/javascript">
+  var c_s1 = 'DOMContentLoaded handler';
+  var c_s2 = 'Ready Callback';
+  
+  var sequence = [];
+  document.addEventListener('DOMContentLoaded', function() {
+    sequence.push(c_s1);
+  }, false);
+  </script>
+  <script type="text/javascript" src="..\..\bin\Debug\mscorlib.debug.js"></script>
+  <script type="text/javascript">
+  var bodyAccessible = false;
+
+  ss.ready(function() {
+    sequence.push(c_s2);
+    bodyAccessible = document.body != null;
+  });
+  
+  module('Startup');
+  test('ready', function() {
+    QUnit.expect(5);
+
+    QUnit.equal(sequence.length, 2, 'Expected two events to have been handled');
+    QUnit.equal(sequence[0], c_s1, 'Expected DOMContentLoaded event to be first event');
+    QUnit.equal(sequence[1], c_s2, 'Expected ready event to be second event');
+    QUnit.equal(bodyAccessible, true, 'Expected to be able to access document.body in ready callback');
+    ss.ready(function() {
+      QUnit.start();
+      QUnit.equal(document.readyState, 'complete', 'Document.readyState should be "complete"');
+    });
+    
+    QUnit.stop(2000);
+  });
+  </script>
+</body>
+
+</html>

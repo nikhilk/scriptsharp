@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test - OOP</title>
+  <link rel="stylesheet" href="QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit.js"></script>
+  <script type="text/javascript" src="QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+<script type="text/javascript" src="..\..\bin\Debug\mscorlib.debug.js"></script>
+<script type="text/javascript" src="TestOOP.js"></script>
+<script type="text/javascript">
+module('OOP');
+test('isClass', function() {
+  QUnit.equal(Type.isClass(Test.Cat), true, 'Expected Cat to be a class');
+  QUnit.equal(Type.isClass(Test.IPet), false, 'Did not expect IPet to be a class');
+});
+
+test('isAssignableFrom', function() {
+  QUnit.equal(Test.Animal.isAssignableFrom(Test.Cat), true, 'Cat should be assignable to an Animal');
+  QUnit.equal(Test.IMammal.isAssignableFrom(Test.Cat), true, 'Cat should be assignable to an IMammal');
+  QUnit.equal(Test.IMammal.isAssignableFrom(Test.Garfield), true, 'Garfield should be assignable to an IMammal');
+  QUnit.equal(Test.IPet.isAssignableFrom(Test.Cat), false, 'Cat should not be assignable to an IPet');
+  QUnit.equal(Object.isAssignableFrom(Test.Cat), true, 'Cat should be assignable to an Object');
+});
+
+test('isInstance', function() {
+  var c = new Test.Cat();
+  var g = new Test.Garfield();
+
+  QUnit.equal(Test.Animal.isInstanceOfType(c), true, 'Cat instance should be an Animal instance');
+  QUnit.equal(Test.IMammal.isInstanceOfType(c), true, 'Cat instance should be an IMammal instance');
+  QUnit.equal(Test.IMammal.isInstanceOfType(g), true, 'Garfield instance should be an IMammal instance');
+  QUnit.equal(ss.StringBuilder.isInstanceOfType(c), false, 'Cat instance should not be a StringBuilder instance');
+  QUnit.equal(Test.IPet.isInstanceOfType(c), false, 'Cat instance should not be an IPet instance');
+  QUnit.equal(Object.isInstanceOfType(c), true, 'Cat instance should not be an Object instance');
+});
+
+test('get_baseType', function() {
+  QUnit.equal(Test.Cat.get_baseType().get_fullName(), 'Test.Animal', 'Cat\'s base type should be Test.Animal');
+  QUnit.equal(Test.Animal.get_baseType().get_fullName(), 'Object', 'Animal\'s base type should be Object');
+  QUnit.equal(Object.get_baseType(), null, 'Object\'s base type should be null');
+});
+
+test('canCast and safeCast', function() {
+  var g = new Test.Garfield();
+
+  QUnit.equal(Type.canCast(g, Test.IPet), true, 'Garfield instance should be castable to Test.IPet');
+  QUnit.equal(Type.canCast(g, Test.Animal), true, 'Garfield instance should be castable to Test.Animal');
+  QUnit.equal(Type.canCast(g, ss.IDisposable), false, 'Garfield instance should not be castable to IDisposable');
+  QUnit.equal(Type.safeCast(g, Test.IPet), g, 'Garfield instance should be castable to Test.IPet');
+  QUnit.equal(Type.safeCast(g, Test.Animal), g, 'Garfield instance should be castable to Test.Animal');
+  QUnit.equal(Type.safeCast(g, ss.IDisposable), null, 'Garfield instance should not be castable to IDisposable');
+});
+
+test('initializeBase', function() {
+  var c = new Test.Cat();
+  QUnit.equal(c.get_species(), 'Cat', 'Cat is of cat species');
+});
+
+test('callBaseMethod', function() {
+  var g = new Test.Garfield();
+  QUnit.equal(g.speak(), 'meow\r\nI am fat, lazy, and cynical, but still, a favorite cat...', 'Garfield meows and says something cute');
+});
+</script>
+</html>

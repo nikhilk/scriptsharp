@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test - Delegate</title>
+  <link rel="stylesheet" href="QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit.js"></script>
+  <script type="text/javascript" src="QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+<script type="text/javascript" src="..\..\bin\Debug\mscorlib.debug.js"></script>
+<script type="text/javascript">
+var TargetClass = function() {
+}
+TargetClass.prototype.instanceCallback1 = function() {
+    log('Instance Callback1 invoked');
+}
+TargetClass.prototype.instanceCallback2 = function() {
+    log('Instance Callback2 invoked');
+}
+TargetClass.staticCallback1 = function() {
+    log('Static Callback1 invoked');
+}
+TargetClass.staticCallback2 = function(v) {
+    log('Static Callback2 invoked');
+    log('Value = ' + v);
+}
+TargetClass.complexCallback1 = function(delegate) {
+    log('ComplexCallback1 invoked');
+
+    var delegate2 = ss.Delegate.create(null, TargetClass.complexCallback2);
+    ss.Delegate.remove(delegate, delegate2);
+}
+TargetClass.complexCallback2 = function(delegate) {
+    log('ComplexCallback2 invoked');
+}
+TargetClass.complexCallback3 = function(delegate) {
+    log('ComplexCallback3 invoked');
+}
+
+function staticGlobalCallback(v) {
+    log('Static Global Callback invoked');
+    log('Value = ' + v);
+}
+
+function setupLog() {
+    var logs = [];
+    window.log = function(log) {
+        QUnit.log(log);
+        logs.push(log);
+    };
+    return logs;
+}
+
+module('Delegate');
+test('testCreateInvoke', function() {
+    var logs = setupLog();
+    var tc = new TargetClass();
+
+    var delegate = ss.Delegate.create(tc, tc.instanceCallback1);
+    delegate();
+    
+    QUnit.equal(logs.length, 1);
+});
+
+test('testEmpty', function() {
+    var tc = new TargetClass();
+    var delegate = ss.Delegate.create(tc, tc.instanceCallback1);
+    delegate = ss.Delegate.remove(delegate, ss.Delegate.create(tc, tc.instanceCallback1));
+
+    QUnit.equal(delegate, null);
+});
+
+test('testDuplicate', function() {
+    var logs = setupLog();
+    var tc = new TargetClass();
+
+    var delegate = ss.Delegate.create(tc, tc.instanceCallback1);
+    delegate = ss.Delegate.combine(delegate, ss.Delegate.create(tc, tc.instanceCallback1));
+    delegate();
+
+    QUnit.equal(logs.length, 2);
+});
+
+test('testCreateInvokeStatic', function() {
+    var logs = setupLog();
+    var tc = new TargetClass();
+
+    var delegate = ss.Delegate.create(null, TargetClass.staticCallback2);
+    delegate('abc');
+
+    var delegate2 = staticGlobalCallback;
+    delegate2('abc');
+
+    QUnit.equal(logs.length, 4);
+});
+
+test('testCreateInvokeMultiple', function() {
+    var logs = setupLog();
+    var tc = new TargetClass();
+
+    var delegate = ss.Delegate.create(tc, tc.instanceCallback1);
+    delegate = ss.Delegate.combine(delegate, ss.Delegate.create(tc, tc.instanceCallback2));
+    delegate = ss.Delegate.combine(delegate, ss.Delegate.create(null, TargetClass.staticCallback1));
+    delegate();
+
+    QUnit.equal(logs.length, 3);
+});
+
+test('testWithRemoval', function() {
+    var logs = setupLog();
+
+    var delegate1 = ss.Delegate.create(null, TargetClass.complexCallback1);
+    var delegate2 = ss.Delegate.create(null, TargetClass.complexCallback2);
+    var delegate3 = ss.Delegate.create(null, TargetClass.complexCallback3);
+
+    var delegate = ss.Delegate.combine(delegate1, ss.Delegate.combine(delegate2, delegate3));
+    delegate(delegate);
+
+    QUnit.equal(logs.length, 2);
+});
+
+test('testExports', function() {
+    var logs = setupLog();
+    
+    var delegate = ss.Delegate.create(null, function() { log('delegate invoked') });
+
+    var name = ss.Delegate.createExport(delegate, /* multiUse */ true, 'xyz');
+    QUnit.equal(window[name] !== null, true, 'Expected window member');
+    window[name]();
+    QUnit.equal(window[name] !== null, true, 'Expected window member since it was multiuse');
+    
+    ss.Delegate.deleteExport(name);
+    QUnit.equal(!window[name], true, 'Did not expect window member since it was deleted');
+
+    var name = ss.Delegate.createExport(delegate);
+    QUnit.equal(window[name] !== null, true, 'Expected window member');
+    window[name]();
+    QUnit.equal(!window[name], true, 'Did not expect window member since it was deleted');
+});
+</script>
+</html>

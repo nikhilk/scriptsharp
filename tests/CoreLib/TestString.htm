@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test - String</title>
+  <link rel="stylesheet" href="QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit.js"></script>
+  <script type="text/javascript" src="QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+<script type="text/javascript" src="..\..\bin\Debug\mscorlib.debug.js"></script>
+<script type="text/javascript">
+module('String');
+test('trim', function() {
+  QUnit.equal('Hello'.trim(), 'Hello');
+  QUnit.equal('  Hello'.trim(), 'Hello');
+  QUnit.equal('Hello  '.trim(), 'Hello');
+  QUnit.equal('  Hello  '.trim(), 'Hello');
+  QUnit.equal('\tHello  '.trim(), 'Hello');
+});
+
+test('padLeft', function() {
+  QUnit.equal('Hello'.padLeft(5), 'Hello');
+  QUnit.equal('HelloWorld'.padLeft(5), 'HelloWorld');
+  QUnit.equal('Hey'.padLeft(5), '  Hey');
+  QUnit.equal('Hello'.padLeft(5), 'Hello');
+  QUnit.equal('HelloWorld'.padLeft(5), 'HelloWorld');
+  QUnit.equal('Hey'.padLeft(5, '.'), '..Hey');
+});
+
+test('padRight', function() {
+  QUnit.equal('Hello'.padRight(5), 'Hello');
+  QUnit.equal('HelloWorld'.padRight(5), 'HelloWorld');
+  QUnit.equal('Hey'.padRight(5), 'Hey  ');
+  QUnit.equal('Hello'.padRight(5), 'Hello');
+  QUnit.equal('HelloWorld'.padRight(5), 'HelloWorld');
+  QUnit.equal('Hey'.padRight(5, '.'), 'Hey..');
+});
+
+test('compare', function() {
+  QUnit.equal(String.compare(null, null), 0, 'null vs null should be 0');
+  QUnit.equal(String.compare(null, 'x'), -1, 'null vs x should be -1');
+  QUnit.equal(String.compare('a', null), 1, 'a vs null should be 1');
+  QUnit.equal(String.compare('b', 'b'), 0, 'b vs b should be 0');
+  QUnit.equal(String.compare('aab', 'aaa'), 1, 'aab vs aaa should be 1');
+  QUnit.equal(String.compare('B', 'A'), 1, 'B vs A should be 1');
+  QUnit.equal(String.compare('e', 'E'), 1, 'e vs E should be 1');
+
+  QUnit.equal(String.compare(null, null, true), 0, 'null vs null should be 0');
+  QUnit.equal(String.compare(null, 'x', true), -1, 'null vs x should be -1');
+  QUnit.equal(String.compare('a', null, true), 1, 'a vs null should be 1');
+  QUnit.equal(String.compare('b', 'b', true), 0, 'b vs b should be 0');
+  QUnit.equal(String.compare('aab', 'aaa', true), 1, 'aab vs aaa should be 1');
+  QUnit.equal(String.compare('B', 'A', true), 1, 'B vs A should be 1');
+  QUnit.equal(String.compare('e', 'E', true), 0, 'e vs E should be 1');
+});
+
+test('endsWith', function() {
+  QUnit.equal('aaa'.endsWith('a'), true, 'aaa does end with a');
+  QUnit.equal('aaa'.endsWith('b'), false, 'aaa does not end with b');
+  QUnit.equal('aaa'.endsWith('aaa'), true, 'aaa does end with aaa');
+  QUnit.equal('aaa'.endsWith('aaaa'), false, 'aaa does not end with aaaa');
+});
+
+test('startsWith', function() {
+  QUnit.equal('aaa'.startsWith('a'), true, 'aaa does start with a');
+  QUnit.equal('aaa'.startsWith('b'), false, 'aaa does not start with b');
+  QUnit.equal('aaa'.startsWith('aaa'), true, 'aaa does start with aaa');
+  QUnit.equal('aaa'.startsWith('aaaa'), false, 'aaa does not start with aaaa');
+});
+
+test('htmlEncode', function() {
+  QUnit.equal('xyz'.htmlEncode(), 'xyz');
+  QUnit.equal('<h1>a "aaa" & a "bbb"</h1>'.htmlEncode(), '&lt;h1&gt;a &quot;aaa&quot; &amp; a &quot;bbb&quot;&lt;/h1&gt;');
+});
+
+test('htmlDecode', function() {
+  QUnit.equal('xyz'.htmlDecode(), 'xyz');
+  QUnit.equal('&lt;h1&gt;a &quot;aaa&quot; &amp; a &quot;bbb&quot;&lt;/h1&gt;'.htmlDecode(), '<h1>a "aaa" & a "bbb"</h1>');
+});
+
+</script>
+</html>

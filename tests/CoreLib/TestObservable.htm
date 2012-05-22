@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test - Observable</title>
+  <link rel="stylesheet" href="QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit.js"></script>
+  <script type="text/javascript" src="QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+<script type="text/javascript" src="..\..\bin\Debug\mscorlib.debug.js"></script>
+<script type="text/javascript">
+function Binding(src, prop) {
+  this.src = src;
+  this.prop = prop;
+  this.invalidateCount = 0;
+}
+Binding.prototype.invalidateObserver = function() {
+  this.invalidateCount++;
+}
+Binding.prototype.updateTarget = function() {
+  var reg = ss.Observable.registerObserver(this);
+  this.value = this.src['get_' + this.prop]();
+  reg.dispose();
+}
+Binding.prototype.updateSource = function(v) {
+  this.src['set_' + this.prop](v);
+}
+
+function Model() {
+  this._name = new ss.Observable();
+}
+Model.prototype.get_name = function() {
+  return this._name.getValue();
+}
+Model.prototype.set_name = function(v) {
+  this._name.setValue(v);
+}
+
+module('Observable');
+test('observable', function() {
+  var num = new ss.Observable(10);
+
+  QUnit.equal(num.getValue(), 10);
+  num.setValue(100);
+
+  QUnit.equal(num.getValue(), 100);
+});
+
+test('singleObserver', function() {
+  var model = new Model();
+  model.set_name('Foo');
+  
+  var binding = new Binding(model, 'name');
+  
+  binding.updateTarget();
+  QUnit.equal(binding.value, 'Foo');
+  QUnit.equal(binding.invalidateCount, 0);
+
+  binding.updateSource('Bar');
+  binding.updateTarget();
+  QUnit.equal(binding.value, 'Bar');
+  QUnit.equal(binding.invalidateCount, 1);
+
+  binding.updateSource('Bar');
+  binding.updateTarget();
+  QUnit.equal(binding.value, 'Bar');
+  QUnit.equal(binding.invalidateCount, 1);
+
+  binding.updateSource('Baz');
+  binding.updateTarget();
+  QUnit.equal(binding.value, 'Baz');
+  QUnit.equal(binding.invalidateCount, 2);
+});
+
+test('multipleObservers', function() {
+  var model = new Model();
+  model.set_name('Foo');
+  
+  var binding = new Binding(model, 'name');
+  var binding2 = new Binding(model, 'name');
+  
+  binding.updateTarget();
+  binding2.updateTarget();
+  QUnit.equal(binding.value, 'Foo');
+  QUnit.equal(binding.invalidateCount, 0);
+  QUnit.equal(binding2.invalidateCount, 0);
+
+  binding.updateSource('Bar');
+  binding.updateTarget();
+  binding2.updateTarget();
+  QUnit.equal(binding.value, 'Bar');
+  QUnit.equal(binding.invalidateCount, 1);
+  QUnit.equal(binding2.invalidateCount, 1);
+
+  binding.updateSource('Bar');
+  binding.updateTarget();
+  binding2.updateTarget();
+  QUnit.equal(binding.value, 'Bar');
+  QUnit.equal(binding.invalidateCount, 1);
+  QUnit.equal(binding2.invalidateCount, 1);
+
+  model.set_name('Baz');
+  binding.updateTarget();
+  binding2.updateTarget();
+  QUnit.equal(binding2.value, 'Baz');
+  QUnit.equal(binding.invalidateCount, 2);
+  QUnit.equal(binding2.invalidateCount, 2);
+});
+
+test('observableCollection', function() {
+  var items = new ss.ObservableCollection();
+  var binding = new Binding(items, 'length');
+  
+  binding.updateTarget();
+  QUnit.equal(binding.value, 0);
+  QUnit.equal(binding.invalidateCount, 0);
+  
+  items.add('abc');
+  QUnit.equal(binding.invalidateCount, 1);
+  
+  items.add('def');
+  QUnit.equal(binding.invalidateCount, 1);
+
+  binding.updateTarget();
+  items.removeAt(1);
+  QUnit.equal(binding.invalidateCount, 2);
+});
+</script>
+</html>
