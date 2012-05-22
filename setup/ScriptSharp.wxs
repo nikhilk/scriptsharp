@@ -168,10 +168,10 @@
         <!-- mscorlib/mscompat -->
         <File Id="MSCorlibDllFile" Name="mscorlib.dll" Vital="yes" Source="mscorlib.dll" />
         <File Id="MSCorlibDocFile" Name="mscorlib.xml" Vital="yes" Source="mscorlib.xml" />
-        <File Id="MSCorlibRJsFile" Name="mscorlib.js" Vital="yes" Source="..\ref\mscorlib.js" />
-        <File Id="MSCorlibDJsFile" Name="mscorlib.debug.js" Vital="yes" Source="..\ref\mscorlib.debug.js" />
-        <File Id="SSLoaderRJsFile" Name="ssloader.js" Vital="yes" Source="..\ref\ssloader.js" />
-        <File Id="SSLoaderDJsFile" Name="ssloader.debug.js" Vital="yes" Source="..\ref\ssloader.debug.js" />
+        <File Id="MSCorlibRJsFile" Name="mscorlib.js" Vital="yes" Source="mscorlib.js" />
+        <File Id="MSCorlibDJsFile" Name="mscorlib.debug.js" Vital="yes" Source="mscorlib.debug.js" />
+        <File Id="SSLoaderRJsFile" Name="ssloader.js" Vital="yes" Source="ssloader.js" />
+        <File Id="SSLoaderDJsFile" Name="ssloader.debug.js" Vital="yes" Source="ssloader.debug.js" />
 
         <!-- Script.Web -->
         <File Id="WebDllFile" Name="Script.Web.dll" Vital="yes" Source="Script.Web.dll" />

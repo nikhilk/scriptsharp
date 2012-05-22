@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8780581F-7C26-4B64-9235-BA1C458DF36E}</ProjectGuid>
+    <ToolsPath>..\..\..\tools\bin</ToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\..\bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="loader.js" />
+    <Content Include="mscorlib.js" />
+    <Content Include="Extensions\Array.js" />
+    <Content Include="Extensions\Number.js" />
+    <Content Include="Extensions\Object.js" />
+    <Content Include="Extensions\RegExp.js" />
+    <Content Include="Extensions\String.js" />
+    <Content Include="Extensions\Boolean.js" />
+    <Content Include="Extensions\Date.js" />
+    <Content Include="Extensions\Error.js" />
+    <Content Include="BCL\App.js" />
+    <Content Include="BCL\Tuple.js" />
+    <Content Include="BCL\Observable.js" />
+    <Content Include="BCL\Debug.js" />
+    <Content Include="BCL\Delegate.js" />
+    <Content Include="BCL\ArrayEnumerator.js" />
+    <Content Include="BCL\CancelEventArgs.js" />
+    <Content Include="BCL\CultureInfo.js" />
+    <Content Include="BCL\EventArgs.js" />
+    <Content Include="BCL\IDisposable.js" />
+    <Content Include="BCL\IEnumerable.js" />
+    <Content Include="BCL\IEnumerator.js" />
+    <Content Include="BCL\StringBuilder.js" />
+    <Content Include="TypeSystem\Type.js" />
+  </ItemGroup>
+  <Target Name="Build">
+    <Exec Command="$(OutputPath)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)mscorlib.js /output:$(OutputPath)\mscorlib.debug.js" />
+    <Exec Command="$(OutputPath)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)mscorlib.js /output:$(OutputPath)\mscorlib.rel.js" />
+    <Exec Command="$(OutputPath)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)loader.js /output:$(OutputPath)\ssloader.debug.js" />
+    <Exec Command="$(OutputPath)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)loader.js /output:$(OutputPath)\ssloader.rel.js" />
+    <Exec Command="$(ToolsPath)\ajaxmin.exe -clobber:true $(OutputPath)\mscorlib.rel.js -out $(OutputPath)\mscorlib.js" />
+    <Exec Command="$(ToolsPath)\ajaxmin.exe -clobber:true $(OutputPath)\ssloader.rel.js -out $(OutputPath)\ssloader.js" />
+  </Target>
+  <Target Name="Clean">
+  </Target>
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+</Project>
