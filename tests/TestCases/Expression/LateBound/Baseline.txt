@@ -1,0 +1,60 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+}
+test.App.prototype = {
+    
+    test: function(arg) {
+        var o;
+        var b;
+        o[arg]();
+        o.xyz();
+        o['Proxy-Connection']();
+        o.xyz(0);
+        o.xyz(0, arg);
+        b = (typeof(o[arg]) === 'function');
+        b = (typeof(o.xyz) === 'function');
+        b = (typeof(Object.xyz) === 'function');
+        o[arg] = 0;
+        o.abc = 0;
+        o['Proxy-Connection'] = 0;
+        var v = o[arg];
+        v = o.abc;
+        v = o['Proxy-Connection'];
+        b = (arg in o);
+        b = ('abc' in o);
+        b = ('abc' in Object);
+        o['set_' + arg](0);
+        o.set_def(0);
+        o['set_' + 'Proxy-Connection'](0);
+        var v2 = o['get_' + arg]();
+        v2 = o.get_def();
+        v2 = o['get_' + 'Proxy-Connection']();
+        b = (typeof(o['get_' + arg]) === 'function');
+        b = (typeof(o.get_def) === 'function');
+        b = (typeof(Object.get_def) === 'function');
+        var handler;
+        o['add_' + arg](handler);
+        o.add_mmm(handler);
+        o['add_' + 'Proxy-Connection'](handler);
+        o['remove_' + arg](handler);
+        o.remove_mmm(handler);
+        o['remove_' + 'Proxy-Connection'](handler);
+        delete o.xyz;
+        delete o['Proxy-Connection'];
+        delete o[arg];
+        var t = typeof(o);
+        if (typeof(o) === 'object') {
+        }
+        if ((typeof(o.execute) === 'function')) {
+        }
+        globalMethod();
+        globalMethod('xyz');
+    }
+}
+
+
+test.App.registerClass('test.App');

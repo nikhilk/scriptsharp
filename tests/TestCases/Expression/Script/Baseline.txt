@@ -1,0 +1,19 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+}
+test.App.prototype = {
+    
+    test: function(arg) {
+        arg = (arg || 10);
+        arg = (arg || 10 || 100);
+        var s = (arg || 10).format('{0}');
+        var b = !!arg;
+    }
+}
+
+
+test.App.registerClass('test.App');

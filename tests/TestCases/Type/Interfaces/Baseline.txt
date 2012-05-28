@@ -1,0 +1,85 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.IMarker
+
+test.IMarker = function() { };
+test.IMarker.prototype = {
+
+}
+test.IMarker.registerInterface('test.IMarker');
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.ISerializable
+
+test.ISerializable = function() { };
+test.ISerializable.prototype = {
+    serialize : null
+}
+test.ISerializable.registerInterface('test.ISerializable');
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.IRunnable
+
+test.IRunnable = function() { };
+test.IRunnable.prototype = {
+    get_canRun : null,
+    run : null
+}
+test.IRunnable.registerInterface('test.IRunnable');
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyObject
+
+test.MyObject = function test_MyObject() {
+}
+test.MyObject.prototype = {
+    
+    dispose: function test_MyObject$dispose() {
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyObject2
+
+test.MyObject2 = function test_MyObject2() {
+    test.MyObject2.initializeBase(this);
+}
+test.MyObject2.prototype = {
+    
+    get_canRun: function test_MyObject2$get_canRun() {
+        return true;
+    },
+    
+    run: function test_MyObject2$run() {
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Foo
+
+test.Foo = function test_Foo() {
+}
+test.Foo.prototype = {
+    
+    get_canRun: function test_Foo$get_canRun() {
+        return true;
+    },
+    
+    run: function test_Foo$run() {
+    },
+    
+    serialize: function test_Foo$serialize() {
+        return null;
+    }
+}
+
+
+test.MyObject.registerClass('test.MyObject', null, ss.IDisposable);
+test.MyObject2.registerClass('test.MyObject2', test.MyObject, test.IRunnable);
+test.Foo.registerClass('test.Foo', null, test.IMarker, test.ISerializable, test.IRunnable);

@@ -1,0 +1,46 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyDebug
+
+test.MyDebug = function test_MyDebug() {
+}
+test.MyDebug.showInfo = function test_MyDebug$showInfo() {
+}
+test.MyDebug.traceInfo = function test_MyDebug$traceInfo() {
+}
+test.MyDebug.logInfo = function test_MyDebug$logInfo() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function test_App(i) {
+    ss.Debug.assert(false);
+    test.MyDebug.showInfo();
+    while (true) {
+        ss.Debug.assert(false);
+    }
+    switch (i) {
+        case 0:
+            ss.Debug.assert(false);
+            break;
+    }
+    ss.Debug.assert(!!i);
+    ss.Debug.assert(!!i);
+    i++;
+    if (false) {
+        ss.Debug.writeln('Debug spew');
+    }
+    while (false) {
+        ss.Debug.writeln('.');
+    }
+    for (var i = 0; i < 10; i++) {
+        ss.Debug.writeln('.');
+    }
+}
+
+
+test.MyDebug.registerClass('test.MyDebug');
+test.App.registerClass('test.App');

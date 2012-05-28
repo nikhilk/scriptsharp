@@ -1,0 +1,16 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+    var elem = document.getElementById('foo');
+    var s = elem.myString;
+    elem['Smith'] = elem['Joe'];
+    var n = parseInt(5.5);
+    var doc = ss.parseXml('<markup></markup>');
+    var d = Date.parseDate('1/1/2010');
+}
+
+
+test.App.registerClass('test.App');

@@ -1,0 +1,19 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Point
+
+test.$create_Point = function test_Point(x, y) {
+    var $o = { };
+    $o.x = x;
+    $o.y = y;
+    return $o;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Pair
+
+test.$create_Pair = function test_Pair() { return {}; }
+
+

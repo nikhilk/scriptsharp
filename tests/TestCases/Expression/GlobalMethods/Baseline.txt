@@ -1,0 +1,25 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+}
+test.App.prototype = {
+    
+    test: function(arg) {
+        eval('[ 1, 2 ]');
+        foo();
+        window.setTimeout(foo, 0);
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Util
+
+window.foo = function() {
+}
+
+
+test.App.registerClass('test.App');

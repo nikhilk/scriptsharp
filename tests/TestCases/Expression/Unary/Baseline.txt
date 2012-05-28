@@ -1,0 +1,52 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Data
+
+test.Data = function() {
+}
+test.Data.prototype = {
+    _value: 0,
+    
+    get_value: function() {
+        return this._value;
+    },
+    set_value: function(value) {
+        this._value = value;
+        return value;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+}
+test.App.prototype = {
+    
+    test: function(arg) {
+        var xyz = ~arg;
+        var f = (!arg);
+        f = !f;
+        var m = arg;
+        m++;
+        var n = ++m;
+        m--;
+        n = --m;
+        n = -m;
+        n = m;
+        n = 1;
+        n = 1 + (2);
+        var s = (!f).toString();
+        var num = 1.01;
+        s = (~num).toExponential();
+        var d = new test.Data();
+        d.set_value(d.get_value() + 1) - 1;
+        d.set_value(d.get_value() + 1);
+    }
+}
+
+
+test.Data.registerClass('test.Data');
+test.App.registerClass('test.App');

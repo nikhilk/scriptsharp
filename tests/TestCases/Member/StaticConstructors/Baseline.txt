@@ -1,0 +1,39 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Behavior
+
+test.Behavior = function(e, name) {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyClass
+
+test.MyClass = function(d) {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyBehavior
+
+test.MyBehavior = function(element) {
+    test.MyBehavior.initializeBase(this, [ element, 'myBehavior' ]);
+}
+
+
+test.Behavior.registerClass('test.Behavior');
+test.MyClass.registerClass('test.MyClass');
+test.MyBehavior.registerClass('test.MyBehavior', test.Behavior);
+test.MyClass.instance = null;
+(function () {
+    test.MyClass.instance = new test.MyClass(Date.get_now());
+})();
+(function () {
+    var e = document.body;
+    var b = true;
+    if (!b) {
+        return;
+    }
+    new test.MyBehavior(e);
+})();

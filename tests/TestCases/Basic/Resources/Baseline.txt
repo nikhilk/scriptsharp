@@ -1,0 +1,30 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function test_App() {
+    var s1 = test._strings1.string1;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test._strings1
+
+test._strings1 = { 
+    string1: 'neutral: aaa',
+    string2: 'fr: bbb',
+    string3: 'fr-FR: ccc'
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Strings2
+
+test.Strings2 = { 
+    string1: 's2',
+    string2: '1234'
+};
+
+
+test.App.registerClass('test.App');

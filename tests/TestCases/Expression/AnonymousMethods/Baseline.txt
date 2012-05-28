@@ -1,0 +1,56 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.SomeClass
+
+test.SomeClass = function(cb) {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Test
+
+test.Test = function() {
+}
+test.Test.main = function(args) {
+    var o = {};
+    var name;
+    test.Test.doStuffStatic(o, function(i, s, b) {
+        name = s;
+    });
+}
+test.Test.doStuffStatic = function(o, callback) {
+}
+test.Test.prototype = {
+    _n: 0,
+    
+    AAA: function() {
+        var o = {};
+        this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
+            this._n = i;
+        }));
+        var s = new test.SomeClass(function() {
+        });
+        for (var i = 0; i < 10; i++) {
+            var foo;
+            this.doStuff(o, function(i, s, b) {
+                foo = i + s;
+            });
+            this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
+                this._n += i;
+            }));
+            test.Test.doStuffStatic(o, function() {
+            });
+            test.Test.doStuffStatic(o, ss.Delegate.create(this, function() {
+                this._n++;
+            }));
+        }
+    },
+    
+    doStuff: function(o, callback) {
+    }
+}
+
+
+test.SomeClass.registerClass('test.SomeClass');
+test.Test.registerClass('test.Test');

@@ -1,0 +1,49 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App1
+
+test.App1 = function test_App1() {
+}
+test.App1.prototype = {
+    
+    getEnumerator: function test_App1$getEnumerator() {
+        return null;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function test_App() {
+}
+test.App.prototype = {
+    
+    test1: function test_App$test1(arg) {
+    },
+    
+    test: function test_App$test(arg) {
+        var a;
+        var b;
+        var s = new Array(5);
+        var a1 = a.getEnumerator();
+        a1 = b.getEnumerator();
+        a1 = s.getEnumerator();
+        var $enum1 = ss.IEnumerator.getEnumerator(s);
+        while ($enum1.moveNext()) {
+            var str = $enum1.current;
+            var s1 = str;
+        }
+        var app1;
+        var $enum2 = ss.IEnumerator.getEnumerator(app1);
+        while ($enum2.moveNext()) {
+            var str = $enum2.current;
+            var s1 = str;
+        }
+    }
+}
+
+
+test.App1.registerClass('test.App1', null, ss.IEnumerable);
+test.App.registerClass('test.App');

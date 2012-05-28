@@ -1,0 +1,54 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.EventArgs
+
+test.EventArgs = function() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.SomeClass
+
+test.SomeClass = function(handler) {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Test
+
+test.Test = function() {
+    this._handler = ss.Delegate.create(this, this.onEvent);
+    this._handler = ss.Delegate.create(this, this.onEvent);
+    this._handler = ss.Delegate.create(this, this.onEvent);
+    this._handler = test.Test2.onGlobalEvent;
+    var s1 = new test.SomeClass(ss.Delegate.create(this, this.onEvent));
+    var s2 = new test.SomeClass(this._handler);
+}
+test.Test.prototype = {
+    _handler: null,
+    
+    doStuff: function() {
+        if (this._handler != null) {
+            this._handler(this, null);
+        }
+    },
+    
+    onEvent: function(sender, e) {
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Test2
+
+test.Test2 = function() {
+}
+test.Test2.onGlobalEvent = function(sender, e) {
+}
+
+
+test.EventArgs.registerClass('test.EventArgs');
+test.SomeClass.registerClass('test.SomeClass');
+test.Test.registerClass('test.Test');
+test.Test2.registerClass('test.Test2');

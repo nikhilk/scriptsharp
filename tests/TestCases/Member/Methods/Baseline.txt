@@ -1,0 +1,96 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Test
+
+test.Test = function() {
+}
+test.Test.prototype = {
+    
+    do1: function() {
+    },
+    
+    do2: function() {
+        return 0;
+    },
+    
+    do3: function(i, j) {
+        return i;
+    },
+    
+    run: function() {
+        this.do1();
+        var v = this.do2();
+        var s = String.fromCharCode(0);
+        s = String.fromCharCode(32, 65, 66);
+        var i = s.indexOf('A');
+        i = s.indexOf('A', 1);
+    },
+    
+    toString: function() {
+        window.m1();
+        var x = new test.X();
+        $.fn.extend(x, 10);
+        return null;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Foo
+
+window.doStuff = function() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Bar
+
+window.m1 = function() {
+}
+window.m2 = function() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.FooBar
+
+window.doStuff2 = function() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.FooBar2
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.X
+
+test.X = function() {
+}
+test.X.prototype = {
+    
+    update: function(i) {
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Plugin
+
+$.fn.extend = function(x, i) {
+    x.update(i);
+    return x;
+}
+
+
+test.Test.registerClass('test.Test');
+test.X.registerClass('test.X');
+(function () {
+    alert('Startup code in FooBar');
+})();
+(function () {
+    var timeStamp = new Date().getMilliseconds();
+    alert('Startup code in FooBar: ' + timeStamp);
+})();

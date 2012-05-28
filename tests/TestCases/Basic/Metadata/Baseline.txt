@@ -1,0 +1,4010 @@
+Metadata
+================================================================
+Namespace: 
+HasApplicationTypes: False
+Types:
+
+Namespace: BasicTests
+HasApplicationTypes: True
+Types:
+    Class: App
+        Application Type: True
+        Public: True
+        Generated Name: App
+        Global Methods: False
+        Interfaces:
+            BasicTests.IApp
+        Constructor:
+            Constructor: 
+                AssociatedType: BasicTests.App
+                Visibility: Public
+                Generated Name: 
+        Members:
+            Event: Event1
+                AssociatedType: DoStuff
+                Visibility: Public
+                Generated Name: event1
+            Field: __event1
+                AssociatedType: DoStuff
+                Visibility: PrivateInstance
+                Generated Name: __event1
+            Event: Event2
+                AssociatedType: DoStuff
+                Visibility: Public
+                Generated Name: event2
+            Method: Run
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: run
+                Associated Interface Member: IApp.Run
+                Abstract: False
+            Method: Initialize
+                AssociatedType: Void
+                Visibility: PrivateInstance
+                Generated Name: initialize
+                Abstract: False
+        
+    Enumeration: AppFlags
+        Application Type: True
+        Public: True
+        Generated Name: AppFlags
+        Flags: True
+        Members:
+            EnumerationField: AAA
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: AAA
+            EnumerationField: BBB
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: BBB
+        
+    Class: AppHelper
+        Application Type: True
+        Public: False
+        Generated Name: AppHelper
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: True
+                Abstract: False
+        Members:
+            Property: Prop1
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: prop1
+                ReadOnly: True
+                Abstract: False
+            Property: Prop2
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: prop2
+                ReadOnly: False
+                Abstract: False
+            Method: ShowHelp
+                AssociatedType: Void
+                Visibility: Internal
+                Generated Name: showHelp
+                Abstract: False
+        
+    Delegate: DoStuff
+        Application Type: True
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Interface: IApp
+        Application Type: True
+        Public: True
+        Generated Name: IApp
+        Members:
+            Method: Run
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: run
+                Abstract: False
+        
+    Interface: IFoo
+        Application Type: True
+        Public: False
+        Generated Name: IFoo
+        Members:
+        
+    Enumeration: Mode
+        Application Type: True
+        Public: True
+        Generated Name: Mode
+        Flags: False
+        Members:
+            EnumerationField: Mode1
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: mode1
+            EnumerationField: Mode2
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: mode2
+        
+    Record: Point
+        Application Type: True
+        Public: False
+        Generated Name: Point
+        Global Methods: False
+        Constructor:
+            Constructor: 
+                AssociatedType: BasicTests.Point
+                Visibility: Public
+                Generated Name: 
+                Parameters:Parameter: x
+                    AssociatedType: Int32
+                    Mode: In
+                    Parameter: y
+                    AssociatedType: Int32
+                    Mode: In
+        Members:
+            Field: x
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: x
+            Field: y
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: y
+        
+    Class: Util
+        Application Type: True
+        Public: False
+        Generated Name: Util
+        Global Methods: True
+        Members:
+            Method: ShowHelp
+                AssociatedType: Void
+                Visibility: Internal, Static
+                Generated Name: showHelp
+                Abstract: False
+        
+
+Namespace: System
+HasApplicationTypes: False
+Types:
+    Delegate: Action
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Action`1
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Action`2
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Action`3
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Action`4
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Action`5
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Action`6
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Action`7
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Action`8
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: Arguments
+        Application Type: False
+        Public: True
+        Generated Name: arguments
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: item
+                ReadOnly: False
+                Abstract: False
+        Members:
+            Field: Length
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: length
+            Method: GetArgument
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: getArgument
+                Abstract: False
+            Method: ToArray
+                AssociatedType: Array
+                Visibility: Public, Static
+                Generated Name: Array.toArray
+                Abstract: False
+        
+    Class: Array
+        Application Type: False
+        Public: True
+        Generated Name: Array
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: False
+                Abstract: False
+        Members:
+            Field: Length
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: Aggregate
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: aggregate
+                Abstract: False
+            Method: Clone
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: clone
+                Abstract: False
+            Method: Concat
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: concat
+                Abstract: False
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: False
+            Method: Every
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: every
+                Abstract: False
+            Method: Extract
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: extract
+                Abstract: False
+            Method: Filter
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: filter
+                Abstract: False
+            Method: ForEach
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: forEach
+                Abstract: False
+            Method: GetEnumerator
+                AssociatedType: System.Collections.IEnumerator
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: False
+            Method: GroupBy
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: groupBy
+                Abstract: False
+            Method: Index
+                AssociatedType: Dictionary
+                Visibility: Public
+                Generated Name: index
+                Abstract: False
+            Method: IndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: indexOf
+                Abstract: False
+            Method: Join
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: join
+                Abstract: False
+            Method: Map
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: map
+                Abstract: False
+            Method: Parse
+                AssociatedType: Array
+                Visibility: Public, Static
+                Generated Name: parse
+                Abstract: False
+            Method: Reverse
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: reverse
+                Abstract: False
+            Method: Some
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: some
+                Abstract: False
+            Method: Sort
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: sort
+                Abstract: False
+            Method: ToArray
+                AssociatedType: Array
+                Visibility: Public, Static
+                Generated Name: toArray
+                Abstract: False
+        
+    Class: Boolean
+        Application Type: False
+        Public: True
+        Generated Name: Boolean
+        Global Methods: False
+        Members:
+            Method: Parse
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: parse
+                Abstract: False
+        
+    Class: Byte
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+    Delegate: Callback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: CancelEventArgs
+        Application Type: False
+        Public: True
+        Generated Name: CancelEventArgs
+        Global Methods: False
+        BaseClass: System.EventArgs
+        Members:
+            Field: Cancel
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: cancel
+        
+    Class: Char
+        Application Type: False
+        Public: True
+        Generated Name: String
+        Global Methods: False
+        Members:
+        
+    Delegate: CompareCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: Date
+        Application Type: False
+        Public: True
+        Generated Name: Date
+        Global Methods: False
+        Members:
+            Field: Empty
+                AssociatedType: Date
+                Visibility: Public, Static
+                Generated Name: empty
+            Property: Now
+                AssociatedType: Date
+                Visibility: Public, Static
+                Generated Name: now
+                ReadOnly: True
+                Abstract: False
+            Property: Today
+                AssociatedType: Date
+                Visibility: Public, Static
+                Generated Name: today
+                ReadOnly: True
+                Abstract: False
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: GetDate
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getDate
+                Abstract: False
+            Method: GetDay
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getDay
+                Abstract: False
+            Method: GetFullYear
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getFullYear
+                Abstract: False
+            Method: GetHours
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getHours
+                Abstract: False
+            Method: GetMilliseconds
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getMilliseconds
+                Abstract: False
+            Method: GetMinutes
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getMinutes
+                Abstract: False
+            Method: GetMonth
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getMonth
+                Abstract: False
+            Method: GetSeconds
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getSeconds
+                Abstract: False
+            Method: GetTime
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getTime
+                Abstract: False
+            Method: GetTimezoneOffset
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getTimezoneOffset
+                Abstract: False
+            Method: GetUTCDate
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getUTCDate
+                Abstract: False
+            Method: GetUTCDay
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getUTCDay
+                Abstract: False
+            Method: GetUTCFullYear
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getUTCFullYear
+                Abstract: False
+            Method: GetUTCHours
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getUTCHours
+                Abstract: False
+            Method: GetUTCMilliseconds
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getUTCMilliseconds
+                Abstract: False
+            Method: GetUTCMinutes
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getUTCMinutes
+                Abstract: False
+            Method: GetUTCMonth
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getUTCMonth
+                Abstract: False
+            Method: GetUTCSeconds
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: getUTCSeconds
+                Abstract: False
+            Method: IsEmpty
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isEmpty
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: Parse
+                AssociatedType: Date
+                Visibility: Public, Static
+                Generated Name: parseDate
+                Abstract: False
+            Method: SetDate
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setDate
+                Abstract: False
+            Method: SetFullYear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setFullYear
+                Abstract: False
+            Method: SetHours
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setHours
+                Abstract: False
+            Method: SetMilliseconds
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setMilliseconds
+                Abstract: False
+            Method: SetMinutes
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setMinutes
+                Abstract: False
+            Method: SetMonth
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setMonth
+                Abstract: False
+            Method: SetSeconds
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setSeconds
+                Abstract: False
+            Method: SetTime
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setTime
+                Abstract: False
+            Method: SetUTCDate
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setUTCDate
+                Abstract: False
+            Method: SetUTCFullYear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setUTCFullYear
+                Abstract: False
+            Method: SetUTCHours
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setUTCHours
+                Abstract: False
+            Method: SetUTCMilliseconds
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setUTCMilliseconds
+                Abstract: False
+            Method: SetUTCMinutes
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setUTCMinutes
+                Abstract: False
+            Method: SetUTCMonth
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setUTCMonth
+                Abstract: False
+            Method: SetUTCSeconds
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setUTCSeconds
+                Abstract: False
+            Method: SetYear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setYear
+                Abstract: False
+            Method: ToDateString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toDateString
+                Abstract: False
+            Method: ToISOString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toISOString
+                Abstract: False
+            Method: ToLocaleDateString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toLocaleDateString
+                Abstract: False
+            Method: ToLocaleTimeString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toLocaleTimeString
+                Abstract: False
+            Method: ToTimeString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toTimeString
+                Abstract: False
+            Method: ToUTCString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toUTCString
+                Abstract: False
+            Method: UTC
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: UTC
+                Abstract: False
+        
+    Class: Decimal
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: Parse
+                AssociatedType: Decimal
+                Visibility: Public, Static
+                Generated Name: parseFloat
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+    Class: Delegate
+        Application Type: False
+        Public: True
+        Generated Name: Delegate
+        Global Methods: False
+        Members:
+            Field: Empty
+                AssociatedType: System.Delegate
+                Visibility: Public, Static
+                Generated Name: empty
+            Method: ClearExport
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: clearExport
+                Abstract: False
+            Method: Combine
+                AssociatedType: System.Delegate
+                Visibility: Public, Static
+                Generated Name: combine
+                Abstract: False
+            Method: Create
+                AssociatedType: System.Delegate
+                Visibility: Public, Static
+                Generated Name: create
+                Abstract: False
+            Method: CreateExport
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: createExport
+                Abstract: False
+            Method: DeleteExport
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: deleteExport
+                Abstract: False
+            Method: Remove
+                AssociatedType: System.Delegate
+                Visibility: Public, Static
+                Generated Name: remove
+                Abstract: False
+        
+    Class: Double
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: Parse
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: parseFloat
+                Abstract: False
+            Method: ToExponential
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toExponential
+                Abstract: False
+            Method: ToFixed
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toFixed
+                Abstract: False
+            Method: ToPrecision
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toPrecision
+                Abstract: False
+        
+    Class: Enum
+        Application Type: False
+        Public: True
+        Generated Name: Enum
+        Global Methods: False
+        Members:
+        
+    Class: EventArgs
+        Application Type: False
+        Public: True
+        Generated Name: EventArgs
+        Global Methods: False
+        Members:
+            Field: Empty
+                AssociatedType: System.EventArgs
+                Visibility: Public, Static
+                Generated Name: Empty
+        
+    Delegate: EventHandler
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: EventHandler`1
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: Exception
+        Application Type: False
+        Public: True
+        Generated Name: Error
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: True
+                Abstract: False
+        Members:
+            Field: InnerException
+                AssociatedType: Exception
+                Visibility: Public
+                Generated Name: innerException
+            Field: Message
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: message
+            Method: Create
+                AssociatedType: Exception
+                Visibility: Public, Static
+                Generated Name: Error.createError
+                Abstract: False
+        
+    Delegate: Func`1
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TResult
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Func`2
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TResult
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Func`3
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TResult
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Func`4
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TResult
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Func`5
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TResult
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Func`6
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TResult
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Func`7
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TResult
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Func`8
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TResult
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: Func`9
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TResult
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: Function
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Global Methods: False
+        Members:
+            Field: Length
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: Apply
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: apply
+                Abstract: False
+            Method: Call
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: call
+                Abstract: False
+        
+    Interface: IDisposable
+        Application Type: False
+        Public: True
+        Generated Name: IDisposable
+        Members:
+            Method: Dispose
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: dispose
+                Abstract: True
+        
+    Class: Int16
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+    Class: Int32
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: Parse
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: parseInt
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+    Class: Int64
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+    Class: Math
+        Application Type: False
+        Public: True
+        Generated Name: Math
+        Global Methods: False
+        Members:
+            Field: E
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: E
+            Field: LN2
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: LN2
+            Field: LN10
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: LN10
+            Field: LOG2E
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: LOG2E
+            Field: LOG10E
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: LOG10E
+            Field: PI
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: PI
+            Field: SQRT1_2
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: SQRT1_2
+            Field: SQRT2
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: SQRT2
+            Method: Abs
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: abs
+                Abstract: False
+            Method: Acos
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: acos
+                Abstract: False
+            Method: Asin
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: asin
+                Abstract: False
+            Method: Atan
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: atan
+                Abstract: False
+            Method: Atan2
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: atan2
+                Abstract: False
+            Method: Ceil
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: ceil
+                Abstract: False
+            Method: Cos
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: cos
+                Abstract: False
+            Method: Exp
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: exp
+                Abstract: False
+            Method: Floor
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: floor
+                Abstract: False
+            Method: Log
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: log
+                Abstract: False
+            Method: Max
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: max
+                Abstract: False
+            Method: Min
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: min
+                Abstract: False
+            Method: Pow
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: pow
+                Abstract: False
+            Method: Random
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: random
+                Abstract: False
+            Method: Round
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: round
+                Abstract: False
+            Method: Sin
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: sin
+                Abstract: False
+            Method: Sqrt
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: sqrt
+                Abstract: False
+            Method: Tan
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: tan
+                Abstract: False
+            Method: Truncate
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: parseInt
+                Abstract: False
+        
+    Class: Nullable`1
+        Application Type: False
+        Public: True
+        Generated Name: Nullable`1
+        Global Methods: False
+        Members:
+            Property: HasValue
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: hasValue
+                ReadOnly: True
+                Abstract: False
+            Property: Value
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: value
+                ReadOnly: True
+                Abstract: False
+            Method: GetValueOrDefault
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: getValueOrDefault
+                Abstract: False
+        
+    Class: Number
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Field: MAX_VALUE
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: MAX_VALUE
+            Field: MIN_VALUE
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: MIN_VALUE
+            Field: NaN
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: NaN
+            Field: NEGATIVE_INFINITY
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: NEGATIVE_INFINITY
+            Field: POSITIVE_INFINITY
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: POSITIVE_INFINITY
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: IsFinite
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isFinite
+                Abstract: False
+            Method: IsNaN
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isNaN
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: Parse
+                AssociatedType: Number
+                Visibility: Public, Static
+                Generated Name: parse
+                Abstract: False
+            Method: ParseDouble
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: parseFloat
+                Abstract: False
+            Method: ParseFloat
+                AssociatedType: Single
+                Visibility: Public, Static
+                Generated Name: parseFloat
+                Abstract: False
+            Method: ParseInt
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: parseInt
+                Abstract: False
+            Method: ToExponential
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toExponential
+                Abstract: False
+            Method: ToFixed
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toFixed
+                Abstract: False
+            Method: ToPrecision
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toPrecision
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+    Class: Object
+        Application Type: False
+        Public: True
+        Generated Name: Object
+        Global Methods: False
+        Members:
+            Method: GetType
+                AssociatedType: Type
+                Visibility: Public
+                Generated Name: getType
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+            Method: ToLocaleString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toLocaleString
+                Abstract: False
+        
+    Class: Record
+        Application Type: False
+        Public: True
+        Generated Name: Record
+        Global Methods: False
+        Members:
+        
+    Class: RegularExpression
+        Application Type: False
+        Public: True
+        Generated Name: RegExp
+        Global Methods: False
+        Members:
+            Field: LastIndex
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: lastIndex
+            Field: Global
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: global
+            Field: IgnoreCase
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: ignoreCase
+            Field: Multiline
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: multiline
+            Field: Pattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: pattern
+            Method: Exec
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: exec
+                Abstract: False
+            Method: Parse
+                AssociatedType: RegularExpression
+                Visibility: Public, Static
+                Generated Name: parse
+                Abstract: False
+            Method: Test
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: test
+                Abstract: False
+        
+    Class: SByte
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+    Class: Script
+        Application Type: False
+        Public: True
+        Generated Name: Script
+        Global Methods: True
+        Members:
+            Method: Alert
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: alert
+                Abstract: False
+            Method: Boolean
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: boolean
+                Abstract: False
+            Method: Confirm
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: confirm
+                Abstract: False
+            Method: Eval
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: eval
+                Abstract: False
+            Method: IsNull
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: ss.isNull
+                Abstract: False
+            Method: IsNullOrUndefined
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: ss.isNullOrUndefined
+                Abstract: False
+            Method: IsUndefined
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: ss.isUndefined
+                Abstract: False
+            Method: IsValue
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: ss.isValue
+                Abstract: False
+            Method: Literal
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: literal
+                Abstract: False
+            Method: LoadScripts
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: ss.loadScripts
+                Abstract: False
+            Method: OnInit
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: ss.init
+                Abstract: False
+            Method: OnReady
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: ss.ready
+                Abstract: False
+            Method: Prompt
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: prompt
+                Abstract: False
+            Method: RegisterScript
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: ss.registerScript
+                Abstract: False
+            Method: Value
+                AssociatedType: TValue
+                Visibility: Public, Static
+                Generated Name: value
+                Abstract: False
+            Method: Escape
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: escape
+                Abstract: False
+            Method: Unescape
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: unescape
+                Abstract: False
+            Method: EncodeUri
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: encodeURI
+                Abstract: False
+            Method: DecodeUri
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: decodeURI
+                Abstract: False
+            Method: EncodeUriComponent
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: encodeURIComponent
+                Abstract: False
+            Method: DecodeUriComponent
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: decodeURIComponent
+                Abstract: False
+        
+    Class: ScriptInfo
+        Application Type: False
+        Public: True
+        Generated Name: Object
+        Global Methods: False
+        Members:
+            Field: Dependencies
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: requires
+            Field: Name
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: name
+            Field: Source
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: src
+        
+    Class: Single
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: Parse
+                AssociatedType: Single
+                Visibility: Public, Static
+                Generated Name: parseFloat
+                Abstract: False
+            Method: ToExponential
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toExponential
+                Abstract: False
+            Method: ToFixed
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toFixed
+                Abstract: False
+            Method: ToPrecision
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toPrecision
+                Abstract: False
+        
+    Class: String
+        Application Type: False
+        Public: True
+        Generated Name: String
+        Global Methods: False
+        Members:
+            Field: Empty
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: Empty
+            Field: Length
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: CharAt
+                AssociatedType: Char
+                Visibility: Public
+                Generated Name: charAt
+                Abstract: False
+            Method: CharCodeAt
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: charCodeAt
+                Abstract: False
+            Method: Compare
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: compare
+                Abstract: False
+            Method: CompareTo
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: compareTo
+                Abstract: False
+            Method: Concat
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: concat
+                Abstract: False
+            Method: DecodeUri
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: decodeURI
+                Abstract: False
+            Method: DecodeUriComponent
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: decodeURIComponent
+                Abstract: False
+            Method: EncodeUri
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: encodeURI
+                Abstract: False
+            Method: EncodeUriComponent
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: encodeURIComponent
+                Abstract: False
+            Method: EndsWith
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: endsWith
+                Abstract: False
+            Method: Equals
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: equals
+                Abstract: False
+            Method: Escape
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: escape
+                Abstract: False
+            Method: Format
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: format
+                Abstract: False
+            Method: FromChar
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: fromChar
+                Abstract: False
+            Method: FromCharCode
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: fromCharCode
+                Abstract: False
+            Method: HtmlDecode
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: htmlDecode
+                Abstract: False
+            Method: HtmlEncode
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: htmlEncode
+                Abstract: False
+            Method: IndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: indexOf
+                Abstract: False
+            Method: IndexOfAny
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: indexOfAny
+                Abstract: False
+            Method: Insert
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: insert
+                Abstract: False
+            Method: IsNullOrEmpty
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isNullOrEmpty
+                Abstract: False
+            Method: LastIndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: lastIndexOf
+                Abstract: False
+            Method: LastIndexOfAny
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: lastIndexOfAny
+                Abstract: False
+            Method: LocaleCompare
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: localeCompare
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: localeFormat
+                Abstract: False
+            Method: Match
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: match
+                Abstract: False
+            Method: PadLeft
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: padLeft
+                Abstract: False
+            Method: PadRight
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: padRight
+                Abstract: False
+            Method: Remove
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: remove
+                Abstract: False
+            Method: Replace
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: replaceAll
+                Abstract: False
+            Method: ReplaceFirst
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: replace
+                Abstract: False
+            Method: ReplaceRegex
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: replace
+                Abstract: False
+            Method: Search
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: search
+                Abstract: False
+            Method: Split
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: split
+                Abstract: False
+            Method: StartsWith
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: startsWith
+                Abstract: False
+            Method: Substr
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: substr
+                Abstract: False
+            Method: Substring
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: substring
+                Abstract: False
+            Method: ToLocaleLowerCase
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toLocaleLowerCase
+                Abstract: False
+            Method: ToLocaleUpperCase
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toLocaleUpperCase
+                Abstract: False
+            Method: ToLowerCase
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toLowerCase
+                Abstract: False
+            Method: ToUpperCase
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toUpperCase
+                Abstract: False
+            Method: Trim
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: trim
+                Abstract: False
+            Method: TrimStart
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: trimStart
+                Abstract: False
+            Method: TrimEnd
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: trimEnd
+                Abstract: False
+            Method: Unescape
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: unescape
+                Abstract: False
+        
+    Class: StringBuilder
+        Application Type: False
+        Public: True
+        Generated Name: StringBuilder
+        Global Methods: False
+        Members:
+            Field: IsEmpty
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: isEmpty
+            Method: Append
+                AssociatedType: System.StringBuilder
+                Visibility: Public
+                Generated Name: append
+                Abstract: False
+            Method: AppendLine
+                AssociatedType: System.StringBuilder
+                Visibility: Public
+                Generated Name: appendLine
+                Abstract: False
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+    Delegate: StringReplaceCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: Tuple`2
+        Application Type: False
+        Public: True
+        Generated Name: Tuple
+        Global Methods: False
+        Members:
+            Field: First
+                AssociatedType: T1
+                Visibility: Public
+                Generated Name: first
+            Field: Second
+                AssociatedType: T2
+                Visibility: Public
+                Generated Name: second
+        
+    Class: Tuple`3
+        Application Type: False
+        Public: True
+        Generated Name: Tuple
+        Global Methods: False
+        Members:
+            Field: First
+                AssociatedType: T1
+                Visibility: Public
+                Generated Name: first
+            Field: Second
+                AssociatedType: T2
+                Visibility: Public
+                Generated Name: second
+            Field: Third
+                AssociatedType: T3
+                Visibility: Public
+                Generated Name: third
+        
+    Class: Type
+        Application Type: False
+        Public: True
+        Generated Name: Type
+        Global Methods: False
+        Members:
+            Property: BaseType
+                AssociatedType: Type
+                Visibility: Public
+                Generated Name: baseType
+                ReadOnly: True
+                Abstract: False
+            Property: FullName
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: fullName
+                ReadOnly: True
+                Abstract: False
+            Property: Name
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: name
+                ReadOnly: True
+                Abstract: False
+            Field: Prototype
+                AssociatedType: Dictionary
+                Visibility: Public
+                Generated Name: prototype
+            Method: AddHandler
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: addHandler
+                Abstract: False
+            Method: CreateInstance
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: createInstance
+                Abstract: False
+            Method: DeleteField
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: deleteField
+                Abstract: False
+            Method: GetField
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: getField
+                Abstract: False
+            Method: GetInterfaces
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: getInterfaces
+                Abstract: False
+            Method: GetProperty
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: getProperty
+                Abstract: False
+            Method: GetScriptType
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: getScriptType
+                Abstract: False
+            Method: GetType
+                AssociatedType: Type
+                Visibility: Public, Static
+                Generated Name: getType
+                Abstract: False
+            Method: HasField
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: hasField
+                Abstract: False
+            Method: HasMethod
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: hasMethod
+                Abstract: False
+            Method: HasProperty
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: hasProperty
+                Abstract: False
+            Method: InvokeMethod
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: invokeMethod
+                Abstract: False
+            Method: IsAssignableFrom
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: isAssignableFrom
+                Abstract: False
+            Method: IsClass
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isClass
+                Abstract: False
+            Method: IsEnum
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isEnum
+                Abstract: False
+            Method: IsFlags
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isFlags
+                Abstract: False
+            Method: IsInterface
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isInterface
+                Abstract: False
+            Method: IsNamespace
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isNamespace
+                Abstract: False
+            Method: IsInstanceOfType
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: isInstanceOfType
+                Abstract: False
+            Method: Parse
+                AssociatedType: Type
+                Visibility: Public, Static
+                Generated Name: parse
+                Abstract: False
+            Method: RemoveHandler
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: removeHandler
+                Abstract: False
+            Method: SetField
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: setField
+                Abstract: False
+            Method: SetProperty
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: setProperty
+                Abstract: False
+            Method: GetTypeFromHandle
+                AssociatedType: Type
+                Visibility: Public, Static
+                Generated Name: getTypeFromHandle
+                Abstract: False
+            Method: GetInstanceType
+                AssociatedType: Type
+                Visibility: Public, Static
+                Generated Name: getInstanceType
+                Abstract: False
+                Parameters:
+                    Parameter: instance
+                    AssociatedType: Object
+                    Mode: In
+        
+    Class: UInt16
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+    Class: UInt32
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+    Class: UInt64
+        Application Type: False
+        Public: True
+        Generated Name: Number
+        Global Methods: False
+        Members:
+            Method: Format
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: format
+                Abstract: False
+            Method: LocaleFormat
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: localeFormat
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+    Class: Void
+        Application Type: False
+        Public: True
+        Generated Name: Void
+        Global Methods: False
+        Members:
+        
+
+Namespace: System.Collections
+HasApplicationTypes: False
+Types:
+    Delegate: ArrayAggregator
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ArrayCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ArrayFilterCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: ArrayGrouping
+        Application Type: False
+        Public: True
+        Generated Name: Array
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: False
+                Abstract: False
+        Members:
+            Field: Key
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: key
+            Field: Length
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: Aggregate
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: aggregate
+                Abstract: False
+            Method: Clone
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: clone
+                Abstract: False
+            Method: Concat
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: concat
+                Abstract: False
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: False
+            Method: Every
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: every
+                Abstract: False
+            Method: Extract
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: extract
+                Abstract: False
+            Method: Filter
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: filter
+                Abstract: False
+            Method: ForEach
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: forEach
+                Abstract: False
+            Method: GetEnumerator
+                AssociatedType: System.Collections.IEnumerator
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: False
+            Method: GroupBy
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: groupBy
+                Abstract: False
+            Method: Index
+                AssociatedType: Dictionary
+                Visibility: Public
+                Generated Name: index
+                Abstract: False
+            Method: IndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: indexOf
+                Abstract: False
+            Method: Join
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: join
+                Abstract: False
+            Method: Map
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: map
+                Abstract: False
+            Method: Reverse
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: reverse
+                Abstract: False
+            Method: Some
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: some
+                Abstract: False
+            Method: Sort
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: sort
+                Abstract: False
+        
+    Delegate: ArrayItemAggregator
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ArrayItemCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ArrayItemFilterCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ArrayItemKeyGenerator
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ArrayItemMapCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: ArrayList
+        Application Type: False
+        Public: True
+        Generated Name: Array
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: False
+                Abstract: False
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: Add
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: add
+                Abstract: False
+            Method: AddRange
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: addRange
+                Abstract: False
+            Method: Aggregate
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: aggregate
+                Abstract: False
+            Method: Clone
+                AssociatedType: ArrayList
+                Visibility: Public
+                Generated Name: clone
+                Abstract: False
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: Concat
+                AssociatedType: ArrayList
+                Visibility: Public
+                Generated Name: concat
+                Abstract: False
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: False
+            Method: Every
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: every
+                Abstract: False
+            Method: Extract
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: extract
+                Abstract: False
+            Method: Filter
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: filter
+                Abstract: False
+            Method: ForEach
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: forEach
+                Abstract: False
+            Method: GetEnumerator
+                AssociatedType: System.Collections.IEnumerator
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: False
+            Method: GroupBy
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: groupBy
+                Abstract: False
+            Method: Index
+                AssociatedType: Dictionary
+                Visibility: Public
+                Generated Name: index
+                Abstract: False
+            Method: IndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: indexOf
+                Abstract: False
+            Method: Insert
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: insert
+                Abstract: False
+            Method: InsertRange
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: insertRange
+                Abstract: False
+            Method: Join
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: join
+                Abstract: False
+            Method: Map
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: map
+                Abstract: False
+            Method: Parse
+                AssociatedType: ArrayList
+                Visibility: Public, Static
+                Generated Name: parse
+                Abstract: False
+            Method: Remove
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: remove
+                Abstract: False
+            Method: RemoveAt
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: removeAt
+                Abstract: False
+            Method: RemoveRange
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: removeRange
+                Abstract: False
+            Method: Reverse
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: reverse
+                Abstract: False
+            Method: Some
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: some
+                Abstract: False
+            Method: Sort
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: sort
+                Abstract: False
+        
+    Delegate: ArrayMapCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: Dictionary
+        Application Type: False
+        Public: True
+        Generated Name: Object
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: False
+                Abstract: False
+        Members:
+            Property: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: count
+                ReadOnly: True
+                Abstract: False
+            Property: Keys
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: keys
+                ReadOnly: True
+                Abstract: False
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: ContainsKey
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: containsKey
+                Abstract: False
+            Method: GetDictionary
+                AssociatedType: Dictionary
+                Visibility: Public, Static
+                Generated Name: getDictionary
+                Abstract: False
+            Method: Remove
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: remove
+                Abstract: False
+            Method: GetKeys
+                AssociatedType: Array
+                Visibility: Public, Static
+                Generated Name: keys
+                Abstract: False
+            Method: GetKeyCount
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: getKeyCount
+                Abstract: False
+            Method: ClearKeys
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: clearKeys
+                Abstract: False
+            Method: DeleteKey
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: deleteKey
+                Abstract: False
+            Method: KeyExists
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: keyExists
+                Abstract: False
+        
+    Class: DictionaryEntry
+        Application Type: False
+        Public: True
+        Generated Name: DictionaryEntry
+        Global Methods: False
+        Members:
+            Field: Key
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: key
+            Field: Value
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: value
+        
+    Interface: ICollection
+        Application Type: False
+        Public: True
+        Generated Name: ICollection
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+        
+    Interface: IEnumerable
+        Application Type: False
+        Public: True
+        Generated Name: IEnumerable
+        Members:
+            Method: GetEnumerator
+                AssociatedType: System.Collections.IEnumerator
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: True
+        
+    Interface: IEnumerator
+        Application Type: False
+        Public: True
+        Generated Name: IEnumerator
+        Members:
+            Field: Current
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: current
+            Method: MoveNext
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: moveNext
+                Abstract: True
+            Method: Reset
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: reset
+                Abstract: True
+        
+    Interface: IReadonlyCollection
+        Application Type: False
+        Public: True
+        Generated Name: ICollection
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+        
+    Class: ObservableCollection
+        Application Type: False
+        Public: True
+        Generated Name: ObservableCollection
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: False
+                Abstract: False
+        Members:
+            Property: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+                ReadOnly: True
+                Abstract: False
+            Method: Add
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: add
+                Abstract: False
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: False
+            Method: GetEnumerator
+                AssociatedType: System.Collections.IEnumerator
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: False
+            Method: IndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: indexOf
+                Abstract: False
+            Method: Insert
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: insert
+                Abstract: False
+            Method: Remove
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: remove
+                Abstract: False
+            Method: RemoveAt
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: removeAt
+                Abstract: False
+            Method: ToArray
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: toArray
+                Abstract: False
+        
+    Class: Queue
+        Application Type: False
+        Public: True
+        Generated Name: Array
+        Global Methods: False
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: False
+            Method: Dequeue
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: dequeue
+                Abstract: False
+            Method: Enqueue
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: enqueue
+                Abstract: False
+            Method: Peek
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: peek
+                Abstract: False
+        
+    Class: Stack
+        Application Type: False
+        Public: True
+        Generated Name: Array
+        Global Methods: False
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: False
+            Method: Peek
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: peek
+                Abstract: False
+            Method: Pop
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: pop
+                Abstract: False
+            Method: Push
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: push
+                Abstract: False
+        
+
+Namespace: System.Collections.Generic
+HasApplicationTypes: False
+Types:
+    Delegate: CompareCallback`1
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: Dictionary`2
+        Application Type: False
+        Public: True
+        Generated Name: Object
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: TValue
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: False
+                Abstract: False
+        Members:
+            Property: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: count
+                ReadOnly: True
+                Abstract: False
+            Property: Keys
+                AssociatedType: System.Collections.Generic.IReadonlyCollection`1
+                Visibility: Public
+                Generated Name: keys
+                ReadOnly: True
+                Abstract: False
+            Method: Add
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: add
+                Abstract: False
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: ContainsKey
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: containsKey
+                Abstract: False
+            Method: GetDictionary
+                AssociatedType: Dictionary`2
+                Visibility: Public, Static
+                Generated Name: getDictionary
+                Abstract: False
+            Method: GetEnumerator
+                AssociatedType: System.Collections.Generic.IEnumerator`1
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: False
+            Method: Remove
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: remove
+                Abstract: False
+            Method: TryGetValue
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: tryGetValue
+                Abstract: False
+        
+    Interface: ICollection`1
+        Application Type: False
+        Public: True
+        Generated Name: ICollection
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+        
+    Interface: IEnumerable`1
+        Application Type: False
+        Public: True
+        Generated Name: IEnumerable
+        Members:
+            Method: GetEnumerator
+                AssociatedType: System.Collections.Generic.IEnumerator`1
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: True
+        
+    Interface: IEnumerator`1
+        Application Type: False
+        Public: True
+        Generated Name: IEnumerator
+        Members:
+            Field: Current
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: current
+            Method: MoveNext
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: moveNext
+                Abstract: True
+            Method: Reset
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: reset
+                Abstract: True
+        
+    Interface: IReadonlyCollection`1
+        Application Type: False
+        Public: True
+        Generated Name: ICollection
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+        
+    Class: KeyValuePair`2
+        Application Type: False
+        Public: True
+        Generated Name: Object
+        Global Methods: False
+        Members:
+            Field: Key
+                AssociatedType: TKey
+                Visibility: Public
+                Generated Name: key
+            Field: Value
+                AssociatedType: TValue
+                Visibility: Public
+                Generated Name: value
+        
+    Class: List`1
+        Application Type: False
+        Public: True
+        Generated Name: Array
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: False
+                Abstract: False
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: Add
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: add
+                Abstract: False
+            Method: AddRange
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: addRange
+                Abstract: False
+            Method: Aggregate
+                AssociatedType: TAccumulated
+                Visibility: Public
+                Generated Name: aggregate
+                Abstract: False
+            Method: Clone
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: clone
+                Abstract: False
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: Concat
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: concat
+                Abstract: False
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: False
+            Method: Every
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: every
+                Abstract: False
+            Method: Extract
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: extract
+                Abstract: False
+            Method: Filter
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: filter
+                Abstract: False
+            Method: ForEach
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: forEach
+                Abstract: False
+            Method: GetEnumerator
+                AssociatedType: System.Collections.Generic.IEnumerator`1
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: False
+            Method: GroupBy
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: groupBy
+                Abstract: False
+            Method: IndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: indexOf
+                Abstract: False
+            Method: Insert
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: insert
+                Abstract: False
+            Method: InsertRange
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: insertRange
+                Abstract: False
+            Method: Join
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: join
+                Abstract: False
+            Method: Map
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: map
+                Abstract: False
+            Method: Parse
+                AssociatedType: List`1
+                Visibility: Public, Static
+                Generated Name: parse
+                Abstract: False
+            Method: Remove
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: remove
+                Abstract: False
+            Method: RemoveAt
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: removeAt
+                Abstract: False
+            Method: RemoveRange
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: removeRange
+                Abstract: False
+            Method: Reverse
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: reverse
+                Abstract: False
+            Method: Some
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: some
+                Abstract: False
+            Method: Sort
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: sort
+                Abstract: False
+        
+    Delegate: ListAggregator`2
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TAccumulated
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ListCallback`1
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ListFilterCallback`1
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: ListGrouping`1
+        Application Type: False
+        Public: True
+        Generated Name: Array
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: True
+                Abstract: False
+        Members:
+            Field: Key
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: key
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: Aggregate
+                AssociatedType: TAccumulated
+                Visibility: Public
+                Generated Name: aggregate
+                Abstract: False
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: False
+            Method: Every
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: every
+                Abstract: False
+            Method: Extract
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: extract
+                Abstract: False
+            Method: Filter
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: filter
+                Abstract: False
+            Method: ForEach
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: forEach
+                Abstract: False
+            Method: GetEnumerator
+                AssociatedType: System.Collections.Generic.IEnumerator`1
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: False
+            Method: GroupBy
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: groupBy
+                Abstract: False
+            Method: IndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: indexOf
+                Abstract: False
+            Method: Join
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: join
+                Abstract: False
+            Method: Map
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: map
+                Abstract: False
+            Method: Reverse
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: reverse
+                Abstract: False
+            Method: Some
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: some
+                Abstract: False
+        
+    Delegate: ListItemAggregator`2
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TAccumulated
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ListItemCallback`1
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ListItemFilterCallback`1
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ListItemKeyGenerator`1
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ListItemMapCallback`2
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TTarget
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ListMapCallback`2
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TTarget
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Class: ObservableCollection`1
+        Application Type: False
+        Public: True
+        Generated Name: ObservableCollection
+        Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: False
+                Abstract: False
+        Members:
+            Property: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+                ReadOnly: True
+                Abstract: False
+            Method: Add
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: add
+                Abstract: False
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: False
+            Method: GetEnumerator
+                AssociatedType: System.Collections.Generic.IEnumerator`1
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: False
+            Method: IndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: indexOf
+                Abstract: False
+            Method: Insert
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: insert
+                Abstract: False
+            Method: Remove
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: remove
+                Abstract: False
+            Method: RemoveAt
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: removeAt
+                Abstract: False
+            Method: ToArray
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: toArray
+                Abstract: False
+        
+    Class: Queue`1
+        Application Type: False
+        Public: True
+        Generated Name: Array
+        Global Methods: False
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: False
+            Method: Dequeue
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: dequeue
+                Abstract: False
+            Method: Enqueue
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: enqueue
+                Abstract: False
+            Method: Peek
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: peek
+                Abstract: False
+        
+    Class: Stack`1
+        Application Type: False
+        Public: True
+        Generated Name: Array
+        Global Methods: False
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: False
+            Method: Peek
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: peek
+                Abstract: False
+            Method: Pop
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: pop
+                Abstract: False
+            Method: Push
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: push
+                Abstract: False
+        
+
+Namespace: System.ComponentModel
+HasApplicationTypes: False
+Types:
+    Interface: IApplication
+        Application Type: False
+        Public: True
+        Generated Name: IApplication
+        Members:
+            Method: GetSetting
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: getSetting
+                Abstract: True
+        
+    Interface: IContainer
+        Application Type: False
+        Public: True
+        Generated Name: IContainer
+        Members:
+            Method: GetObject
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: getObject
+                Abstract: True
+            Method: RegisterObject
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: registerObject
+                Abstract: True
+            Method: RegisterFactory
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: registerFactory
+                Abstract: True
+        
+    Interface: IEventManager
+        Application Type: False
+        Public: True
+        Generated Name: IEventManager
+        Members:
+            Method: PublishEvent
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: publishEvent
+                Abstract: True
+            Method: SubscribeEvent
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: subscribeEvent
+                Abstract: True
+            Method: UnsubscribeEvent
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: unsubscribeEvent
+                Abstract: True
+        
+    Interface: IInitializable
+        Application Type: False
+        Public: True
+        Generated Name: IInitializable
+        Members:
+            Method: BeginInitialization
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: beginInitialization
+                Abstract: True
+            Method: EndInitialization
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: endInitialization
+                Abstract: True
+        
+    Interface: IObserver
+        Application Type: False
+        Public: True
+        Generated Name: IObserver
+        Members:
+            Method: InvalidateObserver
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: invalidateObserver
+                Abstract: True
+        
+    Class: Observable`1
+        Application Type: False
+        Public: True
+        Generated Name: Observable
+        Global Methods: False
+        Members:
+            Method: GetValue
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: getValue
+                Abstract: False
+            Method: SetValue
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setValue
+                Abstract: False
+        
+    Class: ObserverManager
+        Application Type: False
+        Public: True
+        Generated Name: Observable
+        Global Methods: False
+        Members:
+            Method: RegisterObserver
+                AssociatedType: System.IDisposable
+                Visibility: Public, Static
+                Generated Name: registerObserver
+                Abstract: False
+        
+
+Namespace: System.Diagnostics
+HasApplicationTypes: False
+Types:
+    Class: Debug
+        Application Type: False
+        Public: True
+        Generated Name: Debug
+        Global Methods: False
+        Members:
+            Method: Assert
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: assert
+                Abstract: False
+                Conditions:
+                    DEBUG
+            Method: Fail
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: fail
+                Abstract: False
+                Conditions:
+                    DEBUG
+            Method: WriteLine
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: writeln
+                Abstract: False
+                Conditions:
+                    DEBUG
+        
+
+Namespace: System.Globalization
+HasApplicationTypes: False
+Types:
+    Class: CultureInfo
+        Application Type: False
+        Public: True
+        Generated Name: CultureInfo
+        Global Methods: False
+        Members:
+            Field: CurrentCulture
+                AssociatedType: System.Globalization.CultureInfo
+                Visibility: Public, Static
+                Generated Name: CurrentCulture
+            Field: DateFormat
+                AssociatedType: DateFormatInfo
+                Visibility: Public
+                Generated Name: dateFormat
+            Field: InvariantCulture
+                AssociatedType: System.Globalization.CultureInfo
+                Visibility: Public, Static
+                Generated Name: InvariantCulture
+            Field: Name
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: name
+            Field: NumberFormat
+                AssociatedType: NumberFormatInfo
+                Visibility: Public
+                Generated Name: numberFormat
+        
+    Class: DateFormatInfo
+        Application Type: False
+        Public: True
+        Generated Name: DateFormatInfo
+        Global Methods: False
+        Members:
+            Field: AMDesignator
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: amDesignator
+            Field: PMDesignator
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: pmDesignator
+            Field: DateSeparator
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: dateSeparator
+            Field: TimeSeparator
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: timeSeparator
+            Field: GMTDateTimePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: gmtDateTimePattern
+            Field: UniversalDateTimePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: universalDateTimePattern
+            Field: SortableDateTimePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: sortableDateTimePattern
+            Field: DateTimePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: dateTimePattern
+            Field: LongDatePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: longDatePattern
+            Field: ShortDatePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: shortDatePattern
+            Field: LongTimePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: longTimePattern
+            Field: ShortTimePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: shortTimePattern
+            Field: FirstDayOfWeek
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: firstDayOfWeek
+            Field: DayNames
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: dayNames
+            Field: ShortDayNames
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: shortDayNames
+            Field: MinimizedDayNames
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: minimizedDayNames
+            Field: MonthNames
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: monthNames
+            Field: ShortMonthNames
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: shortMonthNames
+        
+    Class: NumberFormatInfo
+        Application Type: False
+        Public: True
+        Generated Name: NumberFormatInfo
+        Global Methods: False
+        Members:
+            Field: NaNSymbol
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: naNSymbol
+            Field: NegativeSign
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: negativeSign
+            Field: PositiveSign
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: positiveSign
+            Field: NegativeInfinityText
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: negativeInfinityText
+            Field: PositiveInfinityText
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: positiveInfinityText
+            Field: PercentSymbol
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: percentSymbol
+            Field: PercentGroupSizes
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: percentGroupSizes
+            Field: PercentDecimalDigits
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: percentDecimalDigits
+            Field: PercentDecimalSeparator
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: percentDecimalSeparator
+            Field: PercentGroupSeparator
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: percentGroupSeparator
+            Field: PercentPositivePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: percentPositivePattern
+            Field: PercentNegativePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: percentNegativePattern
+            Field: CurrencySymbol
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: currencySymbol
+            Field: CurrencyGroupSizes
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: currencyGroupSizes
+            Field: CurrencyDecimalDigits
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: currencyDecimalDigits
+            Field: CurrencyDecimalSeparator
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: currencyDecimalSeparator
+            Field: CurrencyGroupSeparator
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: currencyGroupSeparator
+            Field: CurrencyPositivePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: currencyPositivePattern
+            Field: CurrencyNegativePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: currencyNegativePattern
+            Field: NumberGroupSizes
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: numberGroupSizes
+            Field: NumberDecimalDigits
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: numberDecimalDigits
+            Field: NumberDecimalSeparator
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: numberDecimalSeparator
+            Field: NumberGroupSeparator
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: numberGroupSeparator
+        
+
+Namespace: System.Serialization
+HasApplicationTypes: False
+Types:
+    Class: Json
+        Application Type: False
+        Public: True
+        Generated Name: JSON
+        Global Methods: False
+        Members:
+            Method: Parse
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: parse
+                Abstract: False
+            Method: ParseData
+                AssociatedType: TData
+                Visibility: Public, Static
+                Generated Name: parse
+                Abstract: False
+            Method: Stringify
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: stringify
+                Abstract: False
+        
+    Delegate: JsonParseCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: JsonStringifyCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+
+Namespace: System.Testing
+HasApplicationTypes: False
+Types:
+    Class: Assert
+        Application Type: False
+        Public: True
+        Generated Name: Assert
+        Global Methods: False
+        Members:
+            Method: AreEqual
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: QUnit.equal
+                Abstract: False
+            Method: AreNotEqual
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: QUnit.notEqual
+                Abstract: False
+            Method: ExpectAsserts
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: QUnit.expect
+                Abstract: False
+            Method: IsTrue
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: QUnit.ok
+                Abstract: False
+        
+    Class: TestClass
+        Application Type: False
+        Public: True
+        Generated Name: TestClass
+        Global Methods: False
+        Members:
+            Method: Cleanup
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: cleanup
+                Abstract: False
+            Method: Setup
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: setup
+                Abstract: False
+        
+    Class: TestEngine
+        Application Type: False
+        Public: True
+        Generated Name: TestEngine
+        Global Methods: False
+        Members:
+            Method: Log
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: QUnit.log
+                Abstract: False
+            Method: ResumeOnAsyncCompleted
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: QUnit.start
+                Abstract: False
+            Method: TriggerEvent
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: QUnit.triggerEvent
+                Abstract: False
+            Method: WaitForAsyncCompletion
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: QUnit.stop
+                Abstract: False
+        
+
+
+
+Script
+================================================================
+
+
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.AppFlags
+
+test.AppFlags = function() { };
+test.AppFlags.prototype = {
+    AAA: 1, 
+    BBB: 2
+}
+test.AppFlags.registerEnum('test.AppFlags', true);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Mode
+
+test.Mode = function() { };
+test.Mode.prototype = {
+    mode1: 0, 
+    mode2: 1
+}
+test.Mode.registerEnum('test.Mode', false);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test._iFoo
+
+test._iFoo = function() { };
+test._iFoo.prototype = {
+
+}
+test._iFoo.registerInterface('test._iFoo');
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.IApp
+
+test.IApp = function() { };
+test.IApp.prototype = {
+    run : null
+}
+test.IApp.registerInterface('test.IApp');
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test._point
+
+test.$create__point = function test__point(x, y) {
+    var $o = { };
+    $o.x = x;
+    $o.y = y;
+    return $o;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function test_App() {
+}
+test.App.prototype = {
+    
+    add_event1: function test_App$add_event1(value) {
+        this.__event1 = ss.Delegate.combine(this.__event1, value);
+    },
+    remove_event1: function test_App$remove_event1(value) {
+        this.__event1 = ss.Delegate.remove(this.__event1, value);
+    },
+    
+    __event1: null,
+    
+    add_event2: function test_App$add_event2(value) {
+    },
+    remove_event2: function test_App$remove_event2(value) {
+    },
+    
+    run: function test_App$run() {
+    },
+    
+    _initialize: function test_App$_initialize() {
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test._appHelper
+
+test._appHelper = function test__appHelper() {
+}
+test._appHelper.prototype = {
+    
+    get_prop1: function test__appHelper$get_prop1() {
+        return 0;
+    },
+    
+    get_prop2: function test__appHelper$get_prop2() {
+        return 0;
+    },
+    set_prop2: function test__appHelper$set_prop2(value) {
+        return value;
+    },
+    
+    _showHelp: function test__appHelper$_showHelp() {
+    },
+    get_item: function test__appHelper$get_item(name) {
+        return 0;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test._util
+
+window._showHelp = function test__util$_showHelp() {
+}
+
+
+test.App.registerClass('test.App', null, test.IApp);
+test._appHelper.registerClass('test._appHelper');

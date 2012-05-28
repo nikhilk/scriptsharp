@@ -1,0 +1,38 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.PublicClass
+
+test.PublicClass = function() {
+}
+test.PublicClass.prototype = {
+    
+    format: function(i) {
+        return '0';
+    },
+    
+    parse: function(s) {
+        return 0;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.InternalClass
+
+test.InternalClass = function() {
+}
+test.InternalClass.prototype = {
+    
+    format: function(i) {
+        return null;
+    },
+    
+    parse: function(s) {
+        return 0;
+    }
+}
+
+
+test.PublicClass.registerClass('test.PublicClass');
+test.InternalClass.registerClass('test.InternalClass');
