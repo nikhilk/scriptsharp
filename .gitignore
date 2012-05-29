@@ -3,4 +3,5 @@ obj/
 *.suo
 *.user
 *.cache
+*.trx
 Scripts/
