@@ -16,7 +16,7 @@
     <AssemblyName>FishTankApp</AssemblyName>
     <TemplateFile>Properties\FishTankApp.script</TemplateFile>
     <CodeAnalysisRuleSet>Properties\FishTankApp.ruleset</CodeAnalysisRuleSet>
-    <ReferencePath>$(ProgramFiles)\ScriptSharp\v1.0\Framework\</ReferencePath>
+    <ReferencePath>$(MSBuildProgramFiles32)\ScriptSharp\v1.0\Framework\</ReferencePath>
     <DeploymentPath>..\FishTankWeb</DeploymentPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -51,5 +51,5 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FishTankApplication.cs" />
   </ItemGroup>
-  <Import Project="$(ProgramFiles)\ScriptSharp\v1.0\ScriptSharp.targets" />
+  <Import Project="$(MSBuildProgramFiles32)\ScriptSharp\v1.0\ScriptSharp.targets" />
 </Project>

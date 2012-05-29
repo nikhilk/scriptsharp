@@ -16,7 +16,7 @@
     <AssemblyName>PhotoGrid</AssemblyName>
     <TemplateFile>Properties\PhotoGrid.script</TemplateFile>
     <CodeAnalysisRuleSet>Properties\PhotoGrid.ruleset</CodeAnalysisRuleSet>
-    <ReferencePath>$(ProgramFiles)\ScriptSharp\v1.0\Framework\</ReferencePath>
+    <ReferencePath>$(MSBuildProgramFiles32)\ScriptSharp\v1.0\Framework\</ReferencePath>
     <DeploymentPath>..\PhotoGridWeb\Content\Scripts</DeploymentPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -62,5 +62,5 @@
       <Name>Plugins</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(ProgramFiles)\ScriptSharp\v1.0\ScriptSharp.targets" />
+  <Import Project="$(MSBuildProgramFiles32)\ScriptSharp\v1.0\ScriptSharp.targets" />
 </Project>

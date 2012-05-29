@@ -15,7 +15,7 @@
     <AssemblyName>$safeprojectname$</AssemblyName>
     <TemplateFile>Properties\$safeprojectname$.script</TemplateFile>
     <CodeAnalysisRuleSet>Properties\$safeprojectname$.ruleset</CodeAnalysisRuleSet>
-    <ReferencePath>$(ProgramFiles)\ScriptSharp\v1.0\Framework\</ReferencePath>
+    <ReferencePath>$(MSBuildProgramFiles32)\ScriptSharp\v1.0\Framework\</ReferencePath>
     <DeploymentPath>$deploymentpath$</DeploymentPath>
    </PropertyGroup>
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -49,5 +49,5 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class1.cs" />
   </ItemGroup>
-  <Import Project="$(ProgramFiles)\ScriptSharp\v1.0\ScriptSharp.targets" />
+  <Import Project="$(MSBuildProgramFiles32)\ScriptSharp\v1.0\ScriptSharp.targets" />
 </Project>
