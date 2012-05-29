@@ -19,6 +19,7 @@ v0.7.5.0 [in progress]
     - [git #169] Missing jQuery API overload added
     - [git #170] Fix bing maps metadata bug
     - [git #178] Issues with string extensions
+    - [git #180] Added workaround: Better error message for namespace-qualified name gotcha
 
 v0.7.4.0
     - Fix/update bing maps metadata bug
