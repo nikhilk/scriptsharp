@@ -124,7 +124,7 @@ String.prototype.indexOfAny = function#? DEBUG String$indexOfAny##(chars, startI
 
 String.prototype.insert = function#? DEBUG String$insert##(index, value) {
     if (!value) {
-        return this;
+        return this.valueOf();
     }
     if (!index) {
         return value + this;
@@ -169,7 +169,7 @@ String.prototype.padLeft = function#? DEBUG String$padLeft##(totalWidth, ch) {
         ch = ch || ' ';
         return String.fromChar(ch, totalWidth - this.length) + this;
     }
-    return this;
+    return this.valueOf();
 }
 
 String.prototype.padRight = function#? DEBUG String$padRight##(totalWidth, ch) {
@@ -177,7 +177,7 @@ String.prototype.padRight = function#? DEBUG String$padRight##(totalWidth, ch) {
         ch = ch || ' ';
         return this + String.fromChar(ch, totalWidth - this.length);
     }
-    return this;
+    return this.valueOf();
 }
 
 String.prototype.remove = function#? DEBUG String$remove##(index, count) {
