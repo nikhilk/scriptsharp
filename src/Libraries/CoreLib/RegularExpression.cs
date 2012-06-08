@@ -58,6 +58,13 @@ namespace System {
             }
         }
 
+        [IntrinsicProperty]
+        public string Source {
+            get {
+                return null;
+            }
+        }
+
         public string[] Exec(string s) {
             return null;
         }
