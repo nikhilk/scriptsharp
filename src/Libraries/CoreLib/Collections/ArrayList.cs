@@ -50,6 +50,9 @@ namespace System.Collections {
         public void AddRange(object[] items) {
         }
 
+        public void AddRange(ArrayList items) {
+        }
+
         public object Aggregate(object seedValue, ArrayAggregator aggregator) {
             return null;
         }
