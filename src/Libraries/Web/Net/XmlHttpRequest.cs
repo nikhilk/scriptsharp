@@ -77,16 +77,16 @@ namespace System.Net {
         public void Open(HttpVerb verb, string url) {
         }
 
-        public void Open(string method, string url, bool async) {
+        public void Open(string method, string url, bool @async) {
         }
 
-        public void Open(HttpVerb verb, string url, bool async) {
+        public void Open(HttpVerb verb, string url, bool @async) {
         }
 
-        public void Open(string method, string url, bool async, string userName, string password) {
+        public void Open(string method, string url, bool @async, string userName, string password) {
         }
 
-        public void Open(HttpVerb verb, string url, bool async, string userName, string password) {
+        public void Open(HttpVerb verb, string url, bool @async, string userName, string password) {
         }
 
         public void Send() {
