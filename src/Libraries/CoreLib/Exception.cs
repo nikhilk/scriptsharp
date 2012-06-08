@@ -34,6 +34,14 @@ namespace System {
         }
 
         [IntrinsicProperty]
+        [ScriptName("stack")]
+        public string StackTrace {
+            get {
+                return null;
+            }
+        }
+
+        [IntrinsicProperty]
         public object this[string key] {
             get {
                 return null;
