@@ -10,9 +10,9 @@ namespace System.Html {
 
     [IgnoreNamespace]
     [Imported]
-    public class TokenList {
+    public sealed class TokenList {
 
-        internal TokenList() {
+        private TokenList() {
         }
         
         [IntrinsicProperty]
