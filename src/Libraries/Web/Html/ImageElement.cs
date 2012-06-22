@@ -10,9 +10,16 @@ namespace System.Html {
 
     [IgnoreNamespace]
     [Imported]
+    [ScriptName("Image")]
     public sealed class ImageElement : Element {
 
-        private ImageElement() {
+        public ImageElement() {
+        }
+
+        public ImageElement(int width) {
+        }
+
+        public ImageElement(int width, int height) {
         }
 
         [IntrinsicProperty]
