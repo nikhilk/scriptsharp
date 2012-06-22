@@ -1122,6 +1122,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="deferreds">The set of deferred objects.</param>
         /// <returns>A deferred object representing the individual deferred objects.</returns>
+        [ScriptName("when")]
         public static IDeferred<TData> WhenData<TData>(params IDeferred<TData>[] deferreds) {
             return null;
         }
