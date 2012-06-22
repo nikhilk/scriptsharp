@@ -3501,13 +3501,13 @@ namespace jQueryApi {
             return null;
         }
 
-		/// <summary>
-		/// Removes all event handlers attached to the matched set of elements
-		/// </summary>
-		/// <returns>The current jQueryObject.</returns>
-		public jQueryObject Unbind() {
-			return null;
-		}
+        /// <summary>
+        /// Removes all event handlers attached to the matched set of elements
+        /// </summary>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject Unbind() {
+            return null;
+        }
 
         /// <summary>
         /// Detaches a handler for the specified event on the matched set of elements.
