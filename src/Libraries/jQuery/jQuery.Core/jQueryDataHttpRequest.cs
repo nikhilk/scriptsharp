@@ -196,6 +196,10 @@ namespace jQueryApi {
             return null;
         }
 
+        public jQueryDataHttpRequest<TTargetData> Pipe<TTargetData>(Func<TData, jQueryDataHttpRequest<TTargetData>> successChain) {
+            return null;
+        }
+
         /// <summary>
         /// Sets a request header value.
         /// </summary>
@@ -298,6 +302,10 @@ namespace jQueryApi {
 
         bool IDeferred<TData>.IsResolved() {
             return false;
+        }
+
+        IDeferred<TTargetData> IDeferred<TData>.Pipe<TTargetData>(Func<TData, IDeferred<TTargetData>> successFilter) {
+            return null;
         }
 
         IDeferred<TTargetData> IDeferred<TData>.Pipe<TTargetData>(jQueryDeferredFilter<TTargetData, TData> successFilter) {
