@@ -109,6 +109,14 @@ namespace KnockoutApi {
         }
 
         /// <summary>
+        /// Removes all values from the array.
+        /// </summary>
+        /// <returns>The removed values</returns>
+        public T[] RemoveAll() {
+            return null;
+        }
+
+        /// <summary>
         /// Removes all values that satisfy the given parameters and returns them.
         /// </summary>
         /// <param name="values">An array of items to remove.</param>
