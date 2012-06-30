@@ -17,6 +17,18 @@ namespace System {
     public static class Arguments {
 
         /// <summary>
+        /// Retrieves the arguments list.
+        /// </summary>
+        /// <returns>The arguments list.</returns>
+        [ScriptAlias("arguments")]
+        [IntrinsicProperty]
+        public static object[] Current {
+            get {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Retrieves the number of actual arguments passed to the function.
         /// </summary>
         /// <returns>The count of arguments.</returns>
