@@ -22,7 +22,7 @@ namespace System {
         /// <returns>The arguments list.</returns>
         [ScriptAlias("arguments")]
         [IntrinsicProperty]
-        public static object[] List {
+        public static object[] Current {
             get {
                 return null;
             }
