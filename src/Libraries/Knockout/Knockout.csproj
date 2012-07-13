@@ -47,6 +47,8 @@
     <Compile Include="DependentObservableOptions.cs" />
     <Compile Include="BindingHandler.cs" />
     <Compile Include="KnockoutMapping.cs" />
+    <Compile Include="KnockoutMappingPropertySpecification.cs" />
+    <Compile Include="KnockoutMappingSpecification.cs" />
     <Compile Include="KnockoutUtils.cs" />
     <Compile Include="ObservableArray.cs" />
     <Compile Include="DependentObservable.cs" />
@@ -70,6 +72,9 @@
       <Project>{3681A9A8-FC40-4125-B842-7775713C8DCE}</Project>
       <Name>Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
