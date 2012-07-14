@@ -1,4 +1,4 @@
-﻿// KnockoutMappingSpecification.cs
+﻿// KnockoutMappingUpdateOptions.cs
 // Script#/Libraries/Knockout
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -11,10 +11,10 @@ namespace KnockoutApi {
     [IgnoreNamespace]
     [Imported]
     [ScriptName("Object")]
-    public sealed class KnockoutMappingSpecification {
+    public sealed class KnockoutMappingUpdateOptions {
 
         [IntrinsicProperty]
-        public string[] Copy {
+        public object Data {
             get {
                 return null;
             }
@@ -23,7 +23,7 @@ namespace KnockoutApi {
         }
 
         [IntrinsicProperty]
-        public string[] Ignore {
+        public object Observable {
             get {
                 return null;
             }
@@ -32,16 +32,7 @@ namespace KnockoutApi {
         }
 
         [IntrinsicProperty]
-        public string[] Include {
-            get {
-                return null;
-            }
-            set {
-            }
-        }
-
-        [IntrinsicProperty]
-        public KnockoutMappingPropertySpecification this[string propertyName] {
+        public object Parent {
             get {
                 return null;
             }

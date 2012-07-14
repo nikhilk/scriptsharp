@@ -168,8 +168,8 @@ namespace KnockoutApi {
         /// If the provided value is an observable, return its value, otherwise just pass it through.
         /// </summary>
         /// <param name="value">The value to unwrap.</param>
-        public static T UnwrapObservable<T>(Observable<T> value) { 
-            return default(T); 
+        public static T UnwrapObservable<T>(Observable<T> value) {
+            return default(T);
         }
 
         /// <summary>

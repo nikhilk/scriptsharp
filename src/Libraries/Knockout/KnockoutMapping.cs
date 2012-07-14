@@ -39,8 +39,7 @@ namespace KnockoutApi {
         /// <param name="mapping">The mapping rules to apply.</param>
         /// <returns>A new instance of the model.</returns>
         [ScriptName("fromJSON")]
-        public TModel ModelFromJson<TModel>(string jsonData, KnockoutMappingSpecification mapping)
-        {
+        public TModel ModelFromJson<TModel>(string jsonData, KnockoutMappingSpecification mapping) {
             return default(TModel);
         }
 
@@ -64,8 +63,7 @@ namespace KnockoutApi {
         /// <param name="mapping">The mapping rules to apply.</param>
         /// <returns>A new instance of the model.</returns>
         [ScriptName("fromJS")]
-        public TModel ModelFromObject<TModel>(object data, KnockoutMappingSpecification mapping)
-        {
+        public TModel ModelFromObject<TModel>(object data, KnockoutMappingSpecification mapping) {
             return default(TModel);
         }
 
@@ -79,8 +77,7 @@ namespace KnockoutApi {
         /// <param name="target">The mapping rules to apply.</param>
         /// <returns>A new instance of the model.</returns>
         [ScriptName("fromJS")]
-        public TModel ModelFromObject<TModel>(object data, KnockoutMappingSpecification mapping, TModel target)
-        {
+        public TModel ModelFromObject<TModel>(object data, KnockoutMappingSpecification mapping, TModel target) {
             return default(TModel);
         }
 
