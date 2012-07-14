@@ -186,6 +186,11 @@
         <File Id="jQueryDocFile" Name="Script.jQuery.xml" Vital="yes" Source="Script.jQuery.xml" />
         <File Id="jQueryTxtFile" Name="Script.jQuery.txt" Vital="yes" Source="Script.jQuery.txt" />
 
+        <!-- Script.jQuery.UI -->
+        <File Id="jQueryUIDllFile" Name="Script.jQuery.UI.dll" Vital="yes" Source="Script.jQuery.UI.dll" />
+        <File Id="jQueryUIDocFile" Name="Script.jQuery.UI.xml" Vital="yes" Source="Script.jQuery.UI.xml" />
+        <File Id="jQueryUITxtFile" Name="Script.jQuery.UI.txt" Vital="yes" Source="Script.jQuery.UI.txt" />
+
         <!-- Script.jQuery.History -->
         <File Id="jQueryHistoryDllFile" Name="Script.jQuery.History.dll" Vital="yes" Source="Script.jQuery.History.dll" />
         <File Id="jQueryHistoryDocFile" Name="Script.jQuery.History.xml" Vital="yes" Source="Script.jQuery.History.xml" />
