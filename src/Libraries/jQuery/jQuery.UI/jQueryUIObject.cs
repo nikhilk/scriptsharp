@@ -8,12 +8,6 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
     [Imported]
     [IgnoreNamespace]
     public abstract class jQueryUIObject : jQueryObject {
@@ -31,59 +25,31 @@ namespace jQueryApi.UI {
             return null;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public jQueryObject DisableSelection() {
                 return null;
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
         public jQueryObject EnableSelection() {
                 return null;
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
         public jQueryObject Focus(int delay) {
                 return null;
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
         public jQueryObject RemoveUniqueId() {
                 return null;
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
         public object ScrollParent() {
                 return null;
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
         public jQueryObject UniqueId() {
                 return null;
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
         public void ZIndex(int zIndex) {
         }
-
     }
 }

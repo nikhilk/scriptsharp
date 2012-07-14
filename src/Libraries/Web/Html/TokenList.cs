@@ -14,7 +14,7 @@ namespace System.Html {
 
         private TokenList() {
         }
-        
+
         [IntrinsicProperty]
         [ScriptName("length")]
         public int Count {
