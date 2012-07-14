@@ -47,6 +47,8 @@
     <Compile Include="DependentObservableOptions.cs" />
     <Compile Include="BindingHandler.cs" />
     <Compile Include="KnockoutMapping.cs" />
+    <Compile Include="KnockoutMappingPropertySpecification.cs" />
+    <Compile Include="KnockoutMappingSpecification.cs" />
     <Compile Include="KnockoutUtils.cs" />
     <Compile Include="ObservableArray.cs" />
     <Compile Include="DependentObservable.cs" />
