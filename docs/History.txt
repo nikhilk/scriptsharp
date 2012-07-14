@@ -7,6 +7,7 @@ v0.7.5.0 [in progress]
     - jQuery API update (on/off methods)
     - Knockout API updates for missing APIs
     - Addition of support for jQuery validation plugin
+    - jQueryUI added!
     - [git #130] ReadyState property on Document
     - [git #132] DOM metadata for plugins
     - [git #139] jQuery on/off APIs
@@ -24,6 +25,7 @@ v0.7.5.0 [in progress]
     - [git #183] Various DOM metadata additions (eg. ClassList)
     - [git #187] Support for writing 'new Image()'
     - [git #189] Fixed jQuery.when metadata
+    - [git #201] Strongly typed some Knockout API (KnockoutMapping)
 
 v0.7.4.0
     - Fix/update bing maps metadata bug
