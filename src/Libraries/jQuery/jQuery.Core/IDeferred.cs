@@ -195,19 +195,26 @@ namespace jQueryApi {
         bool IsResolved();
 
         /// <summary>
-        /// Filters or chains deffered objects.
+        /// Filters deffered objects.
         /// </summary>
         /// <param name="successFilter">The filter to invoke when the deferred object is resolved.</param>
         /// <returns>The current deferred object.</returns>
         IDeferred<TTargetData> Pipe<TTargetData>(jQueryDeferredFilter<TTargetData, TData> successFilter);
 
         /// <summary>
-        /// Filters or chains deffered objects.
+        /// Filters deffered objects.
         /// </summary>
         /// <param name="successFilter">The filter to invoke when the deferred object is resolved.</param>
         /// <param name="failFilter">The filter to invoke when the deferred object is rejected.</param>
         /// <returns>The current deferred object.</returns>
         IDeferred<TTargetData> Pipe<TTargetData>(jQueryDeferredFilter<TTargetData, TData> successFilter, jQueryDeferredFilter<TTargetData> failFilter);
+
+        /// <summary>
+        /// Chains deffered objects.
+        /// </summary>
+        /// <param name="successChain">The filter to invoke when the deferred object is resolved.</param>
+        /// <returns>The current deferred object.</returns>
+        IDeferred<TTargetData> Pipe<TTargetData>(Func<TData, IDeferred<TTargetData>> successChain);
 
         /// <summary>
         /// Add handlers to be called when the deferred object is resolved or rejected.

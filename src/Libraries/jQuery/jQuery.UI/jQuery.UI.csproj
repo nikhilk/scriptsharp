@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{824C1FEC-2455-4183-AFC6-891EDB88213A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStdLib>True</NoStdLib>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\ScriptSharp.snk</AssemblyOriginatorKeyFile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>jQueryApi.UI</RootNamespace>
+    <AssemblyName>Script.jQuery.UI</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputPath>..\..\..\..\bin\Debug\</OutputPath>
+    <DocumentationFile>..\..\..\..\bin\Debug\Script.jQuery.UI.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputPath>..\..\..\..\bin\Release\</OutputPath>
+    <DocumentationFile>..\..\..\..\bin\Release\Script.jQuery.UI.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Widgets\Accordion\*.cs" />
+    <Compile Include="Widgets\AutoComplete\*.cs" />
+    <Compile Include="Effects\Blind\*.cs" />
+    <Compile Include="Effects\Bounce\*.cs" />
+    <Compile Include="Widgets\Button\*.cs" />
+    <Compile Include="Widgets\ButtonSet\*.cs" />
+    <Compile Include="Effects\Clip\*.cs" />
+    <Compile Include="*.cs" />
+    <Compile Include="Widgets\DatePicker\*.cs" />
+    <Compile Include="Widgets\Dialog\*.cs" />
+    <Compile Include="Interactions\Draggable\*.cs" />
+    <Compile Include="Effects\Drop\*.cs" />
+    <Compile Include="Interactions\Droppable\*.cs" />
+    <Compile Include="Effects\Effect\*.cs" />
+    <Compile Include="Effects\Explode\*.cs" />
+    <Compile Include="Effects\Fade\*.cs" />
+    <Compile Include="Effects\Fold\*.cs" />
+    <Compile Include="Effects\Highlight\*.cs" />
+    <Compile Include="Widgets\ProgressBar\*.cs" />
+    <Compile Include="Effects\Puff\*.cs" />
+    <Compile Include="Effects\Pulsate\*.cs" />
+    <Compile Include="Interactions\Resizable\*.cs" />
+    <Compile Include="Effects\Scale\*.cs" />
+    <Compile Include="Interactions\Selectable\*.cs" />
+    <Compile Include="Effects\Shake\*.cs" />
+    <Compile Include="Effects\Size\*.cs" />
+    <Compile Include="Effects\Slide\*.cs" />
+    <Compile Include="Widgets\Slider\*.cs" />
+    <Compile Include="Interactions\Sortable\*.cs" />
+    <Compile Include="Widgets\Tabs\*.cs" />
+    <Compile Include="Effects\Transfer\*.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\ScriptSharp.cs">
+      <Link>Properties\ScriptSharp.cs</Link>
+    </Compile>
+    <ScriptInfo Include="Properties\ScriptInfo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </ScriptInfo>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CoreLib\CoreLib.csproj">
+      <Project>{36D4B098-A21C-4725-ACD3-400922885F38}</Project>
+      <Name>CoreLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Web\Web.csproj">
+      <Project>{3681A9A8-FC40-4125-B842-7775713C8DCE}</Project>
+      <Name>Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\jQuery.Core\jQuery.Core.csproj">
+      <Project>{4A9F7CE0-5A45-4B28-AD01-05528709B6E4}</Project>
+      <Name>jQuery.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="@(ScriptInfo)" DestinationFiles="$(OutputPath)$(AssemblyName).txt" />
+  </Target>
+</Project>

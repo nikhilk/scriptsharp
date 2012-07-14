@@ -461,6 +461,10 @@ namespace jQueryApi {
             return false;
         }
 
+        IDeferred<TTargetData> IDeferred<TData>.Pipe<TTargetData>(Func<TData, IDeferred<TTargetData>> successChain) {
+            return null;
+        }
+
         IDeferred<TTargetData> IDeferred<TData>.Pipe<TTargetData>(jQueryDeferredFilter<TTargetData, TData> successFilter) {
             return null;
         }

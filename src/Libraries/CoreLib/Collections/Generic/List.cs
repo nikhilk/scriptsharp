@@ -47,6 +47,9 @@ namespace System.Collections.Generic {
         public void AddRange(T[] items) {
         }
 
+        public void AddRange(List<T> items) {
+        }
+
         public TAccumulated Aggregate<TAccumulated>(TAccumulated seed, ListAggregator<TAccumulated, T> aggregator) {
             return default(TAccumulated);
         }

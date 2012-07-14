@@ -57,6 +57,13 @@ namespace System.Html {
         }
 
         [IntrinsicProperty]
+        public TokenList ClassList {
+            get {
+                return null;
+            }
+        }
+
+        [IntrinsicProperty]
         public int ClientHeight {
             get {
                 return 0;

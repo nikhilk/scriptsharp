@@ -1,0 +1,14 @@
+jQuery UI
+===============================================================================
+
+This assembly provides access to jQuery UI APIs. This is only meant for use at
+development time, so you can reference and compile your c# code against 
+the plugin APIs. You must include the appropriate plugin scripts in your page for 
+runtime functionality.
+
+More information is on http://jqueryui.com.
+
+-------------------------------------------------------------------------------
+
+Associated scripts can be found at
+http://jqueryui.com/download

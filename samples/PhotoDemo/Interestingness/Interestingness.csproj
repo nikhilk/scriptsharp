@@ -72,5 +72,5 @@
       <Name>Flickr</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(ProgramFiles)\ScriptSharp\v1.0\ScriptSharp.targets" />
+  <Import Project="$(MSBuildProgramFiles32)\ScriptSharp\v1.0\ScriptSharp.targets" />
 </Project>

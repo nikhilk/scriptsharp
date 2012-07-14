@@ -15,6 +15,7 @@
     <LangVersion>ISO-2</LangVersion>
     <TemplateFile>Properties\$safeprojectname$.script</TemplateFile>
     <CodeAnalysisRuleSet>Properties\$safeprojectname$.ruleset</CodeAnalysisRuleSet>
+    <ReferencePath>$(MSBuildProgramFiles32)\ScriptSharp\v1.0\Framework\</ReferencePath>
     <DeploymentPath>Content\</DeploymentPath>
     <LocaleSubFolders>true</LocaleSubFolders>
     <SuppressDocumentation>true</SuppressDocumentation>
@@ -65,5 +66,5 @@
     <Content Include="Content\Settings.htm" />
     <Content Include="Content\Settings.css" />
   </ItemGroup>
-  <Import Project="$(ProgramFiles)\ScriptSharp\v1.0\ScriptSharp.targets" />
+  <Import Project="$(MSBuildProgramFiles32)\ScriptSharp\v1.0\ScriptSharp.targets" />
 </Project>

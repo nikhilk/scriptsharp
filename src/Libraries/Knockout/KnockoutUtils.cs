@@ -19,7 +19,8 @@ namespace KnockoutApi {
         /// <summary>
         /// Returns the First Matching Item (predicate function) from the given array
         /// </summary>
-        public static void ArrayFirst<T>(IEnumerable<T> array, Func<T, bool> predicate, object owner) {
+        public static T ArrayFirst<T>(IEnumerable<T> array, Func<T, bool> predicate, object owner) {
+            return default(T);
         }
 
         /// <summary>
@@ -167,8 +168,8 @@ namespace KnockoutApi {
         /// If the provided value is an observable, return its value, otherwise just pass it through.
         /// </summary>
         /// <param name="value">The value to unwrap.</param>
-        public static T UnwrapObservable<T>(Observable<T> value) { 
-            return default(T); 
+        public static T UnwrapObservable<T>(Observable<T> value) {
+            return default(T);
         }
 
         /// <summary>

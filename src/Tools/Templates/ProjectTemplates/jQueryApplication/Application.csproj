@@ -15,7 +15,7 @@
     <AssemblyName>$safeprojectname$</AssemblyName>
     <TemplateFile>Properties\$safeprojectname$.script</TemplateFile>
     <CodeAnalysisRuleSet>Properties\$safeprojectname$.ruleset</CodeAnalysisRuleSet>
-    <ReferencePath>$(ProgramFiles)\ScriptSharp\v1.0\Framework\</ReferencePath>
+    <ReferencePath>$(MSBuildProgramFiles32)\ScriptSharp\v1.0\Framework\</ReferencePath>
     <DeploymentPath>$deploymentpath$</DeploymentPath>
     <WebAppPartitioning>True</WebAppPartitioning>
    </PropertyGroup>
@@ -51,5 +51,5 @@
     <Compile Include="Shared\Utility.cs" />
     <Compile Include="Home\HomePage.cs" />
   </ItemGroup>
-  <Import Project="$(ProgramFiles)\ScriptSharp\v1.0\ScriptSharp.targets" />
+  <Import Project="$(MSBuildProgramFiles32)\ScriptSharp\v1.0\ScriptSharp.targets" />
 </Project>

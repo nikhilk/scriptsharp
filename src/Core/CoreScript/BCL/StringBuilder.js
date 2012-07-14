@@ -2,12 +2,12 @@
 // StringBuilder
 
 ss.StringBuilder = function#? DEBUG StringBuilder$##(s) {
-    this._parts = !ss.isNullOrUndefined(s) ? [s] : [];
+    this._parts = ss.isNullOrUndefined(s) || s === '' ? [] : [s];
     this.isEmpty = this._parts.length == 0;
 }
 ss.StringBuilder.prototype = {
     append: function#? DEBUG StringBuilder$append##(s) {
-        if (!ss.isNullOrUndefined(s)) {
+        if (!ss.isNullOrUndefined(s) && s !== '') {
             this._parts.add(s);
             this.isEmpty = false;
         }

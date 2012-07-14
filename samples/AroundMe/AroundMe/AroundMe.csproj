@@ -16,7 +16,7 @@
     <AssemblyName>AroundMe</AssemblyName>
     <TemplateFile>Properties\AroundMe.script</TemplateFile>
     <CodeAnalysisRuleSet>Properties\AroundMe.ruleset</CodeAnalysisRuleSet>
-    <ReferencePath>$(ProgramFiles)\ScriptSharp\v1.0\Framework\</ReferencePath>
+    <ReferencePath>$(MSBuildProgramFiles32)\ScriptSharp\v1.0\Framework\</ReferencePath>
     <DeploymentPath>..\AroundMeWeb\Content\Scripts</DeploymentPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -75,5 +75,5 @@
       <Name>Twitter</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(ProgramFiles)\ScriptSharp\v1.0\ScriptSharp.targets" />
+  <Import Project="$(MSBuildProgramFiles32)\ScriptSharp\v1.0\ScriptSharp.targets" />
 </Project>

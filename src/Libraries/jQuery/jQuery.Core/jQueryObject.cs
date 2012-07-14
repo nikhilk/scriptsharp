@@ -3433,6 +3433,27 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Bind two or more handlers to the matched elements, to be executed on alternate clicks.
+        /// </summary>
+        /// <param name="evenEventHandler">A function to execute every even time the element is clicked.</param>
+        /// <param name="oddEventHandler">A function to execute every odd time the element is clicked.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject Toggle(jQueryEventHandler evenEventHandler, jQueryEventHandler oddEventHandler) {
+            return null;
+        }
+
+        /// <summary>
+        /// Bind two or more handlers to the matched elements, to be executed on alternate clicks.
+        /// </summary>
+        /// <param name="evenEventHandler">A function to execute every even time the element is clicked.</param>
+        /// <param name="oddEventHandler">A function to execute every odd time the element is clicked.</param>
+        /// <param name="eventHandlers">Additional handlers to cycle through after clicks.</param>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject Toggle(jQueryEventHandler evenEventHandler, jQueryEventHandler oddEventHandler, params jQueryEventHandler[] eventHandlers) {
+            return null;
+        }
+
+        /// <summary>
         /// Toggles the specified class from each of the set of matched elements.
         /// </summary>
         /// <param name="className">The class to toggle.</param>
@@ -3498,6 +3519,14 @@ namespace jQueryApi {
         /// <param name="eventParameters">Additional parameters for the event handler.</param>
         /// <returns>The result of the event handler.</returns>
         public object TriggerHandler(string eventName, object[] eventParameters) {
+            return null;
+        }
+
+        /// <summary>
+        /// Removes all event handlers attached to the matched set of elements
+        /// </summary>
+        /// <returns>The current jQueryObject.</returns>
+        public jQueryObject Unbind() {
             return null;
         }
 
