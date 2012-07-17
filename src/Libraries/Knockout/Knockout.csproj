@@ -57,7 +57,6 @@
     <Compile Include="Knockout.cs" />
     <Compile Include="Observable.cs" />
     <Compile Include="Subscribable.cs" />
-    <Compile Include="UntypedBindingContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
