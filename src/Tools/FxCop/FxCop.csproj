@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,14 +35,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FxCopSdk">
-      <HintPath>..\..\..\ext\FxCopSdk.dll</HintPath>
+      <HintPath>$(CodeAnalysisPath)\FxCopSdk.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Cci">
-      <HintPath>..\..\..\ext\Microsoft.Cci.dll</HintPath>
+      <HintPath>$(CodeAnalysisPath)\Microsoft.Cci.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
