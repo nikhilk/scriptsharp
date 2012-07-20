@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.XML" />
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities" />
     <Reference Include="ScriptSharp">
@@ -42,6 +43,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\ScriptSharp.cs">
+      <Link>Properties\ScriptSharp.cs</Link>
+    </Compile>
     <Compile Include="..\..\Utility\FileInputStreamSource.cs">
       <Link>FileInputStreamSource.cs</Link>
     </Compile>
@@ -51,10 +56,14 @@
     <Compile Include="..\..\Utility\ResourceFile.cs">
       <Link>ResourceFile.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\..\ScriptSharp.cs">
-      <Link>Properties\ScriptSharp.cs</Link>
+    <Compile Include="..\..\Utility\ResXItem.cs">
+      <Link>ResXItem.cs</Link>
     </Compile>
+    <Compile Include="..\..\Utility\ResXParser.cs">
+      <Link>ResXParser.cs</Link>
+    </Compile>
+    <Compile Include="Generators\ResXCodeBuilder.cs" />
+    <Compile Include="Tasks\ResXCodeGeneratorTask.cs" />
     <Compile Include="Tasks\ScriptCompilerExecTask.cs" />
     <Compile Include="Tasks\ScriptCompilerTask.cs" />
     <Compile Include="Tasks\ScriptPreprocessorTask.cs" />
