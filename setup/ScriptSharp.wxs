@@ -126,9 +126,6 @@
 
         <!-- ScriptSharp.Testing.dll -->
         <File Id="TestingDLL" Name="ScriptSharp.Testing.dll" Vital="yes" Source="ScriptSharp.Testing.dll" />
-
-        <!-- ScriptSharp.VisualStudio.dll -->
-        <File Id="VSIntegrationDLL" Name="ScriptSharp.VisualStudio.dll" Vital="yes" Source="ScriptSharp.VisualStudio.dll" />
       </Component>
     </DirectoryRef>
 
@@ -146,10 +143,6 @@
       <Component Id="GACComponent3" Guid="64049038-33B2-46B9-AFCC-4AA6A63050EC">
         <!-- ScriptSharp.Testing.dll -->
         <File Id="GACTestingDLL" Name="ScriptSharp.Testing.dll" Assembly=".net" KeyPath="yes" Vital="yes" Source="ScriptSharp.Testing.dll" />
-      </Component>
-      <Component Id="GACComponent4" Guid="A3679D21-4F86-45BA-BDC6-110F9364E0CC">
-        <!-- ScriptSharp.VisualStudio.dll -->
-        <File Id="GACVSDLL" Name="ScriptSharp.VisualStudio.dll" Assembly=".net" KeyPath="yes" Vital="yes" Source="ScriptSharp.VisualStudio.dll" />
       </Component>
     </DirectoryRef>
 
@@ -231,38 +224,6 @@
         <RegistryValue Id="VWDExp10_ScriptSharpTargetReg" Root="HKLM" Key="Software\Microsoft\VWDExpress\9.0\MSBuild\SafeImports"
           Name="ScriptSharp" Type="string" KeyPath="yes"
           Value="[%ProgramFiles]\ScriptSharp\v1.0\ScriptSharp.targets" />
-
-        <RegistryKey Id="VWDExp10_ResxCLSID" Action="createAndRemoveOnUninstall"
-          Root="HKLM" Key="Software\Microsoft\VWDExpress\9.0\CLSID\{33FA0BF4-CBBA-4fdd-9300-0F5A6BDE7E33}">
-          <RegistryValue Type="string" Value="ScriptSharp.VisualStudio.Generators.ResXInternalScriptGenerator" />
-          <RegistryValue Type="string" Name="InprocServer32" Value="[%SystemRoot]\System32\mscoree.dll" />
-          <RegistryValue Type="string" Name="Class" Value="ScriptSharp.VisualStudio.Generators.ResXInternalScriptGenerator" />
-          <RegistryValue Type="string" Name="Assembly" Value="ScriptSharp.VisualStudio, Version=[PRODUCTVERSION], Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4" />
-          <RegistryValue Type="string" Name="ThreadingModel" Value="Both" />
-        </RegistryKey>
-
-        <RegistryKey Id="VWDExp10_ResxPublicCLSID" Action="createAndRemoveOnUninstall"
-          Root="HKLM" Key="Software\Microsoft\VWDExpress\9.0\CLSID\{33FA0BF5-CBBA-4fdd-9300-0F5A6BDE7E33}">
-          <RegistryValue Type="string" Value="ScriptSharp.VisualStudio.Generators.ResXPublicScriptGenerator" />
-          <RegistryValue Type="string" Name="InprocServer32" Value="[%SystemRoot]\System32\mscoree.dll" />
-          <RegistryValue Type="string" Name="Class" Value="ScriptSharp.VisualStudio.Generators.ResXPublicScriptGenerator" />
-          <RegistryValue Type="string" Name="Assembly" Value="ScriptSharp.VisualStudio, Version=[PRODUCTVERSION], Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4" />
-          <RegistryValue Type="string" Name="ThreadingModel" Value="Both" />
-        </RegistryKey>
-
-        <RegistryKey Id="VWDExp10_ResxGenerator" Action="createAndRemoveOnUninstall"
-          Root="HKLM" Key="Software\Microsoft\VWDExpress\9.0\Generators\{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}\ResXFileScriptGenerator">
-          <RegistryValue Type="string" Value="Script# ResX File Internal Script Generator" />
-          <RegistryValue Type="string" Name="CLSID" Value="{33FA0BF4-CBBA-4fdd-9300-0F5A6BDE7E33}" />
-          <RegistryValue Type="integer" Name="GeneratesDesignTimeSource" Value="1" />
-        </RegistryKey>
-
-        <RegistryKey Id="VWDExp10_ResxPublicGenerator" Action="createAndRemoveOnUninstall"
-          Root="HKLM" Key="Software\Microsoft\VWDExpress\9.0\Generators\{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}\PublicResXFileScriptGenerator">
-          <RegistryValue Type="string" Value="Script# ResX File Public Script Generator" />
-          <RegistryValue Type="string" Name="CLSID" Value="{33FA0BF5-CBBA-4fdd-9300-0F5A6BDE7E33}" />
-          <RegistryValue Type="integer" Name="GeneratesDesignTimeSource" Value="1" />
-        </RegistryKey>
       </Component>
     </DirectoryRef>
 
@@ -306,38 +267,6 @@
           Name=".scriptlet" Type="integer" Value="2" />
         <RegistryValue Id="VS10_AppScripletMaster" Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\Projects\{FAE04EC0-301F-11d3-BF4B-00C04F79EFBC}\RelatedFiles\.master"
           Name=".scriptlet" Type="integer" Value="2" />
-
-        <RegistryKey Id="VS10_ResxCLSID" Action="createAndRemoveOnUninstall"
-          Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\CLSID\{33FA0BF4-CBBA-4fdd-9300-0F5A6BDE7E33}">
-          <RegistryValue Type="string" Value="ScriptSharp.VisualStudio.Generators.ResXInternalScriptGenerator" />
-          <RegistryValue Type="string" Name="InprocServer32" Value="[%SystemRoot]\System32\mscoree.dll" />
-          <RegistryValue Type="string" Name="Class" Value="ScriptSharp.VisualStudio.Generators.ResXInternalScriptGenerator" />
-          <RegistryValue Type="string" Name="Assembly" Value="ScriptSharp.VisualStudio, Version=[PRODUCTVERSION], Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4" />
-          <RegistryValue Type="string" Name="ThreadingModel" Value="Both" />
-        </RegistryKey>
-
-        <RegistryKey Id="VS10_ResxPublicCLSID" Action="createAndRemoveOnUninstall"
-          Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\CLSID\{33FA0BF5-CBBA-4fdd-9300-0F5A6BDE7E33}">
-          <RegistryValue Type="string" Value="ScriptSharp.VisualStudio.Generators.ResXPublicScriptGenerator" />
-          <RegistryValue Type="string" Name="InprocServer32" Value="[%SystemRoot]\System32\mscoree.dll" />
-          <RegistryValue Type="string" Name="Class" Value="ScriptSharp.VisualStudio.Generators.ResXPublicScriptGenerator" />
-          <RegistryValue Type="string" Name="Assembly" Value="ScriptSharp.VisualStudio, Version=[PRODUCTVERSION], Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4" />
-          <RegistryValue Type="string" Name="ThreadingModel" Value="Both" />
-        </RegistryKey>
-
-        <RegistryKey Id="VS10_ResxGenerator" Action="createAndRemoveOnUninstall"
-          Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\Generators\{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}\ResXFileScriptGenerator">
-          <RegistryValue Type="string" Value="Script# ResX File Internal Script Generator" />
-          <RegistryValue Type="string" Name="CLSID" Value="{33FA0BF4-CBBA-4fdd-9300-0F5A6BDE7E33}" />
-          <RegistryValue Type="integer" Name="GeneratesDesignTimeSource" Value="1" />
-        </RegistryKey>
-
-        <RegistryKey Id="VS10_ResxPublicGenerator" Action="createAndRemoveOnUninstall"
-          Root="HKLM" Key="Software\Microsoft\VisualStudio\10.0\Generators\{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}\PublicResXFileScriptGenerator">
-          <RegistryValue Type="string" Value="Script# ResX File Public Script Generator" />
-          <RegistryValue Type="string" Name="CLSID" Value="{33FA0BF5-CBBA-4fdd-9300-0F5A6BDE7E33}" />
-          <RegistryValue Type="integer" Name="GeneratesDesignTimeSource" Value="1" />
-        </RegistryKey>
       </Component>
     </DirectoryRef>
 

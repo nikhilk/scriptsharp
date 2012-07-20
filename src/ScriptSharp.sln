@@ -27,8 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compiler", "Tools\Compiler\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preprocessor", "Tools\Preprocessor\Preprocessor.csproj", "{35370E49-29C1-4121-A357-3CCE460B7CF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualStudio", "Tools\VisualStudio\VisualStudio.csproj", "{F3D0150E-4BB9-4013-9524-FF697504E57C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "Tools\Build\Build.csproj", "{BE1E0A21-F6C0-4698-B405-66FC2BB289F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templates", "Tools\Templates\Templates.csproj", "{4123C976-739E-42A2-87FB-E04D163BC99C}"
@@ -211,16 +209,6 @@ Global
 		{DCA0235F-88C1-43A0-A8DB-FF765D344E06}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DCA0235F-88C1-43A0-A8DB-FF765D344E06}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{DCA0235F-88C1-43A0-A8DB-FF765D344E06}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{F3D0150E-4BB9-4013-9524-FF697504E57C}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{F3D0150E-4BB9-4013-9524-FF697504E57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3D0150E-4BB9-4013-9524-FF697504E57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3D0150E-4BB9-4013-9524-FF697504E57C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F3D0150E-4BB9-4013-9524-FF697504E57C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{F3D0150E-4BB9-4013-9524-FF697504E57C}.Release|.NET.ActiveCfg = Release|Any CPU
-		{F3D0150E-4BB9-4013-9524-FF697504E57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3D0150E-4BB9-4013-9524-FF697504E57C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3D0150E-4BB9-4013-9524-FF697504E57C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F3D0150E-4BB9-4013-9524-FF697504E57C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -242,6 +230,5 @@ Global
 		{BA1CDDAF-7E54-4DC0-A4D3-AEF05B975A4A} = {5D0FD0F6-498E-4126-A297-97B7763DD0AB}
 		{BE1E0A21-F6C0-4698-B405-66FC2BB289F4} = {37239BB8-2FA4-4831-A7EA-AF89D74EA10E}
 		{DCA0235F-88C1-43A0-A8DB-FF765D344E06} = {5D0FD0F6-498E-4126-A297-97B7763DD0AB}
-		{F3D0150E-4BB9-4013-9524-FF697504E57C} = {37239BB8-2FA4-4831-A7EA-AF89D74EA10E}
 	EndGlobalSection
 EndGlobal
