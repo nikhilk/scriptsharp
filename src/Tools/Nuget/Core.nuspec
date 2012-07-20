@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>ScriptSharp</id>
+    <version>0.7.5.0</version>
+    <title>Script# Compiler + mscorlib assembly + MSBuild Tasks/Targets</title>
+    <authors>Nikhil Kothari</authors>
+    <summary>Script# lets you author your HTML5 apps in C# and compile them into JavaScript.</summary>
+    <description>
+      The package contains the Script# compiler and the associated mscorlib.dll assembly that all Script# projects compile against.
+
+      It also includes msbuild tasks and target definitions for easily using Script# within Visual Studio and with msbuild projects.
+    </description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
+    <language>en-US</language>
+    <projectUrl>http://www.scriptsharp.com</projectUrl>
+    <iconUrl>http://projects.nikhilk.net/Content/Projects/ScriptSharp/Logo.png</iconUrl>
+    <tags>script javascript ajax html html5 mobile asp.net mvc scriptsharp</tags>
+  </metadata>
+  <files>
+    <file src="..\..\..\bin\Release\mscorlib.dll" target="tools" />
+    <file src="..\..\..\bin\Release\ScriptSharp.dll" target="tools" />
+    <file src="..\..\..\bin\Release\ScriptSharp.Build.dll" target="tools" />
+    <file src="..\..\..\bin\Release\ScriptSharp.targets" target="tools" />
+    <file src="..\..\..\bin\Release\ssc.exe" target="tools" />
+    <file src="Core\Install.ps1" target="tools" />
+    <file src="Core\Uninstall.ps1" target="tools" />
+    <file src="Core\Cleanup.psm1" target="tools" />
+    <file src="Core\ScriptSharp.PlaceHolder.txt" target="content" />
+  </files>
+</package>

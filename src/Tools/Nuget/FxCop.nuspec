@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>ScriptSharp.FxCop</id>
+    <version>0.7.5.0</version>
+    <title>Script# FxCop Rules</title>
+    <authors>Nikhil Kothari</authors>
+    <summary>FxCop rules specific to scripting scenarios for use with Script# code.</summary>
+    <description>
+      This library provides additional rules specifically implemented for scripting and script# code.
+    </description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
+    <language>en-US</language>
+    <projectUrl>http://www.scriptsharp.com</projectUrl>
+    <iconUrl>http://projects.nikhilk.net/Content/Projects/ScriptSharp/Logo.png</iconUrl>
+    <tags>script javascript ajax html html5 mobile asp.net mvc scriptsharp fxcop static analysis</tags>
+  </metadata>
+  <files>
+    <file src="..\..\..\bin\Release\ScriptSharp.FxCop.dll" target="content\Properties" />
+  </files>
+</package>
