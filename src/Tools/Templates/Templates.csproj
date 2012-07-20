@@ -28,7 +28,6 @@
     <ProjectClassLibrary Include="ProjectTemplates\ClassLibrary\*" />
     <ProjectJQueryApplication Include="ProjectTemplates\jQueryApplication\*" />
     <ProjectJQueryClassLibrary Include="ProjectTemplates\jQueryClassLibrary\*" />
-    <ProjectGadget Include="ProjectTemplates\Gadget\*" />
     <ProjectUnitTest Include="ProjectTemplates\UnitTest\*" />
     <ProjectImportLibrary Include="ProjectTemplates\ImportLibrary\*" />
   </ItemGroup>
@@ -52,7 +51,6 @@
     <Zip Files="@(ProjectClassLibrary)" ZipLevel="9" ZipFileName="$(OutputPath)ProjectTemplates\ClassLibrary.zip" WorkingDirectory="ProjectTemplates\ClassLibrary" />
     <Zip Files="@(ProjectJQueryApplication)" ZipLevel="9" ZipFileName="$(OutputPath)ProjectTemplates\jQueryApplication.zip" WorkingDirectory="ProjectTemplates\jQueryApplication" />
     <Zip Files="@(ProjectJQueryClassLibrary)" ZipLevel="9" ZipFileName="$(OutputPath)ProjectTemplates\jQueryClassLibrary.zip" WorkingDirectory="ProjectTemplates\jQueryClassLibrary" />
-    <Zip Files="@(ProjectGadget)" ZipLevel="9" ZipFileName="$(OutputPath)ProjectTemplates\Gadget.zip" WorkingDirectory="ProjectTemplates\Gadget" />
     <Zip Files="@(ProjectUnitTest)" ZipLevel="9" ZipFileName="$(OutputPath)ProjectTemplates\UnitTest.zip" WorkingDirectory="ProjectTemplates\UnitTest" />
     <Zip Files="@(ProjectImportLibrary)" ZipLevel="9" ZipFileName="$(OutputPath)ProjectTemplates\ImportLibrary.zip" WorkingDirectory="ProjectTemplates\ImportLibrary" />
   </Target>

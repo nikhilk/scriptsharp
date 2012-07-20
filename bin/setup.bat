@@ -34,8 +34,6 @@ copy /y Debug\mscorlib.dll "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\mscorlib.xml "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.Web.dll "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.Web.xml "%InstallDir%\ScriptSharp\v1.0\Framework"
-copy /y Debug\Script.Windows.dll "%InstallDir%\ScriptSharp\v1.0\Framework"
-copy /y Debug\Script.Windows.xml "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.jQuery.dll "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.jQuery.xml "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.jQuery.txt "%InstallDir%\ScriptSharp\v1.0\Framework"
@@ -57,8 +55,6 @@ copy /y Debug\Script.Knockout.txt "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.Microsoft.BingMaps.dll "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.Microsoft.BingMaps.xml "%InstallDir%\ScriptSharp\v1.0\Framework"
 copy /y Debug\Script.Microsoft.BingMaps.txt "%InstallDir%\ScriptSharp\v1.0\Framework"
-copy /y Debug\Script.Sharpen.Framework.dll "%InstallDir%\ScriptSharp\v1.0\Framework"
-copy /y Debug\Script.Sharpen.Framework.xml "%InstallDir%\ScriptSharp\v1.0\Framework"
 
 if "%1" neq "includeTemplates" goto Done
 
@@ -70,7 +66,6 @@ mkdir "%IDEDir%"\ItemTemplates\CSharp\Script#
 copy /y Debug\Templates\Script#.VSTDIR %IDEDir%\ProjectTemplates\CSharp\Script#
 copy /y Debug\Templates\ProjectTemplates\ClassLibrary.zip %IDEDir%\ProjectTemplates\CSharp\Script#
 copy /y Debug\Templates\ProjectTemplates\jQueryClassLibrary.zip %IDEDir%\ProjectTemplates\CSharp\Script#
-copy /y Debug\Templates\ProjectTemplates\Gadget.zip %IDEDir%\ProjectTemplates\CSharp\Script#
 copy /y Debug\Templates\ProjectTemplates\UnitTest.zip %IDEDir%\ProjectTemplates\CSharp\Script#
 copy /y Debug\Templates\ProjectTemplates\ImportLibrary.zip %IDEDir%\ProjectTemplates\CSharp\Script#
 copy /y Debug\Templates\Script#.VSTDIR %IDEDir%\ItemTemplates\CSharp\Script#

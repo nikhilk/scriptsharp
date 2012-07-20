@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
   xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
   <Product Name="Script#" Id="C8DDAF63-E1FD-40b2-8B07-D4884E6C6A93"
-      UpgradeCode="4AA80412-099C-4bb5-B763-76DC99A9A16D" 
+      UpgradeCode="4AA80412-099C-4bb5-B763-76DC99A9A16D"
       Manufacturer="Nikhil Kothari"
       Version="0.7.4.0"
       Language="1033">
@@ -161,7 +161,7 @@
         <File Id="FxCopDLL" Name="ScriptSharp.FxCop.dll" Vital="yes" Source="ScriptSharp.FxCop.dll" />
       </Component>
     </DirectoryRef>
-    
+
     <!-- Script# Framework Assemblies -->
     <DirectoryRef Id="FrameworkFolder">
       <Component Id="FrameworkComponent" Guid="A5C999B6-4BA8-400b-BD3A-B84B72E30E92">
@@ -176,10 +176,6 @@
         <!-- Script.Web -->
         <File Id="WebDllFile" Name="Script.Web.dll" Vital="yes" Source="Script.Web.dll" />
         <File Id="WebDocFile" Name="Script.Web.xml" Vital="yes" Source="Script.Web.xml" />
-
-        <!-- Script.Windows -->
-        <File Id="WindowsDllFile" Name="Script.Windows.dll" Vital="yes" Source="Script.Windows.dll" />
-        <File Id="WindowsDocFile" Name="Script.Windows.xml" Vital="yes" Source="Script.Windows.xml" />
 
         <!-- Script.jQuery -->
         <File Id="jQueryDllFile" Name="Script.jQuery.dll" Vital="yes" Source="Script.jQuery.dll" />
@@ -229,7 +225,6 @@
         <File Id="VWDExp10_ClassLibTemplateIndex" Name="Script#.VSTDIR" Source="Templates\Script#.VSTDIR" />
         <File Id="VWDExp10_ClassLibTemplateZip" Name="ClassLibrary.zip" Source="Templates\ProjectTemplates\ClassLibrary.zip" />
         <File Id="VWDExp10_JQueryClassLibTemplateZip" Name="JQueryClassLibrary.zip" Source="Templates\ProjectTemplates\JQueryClassLibrary.zip" />
-        <File Id="VWDExp10_GadgetTemplateZip" Name="Gadget.zip" Source="Templates\ProjectTemplates\Gadget.zip" />
         <File Id="VWDExp10_UnitTestTemplateZip" Name="UnitTest.zip" Source="Templates\ProjectTemplates\UnitTest.zip" />
         <File Id="VWDExp10_ImportLibTemplateZip" Name="ImportLibrary.zip" Source="Templates\ProjectTemplates\ImportLibrary.zip" />
 
@@ -291,7 +286,6 @@
         <File Id="VS10_ClassLibTemplateIndex" Name="Script#.VSTDIR" Source="Templates\Script#.VSTDIR" />
         <File Id="VS10_ClassLibTemplateZip" Name="ClassLibrary.zip" Source="Templates\ProjectTemplates\ClassLibrary.zip" />
         <File Id="VS10_JQueryClassLibTemplateZip" Name="JQueryClassLibrary.zip" Source="Templates\ProjectTemplates\JQueryClassLibrary.zip" />
-        <File Id="VS10_GadgetTemplateZip" Name="Gadget.zip" Source="Templates\ProjectTemplates\Gadget.zip" />
         <File Id="VS10_UnitTestTemplateZip" Name="UnitTest.zip" Source="Templates\ProjectTemplates\UnitTest.zip" />
         <File Id="VS10_ImportLibTemplateZip" Name="ImportLibrary.zip" Source="Templates\ProjectTemplates\ImportLibrary.zip" />
 
@@ -365,7 +359,7 @@
     <Feature Id="CompleteFeature" Level="1"
       Display="expand" Absent="disallow" AllowAdvertise="no" TypicalDefault="install" InstallDefault="local"
       Title="Script#" Description="The complete Script# product.">
-      
+
       <Feature Id="CoreFeature" Level="1"
         Absent="disallow" InstallDefault="local" TypicalDefault="install" AllowAdvertise="no"
         Title="Core Tools and Framework" Description="The Script# compiler, runtime assemblies and script framework.">
@@ -425,6 +419,6 @@
     <WixVariable Id="WixUIBannerBmp" Value="DialogHeader.bmp" />
     <Property Id="WIXUI_EXITDIALOGOPTIONALTEXT" Value="Thank you for installing Script#. You can find out more about Script# at http://www.scriptsharp.com or by following Script# by following @scriptsharp on Twitter." />
     <UIRef Id="WixUI_Minimal" />
-    
+
   </Product>
 </Wix>
