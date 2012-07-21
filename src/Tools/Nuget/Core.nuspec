@@ -3,20 +3,20 @@
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>ScriptSharp</id>
     <version>0.7.5.0</version>
-    <title>Script# Compiler + mscorlib assembly + MSBuild Tasks/Targets</title>
+    <title>Script#</title>
     <authors>Nikhil Kothari</authors>
     <summary>Script# lets you author your HTML5 apps in C# and compile them into JavaScript.</summary>
     <description>
-      The package contains the Script# compiler and the associated mscorlib.dll assembly that all Script# projects compile against.
-
-      It also includes msbuild tasks and target definitions for easily using Script# within Visual Studio and with msbuild projects.
+      This package contains the Script# compiler and the associated mscorlib.dll assembly that all Script# projects reference.
+      It also includes msbuild support for easily using Script# within Visual Studio.
     </description>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
     <language>en-US</language>
     <projectUrl>http://www.scriptsharp.com</projectUrl>
-    <iconUrl>http://projects.nikhilk.net/Content/Projects/ScriptSharp/Logo.png</iconUrl>
-    <tags>script javascript ajax html html5 mobile asp.net mvc scriptsharp</tags>
+    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
+    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/Logo.png</iconUrl>
+    <tags>script javascript ajax html html5 mobile scriptsharp compiler tool</tags>
   </metadata>
   <files>
     <file src="..\..\..\bin\Release\mscorlib.dll" target="tools" />

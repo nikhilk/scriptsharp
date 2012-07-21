@@ -5,16 +5,17 @@
     <version>0.7.5.0</version>
     <title>Script# HTML5 Reference Assembly</title>
     <authors>Nikhil Kothari</authors>
-    <summary>Allows you to reference DOM and related APIs to create HTML5/browser-based applications.</summary>
+    <summary>Allows you to reference HTML DOM and related APIs to create browser-based Script# applications.</summary>
     <description>
-      The package contains contains the Script.Web assembly that allows you to reference and program against DOM and related APIs when creating HTML5/browser-based applications with Script#.
+      This package contains contains the Script.Web assembly that allows you to reference and program against DOM and related APIs when creating HTML5/browser-based applications with Script#.
     </description>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
     <language>en-US</language>
     <projectUrl>http://www.scriptsharp.com</projectUrl>
-    <iconUrl>http://projects.nikhilk.net/Content/Projects/ScriptSharp/Logo.png</iconUrl>
-    <tags>script javascript ajax html html5 mobile scriptsharp</tags>
+    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
+    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/Logo.png</iconUrl>
+    <tags>script javascript ajax html html5 scriptsharp</tags>
     <dependencies>
       <dependency id="ScriptSharp" version="0.7.5.0" />
     </dependencies>
