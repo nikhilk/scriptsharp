@@ -6,8 +6,10 @@ REM It must be run within an Administrator command prompt.
 @echo Cleaning up templates...
 
 set IDEDir="%VSINSTALLDIR%"\Common7\IDE
+set ProjDir="%VSINSTALLDIR%"Common7\IDE\ProjectTemplates\CSharp\Script#
+set ItemDir="%VSINSTALLDIR%"Common7\IDE\ItemTemplates\CSharp\Script#
 
-rd /s /q "%IDEDir%"\ProjectTemplates\CSharp\Script#
-rd /s /q "%IDEDir%"\ItemTemplates\CSharp\Script#
+rd /s /q %ProjDir%
+rd /s /q %ItemDir%
 
 %IDEDir%\devenv.exe /installvstemplates
