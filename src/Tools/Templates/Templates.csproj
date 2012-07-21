@@ -36,7 +36,6 @@
   </ItemGroup>
   <Target Name="Build">
     <Copy SourceFiles="@(Content)" DestinationFolder="$(OutputPath)" />
-
     <Zip Files="@(ItemClass)" ZipLevel="9" ZipFileName="$(OutputPath)ItemTemplates\Class.zip" WorkingDirectory="ItemTemplates\Class" />
     <Zip Files="@(ItemPage)" ZipLevel="9" ZipFileName="$(OutputPath)ItemTemplates\Page.zip" WorkingDirectory="ItemTemplates\Page" />
     <Zip Files="@(ItemJQueryPage)" ZipLevel="9" ZipFileName="$(OutputPath)ItemTemplates\jQueryPage.zip" WorkingDirectory="ItemTemplates\jQueryPage" />
@@ -44,7 +43,6 @@
     <Zip Files="@(ItemScriptlet)" ZipLevel="9" ZipFileName="$(OutputPath)ItemTemplates\Scriptlet.zip" WorkingDirectory="ItemTemplates\Scriptlet" />
     <Zip Files="@(ItemResource)" ZipLevel="9" ZipFileName="$(OutputPath)ItemTemplates\Resource.zip" WorkingDirectory="ItemTemplates\Resource" />
     <Zip Files="@(ItemTestClass)" ZipLevel="9" ZipFileName="$(OutputPath)ItemTemplates\TestClass.zip" WorkingDirectory="ItemTemplates\TestClass" />
-
     <Zip Files="@(ProjectClassLibrary)" ZipLevel="9" ZipFileName="$(OutputPath)ProjectTemplates\ClassLibrary.zip" WorkingDirectory="ProjectTemplates\ClassLibrary" />
     <Zip Files="@(ProjectJQueryClassLibrary)" ZipLevel="9" ZipFileName="$(OutputPath)ProjectTemplates\jQueryClassLibrary.zip" WorkingDirectory="ProjectTemplates\jQueryClassLibrary" />
     <Zip Files="@(ProjectUnitTest)" ZipLevel="9" ZipFileName="$(OutputPath)ProjectTemplates\UnitTest.zip" WorkingDirectory="ProjectTemplates\UnitTest" />

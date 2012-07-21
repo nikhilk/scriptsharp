@@ -31,7 +31,6 @@
     <DocumentationFile>bin\Release\$safeprojectname$.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Packages.config" />
     <None Include="Properties\FxCop.ruleset" />
     <None Include="Properties\Script.template" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,7 +11,6 @@
   </TemplateData>
   <TemplateContent>
     <Project File="ClassLibrary.csproj" ReplaceParameters="true">
-      <ProjectItem TargetFileName="Packages.config">Packages.config</ProjectItem>
       <ProjectItem TargetFileName="Properties\FxCop.ruleset">FxCop.ruleset</ProjectItem>
       <ProjectItem TargetFileName="Properties\Script.template">Script.template</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
