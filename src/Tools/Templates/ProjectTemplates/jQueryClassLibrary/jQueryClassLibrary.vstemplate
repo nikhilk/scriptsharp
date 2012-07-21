@@ -11,14 +11,21 @@
   </TemplateData>
   <TemplateContent>
     <Project File="ClassLibrary.csproj" ReplaceParameters="true">
-      <ProjectItem TargetFileName="Properties\$safeprojectname$.ruleset">ClassLibrary.ruleset</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\$safeprojectname$.script">ClassLibrary.script</ProjectItem>
+      <ProjectItem TargetFileName="Properties\FxCop.ruleset">FxCop.ruleset</ProjectItem>
+      <ProjectItem TargetFileName="Properties\Script.template">Script.template</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Class1.cs" OpenInEditor="true">Class1.cs</ProjectItem>
     </Project>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>ScriptSharp.VisualStudio, Version=0.7.0.0, Culture=Neutral, PublicKeyToken=8fc0e3af5abcb6c4</Assembly>
-    <FullClassName>ScriptSharp.VisualStudio.Wizards.ProjectWizard</FullClassName>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
   </WizardExtension>
+  <WizardData>
+    <packages repository="registry" repositoryId="" keyName="ssnuget">
+      <package id="ScriptSharp" version="0.7.5" />
+      <package id="ScriptSharp.Lib.HTML" version="0.7.5" />
+      <package id="ScriptSharp.Lib.jQuery" version="0.7.5" />
+    </packages>
+  </WizardData>
 </VSTemplate>

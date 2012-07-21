@@ -12,7 +12,7 @@
     <ProjectItem>Resource.resx</ProjectItem>
     <CustomParameters>
       <CustomParameter Name="$itemproperties$" Value="CustomTool" />
-      <CustomParameter Name="$CustomTool$" Value="ResXFileScriptGenerator" />
+      <CustomParameter Name="$CustomTool$" Value="" />
     </CustomParameters>
   </TemplateContent>
   <WizardExtension>

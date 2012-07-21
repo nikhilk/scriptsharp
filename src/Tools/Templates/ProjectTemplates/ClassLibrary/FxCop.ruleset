@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RuleSet Name="Script# Rules" Description="General Script Rules" ToolsVersion="10.0">
   <RuleHintPaths>
-    <Path>%ProgramFiles%\ScriptSharp\v1.0\CodeAnalysis</Path>
+    <Path>.\</Path>
   </RuleHintPaths>
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1000" Action="Warning" />

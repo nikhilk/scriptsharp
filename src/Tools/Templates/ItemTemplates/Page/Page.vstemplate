@@ -8,14 +8,16 @@
     <DefaultName>Page.cs</DefaultName>
   </TemplateData>
   <TemplateContent>
-    <References>
-      <Reference>
-        <Assembly>mscorlib, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL</Assembly>
-      </Reference>
-      <Reference>
-        <Assembly>Script.Web</Assembly>
-      </Reference>
-    </References>
     <ProjectItem ReplaceParameters="true">Page.cs</ProjectItem>
   </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="registry" repositoryId="" keyName="ssnuget">
+      <package id="ScriptSharp" version="0.7.5" />
+      <package id="ScriptSharp.Lib.HTML" version="0.7.5" />
+    </packages>
+  </WizardData>
 </VSTemplate>

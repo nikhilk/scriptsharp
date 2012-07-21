@@ -6,21 +6,15 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>$guid1$</ProjectGuid>
     <OutputType>Library</OutputType>
-    <NoStdLib>True</NoStdLib>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
-    <LangVersion>ISO-2</LangVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>$safeprojectname$</RootNamespace>
     <AssemblyName>$safeprojectname$</AssemblyName>
-    <TemplateFile>Properties\$safeprojectname$.script</TemplateFile>
-    <CodeAnalysisRuleSet>Properties\$safeprojectname$.ruleset</CodeAnalysisRuleSet>
-    <ReferencePath>$(MSBuildProgramFiles32)\ScriptSharp\v1.0\Framework\</ReferencePath>
-    <DeploymentPath>$deploymentpath$</DeploymentPath>
+    <ScriptTemplate>Properties\Script.template</ScriptTemplate>
+    <CodeAnalysisRuleSet>Properties\FxCop.ruleset</CodeAnalysisRuleSet>
+    <GenerateScript>True</GenerateScript>
+    <GenerateResources>True</GenerateResources>
    </PropertyGroup>
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>pdbonly</DebugType>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;CODE_ANALYSIS;SCRIPTSHARP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -29,8 +23,6 @@
     <DocumentationFile>bin\Debug\$safeprojectname$.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>pdbonly</DebugType>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>CODE_ANALYSIS;SCRIPTSHARP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -39,15 +31,10 @@
     <DocumentationFile>bin\Release\$safeprojectname$.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mscorlib, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
-    <Reference Include="Script.Web" />
-    <Reference Include="Script.jQuery" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Properties\$safeprojectname$.ruleset" />
-    <Content Include="Properties\$safeprojectname$.script" />
+    <None Include="Properties\FxCop.ruleset" />
+    <None Include="Properties\Script.template" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class1.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildProgramFiles32)\ScriptSharp\v1.0\ScriptSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

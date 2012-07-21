@@ -21,4 +21,13 @@
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">TestClass1.cs</ProjectItem>
     </Project>
   </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="registry" repositoryId="" keyName="ssnuget">
+      <package id="ScriptSharp.Testing" version="0.7.5" />
+    </packages>
+  </WizardData>
 </VSTemplate>
