@@ -26,6 +26,18 @@ v0.7.5.0 [in progress]
     - [git #187] Support for writing 'new Image()'
     - [git #189] Fixed jQuery.when metadata
     - [git #201] Strongly typed some Knockout API (KnockoutMapping)
+    - Nuget packages for compiler, and individual import libraries
+    - Breaking changes:
+      - In a csproj, the TemplateFile property has been changed to ScriptTemplate
+      - When creating a project there is no prompt to setup a DeploymentPath
+        ... but for now, msbuild support continues to exist (via manual edit)
+        ... will potentially be replaced eventually.
+      - No more support for WebAppParitioning. If you were compiling multiple script
+        files out of a single c# project, this feature is gone. You can switch your
+        msbuild scripts to use the ScriptCompilerExecTask, instead of ScriptCompilerTask
+        and invoke the compiler multiple times for each script file, passing in exactly
+        the right set of sources for each script file to be generated.
+      - Removed Script.Windows.dll and gadget project
 
 v0.7.4.0
     - Fix/update bing maps metadata bug
