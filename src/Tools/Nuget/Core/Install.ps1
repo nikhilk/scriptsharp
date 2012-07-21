@@ -1,6 +1,6 @@
 param($installPath, $toolsPath, $package, $project)
 
-Import-Module (Join-Path $toolsPath "Cleanup.psm1")
+Import-Module (Join-Path $toolsPath "Reset.psm1")
 
 function Compute-RelativePath ($basePath, $referencePath) {
   $baseUri = New-Object -typename System.Uri -argumentlist $basePath
@@ -16,23 +16,18 @@ $placeholder = "ScriptSharp.PlaceHolder.txt"
 $project.ProjectItems.Item($placeholder).Remove()
 Split-Path $project.FullName -parent | Join-Path -ChildPath $placeholder | Remove-Item
 
-# save any out-standing changes to the project first before modifying the project file
-$project.Save()
+# Get the msbuild object associated with the project
+Add-Type -AssemblyName "Microsoft.Build, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+$msbuild = [Microsoft.Build.Evaluation.ProjectCollection]::GlobalProjectCollection.GetLoadedProjects($project.FullName)[0]
 
-# load project file as xml document
-$doc = New-Object System.Xml.XmlDocument
-$doc.Load($project.FullName)
-$namespace = "http://schemas.microsoft.com/developer/msbuild/2003"
+# first remove any existing import reference
+Reset-Project $msbuild
 
-# remove any old import reference in case one exists
-Cleanup-Project $doc $namespace
-
-# add targets import by building a relative reference to targets file in package tools directory
+# get a relative reference to the targets file in the package's tools directory
+# and add it to the project
 $targetsAbsolutePath = Join-Path $toolsPath "ScriptSharp.targets"
 $targetsRelativePath = Compute-RelativePath $project.FullName $targetsAbsolutePath
-$importNode = $doc.CreateElement('Import', $namespace)
-$importNode.SetAttribute('Project', $targetsRelativePath)
-$doc.Project.AppendChild($importNode)
+$msbuild.Xml.AddImport($targetsRelativePath)
 
 # finally save the project
-$doc.Save($project.FullName)
+$project.Save()
