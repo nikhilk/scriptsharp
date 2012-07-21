@@ -1,17 +1,15 @@
 ﻿<!--
-***********************************************************************************************
+*******************************************************************************
 ScriptSharp.targets
-This file defines the steps in the standard build process specific for Script# projects.
+Defines the steps in the standard build process specific for Script# projects.
 
-Copyright (C) 2011. Nikhil Kothari. All rights reserved.
-***********************************************************************************************
+Copyright (C) 2012. Script# Project. All rights reserved.
+*******************************************************************************
 -->
 
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-
   <UsingTask TaskName="ScriptCompilerTask" AssemblyFile="ScriptSharp.Build.dll" />
+  <UsingTask TaskName="ResXCodeGeneratorTask" AssemblyFile="ScriptSharp.Build.dll" />
 
   <PropertyGroup>
     <DebugSymbols>true</DebugSymbols>
@@ -20,13 +18,20 @@ Copyright (C) 2011. Nikhil Kothari. All rights reserved.
     <AutoUnifyAssemblyReferences>false</AutoUnifyAssemblyReferences>
     <BuildingProject>true</BuildingProject>
     <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+    <LangVersion>ISO-2</LangVersion>
+    <NoStdLib>True</NoStdLib>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
 
-  <Target Name="BeforeCompile">
-    <Delete Files="@(IntermediateAssembly)" />
-  </Target>
+  <ItemGroup>
+    <Reference Include="mscorlib, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL">
+      <HintPath>$(MSBuildThisFileDirectory)mscorlib.dll</HintPath>
+    </Reference>
+    <GeneratedResourceCode Include="$(IntermediateOutputPath)Resources.g.cs" />
+  </ItemGroup>
 
-  <Target Name="AfterCompile" DependsOnTargets="$(CoreCompile)">
+  <Target Name="BuildScript">
     <ScriptCompilerTask
       Sources="@(Compile)"
       Resources="@(EmbeddedResource)"
@@ -36,8 +41,7 @@ Copyright (C) 2011. Nikhil Kothari. All rights reserved.
       DeploymentPath="$(DeploymentPath)"
       LocaleSubFolders="$(LocaleSubFolders)"
       ConfigSubFolders="$(ConfigSubFolders)"
-      WebAppPartitioning="$(WebAppPartitioning)"
-      Template="$(TemplateFile)"
+      Template="$(ScriptTemplate)"
       CSharpAssembly="@(IntermediateAssembly)"
       DocumentationFile="$(DocumentationFile)"
       SuppressDocumentation="$(SuppressDocumentation)"
@@ -46,9 +50,18 @@ Copyright (C) 2011. Nikhil Kothari. All rights reserved.
     </ScriptCompilerTask>
   </Target>
 
-  <Target Name="CopyFilesToOutputDirectory">
-    <Copy SourceFiles="@(IntermediateAssembly)" DestinationFolder="$(OutDir)" />
-    <Copy SourceFiles="@(ScriptFile)" DestinationFolder="$(OutDir)" />
+  <Target Name="GenerateResourcesCode" Inputs="@(EmbeddedResource)" Outputs="@(GeneratedResourceCode)">
+    <ResXCodeGeneratorTask
+      Resources="@(EmbeddedResource)"
+      GeneratedCode="@(GeneratedResourceCode)"
+      Namespace="$(RootNamespace)" />
+    <ItemGroup>
+      <Compile Include="@(GeneratedResourceCode)" />
+    </ItemGroup>
   </Target>
 
+  <PropertyGroup>
+    <BuildDependsOn Condition="'$(GenerateScript)' == 'True'">$(BuildDependsOn);BuildScript</BuildDependsOn>
+    <CompileDependsOn Condition="'$(GenerateResources)' == 'True'">GenerateResourcesCode;$(CompileDependsOn)</CompileDependsOn>
+  </PropertyGroup>
 </Project>
