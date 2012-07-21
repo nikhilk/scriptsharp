@@ -36,7 +36,6 @@ namespace ScriptSharp.Tasks {
         private string _deploymentPath;
         private bool _localeSubFolders;
         private bool _configSubFolders;
-        private bool _webAppPartitioning;
         private List<ITaskItem> _scripts;
 
         private bool _hasErrors;
@@ -194,15 +193,6 @@ namespace ScriptSharp.Tasks {
             }
         }
 
-        public bool WebAppPartitioning {
-            get {
-                return _webAppPartitioning;
-            }
-            set {
-                _webAppPartitioning = value;
-            }
-        }
-
         private bool Compile(string name, IEnumerable<ITaskItem> sourceItems, IEnumerable<ITaskItem> resourceItems, string locale) {
             ITaskItem scriptTaskItem;
 
@@ -293,8 +283,11 @@ namespace ScriptSharp.Tasks {
         public override bool Execute() {
             _scripts = new List<ITaskItem>();
 
+#if PARTITIONING
             if (_webAppPartitioning == false) {
+#endif
                 return ExecuteCore(String.Empty, _sources, _resources);
+#if PARTITIONING
             }
             else {
                 CompilationGroup sharedGroup = new CompilationGroup();
@@ -347,6 +340,7 @@ namespace ScriptSharp.Tasks {
 
                 return true;
             }
+#endif // PARTITIONING
         }
 
         private bool ExecuteCore(string name, IEnumerable<ITaskItem> sources, IEnumerable<ITaskItem> resources) {
