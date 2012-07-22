@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>ScriptSharp.Runtime</id>
+    <version>0.7.5.0</version>
+    <title>Script# Runtime Scripts</title>
+    <authors>Nikhil Kothari</authors>
+    <summary>Provides the core javascript runtime for Script#-based scripts for use in Web projects.</summary>
+    <description>
+      This package contains scripts like mscorlib.js which provides the runtime script implementations of a type system and core APIs available to scripts generated using Script# for deployment within web applications (such as asp.net mvc projects).
+    </description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
+    <language>en-US</language>
+    <projectUrl>http://www.scriptsharp.com</projectUrl>
+    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
+    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/Logo.png</iconUrl>
+    <tags>script script# scriptsharp javascript html aspnet mvc</tags>
+  </metadata>
+  <files>
+    <file src="..\..\..\bin\Release\mscorlib.js" target="content\Scripts" />
+    <file src="..\..\..\bin\Release\mscorlib.debug.js" target="content\Scripts" />
+  </files>
+</package>
