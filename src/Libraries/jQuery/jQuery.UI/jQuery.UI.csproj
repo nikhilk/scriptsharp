@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -81,7 +81,7 @@
     </ScriptInfo>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CoreLib\CoreLib.csproj">
+    <ProjectReference Include="..\..\..\Core\CoreLib\CoreLib.csproj">
       <Project>{36D4B098-A21C-4725-ACD3-400922885F38}</Project>
       <Name>CoreLib</Name>
     </ProjectReference>

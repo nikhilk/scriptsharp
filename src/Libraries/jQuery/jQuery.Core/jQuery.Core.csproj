@@ -78,7 +78,7 @@
     <ScriptInfo Include="Properties\ScriptInfo.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CoreLib\CoreLib.csproj">
+    <ProjectReference Include="..\..\..\Core\CoreLib\CoreLib.csproj">
       <Project>{36D4B098-A21C-4725-ACD3-400922885F38}</Project>
       <Name>CoreLib</Name>
     </ProjectReference>
