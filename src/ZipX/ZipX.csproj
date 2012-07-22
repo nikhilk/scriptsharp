@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask TaskName="Zip" AssemblyFile="..\..\tools\bin\ScriptSharp.Internal.ZipBuilder.dll" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4123C976-739E-42A2-87FB-E04D163BC99C}</ProjectGuid>
+    <OutputPath>..\..\bin\Zip\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Packages\Core.nuspec" />
+    <None Include="Packages\Core\Install.ps1" />
+    <None Include="Packages\Core\Reset.psm1" />
+    <None Include="Packages\Core\Uninstall.ps1" />
+    <None Include="Packages\FxCop.nuspec" />
+    <None Include="Packages\Lib.BingMaps.nuspec" />
+    <None Include="Packages\Lib.HTML.nuspec" />
+    <None Include="Packages\Lib.jQuery.nuspec" />
+    <None Include="Packages\Lib.jQuery.UI.nuspec" />
+    <None Include="Packages\Lib.jQuery.Validation.nuspec" />
+    <None Include="Packages\Lib.Knockout.nuspec" />
+    <None Include="Packages\Testing.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <ItemClass Include="ItemTemplates\Class\*" />
+    <ItemPage Include="ItemTemplates\Page\*" />
+    <ItemJQueryPage Include="ItemTemplates\jQueryPage\*" />
+    <ItemJQueryPlugin Include="ItemTemplates\jQueryPlugin\*" />
+    <ItemScriptlet Include="ItemTemplates\Scriptlet\*" />
+    <ItemResource Include="ItemTemplates\Resource\*" />
+    <ItemTestClass Include="ItemTemplates\TestClass\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectClassLibrary Include="ProjectTemplates\ClassLibrary\*" />
+    <ProjectJQueryClassLibrary Include="ProjectTemplates\jQueryClassLibrary\*" />
+    <ProjectUnitTest Include="ProjectTemplates\UnitTest\*" />
+    <ProjectImportLibrary Include="ProjectTemplates\ImportLibrary\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\docs\Logo.png">
+      <Link>VSIX\Logo.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\License.txt">
+      <Link>VSIX\License.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Packages\Core\ScriptSharp.PlaceHolder.txt" />
+    <Content Include="VSIX\Extension.vsixmanifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VSIX\[Content_Types].xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Target Name="Build">
+    <MakeDir Directories="$(OutputPath)Packages" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Core.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Testing.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\FxCop.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.HTML.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.jQuery.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.jQuery.UI.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.jQuery.Validation.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Knockout.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.BingMaps.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Zip ZipLevel="9" Files="@(ItemClass)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Class.zip" WorkingDirectory="ItemTemplates\Class" />
+    <Zip ZipLevel="9" Files="@(ItemPage)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Page.zip" WorkingDirectory="ItemTemplates\Page" />
+    <Zip ZipLevel="9" Files="@(ItemJQueryPage)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\jQueryPage.zip" WorkingDirectory="ItemTemplates\jQueryPage" />
+    <Zip ZipLevel="9" Files="@(ItemJQueryPlugin)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\jQueryPlugin.zip" WorkingDirectory="ItemTemplates\jQueryPlugin" />
+    <Zip ZipLevel="9" Files="@(ItemScriptlet)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Scriptlet.zip" WorkingDirectory="ItemTemplates\Scriptlet" />
+    <Zip ZipLevel="9" Files="@(ItemResource)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Resource.zip" WorkingDirectory="ItemTemplates\Resource" />
+    <Zip ZipLevel="9" Files="@(ItemTestClass)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\TestClass.zip" WorkingDirectory="ItemTemplates\TestClass" />
+    <Zip ZipLevel="9" Files="@(ProjectClassLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\ClassLibrary.zip" WorkingDirectory="ProjectTemplates\ClassLibrary" />
+    <Zip ZipLevel="9" Files="@(ProjectJQueryClassLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\jQueryClassLibrary.zip" WorkingDirectory="ProjectTemplates\jQueryClassLibrary" />
+    <Zip ZipLevel="9" Files="@(ProjectUnitTest)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\UnitTest.zip" WorkingDirectory="ProjectTemplates\UnitTest" />
+    <Zip ZipLevel="9" Files="@(ProjectImportLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\ImportLibrary.zip" WorkingDirectory="ProjectTemplates\ImportLibrary" />
+    <Copy SourceFiles="@(Content)" DestinationFolder="$(OutputPath)" />
+    <ItemGroup>
+      <VsixFiles Include="$(OutputPath)**\*.*" Exclude="*.vsix" />
+    </ItemGroup>
+    <Zip ZipLevel="9" Files="@(VsixFiles)" WorkingDirectory="$(OutputPath)" ZipFileName="$(OutputPath)..\ScriptSharp.vsix" />
+  </Target>
+  <Target Name="Clean">
+    <Delete Files="$(OutputPath)..\ScriptSharp.vsix" />
+    <RemoveDir Directories="$(OutputPath)" />
+  </Target>
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+</Project>

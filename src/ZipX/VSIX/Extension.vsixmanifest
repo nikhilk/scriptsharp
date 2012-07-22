@@ -1,0 +1,29 @@
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
+  <Metadata>
+    <Identity Id="ScriptSharp.Extension.Templates" Version="0.7.5"
+      Language="en-US"
+      Publisher="Nikhil Kothari" />
+    <DisplayName>Script#</DisplayName>
+    <Description>Script# lets you author your HTML5 apps in C# and compile them into JavaScript.</Description>
+    <MoreInfo>http://www.scriptsharp.com</MoreInfo>
+    <License>License.txt</License>
+    <Icon>Logo.png</Icon>
+    <PreviewImage>Logo.png</PreviewImage>
+    <Tags>c# csharp script# scriptsharp javascript script html html5 ajax compiler tool</Tags>
+  </Metadata>
+  <Installation AllUsers="false" SystemComponent="false">
+    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="10.0" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Premium" Version="10.0" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Ultimate" Version="10.0" />
+    <InstallationTarget Id="Microsoft.VisualStudio.VWDExpress" Version="10.0" />
+    <InstallationTarget Id="Microsoft.VisualStudio.VSWinExpress" Version="10.0" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" Version="4.0" />
+    <Dependency Id="NuPackToolsVsix.Microsoft.67e54e40-0ae3-42c5-a949-fddf5739e7a5" DisplayName="NuGet Package Manager" Version="2.0" Location="http://nuget.org/" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="ProjectTemplates" />
+    <Asset Type="Microsoft.VisualStudio.ItemTemplate" Path="ItemTemplates" />
+  </Assets>
+</PackageManifest>
