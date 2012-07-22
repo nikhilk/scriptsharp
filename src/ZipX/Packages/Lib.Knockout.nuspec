@@ -5,17 +5,17 @@
     <version>0.7.5.0</version>
     <title>Script# Knockout Reference Assembly</title>
     <authors>Nikhil Kothari</authors>
+    <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
+    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/PackageLib.png</iconUrl>
+    <projectUrl>http://www.scriptsharp.com</projectUrl>
+    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
     <summary>Allows you to reference and use Knockout in Script# projects.</summary>
     <description>
       This package contains contains the Script.Knockout assembly that allows you to reference and program against the Knockout APIs when creating MVVM-style HTML5/browser-based applications with Script#.
     </description>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
-    <language>en-US</language>
-    <projectUrl>http://www.scriptsharp.com</projectUrl>
-    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
-    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/Logo.png</iconUrl>
     <tags>script knockout mvvm javascript ajax html html5 scriptsharp</tags>
+    <language>en-US</language>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
       <dependency id="ScriptSharp" version="0.7.5.0" />
       <dependency id="ScriptSharp.Lib.HTML" version="0.7.5.0" />

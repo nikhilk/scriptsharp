@@ -5,18 +5,18 @@
     <version>0.7.5.0</version>
     <title>Script#</title>
     <authors>Nikhil Kothari</authors>
+    <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
+    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/Package.png</iconUrl>
+    <projectUrl>http://www.scriptsharp.com</projectUrl>
+    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
     <summary>Script# lets you author your HTML5 apps in C# and compile them into JavaScript.</summary>
     <description>
       This package contains the Script# compiler and the associated mscorlib.dll assembly that all Script# projects reference.
       It also includes msbuild support for easily using Script# within Visual Studio.
     </description>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
-    <language>en-US</language>
-    <projectUrl>http://www.scriptsharp.com</projectUrl>
-    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
-    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/Logo.png</iconUrl>
     <tags>script javascript ajax html html5 mobile scriptsharp compiler tool</tags>
+    <language>en-US</language>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
     <file src="..\..\..\bin\Release\mscorlib.dll" target="tools" />
