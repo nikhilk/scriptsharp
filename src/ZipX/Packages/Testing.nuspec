@@ -20,5 +20,6 @@
   </metadata>
   <files>
     <file src="..\..\..\bin\Release\ScriptSharp.Testing.dll" target="lib" />
+    <file src="..\..\..\bin\Release\ScriptSharp.Testing.xml" target="lib" />
   </files>
 </package>

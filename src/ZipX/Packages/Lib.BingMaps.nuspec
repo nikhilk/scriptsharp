@@ -23,5 +23,7 @@
   </metadata>
   <files>
     <file src="..\..\..\bin\Release\Script.Microsoft.BingMaps.dll" target="lib" />
+    <file src="..\..\..\bin\Release\Script.Microsoft.BingMaps.xml" target="lib" />
+    <file src="..\..\..\bin\Release\Script.Microsoft.BingMaps.txt" target="lib" />
   </files>
 </package>

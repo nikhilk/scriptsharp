@@ -20,6 +20,7 @@
   </metadata>
   <files>
     <file src="..\..\..\bin\Release\mscorlib.dll" target="tools" />
+    <file src="..\..\..\bin\Release\mscorlib.xml" target="tools" />
     <file src="..\..\..\bin\Release\ScriptSharp.dll" target="tools" />
     <file src="..\..\..\bin\Release\ScriptSharp.Build.dll" target="tools" />
     <file src="..\..\..\bin\Release\ScriptSharp.targets" target="tools" />

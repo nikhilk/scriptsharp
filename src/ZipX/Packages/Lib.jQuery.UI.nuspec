@@ -24,5 +24,7 @@
   </metadata>
   <files>
     <file src="..\..\..\bin\Release\Script.jQuery.UI.dll" target="lib" />
+    <file src="..\..\..\bin\Release\Script.jQuery.UI.xml" target="lib" />
+    <file src="..\..\..\bin\Release\Script.jQuery.UI.txt" target="lib" />
   </files>
 </package>

@@ -23,5 +23,7 @@
   </metadata>
   <files>
     <file src="..\..\..\bin\Release\Script.jQuery.dll" target="lib" />
+    <file src="..\..\..\bin\Release\Script.jQuery.xml" target="lib" />
+    <file src="..\..\..\bin\Release\Script.jQuery.txt" target="lib" />
   </files>
 </package>

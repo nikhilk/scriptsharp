@@ -24,5 +24,7 @@
   </metadata>
   <files>
     <file src="..\..\..\bin\Release\Script.jQuery.Validation.dll" target="lib" />
+    <file src="..\..\..\bin\Release\Script.jQuery.Validation.xml" target="lib" />
+    <file src="..\..\..\bin\Release\Script.jQuery.Validation.txt" target="lib" />
   </files>
 </package>

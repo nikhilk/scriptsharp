@@ -11,6 +11,7 @@
   </TemplateData>
   <TemplateContent>
     <Project File="ImportLibrary.csproj" ReplaceParameters="true">
+      <ProjectItem TargetFileName="Properties\ScriptInfo.txt">ScriptInfo.txt</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Class1.cs</ProjectItem>
     </Project>

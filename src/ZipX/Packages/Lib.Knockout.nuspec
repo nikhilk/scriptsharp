@@ -23,5 +23,7 @@
   </metadata>
   <files>
     <file src="..\..\..\bin\Release\Script.Knockout.dll" target="lib" />
+    <file src="..\..\..\bin\Release\Script.Knockout.xml" target="lib" />
+    <file src="..\..\..\bin\Release\Script.Knockout.txt" target="lib" />
   </files>
 </package>
