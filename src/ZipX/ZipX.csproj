@@ -40,19 +40,18 @@
     <ProjectImportLibrary Include="ProjectTemplates\ImportLibrary\*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\docs\Logo.png">
-      <Link>VSIX\Logo.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\License.txt">
-      <Link>VSIX\License.txt</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Packages\Core\ScriptSharp.PlaceHolder.txt" />
     <Content Include="VSIX\Extension.vsixmanifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="VSIX\[Content_Types].xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VSIX\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\License.txt">
+      <Link>VSIX\License.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
