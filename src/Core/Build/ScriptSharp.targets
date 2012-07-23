@@ -18,7 +18,7 @@ Copyright (C) 2012. Script# Project. All rights reserved.
     <AutoUnifyAssemblyReferences>false</AutoUnifyAssemblyReferences>
     <BuildingProject>true</BuildingProject>
     <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
-    <LangVersion>ISO-2</LangVersion>
+    <LangVersion Condition="'$(GenerateScript)' == 'True'">ISO-2</LangVersion>
     <NoStdLib>True</NoStdLib>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkProfile />
