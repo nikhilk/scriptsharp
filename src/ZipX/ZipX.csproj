@@ -19,6 +19,8 @@
     <None Include="Packages\Lib.HTML.nuspec" />
     <None Include="Packages\Lib.jQuery.nuspec" />
     <None Include="Packages\Lib.jQuery.UI.nuspec" />
+    <None Include="Packages\Lib.jQuery.History.nuspec" />
+    <None Include="Packages\Lib.jQuery.Templating.nuspec" />
     <None Include="Packages\Lib.jQuery.Validation.nuspec" />
     <None Include="Packages\Lib.Knockout.nuspec" />
     <None Include="Packages\Testing.nuspec" />
@@ -63,6 +65,8 @@
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.HTML.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.jQuery.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.jQuery.UI.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.jQuery.History.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.jQuery.Templating.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.jQuery.Validation.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Knockout.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.BingMaps.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
