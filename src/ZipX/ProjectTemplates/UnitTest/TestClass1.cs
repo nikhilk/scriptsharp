@@ -11,6 +11,12 @@ namespace $safeprojectname$ {
 
     [TestClass]
     [DeploymentItem("$projectname$\\Web", "Web")]
+    // TODO: Add other deployment items that are needed for the test, to be
+    //       placed within the web site created for the test.
+    //       For example, mscorlib scripts, test scripts and dependencies
+    //       The first parameter to DeploymentItem is a solution-relative
+    //       path to the file, and the 2nd parameter is to deployment directory
+    //       relative to the test output directory.
     public class TestClass1 {
 
         private static WebTest _webTest;
@@ -52,7 +58,14 @@ namespace $safeprojectname$ {
 
         [TestMethod]
         public void TestMethod1() {
-            Uri testUri = _webTest.GetTestUri("/Default.htm");
+            // TestClass1.htm is in the Web directory, and gets deployed along with all
+            // content of the Web directory per the metadata on the class.
+            // You need to edit it to include HTML content and scripts you need to run
+            // the test.
+            Uri testUri = _webTest.GetTestUri("/TestClass1.htm");
+
+            // Alternatively you can also use _webTest.CreatePage to register some
+            // content you create dynamically in the test for serving from the web server.
 
             WebTestResult ieResult = _webTest.RunTest(testUri, WebBrowser.InternetExplorer);
             Assert.IsTrue(ieResult.Succeeded, "Internet Explorer:\r\n" + ieResult.Log);

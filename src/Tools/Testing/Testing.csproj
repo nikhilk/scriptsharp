@@ -44,8 +44,10 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WebServer\WebTestHttpServer.cs" />
+    <Compile Include="WebServer\HttpServer.cs" />
+    <Compile Include="WebServer\WebTestLogEventArgs.cs" />
     <Compile Include="WebTestPageBuilder.cs" />
-    <Compile Include="WebServer\LogEventArgs.cs" />
     <Compile Include="WebTest.cs" />
     <Compile Include="WebTestResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,17 +55,7 @@
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
     <Compile Include="WebBrowser.cs" />
-    <Compile Include="WebServer\Connection.cs" />
-    <Compile Include="WebServer\Content\Includes.cs" />
-    <Compile Include="WebServer\Content\Messages.cs" />
-    <Compile Include="WebServer\Host.cs" />
-    <Compile Include="WebServer\Request.cs" />
-    <Compile Include="WebServer\Server.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="WebServer\Content\QUnit.css" />
-    <EmbeddedResource Include="WebServer\Content\QUnit.js" />
-    <EmbeddedResource Include="WebServer\Content\QUnitExt.js" />
+    <Compile Include="WebServer\HttpMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

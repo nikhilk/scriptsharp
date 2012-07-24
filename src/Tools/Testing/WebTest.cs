@@ -14,10 +14,10 @@ namespace ScriptSharp.Testing {
 
     public sealed class WebTest {
 
-        private Server _server;
+        private WebTestHttpServer _server;
         private Uri _rootUri;
 
-        public void CreatePage(string virtualPath, string content) {
+        public void CreatePage(string virtualPath, string content, string contentType) {
             if (_server == null) {
                 throw new InvalidOperationException("The server has not been started.");
             }
@@ -27,8 +27,11 @@ namespace ScriptSharp.Testing {
             if (String.IsNullOrEmpty(content)) {
                 throw new ArgumentNullException("content");
             }
+            if (String.IsNullOrEmpty(contentType)) {
+                throw new ArgumentNullException("contentType");
+            }
 
-            _server.RegisterContent(virtualPath, content);
+            _server.RegisterContent(virtualPath, content, contentType);
         }
 
         public Uri GetTestUri(string virtualPath, params string[] testModules) {
@@ -94,8 +97,8 @@ namespace ScriptSharp.Testing {
             WebTestResult result = null;
             Process browserProcess = null;
 
-            EventHandler<LogEventArgs> logEventHandler = null;
-            logEventHandler = delegate(object sender, LogEventArgs e) {
+            EventHandler<WebTestLogEventArgs> logEventHandler = null;
+            logEventHandler = delegate(object sender, WebTestLogEventArgs e) {
                 _server.Log -= logEventHandler;
 
                 result = new WebTestResult(e.Succeeded, e.Log);
@@ -140,11 +143,6 @@ namespace ScriptSharp.Testing {
             }
         }
 
-        [Obsolete("Use StartWebServer instead.")]
-        public bool Start(string webRoot, int port) {
-            return StartWebServer(webRoot, port);
-        }
-
         public bool StartWebServer(string webRoot, int port) {
             if (_server != null) {
                 throw new InvalidOperationException("The server has already been started.");
@@ -158,8 +156,8 @@ namespace ScriptSharp.Testing {
 
             bool started = false;
             try {
-                Server server = new Server(port, "/", webRoot);
-                server.Start();
+                WebTestHttpServer server = new WebTestHttpServer(webRoot);
+                server.Start(port);
 
                 _server = server;
                 started = true;
@@ -178,11 +176,6 @@ namespace ScriptSharp.Testing {
             }
 
             return started;
-        }
-
-        [Obsolete("Use StopWebServer instead.")]
-        public bool Stop() {
-            return StopWebServer();
         }
 
         public bool StopWebServer() {

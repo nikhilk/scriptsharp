@@ -21,9 +21,10 @@
   QUnit.done = function(failures, total) {
       appendLog('\r\nCompleted; ' + 'failures = ' + failures + '; total = ' + total);
 
-      var logUrl = '/Log.axd/' + ((failures === 0) ? 'Success' : 'Failure');
+      var logUrl = '/log/' + ((failures === 0) ? 'success' : 'failure');
       var xhr = new XMLHttpRequest();
       xhr.open('POST', logUrl, /* async */ false);
+      xhr.setRequestHeader('Content-Type', 'text/plain');
       xhr.send(logData);
   }
 

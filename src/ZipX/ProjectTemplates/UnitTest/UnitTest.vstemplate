@@ -14,7 +14,7 @@
   <TemplateContent>
     <Project File="UnitTest.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="Web\Default.htm">Default.htm</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web\TestClass1.htm">TestClass1.htm</ProjectItem>
       <ProjectItem TargetFileName="Web\QUnit.css">QUnit.css</ProjectItem>
       <ProjectItem TargetFileName="Web\QUnit.js">QUnit.js</ProjectItem>
       <ProjectItem TargetFileName="Web\QUnitExt.js">QUnitExt.js</ProjectItem>
