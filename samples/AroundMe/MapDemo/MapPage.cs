@@ -1,4 +1,4 @@
-// BingMapsShell.cs
+// MapPage.cs
 //
 
 using System;
@@ -9,9 +9,9 @@ using Microsoft.Maps.Location;
 using Microsoft.Maps.Traffic;
 using Microsoft.Maps.VenueMaps;
 
-namespace BingMapsApp {
+namespace MapDemo {
 
-    internal sealed class BingMapsShell {
+    internal sealed class MapPage {
 
         private Map _map;
         private MapPushpin _pushpin;

@@ -1,15 +1,14 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.DynamicViewPage" %>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
   <title>Photos Around Me</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Schoolbell:regular" />
-  <link rel="stylesheet" type="text/css" href="/Content/Site.css" />
+  <link rel="stylesheet" type="text/css" href="Site.css" />
 </head>
-<body class="map"
-  data-flickr-key="<%= Model.flickrApiKey %>"
-  data-bingmaps-key="<%= Model.bingMapsKey %>"
-  data-tile-url="<%= Model.tileUrl %>">
+<body class="map" data-app="true"
+  data-flickr-key="be9b6f66bd7a1c0c0f1465a1b7e8a764"
+  data-bingmaps-key="AvROonkHlY0PHW8zAWDFW5JX8tMeSxzUlkR23_uGzUpeGzrJxf-8tSxAvQmO_5PX"
+  data-tile-url="http://{0}.tile.cloudmade.com/24f82a695d3f4b3ab1ea69d9eb63fdb0/43793/256/{1}/{2}/{3}.png">
   <div id="mapContainer"></div>
   <div id="inputContainer">
     <div id="titleLabel">Photos Around Me</div>
@@ -36,7 +35,7 @@
   </div>
   <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
   <script type="text/javascript" src="http://platform.twitter.com/anywhere.js?id=BDvnYA8jh6osbRb83Ybw&v=1"></script>
-  <script type="text/javascript" src="/Content/Scripts/mscorlib.debug.js"></script>
-  <script type="text/javascript" src="/Content/Scripts/AroundMe.debug.js"></script>
+  <script type="text/javascript" src="../mscorlib.debug.js"></script>
+  <script type="text/javascript" src="../AroundMe.debug.js"></script>
 </body>
 </html>

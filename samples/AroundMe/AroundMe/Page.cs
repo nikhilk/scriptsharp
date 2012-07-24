@@ -35,6 +35,10 @@ namespace AroundMe {
         private static string _oldMode;
 
         static Page() {
+            if (Document.Body.GetAttribute("data-app") == null) {
+                return;
+            }
+
             string flickrKey = (string)Document.Body.GetAttribute("data-flickr-key");
             Debug.Assert(String.IsNullOrEmpty(flickrKey) == false);
 
@@ -235,7 +239,7 @@ namespace AroundMe {
 
                 if (_currentPushpin == null) {
                     MapPushpinOptions pushpinOptions = new MapPushpinOptions();
-                    pushpinOptions.Icon = "/Content/Pushpin.png";
+                    pushpinOptions.Icon = "Pushpin.png";
                     pushpinOptions.Anchor = new MapPoint(12, 14);
                     pushpinOptions.Width = 25;
                     pushpinOptions.Height = 28;
@@ -344,14 +348,14 @@ namespace AroundMe {
                     calloutOptions.Height = 50;
                     calloutOptions.ShowPointer = false;
                     calloutOptions.ShowCloseButton = false;
-                    calloutOptions.Offset = new MapPoint(-25, 25);
+                    calloutOptions.Offset = new MapPoint(-25, -25);
                     calloutOptions.HtmlContent =
                         "<div class=\"photoInfobox\" style=\"background-image: url(" + photo.thumbnailUrl + ")\"" +
                         " title=\"" + photo.title.HtmlEncode() + "\"></div>";
                     calloutOptions.Visible = true;
 
                     MapPushpinOptions pushpinOptions = new MapPushpinOptions();
-                    pushpinOptions.Icon = "/Content/Dot.png";
+                    pushpinOptions.Icon = "Dot.png";
                     pushpinOptions.Width = 10;
                     pushpinOptions.Height = 10;
                     pushpinOptions.Anchor = new MapPoint(5, 5);

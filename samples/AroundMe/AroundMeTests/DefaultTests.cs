@@ -11,8 +11,8 @@ namespace AroundMeTests {
 
     [TestClass]
     [DeploymentItem("AroundMeTests\\Web", "Web")]
-    [DeploymentItem("AroundMeWeb\\Content\\Scripts\\mscorlib.debug.js", "Web")]
-    [DeploymentItem("AroundMeWeb\\Content\\Scripts\\AroundMe.test.js", "Web")]
+    [DeploymentItem("AroundMe\\bin\\Debug\\mscorlib.debug.js", "Web")]
+    [DeploymentItem("AroundMe\\bin\\Debug\\AroundMe.test.js", "Web")]
     public class DefaultTests {
 
         private static WebTest _webTest;
@@ -39,33 +39,17 @@ namespace AroundMeTests {
             _webTest.StopWebServer();
         }
 
-        #region Per-test Initialization/Cleanup
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void OnTestInitialize() {
-        // }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void OnTestCleanup() {
-        // }
-        //
-        #endregion
-
         [TestMethod]
         public void TestMethod1() {
-            Uri testUri = _webTest.GetTestUri("/Default.htm");
+            WebTestPageBuilder pageBuilder = new WebTestPageBuilder("DefaultTests");
+            string html =
+                pageBuilder.AddScripts("mscorlib.debug.js", "AroundMe.test.js")
+                           .ToHtml();
 
-            WebTestResult ieResult = _webTest.RunTest(testUri, WebBrowser.InternetExplorer);
-            Assert.IsTrue(ieResult.Succeeded, "Internet Explorer:\r\n" + ieResult.Log);
+            Uri pageUri = _webTest.CreateContent("/DefaultTests.htm", html, "text/html");
 
-            WebTestResult chromeResult = _webTest.RunTest(testUri, WebBrowser.Chrome);
+            WebTestResult chromeResult = _webTest.RunTest(pageUri, WebBrowser.Chrome);
             Assert.IsTrue(chromeResult.Succeeded, "Chrome:\r\n" + chromeResult.Log);
-
-            /*
-            WebTestResult ffResult = _webTest.RunTest(testUri, WebBrowser.Firefox);
-            Assert.IsTrue(ffResult.Succeeded, "Firefox:\r\n" + ffResult.Log);
-            */
         }
     }
 }

@@ -21,9 +21,10 @@
   QUnit.done = function(failures, total) {
       appendLog('\r\nCompleted; ' + 'failures = ' + failures + '; total = ' + total);
 
-      var logUrl = '/Log.axd/' + ((failures === 0) ? 'Success' : 'Failure');
+      var logUrl = '/log/' + ((failures === 0) ? 'success' : 'failure');
       var xhr = new XMLHttpRequest();
       xhr.open('POST', logUrl, /* async */ false);
+      xhr.setRequestHeader('Content-Type', 'text/plain');
       xhr.send(logData);
   }
 
@@ -33,6 +34,7 @@
   
   QUnit.testDone = function(name, failures, total) {
     appendLog('  Test Done: ' + name + '; failures = ' + failures + '; total = ' + total);
+    appendLog('');
   }
 
   QUnit.moduleStart = function(name, testEnv) {
@@ -43,6 +45,8 @@
   QUnit.moduleDone = function(name, failures, total) {
     if (name === currentModule) {
       appendLog('Module Done: ' + name + '; failures = ' + failures + '; total = ' + total + '\r\n');
+      appendLog('');
+      appendLog('');
     }
     currentModule = null;
   }
