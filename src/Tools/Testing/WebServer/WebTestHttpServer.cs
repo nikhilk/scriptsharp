@@ -74,7 +74,7 @@ namespace ScriptSharp.Testing.WebServer {
                 message.WriteFile(path, GetContentType(path));
             }
             else {
-                message.WriteError(HttpStatusCode.NotFound);
+                message.WriteStatus(HttpStatusCode.NotFound);
             }
         }
 
@@ -96,9 +96,12 @@ namespace ScriptSharp.Testing.WebServer {
                     WebTestLogEventArgs logEvent = new WebTestLogEventArgs(success.Value, log);
                     Log(this, logEvent);
                 }
+
+                message.WriteStatus(HttpStatusCode.NoContent);
+                return;
             }
 
-            message.WriteError(HttpStatusCode.NotFound);
+            message.WriteStatus(HttpStatusCode.NotFound);
         }
 
         public void RegisterContent(string path, string data, string contentType) {

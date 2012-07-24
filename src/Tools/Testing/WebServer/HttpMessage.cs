@@ -198,11 +198,11 @@ namespace ScriptSharp.Testing.WebServer {
                 }
 
                 if (processed == false) {
-                    WriteError(HttpStatusCode.MethodNotAllowed);
+                    WriteStatus(HttpStatusCode.MethodNotAllowed);
                 }
             }
             catch (Exception) {
-                WriteError(HttpStatusCode.InternalServerError);
+                WriteStatus(HttpStatusCode.InternalServerError);
             }
 
             _responseStream.Flush();
@@ -218,16 +218,6 @@ namespace ScriptSharp.Testing.WebServer {
             writer.WriteLine("Connection: close");
             writer.WriteLine("");
             writer.Write(content);
-
-            writer.Flush();
-        }
-
-        public void WriteError(HttpStatusCode statusCode) {
-            StreamWriter writer = new StreamWriter(_responseStream);
-
-            writer.WriteLine("HTTP/1.0 " + (int)statusCode);
-            writer.WriteLine("Connection: close");
-            writer.WriteLine("");
 
             writer.Flush();
         }
@@ -253,6 +243,16 @@ namespace ScriptSharp.Testing.WebServer {
                 }
                 while (bytesRead != 0);
             }
+        }
+
+        public void WriteStatus(HttpStatusCode statusCode) {
+            StreamWriter writer = new StreamWriter(_responseStream);
+
+            writer.WriteLine("HTTP/1.0 " + (int)statusCode);
+            writer.WriteLine("Connection: close");
+            writer.WriteLine("");
+
+            writer.Flush();
         }
     }
 }
