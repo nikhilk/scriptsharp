@@ -17,7 +17,7 @@ namespace ScriptSharp.Testing {
         private WebTestHttpServer _server;
         private Uri _rootUri;
 
-        public void CreatePage(string virtualPath, string content, string contentType) {
+        public Uri CreateContent(string virtualPath, string content, string contentType) {
             if (_server == null) {
                 throw new InvalidOperationException("The server has not been started.");
             }
@@ -32,6 +32,7 @@ namespace ScriptSharp.Testing {
             }
 
             _server.RegisterContent(virtualPath, content, contentType);
+            return GetTestUri(virtualPath);
         }
 
         public Uri GetTestUri(string virtualPath, params string[] testModules) {

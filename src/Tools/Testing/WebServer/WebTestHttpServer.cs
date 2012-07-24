@@ -49,24 +49,28 @@ namespace ScriptSharp.Testing.WebServer {
             return "text/plain";
         }
 
-        private string GetResolvedPath(string urlPath) {
+        private string GetResolvedPath(string urlPath, out string cleanedUrlPath) {
             Uri relativeUri = new Uri(urlPath, UriKind.Relative);
             Uri resolvedUri = new Uri(_baseUri, relativeUri);
 
             // Get the cleaned up path with the leading slash trimmed off
+            cleanedUrlPath = resolvedUri.LocalPath;
             string path = resolvedUri.LocalPath.Substring(1);
 
             return Path.Combine(_contentRoot, path);
         }
 
         private void HandleGetRequest(HttpMessage message) {
-            string path = GetResolvedPath(message.Path);
+            string urlPath;
+            string path = GetResolvedPath(message.Path, out urlPath);
 
             Tuple<string, string> content;
-            if (_registeredContent.TryGetValue(path, out content)) {
+            if (_registeredContent.TryGetValue(urlPath, out content)) {
                 message.WriteContent(content.Item1, content.Item2);
+                return;
             }
-            else if (File.Exists(path)) {
+
+            if (File.Exists(path)) {
                 message.WriteFile(path, GetContentType(path));
             }
             else {
