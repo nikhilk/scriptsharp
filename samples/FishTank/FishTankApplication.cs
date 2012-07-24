@@ -4,9 +4,11 @@
 using System;
 using System.Collections;
 using System.Html;
+using System.Runtime.CompilerServices;
 
 namespace FishTankApp {
 
+    [GlobalMethods]
     internal static class FishTankApplication {
 
         static FishTankApplication() {

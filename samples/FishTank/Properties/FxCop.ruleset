@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RuleSet Name="Script# Rules" Description="General Script Rules" ToolsVersion="10.0">
   <RuleHintPaths>
-    <Path>%ProgramFiles%\ScriptSharp\v1.0\CodeAnalysis</Path>
+    <Path>.\</Path>
   </RuleHintPaths>
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1000" Action="Warning" />
     <Rule Id="CA1001" Action="Warning" />
-    <Rule Id="CA1002" Action="Warning" />
     <Rule Id="CA1008" Action="Warning" />
     <Rule Id="CA1009" Action="Warning" />
     <Rule Id="CA1010" Action="Warning" />
@@ -85,7 +84,6 @@
     <Rule Id="CA1819" Action="Warning" />
     <Rule Id="CA1820" Action="Warning" />
     <Rule Id="CA1821" Action="Warning" />
-    <Rule Id="CA1823" Action="Warning" />
     <Rule Id="CA2201" Action="Warning" />
     <Rule Id="CA2202" Action="Warning" />
     <Rule Id="CA2204" Action="Warning" />
@@ -103,5 +101,7 @@
     <Rule Id="CA2227" Action="Warning" />
     <Rule Id="CA2233" Action="Warning" />
     <Rule Id="SS0001" Action="Warning" />
+    <Rule Id="SS0002" Action="Warning" />
+    <Rule Id="SS0003" Action="Warning" />
   </Rules>
 </RuleSet>
