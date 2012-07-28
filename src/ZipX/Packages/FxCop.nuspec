@@ -18,6 +18,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="..\..\..\bin\Release\ScriptSharp.FxCop.dll" target="content\Properties" />
+    <file src="..\..\..\bin\Release\ScriptSharp.FxCop.dll" target="tools" />
+    <file src="FxCop\Install.ps1" target="tools" />
+    <file src="FxCop\ScriptSharp.PlaceHolder.txt" target="content" />
   </files>
 </package>
