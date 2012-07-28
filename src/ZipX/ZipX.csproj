@@ -31,7 +31,6 @@
     <ItemPage Include="ItemTemplates\Page\*" />
     <ItemJQueryPage Include="ItemTemplates\jQueryPage\*" />
     <ItemJQueryPlugin Include="ItemTemplates\jQueryPlugin\*" />
-    <ItemScriptlet Include="ItemTemplates\Scriptlet\*" />
     <ItemResource Include="ItemTemplates\Resource\*" />
     <ItemTestClass Include="ItemTemplates\TestClass\*" />
   </ItemGroup>
@@ -75,7 +74,6 @@
     <Zip ZipLevel="9" Files="@(ItemPage)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Page.zip" WorkingDirectory="ItemTemplates\Page" />
     <Zip ZipLevel="9" Files="@(ItemJQueryPage)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\jQueryPage.zip" WorkingDirectory="ItemTemplates\jQueryPage" />
     <Zip ZipLevel="9" Files="@(ItemJQueryPlugin)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\jQueryPlugin.zip" WorkingDirectory="ItemTemplates\jQueryPlugin" />
-    <Zip ZipLevel="9" Files="@(ItemScriptlet)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Scriptlet.zip" WorkingDirectory="ItemTemplates\Scriptlet" />
     <Zip ZipLevel="9" Files="@(ItemResource)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Resource.zip" WorkingDirectory="ItemTemplates\Resource" />
     <Zip ZipLevel="9" Files="@(ItemTestClass)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\TestClass.zip" WorkingDirectory="ItemTemplates\TestClass" />
     <Zip ZipLevel="9" Files="@(ProjectClassLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\ClassLibrary.zip" WorkingDirectory="ProjectTemplates\ClassLibrary" />
