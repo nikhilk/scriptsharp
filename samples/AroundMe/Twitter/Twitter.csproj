@@ -47,6 +47,6 @@
   <Target Name="AfterBuild">
     <Copy SourceFiles="@(ScriptInfo)" DestinationFiles="$(OutputPath)$(AssemblyName).txt" />
   </Target>
-  <Import Project="..\packages\ScriptSharp.0.7.5.0\tools\ScriptSharp.targets" />
+  <Import Project="..\packages\ScriptSharp.0.7.5.0\tools\ScriptSharp.targets" Condition="Exists('..\packages\ScriptSharp.0.7.5.0\tools\ScriptSharp.targets')" />
   <Import Project="..\packages\nuget.targets" />
 </Project>

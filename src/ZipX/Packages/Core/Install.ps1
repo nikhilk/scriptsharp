@@ -27,7 +27,8 @@ Reset-Project $msbuild
 # and add it to the project
 $targetsAbsolutePath = Join-Path $toolsPath "ScriptSharp.targets"
 $targetsRelativePath = Compute-RelativePath $project.FullName $targetsAbsolutePath
-$msbuild.Xml.AddImport($targetsRelativePath)
+$import = $msbuild.Xml.AddImport($targetsRelativePath)
+$import.Condition = "Exists('" + $targetsRelativePath + "')"
 
 # finally save the project
 $project.Save()
