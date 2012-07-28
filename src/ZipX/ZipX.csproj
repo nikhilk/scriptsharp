@@ -14,7 +14,10 @@
     <None Include="Packages\Core\Install.ps1" />
     <None Include="Packages\Core\Reset.psm1" />
     <None Include="Packages\Core\Uninstall.ps1" />
+    <None Include="Packages\Core\ScriptSharp.PlaceHolder.txt" />
     <None Include="Packages\FxCop.nuspec" />
+    <None Include="Packages\FxCop\Install.ps1" />
+    <None Include="Packages\FxCop\ScriptSharp.PlaceHolder.txt" />
     <None Include="Packages\Lib.BingMaps.nuspec" />
     <None Include="Packages\Lib.HTML.nuspec" />
     <None Include="Packages\Lib.jQuery.nuspec" />
@@ -41,7 +44,6 @@
     <ProjectImportLibrary Include="ProjectTemplates\ImportLibrary\*" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Packages\Core\ScriptSharp.PlaceHolder.txt" />
     <Content Include="VSIX\Extension.vsixmanifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
