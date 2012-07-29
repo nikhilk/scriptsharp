@@ -25,7 +25,8 @@ namespace KnockoutApi {
         /// <param name="valueAccessor">A function which returns the model property that is involved in this binding.</param>
         /// <param name="allBindingsAccessor">A function which returns all the model properties bound to this element.</param>
         /// <param name="viewModel">The view model instance involved in this binding.</param>
-        public virtual void Init(Element element, Func<object> valueAccessor, Func<Dictionary> allBindingsAccessor, object viewModel) {
+        /// <param name="context">The binding context involved in this binding.</param>
+        public virtual void Init(Element element, Func<object> valueAccessor, Func<Dictionary> allBindingsAccessor, object viewModel, object context) {
         }
 
         /// <summary>
@@ -35,7 +36,8 @@ namespace KnockoutApi {
         /// <param name="valueAccessor">A function which returns the model property that is involved in this binding.</param>
         /// <param name="allBindingsAccessor">A function which returns all the model properties bound to this element.</param>
         /// <param name="viewModel">The view model instance involved in this binding.</param>
-        public virtual void Update(Element element, Func<object> valueAccessor, Func<Dictionary> allBindingsAccessor, object viewModel) {
+        /// <param name="context">The binding context involved in this binding.</param>
+        public virtual void Update(Element element, Func<object> valueAccessor, Func<Dictionary> allBindingsAccessor, object viewModel, object context) {
         }
     }
 }

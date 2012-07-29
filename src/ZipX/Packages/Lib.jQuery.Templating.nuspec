@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>ScriptSharp.Lib.jQuery.Templating</id>
+    <version>0.7.5.0</version>
+    <title>Script# jQuery Templating Reference Assembly</title>
+    <authors>Nikhil Kothari</authors>
+    <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
+    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/PackageLib.png</iconUrl>
+    <projectUrl>http://www.scriptsharp.com</projectUrl>
+    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
+    <summary>Allows you to reference and use the jQuery Templating plugin in Script# projects.</summary>
+    <description>
+      This package contains contains the Script.jQuery.Templating assembly that allows you to reference and program against the jQuery Templating plugin when creating HTML5/browser-based applications with Script#.
+    </description>
+    <tags>script jquery validation plugin javascript ajax html html5 scriptsharp</tags>
+    <language>en-US</language>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <dependencies>
+      <dependency id="ScriptSharp" version="0.7.5.0" />
+      <dependency id="ScriptSharp.Lib.HTML" version="0.7.5.0" />
+      <dependency id="ScriptSharp.Lib.jQuery" version="0.7.5.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\..\bin\Release\Script.jQuery.Templating.dll" target="lib" />
+    <file src="..\..\..\bin\Release\Script.jQuery.Templating.xml" target="lib" />
+    <file src="..\..\..\bin\Release\Script.jQuery.Templating.txt" target="lib" />
+  </files>
+</package>

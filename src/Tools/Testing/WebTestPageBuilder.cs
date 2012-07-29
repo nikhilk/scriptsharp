@@ -12,14 +12,14 @@ namespace ScriptSharp.Testing {
     public sealed class WebTestPageBuilder {
 
         private const string PageMarkupFormat =
-@"{0}
+@"<!DOCTYPE html>
 <html>
 <head>
-  <title>{1}</title>
-  <link rel=""stylesheet"" href=""/QUnit/QUnit.css"" type=""text/css"" />
+  <title>{0}</title>
+  <link rel=""stylesheet"" href=""/QUnit.css"" type=""text/css"" />
 </head>
 <body>
-  {2}
+  {1}
   <div>
     <h1 id=""qunit-header"">{1}</h1>
     <h2 id=""qunit-banner""></h2>
@@ -28,9 +28,9 @@ namespace ScriptSharp.Testing {
     <br />
     <textarea id=""qunit-log"" rows=""10"" cols=""100""></textarea>
   </div>
-  <script type=""text/javascript"" src=""/QUnit/QUnit.js""></script>
-  <script type=""text/javascript"" src=""/QUnit/QUnitExt.js""></script>
-{3}
+  <script type=""text/javascript"" src=""/QUnit.js""></script>
+  <script type=""text/javascript"" src=""/QUnitExt.js""></script>
+{2}
 </body>
 </html>
 ";
@@ -38,31 +38,16 @@ namespace ScriptSharp.Testing {
         private const string ScriptFormat =
 @"  <script type=""text/javascript"" src=""{0}""></script>";
 
-        public static readonly string StrictDocType =
-            @"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Strict//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"">";
-
-        public static readonly string TransitionalDocType =
-            @"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">";
-
-        public static readonly string Html5DocType =
-            @"<!DOCTYPE html>";
-
-        private string _docType;
         private string _title;
         private List<string> _scripts;
         private string _content;
 
         public WebTestPageBuilder()
-            : this("Tests", TransitionalDocType) {
+            : this("Tests") {
         }
 
-        public WebTestPageBuilder(string title)
-            : this(title, TransitionalDocType) {
-        }
-
-        public WebTestPageBuilder(string title, string docType) {
+        public WebTestPageBuilder(string title) {
             _title = title;
-            _docType = docType;
             _content = String.Empty;
             _scripts = new List<string>();
         }
@@ -90,7 +75,7 @@ namespace ScriptSharp.Testing {
             }
 
             return String.Format(PageMarkupFormat,
-                                 _docType, _title, _content,
+                                 _title, _content,
                                  scriptsBuilder.ToString());
         }
     }

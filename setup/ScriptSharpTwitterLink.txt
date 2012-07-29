@@ -1,2 +1,0 @@
-[InternetShortcut]
-URL=http://twitter.com/ScriptSharp

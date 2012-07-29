@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>Unit Test</Name>
+    <Description>A unit test project for testing script projects.</Description>
+    <Icon Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="531"/>
+    <ProjectType>CSharp</ProjectType>
+    <SortOrder>50</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+    <DefaultName>UnitTests</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="UnitTest.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web\TestClass1.htm">TestClass1.htm</ProjectItem>
+      <ProjectItem TargetFileName="Web\QUnit.css">QUnit.css</ProjectItem>
+      <ProjectItem TargetFileName="Web\QUnit.js">QUnit.js</ProjectItem>
+      <ProjectItem TargetFileName="Web\QUnitExt.js">QUnitExt.js</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true">TestClass1.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="extension" repositoryId="ScriptSharp.Extension.Templates">
+      <package id="ScriptSharp.Testing" version="0.7.5" />
+    </packages>
+  </WizardData>
+</VSTemplate>

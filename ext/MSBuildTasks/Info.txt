@@ -1,4 +1,0 @@
-MSBuild Community Tasks
-
-http://msbuildtasks.tigris.org/
-v1.2.0.306

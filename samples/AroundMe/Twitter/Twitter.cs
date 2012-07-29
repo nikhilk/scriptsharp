@@ -4,7 +4,6 @@
 // https://dev.twitter.com/anywhere/begin
 
 using System;
-using System.Html;
 using System.Runtime.CompilerServices;
 
 namespace TwitterApi {
