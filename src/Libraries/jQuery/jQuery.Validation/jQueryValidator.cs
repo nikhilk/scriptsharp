@@ -72,6 +72,14 @@ namespace jQueryApi.Validation {
         public int GetInvalidFieldCount() {
             return 0;
         }
+        /// <summary>
+        /// Checks if the current element is optional.
+        /// </summary>
+        /// <param name="element">The element to validate</param>
+        /// <returns>True if the element is optional, otherwise returns false.</returns>
+        public static bool Optional(Element element) {
+            return false;
+        }
 
         /// <summary>
         /// Resets the controlled form
