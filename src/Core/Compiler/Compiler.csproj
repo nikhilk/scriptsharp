@@ -46,13 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Utility\CommandLine.cs">
-      <Link>CommandLine.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Utility\FileInputStreamSource.cs">
+    <Compile Include="..\FileInputStreamSource.cs">
       <Link>FileInputStreamSource.cs</Link>
     </Compile>
-    <Compile Include="..\..\Utility\FileOutputStreamSource.cs">
+    <Compile Include="..\FileOutputStreamSource.cs">
       <Link>FileOutputStreamSource.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +57,7 @@
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
     <Compile Include="Application.cs" />
+    <Compile Include="CommandLine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
