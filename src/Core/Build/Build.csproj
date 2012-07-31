@@ -47,19 +47,19 @@
     <Compile Include="..\..\ScriptSharp.cs">
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
-    <Compile Include="..\..\Utility\FileInputStreamSource.cs">
+    <Compile Include="..\FileInputStreamSource.cs">
       <Link>FileInputStreamSource.cs</Link>
     </Compile>
-    <Compile Include="..\..\Utility\FileOutputStreamSource.cs">
+    <Compile Include="..\FileOutputStreamSource.cs">
       <Link>FileOutputStreamSource.cs</Link>
     </Compile>
-    <Compile Include="..\..\Utility\ResourceFile.cs">
+    <Compile Include="..\ResourceFile.cs">
       <Link>ResourceFile.cs</Link>
     </Compile>
-    <Compile Include="..\..\Utility\ResXItem.cs">
+    <Compile Include="..\ResXItem.cs">
       <Link>ResXItem.cs</Link>
     </Compile>
-    <Compile Include="..\..\Utility\ResXParser.cs">
+    <Compile Include="..\ResXParser.cs">
       <Link>ResXParser.cs</Link>
     </Compile>
     <Compile Include="Generators\ResXCodeBuilder.cs" />
