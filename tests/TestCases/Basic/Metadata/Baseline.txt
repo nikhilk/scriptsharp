@@ -287,6 +287,10 @@ Types:
                 ReadOnly: False
                 Abstract: False
         Members:
+            Field: Current
+                AssociatedType: Array
+                Visibility: Public, Static
+                Generated Name: arguments
             Field: Length
                 AssociatedType: Int32
                 Visibility: Public, Static
@@ -904,6 +908,10 @@ Types:
                 AssociatedType: String
                 Visibility: Public
                 Generated Name: message
+            Field: StackTrace
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: stack
             Method: Create
                 AssociatedType: Exception
                 Visibility: Public, Static
@@ -1412,6 +1420,10 @@ Types:
                 AssociatedType: String
                 Visibility: Public
                 Generated Name: pattern
+            Field: Source
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: source
             Method: Exec
                 AssociatedType: Array
                 Visibility: Public

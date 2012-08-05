@@ -245,7 +245,7 @@ namespace ScriptSharp.Tests {
                 "Derived interface types are not supported. Code1.cs(26, 5)";
 
             string expectedErrors2 =
-                "Check that your C# source compiles and that you are not using an unsupported feature. Code2.cs(12, 13)";
+                "Check that your C# source compiles and that you are not using an unsupported feature. Common things to check for include use of fully-qualified names (use a using statement to import namespaces instead) or accessing private members of a type from a static member of the same type. Code2.cs(12, 13)";
 
             Compilation compilation1 = CreateCompilation();
             compilation1.AddSource("Code1.cs");

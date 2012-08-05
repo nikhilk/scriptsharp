@@ -7,8 +7,8 @@ using System;
 using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ScriptSharp.Generators;
 using ScriptSharp.Tests.Core;
-using ScriptSharp.VisualStudio.Generators;
 
 namespace ScriptSharp.Tests {
 
@@ -83,8 +83,15 @@ namespace ScriptSharp.Tests {
             string resource1Markup = File.ReadAllText(resource1Path);
             string resource2Markup = File.ReadAllText(resource2Path);
 
-            string code1 = (new ResXInternalScriptGenerator()).GenerateCode(resource1Path, resource1Markup, "Resources");
-            string code2 = (new ResXPublicScriptGenerator()).GenerateCode(resource2Path, resource2Markup, "Resources");
+            ResXCodeBuilder resxCodeBuilder = new ResXCodeBuilder();
+
+            resxCodeBuilder.Start("Resources");
+            resxCodeBuilder.GenerateCode("Strings1.resx", resource1Markup);
+            string code1 = resxCodeBuilder.End();
+
+            resxCodeBuilder.Start("Resources");
+            resxCodeBuilder.GenerateCode("Strings2.resx", resource2Markup);
+            string code2 = resxCodeBuilder.End();
 
             RunTest((c) => {
                 c.AddSource("Code.cs").
