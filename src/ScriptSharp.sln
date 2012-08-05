@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Tools\Testing\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FxCop", "Tools\FxCop\FxCop.csproj", "{B87E403B-354D-47A1-9876-14C618A80A41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compiler", "Core\Compiler\Compiler.csproj", "{1772A38C-7204-42DC-B81D-6C74D17A4F66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "Core\App\App.csproj", "{1772A38C-7204-42DC-B81D-6C74D17A4F66}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "Core\Build\Build.csproj", "{BE1E0A21-F6C0-4698-B405-66FC2BB289F4}"
 EndProject
