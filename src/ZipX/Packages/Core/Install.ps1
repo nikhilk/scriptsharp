@@ -18,7 +18,7 @@ Split-Path $project.FullName -parent | Join-Path -ChildPath $placeholder | Remov
 
 # Get the msbuild object associated with the project
 Add-Type -AssemblyName "Microsoft.Build, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-$msbuild = [Microsoft.Build.Evaluation.ProjectCollection]::GlobalProjectCollection.GetLoadedProjects($project.FullName)[0]
+$msbuild = [Microsoft.Build.Evaluation.ProjectCollection]::GlobalProjectCollection.GetLoadedProjects($project.FullName) | Select-Object -First 1
 
 # first remove any existing import reference
 Reset-Project $msbuild
