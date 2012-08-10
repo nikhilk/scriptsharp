@@ -48,7 +48,7 @@ namespace KnockoutApi {
         /// Notifies All Subscribers BEFORE the Value has Changed
         /// Called internally with SetValue
         /// </summary>
-        public void ValueWillMutated() {
+        public void ValueWillMutate() {
         }
 
         /// <summary>
