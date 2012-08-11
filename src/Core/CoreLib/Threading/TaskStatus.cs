@@ -6,7 +6,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace System {
+namespace System.Threading {
 
     [Imported]
     [IgnoreNamespace]
