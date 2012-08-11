@@ -15,6 +15,7 @@
     <OutputPath>..\..\..\bin\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="BCL\Task.js" />
     <Content Include="loader.js" />
     <Content Include="mscorlib.js" />
     <Content Include="Extensions\Array.js" />

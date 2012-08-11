@@ -146,4 +146,6 @@ ss.parseXml = function(markup) {
 
 #include "BCL\Observable.js"
 
+#include "BCL\Task.js"
+
 #include "BCL\App.js"
