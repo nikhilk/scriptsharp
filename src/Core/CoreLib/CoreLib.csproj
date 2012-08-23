@@ -77,6 +77,9 @@
     <Compile Include="ComponentModel\IObserver.cs" />
     <Compile Include="ComponentModel\Observable.cs" />
     <Compile Include="Diagnostics\SyntaxValidationAttribute.cs" />
+    <Compile Include="Threading\Deferred.cs" />
+    <Compile Include="Threading\TaskStatus.cs" />
+    <Compile Include="Threading\Task.cs" />
     <Compile Include="Tuple.cs" />
     <Compile Include="Nullable.cs" />
     <Compile Include="Diagnostics\ConditionalAttribute.cs" />
