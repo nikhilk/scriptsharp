@@ -99,12 +99,12 @@ ss.Delegate.createExport = function#? DEBUG Delegate$createExport##(delegate, mu
     // Generate a unique name if one is not specified
     name = name || '__' + (new Date()).valueOf();
 
-    // Exported delegates go on window (so they are callable using a simple identifier).
+    // Exported delegates go on global object (so they are callable using a simple identifier).
 
     // Multi-use delegates are exported directly; for the rest a stub is exported, and the stub
     // first deletes, and then invokes the actual delegate.
-    window[name] = multiUse ? delegate : function() {
-      try { delete window[name]; } catch(e) { window[name] = undefined; }
+    global[name] = multiUse ? delegate : function() {
+      try { delete global[name]; } catch(e) { global[name] = undefined; }
       delegate.apply(null, arguments);
     };
 
@@ -112,9 +112,9 @@ ss.Delegate.createExport = function#? DEBUG Delegate$createExport##(delegate, mu
 }
 
 ss.Delegate.deleteExport = function#? DEBUG Delegate$deleteExport##(name) {
-    delete window[name];
+    delete global[name];
 }
 
 ss.Delegate.clearExport = function#? DEBUG Delegate$clearExport##(name) {
-    window[name] = ss.Delegate.empty;
+    global[name] = ss.Delegate.empty;
 }

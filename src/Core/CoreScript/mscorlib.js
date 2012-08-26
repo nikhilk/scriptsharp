@@ -2,27 +2,26 @@
 //! More information at http://projects.nikhilk.net/ScriptSharp
 //!
 
-(function () {
-  window.ss = {
+(function(global) {
+  global.ss = {
     version: '0.7.6.0',
 
-    isUndefined: function (o) {
+    isUndefined: function(o) {
       return (o === undefined);
     },
 
-    isNull: function (o) {
+    isNull: function(o) {
       return (o === null);
     },
 
-    isNullOrUndefined: function (o) {
+    isNullOrUndefined: function(o) {
       return (o === null) || (o === undefined);
     },
 
-    isValue: function (o) {
+    isValue: function(o) {
       return (o !== null) && (o !== undefined);
     }
   };
-})();
 
 #include "Extensions\Object.js"
 
@@ -69,3 +68,4 @@
 #include "BCL\Task.js"
 
 #include "BCL\App.js"
+})(this);
