@@ -144,6 +144,8 @@
     <Compile Include="..\..\ScriptSharp.cs">
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
+    <Compile Include="Loader.cs" />
+    <Compile Include="ScriptInfo.cs" />
     <Compile Include="Xml\XmlAttribute.cs" />
     <Compile Include="Xml\XmlDocument.cs" />
     <Compile Include="Xml\XmlDocumentParser.cs" />

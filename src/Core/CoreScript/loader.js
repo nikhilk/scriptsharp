@@ -473,7 +473,7 @@
     });
   }
 
-  window.ss = {
+  window.loader = {
     load: _startup,
     loadScripts: loadScripts,
     checkScripts: checkScripts,
