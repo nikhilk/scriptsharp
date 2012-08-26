@@ -11,6 +11,8 @@ v0.7.6
       Window in Script.Web
     - Moved SetTimeout, SetInterval and ClearTimeout, ClearInterval from
       Window object to Script object in mscorlib.
+    - Removed window dependency in mscorlib.js
+    - Debug class now maps directly to console
 
 v0.7.5.0
     - DOM metadata update (readyState property on Document,
