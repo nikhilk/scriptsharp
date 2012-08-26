@@ -21,6 +21,7 @@ module('OOP');
 test('isClass', function() {
   QUnit.equal(Type.isClass(Test.Cat), true, 'Expected Cat to be a class');
   QUnit.equal(Type.isClass(Test.IPet), false, 'Did not expect IPet to be a class');
+  QUnit.equal(Type.isClass(Test.More.Comic), true, 'Expectd Comic to be a class');
 });
 
 test('isAssignableFrom', function() {
@@ -68,6 +69,24 @@ test('initializeBase', function() {
 test('callBaseMethod', function() {
   var g = new Test.Garfield();
   QUnit.equal(g.speak(), 'meow\r\nI am fat, lazy, and cynical, but still, a favorite cat...', 'Garfield meows and says something cute');
+});
+
+test('getInstanceType', function() {
+  var g = new Test.Garfield();
+  QUnit.equal(Type.getInstanceType(g), Test.Garfield, "Expected Test.Garfield instance.");
+
+  var c = new Test.More.Comic();
+  QUnit.equal(Type.getInstanceType(c), Test.More.Comic, "Expected Test.More.Comic instance.");
+});
+
+test('typeNames', function() {
+  var g = new Test.Garfield();
+  QUnit.equal(Type.getInstanceType(g).get_name(), 'Garfield', "Expected 'Garfield' for type name.");
+  QUnit.equal(Type.getInstanceType(g).get_fullName(), 'Test.Garfield', "Expected 'Test.Garfield' for type name.");
+
+  var c = new Test.More.Comic();
+  QUnit.equal(Type.getInstanceType(c).get_name(), 'Comic', "Expected 'Comic' for type name.");
+  QUnit.equal(Type.getInstanceType(c).get_fullName(), 'Test.More.Comic', "Expected 'Test.More.Comic' for type name.");
 });
 </script>
 </html>
