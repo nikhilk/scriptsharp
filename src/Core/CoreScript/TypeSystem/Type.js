@@ -139,10 +139,6 @@ Type.prototype.get_name = function#? DEBUG Type$get_name##() {
     return fullName;
 }
 
-Type.prototype.getInterfaces = function#? DEBUG Type$getInterfaces##() {
-    return this.__interfaces;
-}
-
 Type.prototype.isInstanceOfType = function#? DEBUG Type$isInstanceOfType##(instance) {
     if (ss.isNullOrUndefined(instance)) {
         return false;
@@ -186,24 +182,12 @@ Type.prototype.isAssignableFrom = function#? DEBUG Type$isAssignableFrom##(type)
     return false;
 }
 
-Type.isClass = function#? DEBUG Type$isClass##(type) {
-    return (type.__class == true);
+Type.isClass = function#? DEBUG Type$isClass##(obj) {
+    return (obj.__class == true);
 }
 
-Type.isEnum = function#? DEBUG Type$isEnum##(type) {
-    return (type.__enum == true);
-}
-
-Type.isFlags = function#? DEBUG Type$isFlags##(type) {
-    return ((type.__enum == true) && (type.__flags == true));
-}
-
-Type.isInterface = function#? DEBUG Type$isInterface##(type) {
-    return (type.__interface == true);
-}
-
-Type.isNamespace = function#? DEBUG Type$isNamespace##(object) {
-    return (object.__namespace == true);
+Type.isInterface = function#? DEBUG Type$isInterface##(obj) {
+    return (obj.__interface == true);
 }
 
 Type.canCast = function#? DEBUG Type$canCast##(instance, type) {
@@ -248,8 +232,4 @@ Type.getType = function#? DEBUG Type$getType##(typeName) {
         Type.__typeCache[typeName] = type;
     }
     return type;
-}
-
-Type.parse = function#? DEBUG Type$parse##(typeName) {
-    return Type.getType(typeName);
 }

@@ -11,6 +11,9 @@ v0.7.6
       Window in Script.Web
     - Moved SetTimeout, SetInterval and ClearTimeout, ClearInterval from
       Window object to Script object in mscorlib.
+    - Removed some methods from Type as part of cleanup (AddHandler,
+      GetProperty, RemoveHandler, SetProperty, IsEnum, IsFlags, IsNamespace,
+      GetInterfaces, Parse)
     - Removed window dependency in mscorlib.js
     - Debug class now maps directly to console
 
