@@ -48,12 +48,12 @@ namespace KnockoutApi {
         /// Notifies All Subscribers BEFORE the Value has Changed
         /// Called internally with SetValue
         /// </summary>
-        public void ValueWillMutated() {
+        public void ValueWillMutate() {
         }
 
         /// <summary>
         /// For Primitive Types ko will handle Equality internally
-        /// For complex types a supplied function can be assigned to improve 
+        /// For complex types a supplied function can be assigned to improve
         /// change (mutation) detection
         /// </summary>
         [IntrinsicProperty]

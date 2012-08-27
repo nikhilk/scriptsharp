@@ -77,6 +77,9 @@
     <Compile Include="ComponentModel\IObserver.cs" />
     <Compile Include="ComponentModel\Observable.cs" />
     <Compile Include="Diagnostics\SyntaxValidationAttribute.cs" />
+    <Compile Include="Threading\Deferred.cs" />
+    <Compile Include="Threading\TaskStatus.cs" />
+    <Compile Include="Threading\Task.cs" />
     <Compile Include="Tuple.cs" />
     <Compile Include="Nullable.cs" />
     <Compile Include="Diagnostics\ConditionalAttribute.cs" />
@@ -88,7 +91,6 @@
     <Compile Include="Globalization\CultureInfo.cs" />
     <Compile Include="Globalization\DateFormatInfo.cs" />
     <Compile Include="Globalization\NumberFormatInfo.cs" />
-    <Compile Include="ScriptInfo.cs" />
     <Compile Include="Serialization\JsonStringifyCallback.cs" />
     <Compile Include="Serialization\JsonParseCallback.cs" />
     <Compile Include="Serialization\Json.cs" />

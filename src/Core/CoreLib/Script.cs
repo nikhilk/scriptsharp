@@ -17,37 +17,6 @@ namespace System {
     public static class Script {
 
         /// <summary>
-        /// Displays a message box containing the specified message text.
-        /// </summary>
-        /// <param name="message">The text of the message.</param>
-        public static void Alert(string message) {
-        }
-
-        /// <summary>
-        /// Displays a message box containing the specified value converted
-        /// into a string.
-        /// </summary>
-        /// <param name="b">The boolean to display.</param>
-        public static void Alert(bool b) {
-        }
-
-        /// <summary>
-        /// Displays a message box containing the specified value converted
-        /// into a string.
-        /// </summary>
-        /// <param name="d">The date to display.</param>
-        public static void Alert(Date d) {
-        }
-
-        /// <summary>
-        /// Displays a message box containing the specified value converted
-        /// into a string.
-        /// </summary>
-        /// <param name="n">The number to display.</param>
-        public static void Alert(Number n) {
-        }
-
-        /// <summary>
         /// Converts an object into a boolean.
         /// </summary>
         /// <param name="o">The object to convert.</param>
@@ -56,13 +25,30 @@ namespace System {
             return false;
         }
 
+        public static void ClearInterval(int intervalID) {
+        }
+
+        public static void ClearTimeout(int timeoutID) {
+        }
+
         /// <summary>
         /// Prompts the user with a yes/no question.
         /// </summary>
         /// <param name="message">The text of the question.</param>
         /// <returns>true if the user chooses yes; false otherwise.</returns>
+        [Obsolete("Use Window.Confirm instead.", true)]
         public static bool Confirm(string message) {
             return false;
+        }
+
+        public static object CreateInstance(Type type, params object[] arguments) {
+            return null;
+        }
+
+        public static void DeleteField(object instance, string name) {
+        }
+
+        public static void DeleteField(Type type, string name) {
         }
 
         /// <summary>
@@ -74,6 +60,58 @@ namespace System {
         /// <returns>The result of the evaluation.</returns>
         public static object Eval(string s) {
             return null;
+        }
+
+        public static object GetField(object instance, string name) {
+            return null;
+        }
+
+        public static T GetField<T>(object instance, string name) {
+            return default(T);
+        }
+
+        public static object GetField(Type type, string name) {
+            return null;
+        }
+
+        public static T GetField<T>(Type type, string name) {
+            return default(T);
+        }
+
+        public static string GetScriptType(object instance) {
+            return null;
+        }
+
+        public static bool HasField(object instance, string name) {
+            return false;
+        }
+
+        public static bool HasField(Type type, string name) {
+            return false;
+        }
+
+        public static bool HasMethod(object instance, string name) {
+            return false;
+        }
+
+        public static bool HasMethod(Type type, string name) {
+            return false;
+        }
+
+        public static object InvokeMethod(object instance, string name, params object[] args) {
+            return null;
+        }
+
+        public static T InvokeMethod<T>(object instance, string name, params object[] args) {
+            return default(T);
+        }
+
+        public static object InvokeMethod(Type type, string name, params object[] args) {
+            return null;
+        }
+
+        public static T InvokeMethod<T>(Type type, string name, params object[] args) {
+            return default(T);
         }
 
         /// <summary>
@@ -133,80 +171,50 @@ namespace System {
             return null;
         }
 
-        /// <summary>
-        /// Loads the specified scripts.
-        /// </summary>
-        /// <param name="scriptNames">The names of scripts that are required and must be loaded.</param>
-        [ScriptAlias("ss.loadScripts")]
-        public static void LoadScripts(string[] scriptNames) {
+        public static void SetField(object instance, string name, object value) {
         }
 
-        /// <summary>
-        /// Loads the specified scripts and invokes the specified callback once they have been
-        /// loaded.
-        /// </summary>
-        /// <param name="scriptNames">The names of scripts that are required and must be loaded.</param>
-        /// <param name="callback">A callback to be invoked once the scripts have been loaded.</param>
-        [ScriptAlias("ss.loadScripts")]
-        public static void LoadScripts(string[] scriptNames, Action callback) {
+        public static void SetField(Type type, string name, object value) {
         }
 
-        /// <summary>
-        /// Loads the specified scripts and invokes the specified callback once they have been
-        /// loaded.
-        /// </summary>
-        /// <param name="scriptNames">The names of scripts that are required and must be loaded.</param>
-        /// <param name="callback">A callback to be invoked once the scripts have been loaded.</param>
-        /// <param name="context">The object to be passed in into the callback.</param>
-        /// <typeparam name="TContext">The type of the context object.</typeparam>
-        [ScriptAlias("ss.loadScripts")]
-        public static void LoadScripts<TContext>(string[] scriptNames, Action<TContext> callback, TContext context) {
+        public static int SetInterval(string code, int milliseconds) {
+            return 0;
         }
 
-        /// <summary>
-        /// Registers the specified callback to be invoked when the DOM is ready,
-        /// and before any script loading has begun.
-        /// </summary>
-        /// <param name="callback">The callback to invoke.</param>
-        [ScriptAlias("ss.init")]
-        public static void OnInit(Action callback) {
+        public static int SetInterval(Action callback, int milliseconds) {
+            return 0;
         }
 
-        /// <summary>
-        /// Registers a callback to be invoked once any necessary scripts
-        /// have been loaded.
-        /// </summary>
-        /// <param name="callback">The callback to be invoked.</param>
-        [ScriptAlias("ss.ready")]
-        public static void OnReady(Action callback) {
+        public static int SetInterval<T>(Action<T> callback, int milliseconds, T arg) {
+            return 0;
         }
 
-        /// <summary>
-        /// Prompts the user to enter a value.
-        /// </summary>
-        /// <param name="message">The text of the prompt.</param>
-        /// <returns>The value entered by the user.</returns>
-        public static string Prompt(string message) {
-            return null;
+        public static int SetInterval<T1, T2>(Action<T1, T2> callback, int milliseconds, T1 arg1, T2 arg2) {
+            return 0;
         }
 
-        /// <summary>
-        /// Prompts the user to enter a value, along with providing a default
-        /// value.
-        /// </summary>
-        /// <param name="message">The text of the prompt.</param>
-        /// <param name="defaultValue">The default value for the prompt.</param>
-        /// <returns>The value entered by the user.</returns>
-        public static string Prompt(string message, string defaultValue) {
-            return null;
+        public static int SetInterval(Delegate d, int milliseconds, params object[] args) {
+            return 0;
         }
 
-        /// <summary>
-        /// Registers information about a script.
-        /// </summary>
-        /// <param name="scriptInfo">The information about a script.</param>
-        [ScriptAlias("ss.registerScript")]
-        public static void RegisterScript(ScriptInfo scriptInfo) {
+        public static int SetTimeout(string code, int milliseconds) {
+            return 0;
+        }
+
+        public static int SetTimeout(Action callback, int milliseconds) {
+            return 0;
+        }
+
+        public static int SetTimeout<T>(Action<T> callback, int milliseconds, T arg) {
+            return 0;
+        }
+
+        public static int SetTimeout<T1, T2>(Action<T1, T2> callback, int milliseconds, T1 arg1, T2 arg2) {
+            return 0;
+        }
+
+        public static int SetTimeout(Delegate d, int milliseconds, params object[] args) {
+            return 0;
         }
 
         /// <summary>

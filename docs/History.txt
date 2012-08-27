@@ -1,7 +1,26 @@
 Changelog
 ===============================================================================
 
-v0.7.5.0 [in progress]
+v0.7.6
+    - Removed script loading APIs from Script class in mscorlib
+      (moved them to Loader class in Script.Web)
+    - Removed script startup functionality from mscorlib.js ... all script
+      loading is now in ssloader.js (and included into the Runtime nuget
+      package)
+    - Removed Script.Alert/Confirm/Prompt from mscorlib and moved them to
+      Window in Script.Web
+    - Moved SetTimeout, SetInterval and ClearTimeout, ClearInterval from
+      Window object to Script object in mscorlib.
+    - Removed some methods from Type as part of cleanup (AddHandler,
+      GetProperty, RemoveHandler, SetProperty, IsEnum, IsFlags, IsNamespace,
+      GetInterfaces, Parse)
+    - Removed window dependency in mscorlib.js
+    - Debug class now maps directly to console
+    - Moved GetField, HasField, DeleteField, HasMethod, InvokeMethod,
+      CreateInstance, GetScriptType off Type and onto Script while
+      HasProperty, GetProperty, SetProperty, AddHandler, RemoveHandler are gone
+
+v0.7.5.0
     - DOM metadata update (readyState property on Document,
                            plugins on Navigator)
     - jQuery API update (on/off methods)

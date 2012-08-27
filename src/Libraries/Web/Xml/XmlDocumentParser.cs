@@ -3,17 +3,18 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
+using System;
 using System.Runtime.CompilerServices;
 
 namespace System.Xml {
 
     [IgnoreNamespace]
     [Imported]
-    public static class XmlDocumentParser {
+    [ScriptName("DOMParser")]
+    public sealed class XmlDocumentParser {
 
-        [ScriptAlias("ss.parseXml")]
-        public static XmlDocument Parse(string markup) {
-           return null;
+        public XmlDocument ParseFromString(string markup, string mimeType) {
+            return null;
         }
     }
 }

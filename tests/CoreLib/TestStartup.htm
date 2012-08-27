@@ -22,11 +22,11 @@
     sequence.push(c_s1);
   }, false);
   </script>
-  <script type="text/javascript" src="..\..\bin\Debug\mscorlib.debug.js"></script>
+  <script type="text/javascript" src="..\..\bin\Debug\ssloader.debug.js"></script>
   <script type="text/javascript">
   var bodyAccessible = false;
 
-  ss.ready(function() {
+  loader.ready(function() {
     sequence.push(c_s2);
     bodyAccessible = document.body != null;
   });
@@ -39,7 +39,7 @@
     QUnit.equal(sequence[0], c_s1, 'Expected DOMContentLoaded event to be first event');
     QUnit.equal(sequence[1], c_s2, 'Expected ready event to be second event');
     QUnit.equal(bodyAccessible, true, 'Expected to be able to access document.body in ready callback');
-    ss.ready(function() {
+    loader.ready(function() {
       QUnit.start();
       QUnit.equal(document.readyState, 'complete', 'Document.readyState should be "complete"');
     });

@@ -1,13 +1,16 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Type System Implementation
 
-window.Type = Function;
+global.Type = Function;
 Type.__typeName = 'Type';
 
-window.__Namespace = function(name) {
+var __namespaces = {};
+var __rootNamespaces = [];
+
+function ns(name) {
     this.__typeName = name;
 }
-__Namespace.prototype = {
+ns.prototype = {
     __namespace: true,
     getName: function() {
         return this.__typeName;
@@ -15,33 +18,26 @@ __Namespace.prototype = {
 }
 
 Type.registerNamespace = function#? DEBUG Type$registerNamespace##(name) {
-    if (!window.__namespaces) {
-        window.__namespaces = {};
-    }
-    if (!window.__rootNamespaces) {
-        window.__rootNamespaces = [];
-    }
-
-    if (window.__namespaces[name]) {
+    if (__namespaces[name]) {
         return;
     }
 
-    var ns = window;
+    var nsi = global;
     var nameParts = name.split('.');
 
     for (var i = 0; i < nameParts.length; i++) {
         var part = nameParts[i];
-        var nso = ns[part];
+        var nso = nsi[part];
         if (!nso) {
-            ns[part] = nso = new __Namespace(nameParts.slice(0, i + 1).join('.'));
+            nsi[part] = nso = new ns(nameParts.slice(0, i + 1).join('.'));
             if (i == 0) {
-                window.__rootNamespaces.add(nso);
+                __rootNamespaces.add(nso);
             }
         }
-        ns = nso;
+        nsi = nso;
     }
 
-    window.__namespaces[name] = ns;
+    __namespaces[name] = nsi;
 }
 
 Type.prototype.registerClass = function#? DEBUG Type$registerClass##(name, baseType, interfaceType) {
@@ -143,10 +139,6 @@ Type.prototype.get_name = function#? DEBUG Type$get_name##() {
     return fullName;
 }
 
-Type.prototype.getInterfaces = function#? DEBUG Type$getInterfaces##() {
-    return this.__interfaces;
-}
-
 Type.prototype.isInstanceOfType = function#? DEBUG Type$isInstanceOfType##(instance) {
     if (ss.isNullOrUndefined(instance)) {
         return false;
@@ -190,24 +182,12 @@ Type.prototype.isAssignableFrom = function#? DEBUG Type$isAssignableFrom##(type)
     return false;
 }
 
-Type.isClass = function#? DEBUG Type$isClass##(type) {
-    return (type.__class == true);
+Type.isClass = function#? DEBUG Type$isClass##(obj) {
+    return (obj.__class == true);
 }
 
-Type.isEnum = function#? DEBUG Type$isEnum##(type) {
-    return (type.__enum == true);
-}
-
-Type.isFlags = function#? DEBUG Type$isFlags##(type) {
-    return ((type.__enum == true) && (type.__flags == true));
-}
-
-Type.isInterface = function#? DEBUG Type$isInterface##(type) {
-    return (type.__interface == true);
-}
-
-Type.isNamespace = function#? DEBUG Type$isNamespace##(object) {
-    return (object.__namespace == true);
+Type.isInterface = function#? DEBUG Type$isInterface##(obj) {
+    return (obj.__interface == true);
 }
 
 Type.canCast = function#? DEBUG Type$canCast##(instance, type) {
@@ -252,8 +232,4 @@ Type.getType = function#? DEBUG Type$getType##(typeName) {
         Type.__typeCache[typeName] = type;
     }
     return type;
-}
-
-Type.parse = function#? DEBUG Type$parse##(typeName) {
-    return Type.getType(typeName);
 }
