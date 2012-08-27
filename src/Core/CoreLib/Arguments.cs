@@ -49,6 +49,17 @@ namespace System {
             return null;
         }
 
+        /// <summary>
+        /// Retrieves the specified actual argument value passed to the
+        /// function by index.
+        /// </summary>
+        /// <param name="index">The index of the argument to retrieve.</param>
+        /// <typeparam name="T">The type of the return value.</typeparam>
+        /// <returns>The value of the specified argument.</returns>
+        public static T GetArgument<T>(int index) {
+            return default(T);
+        }
+
         [ScriptAlias("Array.toArray")]
         public static Array ToArray() {
             return null;
