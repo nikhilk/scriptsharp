@@ -17,27 +17,27 @@ test.MyDebug.logInfo = function test_MyDebug$logInfo() {
 // test.App
 
 test.App = function test_App(i) {
-    ss.Debug.assert(false);
+    console.assert(false);
     test.MyDebug.showInfo();
     while (true) {
-        ss.Debug.assert(false);
+        console.assert(false);
     }
     switch (i) {
         case 0:
-            ss.Debug.assert(false);
+            console.assert(false);
             break;
     }
-    ss.Debug.assert(!!i);
-    ss.Debug.assert(!!i);
+    console.assert(!!i);
+    console.assert(!!i);
     i++;
     if (false) {
-        ss.Debug.writeln('Debug spew');
+        console.log('Debug spew');
     }
     while (false) {
-        ss.Debug.writeln('.');
+        console.log('.');
     }
     for (var i = 0; i < 10; i++) {
-        ss.Debug.writeln('.');
+        console.log('.');
     }
 }
 

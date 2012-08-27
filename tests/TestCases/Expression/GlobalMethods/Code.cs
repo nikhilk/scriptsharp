@@ -1,5 +1,4 @@
 using System;
-using System.Html;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
@@ -12,7 +11,7 @@ namespace ExpressionTests {
         public void Test(int arg) {
             Script.Eval("[ 1, 2 ]");
             Util.Foo();
-            Window.SetTimeout(Util.Foo, 0);
+            Script.SetTimeout(Util.Foo, 0);
         }
     }
 

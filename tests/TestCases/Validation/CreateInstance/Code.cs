@@ -31,11 +31,11 @@ namespace ValidationTests {
         }
 
         public static void Main() {
-            object o1 = Type.CreateInstance(typeof(Bar));
-            object o2 = Type.CreateInstance(typeof(Foo), 0, 0);
+            object o1 = Script.CreateInstance(typeof(Bar));
+            object o2 = Script.CreateInstance(typeof(Foo), 0, 0);
 
-            object o3 = Type.CreateInstance(GetObjectType(), 1, 1);
-            object o4 = Type.CreateInstance(OtherObjectType);
+            object o3 = Script.CreateInstance(GetObjectType(), 1, 1);
+            object o4 = Script.CreateInstance(OtherObjectType);
         }
     }
 }

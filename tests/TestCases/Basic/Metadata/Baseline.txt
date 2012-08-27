@@ -1468,25 +1468,65 @@ Types:
         Generated Name: Script
         Global Methods: True
         Members:
-            Method: Alert
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: alert
-                Abstract: False
             Method: Boolean
                 AssociatedType: Boolean
                 Visibility: Public, Static
                 Generated Name: boolean
+                Abstract: False
+            Method: ClearInterval
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: clearInterval
+                Abstract: False
+            Method: ClearTimeout
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: clearTimeout
                 Abstract: False
             Method: Confirm
                 AssociatedType: Boolean
                 Visibility: Public, Static
                 Generated Name: confirm
                 Abstract: False
+            Method: CreateInstance
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: createInstance
+                Abstract: False
+            Method: DeleteField
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: deleteField
+                Abstract: False
             Method: Eval
                 AssociatedType: Object
                 Visibility: Public, Static
                 Generated Name: eval
+                Abstract: False
+            Method: GetField
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: getField
+                Abstract: False
+            Method: GetScriptType
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: getScriptType
+                Abstract: False
+            Method: HasField
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: hasField
+                Abstract: False
+            Method: HasMethod
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: hasMethod
+                Abstract: False
+            Method: InvokeMethod
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: invokeMethod
                 Abstract: False
             Method: IsNull
                 AssociatedType: Boolean
@@ -1513,30 +1553,20 @@ Types:
                 Visibility: Public, Static
                 Generated Name: literal
                 Abstract: False
-            Method: LoadScripts
+            Method: SetField
                 AssociatedType: Void
                 Visibility: Public, Static
-                Generated Name: ss.loadScripts
+                Generated Name: setField
                 Abstract: False
-            Method: OnInit
-                AssociatedType: Void
+            Method: SetInterval
+                AssociatedType: Int32
                 Visibility: Public, Static
-                Generated Name: ss.init
+                Generated Name: setInterval
                 Abstract: False
-            Method: OnReady
-                AssociatedType: Void
+            Method: SetTimeout
+                AssociatedType: Int32
                 Visibility: Public, Static
-                Generated Name: ss.ready
-                Abstract: False
-            Method: Prompt
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: prompt
-                Abstract: False
-            Method: RegisterScript
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: ss.registerScript
+                Generated Name: setTimeout
                 Abstract: False
             Method: Value
                 AssociatedType: TValue
@@ -1573,25 +1603,6 @@ Types:
                 Visibility: Public, Static
                 Generated Name: decodeURIComponent
                 Abstract: False
-        
-    Class: ScriptInfo
-        Application Type: False
-        Public: True
-        Generated Name: Object
-        Global Methods: False
-        Members:
-            Field: Dependencies
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: requires
-            Field: Name
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: name
-            Field: Source
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: src
         
     Class: Single
         Application Type: False
@@ -1974,65 +1985,10 @@ Types:
                 AssociatedType: Dictionary
                 Visibility: Public
                 Generated Name: prototype
-            Method: AddHandler
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: addHandler
-                Abstract: False
-            Method: CreateInstance
-                AssociatedType: Object
-                Visibility: Public, Static
-                Generated Name: createInstance
-                Abstract: False
-            Method: DeleteField
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: deleteField
-                Abstract: False
-            Method: GetField
-                AssociatedType: Object
-                Visibility: Public, Static
-                Generated Name: getField
-                Abstract: False
-            Method: GetInterfaces
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: getInterfaces
-                Abstract: False
-            Method: GetProperty
-                AssociatedType: Object
-                Visibility: Public, Static
-                Generated Name: getProperty
-                Abstract: False
-            Method: GetScriptType
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: getScriptType
-                Abstract: False
             Method: GetType
                 AssociatedType: Type
                 Visibility: Public, Static
                 Generated Name: getType
-                Abstract: False
-            Method: HasField
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: hasField
-                Abstract: False
-            Method: HasMethod
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: hasMethod
-                Abstract: False
-            Method: HasProperty
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: hasProperty
-                Abstract: False
-            Method: InvokeMethod
-                AssociatedType: Object
-                Visibility: Public, Static
-                Generated Name: invokeMethod
                 Abstract: False
             Method: IsAssignableFrom
                 AssociatedType: Boolean
@@ -2044,50 +2000,15 @@ Types:
                 Visibility: Public, Static
                 Generated Name: isClass
                 Abstract: False
-            Method: IsEnum
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: isEnum
-                Abstract: False
-            Method: IsFlags
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: isFlags
-                Abstract: False
             Method: IsInterface
                 AssociatedType: Boolean
                 Visibility: Public, Static
                 Generated Name: isInterface
                 Abstract: False
-            Method: IsNamespace
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: isNamespace
-                Abstract: False
             Method: IsInstanceOfType
                 AssociatedType: Boolean
                 Visibility: Public
                 Generated Name: isInstanceOfType
-                Abstract: False
-            Method: Parse
-                AssociatedType: Type
-                Visibility: Public, Static
-                Generated Name: parse
-                Abstract: False
-            Method: RemoveHandler
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: removeHandler
-                Abstract: False
-            Method: SetField
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: setField
-                Abstract: False
-            Method: SetProperty
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: setProperty
                 Abstract: False
             Method: GetTypeFromHandle
                 AssociatedType: Type
@@ -3537,7 +3458,7 @@ Types:
     Class: Debug
         Application Type: False
         Public: True
-        Generated Name: Debug
+        Generated Name: console
         Global Methods: False
         Members:
             Method: Assert
@@ -3557,7 +3478,7 @@ Types:
             Method: WriteLine
                 AssociatedType: Void
                 Visibility: Public, Static
-                Generated Name: writeln
+                Generated Name: log
                 Abstract: False
                 Conditions:
                     DEBUG
@@ -3893,6 +3814,145 @@ Types:
                 Visibility: Public, Static
                 Generated Name: QUnit.stop
                 Abstract: False
+        
+
+Namespace: System.Threading
+HasApplicationTypes: False
+Types:
+    Class: Deferred
+        Application Type: False
+        Public: True
+        Generated Name: Deferred
+        Global Methods: False
+        Members:
+            Field: Task
+                AssociatedType: System.Threading.Task
+                Visibility: Public
+                Generated Name: task
+            Method: Reject
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: reject
+                Abstract: False
+            Method: Resolve
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: resolve
+                Abstract: False
+        
+    Class: Deferred`1
+        Application Type: False
+        Public: True
+        Generated Name: Deferred
+        Global Methods: False
+        BaseClass: System.Threading.Deferred
+        Members:
+            Field: Task
+                AssociatedType: System.Threading.Task`1
+                Visibility: Public
+                Generated Name: task
+            Method: Resolve
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: resolve
+                Abstract: False
+        
+    Class: Task
+        Application Type: False
+        Public: True
+        Generated Name: Task
+        Global Methods: False
+        Members:
+            Property: Completed
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: completed
+                ReadOnly: True
+                Abstract: False
+            Field: Error
+                AssociatedType: Exception
+                Visibility: Public
+                Generated Name: error
+            Field: Status
+                AssociatedType: TaskStatus
+                Visibility: Public
+                Generated Name: status
+            Method: All
+                AssociatedType: System.Threading.Task`1
+                Visibility: Public, Static
+                Generated Name: all
+                Abstract: False
+            Method: Any
+                AssociatedType: System.Threading.Task`1
+                Visibility: Public, Static
+                Generated Name: any
+                Abstract: False
+            Method: ContinueWith
+                AssociatedType: System.Threading.Task
+                Visibility: Public
+                Generated Name: continueWith
+                Abstract: False
+            Method: Delay
+                AssociatedType: System.Threading.Task
+                Visibility: Public, Static
+                Generated Name: delay
+                Abstract: False
+            Method: Done
+                AssociatedType: System.Threading.Task
+                Visibility: Public
+                Generated Name: done
+                Abstract: False
+            Method: Fail
+                AssociatedType: System.Threading.Task
+                Visibility: Public
+                Generated Name: fail
+                Abstract: False
+            Method: Then
+                AssociatedType: System.Threading.Task
+                Visibility: Public
+                Generated Name: then
+                Abstract: False
+        
+    Class: Task`1
+        Application Type: False
+        Public: True
+        Generated Name: Task
+        Global Methods: False
+        BaseClass: System.Threading.Task
+        Members:
+            Field: Result
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: result
+            Method: ContinueWith
+                AssociatedType: System.Threading.Task`1
+                Visibility: Public
+                Generated Name: continueWith
+                Abstract: False
+            Method: Done
+                AssociatedType: System.Threading.Task`1
+                Visibility: Public
+                Generated Name: done
+                Abstract: False
+        
+    Enumeration: TaskStatus
+        Application Type: False
+        Public: True
+        Generated Name: TaskStatus
+        Flags: False
+        Members:
+            EnumerationField: Pending
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: pending
+            EnumerationField: Done
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: done
+            EnumerationField: Failed
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: failed
         
 
 

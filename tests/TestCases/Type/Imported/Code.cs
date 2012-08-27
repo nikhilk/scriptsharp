@@ -36,7 +36,8 @@ namespace TypeTests {
             elem["Smith"] = elem["Joe"];
 
             int n = Math.Truncate(5.5);
-            XmlDocument doc = XmlDocumentParser.Parse("<markup></markup>");
+            XmlDocumentParser parser = new XmlDocumentParser();
+            XmlDocument doc = parser.ParseFromString("<markup></markup>", "text/xml");
             Date d = Date.Parse("1/1/2010");
         }
     }

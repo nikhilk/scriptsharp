@@ -1,4 +1,5 @@
 using System;
+using System.Html;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
@@ -62,7 +63,7 @@ namespace MemberTests {
     public static class FooBar {
     
         static FooBar() {
-            Script.Alert("Startup code in FooBar");
+            Window.Alert("Startup code in FooBar");
         }
 
         public static void DoStuff2() {
@@ -74,7 +75,7 @@ namespace MemberTests {
     
         static FooBar2() {
             int timeStamp = (new Date()).GetMilliseconds();
-            Script.Alert("Startup code in FooBar: " + timeStamp);
+            Window.Alert("Startup code in FooBar: " + timeStamp);
         }
     }
 

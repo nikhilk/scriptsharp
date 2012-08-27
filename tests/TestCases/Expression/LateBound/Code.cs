@@ -12,63 +12,42 @@ namespace ExpressionTests {
             Object o;
             bool b;
 
-            Type.InvokeMethod(o, arg);
-            Type.InvokeMethod(o, "xyz");
-            Type.InvokeMethod(o, "Proxy-Connection");
-            Type.InvokeMethod(o, "xyz", 0);
-            Type.InvokeMethod(o, "xyz", 0, arg);
+            Script.InvokeMethod(o, arg);
+            Script.InvokeMethod(o, "xyz");
+            Script.InvokeMethod(o, "Proxy-Connection");
+            Script.InvokeMethod(o, "xyz", 0);
+            Script.InvokeMethod(o, "xyz", 0, arg);
 
-            b = Type.HasMethod(o, arg);
-            b = Type.HasMethod(o, "xyz");
-            b = Type.HasMethod(typeof(Object), "xyz");            
+            b = Script.HasMethod(o, arg);
+            b = Script.HasMethod(o, "xyz");
+            b = Script.HasMethod(typeof(Object), "xyz");            
 
-            Type.SetField(o, arg, 0);
-            Type.SetField(o, "abc", 0);
-            Type.SetField(o, "Proxy-Connection", 0);
+            Script.SetField(o, arg, 0);
+            Script.SetField(o, "abc", 0);
+            Script.SetField(o, "Proxy-Connection", 0);
 
-            object v = Type.GetField(o, arg);
-            v = Type.GetField(o, "abc");
-            v = Type.GetField(o, "Proxy-Connection");
+            object v = Script.GetField(o, arg);
+            v = Script.GetField(o, "abc");
+            v = Script.GetField(o, "Proxy-Connection");
 
-            b = Type.HasField(o, arg);
-            b = Type.HasField(o, "abc");
-            b = Type.HasField(typeof(Object), "abc");
+            b = Script.HasField(o, arg);
+            b = Script.HasField(o, "abc");
+            b = Script.HasField(typeof(Object), "abc");
 
-            Type.SetProperty(o, arg, 0);
-            Type.SetProperty(o, "def", 0);
-            Type.SetProperty(o, "Proxy-Connection", 0);
-
-            object v2 = Type.GetProperty(o, arg);
-            v2 = Type.GetProperty(o, "def");
-            v2 = Type.GetProperty(o, "Proxy-Connection");
-
-            b = Type.HasProperty(o, arg);
-            b = Type.HasProperty(o, "def");
-            b = Type.HasProperty(typeof(Object), "def");
-
-            Delegate handler;
-            Type.AddHandler(o, arg, handler);
-            Type.AddHandler(o, "mmm", handler);
-            Type.AddHandler(o, "Proxy-Connection", handler);
-
-            Type.RemoveHandler(o, arg, handler);
-            Type.RemoveHandler(o, "mmm", handler);
-            Type.RemoveHandler(o, "Proxy-Connection", handler);
-
-            Type.DeleteField(o, "xyz");
-            Type.DeleteField(o, "Proxy-Connection");
-            Type.DeleteField(o, arg);
+            Script.DeleteField(o, "xyz");
+            Script.DeleteField(o, "Proxy-Connection");
+            Script.DeleteField(o, arg);
             
-            Type t = Type.GetScriptType(o);
+            Type t = Script.GetScriptType(o);
 
-            if (Type.GetScriptType(o) == "object") {
+            if (Script.GetScriptType(o) == "object") {
             }
 
-            if (Type.HasMethod(o, "execute")) {
+            if (Script.HasMethod(o, "execute")) {
             }
 
-            Type.InvokeMethod(null, "globalMethod");
-            Type.InvokeMethod(null, "globalMethod", "xyz");
+            Script.InvokeMethod(null, "globalMethod");
+            Script.InvokeMethod(null, "globalMethod", "xyz");
         }
     }
 }

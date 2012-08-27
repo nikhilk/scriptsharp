@@ -37,7 +37,7 @@ namespace ExpressionTests {
             }
             
             jQuery.AjaxRequest<string>("http://example.com").Success(delegate(string html) {
-                Script.Alert(html);
+                Window.Alert(html);
             });
             
             string json = "";

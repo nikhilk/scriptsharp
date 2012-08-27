@@ -107,8 +107,7 @@ namespace ScriptSharp.Tests {
         [TestMethod]
         public void TestGlobalMethods() {
             RunTest((c) => {
-                c.AddReference("Script.Web.dll").
-                  AddSource("Code.cs");
+                c.AddSource("Code.cs");
             });
         }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Html;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using jQueryApi;
@@ -33,8 +34,8 @@ public sealed class MyApp {
             "processData", false,
             "success", (AjaxRequestCallback)delegate(object result, string textData, jQueryXmlHttpRequest xhr) {
                 string s = xhr.ResponseText;
-                Script.Alert(s);
-                Type.InvokeMethod(null, "xyz", s);
+                Window.Alert(s);
+                Script.InvokeMethod(null, "xyz", s);
             },
             "error", (AjaxErrorCallback)delegate(jQueryXmlHttpRequest xhr, string textData, Exception e) {
                 Debug.WriteLine(xhr.Status);

@@ -43,7 +43,8 @@ namespace ScriptSharp.Tests {
         [TestMethod]
         public void TestMethods() {
             RunTest((c) => {
-                c.AddSource("Code.cs");
+                c.AddReference("Script.Web.dll")
+                 .AddSource("Code.cs");
             });
         }
 
