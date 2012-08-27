@@ -1148,7 +1148,7 @@ namespace ScriptSharp.Compiler {
                 else {
                     bool lateBound = false;
 
-                    if (method.Parent == typeType) {
+                    if (method.Parent == scriptType) {
                         LateBoundOperation lateBoundOperation = LateBoundOperation.InvokeMethod;
 
                         if (method.Name.Equals("InvokeMethod", StringComparison.Ordinal)) {
@@ -1166,22 +1166,6 @@ namespace ScriptSharp.Compiler {
                             lateBound = true;
                             lateBoundOperation = LateBoundOperation.SetField;
                         }
-                        else if (method.Name.Equals("GetProperty", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.GetProperty;
-                        }
-                        else if (method.Name.Equals("SetProperty", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.SetProperty;
-                        }
-                        else if (method.Name.Equals("AddHandler", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.AddHandler;
-                        }
-                        else if (method.Name.Equals("RemoveHandler", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.RemoveHandler;
-                        }
                         else if (method.Name.Equals("GetScriptType", StringComparison.Ordinal)) {
                             lateBound = true;
                             lateBoundOperation = LateBoundOperation.GetScriptType;
@@ -1193,10 +1177,6 @@ namespace ScriptSharp.Compiler {
                         else if (method.Name.Equals("HasMethod", StringComparison.Ordinal)) {
                             lateBound = true;
                             lateBoundOperation = LateBoundOperation.HasMethod;
-                        }
-                        else if (method.Name.Equals("HasProperty", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.HasProperty;
                         }
                         else if (method.Name.Equals("CreateInstance", StringComparison.Ordinal)) {
                             Debug.Assert(args.Count >= 1);

@@ -17,20 +17,10 @@ namespace ScriptSharp.ScriptModel {
 
         DeleteField = 3,
 
-        GetProperty = 4,
+        HasField = 4,
 
-        SetProperty = 5,
+        HasMethod = 5,
 
-        AddHandler = 6,
-
-        RemoveHandler = 7,
-
-        GetScriptType = 8,
-
-        HasField = 9,
-
-        HasMethod = 10,
-
-        HasProperty = 11
+        GetScriptType = 6,
     }
 }

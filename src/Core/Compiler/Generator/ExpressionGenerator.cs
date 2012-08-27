@@ -537,8 +537,7 @@ namespace ScriptSharp.Generator {
             if (expression.Operation == LateBoundOperation.GetScriptType) {
                 writer.Write("typeof(");
             }
-            else if ((expression.Operation == LateBoundOperation.HasMethod) ||
-                     (expression.Operation == LateBoundOperation.HasProperty)) {
+            else if (expression.Operation == LateBoundOperation.HasMethod) {
                 writer.Write("(typeof(");
             }
             else if (expression.Operation == LateBoundOperation.HasField) {
@@ -608,68 +607,6 @@ namespace ScriptSharp.Generator {
                         writer.Write("]");
                     }
                     break;
-                case LateBoundOperation.GetProperty:
-                    if (Utility.IsValidIdentifier(name)) {
-                        writer.Write(".get_");
-                        writer.Write(name);
-                    }
-                    else {
-                        writer.Write("['get_'");
-                        writer.WriteTrimmed(" + ");
-                        GenerateExpression(generator, symbol, expression.NameExpression);
-                        writer.Write("]");
-                    }
-
-                    writer.Write("()");
-                    break;
-                case LateBoundOperation.SetProperty:
-                    if (Utility.IsValidIdentifier(name)) {
-                        writer.Write(".set_");
-                        writer.Write(name);
-                    }
-                    else {
-                        writer.Write("['set_'");
-                        writer.WriteTrimmed(" + ");
-                        GenerateExpression(generator, symbol, expression.NameExpression);
-                        writer.Write("]");
-                    }
-
-                    writer.Write("(");
-                    GenerateExpressionList(generator, symbol, expression.Parameters);
-                    writer.Write(")");
-                    break;
-                case LateBoundOperation.AddHandler:
-                    if (Utility.IsValidIdentifier(name)) {
-                        writer.Write(".add_");
-                        writer.Write(name);
-                    }
-                    else {
-                        writer.Write("['add_'");
-                        writer.WriteTrimmed(" + ");
-                        GenerateExpression(generator, symbol, expression.NameExpression);
-                        writer.Write("]");
-                    }
-
-                    writer.Write("(");
-                    GenerateExpressionList(generator, symbol, expression.Parameters);
-                    writer.Write(")");
-                    break;
-                case LateBoundOperation.RemoveHandler:
-                    if (Utility.IsValidIdentifier(name)) {
-                        writer.Write(".remove_");
-                        writer.Write(name);
-                    }
-                    else {
-                        writer.Write("['remove_'");
-                        writer.WriteTrimmed(" + ");
-                        GenerateExpression(generator, symbol, expression.NameExpression);
-                        writer.Write("]");
-                    }
-
-                    writer.Write("(");
-                    GenerateExpressionList(generator, symbol, expression.Parameters);
-                    writer.Write(")");
-                    break;
                 case LateBoundOperation.GetScriptType:
                     writer.Write(")");
                     break;
@@ -685,23 +622,6 @@ namespace ScriptSharp.Generator {
                     }
                     else {
                         writer.Write("[");
-                        GenerateExpression(generator, symbol, expression.NameExpression);
-                        writer.Write("]");
-                    }
-
-                    writer.Write(")");
-                    writer.WriteTrimmed(" === ");
-                    writer.Write("'function'");
-                    writer.Write(")");
-                    break;
-                case LateBoundOperation.HasProperty:
-                    if (Utility.IsValidIdentifier(name)) {
-                        writer.Write(".get_");
-                        writer.Write(name);
-                    }
-                    else {
-                        writer.Write("['get_'");
-                        writer.WriteTrimmed(" + ");
                         GenerateExpression(generator, symbol, expression.NameExpression);
                         writer.Write("]");
                     }
