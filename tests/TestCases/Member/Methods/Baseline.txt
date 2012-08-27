@@ -87,9 +87,7 @@ $.fn.extend = function(x, i) {
 
 test.Test.registerClass('test.Test');
 test.X.registerClass('test.X');
-(function () {
-    alert('Startup code in FooBar');
-})();
+alert('Startup code in FooBar');
 (function () {
     var timeStamp = new Date().getMilliseconds();
     alert('Startup code in FooBar: ' + timeStamp);

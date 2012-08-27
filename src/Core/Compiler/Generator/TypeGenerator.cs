@@ -321,15 +321,22 @@ namespace ScriptSharp.Generator {
             if (classSymbol.StaticConstructor != null) {
                 ScriptTextWriter writer = generator.Writer;
 
-                writer.Write("(function");
-                writer.WriteTrimmed(" () ");
-                writer.Write("{");
-                writer.WriteNewLine();
-                writer.Indent++;
+                SymbolImplementation implementation = classSymbol.StaticConstructor.Implementation;
+                bool requiresFunctionScope = implementation.DeclaresVariables;
+
+                if (requiresFunctionScope) {
+                    writer.Write("(function");
+                    writer.WriteTrimmed(" () ");
+                    writer.Write("{");
+                    writer.WriteNewLine();
+                    writer.Indent++;
+                }
                 CodeGenerator.GenerateScript(generator, classSymbol.StaticConstructor);
-                writer.Indent--;
-                writer.Write("})();");
-                writer.WriteSignificantNewLine();
+                if (requiresFunctionScope) {
+                    writer.Indent--;
+                    writer.Write("})();");
+                    writer.WriteSignificantNewLine();
+                }
             }
         }
 

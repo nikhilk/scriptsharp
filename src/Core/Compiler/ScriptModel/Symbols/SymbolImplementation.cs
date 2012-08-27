@@ -21,6 +21,17 @@ namespace ScriptSharp.ScriptModel {
             _statements = statements;
         }
 
+        public bool DeclaresVariables {
+            get {
+                foreach (Statement statement in _statements) {
+                    if (statement is VariableDeclarationStatement) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
         public SymbolScope Scope {
             get {
                 return _scope;

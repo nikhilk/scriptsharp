@@ -38,10 +38,6 @@ test.MyClass2.registerClass('test.MyClass2');
 test.MyClass3.registerClass('test.MyClass3');
 test.MyClass4.registerClass('test.MyClass4', test.MyClass3);
 test.MyClass2.x = null;
-(function () {
-    test.MyClass2.x = 'Hello';
-})();
+test.MyClass2.x = 'Hello';
 test.MyClass3.c = null;
-(function () {
-    test.MyClass3.c = new test.MyClass();
-})();
+test.MyClass3.c = new test.MyClass();

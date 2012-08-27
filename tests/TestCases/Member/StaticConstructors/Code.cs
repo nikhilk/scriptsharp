@@ -25,6 +25,27 @@ namespace MemberTests {
         }
     }
 
+    public sealed class MyClassEmpty {
+
+        static MyClassEmpty() {
+        }
+    }
+
+    public sealed class MyClassSimple {
+
+        static MyClassSimple() {
+            Window.Alert("simple static ctor");
+        }
+    }
+
+    public sealed class MyClassSimpleMulti {
+
+        static MyClassSimpleMulti() {
+            Window.Alert("simple static ctor with multiple statements");
+            Document.GetElementById("foo").InnerHTML = "...";
+        }
+    }
+
     public sealed class MyBehavior : Behavior {
 
         static MyBehavior() {
