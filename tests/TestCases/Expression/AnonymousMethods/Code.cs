@@ -49,6 +49,10 @@ namespace ExpressionTests {
                 DoStuffStatic(o, delegate { });
                 DoStuffStatic(o, delegate { _n++; });
             }
+
+            SomeClass s2 = new SomeClass(delegate {
+               int[] numbers = new int[] { _n };
+            });
         }
 
         public static void DoStuffStatic(object o, Foo callback) {

@@ -45,6 +45,9 @@ test.Test.prototype = {
                 this._n++;
             }));
         }
+        var s2 = new test.SomeClass(ss.Delegate.create(this, function() {
+            var numbers = [ this._n ];
+        }));
     },
     
     doStuff: function(o, callback) {

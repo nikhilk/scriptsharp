@@ -30,6 +30,21 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public override bool RequiresThisContext {
+            get {
+                Expression[] items = _value as Expression[];
+                if (items != null) {
+                    foreach (Expression item in items) {
+                        if (item.RequiresThisContext) {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            }
+        }
+
         public object Value {
             get {
                 return _value;
