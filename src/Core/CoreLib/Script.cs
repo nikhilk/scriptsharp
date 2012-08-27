@@ -41,6 +41,16 @@ namespace System {
             return false;
         }
 
+        public static object CreateInstance(Type type, params object[] arguments) {
+            return null;
+        }
+
+        public static void DeleteField(object instance, string name) {
+        }
+
+        public static void DeleteField(Type type, string name) {
+        }
+
         /// <summary>
         /// Enables you to evaluate (or execute) an arbitrary script
         /// literal. This includes JSON literals, where the return
@@ -50,6 +60,58 @@ namespace System {
         /// <returns>The result of the evaluation.</returns>
         public static object Eval(string s) {
             return null;
+        }
+
+        public static object GetField(object instance, string name) {
+            return null;
+        }
+
+        public static T GetField<T>(object instance, string name) {
+            return default(T);
+        }
+
+        public static object GetField(Type type, string name) {
+            return null;
+        }
+
+        public static T GetField<T>(Type type, string name) {
+            return default(T);
+        }
+
+        public static string GetScriptType(object instance) {
+            return null;
+        }
+
+        public static bool HasField(object instance, string name) {
+            return false;
+        }
+
+        public static bool HasField(Type type, string name) {
+            return false;
+        }
+
+        public static bool HasMethod(object instance, string name) {
+            return false;
+        }
+
+        public static bool HasMethod(Type type, string name) {
+            return false;
+        }
+
+        public static object InvokeMethod(object instance, string name, params object[] args) {
+            return null;
+        }
+
+        public static T InvokeMethod<T>(object instance, string name, params object[] args) {
+            return default(T);
+        }
+
+        public static object InvokeMethod(Type type, string name, params object[] args) {
+            return null;
+        }
+
+        public static T InvokeMethod<T>(Type type, string name, params object[] args) {
+            return default(T);
         }
 
         /// <summary>
@@ -107,6 +169,12 @@ namespace System {
         /// <returns>The result of the script expression.</returns>
         public static object Literal(string script, params object[] args) {
             return null;
+        }
+
+        public static void SetField(object instance, string name, object value) {
+        }
+
+        public static void SetField(Type type, string name, object value) {
         }
 
         public static int SetInterval(string code, int milliseconds) {
