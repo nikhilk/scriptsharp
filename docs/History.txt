@@ -19,6 +19,11 @@ v0.7.6
     - Moved GetField, HasField, DeleteField, HasMethod, InvokeMethod,
       CreateInstance, GetScriptType off Type and onto Script while
       HasProperty, GetProperty, SetProperty, AddHandler, RemoveHandler are gone
+    - Optimize generation of static ctors to use a function scope only when
+      static ctors have a local variable reference.
+      Should help optimize generation of jQuery scripts, by reducing one extra
+      function scope.
+    - [git #131] Correctly detect member references within array initializers
 
 v0.7.5.0
     - DOM metadata update (readyState property on Document,
