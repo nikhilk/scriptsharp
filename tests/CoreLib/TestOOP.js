@@ -1,4 +1,5 @@
 Type.registerNamespace('Test');
+Type.registerNamespace('Test.More');
 
 ////////////////////////////////////////////////////////////////////////////////
 // Test.IMammal
@@ -72,6 +73,22 @@ Test.Garfield.prototype = {
 }
 
 
+////////////////////////////////////////////////////////////////////////////////
+// Test.More.Comic
+
+Test.More.Comic = function(name) {
+  this._name = name;
+}
+Test.More.Comic.prototype = {
+
+    get_name: function() {
+        return this._name;
+    }
+}
+
+
+
 Test.Animal.registerClass('Test.Animal');
 Test.Cat.registerClass('Test.Cat', Test.Animal, Test.IMammal);
 Test.Garfield.registerClass('Test.Garfield', Test.Cat, Test.IPet);
+Test.More.Comic.registerClass('Test.More.Comic');

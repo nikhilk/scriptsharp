@@ -8,8 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace System.Diagnostics {
 
-    [ScriptNamespace("ss")]
     [Imported]
+    [IgnoreNamespace]
+    [ScriptName("console")]
     public static class Debug {
 
         [Conditional("DEBUG")]
@@ -25,7 +26,7 @@ namespace System.Diagnostics {
         }
 
         [Conditional("DEBUG")]
-        [ScriptName("writeln")]
+        [ScriptName("log")]
         public static void WriteLine(string message) {
         }
     }

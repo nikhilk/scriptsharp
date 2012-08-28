@@ -246,16 +246,64 @@ namespace System.Html {
         public static void AddEventListener(string eventName, ElementEventListener listener, bool useCapture) {
         }
 
+        /// <summary>
+        /// Displays a message box containing the specified message text.
+        /// </summary>
+        /// <param name="message">The text of the message.</param>
+        [ScriptAlias("alert")]
+        public static void Alert(string message) {
+        }
+
+        /// <summary>
+        /// Displays a message box containing the specified value converted
+        /// into a string.
+        /// </summary>
+        /// <param name="b">The boolean to display.</param>
+        [ScriptAlias("alert")]
+        public static void Alert(bool b) {
+        }
+
+        /// <summary>
+        /// Displays a message box containing the specified value converted
+        /// into a string.
+        /// </summary>
+        /// <param name="d">The date to display.</param>
+        [ScriptAlias("alert")]
+        public static void Alert(Date d) {
+        }
+
+        /// <summary>
+        /// Displays a message box containing the specified value converted
+        /// into a string.
+        /// </summary>
+        /// <param name="n">The number to display.</param>
+        [ScriptAlias("alert")]
+        public static void Alert(Number n) {
+        }
+
+        /// <summary>
+        /// Displays a message box containing the specified value converted
+        /// into a string.
+        /// </summary>
+        /// <param name="o">The object to display.</param>
+        [ScriptAlias("alert")]
+        public static void Alert(object o) {
+        }
+
         public static void AttachEvent(string eventName, ElementEventHandler handler) {
         }
 
-        public static void ClearInterval(int intervalID) {
-        }
-
-        public static void ClearTimeout(int timeoutID) {
-        }
-
         public static void Close() {
+        }
+
+        /// <summary>
+        /// Prompts the user with a yes/no question.
+        /// </summary>
+        /// <param name="message">The text of the question.</param>
+        /// <returns>true if the user chooses yes; false otherwise.</returns>
+        [ScriptAlias("confirm")]
+        public static bool Confirm(string message) {
+            return false;
         }
 
         public static void DetachEvent(string eventName, ElementEventHandler handler) {
@@ -288,6 +336,27 @@ namespace System.Html {
         }
 
         /// <summary>
+        /// Prompts the user to enter a value.
+        /// </summary>
+        /// <param name="message">The text of the prompt.</param>
+        /// <returns>The value entered by the user.</returns>
+        [ScriptAlias("prompt")]
+        public static string Prompt(string message) {
+            return null;
+        }
+
+        /// <summary>
+        /// Prompts the user to enter a value.
+        /// </summary>
+        /// <param name="message">The text of the prompt.</param>
+        /// <param name="defaultValue">The default value for the prompt.</param>
+        /// <returns>The value entered by the user.</returns>
+        [ScriptAlias("prompt")]
+        public static string Prompt(string message, string defaultValue) {
+            return null;
+        }
+
+        /// <summary>
         /// Removes a listener for the specified event.
         /// </summary>
         /// <param name="eventName">The name of the event such as 'load'.</param>
@@ -311,30 +380,6 @@ namespace System.Html {
         }
 
         public static void ScrollTo(int x, int y) {
-        }
-
-        public static int SetInterval(string code, int milliseconds) {
-            return 0;
-        }
-
-        public static int SetInterval(Action callback, int milliseconds) {
-            return 0;
-        }
-
-        public static int SetInterval(Delegate d, int milliseconds) {
-            return 0;
-        }
-
-        public static int SetTimeout(string code, int milliseconds) {
-            return 0;
-        }
-
-        public static int SetTimeout(Action callback, int milliseconds) {
-            return 0;
-        }
-
-        public static int SetTimeout(Delegate d, int milliseconds) {
-            return 0;
         }
 
         public static SqlDatabase OpenDatabase(string name, string version) {

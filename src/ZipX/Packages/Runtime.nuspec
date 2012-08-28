@@ -2,7 +2,7 @@
 <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>ScriptSharp.Runtime</id>
-    <version>0.7.5.0</version>
+    <version>0.7.6.0</version>
     <title>Script# Runtime Scripts</title>
     <authors>Nikhil Kothari</authors>
     <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
@@ -20,5 +20,7 @@
   <files>
     <file src="..\..\..\bin\Release\mscorlib.js" target="content\Scripts" />
     <file src="..\..\..\bin\Release\mscorlib.debug.js" target="content\Scripts" />
+    <file src="..\..\..\bin\Release\ssloader.js" target="content\Scripts" />
+    <file src="..\..\..\bin\Release\ssloader.debug.js" target="content\Scripts" />
   </files>
 </package>
