@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Debug Extensions
 
-if (!console) {
+if (!global.console) {
   global.console = {
     log: function() {
     },
