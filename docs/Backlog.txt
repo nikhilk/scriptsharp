@@ -1,8 +1,0 @@
-Compiler
-===============================================================================
-- Number truncation when assigning to integer variable
-  (assignment, +=, -=, /= etc.)
-
-- Script generation overhaul and optimization
-
-- Look into substr/substring and matching c# semantics
