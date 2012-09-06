@@ -182,6 +182,10 @@ namespace System.Html {
             return null;
         }
 
+        public static TElement GetElementById<TElement>(string id) where TElement : Element {
+            return null;
+        }
+
         public static ElementCollection GetElementsByClassName(string className) {
             return null;
         }
