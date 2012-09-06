@@ -1,0 +1,207 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.IIndexable
+
+test.IIndexable = function() { };
+test.IIndexable.registerInterface('test.IIndexable');
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Normal
+
+test.Normal = function() {
+    var i = this.get_item('name');
+    this.set_item('name', i + 1);
+}
+test.Normal.prototype = {
+    n: 0,
+    get_item: function(name) {
+        return this.n;
+    },
+    set_item: function(name, value) {
+        this.n = value;
+        return value;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.GetterOnly
+
+test.GetterOnly = function() {
+    var i = this.get_item('name');
+}
+test.GetterOnly.prototype = {
+    n: 0,
+    get_item: function(name) {
+        return this.n;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.VirtualIndexer
+
+test.VirtualIndexer = function() {
+    var i = this.get_item('name');
+    this.set_item('name', i + 1);
+}
+test.VirtualIndexer.prototype = {
+    n: 0,
+    get_item: function(name) {
+        return this.n;
+    },
+    set_item: function(name, value) {
+        this.n = value;
+        return value;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.OverriddenIndexer
+
+test.OverriddenIndexer = function() {
+    test.OverriddenIndexer.initializeBase(this);
+    var i = this.get_item('name');
+    this.set_item('name', i + 1);
+    var j = test.OverriddenIndexer.callBaseMethod(this, 'get_item', [ 'name' ]);
+    test.OverriddenIndexer.callBaseMethod(this, 'set_item', [ 'name', 43 ]);
+}
+test.OverriddenIndexer.prototype = {
+    get_item: function(name) {
+        return test.OverriddenIndexer.callBaseMethod(this, 'get_item', [ name ]) + 1;
+    },
+    set_item: function(name, value) {
+        test.OverriddenIndexer.callBaseMethod(this, 'set_item', [ name, value - 1 ]);
+        return value;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.AbstractIndexer
+
+test.AbstractIndexer = function() {
+    var i = this.get_item('name');
+    this.set_item('name', i + 1);
+}
+test.AbstractIndexer.prototype = {
+    n: 0,
+
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.ImplementedIndexer
+
+test.ImplementedIndexer = function() {
+    test.ImplementedIndexer.initializeBase(this);
+    var i = this.get_item('name');
+    this.set_item('name', i + 1);
+}
+test.ImplementedIndexer.prototype = {
+    n: 0,
+
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MultipleArgs
+
+test.MultipleArgs = function() {
+    var i = this.get_item('name', 'name2', 'name3');
+    this.set_item('name', 'name2', 'name3', i + 1);
+}
+test.MultipleArgs.prototype = {
+    n: 0,
+    get_item: function(first, middle, last) {
+        var value = first + middle + last;
+        return value.length;
+    },
+    set_item: function(first, middle, last, value) {
+        this.n = value;
+        return value;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.ImplementedIndexer2
+
+test.ImplementedIndexer2 = function() {
+}
+test.ImplementedIndexer2.prototype = {
+    get_item: function(index) {
+        return 0;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Test
+
+test.Test = function() {
+    var ma = new test.MultipleArgs();
+    ma.set_item('1', '2', '3', ma.get_item('3', '2', '1'));
+    var ii = new test.ImplementedIndexer();
+    ii.set_item('big', ii.get_item('small'));
+    var ai = ii;
+    ai.set_item('small', ai.get_item('big'));
+    var indexable = new test.ImplementedIndexer2();
+    var o = indexable.get_item(0);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.A
+
+test.A = function() {
+}
+test.A.prototype = {
+    get_item: function(name) {
+        return name;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.B
+
+test.B = function() {
+    test.B.initializeBase(this);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.C
+
+test.C = function() {
+    test.C.initializeBase(this);
+}
+test.C.main = function() {
+    var c = new test.C();
+    c.set_item('a', c.get_item('b'));
+    var a = c;
+    a.set_item('b', a.get_item('c'));
+}
+test.C.prototype = {
+    get_item: function(name) {
+        return name;
+    }
+}
+
+
+test.Normal.registerClass('test.Normal');
+test.GetterOnly.registerClass('test.GetterOnly');
+test.VirtualIndexer.registerClass('test.VirtualIndexer');
+test.OverriddenIndexer.registerClass('test.OverriddenIndexer', test.VirtualIndexer);
+test.AbstractIndexer.registerClass('test.AbstractIndexer');
+test.ImplementedIndexer.registerClass('test.ImplementedIndexer', test.AbstractIndexer);
+test.MultipleArgs.registerClass('test.MultipleArgs');
+test.ImplementedIndexer2.registerClass('test.ImplementedIndexer2', null, test.IIndexable);
+test.Test.registerClass('test.Test');
+test.A.registerClass('test.A');
+test.B.registerClass('test.B', test.A);
+test.C.registerClass('test.C', test.B);

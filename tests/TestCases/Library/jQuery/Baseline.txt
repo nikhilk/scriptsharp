@@ -1,0 +1,39 @@
+////////////////////////////////////////////////////////////////////////////////
+// MyApp
+
+window.MyApp = function MyApp() {
+}
+MyApp._alertData = function MyApp$_alertData(url) {
+    $.ajax({ url: url, type: 'GET', dataType: 'html', contentType: 'application/json', processData: false, success: function(result, textData, xhr) {
+        var s = xhr.responseText;
+        alert(s);
+        xyz(s);
+    }, error: function(xhr, textData, e) {
+        console.log(xhr.status);
+    } });
+}
+MyApp.postData = function MyApp$postData(url, data, succesCallback, errorCallback, returnType, requestType) {
+    returnType = returnType || 'text';
+    requestType = requestType || 'POST';
+    $.ajax({ cache: false, data: data, dataType: returnType, error: function(req, textStatus, error) {
+        if (!ss.isNullOrUndefined(errorCallback)) {
+            errorCallback(req, textStatus, error);
+        }
+    }, success: function(dataSuccess, textStatus, request) {
+        if (ss.isNullOrUndefined(succesCallback)) {
+            $(document).append(dataSuccess);
+        }
+        else {
+            succesCallback(dataSuccess, textStatus, request);
+        }
+    }, type: requestType, url: url });
+}
+
+
+MyApp.registerClass('MyApp');
+(function () {
+    $('div').addClass('foo');
+    $('span').addClass('bar').addClass('baz');
+    var o = $('.special').foo();
+    $('.special').html('<span></span>');
+})();

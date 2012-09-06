@@ -1,0 +1,50 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Foo
+
+test.Foo = function() {
+    this._numbers = [];
+    var s = this._numbers[10].format('{0}');
+    var s2 = this._numbers.getEnumerator().current.format('{0}');
+    var s3 = this._numbers.aggregate(0, function(accumulated, item) {
+        return accumulated + item;
+    }).format('{0}');
+    var s4 = encodeURIComponent(this._func(10));
+    var f2 = this._func;
+    f2(11).trim();
+    var d = {};
+    var s5 = $.extend(d, d)['abc'].format('{0}');
+    var keys = Object.getKeyCount(d);
+    var b = Object.keyExists(d, 'abc');
+    delete d.abc;
+    var $dict1 = d;
+    for (var $key2 in $dict1) {
+        var de = { key: $key2, value: $dict1[$key2] };
+    }
+    $.ajax('http://example.com').success(function(html) {
+        alert(html);
+    });
+    var json = '';
+    var f = JSON.parse(json).setup().run().cleanup();
+    var name = document.getElementById('nameTB').value;
+}
+test.Foo.prototype = {
+    _numbers: null,
+    _func: null,
+    
+    cleanup: function() {
+        return this;
+    },
+    
+    run: function() {
+        return this;
+    },
+    
+    setup: function() {
+        return this;
+    }
+}
+
+
+test.Foo.registerClass('test.Foo');

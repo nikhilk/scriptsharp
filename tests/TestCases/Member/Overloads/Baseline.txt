@@ -1,0 +1,34 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Test
+
+test.Test = function(name) {
+}
+test.Test.doSomething = function(o) {
+}
+test.Test.prototype = {
+    
+    invoke: function(successCallback, errorCallback, context) {
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+    test.Test.doSomething();
+    test.Test.doSomething(null);
+    var t1 = new test.Test();
+    var t2 = new test.Test('test');
+    var cb1 = null;
+    var cb2 = null;
+    t1.invoke(cb1);
+    t1.invoke(cb1, cb2);
+    t2.invoke(cb1, cb2, t1);
+}
+
+
+test.Test.registerClass('test.Test');
+test.App.registerClass('test.App');

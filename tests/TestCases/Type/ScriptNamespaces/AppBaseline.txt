@@ -1,0 +1,65 @@
+Type.registerNamespace('MAF');
+
+Type.registerNamespace('MA');
+
+Type.registerNamespace('Test');
+
+////////////////////////////////////////////////////////////////////////////////
+// MAF.AppFeature
+
+MAF.AppFeature = function MAF_AppFeature(name) {
+    this._name = name;
+    this._feature = new MLF.Feature(name);
+}
+MAF.AppFeature.prototype = {
+    _name: null,
+    _feature: null,
+    
+    get_name: function MAF_AppFeature$get_name() {
+        return this._name;
+    },
+    set_name: function MAF_AppFeature$set_name(value) {
+        this._name = value;
+        return value;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// MA.MyApp
+
+MA.MyApp = function MA_MyApp(name, appFeatureName, libName, libFeatureName) {
+    this._name = name;
+    this._appfeature = new MAF.AppFeature(appFeatureName);
+    this._lib = new ML.MyLib('lib1', libName);
+    this._lib.set_feature(new MLF.Feature(libFeatureName));
+}
+MA.MyApp.prototype = {
+    _name: null,
+    _appfeature: null,
+    _lib: null,
+    
+    get_name: function MA_MyApp$get_name() {
+        return this._name;
+    },
+    
+    get_lib: function MA_MyApp$get_lib() {
+        return this._lib;
+    },
+    set_lib: function MA_MyApp$set_lib(value) {
+        this._lib = value;
+        return value;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Test.Foo
+
+Test.Foo = function Test_Foo() {
+}
+
+
+MAF.AppFeature.registerClass('MAF.AppFeature');
+MA.MyApp.registerClass('MA.MyApp');
+Test.Foo.registerClass('Test.Foo');

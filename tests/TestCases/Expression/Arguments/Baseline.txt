@@ -1,0 +1,18 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+}
+test.App.prototype = {
+    
+    test: function(arg) {
+        var count = arguments.length;
+        var value = arguments[0];
+        var items = Array.toArray(arguments);
+    }
+}
+
+
+test.App.registerClass('test.App');

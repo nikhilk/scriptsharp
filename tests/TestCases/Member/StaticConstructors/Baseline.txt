@@ -1,0 +1,64 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Behavior
+
+test.Behavior = function(e, name) {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyClass
+
+test.MyClass = function(d) {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyClassEmpty
+
+test.MyClassEmpty = function() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyClassSimple
+
+test.MyClassSimple = function() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyClassSimpleMulti
+
+test.MyClassSimpleMulti = function() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyBehavior
+
+test.MyBehavior = function(element) {
+    test.MyBehavior.initializeBase(this, [ element, 'myBehavior' ]);
+}
+
+
+test.Behavior.registerClass('test.Behavior');
+test.MyClass.registerClass('test.MyClass');
+test.MyClassEmpty.registerClass('test.MyClassEmpty');
+test.MyClassSimple.registerClass('test.MyClassSimple');
+test.MyClassSimpleMulti.registerClass('test.MyClassSimpleMulti');
+test.MyBehavior.registerClass('test.MyBehavior', test.Behavior);
+test.MyClass.instance = null;
+test.MyClass.instance = new test.MyClass(Date.get_now());
+alert('simple static ctor');
+alert('simple static ctor with multiple statements');
+document.getElementById('foo').innerHTML = '...';
+(function () {
+    var e = document.body;
+    var b = true;
+    if (!b) {
+        return;
+    }
+    new test.MyBehavior(e);
+})();

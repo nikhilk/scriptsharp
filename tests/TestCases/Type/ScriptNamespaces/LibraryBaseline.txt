@@ -1,0 +1,50 @@
+Type.registerNamespace('MLF');
+
+Type.registerNamespace('ML');
+
+////////////////////////////////////////////////////////////////////////////////
+// MLF.Feature
+
+MLF.Feature = function MLF_Feature(name) {
+    this._name = name;
+}
+MLF.Feature.prototype = {
+    _name: null,
+    
+    get_name: function MLF_Feature$get_name() {
+        return this._name;
+    },
+    set_name: function MLF_Feature$set_name(value) {
+        this._name = value;
+        return value;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// ML.MyLib
+
+ML.MyLib = function ML_MyLib(name, featureName) {
+    this._name = name;
+    this._feature = new MLF.Feature(featureName);
+}
+ML.MyLib.prototype = {
+    _name: null,
+    _feature: null,
+    
+    get_name: function ML_MyLib$get_name() {
+        return this._name;
+    },
+    
+    get_feature: function ML_MyLib$get_feature() {
+        return this._feature;
+    },
+    set_feature: function ML_MyLib$set_feature(value) {
+        this._feature = value;
+        return value;
+    }
+}
+
+
+MLF.Feature.registerClass('MLF.Feature');
+ML.MyLib.registerClass('ML.MyLib');

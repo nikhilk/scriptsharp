@@ -1,0 +1,108 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.IFoo
+
+test.IFoo = function() { };
+test.IFoo.registerInterface('test.IFoo');
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.BApp
+
+test.BApp = function() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+    test.App.initializeBase(this);
+}
+test.App.prototype = {
+    _value: 0,
+    _value2: 0,
+    
+    get_XYZ: function() {
+        return 1;
+    },
+    set_XYZ: function(value) {
+        return value;
+    },
+    
+    test: function(arg) {
+        var s = '';
+        var n = s.length;
+        var n2 = Number.MAX_VALUE;
+        var m = 0;
+        n = this.get_XYZ();
+        n = this.get_XYZ();
+        this.set_XYZ(n);
+        this.set_XYZ(n);
+        var a;
+        n = a.get_XYZ();
+        a.set_XYZ(n);
+        n = this._value;
+        n = this._value;
+        this._value = n;
+        this._value = n;
+        n = test.App.myDefault;
+        n = test.App.myDefault;
+        n = 3;
+        n = 3;
+        n = 3;
+        n = 3;
+        n = 3;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.DApp
+
+test.DApp = function() {
+    test.DApp.initializeBase(this);
+}
+test.DApp.prototype = {
+    
+    test2: function() {
+        var n = this.get_XYZ();
+        n = this.get_XYZ();
+        n = test.DApp.callBaseMethod(this, 'get_XYZ');
+        this.set_XYZ(n);
+        this.set_XYZ(n);
+        test.DApp.callBaseMethod(this, 'set_XYZ', [ n ]);
+        this._value2 = n;
+        this._value2 = n;
+        this._value2 = n;
+        n = test.App.myDefault2;
+        n = test.App.myDefault2;
+        n = 3;
+        n = 3;
+        n = 3;
+        n = 3;
+        n = 3;
+        n = 3;
+    },
+    
+    test3: function() {
+        var i = [ 1, 2 ];
+        i[0] = 1;
+        i[1] = i[0];
+        i[i[0]] = 20;
+    },
+    
+    test4: function(foo) {
+        foo.bar();
+    }
+}
+
+
+test.BApp.registerClass('test.BApp');
+test.App.registerClass('test.App', test.BApp);
+test.DApp.registerClass('test.DApp', test.App);
+test.BApp.myConstant = 3;
+test.App.myConstant2 = 3;
+test.App.myDefault = 1;
+test.App.myDefault2 = 2;

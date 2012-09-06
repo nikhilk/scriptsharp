@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Code</name>
+    </assembly>
+    <members>
+        <member name="T:BasicTests.Suit">
+            <summary>
+            Represents a card suit.
+            </summary>
+        </member>
+        <member name="F:BasicTests.Suit.Heart">
+            <summary>
+            The hearts.
+            </summary>
+        </member>
+        <member name="F:BasicTests.Suit.Spade">
+            <summary>
+            The spades.
+            </summary>
+        </member>
+        <member name="F:BasicTests.Suit.Club">
+            <summary>
+            The clubs.
+            </summary>
+        </member>
+        <member name="F:BasicTests.Suit.Diamond">
+            <summary>
+            The diamonds.
+            </summary>
+        </member>
+        <member name="T:BasicTests.Color">
+            <summary>
+            Represents a color.
+            </summary>
+        </member>
+        <member name="F:BasicTests.Color.Green">
+            <summary>
+            The color green.
+            </summary>
+        </member>
+        <member name="T:BasicTests.BaseClass">
+            <summary>
+            Represents a base class.
+            </summary>
+        </member>
+        <member name="F:BasicTests.BaseClass.ConstantField">
+            <summary>
+            A constant field.
+            </summary>
+        </member>
+        <member name="F:BasicTests.BaseClass.StaticField">
+            <summary>
+            A static field.
+            </summary>
+        </member>
+        <member name="F:BasicTests.BaseClass.InstanceField">
+            <summary>
+            An instance field.
+            </summary>
+        </member>
+        <member name="F:BasicTests.BaseClass.domElement">
+            <summary>
+            A private field.
+            </summary>
+        </member>
+        <member name="M:BasicTests.BaseClass.#ctor(System.Html.Element,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the BaseClass class.
+            </summary>
+            <param name="domElement">The parent element.</param>
+            <param name="name">The name.</param>
+            <param name="count">The count.</param>
+        </member>
+        <member name="M:BasicTests.BaseClass.Method1">
+            <summary>
+            Empty method.
+            </summary>
+        </member>
+        <member name="M:BasicTests.BaseClass.Method2">
+            <summary>
+            Method with return value.
+            </summary>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:BasicTests.BaseClass.Method3(System.String,System.String)">
+            <summary>
+            Method with params.
+            </summary>
+            <param name="first">The first name.</param>
+            <param name="last">The last name.</param>
+        </member>
+        <member name="M:BasicTests.BaseClass.Method4(System.Int32)">
+            <summary>
+            Method with both params and return value.
+            </summary>
+            <param name="count">The count.</param>
+            <returns>The set of names.</returns>
+        </member>
+        <member name="M:BasicTests.BaseClass.OnInitialized">
+            <summary>
+            Raises the Initialized event.
+            </summary>
+        </member>
+        <member name="M:BasicTests.BaseClass.PrivateMethod(System.Int32)">
+            <summary>
+            Private method.
+            </summary>
+            <param name="count">The count.</param>
+        </member>
+        <member name="M:BasicTests.BaseClass.StaticMethod(System.Int32)">
+            <summary>
+            A static method.
+            </summary>
+            <param name="length">The length.</param>
+        </member>
+        <member name="P:BasicTests.BaseClass.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+        </member>
+        <member name="P:BasicTests.BaseClass.DOMElement">
+            <summary>
+            Gets or sets the element.
+            </summary>
+        </member>
+        <member name="P:BasicTests.BaseClass.Count">
+            <summary>
+            Gets the count.
+            </summary>
+        </member>
+        <member name="P:BasicTests.BaseClass.PrivateName">
+            <summary>
+            Gets the private name.
+            </summary>
+        </member>
+        <member name="P:BasicTests.BaseClass.TotalCount">
+            <summary>
+            Gets the total count.
+            </summary>
+        </member>
+        <member name="E:BasicTests.BaseClass.Initialized">
+            <summary>
+            Adds or removes a delegate for the Initialized event.
+            </summary>
+        </member>
+        <member name="P:BasicTests.BaseClass.Item(System.Int32[])">
+            <summary>
+            Gets item by identifiers.
+            </summary>
+            <param name="ids">The identifiers.</param>
+            <returns>The item.</returns>
+        </member>
+        <member name="T:BasicTests.DerivedClass">
+            <summary>
+            Represents a derived class.
+            </summary>
+        </member>
+        <member name="M:BasicTests.DerivedClass.#ctor">
+            <summary>
+            Internal constructor.
+            </summary>
+        </member>
+        <member name="M:BasicTests.DerivedClass.Method3(System.String,System.String)">
+            <summary>
+            Overriden method with params.
+            </summary>
+            <param name="first">The first name.</param>
+            <param name="last">The last name.</param>
+        </member>
+        <member name="T:BasicTests.InternalClass">
+            <summary>
+            An internal class.
+            </summary>
+        </member>
+        <member name="T:BasicTests.RecordClass">
+            <summary>
+            Represents a record.
+            </summary>
+        </member>
+        <member name="F:BasicTests.RecordClass.Count">
+            <summary>
+            Gets or sets a count.
+            </summary>
+        </member>
+        <member name="M:BasicTests.RecordClass.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the RecordClass class.
+            </summary>
+            <param name="count">A count.</param>
+        </member>
+        <member name="T:BasicTests.IInterface">
+            <summary>
+            Represents an interface.
+            </summary>
+        </member>
+        <member name="M:BasicTests.IInterface.Execute">
+            <summary>
+            Executes code.
+            </summary>
+        </member>
+        <member name="T:BasicTests.GlobalMethodsClass">
+            <summary>
+            Class with global methods.
+            </summary>
+        </member>
+        <member name="M:BasicTests.GlobalMethodsClass.Run">
+            <summary>
+            Runs.
+            </summary>
+        </member>
+    </members>
+</doc>

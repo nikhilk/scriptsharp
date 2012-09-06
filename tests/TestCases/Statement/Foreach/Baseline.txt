@@ -1,0 +1,56 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Set
+
+test.Set = function() {
+}
+test.Set.prototype = {
+    _items: null,
+    
+    getEnumerator: function() {
+        return this._items.getEnumerator();
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+}
+test.App.prototype = {
+    
+    test: function(arg) {
+        var items = [ 1, 2, 3 ];
+        var sum = 0;
+        var $enum1 = ss.IEnumerator.getEnumerator(items);
+        while ($enum1.moveNext()) {
+            var i = $enum1.current;
+            sum += i;
+        }
+        var d = {};
+        var $dict2 = d;
+        for (var $key3 in $dict2) {
+            var entry = { key: $key3, value: $dict2[$key3] };
+            var s = entry.key + ' = ' + entry.value;
+        }
+        var s = new test.Set();
+        var $enum4 = ss.IEnumerator.getEnumerator(s);
+        while ($enum4.moveNext()) {
+            var o = $enum4.current;
+            this.doStuff(o);
+        }
+    },
+    
+    doStuff: function(o) {
+        var $dict1 = o;
+        for (var $key2 in $dict1) {
+            var entry = { key: $key2, value: $dict1[$key2] };
+        }
+    }
+}
+
+
+test.Set.registerClass('test.Set', null, ss.IEnumerable);
+test.App.registerClass('test.App');

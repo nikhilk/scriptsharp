@@ -1,0 +1,316 @@
+Minimization Map
+================================================================
+    Member '__valueChanged' renamed to '$1_5'
+    Member '_intVal' renamed to '$1_0'
+    Member '_intVal2' renamed to '$1_1'
+    Member '_intVal3' renamed to '$1_2'
+    Member '_strVal' renamed to '$1_3'
+Type 'BasicTests.ABC' renamed to '_ABC'
+    Member 'Alpha' renamed to '$0'
+Type 'BasicTests.AppHelper' renamed to 'test$3'
+Type 'BasicTests.Bar' renamed to '_Bar'
+Type 'BasicTests.Bar2' renamed to '_Bar2'
+Type 'BasicTests.BarCustom2' renamed to 'test$6'
+Type 'BasicTests.BarEx' renamed to 'test$5'
+Type 'BasicTests.BaseBaseClass' renamed to 'test$1'
+Type 'BasicTests.BaseClass' renamed to 'test$4'
+Type 'BasicTests.DerivedClass' renamed to 'test$7'
+    Member 'Dispose' renamed to '$1'
+    Member 'DoStuff' renamed to '$0'
+    Member 'DoStuff' renamed to '$0'
+    Member 'DoStuffBase' renamed to '$1'
+    Member 'DoStuffBaseBase' renamed to '$0'
+    Member 'DoStuffDelayed' renamed to '$4'
+    Member 'DoStuffDerived' renamed to '$2'
+    Member 'DoStuffInternal' renamed to '$3'
+    Member 'ExecuteHandler' renamed to '$1'
+    Member 'Foo' renamed to '$2'
+Type 'BasicTests.IApp' renamed to '_IApp'
+    Member 'Initialize' renamed to '$0'
+Type 'BasicTests.MaskTextBox' renamed to 'test$8'
+Type 'BasicTests.MyData' renamed to 'test$2'
+Type 'BasicTests.MyMode' renamed to 'test$0'
+    Member 'Numeric' renamed to '$1'
+    Member 'OnClicked' renamed to '$3_1'
+    Member 'OnValueChanged' renamed to '$1_6'
+    Member 'OnValueChanged' renamed to '$3_0'
+    Member 'Property1' renamed to '$1_7'
+    Member 'Setup' renamed to '$2'
+    Member 'ShowHelp' renamed to '$0'
+    Member 'string1' renamed to '$0'
+    Member 'string2' renamed to '$1'
+    Member 'Stuff' renamed to '$5'
+    Member 'StuffProperty' renamed to '$6'
+    Member 'ToString' renamed to 'toString'
+    Member 'ValueChanged' renamed to '$1_4'
+
+
+Script
+================================================================
+
+
+Type.registerNamespace('test');
+
+test.AppFlags = function() { };
+test.AppFlags.prototype = {
+    AAA: 0, 
+    BBB: 1
+}
+test.AppFlags.registerEnum('test.AppFlags', false);
+
+
+test._IApp = function() { };
+test._IApp.registerInterface('test._IApp');
+
+
+test.$create_test$2 = function(a, b) {
+    var $o = { };
+    $o.$0 = a;
+    $o.$1 = b;
+    return $o;
+}
+
+
+window.run = function() {
+}
+
+
+test.App = function() {
+    var $0 = new test.test$3();
+    $0.$0();
+}
+test.App.prototype = {
+    
+    run: function() {
+    },
+    
+    $0: function() {
+    },
+    
+    $1: function() {
+    }
+}
+
+
+test.test$3 = function() {
+}
+test.test$3.prototype = {
+    
+    $0: function() {
+    }
+}
+
+
+test._Bar = function() {
+}
+test._Bar.prototype = {
+    
+    $0: function() {
+    },
+    
+    toString: function() {
+        return null;
+    },
+    
+    $1: function($p0) {
+    }
+}
+
+
+test._Bar2 = function() {
+    test._Bar2.initializeBase(this);
+}
+
+
+test.test$5 = function() {
+    test.test$5.initializeBase(this);
+}
+test.test$5.prototype = {
+    
+    $2: function() {
+        var $0 = 1;
+    },
+    
+    $0: function() {
+        this.$2();
+        test.test$5.callBaseMethod(this, '$0');
+        var $0 = test.$create_test$2('a', 'b');
+        $0.$0 = $0.$1;
+    },
+    
+    $3: function($p0) {
+        $p0 = $p0 + 2;
+    },
+    
+    $4: function($p0) {
+        var $0 = $p0 + 1;
+        var $1 = $p0.toString();
+        var $2 = 0;
+        this.$1(ss.Delegate.create(this, function($p1_0, $p1_1) {
+            this.$1(function($p2_0, $p2_1) {
+                var $2_0 = 11;
+                return $p2_0;
+            });
+            var $1_0 = 10;
+            var $1_1 = 11;
+            return $0 + $p1_0 + $1 + $p1_1 + $1_0;
+        }));
+    },
+    
+    get_$5: function() {
+        return 0;
+    },
+    set_$5: function($p0) {
+        var $0 = $p0;
+        return $p0;
+    },
+    
+    get_$6: function() {
+        this.$1(ss.Delegate.create(this, function($p1_0, $p1_1) {
+            this.$1(function($p2_0, $p2_1) {
+                var $2_0 = 11;
+                return $p2_0;
+            });
+            var $1_0 = 10;
+            var $1_1 = 11;
+            return $p1_0 + $p1_1 + $1_0;
+        }));
+        return 0;
+    },
+    set_$6: function($p0) {
+        var $0 = $p0 + 1;
+        var $1 = $p0.toString();
+        this.$1(ss.Delegate.create(this, function($p1_0, $p1_1) {
+            this.$1(function($p2_0, $p2_1) {
+                var $2_0 = 11;
+                return $p2_0;
+            });
+            var $1_0 = 10;
+            var $1_1 = 11;
+            return $0 + $p1_0 + $1 + $p1_1 + $p0 + $1_1;
+        }));
+        return $p0;
+    }
+}
+
+
+test.BarCustom = function() {
+    test.BarCustom.initializeBase(this);
+}
+
+
+test.test$6 = function() {
+    test.test$6.initializeBase(this);
+}
+test.test$6.prototype = {
+    
+    $2: function() {
+        return 0;
+    },
+    
+    baz: function() {
+        return 0;
+    },
+    
+    xyz: function() {
+    }
+}
+
+
+test.FooBehavior = function(e, i) {
+    test.FooBehavior.initializeBase(this, [ e, null ]);
+    this.$1_0 = i;
+    this.$1_1 = i * 2;
+    this.$1_2 = i * 4;
+}
+test.FooBehavior.prototype = {
+    $1_0: 0,
+    $1_1: 0,
+    $1_2: 0,
+    
+    add_$1_4: function($p0) {
+        this.$1_5 = ss.Delegate.combine(this.$1_5, $p0);
+    },
+    remove_$1_4: function($p0) {
+        this.$1_5 = ss.Delegate.remove(this.$1_5, $p0);
+    },
+    
+    $1_5: null,
+    
+    dispose: function() {
+        this.$1_0 = 0;
+        test.FooBehavior.callBaseMethod(this, 'dispose');
+    },
+    
+    $1_6: function() {
+    },
+    
+    get_$1_7: function() {
+        return null;
+    },
+    get_item: function($p0) {
+        return 0;
+    }
+}
+
+
+test.test$8 = function(e) {
+    test.test$8.initializeBase(this, [ e ]);
+}
+test.test$8.prototype = {
+    
+    $3_0: function() {
+    },
+    
+    $3_1: function() {
+    }
+}
+
+
+test.test$7 = function() {
+    test.test$7.initializeBase(this);
+}
+test.test$7.prototype = {
+    
+    $2: function() {
+    }
+}
+
+
+test.test$4 = function() {
+    test.test$4.initializeBase(this);
+}
+test.test$4.prototype = {
+    
+    $1: function() {
+    }
+}
+
+
+test.test$1 = function() {
+}
+test.test$1.prototype = {
+    
+    $0: function() {
+    }
+}
+
+
+test._ABC = function() {
+}
+
+
+test.App.registerClass('test.App');
+test.test$3.registerClass('test.test$3');
+test._Bar.registerClass('test._Bar');
+test._Bar2.registerClass('test._Bar2', test._Bar);
+test.test$5.registerClass('test.test$5', test._Bar2);
+test.BarCustom.registerClass('test.BarCustom', test._Bar);
+test.test$6.registerClass('test.test$6', test.BarCustom);
+test.FooBehavior.registerClass('test.FooBehavior', ScriptFX.Behavior);
+test.test$8.registerClass('test.test$8', ScriptFX.TextBox);
+test.test$1.registerClass('test.test$1');
+test.test$4.registerClass('test.test$4', test.test$1);
+test.test$7.registerClass('test.test$7', test.test$4);
+test._ABC.registerClass('test._ABC');
+test.FooBehavior.$1_3 = null;

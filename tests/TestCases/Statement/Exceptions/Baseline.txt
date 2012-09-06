@@ -1,0 +1,43 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+}
+test.App.prototype = {
+    
+    test: function(arg) {
+        if (arg == null) {
+            throw new Error('null');
+        }
+    },
+    
+    test2: function() {
+        try {
+        }
+        catch (e) {
+        }
+        try {
+        }
+        catch (e) {
+        }
+        finally {
+        }
+        try {
+        }
+        finally {
+        }
+        try {
+        }
+        catch ($e1) {
+        }
+        try {
+        }
+        catch ($e2) {
+        }
+    }
+}
+
+
+test.App.registerClass('test.App');
