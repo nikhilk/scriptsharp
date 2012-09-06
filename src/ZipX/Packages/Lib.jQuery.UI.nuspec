@@ -6,9 +6,9 @@
     <title>Script# jQueryUI Reference Assembly</title>
     <authors>Nikhil Kothari</authors>
     <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
-    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/PackageLib.png</iconUrl>
-    <projectUrl>http://www.scriptsharp.com</projectUrl>
-    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
+    <projectUrl>http://scriptsharp.com</projectUrl>
+    <iconUrl>http://scriptsharp.com/nuget/PackageLib.png</iconUrl>
+    <licenseUrl>http://scriptsharp.com/nuget/License.txt</licenseUrl>
     <summary>Allows you to reference and use jQueryUI in Script# projects.</summary>
     <description>
       This package contains contains the Script.jQuery.UI assembly that allows you to reference and program against the jQueryUI APIs and widgets when creating HTML5/browser-based applications with Script#.

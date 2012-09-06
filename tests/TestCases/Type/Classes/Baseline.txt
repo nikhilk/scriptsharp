@@ -1,0 +1,45 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.FooBarBaz
+
+test.FooBarBaz = function test_FooBarBaz() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyClass
+
+test.MyClass = function test_MyClass() {
+    test.FooBarBaz = new test.FooBarBaz();
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyClass2
+
+test.MyClass2 = function test_MyClass2() {
+    test.MyClass2.initializeBase(this);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyClass3
+
+test.MyClass3 = function test_MyClass3() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyClass4
+
+test.MyClass4 = function test_MyClass4() {
+    test.MyClass4.initializeBase(this);
+}
+
+
+test.FooBarBaz.registerClass('test.FooBarBaz');
+test.MyClass.registerClass('test.MyClass');
+test.MyClass2.registerClass('test.MyClass2', test.MyClass);
+test.MyClass3.registerClass('test.MyClass3', null, ss.IDisposable);
+test.MyClass4.registerClass('test.MyClass4', test.MyClass, ss.IDisposable);

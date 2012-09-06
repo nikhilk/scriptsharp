@@ -6,9 +6,9 @@
     <title>Script# jQuery Reference Assembly</title>
     <authors>Nikhil Kothari</authors>
     <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
-    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/PackageLib.png</iconUrl>
-    <projectUrl>http://www.scriptsharp.com</projectUrl>
-    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
+    <projectUrl>http://scriptsharp.com</projectUrl>
+    <iconUrl>http://scriptsharp.com/nuget/PackageLib.png</iconUrl>
+    <licenseUrl>http://scriptsharp.com/nuget/License.txt</licenseUrl>
     <summary>Allows you to reference and use jQuery in Script# projects.</summary>
     <description>
       This package contains contains the Script.jQuery assembly that allows you to reference and program against the rich set of jQuery APIs when creating HTML5/browser-based applications with Script#.

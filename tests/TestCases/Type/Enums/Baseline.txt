@@ -1,0 +1,126 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Colors
+
+test.Colors = function() { };
+test.Colors.prototype = {
+    red: 0, 
+    green: 1, 
+    blue: 2
+}
+test.Colors.registerEnum('test.Colors', false);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Sequence
+
+test.Sequence = function() { };
+test.Sequence.prototype = {
+    item1: 1, 
+    item2: 2, 
+    item3: 3, 
+    item4: 5
+}
+test.Sequence.registerEnum('test.Sequence', false);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Mode
+
+test.Mode = function() { };
+test.Mode.prototype = {
+    Public: 1, 
+    Protected: 2, 
+    Private: 4
+}
+test.Mode.registerEnum('test.Mode', true);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.UInt32Mask
+
+test.UInt32Mask = function() { };
+test.UInt32Mask.prototype = {
+    v: 4026531840, 
+    a: 4278190080
+}
+test.UInt32Mask.registerEnum('test.UInt32Mask', false);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.ShortMask
+
+test.ShortMask = function() { };
+test.ShortMask.prototype = {
+    v: 1, 
+    a: 4096
+}
+test.ShortMask.registerEnum('test.ShortMask', false);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Errors
+
+test.Errors = function() { };
+test.Errors.prototype = {
+    S_OK: 0, 
+    S_FALSE: 1, 
+    E_FAIL: -1
+}
+test.Errors.registerEnum('test.Errors', false);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Size
+
+test.Size = function() { };
+test.Size.prototype = {
+    small: 'small', 
+    Medium: 'Medium', 
+    large: 'large'
+}
+test.Size.registerEnum('test.Size', false);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function test_App() {
+}
+test.App.main = function test_App$main() {
+    var m = 1;
+    m = 1 | 4;
+    var c = 0;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App2
+
+test.App2 = function test_App2() {
+}
+test.App2.prototype = {
+    _httpMethod: null,
+    _sortMode: null,
+    
+    run: function test_App2$run() {
+        var method = 'POST';
+        this.run1('GET');
+        this.run2('status');
+        this.run2('Group');
+        this.run2('Ct');
+        var s = 'Medium';
+    },
+    
+    run1: function test_App2$run1(m) {
+        var s = m;
+    },
+    
+    run2: function test_App2$run2(m) {
+    }
+}
+
+
+test.App.registerClass('test.App');
+test.App2.registerClass('test.App2');

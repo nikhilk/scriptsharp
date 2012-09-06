@@ -10,7 +10,7 @@ using System.Text;
 
 namespace ScriptSharp.Generators {
 
-    internal sealed class ResXCodeBuilder {
+    public sealed class ResXCodeBuilder {
 
         private static readonly string ResourcesHeader =
 @"//------------------------------------------------------------------------------

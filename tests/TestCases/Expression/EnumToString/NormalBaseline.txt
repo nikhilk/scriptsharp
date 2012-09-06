@@ -1,0 +1,63 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Color
+
+test.Color = function() { };
+test.Color.prototype = {
+    red: 1, 
+    green: 2, 
+    blue: 3
+}
+test.Color.registerEnum('test.Color', false);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.State
+
+test.State = function() { };
+test.State.prototype = {
+    starting: 'starting', 
+    running: 'running', 
+    completed: 'completed'
+}
+test.State.registerEnum('test.State', false);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Types
+
+test.Types = function() { };
+test.Types.prototype = {
+    none: 0, 
+    type1: 1, 
+    type2: 2, 
+    type3: 4
+}
+test.Types.registerEnum('test.Types', true);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+}
+test.App.prototype = {
+    
+    test: function(arg) {
+        var s1 = (0).toString();
+        var s2 = (2).toString();
+        var s3 = 'starting';
+        var s4 = (0).toString();
+    },
+    
+    display: function(m, c, s, t) {
+        var mstr = m.toString();
+        var cstr = c.toString();
+        var sstr = s;
+        var tstr = t.toString();
+    }
+}
+
+
+test.App.registerClass('test.App');

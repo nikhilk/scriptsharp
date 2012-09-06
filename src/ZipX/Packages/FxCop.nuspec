@@ -6,9 +6,9 @@
     <title>Script# FxCop Rules</title>
     <authors>Nikhil Kothari</authors>
     <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
-    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/Package.png</iconUrl>
-    <projectUrl>http://www.scriptsharp.com</projectUrl>
-    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
+    <projectUrl>http://scriptsharp.com</projectUrl>
+    <iconUrl>http://scriptsharp.com/nuget/Package.png</iconUrl>
+    <licenseUrl>http://scriptsharp.com/nuget/License.txt</licenseUrl>
     <summary>FxCop rules specific to scripting scenarios for use with Script# code.</summary>
     <description>
       This package provides additional rules specifically implemented for Script# code and scripting scenarios.

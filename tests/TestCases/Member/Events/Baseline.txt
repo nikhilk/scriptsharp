@@ -1,0 +1,55 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.EventArgs
+
+test.EventArgs = function() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Button
+
+test.Button = function() {
+}
+test.Button.add_test = function(value) {
+    test.Button.__test = ss.Delegate.combine(test.Button.__test, value);
+}
+test.Button.remove_test = function(value) {
+    test.Button.__test = ss.Delegate.remove(test.Button.__test, value);
+}
+test.Button.prototype = {
+    _aaa: null,
+    
+    add_click: function(value) {
+        this.__click = ss.Delegate.combine(this.__click, value);
+    },
+    remove_click: function(value) {
+        this.__click = ss.Delegate.remove(this.__click, value);
+    },
+    
+    __click: null,
+    
+    add_aaa: function(value) {
+        if (this._aaa == null) {
+            this._aaa = value;
+        }
+        else {
+            this._aaa = ss.Delegate.combine(this._aaa, value);
+        }
+    },
+    remove_aaa: function(value) {
+        this._aaa = ss.Delegate.remove(this._aaa, value);
+    },
+    
+    performClick: function() {
+        if (this.__click != null) {
+            this.__click(this, new test.EventArgs());
+        }
+    }
+}
+
+
+test.EventArgs.registerClass('test.EventArgs');
+test.Button.registerClass('test.Button');
+test.Button.__test = null;

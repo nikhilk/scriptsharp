@@ -1,0 +1,64 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+}
+test.App.prototype = {
+    
+    test: function(arg) {
+        var i;
+        var j;
+        var f;
+        var o;
+        var s;
+        if (!i) {
+        }
+        if (!!i) {
+        }
+        if (i === 1) {
+        }
+        if (i === j) {
+        }
+        if (!!s.length) {
+        }
+        if (!s) {
+        }
+        if (!!s) {
+        }
+        if (!s) {
+        }
+        if (!!s) {
+        }
+        if (!!f) {
+        }
+        if (!f) {
+        }
+        if (!f) {
+        }
+        if (!!f) {
+        }
+        if (f === f) {
+        }
+        if (o == null) {
+        }
+        if (o != null) {
+        }
+        if ((s + s) != null) {
+        }
+        if ((s + s) == null) {
+        }
+        if (!!(i % 2)) {
+        }
+        if (!(i % 2)) {
+        }
+        if (!(i % 2)) {
+        }
+        if (!i++) {
+        }
+    }
+}
+
+
+test.App.registerClass('test.App');

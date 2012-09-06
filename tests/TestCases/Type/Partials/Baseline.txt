@@ -1,0 +1,147 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.IMyInterface
+
+test.IMyInterface = function() { };
+test.IMyInterface.prototype = {
+    start : null,
+    Stop : null,
+    resume : null
+}
+test.IMyInterface.registerInterface('test.IMyInterface');
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.EmptyClass
+
+test.EmptyClass = function test_EmptyClass() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test._singleMemberClass
+
+test._singleMemberClass = function test__singleMemberClass() {
+}
+test._singleMemberClass.prototype = {
+    
+    run: function test__singleMemberClass$run() {
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.DerivedMemberClass
+
+test.DerivedMemberClass = function test_DerivedMemberClass() {
+    test.DerivedMemberClass.initializeBase(this);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MergedMembersClass
+
+test.MergedMembersClass = function test_MergedMembersClass() {
+}
+test.MergedMembersClass.prototype = {
+    foo: false,
+    bar: null,
+    
+    testMethod: function test_MergedMembersClass$testMethod() {
+        return null;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.DerivedMergedMembersClass
+
+test.DerivedMergedMembersClass = function test_DerivedMergedMembersClass() {
+    test.DerivedMergedMembersClass.initializeBase(this);
+    this.name = this.bar + this.bar + 'Name';
+}
+test.DerivedMergedMembersClass.prototype = {
+    name: null,
+    value: null,
+    
+    testMethod: function test_DerivedMergedMembersClass$testMethod() {
+        return null;
+    },
+    
+    testMethod2: function test_DerivedMergedMembersClass$testMethod2() {
+        return this.get_item('foo');
+    },
+    
+    someMethod: function test_DerivedMergedMembersClass$someMethod() {
+        var e1 = document.getElementById(this.bar);
+        var e2 = document.getElementById(this.name);
+        var e3 = document.getElementById(this.bar);
+        var s = this.testMethod() + test.DerivedMergedMembersClass.callBaseMethod(this, 'testMethod');
+    },
+    get_item: function test_DerivedMergedMembersClass$get_item(s) {
+        return s;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyClass
+
+test.MyClass = function test_MyClass() {
+}
+test.MyClass.prototype = {
+    
+    start: function test_MyClass$start() {
+    },
+    
+    Stop: function test_MyClass$Stop() {
+    },
+    
+    resume: function test_MyClass$resume() {
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test._someClass
+
+test._someClass = function test__someClass() {
+}
+test._someClass.prototype = {
+    
+    close: function test__someClass$close() {
+    },
+    
+    _cancel: function test__someClass$_cancel() {
+    },
+    
+    run: function test__someClass$run() {
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function test_App() {
+    var s;
+    s.run();
+    var d;
+    d.bar = d.name;
+    d.value = d.foo;
+    var mc;
+    mc.start();
+    mc.Stop();
+    mc.resume();
+}
+
+
+test.EmptyClass.registerClass('test.EmptyClass');
+test._singleMemberClass.registerClass('test._singleMemberClass');
+test.DerivedMemberClass.registerClass('test.DerivedMemberClass', test._singleMemberClass);
+test.MergedMembersClass.registerClass('test.MergedMembersClass');
+test.DerivedMergedMembersClass.registerClass('test.DerivedMergedMembersClass', test.MergedMembersClass);
+test.MyClass.registerClass('test.MyClass', null, test.IMyInterface);
+test._someClass.registerClass('test._someClass');
+test.App.registerClass('test.App');

@@ -6,3 +6,4 @@ obj/
 *.trx
 Scripts/
 packages/
+TestResults/

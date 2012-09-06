@@ -6,9 +6,9 @@
     <title>Script# Runtime Scripts</title>
     <authors>Nikhil Kothari</authors>
     <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
-    <iconUrl>https://github.com/nikhilk/scriptsharp/raw/master/docs/Package.png</iconUrl>
-    <projectUrl>http://www.scriptsharp.com</projectUrl>
-    <licenseUrl>https://raw.github.com/nikhilk/scriptsharp/master/License.txt</licenseUrl>
+    <projectUrl>http://scriptsharp.com</projectUrl>
+    <iconUrl>http://scriptsharp.com/nuget/Package.png</iconUrl>
+    <licenseUrl>http://scriptsharp.com/nuget/License.txt</licenseUrl>
     <summary>Provides the core javascript runtime for Script#-based scripts for use in Web projects.</summary>
     <description>
       This package contains scripts like mscorlib.js which provides the runtime script implementations of a type system and core APIs available to scripts generated using Script# for deployment within web applications (such as asp.net mvc projects).

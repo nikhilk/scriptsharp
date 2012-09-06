@@ -1,0 +1,57 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Test
+
+test.Test = function() {
+    this.set_XYZ(1);
+    this.set_XYZ(this.get_name().length);
+    this.set_XYZ(this.get_name().length);
+    var v = test.Test.get_staticProp();
+    v = test.Test.get_staticProp();
+}
+test.Test.get_staticProp = function() {
+    return 2006;
+}
+test.Test.set_staticProp = function(value) {
+    return value;
+}
+test.Test.prototype = {
+    
+    get_XYZ: function() {
+        return 0;
+    },
+    set_XYZ: function(value) {
+        return value;
+    },
+    
+    get_isFoo: function() {
+        return true;
+    },
+    
+    get_name: function() {
+        return 'nk';
+    },
+    
+    get_isInitialized: function() {
+        return false;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Test2
+
+test.Test2 = function() {
+    test.Test2.initializeBase(this);
+    var n = test.Test2.callBaseMethod(this, 'get_XYZ');
+    if (n === this.get_XYZ()) {
+    }
+    if (this.get_XYZ() === n) {
+    }
+    n = test.Test.get_staticProp();
+}
+
+
+test.Test.registerClass('test.Test');
+test.Test2.registerClass('test.Test2', test.Test);

@@ -1,0 +1,23 @@
+Type.registerNamespace('test');
+
+test.App = function() {
+}
+test.App.prototype = {
+    
+    test: function(arg) {
+        var $0 = (0).toString();
+        var $1 = (2).toString();
+        var $2 = '$0';
+        var $3 = (0).toString();
+    },
+    
+    $0: function($p0, $p1, $p2, $p3) {
+        var $0 = $p0.toString();
+        var $1 = $p1.toString();
+        var $2 = $p2;
+        var $3 = $p3.toString();
+    }
+}
+
+
+test.App.registerClass('test.App');

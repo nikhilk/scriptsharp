@@ -1,0 +1,10 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.EventArgs
+
+test.EventArgs = function test_EventArgs() {
+}
+
+
+test.EventArgs.registerClass('test.EventArgs');
