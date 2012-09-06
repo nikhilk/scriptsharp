@@ -1,0 +1,121 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Data
+
+test.Data = function() {
+}
+test.Data.prototype = {
+    _value: 0,
+    
+    get_value: function() {
+        return this._value;
+    },
+    set_value: function(value) {
+        this._value = value;
+        return value;
+    },
+    
+    get_flag: function() {
+        return true;
+    },
+    set_flag: function(value) {
+        return value;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+}
+test.App.prototype = {
+    
+    get_foo: function() {
+        return 0;
+    },
+    set_foo: function(value) {
+        return value;
+    },
+    
+    get_bar: function() {
+        return 0;
+    },
+    set_bar: function(value) {
+        return value;
+    },
+    
+    get_data: function() {
+        return new test.Data();
+    },
+    set_data: function(value) {
+        return value;
+    },
+    
+    get_flag1: function() {
+        return this.get_data().get_flag();
+    },
+    
+    get_flag2: function() {
+        return test.Data.staticFlag;
+    },
+    
+    test: function(arg1, arg2) {
+        var sum = arg1 + arg2;
+        sum += arg2 * -1;
+        sum = arg1 - arg2;
+        sum = arg1 * arg2;
+        sum = arg1 / arg2;
+        sum = arg1 ^ arg2;
+        sum = arg1 >> 2;
+        sum *= arg2;
+        sum ^= arg2;
+        var f = arg1;
+        var s = (f + 1).toExponential();
+        var len = (10 + s).length;
+        var b = (f < 10);
+        sum = arg1 + (arg2 + 1) * 10;
+        sum = arg1 + (arg2 + ~arg1) * (arg1 - 10);
+        var b2 = Type.canCast(sum, Number);
+        var o = Type.safeCast(b, ss.IDisposable);
+        this.set_foo(this.get_foo() + 10);
+        this.set_foo(this.get_foo() - this.get_bar());
+        sum = sum << 1;
+        sum <<= 1;
+        var xyz;
+        var abc;
+        abc = xyz << 1;
+        abc = xyz >>> 2;
+        abc <<= 1;
+        xyz >>>= 1;
+        var d = new test.Data();
+        d.set_value(d.get_value() + 5);
+        d.set_flag((d.get_flag() | true) === 1);
+        var o1 = null || {};
+        var s2 = (10).toString();
+        s2 = (100).toString();
+        s2 = true.toString();
+        s2 = (10.1).toString();
+        s2 = 'aaa';
+    },
+    
+    bitwiseBooleans: function() {
+        var a = (true & false) === 1;
+        var b = (true | false) === 1;
+        var c = (true ^ false) === 1;
+        a = (a & true) === 1;
+        b = (b | true) === 1;
+        c = (c ^ true) === 1;
+        a = (a | (a || a)) === 1;
+        var d = new test.Data();
+        d.set_flag((d.get_flag() & true) === 1);
+        d.set_flag((d.get_flag() | true) === 1);
+        d.set_flag((d.get_flag() ^ true) === 1);
+    }
+}
+
+
+test.Data.registerClass('test.Data');
+test.App.registerClass('test.App');
+test.Data.staticFlag = false;

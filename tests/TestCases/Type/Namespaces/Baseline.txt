@@ -1,0 +1,95 @@
+Type.registerNamespace('TypeTests.Sub1.Sub2');
+
+////////////////////////////////////////////////////////////////////////////////
+// TypeTests.Sub1.Sub2.MyClass
+
+TypeTests.Sub1.Sub2.MyClass = function TypeTests_Sub1_Sub2_MyClass() {
+    var yc = new TypeTests.Sub1.YourClass();
+    yc.run();
+}
+
+
+Type.registerNamespace('TypeTests.Sub1');
+
+////////////////////////////////////////////////////////////////////////////////
+// TypeTests.Sub1.YourClass
+
+TypeTests.Sub1.YourClass = function TypeTests_Sub1_YourClass() {
+}
+TypeTests.Sub1.YourClass.prototype = {
+    
+    run: function TypeTests_Sub1_YourClass$run() {
+    }
+}
+
+
+Type.registerNamespace('TypeTests');
+
+////////////////////////////////////////////////////////////////////////////////
+// TypeTests.YourClass
+
+TypeTests.YourClass = function TypeTests_YourClass() {
+}
+
+
+Type.registerNamespace('MyApp.Foo');
+
+////////////////////////////////////////////////////////////////////////////////
+// MyApp.Foo.MyClass
+
+MyApp.Foo.MyClass = function MyApp_Foo_MyClass() {
+}
+
+
+Type.registerNamespace('MyApp');
+
+////////////////////////////////////////////////////////////////////////////////
+// MyApp.Test
+
+MyApp.Test = function MyApp_Test() {
+    var c = new TypeTests.Sub1.Sub2.MyClass();
+}
+
+
+Type.registerNamespace('MyCompany');
+
+////////////////////////////////////////////////////////////////////////////////
+// MyCompany.Utility
+
+MyCompany.Utility = function MyCompany_Utility() {
+}
+MyCompany.Utility.prototype = {
+    
+    run: function MyCompany_Utility$run() {
+    }
+}
+
+
+Type.registerNamespace('MyCompany.MyProduct');
+
+////////////////////////////////////////////////////////////////////////////////
+// MyCompany.MyProduct.Utility
+
+MyCompany.MyProduct.Utility = function MyCompany_MyProduct_Utility() {
+}
+
+
+Type.registerNamespace('MyCompany.MyProduct.MyComponent');
+
+////////////////////////////////////////////////////////////////////////////////
+// MyCompany.MyProduct.MyComponent.Component
+
+MyCompany.MyProduct.MyComponent.Component = function MyCompany_MyProduct_MyComponent_Component() {
+    var u = new MyCompany.Utility();
+    u.run();
+}
+
+
+TypeTests.Sub1.Sub2.MyClass.registerClass('TypeTests.Sub1.Sub2.MyClass');
+TypeTests.Sub1.YourClass.registerClass('TypeTests.Sub1.YourClass');
+TypeTests.YourClass.registerClass('TypeTests.YourClass');
+MyApp.Foo.MyClass.registerClass('MyApp.Foo.MyClass');
+MyApp.Test.registerClass('MyApp.Test');
+MyCompany.Utility.registerClass('MyCompany.Utility');
+MyCompany.MyProduct.Utility.registerClass('MyCompany.MyProduct.Utility');
+MyCompany.MyProduct.MyComponent.Component.registerClass('MyCompany.MyProduct.MyComponent.Component');

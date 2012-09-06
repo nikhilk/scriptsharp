@@ -1,0 +1,13 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.MyClass
+
+test.MyClass = function test_MyClass() {
+    var body = document.body;
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(body);
+}
+
+
+test.MyClass.registerClass('test.MyClass');

@@ -1,0 +1,77 @@
+////////////////////////////////////////////////////////////////////////////////
+// MyRecord
+
+window.$create_MyRecord = function MyRecord() { return {}; }
+
+
+////////////////////////////////////////////////////////////////////////////////
+// MyEnum
+
+window.MyEnum = function() { };
+MyEnum.prototype = {
+}
+MyEnum.registerEnum('MyEnum', false);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// IXyzInterface
+
+window.IXyzInterface = function() { };
+IXyzInterface.prototype = {
+
+}
+IXyzInterface.registerInterface('IXyzInterface');
+
+
+////////////////////////////////////////////////////////////////////////////////
+// MyClass
+
+window.MyClass = function MyClass() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// MyClass2
+
+window.MyClass2 = function MyClass2() {
+    MyClass2.initializeBase(this);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// MyClass3
+
+window.MyClass3 = function MyClass3() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// MyClass4
+
+window.MyClass4 = function MyClass4() {
+    MyClass4.initializeBase(this);
+}
+MyClass4.prototype = {
+    
+    someMethod: function MyClass4$someMethod() {
+        var xyz = null;
+        var c2 = new MyClass2();
+        xyz = Type.safeCast(c2, IXyzInterface);
+    }
+}
+
+
+Type.registerNamespace('Foo');
+
+////////////////////////////////////////////////////////////////////////////////
+// Foo.MyClass
+
+Foo.MyClass = function Foo_MyClass() {
+}
+
+
+MyClass.registerClass('MyClass');
+MyClass2.registerClass('MyClass2', MyClass);
+MyClass3.registerClass('MyClass3', null, ss.IDisposable);
+MyClass4.registerClass('MyClass4', MyClass, ss.IDisposable);
+Foo.MyClass.registerClass('Foo.MyClass');

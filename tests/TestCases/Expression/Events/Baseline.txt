@@ -1,0 +1,100 @@
+Type.registerNamespace('test');
+
+////////////////////////////////////////////////////////////////////////////////
+// test.FooEventArgs
+
+test.FooEventArgs = function() {
+    test.FooEventArgs.initializeBase(this);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.Button
+
+test.Button = function() {
+}
+test.Button.add_test = function(value) {
+    test.Button.__test = ss.Delegate.combine(test.Button.__test, value);
+}
+test.Button.remove_test = function(value) {
+    test.Button.__test = ss.Delegate.remove(test.Button.__test, value);
+}
+test.Button.prototype = {
+    _aaa: null,
+    _bbb: null,
+    
+    add_click: function(value) {
+        this.__click = ss.Delegate.combine(this.__click, value);
+    },
+    remove_click: function(value) {
+        this.__click = ss.Delegate.remove(this.__click, value);
+    },
+    
+    __click: null,
+    
+    add_aaa: function(value) {
+        if (this._aaa == null) {
+            this._aaa = value;
+        }
+        else {
+            this._aaa = ss.Delegate.combine(this._aaa, value);
+        }
+    },
+    remove_aaa: function(value) {
+        this._aaa = ss.Delegate.remove(this._aaa, value);
+    },
+    
+    add_bbb: function(value) {
+        if (this._bbb == null) {
+            this._bbb = value;
+        }
+        else {
+            this._bbb = ss.Delegate.combine(this._bbb, value);
+        }
+    },
+    remove_bbb: function(value) {
+        this._bbb = ss.Delegate.remove(this._bbb, value);
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// test.App
+
+test.App = function() {
+    this._btn.add_click(ss.Delegate.create(this, this.onClickButton));
+    this._btn.add_click(ss.Delegate.create(this, this.onClickButton));
+    this._btn.add_click(ss.Delegate.create(this, this.onClickButton));
+    this._btn.remove_click(ss.Delegate.create(this, this.onClickButton));
+    this._btn.remove_click(ss.Delegate.create(this, this.onClickButton));
+    this._btn.remove_click(ss.Delegate.create(this, this.onClickButton));
+    test.Button.add_test(test.App.onTestButton);
+    test.Button.add_test(test.App.onTestButton);
+    test.Button.add_test(test.App.onTestButton);
+    test.Button.remove_test(test.App.onTestButton);
+    test.Button.remove_test(test.App.onTestButton);
+    test.Button.remove_test(test.App.onTestButton);
+    this._btn.add_aaa(ss.Delegate.create(this, this.onAAAButton));
+    this._btn.add_aaa(ss.Delegate.create(this, this.onAAAButton));
+    this._btn.add_aaa(ss.Delegate.create(this, this.onAAAButton));
+    this._btn.remove_aaa(ss.Delegate.create(this, this.onAAAButton));
+    this._btn.remove_aaa(ss.Delegate.create(this, this.onAAAButton));
+    this._btn.remove_aaa(ss.Delegate.create(this, this.onAAAButton));
+}
+test.App.onTestButton = function(sender, e) {
+}
+test.App.prototype = {
+    _btn: null,
+    
+    onAAAButton: function(sender, e) {
+    },
+    
+    onClickButton: function(sender, e) {
+    }
+}
+
+
+test.FooEventArgs.registerClass('test.FooEventArgs', ss.EventArgs);
+test.Button.registerClass('test.Button');
+test.App.registerClass('test.App');
+test.Button.__test = null;
