@@ -232,6 +232,10 @@ namespace System {
             return false;
         }
 
+        public static bool IsNullOrWhiteSpace(string s) {
+            return false;
+        }
+
         public int LastIndexOf(Char ch) {
             return 0;
         }
