@@ -138,6 +138,10 @@ String.isNullOrEmpty = function#? DEBUG String$isNullOrEmpty##(s) {
     return !s || !s.length;
 }
 
+String.isNullOrWhiteSpace = function#? DEBUG String$isNullOrWhiteSpace##(s) {
+    return String.isNullOrEmpty(s) || s.trim() === "";
+}
+
 String.prototype.lastIndexOfAny = function#? DEBUG String$lastIndexOfAny##(chars, startIndex, count) {
     var length = this.length;
     if (!length) {
