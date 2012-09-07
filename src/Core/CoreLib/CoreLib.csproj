@@ -43,6 +43,10 @@
     <DocumentationFile>..\..\..\bin\Release\mscorlib.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collections\ArrayReduceCallback.cs" />
+    <Compile Include="Collections\ArrayItemReduceCallback.cs" />
+    <Compile Include="Collections\Generic\ListReduceCallback.cs" />
+    <Compile Include="Collections\Generic\ListItemReduceCallback.cs" />
     <Compile Include="Collections\Generic\ListMapCallback.cs" />
     <Compile Include="Collections\Generic\ListItemMapCallback.cs" />
     <Compile Include="Collections\Generic\CompareCallback.cs" />
@@ -51,8 +55,6 @@
     <Compile Include="Collections\Generic\ListCallback.cs" />
     <Compile Include="Collections\Generic\ListItemFilterCallback.cs" />
     <Compile Include="Collections\Generic\ListFilterCallback.cs" />
-    <Compile Include="Collections\Generic\ListAggregator.cs" />
-    <Compile Include="Collections\Generic\ListItemAggregator.cs" />
     <Compile Include="Collections\Generic\ObservableCollection.cs" />
     <Compile Include="Collections\Generic\Stack.cs" />
     <Compile Include="Collections\Generic\Queue.cs" />
@@ -97,11 +99,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Array.cs" />
-    <Compile Include="Collections\ArrayAggregator.cs" />
     <Compile Include="Collections\ArrayCallback.cs" />
     <Compile Include="Collections\ArrayFilterCallback.cs" />
     <Compile Include="Collections\ArrayGrouping.cs" />
-    <Compile Include="Collections\ArrayItemAggregator.cs" />
     <Compile Include="Collections\ArrayItemCallback.cs" />
     <Compile Include="Collections\ArrayItemFilterCallback.cs" />
     <Compile Include="Collections\ArrayItemKeyGenerator.cs" />

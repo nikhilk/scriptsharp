@@ -1,4 +1,4 @@
-// ListAggregator.cs
+// ListReduceCallback.cs
 // Script#/Libraries/CoreLib
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -9,5 +9,5 @@ namespace System.Collections.Generic {
 
     [IgnoreNamespace]
     [Imported]
-    public delegate TAccumulated ListAggregator<TAccumulated, TValue>(TAccumulated aggregatedValue, TValue value, int index, IReadonlyCollection<TValue> list);
+    public delegate TReduced ListReduceCallback<TReduced, TValue>(TReduced previousValue, TValue value, int index, List<TValue> list);
 }

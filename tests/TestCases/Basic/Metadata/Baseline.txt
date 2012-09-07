@@ -323,11 +323,6 @@ Types:
                 AssociatedType: Int32
                 Visibility: Public
                 Generated Name: length
-            Method: Aggregate
-                AssociatedType: Object
-                Visibility: Public
-                Generated Name: aggregate
-                Abstract: False
             Method: Clone
                 AssociatedType: Array
                 Visibility: Public
@@ -388,6 +383,11 @@ Types:
                 Visibility: Public
                 Generated Name: join
                 Abstract: False
+            Method: LastIndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: lastIndexOf
+                Abstract: False
             Method: Map
                 AssociatedType: Array
                 Visibility: Public
@@ -398,10 +398,30 @@ Types:
                 Visibility: Public, Static
                 Generated Name: parse
                 Abstract: False
+            Method: Reduce
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: reduce
+                Abstract: False
+            Method: ReduceRight
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: reduceRight
+                Abstract: False
             Method: Reverse
                 AssociatedType: Void
                 Visibility: Public
                 Generated Name: reverse
+                Abstract: False
+            Method: Shift
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: shift
+                Abstract: False
+            Method: Slice
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: slice
                 Abstract: False
             Method: Some
                 AssociatedType: Boolean
@@ -413,10 +433,20 @@ Types:
                 Visibility: Public
                 Generated Name: sort
                 Abstract: False
+            Method: Splice
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: splice
+                Abstract: False
             Method: ToArray
                 AssociatedType: Array
                 Visibility: Public, Static
                 Generated Name: toArray
+                Abstract: False
+            Method: Unshift
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: unshift
                 Abstract: False
         
     Class: Boolean
@@ -1760,6 +1790,11 @@ Types:
                 Visibility: Public, Static
                 Generated Name: isNullOrEmpty
                 Abstract: False
+            Method: IsNullOrWhiteSpace
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isNullOrWhiteSpace
+                Abstract: False
             Method: LastIndexOf
                 AssociatedType: Int32
                 Visibility: Public
@@ -2102,17 +2137,6 @@ Types:
 Namespace: System.Collections
 HasApplicationTypes: False
 Types:
-    Delegate: ArrayAggregator
-        Application Type: False
-        Public: True
-        Generated Name: Function
-        Members:
-            Method: Invoke
-                AssociatedType: Object
-                Visibility: Public
-                Generated Name: 
-                Abstract: True
-        
     Delegate: ArrayCallback
         Application Type: False
         Public: True
@@ -2156,11 +2180,6 @@ Types:
                 AssociatedType: Int32
                 Visibility: Public
                 Generated Name: length
-            Method: Aggregate
-                AssociatedType: Object
-                Visibility: Public
-                Generated Name: aggregate
-                Abstract: False
             Method: Clone
                 AssociatedType: Array
                 Visibility: Public
@@ -2221,6 +2240,11 @@ Types:
                 Visibility: Public
                 Generated Name: join
                 Abstract: False
+            Method: LastIndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: lastIndexOf
+                Abstract: False
             Method: Map
                 AssociatedType: Array
                 Visibility: Public
@@ -2241,17 +2265,6 @@ Types:
                 Visibility: Public
                 Generated Name: sort
                 Abstract: False
-        
-    Delegate: ArrayItemAggregator
-        Application Type: False
-        Public: True
-        Generated Name: Function
-        Members:
-            Method: Invoke
-                AssociatedType: Object
-                Visibility: Public
-                Generated Name: 
-                Abstract: True
         
     Delegate: ArrayItemCallback
         Application Type: False
@@ -2297,6 +2310,17 @@ Types:
                 Generated Name: 
                 Abstract: True
         
+    Delegate: ArrayItemReduceCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
     Class: ArrayList
         Application Type: False
         Public: True
@@ -2323,11 +2347,6 @@ Types:
                 AssociatedType: Void
                 Visibility: Public
                 Generated Name: addRange
-                Abstract: False
-            Method: Aggregate
-                AssociatedType: Object
-                Visibility: Public
-                Generated Name: aggregate
                 Abstract: False
             Method: Clone
                 AssociatedType: ArrayList
@@ -2404,6 +2423,11 @@ Types:
                 Visibility: Public
                 Generated Name: join
                 Abstract: False
+            Method: LastIndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: lastIndexOf
+                Abstract: False
             Method: Map
                 AssociatedType: Array
                 Visibility: Public
@@ -2413,6 +2437,16 @@ Types:
                 AssociatedType: ArrayList
                 Visibility: Public, Static
                 Generated Name: parse
+                Abstract: False
+            Method: Reduce
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: reduce
+                Abstract: False
+            Method: ReduceRight
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: reduceRight
                 Abstract: False
             Method: Remove
                 AssociatedType: Boolean
@@ -2434,6 +2468,16 @@ Types:
                 Visibility: Public
                 Generated Name: reverse
                 Abstract: False
+            Method: Shift
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: shift
+                Abstract: False
+            Method: Slice
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: slice
+                Abstract: False
             Method: Some
                 AssociatedType: Boolean
                 Visibility: Public
@@ -2444,8 +2488,29 @@ Types:
                 Visibility: Public
                 Generated Name: sort
                 Abstract: False
+            Method: Splice
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: splice
+                Abstract: False
+            Method: Unshift
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: unshift
+                Abstract: False
         
     Delegate: ArrayMapCallback
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: Object
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ArrayReduceCallback
         Application Type: False
         Public: True
         Generated Name: Function
@@ -2899,11 +2964,6 @@ Types:
                 Visibility: Public
                 Generated Name: addRange
                 Abstract: False
-            Method: Aggregate
-                AssociatedType: TAccumulated
-                Visibility: Public
-                Generated Name: aggregate
-                Abstract: False
             Method: Clone
                 AssociatedType: List`1
                 Visibility: Public
@@ -2974,6 +3034,11 @@ Types:
                 Visibility: Public
                 Generated Name: join
                 Abstract: False
+            Method: LastIndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: lastIndexOf
+                Abstract: False
             Method: Map
                 AssociatedType: List`1
                 Visibility: Public
@@ -2983,6 +3048,16 @@ Types:
                 AssociatedType: List`1
                 Visibility: Public, Static
                 Generated Name: parse
+                Abstract: False
+            Method: Reduce
+                AssociatedType: TReduced
+                Visibility: Public
+                Generated Name: reduce
+                Abstract: False
+            Method: ReduceRight
+                AssociatedType: TReduced
+                Visibility: Public
+                Generated Name: reduceRight
                 Abstract: False
             Method: Remove
                 AssociatedType: Boolean
@@ -3004,6 +3079,11 @@ Types:
                 Visibility: Public
                 Generated Name: reverse
                 Abstract: False
+            Method: Slice
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: slice
+                Abstract: False
             Method: Some
                 AssociatedType: Boolean
                 Visibility: Public
@@ -3014,17 +3094,16 @@ Types:
                 Visibility: Public
                 Generated Name: sort
                 Abstract: False
-        
-    Delegate: ListAggregator`2
-        Application Type: False
-        Public: True
-        Generated Name: Function
-        Members:
-            Method: Invoke
-                AssociatedType: TAccumulated
+            Method: Splice
+                AssociatedType: Void
                 Visibility: Public
-                Generated Name: 
-                Abstract: True
+                Generated Name: splice
+                Abstract: False
+            Method: Unshift
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: unshift
+                Abstract: False
         
     Delegate: ListCallback`1
         Application Type: False
@@ -3069,11 +3148,6 @@ Types:
                 AssociatedType: Int32
                 Visibility: Public
                 Generated Name: length
-            Method: Aggregate
-                AssociatedType: TAccumulated
-                Visibility: Public
-                Generated Name: aggregate
-                Abstract: False
             Method: Contains
                 AssociatedType: Boolean
                 Visibility: Public
@@ -3119,6 +3193,11 @@ Types:
                 Visibility: Public
                 Generated Name: join
                 Abstract: False
+            Method: LastIndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: lastIndexOf
+                Abstract: False
             Method: Map
                 AssociatedType: List`1
                 Visibility: Public
@@ -3134,17 +3213,6 @@ Types:
                 Visibility: Public
                 Generated Name: some
                 Abstract: False
-        
-    Delegate: ListItemAggregator`2
-        Application Type: False
-        Public: True
-        Generated Name: Function
-        Members:
-            Method: Invoke
-                AssociatedType: TAccumulated
-                Visibility: Public
-                Generated Name: 
-                Abstract: True
         
     Delegate: ListItemCallback`1
         Application Type: False
@@ -3190,6 +3258,17 @@ Types:
                 Generated Name: 
                 Abstract: True
         
+    Delegate: ListItemReduceCallback`2
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TReduced
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
     Delegate: ListMapCallback`2
         Application Type: False
         Public: True
@@ -3197,6 +3276,17 @@ Types:
         Members:
             Method: Invoke
                 AssociatedType: TTarget
+                Visibility: Public
+                Generated Name: 
+                Abstract: True
+        
+    Delegate: ListReduceCallback`2
+        Application Type: False
+        Public: True
+        Generated Name: Function
+        Members:
+            Method: Invoke
+                AssociatedType: TReduced
                 Visibility: Public
                 Generated Name: 
                 Abstract: True

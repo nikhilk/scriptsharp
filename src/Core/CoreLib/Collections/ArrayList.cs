@@ -53,14 +53,6 @@ namespace System.Collections {
         public void AddRange(ArrayList items) {
         }
 
-        public object Aggregate(object seedValue, ArrayAggregator aggregator) {
-            return null;
-        }
-
-        public object Aggregate(object seedValue, ArrayItemAggregator aggregator) {
-            return null;
-        }
-
         public ArrayList Clone() {
             return null;
         }
@@ -140,6 +132,14 @@ namespace System.Collections {
             return null;
         }
 
+        public int LastIndexOf(object item) {
+            return 0;
+        }
+
+        public int LastIndexOf(object item, int fromIndex) {
+            return 0;
+        }
+
         public Array Map(ArrayMapCallback mapCallback) {
             return null;
         }
@@ -149,6 +149,38 @@ namespace System.Collections {
         }
 
         public static ArrayList Parse(string s) {
+            return null;
+        }
+
+        public object Reduce(ArrayReduceCallback callback) {
+            return null;
+        }
+
+        public object Reduce(ArrayReduceCallback callback, object initialValue) {
+            return null;
+        }
+
+        public object Reduce(ArrayItemReduceCallback callback) {
+            return null;
+        }
+
+        public object Reduce(ArrayItemReduceCallback callback, object initialValue) {
+            return null;
+        }
+
+        public object ReduceRight(ArrayReduceCallback callback) {
+            return null;
+        }
+
+        public object ReduceRight(ArrayReduceCallback callback, object initialValue) {
+            return null;
+        }
+
+        public object ReduceRight(ArrayItemReduceCallback callback) {
+            return null;
+        }
+
+        public object ReduceRight(ArrayItemReduceCallback callback, object initialValue) {
             return null;
         }
 
@@ -166,6 +198,18 @@ namespace System.Collections {
         public void Reverse() {
         }
 
+        public object Shift() {
+            return null;
+        }
+
+        public Array Slice(int start) {
+            return null;
+        }
+
+        public Array Slice(int start, int end) {
+            return null;
+        }
+
         public bool Some(ArrayFilterCallback filterCallback) {
             return false;
         }
@@ -178,6 +222,15 @@ namespace System.Collections {
         }
 
         public void Sort(CompareCallback compareCallback) {
+        }
+
+        public void Splice(int start, int deleteCount) {
+        }
+
+        public void Splice(int start, int deleteCount, params object[] itemsToInsert) {
+        }
+
+        public void Unshift(params object[] items) {
         }
 
         public static explicit operator Array(ArrayList list) {

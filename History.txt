@@ -23,7 +23,15 @@ v0.7.6
       static ctors have a local variable reference.
       Should help optimize generation of jQuery scripts, by reducing one extra
       function scope.
+    - Removed Aggregate method from Array, ArrayList and List. Use Reduce instead.
+      Removed the corresponding custom implementation from mscorlib.js.
     - [git #131] Correctly detect member references within array initializers
+    - [git #161] Add Slice, Splice, Shift, Unshift, Reduce, ReduceRight to
+                 Array, ArrayList and List.
+    - [git #228] Restore ability to generate public resource classes
+                 (Change Custom Tool property of resx file to
+                 ResxPublicScriptGenerator)
+    - [git #230] Add String.IsNullOrWhitespace
 
 v0.7.5.0
     - DOM metadata update (readyState property on Document,
