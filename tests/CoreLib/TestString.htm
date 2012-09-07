@@ -85,5 +85,15 @@ test('htmlDecode', function() {
   QUnit.equal('&lt;h1&gt;a &quot;aaa&quot; &amp; a &quot;bbb&quot;&lt;/h1&gt;'.htmlDecode(), '<h1>a "aaa" & a "bbb"</h1>');
 });
 
+test('isNullOrWhiteSpace', function () {
+  QUnit.equal(String.isNullOrWhiteSpace(null), true, 'null should be true');
+  QUnit.equal(String.isNullOrWhiteSpace(undefined), true, 'undefined should be true');
+  QUnit.equal(String.isNullOrWhiteSpace(), true, 'no param, should be true');
+  QUnit.equal(String.isNullOrWhiteSpace(""), true, 'empty string, should be true');
+  QUnit.equal(String.isNullOrWhiteSpace(" "), true, 'white space, should be true');
+  QUnit.equal(String.isNullOrWhiteSpace("   "), true, 'triple white space, should be true');
+  QUnit.equal(String.isNullOrWhiteSpace("aaa"), false, 'aaa, should be false');
+});
+
 </script>
 </html>
