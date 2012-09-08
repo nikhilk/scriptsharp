@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Photo Tiles</title>
+  <style type="text/css">
+    body { background-color: white; text-align: center; }
+    input, button { font-family: Segoe UI; font-size: 11pt; }
+    #searchForm, #thumbsList { margin-bottom: 10px; }
+    #thumbsList { font-size: 0pt; }
+    #thumbsList li { display: inline-block; background: white; box-sizing: border-box; margin: 10px; }
+    #thumbsList li a { text-decoration: none; background-size: cover; background-repeat: no-repeat; background-position: center center; display: inline-block; box-shadow: 0 0 15px #888; }
+    #thumbsList li img { display: none; }
+  </style>
+  <link rel="stylesheet" type="text/css" href="/Content/jquery.lightbox-0.5.css" />
+  <link rel="stylesheet" type="text/css" href="/Content/jquery.gridster.css" />
+</head>
+<body data-flickr-key="be9b6f66bd7a1c0c0f1465a1b7e8a764">
+  <form id="searchForm">
+    <input type="search" id="tagsTextBox" size="40" placeholder="search for interestingness" />
+    <button type="submit" id="searchButton">Search</button><br />
+  </form>
+  <div id="photoTiles">
+    <ul id="thumbsList"></ul>
+  </div>
+  <script type="text/html" id="bigThumbnailTemplate">
+    <li data-sizex="2" data-sizey="2" data-row="1" data-col="1">
+      <a href="${imageUrl}" title="${title}" style="width: 280px; height: 280px; background-image: url(${imageUrl})">
+        <img src="${imageUrl}" title="${title}" />
+      </a>
+    </li>
+  </script>
+  <script type="text/html" id="sqThumbnailTemplate">
+    <li data-sizex="1" data-sizey="1" data-row="1" data-col="1">
+      <a href="${imageUrl}" title="${title}" style="width: 140px; height: 140px; background-image: url(${imageUrl})">
+        <img src="${imageUrl}" title="${title}" />
+      </a>
+    </li>
+  </script>
+  <script type="text/html" id="horzThumbnailTemplate">
+    <li data-sizex="2" data-sizey="1" data-row="1" data-col="1">
+      <a href="${imageUrl}" title="${title}" style="width: 280px; height: 140px; background-image: url(${imageUrl})">
+        <img src="${imageUrl}" title="${title}" />
+      </a>
+    </li>
+  </script>
+  <script type="text/html" id="vertThumbnailTemplate">
+    <li data-sizex="1" data-sizey="2" data-row="1" data-col="1">
+      <a href="${imageUrl}" title="${title}" style="width: 140px; height: 280px; background-image: url(${imageUrl})">
+        <img src="${imageUrl}" title="${title}" />
+      </a>
+    </li>
+  </script>
+  <script type="text/javascript" src="/Scripts/mscorlib.debug.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/Scripts/jquery.tmpl.js"></script>
+  <script type="text/javascript" src="/Scripts/jquery.lightbox-0.5.js"></script>
+  <script type="text/javascript" src="/Scripts/jquery.gridster.js"></script>
+  <script type="text/javascript" src="/Scripts/Photos.debug.js"></script>
+  <script type="text/javascript" src="/Scripts/PhotoTiles.debug.js"></script>
+</body>
+</html>

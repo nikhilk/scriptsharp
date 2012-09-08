@@ -49,7 +49,8 @@ namespace Photos {
                                              Int32.Parse(photoResult.Width_m),
                                              Int32.Parse(photoResult.Height_m),
                                              Int32.Parse(photoResult.Width_t),
-                                             Int32.Parse(photoResult.Height_t));
+                                             Int32.Parse(photoResult.Height_t),
+                                             photoResult.Url_sq);
                     });
 
                     return photos;

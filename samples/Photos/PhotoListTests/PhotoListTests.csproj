@@ -32,8 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ScriptSharp.Testing, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ScriptSharp.Testing">
       <HintPath>..\packages\ScriptSharp.Testing.0.7.5.0\lib\ScriptSharp.Testing.dll</HintPath>
     </Reference>
     <Reference Include="System" />

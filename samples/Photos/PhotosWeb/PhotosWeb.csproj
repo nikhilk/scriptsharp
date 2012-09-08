@@ -60,10 +60,13 @@
     <Content Include="Content\Images\lightbox-btn-next.gif" />
     <Content Include="Content\Images\lightbox-btn-prev.gif" />
     <Content Include="Content\Images\lightbox-ico-loading.gif" />
+    <Content Include="Content\jquery.gridster.css" />
     <Content Include="Content\jquery.lightbox-0.5.css" />
+    <Content Include="PhotoTiles.htm" />
     <Content Include="PhotoGrid.htm" />
     <Content Include="PhotoList.htm" />
     <Content Include="Scripts\jquery.bbq.js" />
+    <Content Include="Scripts\jquery.gridster.js" />
     <Content Include="Scripts\jquery.isotope.min.js" />
     <Content Include="Scripts\jquery.lightbox-0.5.js" />
     <Content Include="Scripts\jquery.tmpl.js" />
