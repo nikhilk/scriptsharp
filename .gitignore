@@ -4,6 +4,5 @@ obj/
 *.user
 *.cache
 *.trx
-Scripts/
 packages/
 TestResults/
