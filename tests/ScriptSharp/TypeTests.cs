@@ -103,26 +103,6 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
-        public void TestScriptNamespaces() {
-            RunTest((c) => {
-                c.AddSource("LibraryAssemblyInfo.cs").
-                  AddSource("LibraryFeature.cs").
-                  AddSource("LibraryMyLib.cs");
-                c.Options.DebugFlavor = true;
-            }, "LibraryBaseline.txt");
-
-            RunTest((c) => {
-                c.AddReference("Lib.dll").
-                  AddSource("AppAssemblyInfo.cs").
-                  AddSource("AppFeature.cs").
-                  AddSource("AppMyApp.cs").
-                  AddSource("AppFoo.1.cs").
-                  AddSource("AppFoo.2.cs");
-                c.Options.DebugFlavor = true;
-            }, "AppBaseline.txt");
-        }
-
-        [TestMethod]
         public void TestUsingAlias() {
             RunTest((c) => {
                 c.AddReference("Script.Web.dll").
