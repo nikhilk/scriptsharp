@@ -1676,6 +1676,13 @@ Types:
         Public: True
         Generated Name: String
         Global Methods: False
+        Indexer:
+            Indexer: Item
+                AssociatedType: Char
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: True
+                Abstract: False
         Members:
             Field: Empty
                 AssociatedType: String

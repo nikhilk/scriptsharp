@@ -36,6 +36,18 @@ namespace System {
         /// </summary>
         /// <param name="index">The specified 0-based position.</param>
         /// <returns>The character within the string.</returns>
+        [IntrinsicProperty]
+        public char this[int index] {
+            get {
+                return '\0';
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the character at the specified position.
+        /// </summary>
+        /// <param name="index">The specified 0-based position.</param>
+        /// <returns>The character within the string.</returns>
         public char CharAt(int index) {
             return '\0';
         }
@@ -357,6 +369,10 @@ namespace System {
         }
 
         public string Substr(int startIndex, int length) {
+            return null;
+        }
+
+        public string Substring(int startIndex) {
             return null;
         }
 
