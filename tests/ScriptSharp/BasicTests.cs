@@ -30,6 +30,27 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestDependencies() {
+            RunTest((c) => {
+                c.AddReference("Lib1.dll").
+                  AddReference("Lib2.dll").
+                  AddReference("Lib3.dll").
+                  AddTemplate("Template.js").
+                  AddSource("Code1.cs");
+                c.Options.DebugFlavor = true;
+            }, "Code1Baseline.txt");
+
+            RunTest((c) => {
+                c.AddReference("Lib1.dll").
+                  AddReference("Lib2.dll").
+                  AddReference("Lib3.dll").
+                  AddTemplate("Template.js").
+                  AddSource("Code2.cs");
+                c.Options.DebugFlavor = true;
+            }, "Code2Baseline.txt");
+        }
+
+        [TestMethod]
         public void TestDocComments() {
             RunTest((c) => {
                 c.AddReference("Script.Web.dll").

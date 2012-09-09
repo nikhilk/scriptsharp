@@ -1,0 +1,20 @@
+define('test', [ 'ss','lib1','comp3','comp4' ], function(ss,lib1,comp3,comp4) {
+
+
+Type.registerNamespace('BasicTests');
+
+////////////////////////////////////////////////////////////////////////////////
+// BasicTests.App
+
+BasicTests.App = function BasicTests_App() {
+    var c1 = new lib1.Component1();
+    var c2 = new Component2();
+    var c3 = new comp3.Component3();
+    var c4 = new Component4();
+}
+
+
+BasicTests.App.registerClass('BasicTests.App');
+
+});
+ 

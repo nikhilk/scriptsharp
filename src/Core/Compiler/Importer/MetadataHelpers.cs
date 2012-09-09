@@ -46,6 +46,15 @@ namespace ScriptSharp.Importer {
             return null;
         }
 
+        public static string GetScriptDependencyName(ICustomAttributeProvider attributeProvider) {
+            CustomAttribute scriptAssemblyAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptDependencyAttribute");
+            if (scriptAssemblyAttribute != null) {
+                return GetAttributeArgument(scriptAssemblyAttribute);
+            }
+
+            return null;
+        }
+
         public static string GetScriptName(ICustomAttributeProvider attributeProvider) {
             CustomAttribute scriptAssemblyAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptNameAttribute");
             if (scriptAssemblyAttribute != null) {

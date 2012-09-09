@@ -705,10 +705,14 @@ namespace ScriptSharp.Compiler {
             ParseNodeList attributes = typeNode.Attributes;
 
             if (AttributeNode.FindAttribute(attributes, "Imported") != null) {
-                typeSymbol.SetImported(/* dependencyName */ null);
+                string dependencyName = GetAttributeValue(attributes, "ScriptDependency");
+                typeSymbol.SetImported(dependencyName);
 
                 if (AttributeNode.FindAttribute(attributes, "IgnoreNamespace") != null) {
                     typeSymbol.SetIgnoreNamespace();
+                }
+                else {
+                    typeSymbol.ScriptNamespace = dependencyName;
                 }
             }
 

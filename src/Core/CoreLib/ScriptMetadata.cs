@@ -57,6 +57,28 @@ namespace System.Runtime.CompilerServices {
     }
 
     /// <summary>
+    /// Marks a type with a script dependency that is required at runtime.
+    /// The specified name is used as the name of the dependency, and the runtime identifier.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Type, Inherited = false, AllowMultiple = false)]
+    [NonScriptable]
+    [Imported]
+    public sealed class ScriptDependencyAttribute : Attribute {
+
+        private string _name;
+
+        public ScriptDependencyAttribute(string name) {
+            _name = name;
+        }
+
+        public string Name {
+            get {
+                return _name;
+            }
+        }
+    }
+
+    /// <summary>
     /// This attribute indicates that the namespace of type within a system assembly
     /// should be ignored at script generation time. It is useful for creating namespaces
     /// for the purpose of c# code that don't exist at runtime.

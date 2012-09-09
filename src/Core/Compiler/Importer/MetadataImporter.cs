@@ -736,12 +736,16 @@ namespace ScriptSharp.Importer {
                     typeSymbol.AddGenericParameters(genericArguments);
                 }
 
-                typeSymbol.SetImported(assemblyScriptName);
+                string dependencyName = MetadataHelpers.GetScriptDependencyName(type);
+                typeSymbol.SetImported(dependencyName);
                 typeSymbol.SetMetadataToken(type, inScriptCoreAssembly);
 
                 bool ignoreNamespace = MetadataHelpers.ShouldIgnoreNamespace(type);
                 if (ignoreNamespace) {
                     typeSymbol.SetIgnoreNamespace();
+                }
+                else {
+                    typeSymbol.ScriptNamespace = dependencyName;
                 }
                 typeSymbol.SetPublic();
 
