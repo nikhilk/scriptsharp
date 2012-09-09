@@ -357,14 +357,25 @@ namespace ScriptSharp {
                 }
                 return _symbols.ScriptName;
             }
-            if (String.CompareOrdinal(name, "ExecutionDependencies") == 0) {
-                if (_options.ExecutionDependencies == null) {
-                    return String.Empty;
-                }
-
+            if (String.CompareOrdinal(name, "DependencyNames") == 0) {
                 bool first = true;
                 StringBuilder sb = new StringBuilder();
-                foreach (string scriptName in _options.ExecutionDependencies) {
+                foreach (string scriptName in _symbols.Dependencies) {
+                    if (first == false) {
+                        sb.Append(",");
+                    }
+                    sb.Append("'");
+                    sb.Append(scriptName);
+                    sb.Append("'");
+                    first = false;
+                }
+
+                return sb.ToString();
+            }
+            if (String.CompareOrdinal(name, "Dependencies") == 0) {
+                bool first = true;
+                StringBuilder sb = new StringBuilder();
+                foreach (string scriptName in _symbols.Dependencies) {
                     if (first == false) {
                         sb.Append(",");
                     }

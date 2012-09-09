@@ -660,14 +660,7 @@ namespace ScriptSharp.Importer {
 
             scriptName = MetadataHelpers.GetScriptAssemblyName(assembly);
             if (String.IsNullOrEmpty(scriptName) == false) {
-                _options.AddReferencedDependency(scriptName);
-            }
-
-            if (coreAssembly) {
-                // Always add an execution reference to the core assembly, since
-                // it contains things like the type system, and other APIs assumed by the compiler
-                Debug.Assert(String.IsNullOrEmpty(scriptName) == false);
-                _options.AddExecutionDependency(scriptName);
+                _symbols.AddDependency(scriptName);
             }
 
             foreach (TypeDefinition type in assembly.MainModule.Types) {

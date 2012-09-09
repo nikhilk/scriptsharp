@@ -7,9 +7,7 @@
 alert('debug');
 #endif
 
-#if DEBUG
-ss.checkScripts('#= Name ##', '#= ExecutionDependencies ##');
-#endif
-
+define('#= Name ##', [ #= DependencyNames ## ], function(#= Dependencies ##) {
+});
 //! Copyright (c) 2007
  

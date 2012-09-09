@@ -26,6 +26,7 @@ namespace ScriptSharp.ScriptModel {
 
         private MemberSymbol _entryPoint;
         private string _scriptName;
+        private List<string> _dependencies;
 
         private Dictionary<string, Dictionary<string, ResXItem>> _resources;
 
@@ -44,7 +45,14 @@ namespace ScriptSharp.ScriptModel {
             _namespaces.Add(_systemNamespace);
             _namespaceMap["System"] = _systemNamespace;
 
+            _dependencies = new List<string>();
             _resources = new Dictionary<string, Dictionary<string, ResXItem>>(StringComparer.OrdinalIgnoreCase);
+        }
+
+        public IEnumerable<string> Dependencies {
+            get {
+                return _dependencies;
+            }
         }
 
         public MemberSymbol EntryPoint {
@@ -83,6 +91,12 @@ namespace ScriptSharp.ScriptModel {
         public NamespaceSymbol SystemNamespace {
             get {
                 return _systemNamespace;
+            }
+        }
+
+        public void AddDependency(string scriptName) {
+            if (_dependencies.Contains(scriptName) == false) {
+                _dependencies.Add(scriptName);
             }
         }
 

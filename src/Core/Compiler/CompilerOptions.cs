@@ -30,9 +30,6 @@ namespace ScriptSharp {
 
         private string _testsSubnamespace;
 
-        private List<string> _executionDependencies;
-        private List<string> _referencedDependencies;
-
         private bool _hasTestTypes;
 
         // TODO: Get rid of internal test mode/type...
@@ -76,12 +73,6 @@ namespace ScriptSharp {
                     return (_docCommentFile != null);
                 }
                 return false;
-            }
-        }
-
-        public IEnumerable<string> ExecutionDependencies {
-            get {
-                return _executionDependencies;
             }
         }
 
@@ -139,7 +130,6 @@ namespace ScriptSharp {
             }
             set {
                 _references = value;
-                _referencedDependencies = null;
             }
         }
 
@@ -195,22 +185,6 @@ namespace ScriptSharp {
             set {
                 _testsSubnamespace = value;
             }
-        }
-
-        public void AddExecutionDependency(string scriptName) {
-            if (_executionDependencies == null) {
-                _executionDependencies = new List<string>();
-            }
-            if (_executionDependencies.Contains(scriptName) == false) {
-                _executionDependencies.Add(scriptName);
-            }
-        }
-
-        public void AddReferencedDependency(string scriptName) {
-            if (_referencedDependencies == null) {
-                _referencedDependencies = new List<string>();
-            }
-            _referencedDependencies.Add(scriptName);
         }
 
         public bool Validate(out string errorMessage) {

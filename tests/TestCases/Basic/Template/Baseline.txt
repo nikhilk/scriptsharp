@@ -16,7 +16,7 @@ test.App.registerClass('test.App');
 
 alert('debug');
 
-ss.checkScripts('test', 'ss');
-
+define('test', [ 'ss' ], function(ss) {
+});
 //! Copyright (c) 2007
  
