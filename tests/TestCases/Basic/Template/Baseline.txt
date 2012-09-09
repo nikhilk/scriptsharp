@@ -2,17 +2,17 @@
 
 alert('some static script');
 
-Type.registerNamespace('test');
+Type.registerNamespace('BasicTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// BasicTests.App
 
-test.App = function test_App() {
+BasicTests.App = function BasicTests_App() {
     var e = document.body;
 }
 
 
-test.App.registerClass('test.App');
+BasicTests.App.registerClass('BasicTests.App');
 
 alert('debug');
 

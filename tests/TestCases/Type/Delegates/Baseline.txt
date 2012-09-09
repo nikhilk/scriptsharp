@@ -1,10 +1,10 @@
-Type.registerNamespace('test');
+Type.registerNamespace('TypeTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.EventArgs
+// TypeTests.EventArgs
 
-test.EventArgs = function test_EventArgs() {
+TypeTests.EventArgs = function TypeTests_EventArgs() {
 }
 
 
-test.EventArgs.registerClass('test.EventArgs');
+TypeTests.EventArgs.registerClass('TypeTests.EventArgs');

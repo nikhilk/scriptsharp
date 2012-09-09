@@ -646,7 +646,6 @@ namespace ScriptSharp.Importer {
         }
 
         private void ImportScriptAssembly(MetadataSource mdSource, string assemblyPath, bool coreAssembly) {
-            string scriptNamespace = null;
             string scriptName = null;
 
             AssemblyDefinition assembly;
@@ -655,7 +654,6 @@ namespace ScriptSharp.Importer {
             }
             else {
                 assembly = mdSource.GetMetadata(assemblyPath);
-                scriptNamespace = MetadataHelpers.GetScriptNamespace(assembly);
             }
 
             scriptName = MetadataHelpers.GetScriptAssemblyName(assembly);
@@ -669,7 +667,7 @@ namespace ScriptSharp.Importer {
                         continue;
                     }
 
-                    ImportType(mdSource, type, coreAssembly, scriptNamespace, scriptName);
+                    ImportType(mdSource, type, coreAssembly, scriptName);
                 }
                 catch (Exception e) {
                     Debug.Fail(e.ToString());
@@ -677,7 +675,7 @@ namespace ScriptSharp.Importer {
             }
         }
 
-        private void ImportType(MetadataSource mdSource, TypeDefinition type, bool inScriptCoreAssembly, string assemblyScriptNamespace, string assemblyScriptName) {
+        private void ImportType(MetadataSource mdSource, TypeDefinition type, bool inScriptCoreAssembly, string assemblyScriptName) {
             if (type.IsPublic == false) {
                 return;
             }
@@ -687,12 +685,7 @@ namespace ScriptSharp.Importer {
 
             string name = type.Name;
             string namespaceName = type.Namespace;
-            string scriptNamespace = MetadataHelpers.GetScriptNamespace(type);
             string scriptName = MetadataHelpers.GetScriptName(type);
-
-            if (String.IsNullOrEmpty(scriptNamespace) && (String.IsNullOrEmpty(assemblyScriptNamespace) == false)) {
-                scriptNamespace = assemblyScriptNamespace;
-            }
 
             NamespaceSymbol namespaceSymbol = _symbols.GetNamespace(namespaceName);
             TypeSymbol typeSymbol = null;
@@ -752,8 +745,8 @@ namespace ScriptSharp.Importer {
                 }
                 typeSymbol.SetPublic();
 
-                if (String.IsNullOrEmpty(scriptNamespace) == false) {
-                    typeSymbol.ScriptNamespace = scriptNamespace;  
+                if (String.IsNullOrEmpty(assemblyScriptName) == false) {
+                    typeSymbol.ScriptNamespace = assemblyScriptName;  
                 }
 
                 if (String.IsNullOrEmpty(scriptName) == false) {

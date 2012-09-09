@@ -8,7 +8,6 @@ using System.Runtime.CompilerServices;
 namespace System {
 
     [Imported]
-    [ScriptNamespace("ss")]
     public abstract class Delegate {
 
         public static readonly Delegate Empty = null;

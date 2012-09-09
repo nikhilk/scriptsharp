@@ -1,11 +1,11 @@
-Type.registerNamespace('test');
+Type.registerNamespace('MemberTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Test
+// MemberTests.Test
 
-test.Test = function() {
+MemberTests.Test = function() {
 }
-test.Test.prototype = {
+MemberTests.Test.prototype = {
     
     do1: function() {
     },
@@ -29,7 +29,7 @@ test.Test.prototype = {
     
     toString: function() {
         window.m1();
-        var x = new test.X();
+        var x = new MemberTests.X();
         $.fn.extend(x, 10);
         return null;
     }
@@ -37,14 +37,14 @@ test.Test.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Foo
+// MemberTests.Foo
 
 window.doStuff = function() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Bar
+// MemberTests.Bar
 
 window.m1 = function() {
 }
@@ -53,23 +53,23 @@ window.m2 = function() {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.FooBar
+// MemberTests.FooBar
 
 window.doStuff2 = function() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.FooBar2
+// MemberTests.FooBar2
 
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.X
+// MemberTests.X
 
-test.X = function() {
+MemberTests.X = function() {
 }
-test.X.prototype = {
+MemberTests.X.prototype = {
     
     update: function(i) {
     }
@@ -77,7 +77,7 @@ test.X.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Plugin
+// MemberTests.Plugin
 
 $.fn.extend = function(x, i) {
     x.update(i);
@@ -85,8 +85,8 @@ $.fn.extend = function(x, i) {
 }
 
 
-test.Test.registerClass('test.Test');
-test.X.registerClass('test.X');
+MemberTests.Test.registerClass('MemberTests.Test');
+MemberTests.X.registerClass('MemberTests.X');
 alert('Startup code in FooBar');
 (function () {
     var timeStamp = new Date().getMilliseconds();

@@ -1,11 +1,11 @@
-Type.registerNamespace('test');
+Type.registerNamespace('BasicTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// BasicTests.App
 
-test.App = function() {
+BasicTests.App = function() {
 }
-test.App.prototype = {
+BasicTests.App.prototype = {
     
     method1: function(i) {
         var j = i;
@@ -19,4 +19,4 @@ test.App.prototype = {
 }
 
 
-test.App.registerClass('test.App');
+BasicTests.App.registerClass('BasicTests.App');

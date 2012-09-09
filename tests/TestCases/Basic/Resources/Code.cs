@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using Resources;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace BasicTests {
 

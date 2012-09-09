@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using My.Lib;
 
 namespace My.App {
-    [ScriptNamespace("MAF")]
+
     public class AppFeature {
         string _name;
         Feature _feature;

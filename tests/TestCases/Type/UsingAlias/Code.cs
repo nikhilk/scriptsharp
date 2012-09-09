@@ -4,7 +4,6 @@ using HtmlElement = System.Html.Element;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace TypeTests {
 

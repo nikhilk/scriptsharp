@@ -1,45 +1,45 @@
-Type.registerNamespace('test');
+Type.registerNamespace('TypeTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.FooBarBaz
+// TypeTests.FooBarBaz
 
-test.FooBarBaz = function test_FooBarBaz() {
+TypeTests.FooBarBaz = function TypeTests_FooBarBaz() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClass
+// TypeTests.MyClass
 
-test.MyClass = function test_MyClass() {
-    test.FooBarBaz = new test.FooBarBaz();
+TypeTests.MyClass = function TypeTests_MyClass() {
+    TypeTests.FooBarBaz = new TypeTests.FooBarBaz();
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClass2
+// TypeTests.MyClass2
 
-test.MyClass2 = function test_MyClass2() {
-    test.MyClass2.initializeBase(this);
+TypeTests.MyClass2 = function TypeTests_MyClass2() {
+    TypeTests.MyClass2.initializeBase(this);
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClass3
+// TypeTests.MyClass3
 
-test.MyClass3 = function test_MyClass3() {
+TypeTests.MyClass3 = function TypeTests_MyClass3() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClass4
+// TypeTests.MyClass4
 
-test.MyClass4 = function test_MyClass4() {
-    test.MyClass4.initializeBase(this);
+TypeTests.MyClass4 = function TypeTests_MyClass4() {
+    TypeTests.MyClass4.initializeBase(this);
 }
 
 
-test.FooBarBaz.registerClass('test.FooBarBaz');
-test.MyClass.registerClass('test.MyClass');
-test.MyClass2.registerClass('test.MyClass2', test.MyClass);
-test.MyClass3.registerClass('test.MyClass3', null, ss.IDisposable);
-test.MyClass4.registerClass('test.MyClass4', test.MyClass, ss.IDisposable);
+TypeTests.FooBarBaz.registerClass('TypeTests.FooBarBaz');
+TypeTests.MyClass.registerClass('TypeTests.MyClass');
+TypeTests.MyClass2.registerClass('TypeTests.MyClass2', TypeTests.MyClass);
+TypeTests.MyClass3.registerClass('TypeTests.MyClass3', null, ss.IDisposable);
+TypeTests.MyClass4.registerClass('TypeTests.MyClass4', TypeTests.MyClass, ss.IDisposable);

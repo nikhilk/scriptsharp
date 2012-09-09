@@ -4,7 +4,6 @@ using My.Lib;
 
 namespace My.App {
 
-    [ScriptNamespace("Test")]
     public partial class Foo {
     }
 }

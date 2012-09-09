@@ -64,9 +64,9 @@ MyClass4.prototype = {
 Type.registerNamespace('Foo');
 
 ////////////////////////////////////////////////////////////////////////////////
-// Foo.MyClass
+// Foo.MyClassF
 
-Foo.MyClass = function Foo_MyClass() {
+Foo.MyClassF = function Foo_MyClassF() {
 }
 
 
@@ -74,4 +74,4 @@ MyClass.registerClass('MyClass');
 MyClass2.registerClass('MyClass2', MyClass);
 MyClass3.registerClass('MyClass3', null, ss.IDisposable);
 MyClass4.registerClass('MyClass4', MyClass, ss.IDisposable);
-Foo.MyClass.registerClass('Foo.MyClass');
+Foo.MyClassF.registerClass('Foo.MyClassF');

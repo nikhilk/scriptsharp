@@ -1,85 +1,85 @@
-Type.registerNamespace('test');
+Type.registerNamespace('TypeTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.IMarker
+// TypeTests.IMarker
 
-test.IMarker = function() { };
-test.IMarker.prototype = {
+TypeTests.IMarker = function() { };
+TypeTests.IMarker.prototype = {
 
 }
-test.IMarker.registerInterface('test.IMarker');
+TypeTests.IMarker.registerInterface('TypeTests.IMarker');
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.ISerializable
+// TypeTests.ISerializable
 
-test.ISerializable = function() { };
-test.ISerializable.prototype = {
+TypeTests.ISerializable = function() { };
+TypeTests.ISerializable.prototype = {
     serialize : null
 }
-test.ISerializable.registerInterface('test.ISerializable');
+TypeTests.ISerializable.registerInterface('TypeTests.ISerializable');
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.IRunnable
+// TypeTests.IRunnable
 
-test.IRunnable = function() { };
-test.IRunnable.prototype = {
+TypeTests.IRunnable = function() { };
+TypeTests.IRunnable.prototype = {
     get_canRun : null,
     run : null
 }
-test.IRunnable.registerInterface('test.IRunnable');
+TypeTests.IRunnable.registerInterface('TypeTests.IRunnable');
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyObject
+// TypeTests.MyObject
 
-test.MyObject = function test_MyObject() {
+TypeTests.MyObject = function TypeTests_MyObject() {
 }
-test.MyObject.prototype = {
+TypeTests.MyObject.prototype = {
     
-    dispose: function test_MyObject$dispose() {
+    dispose: function TypeTests_MyObject$dispose() {
     }
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyObject2
+// TypeTests.MyObject2
 
-test.MyObject2 = function test_MyObject2() {
-    test.MyObject2.initializeBase(this);
+TypeTests.MyObject2 = function TypeTests_MyObject2() {
+    TypeTests.MyObject2.initializeBase(this);
 }
-test.MyObject2.prototype = {
+TypeTests.MyObject2.prototype = {
     
-    get_canRun: function test_MyObject2$get_canRun() {
+    get_canRun: function TypeTests_MyObject2$get_canRun() {
         return true;
     },
     
-    run: function test_MyObject2$run() {
+    run: function TypeTests_MyObject2$run() {
     }
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Foo
+// TypeTests.Foo
 
-test.Foo = function test_Foo() {
+TypeTests.Foo = function TypeTests_Foo() {
 }
-test.Foo.prototype = {
+TypeTests.Foo.prototype = {
     
-    get_canRun: function test_Foo$get_canRun() {
+    get_canRun: function TypeTests_Foo$get_canRun() {
         return true;
     },
     
-    run: function test_Foo$run() {
+    run: function TypeTests_Foo$run() {
     },
     
-    serialize: function test_Foo$serialize() {
+    serialize: function TypeTests_Foo$serialize() {
         return null;
     }
 }
 
 
-test.MyObject.registerClass('test.MyObject', null, ss.IDisposable);
-test.MyObject2.registerClass('test.MyObject2', test.MyObject, test.IRunnable);
-test.Foo.registerClass('test.Foo', null, test.IMarker, test.ISerializable, test.IRunnable);
+TypeTests.MyObject.registerClass('TypeTests.MyObject', null, ss.IDisposable);
+TypeTests.MyObject2.registerClass('TypeTests.MyObject2', TypeTests.MyObject, TypeTests.IRunnable);
+TypeTests.Foo.registerClass('TypeTests.Foo', null, TypeTests.IMarker, TypeTests.ISerializable, TypeTests.IRunnable);

@@ -1,25 +1,25 @@
-Type.registerNamespace('test');
+Type.registerNamespace('ExpressionTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.FooEventArgs
+// ExpressionTests.FooEventArgs
 
-test.FooEventArgs = function() {
-    test.FooEventArgs.initializeBase(this);
+ExpressionTests.FooEventArgs = function() {
+    ExpressionTests.FooEventArgs.initializeBase(this);
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Button
+// ExpressionTests.Button
 
-test.Button = function() {
+ExpressionTests.Button = function() {
 }
-test.Button.add_test = function(value) {
-    test.Button.__test = ss.Delegate.combine(test.Button.__test, value);
+ExpressionTests.Button.add_test = function(value) {
+    ExpressionTests.Button.__test = ss.Delegate.combine(ExpressionTests.Button.__test, value);
 }
-test.Button.remove_test = function(value) {
-    test.Button.__test = ss.Delegate.remove(test.Button.__test, value);
+ExpressionTests.Button.remove_test = function(value) {
+    ExpressionTests.Button.__test = ss.Delegate.remove(ExpressionTests.Button.__test, value);
 }
-test.Button.prototype = {
+ExpressionTests.Button.prototype = {
     _aaa: null,
     _bbb: null,
     
@@ -59,21 +59,21 @@ test.Button.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// ExpressionTests.App
 
-test.App = function() {
+ExpressionTests.App = function() {
     this._btn.add_click(ss.Delegate.create(this, this.onClickButton));
     this._btn.add_click(ss.Delegate.create(this, this.onClickButton));
     this._btn.add_click(ss.Delegate.create(this, this.onClickButton));
     this._btn.remove_click(ss.Delegate.create(this, this.onClickButton));
     this._btn.remove_click(ss.Delegate.create(this, this.onClickButton));
     this._btn.remove_click(ss.Delegate.create(this, this.onClickButton));
-    test.Button.add_test(test.App.onTestButton);
-    test.Button.add_test(test.App.onTestButton);
-    test.Button.add_test(test.App.onTestButton);
-    test.Button.remove_test(test.App.onTestButton);
-    test.Button.remove_test(test.App.onTestButton);
-    test.Button.remove_test(test.App.onTestButton);
+    ExpressionTests.Button.add_test(ExpressionTests.App.onTestButton);
+    ExpressionTests.Button.add_test(ExpressionTests.App.onTestButton);
+    ExpressionTests.Button.add_test(ExpressionTests.App.onTestButton);
+    ExpressionTests.Button.remove_test(ExpressionTests.App.onTestButton);
+    ExpressionTests.Button.remove_test(ExpressionTests.App.onTestButton);
+    ExpressionTests.Button.remove_test(ExpressionTests.App.onTestButton);
     this._btn.add_aaa(ss.Delegate.create(this, this.onAAAButton));
     this._btn.add_aaa(ss.Delegate.create(this, this.onAAAButton));
     this._btn.add_aaa(ss.Delegate.create(this, this.onAAAButton));
@@ -81,9 +81,9 @@ test.App = function() {
     this._btn.remove_aaa(ss.Delegate.create(this, this.onAAAButton));
     this._btn.remove_aaa(ss.Delegate.create(this, this.onAAAButton));
 }
-test.App.onTestButton = function(sender, e) {
+ExpressionTests.App.onTestButton = function(sender, e) {
 }
-test.App.prototype = {
+ExpressionTests.App.prototype = {
     _btn: null,
     
     onAAAButton: function(sender, e) {
@@ -94,7 +94,7 @@ test.App.prototype = {
 }
 
 
-test.FooEventArgs.registerClass('test.FooEventArgs', ss.EventArgs);
-test.Button.registerClass('test.Button');
-test.App.registerClass('test.App');
-test.Button.__test = null;
+ExpressionTests.FooEventArgs.registerClass('ExpressionTests.FooEventArgs', ss.EventArgs);
+ExpressionTests.Button.registerClass('ExpressionTests.Button');
+ExpressionTests.App.registerClass('ExpressionTests.App');
+ExpressionTests.Button.__test = null;

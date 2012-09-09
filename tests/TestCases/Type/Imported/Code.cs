@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Xml;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace TypeTests {
 

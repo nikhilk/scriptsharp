@@ -26,18 +26,18 @@ TypeTests.Sub1.YourClass.prototype = {
 Type.registerNamespace('TypeTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// TypeTests.YourClass
+// TypeTests.YourClass1
 
-TypeTests.YourClass = function TypeTests_YourClass() {
+TypeTests.YourClass1 = function TypeTests_YourClass1() {
 }
 
 
 Type.registerNamespace('MyApp.Foo');
 
 ////////////////////////////////////////////////////////////////////////////////
-// MyApp.Foo.MyClass
+// MyApp.Foo.MyClassF
 
-MyApp.Foo.MyClass = function MyApp_Foo_MyClass() {
+MyApp.Foo.MyClassF = function MyApp_Foo_MyClassF() {
 }
 
 
@@ -68,9 +68,9 @@ MyCompany.Utility.prototype = {
 Type.registerNamespace('MyCompany.MyProduct');
 
 ////////////////////////////////////////////////////////////////////////////////
-// MyCompany.MyProduct.Utility
+// MyCompany.MyProduct.UtilityP
 
-MyCompany.MyProduct.Utility = function MyCompany_MyProduct_Utility() {
+MyCompany.MyProduct.UtilityP = function MyCompany_MyProduct_UtilityP() {
 }
 
 
@@ -87,9 +87,9 @@ MyCompany.MyProduct.MyComponent.Component = function MyCompany_MyProduct_MyCompo
 
 TypeTests.Sub1.Sub2.MyClass.registerClass('TypeTests.Sub1.Sub2.MyClass');
 TypeTests.Sub1.YourClass.registerClass('TypeTests.Sub1.YourClass');
-TypeTests.YourClass.registerClass('TypeTests.YourClass');
-MyApp.Foo.MyClass.registerClass('MyApp.Foo.MyClass');
+TypeTests.YourClass1.registerClass('TypeTests.YourClass1');
+MyApp.Foo.MyClassF.registerClass('MyApp.Foo.MyClassF');
 MyApp.Test.registerClass('MyApp.Test');
 MyCompany.Utility.registerClass('MyCompany.Utility');
-MyCompany.MyProduct.Utility.registerClass('MyCompany.MyProduct.Utility');
+MyCompany.MyProduct.UtilityP.registerClass('MyCompany.MyProduct.UtilityP');
 MyCompany.MyProduct.MyComponent.Component.registerClass('MyCompany.MyProduct.MyComponent.Component');

@@ -1,26 +1,26 @@
-Type.registerNamespace('test');
+Type.registerNamespace('ExpressionTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.IFoo
+// ExpressionTests.IFoo
 
-test.IFoo = function() { };
-test.IFoo.registerInterface('test.IFoo');
+ExpressionTests.IFoo = function() { };
+ExpressionTests.IFoo.registerInterface('ExpressionTests.IFoo');
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.BApp
+// ExpressionTests.BApp
 
-test.BApp = function() {
+ExpressionTests.BApp = function() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// ExpressionTests.App
 
-test.App = function() {
-    test.App.initializeBase(this);
+ExpressionTests.App = function() {
+    ExpressionTests.App.initializeBase(this);
 }
-test.App.prototype = {
+ExpressionTests.App.prototype = {
     _value: 0,
     _value2: 0,
     
@@ -47,8 +47,8 @@ test.App.prototype = {
         n = this._value;
         this._value = n;
         this._value = n;
-        n = test.App.myDefault;
-        n = test.App.myDefault;
+        n = ExpressionTests.App.myDefault;
+        n = ExpressionTests.App.myDefault;
         n = 3;
         n = 3;
         n = 3;
@@ -59,25 +59,25 @@ test.App.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.DApp
+// ExpressionTests.DApp
 
-test.DApp = function() {
-    test.DApp.initializeBase(this);
+ExpressionTests.DApp = function() {
+    ExpressionTests.DApp.initializeBase(this);
 }
-test.DApp.prototype = {
+ExpressionTests.DApp.prototype = {
     
     test2: function() {
         var n = this.get_XYZ();
         n = this.get_XYZ();
-        n = test.DApp.callBaseMethod(this, 'get_XYZ');
+        n = ExpressionTests.DApp.callBaseMethod(this, 'get_XYZ');
         this.set_XYZ(n);
         this.set_XYZ(n);
-        test.DApp.callBaseMethod(this, 'set_XYZ', [ n ]);
+        ExpressionTests.DApp.callBaseMethod(this, 'set_XYZ', [ n ]);
         this._value2 = n;
         this._value2 = n;
         this._value2 = n;
-        n = test.App.myDefault2;
-        n = test.App.myDefault2;
+        n = ExpressionTests.App.myDefault2;
+        n = ExpressionTests.App.myDefault2;
         n = 3;
         n = 3;
         n = 3;
@@ -99,10 +99,10 @@ test.DApp.prototype = {
 }
 
 
-test.BApp.registerClass('test.BApp');
-test.App.registerClass('test.App', test.BApp);
-test.DApp.registerClass('test.DApp', test.App);
-test.BApp.myConstant = 3;
-test.App.myConstant2 = 3;
-test.App.myDefault = 1;
-test.App.myDefault2 = 2;
+ExpressionTests.BApp.registerClass('ExpressionTests.BApp');
+ExpressionTests.App.registerClass('ExpressionTests.App', ExpressionTests.BApp);
+ExpressionTests.DApp.registerClass('ExpressionTests.DApp', ExpressionTests.App);
+ExpressionTests.BApp.myConstant = 3;
+ExpressionTests.App.myConstant2 = 3;
+ExpressionTests.App.myDefault = 1;
+ExpressionTests.App.myDefault2 = 2;

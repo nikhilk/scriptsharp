@@ -1,9 +1,9 @@
-Type.registerNamespace('test');
+Type.registerNamespace('BasicTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Suit
+// BasicTests.Suit
 
-test.Suit = function() { 
+BasicTests.Suit = function() { 
     /// <summary>
     /// Represents a card suit.
     /// </summary>
@@ -20,42 +20,42 @@ test.Suit = function() {
     /// The diamonds.
     /// </field>
 };
-test.Suit.prototype = {
+BasicTests.Suit.prototype = {
     heart: 0, 
     spade: 1, 
     club: 2, 
     diamond: 3
 }
-test.Suit.registerEnum('test.Suit', false);
+BasicTests.Suit.registerEnum('BasicTests.Suit', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.RecordClass
+// BasicTests.RecordClass
 
-test.$create_RecordClass = function test_RecordClass(count) {
+BasicTests.$create_RecordClass = function BasicTests_RecordClass(count) {
     var $o = { };
     return $o;
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.IInterface
+// BasicTests.IInterface
 
-test.IInterface = function() { 
+BasicTests.IInterface = function() { 
     /// <summary>
     /// Represents an interface.
     /// </summary>
 };
-test.IInterface.prototype = {
+BasicTests.IInterface.prototype = {
     execute : null
 }
-test.IInterface.registerInterface('test.IInterface');
+BasicTests.IInterface.registerInterface('BasicTests.IInterface');
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.BaseClass
+// BasicTests.BaseClass
 
-test.BaseClass = function test_BaseClass(domElement, name, count) {
+BasicTests.BaseClass = function BasicTests_BaseClass(domElement, name, count) {
     /// <summary>
     /// Represents a base class.
     /// </summary>
@@ -84,14 +84,14 @@ test.BaseClass = function test_BaseClass(domElement, name, count) {
     /// </field>
     this._domElement = domElement;
 }
-test.BaseClass.get_totalCount = function test_BaseClass$get_totalCount() {
+BasicTests.BaseClass.get_totalCount = function BasicTests_BaseClass$get_totalCount() {
     /// <summary>
     /// Gets the total count.
     /// </summary>
     /// <value type="Number" integer="true"></value>
     return 0;
 }
-test.BaseClass.staticMethod = function test_BaseClass$staticMethod(length) {
+BasicTests.BaseClass.staticMethod = function BasicTests_BaseClass$staticMethod(length) {
     /// <summary>
     /// A static method.
     /// </summary>
@@ -99,18 +99,18 @@ test.BaseClass.staticMethod = function test_BaseClass$staticMethod(length) {
     /// The length.
     /// </param>
 }
-test.BaseClass.prototype = {
+BasicTests.BaseClass.prototype = {
     instanceField: 0,
     _domElement: null,
     
-    get_name: function test_BaseClass$get_name() {
+    get_name: function BasicTests_BaseClass$get_name() {
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
         /// <value type="String"></value>
         return null;
     },
-    set_name: function test_BaseClass$set_name(value) {
+    set_name: function BasicTests_BaseClass$set_name(value) {
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -118,14 +118,14 @@ test.BaseClass.prototype = {
         return value;
     },
     
-    get_domElement: function test_BaseClass$get_domElement() {
+    get_domElement: function BasicTests_BaseClass$get_domElement() {
         /// <summary>
         /// Gets or sets the element.
         /// </summary>
         /// <value type="Object" domElement="true"></value>
         return null;
     },
-    set_domElement: function test_BaseClass$set_domElement(value) {
+    set_domElement: function BasicTests_BaseClass$set_domElement(value) {
         /// <summary>
         /// Gets or sets the element.
         /// </summary>
@@ -133,7 +133,7 @@ test.BaseClass.prototype = {
         return value;
     },
     
-    get_count: function test_BaseClass$get_count() {
+    get_count: function BasicTests_BaseClass$get_count() {
         /// <summary>
         /// Gets the count.
         /// </summary>
@@ -141,7 +141,7 @@ test.BaseClass.prototype = {
         return 0;
     },
     
-    get__privateName: function test_BaseClass$get__privateName() {
+    get__privateName: function BasicTests_BaseClass$get__privateName() {
         /// <summary>
         /// Gets the private name.
         /// </summary>
@@ -149,14 +149,14 @@ test.BaseClass.prototype = {
         return null;
     },
     
-    add_initialized: function test_BaseClass$add_initialized(value) {
+    add_initialized: function BasicTests_BaseClass$add_initialized(value) {
         /// <summary>
         /// Adds or removes a delegate for the Initialized event.
         /// </summary>
         /// <param name="value" type="Function" />
         this.__initialized = ss.Delegate.combine(this.__initialized, value);
     },
-    remove_initialized: function test_BaseClass$remove_initialized(value) {
+    remove_initialized: function BasicTests_BaseClass$remove_initialized(value) {
         /// <summary>
         /// Adds or removes a delegate for the Initialized event.
         /// </summary>
@@ -166,13 +166,13 @@ test.BaseClass.prototype = {
     
     __initialized: null,
     
-    method1: function test_BaseClass$method1() {
+    method1: function BasicTests_BaseClass$method1() {
         /// <summary>
         /// Empty method.
         /// </summary>
     },
     
-    method2: function test_BaseClass$method2() {
+    method2: function BasicTests_BaseClass$method2() {
         /// <summary>
         /// Method with return value.
         /// </summary>
@@ -180,7 +180,7 @@ test.BaseClass.prototype = {
         return null;
     },
     
-    method3: function test_BaseClass$method3(first, last) {
+    method3: function BasicTests_BaseClass$method3(first, last) {
         /// <summary>
         /// Method with params.
         /// </summary>
@@ -192,7 +192,7 @@ test.BaseClass.prototype = {
         /// </param>
     },
     
-    method4: function test_BaseClass$method4(count) {
+    method4: function BasicTests_BaseClass$method4(count) {
         /// <summary>
         /// Method with both params and return value.
         /// </summary>
@@ -203,7 +203,7 @@ test.BaseClass.prototype = {
         return null;
     },
     
-    onInitialized: function test_BaseClass$onInitialized() {
+    onInitialized: function BasicTests_BaseClass$onInitialized() {
         /// <summary>
         /// Raises the Initialized event.
         /// </summary>
@@ -211,7 +211,7 @@ test.BaseClass.prototype = {
         }
     },
     
-    _privateMethod: function test_BaseClass$_privateMethod(count) {
+    _privateMethod: function BasicTests_BaseClass$_privateMethod(count) {
         /// <summary>
         /// Private method.
         /// </summary>
@@ -219,7 +219,7 @@ test.BaseClass.prototype = {
         /// The count.
         /// </param>
     },
-    get_item: function test_BaseClass$get_item(ids) {
+    get_item: function BasicTests_BaseClass$get_item(ids) {
         /// <summary>
         /// Gets item by identifiers.
         /// </summary>
@@ -235,17 +235,17 @@ test.BaseClass.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.DerivedClass
+// BasicTests.DerivedClass
 
-test.DerivedClass = function test_DerivedClass() {
+BasicTests.DerivedClass = function BasicTests_DerivedClass() {
     /// <summary>
     /// Represents a derived class.
     /// </summary>
-    test.DerivedClass.initializeBase(this, [ null, null, 0 ]);
+    BasicTests.DerivedClass.initializeBase(this, [ null, null, 0 ]);
 }
-test.DerivedClass.prototype = {
+BasicTests.DerivedClass.prototype = {
     
-    method3: function test_DerivedClass$method3(first, last) {
+    method3: function BasicTests_DerivedClass$method3(first, last) {
         /// <summary>
         /// Overriden method with params.
         /// </summary>
@@ -260,9 +260,9 @@ test.DerivedClass.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.InternalClass
+// BasicTests.InternalClass
 
-test.InternalClass = function test_InternalClass() {
+BasicTests.InternalClass = function BasicTests_InternalClass() {
     /// <summary>
     /// An internal class.
     /// </summary>
@@ -270,25 +270,25 @@ test.InternalClass = function test_InternalClass() {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.InternalClassWithNoComments
+// BasicTests.InternalClassWithNoComments
 
-test.InternalClassWithNoComments = function test_InternalClassWithNoComments() {
+BasicTests.InternalClassWithNoComments = function BasicTests_InternalClassWithNoComments() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.GlobalMethodsClass
+// BasicTests.GlobalMethodsClass
 
-window.run = function test_GlobalMethodsClass$run() {
+window.run = function BasicTests_GlobalMethodsClass$run() {
     /// <summary>
     /// Runs.
     /// </summary>
 }
 
 
-test.BaseClass.registerClass('test.BaseClass');
-test.DerivedClass.registerClass('test.DerivedClass', test.BaseClass);
-test.InternalClass.registerClass('test.InternalClass');
-test.InternalClassWithNoComments.registerClass('test.InternalClassWithNoComments');
-test.BaseClass.constantField = 3;
-test.BaseClass.staticField = null;
+BasicTests.BaseClass.registerClass('BasicTests.BaseClass');
+BasicTests.DerivedClass.registerClass('BasicTests.DerivedClass', BasicTests.BaseClass);
+BasicTests.InternalClass.registerClass('BasicTests.InternalClass');
+BasicTests.InternalClassWithNoComments.registerClass('BasicTests.InternalClassWithNoComments');
+BasicTests.BaseClass.constantField = 3;
+BasicTests.BaseClass.staticField = null;

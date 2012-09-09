@@ -1,17 +1,19 @@
-Type.registerNamespace('test');
+Type.registerNamespace('BasicTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// BasicTests.App
 
-test.App = function test_App() {
-    var s1 = test.Strings1.string1;
+BasicTests.App = function BasicTests_App() {
+    var s1 = Resources.Strings1.string1;
 }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Strings1
+Type.registerNamespace('Resources');
 
-test.Strings1 = { 
+////////////////////////////////////////////////////////////////////////////////
+// Resources.Strings1
+
+Resources.Strings1 = { 
     string1: 'neutral: aaa',
     string2: 'fr: bbb',
     string3: 'fr-FR: ccc'
@@ -19,12 +21,12 @@ test.Strings1 = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Strings2
+// Resources.Strings2
 
-test.Strings2 = { 
+Resources.Strings2 = { 
     string1: 's2',
     string2: '1234'
 };
 
 
-test.App.registerClass('test.App');
+BasicTests.App.registerClass('BasicTests.App');

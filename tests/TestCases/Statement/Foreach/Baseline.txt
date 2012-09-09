@@ -1,11 +1,11 @@
-Type.registerNamespace('test');
+Type.registerNamespace('StatementTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Set
+// StatementTests.Set
 
-test.Set = function() {
+StatementTests.Set = function() {
 }
-test.Set.prototype = {
+StatementTests.Set.prototype = {
     _items: null,
     
     getEnumerator: function() {
@@ -15,11 +15,11 @@ test.Set.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// StatementTests.App
 
-test.App = function() {
+StatementTests.App = function() {
 }
-test.App.prototype = {
+StatementTests.App.prototype = {
     
     test: function(arg) {
         var items = [ 1, 2, 3 ];
@@ -35,7 +35,7 @@ test.App.prototype = {
             var entry = { key: $key3, value: $dict2[$key3] };
             var s = entry.key + ' = ' + entry.value;
         }
-        var s = new test.Set();
+        var s = new StatementTests.Set();
         var $enum4 = ss.IEnumerator.getEnumerator(s);
         while ($enum4.moveNext()) {
             var o = $enum4.current;
@@ -52,5 +52,5 @@ test.App.prototype = {
 }
 
 
-test.Set.registerClass('test.Set', null, ss.IEnumerable);
-test.App.registerClass('test.App');
+StatementTests.Set.registerClass('StatementTests.Set', null, ss.IEnumerable);
+StatementTests.App.registerClass('StatementTests.App');

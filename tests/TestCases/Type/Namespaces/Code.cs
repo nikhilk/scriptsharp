@@ -25,13 +25,13 @@ namespace TypeTests.Sub1 {
 
 namespace TypeTests {
 
-    public class YourClass {
+    public class YourClass1 {
     }
 }
 
 namespace MyApp.Foo {
 
-    public class MyClass {
+    public class MyClassF {
     }
 }
 
@@ -58,7 +58,7 @@ namespace MyCompany {
 
 namespace MyCompany.MyProduct {
 
-    public class Utility {
+    public class UtilityP {
     }
 }
 

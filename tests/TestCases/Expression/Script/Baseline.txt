@@ -1,11 +1,11 @@
-Type.registerNamespace('test');
+Type.registerNamespace('ExpressionTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// ExpressionTests.App
 
-test.App = function() {
+ExpressionTests.App = function() {
 }
-test.App.prototype = {
+ExpressionTests.App.prototype = {
     
     test: function(arg) {
         arg = (arg || 10);
@@ -16,4 +16,4 @@ test.App.prototype = {
 }
 
 
-test.App.registerClass('test.App');
+ExpressionTests.App.registerClass('ExpressionTests.App');

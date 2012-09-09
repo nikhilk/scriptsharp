@@ -4058,54 +4058,54 @@ Script
 ================================================================
 
 
-Type.registerNamespace('test');
+Type.registerNamespace('BasicTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.AppFlags
+// BasicTests.AppFlags
 
-test.AppFlags = function() { };
-test.AppFlags.prototype = {
+BasicTests.AppFlags = function() { };
+BasicTests.AppFlags.prototype = {
     AAA: 1, 
     BBB: 2
 }
-test.AppFlags.registerEnum('test.AppFlags', true);
+BasicTests.AppFlags.registerEnum('BasicTests.AppFlags', true);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Mode
+// BasicTests.Mode
 
-test.Mode = function() { };
-test.Mode.prototype = {
+BasicTests.Mode = function() { };
+BasicTests.Mode.prototype = {
     mode1: 0, 
     mode2: 1
 }
-test.Mode.registerEnum('test.Mode', false);
+BasicTests.Mode.registerEnum('BasicTests.Mode', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.IFoo
+// BasicTests.IFoo
 
-test.IFoo = function() { };
-test.IFoo.prototype = {
+BasicTests.IFoo = function() { };
+BasicTests.IFoo.prototype = {
 
 }
-test.IFoo.registerInterface('test.IFoo');
+BasicTests.IFoo.registerInterface('BasicTests.IFoo');
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.IApp
+// BasicTests.IApp
 
-test.IApp = function() { };
-test.IApp.prototype = {
+BasicTests.IApp = function() { };
+BasicTests.IApp.prototype = {
     run : null
 }
-test.IApp.registerInterface('test.IApp');
+BasicTests.IApp.registerInterface('BasicTests.IApp');
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Point
+// BasicTests.Point
 
-test.$create_Point = function test_Point(x, y) {
+BasicTests.$create_Point = function BasicTests_Point(x, y) {
     var $o = { };
     $o.x = x;
     $o.y = y;
@@ -4114,66 +4114,66 @@ test.$create_Point = function test_Point(x, y) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// BasicTests.App
 
-test.App = function test_App() {
+BasicTests.App = function BasicTests_App() {
 }
-test.App.prototype = {
+BasicTests.App.prototype = {
     
-    add_event1: function test_App$add_event1(value) {
+    add_event1: function BasicTests_App$add_event1(value) {
         this.__event1 = ss.Delegate.combine(this.__event1, value);
     },
-    remove_event1: function test_App$remove_event1(value) {
+    remove_event1: function BasicTests_App$remove_event1(value) {
         this.__event1 = ss.Delegate.remove(this.__event1, value);
     },
     
     __event1: null,
     
-    add_event2: function test_App$add_event2(value) {
+    add_event2: function BasicTests_App$add_event2(value) {
     },
-    remove_event2: function test_App$remove_event2(value) {
-    },
-    
-    run: function test_App$run() {
+    remove_event2: function BasicTests_App$remove_event2(value) {
     },
     
-    _initialize: function test_App$_initialize() {
+    run: function BasicTests_App$run() {
+    },
+    
+    _initialize: function BasicTests_App$_initialize() {
     }
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.AppHelper
+// BasicTests.AppHelper
 
-test.AppHelper = function test_AppHelper() {
+BasicTests.AppHelper = function BasicTests_AppHelper() {
 }
-test.AppHelper.prototype = {
+BasicTests.AppHelper.prototype = {
     
-    get_prop1: function test_AppHelper$get_prop1() {
+    get_prop1: function BasicTests_AppHelper$get_prop1() {
         return 0;
     },
     
-    get_prop2: function test_AppHelper$get_prop2() {
+    get_prop2: function BasicTests_AppHelper$get_prop2() {
         return 0;
     },
-    set_prop2: function test_AppHelper$set_prop2(value) {
+    set_prop2: function BasicTests_AppHelper$set_prop2(value) {
         return value;
     },
     
-    _showHelp: function test_AppHelper$_showHelp() {
+    _showHelp: function BasicTests_AppHelper$_showHelp() {
     },
-    get_item: function test_AppHelper$get_item(name) {
+    get_item: function BasicTests_AppHelper$get_item(name) {
         return 0;
     }
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Util
+// BasicTests.Util
 
-window._showHelp = function test_Util$_showHelp() {
+window._showHelp = function BasicTests_Util$_showHelp() {
 }
 
 
-test.App.registerClass('test.App', null, test.IApp);
-test.AppHelper.registerClass('test.AppHelper');
+BasicTests.App.registerClass('BasicTests.App', null, BasicTests.IApp);
+BasicTests.AppHelper.registerClass('BasicTests.AppHelper');

@@ -31,7 +31,7 @@ public enum MyEnum {
 
 namespace Foo {
 
-    public class MyClass {
+    public class MyClassF {
     }
 }
 

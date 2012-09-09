@@ -297,7 +297,6 @@ namespace ScriptSharp.Compiler {
             }
             symbols.ScriptName = scriptName;
 
-            string assemblyScriptNamespace = GetAssemblyScriptNamespace(compilationUnits);
             List<TypeSymbol> types = new List<TypeSymbol>();
 
             // Build all the types first.
@@ -364,12 +363,6 @@ namespace ScriptSharp.Compiler {
                             continue;
                         }
 
-                        // Check if we have overriding script namespace for this type.
-                        string typeScriptNamespace = GetScriptNamespace(userTypeNode.Attributes);
-                        if (String.IsNullOrEmpty(typeScriptNamespace)) {
-                            typeScriptNamespace = assemblyScriptNamespace;
-                        }
-                        
                         ClassSymbol partialTypeSymbol = null;
                         bool isPartial = false;
 
@@ -388,10 +381,6 @@ namespace ScriptSharp.Compiler {
                                 // Merge interesting bits of information onto the primary type symbol as well
                                 // representing this partial class
                                 BuildType(partialTypeSymbol, userTypeNode);
-
-                                if (String.IsNullOrEmpty(typeScriptNamespace) == false) {
-                                    partialTypeSymbol.ScriptNamespace = typeScriptNamespace;
-                                }
                             }
                         }
 
@@ -404,10 +393,6 @@ namespace ScriptSharp.Compiler {
                             }
                             if (aliases != null) {
                                 typeSymbol.SetAliases(aliases);
-                            }
-
-                            if (String.IsNullOrEmpty(typeScriptNamespace) == false) {
-                                typeSymbol.ScriptNamespace = typeScriptNamespace;
                             }
 
                             if (isPartial == false) {
@@ -721,10 +706,10 @@ namespace ScriptSharp.Compiler {
 
             if (AttributeNode.FindAttribute(attributes, "Imported") != null) {
                 typeSymbol.SetImported(/* dependencyName */ null);
-            }
 
-            if (AttributeNode.FindAttribute(attributes, "IgnoreNamespace") != null) {
-                typeSymbol.SetIgnoreNamespace();
+                if (AttributeNode.FindAttribute(attributes, "IgnoreNamespace") != null) {
+                    typeSymbol.SetIgnoreNamespace();
+                }
             }
 
             if (AttributeNode.FindAttribute(attributes, "PreserveName") != null) {
@@ -818,30 +803,6 @@ namespace ScriptSharp.Compiler {
             return null;
         }
 
-        private string GetAssemblyScriptNamespace(ParseNodeList compilationUnits) {
-            foreach (CompilationUnitNode compilationUnit in compilationUnits) {
-                foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
-                    string scriptNamespace = GetScriptNamespace(attribBlock.Attributes);
-                    if (scriptNamespace != null) {
-                        return scriptNamespace;
-                    }
-                }
-            }
-            return null;
-        }
-
-        private string GetAssemblyScriptPrefix(ParseNodeList compilationUnits) {
-            foreach (CompilationUnitNode compilationUnit in compilationUnits) {
-                foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
-                    string scriptPrefix = GetAttributeValue(attribBlock.Attributes, "ScriptQualifier");
-                    if (scriptPrefix != null) {
-                        return scriptPrefix;
-                    }
-                }
-            }
-            return null;
-        }
-
         private string GetAttributeValue(ParseNodeList attributes, string attributeName) {
             AttributeNode node = AttributeNode.FindAttribute(attributes, attributeName);
 
@@ -852,10 +813,6 @@ namespace ScriptSharp.Compiler {
                 return (string)((LiteralNode)node.Arguments[0]).Value;
             }
             return null;
-        }
-
-        private string GetScriptNamespace(ParseNodeList attributes) {
-            return GetAttributeValue(attributes, "ScriptNamespace");
         }
 
         private MemberVisibility GetVisibility(MemberNode node, TypeSymbol typeSymbol) {

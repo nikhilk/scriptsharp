@@ -13,7 +13,6 @@ namespace System.ComponentModel {
     /// composition where objects can be registered and dependencies can be resolved.
     /// </summary>
     [Imported]
-    [ScriptNamespace("ss")]
     public interface IContainer {
 
         /// <summary>

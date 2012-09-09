@@ -8,7 +8,6 @@ using System.Runtime.CompilerServices;
 namespace System.Collections {
 
     [Imported]
-    [ScriptNamespace("ss")]
     [ScriptName("ICollection")]
     public interface ICollection : IEnumerable {
 

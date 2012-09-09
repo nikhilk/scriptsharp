@@ -9,7 +9,6 @@ using System.Runtime.CompilerServices;
 namespace System.Threading {
 
     [Imported]
-    [ScriptNamespace("ss")]
     public class Task {
 
         internal Task() {
@@ -73,7 +72,6 @@ namespace System.Threading {
     }
 
     [Imported]
-    [ScriptNamespace("ss")]
     [ScriptName("Task")]
     public sealed class Task<T> : Task {
 

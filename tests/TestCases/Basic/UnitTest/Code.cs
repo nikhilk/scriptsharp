@@ -4,7 +4,6 @@ using System.Testing;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace BasicTests {
 

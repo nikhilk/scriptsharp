@@ -1,24 +1,24 @@
-Type.registerNamespace('test');
+Type.registerNamespace('BasicTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyDebug
+// BasicTests.MyDebug
 
-test.MyDebug = function test_MyDebug() {
+BasicTests.MyDebug = function BasicTests_MyDebug() {
 }
-test.MyDebug.showInfo = function test_MyDebug$showInfo() {
+BasicTests.MyDebug.showInfo = function BasicTests_MyDebug$showInfo() {
 }
-test.MyDebug.traceInfo = function test_MyDebug$traceInfo() {
+BasicTests.MyDebug.traceInfo = function BasicTests_MyDebug$traceInfo() {
 }
-test.MyDebug.logInfo = function test_MyDebug$logInfo() {
+BasicTests.MyDebug.logInfo = function BasicTests_MyDebug$logInfo() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// BasicTests.App
 
-test.App = function test_App(i) {
+BasicTests.App = function BasicTests_App(i) {
     console.assert(false);
-    test.MyDebug.showInfo();
+    BasicTests.MyDebug.showInfo();
     while (true) {
         console.assert(false);
     }
@@ -42,5 +42,5 @@ test.App = function test_App(i) {
 }
 
 
-test.MyDebug.registerClass('test.MyDebug');
-test.App.registerClass('test.App');
+BasicTests.MyDebug.registerClass('BasicTests.MyDebug');
+BasicTests.App.registerClass('BasicTests.App');

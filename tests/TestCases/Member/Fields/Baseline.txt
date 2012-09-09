@@ -1,20 +1,20 @@
-Type.registerNamespace('test');
+Type.registerNamespace('MemberTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Mode
+// MemberTests.Mode
 
-test.Mode = function() { };
-test.Mode.prototype = {
+MemberTests.Mode = function() { };
+MemberTests.Mode.prototype = {
     a: 0, 
     b: 1
 }
-test.Mode.registerEnum('test.Mode', false);
+MemberTests.Mode.registerEnum('MemberTests.Mode', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Point
+// MemberTests.Point
 
-test.$create_Point = function(x, y) {
+MemberTests.$create_Point = function(x, y) {
     var $o = { };
     $o.x = x;
     $o.y = y;
@@ -23,15 +23,15 @@ test.$create_Point = function(x, y) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Test
+// MemberTests.Test
 
-test.Test = function() {
+MemberTests.Test = function() {
     this._value = 2006;
     this.s = 'aaa';
     this.s = 'bbb';
     this.s = 'aaa';
 }
-test.Test.prototype = {
+MemberTests.Test.prototype = {
     _value: 0,
     _uintValue: 0,
     _dblValue: 0,
@@ -42,30 +42,30 @@ test.Test.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// MemberTests.App
 
-test.App = function() {
-    this._t = new test.Test();
+MemberTests.App = function() {
+    this._t = new MemberTests.Test();
 }
-test.App.prototype = {
+MemberTests.App.prototype = {
     _i: 5,
     
     doTest: function() {
-        var t = new test.Test();
+        var t = new MemberTests.Test();
         t.s = 'World';
         var i = 1;
-        test.Test.done = true;
-        var p = test.$create_Point(1, 10);
+        MemberTests.Test.done = true;
+        var p = MemberTests.$create_Point(1, 10);
         p.x = p.y;
     }
 }
 
 
-test.Test.registerClass('test.Test');
-test.App.registerClass('test.App');
-test.Test.greeting = 'Hello!';
-test.Test.myNumber = 1;
-test.Test.defaultValue = 'aaa';
-test.Test.done = false;
-test.Test.XYZ = 1;
-test.Test.key = {};
+MemberTests.Test.registerClass('MemberTests.Test');
+MemberTests.App.registerClass('MemberTests.App');
+MemberTests.Test.greeting = 'Hello!';
+MemberTests.Test.myNumber = 1;
+MemberTests.Test.defaultValue = 'aaa';
+MemberTests.Test.done = false;
+MemberTests.Test.XYZ = 1;
+MemberTests.Test.key = {};

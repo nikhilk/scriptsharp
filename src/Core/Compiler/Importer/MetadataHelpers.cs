@@ -55,15 +55,6 @@ namespace ScriptSharp.Importer {
             return null;
         }
 
-        public static string GetScriptNamespace(ICustomAttributeProvider attributeProvider) {
-            CustomAttribute scriptNamespaceAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptNamespaceAttribute");
-            if (scriptNamespaceAttribute != null) {
-                return GetAttributeArgument(scriptNamespaceAttribute);
-            }
-
-            return null;
-        }
-
         public static bool IsCompilerGeneratedType(TypeDefinition type) {
             return GetAttribute(type, "System.Runtime.CompilerServices.CompilerGeneratedAttribute") != null;
         }

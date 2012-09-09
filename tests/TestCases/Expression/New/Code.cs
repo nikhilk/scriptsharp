@@ -3,7 +3,6 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace ExpressionTests {
 

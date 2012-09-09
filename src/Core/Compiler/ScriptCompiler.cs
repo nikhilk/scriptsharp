@@ -89,14 +89,8 @@ namespace ScriptSharp {
             MetadataBuilder mdBuilder = new MetadataBuilder(this);
             _appSymbols = mdBuilder.BuildMetadata(_compilationUnitList, _symbols, _options);
 
-            // Check if any of the types defined in this assembly conflict against types in
-            // imported assemblies.
-
+            // Check if any of the types defined in this assembly conflict.
             Dictionary<string, TypeSymbol> types = new Dictionary<string, TypeSymbol>();
-            foreach (TypeSymbol importedType in _importedSymbols) {
-                types[importedType.FullGeneratedName] = importedType;
-            }
-
             foreach (TypeSymbol appType in _appSymbols) {
                 if ((appType.IsApplicationType == false) || (appType.Type == SymbolType.Delegate)) {
                     // Skip the check for types that are marked as imported, as they
@@ -113,9 +107,9 @@ namespace ScriptSharp {
                     continue;
                 }
 
-                string name = appType.FullGeneratedName;
+                string name = appType.GeneratedName;
                 if (types.ContainsKey(name)) {
-                    string error = "The type '" + name + "' conflicts with another existing type with the same full name. This might be because a referenced assembly uses the same type, or you have multiple types with the same name across namespaces mapped to the same script namespace.";
+                    string error = "The type '" + appType.FullName + "' conflicts with with '" + types[name].FullName + "' as they have the same name.";
                     ((IErrorHandler)this).ReportError(error, null);
                 }
                 else {

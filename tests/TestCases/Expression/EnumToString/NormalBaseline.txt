@@ -1,48 +1,48 @@
-Type.registerNamespace('test');
+Type.registerNamespace('ExpressionTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Color
+// ExpressionTests.Color
 
-test.Color = function() { };
-test.Color.prototype = {
+ExpressionTests.Color = function() { };
+ExpressionTests.Color.prototype = {
     red: 1, 
     green: 2, 
     blue: 3
 }
-test.Color.registerEnum('test.Color', false);
+ExpressionTests.Color.registerEnum('ExpressionTests.Color', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.State
+// ExpressionTests.State
 
-test.State = function() { };
-test.State.prototype = {
+ExpressionTests.State = function() { };
+ExpressionTests.State.prototype = {
     starting: 'starting', 
     running: 'running', 
     completed: 'completed'
 }
-test.State.registerEnum('test.State', false);
+ExpressionTests.State.registerEnum('ExpressionTests.State', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Types
+// ExpressionTests.Types
 
-test.Types = function() { };
-test.Types.prototype = {
+ExpressionTests.Types = function() { };
+ExpressionTests.Types.prototype = {
     none: 0, 
     type1: 1, 
     type2: 2, 
     type3: 4
 }
-test.Types.registerEnum('test.Types', true);
+ExpressionTests.Types.registerEnum('ExpressionTests.Types', true);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// ExpressionTests.App
 
-test.App = function() {
+ExpressionTests.App = function() {
 }
-test.App.prototype = {
+ExpressionTests.App.prototype = {
     
     test: function(arg) {
         var s1 = (0).toString();
@@ -60,4 +60,4 @@ test.App.prototype = {
 }
 
 
-test.App.registerClass('test.App');
+ExpressionTests.App.registerClass('ExpressionTests.App');

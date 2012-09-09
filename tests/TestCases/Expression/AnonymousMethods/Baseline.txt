@@ -1,27 +1,27 @@
-Type.registerNamespace('test');
+Type.registerNamespace('ExpressionTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.SomeClass
+// ExpressionTests.SomeClass
 
-test.SomeClass = function(cb) {
+ExpressionTests.SomeClass = function(cb) {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Test
+// ExpressionTests.Test
 
-test.Test = function() {
+ExpressionTests.Test = function() {
 }
-test.Test.main = function(args) {
+ExpressionTests.Test.main = function(args) {
     var o = {};
     var name;
-    test.Test.doStuffStatic(o, function(i, s, b) {
+    ExpressionTests.Test.doStuffStatic(o, function(i, s, b) {
         name = s;
     });
 }
-test.Test.doStuffStatic = function(o, callback) {
+ExpressionTests.Test.doStuffStatic = function(o, callback) {
 }
-test.Test.prototype = {
+ExpressionTests.Test.prototype = {
     _n: 0,
     
     AAA: function() {
@@ -29,7 +29,7 @@ test.Test.prototype = {
         this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
             this._n = i;
         }));
-        var s = new test.SomeClass(function() {
+        var s = new ExpressionTests.SomeClass(function() {
         });
         for (var i = 0; i < 10; i++) {
             var foo;
@@ -39,13 +39,13 @@ test.Test.prototype = {
             this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
                 this._n += i;
             }));
-            test.Test.doStuffStatic(o, function() {
+            ExpressionTests.Test.doStuffStatic(o, function() {
             });
-            test.Test.doStuffStatic(o, ss.Delegate.create(this, function() {
+            ExpressionTests.Test.doStuffStatic(o, ss.Delegate.create(this, function() {
                 this._n++;
             }));
         }
-        var s2 = new test.SomeClass(ss.Delegate.create(this, function() {
+        var s2 = new ExpressionTests.SomeClass(ss.Delegate.create(this, function() {
             var numbers = [ this._n ];
         }));
     },
@@ -55,5 +55,5 @@ test.Test.prototype = {
 }
 
 
-test.SomeClass.registerClass('test.SomeClass');
-test.Test.registerClass('test.Test');
+ExpressionTests.SomeClass.registerClass('ExpressionTests.SomeClass');
+ExpressionTests.Test.registerClass('ExpressionTests.Test');

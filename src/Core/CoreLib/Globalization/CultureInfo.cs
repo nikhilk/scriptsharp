@@ -8,7 +8,6 @@ using System.Runtime.CompilerServices;
 namespace System.Globalization {
 
     [Imported]
-    [ScriptNamespace("ss")]
     public sealed class CultureInfo {
 
         private CultureInfo() {

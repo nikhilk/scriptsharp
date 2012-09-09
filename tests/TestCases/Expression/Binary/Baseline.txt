@@ -1,11 +1,11 @@
-Type.registerNamespace('test');
+Type.registerNamespace('ExpressionTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Data
+// ExpressionTests.Data
 
-test.Data = function() {
+ExpressionTests.Data = function() {
 }
-test.Data.prototype = {
+ExpressionTests.Data.prototype = {
     _value: 0,
     
     get_value: function() {
@@ -26,11 +26,11 @@ test.Data.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// ExpressionTests.App
 
-test.App = function() {
+ExpressionTests.App = function() {
 }
-test.App.prototype = {
+ExpressionTests.App.prototype = {
     
     get_foo: function() {
         return 0;
@@ -47,7 +47,7 @@ test.App.prototype = {
     },
     
     get_data: function() {
-        return new test.Data();
+        return new ExpressionTests.Data();
     },
     set_data: function(value) {
         return value;
@@ -58,7 +58,7 @@ test.App.prototype = {
     },
     
     get_flag2: function() {
-        return test.Data.staticFlag;
+        return ExpressionTests.Data.staticFlag;
     },
     
     test: function(arg1, arg2) {
@@ -89,7 +89,7 @@ test.App.prototype = {
         abc = xyz >>> 2;
         abc <<= 1;
         xyz >>>= 1;
-        var d = new test.Data();
+        var d = new ExpressionTests.Data();
         d.set_value(d.get_value() + 5);
         d.set_flag((d.get_flag() | true) === 1);
         var o1 = null || {};
@@ -108,7 +108,7 @@ test.App.prototype = {
         b = (b | true) === 1;
         c = (c ^ true) === 1;
         a = (a | (a || a)) === 1;
-        var d = new test.Data();
+        var d = new ExpressionTests.Data();
         d.set_flag((d.get_flag() & true) === 1);
         d.set_flag((d.get_flag() | true) === 1);
         d.set_flag((d.get_flag() ^ true) === 1);
@@ -116,6 +116,6 @@ test.App.prototype = {
 }
 
 
-test.Data.registerClass('test.Data');
-test.App.registerClass('test.App');
-test.Data.staticFlag = false;
+ExpressionTests.Data.registerClass('ExpressionTests.Data');
+ExpressionTests.App.registerClass('ExpressionTests.App');
+ExpressionTests.Data.staticFlag = false;

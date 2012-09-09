@@ -1,9 +1,9 @@
-Type.registerNamespace('test');
+Type.registerNamespace('TypeTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Point
+// TypeTests.Point
 
-test.$create_Point = function test_Point(x, y) {
+TypeTests.$create_Point = function TypeTests_Point(x, y) {
     var $o = { };
     $o.x = x;
     $o.y = y;
@@ -12,8 +12,8 @@ test.$create_Point = function test_Point(x, y) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Pair
+// TypeTests.Pair
 
-test.$create_Pair = function test_Pair() { return {}; }
+TypeTests.$create_Pair = function TypeTests_Pair() { return {}; }
 
 

@@ -1,11 +1,11 @@
-Type.registerNamespace('test');
+Type.registerNamespace('BasicTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.PublicClass
+// BasicTests.PublicClass
 
-test.PublicClass = function() {
+BasicTests.PublicClass = function() {
 }
-test.PublicClass.prototype = {
+BasicTests.PublicClass.prototype = {
     
     format: function(i) {
         return '0';
@@ -18,11 +18,11 @@ test.PublicClass.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.InternalClass
+// BasicTests.InternalClass
 
-test.InternalClass = function() {
+BasicTests.InternalClass = function() {
 }
-test.InternalClass.prototype = {
+BasicTests.InternalClass.prototype = {
     
     format: function(i) {
         return null;
@@ -34,5 +34,5 @@ test.InternalClass.prototype = {
 }
 
 
-test.PublicClass.registerClass('test.PublicClass');
-test.InternalClass.registerClass('test.InternalClass');
+BasicTests.PublicClass.registerClass('BasicTests.PublicClass');
+BasicTests.InternalClass.registerClass('BasicTests.InternalClass');

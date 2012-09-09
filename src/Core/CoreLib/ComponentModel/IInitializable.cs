@@ -14,7 +14,6 @@ namespace System.ComponentModel {
     /// initialization. 
     /// </summary>
     [Imported]
-    [ScriptNamespace("ss")]
     public interface IInitializable {
 
         /// <summary>

@@ -68,32 +68,6 @@ namespace System.Runtime.CompilerServices {
     }
 
     /// <summary>
-    /// Specifies the namespace that should be used in generated script. The script namespace
-    /// is typically a short name, that is often shared across multiple assemblies.
-    /// The developer is responsible for ensuring that public types across assemblies that share
-    /// a script namespace are unique.
-    /// For internal types, the ScriptQualifier attribute can be used to provide a short prefix
-    /// to generate unique names.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Type, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
-    public sealed class ScriptNamespaceAttribute : Attribute {
-
-        private string _name;
-
-        public ScriptNamespaceAttribute(string name) {
-            _name = name;
-        }
-
-        public string Name {
-            get {
-                return _name;
-            }
-        }
-    }
-
-    /// <summary>
     /// This attribute can be placed on a static class that only contains static string
     /// fields representing a set of resource strings.
     /// </summary>

@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using ScriptFX;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace BasicTests {
 

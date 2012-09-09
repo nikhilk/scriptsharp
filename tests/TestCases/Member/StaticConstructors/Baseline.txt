@@ -1,56 +1,56 @@
-Type.registerNamespace('test');
+Type.registerNamespace('MemberTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Behavior
+// MemberTests.Behavior
 
-test.Behavior = function(e, name) {
+MemberTests.Behavior = function(e, name) {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClass
+// MemberTests.MyClass
 
-test.MyClass = function(d) {
+MemberTests.MyClass = function(d) {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClassEmpty
+// MemberTests.MyClassEmpty
 
-test.MyClassEmpty = function() {
+MemberTests.MyClassEmpty = function() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClassSimple
+// MemberTests.MyClassSimple
 
-test.MyClassSimple = function() {
+MemberTests.MyClassSimple = function() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClassSimpleMulti
+// MemberTests.MyClassSimpleMulti
 
-test.MyClassSimpleMulti = function() {
+MemberTests.MyClassSimpleMulti = function() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyBehavior
+// MemberTests.MyBehavior
 
-test.MyBehavior = function(element) {
-    test.MyBehavior.initializeBase(this, [ element, 'myBehavior' ]);
+MemberTests.MyBehavior = function(element) {
+    MemberTests.MyBehavior.initializeBase(this, [ element, 'myBehavior' ]);
 }
 
 
-test.Behavior.registerClass('test.Behavior');
-test.MyClass.registerClass('test.MyClass');
-test.MyClassEmpty.registerClass('test.MyClassEmpty');
-test.MyClassSimple.registerClass('test.MyClassSimple');
-test.MyClassSimpleMulti.registerClass('test.MyClassSimpleMulti');
-test.MyBehavior.registerClass('test.MyBehavior', test.Behavior);
-test.MyClass.instance = null;
-test.MyClass.instance = new test.MyClass(Date.get_now());
+MemberTests.Behavior.registerClass('MemberTests.Behavior');
+MemberTests.MyClass.registerClass('MemberTests.MyClass');
+MemberTests.MyClassEmpty.registerClass('MemberTests.MyClassEmpty');
+MemberTests.MyClassSimple.registerClass('MemberTests.MyClassSimple');
+MemberTests.MyClassSimpleMulti.registerClass('MemberTests.MyClassSimpleMulti');
+MemberTests.MyBehavior.registerClass('MemberTests.MyBehavior', MemberTests.Behavior);
+MemberTests.MyClass.instance = null;
+MemberTests.MyClass.instance = new MemberTests.MyClass(Date.get_now());
 alert('simple static ctor');
 alert('simple static ctor with multiple statements');
 document.getElementById('foo').innerHTML = '...';
@@ -60,5 +60,5 @@ document.getElementById('foo').innerHTML = '...';
     if (!b) {
         return;
     }
-    new test.MyBehavior(e);
+    new MemberTests.MyBehavior(e);
 })();

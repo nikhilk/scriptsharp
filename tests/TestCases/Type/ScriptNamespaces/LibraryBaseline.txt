@@ -1,20 +1,18 @@
-Type.registerNamespace('MLF');
-
-Type.registerNamespace('ML');
+Type.registerNamespace('My.Lib');
 
 ////////////////////////////////////////////////////////////////////////////////
-// MLF.Feature
+// My.Lib.Feature
 
-MLF.Feature = function MLF_Feature(name) {
+My.Lib.Feature = function My_Lib_Feature(name) {
     this._name = name;
 }
-MLF.Feature.prototype = {
+My.Lib.Feature.prototype = {
     _name: null,
     
-    get_name: function MLF_Feature$get_name() {
+    get_name: function My_Lib_Feature$get_name() {
         return this._name;
     },
-    set_name: function MLF_Feature$set_name(value) {
+    set_name: function My_Lib_Feature$set_name(value) {
         this._name = value;
         return value;
     }
@@ -22,29 +20,29 @@ MLF.Feature.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// ML.MyLib
+// My.Lib.MyLib
 
-ML.MyLib = function ML_MyLib(name, featureName) {
+My.Lib.MyLib = function My_Lib_MyLib(name, featureName) {
     this._name = name;
-    this._feature = new MLF.Feature(featureName);
+    this._feature = new My.Lib.Feature(featureName);
 }
-ML.MyLib.prototype = {
+My.Lib.MyLib.prototype = {
     _name: null,
     _feature: null,
     
-    get_name: function ML_MyLib$get_name() {
+    get_name: function My_Lib_MyLib$get_name() {
         return this._name;
     },
     
-    get_feature: function ML_MyLib$get_feature() {
+    get_feature: function My_Lib_MyLib$get_feature() {
         return this._feature;
     },
-    set_feature: function ML_MyLib$set_feature(value) {
+    set_feature: function My_Lib_MyLib$set_feature(value) {
         this._feature = value;
         return value;
     }
 }
 
 
-MLF.Feature.registerClass('MLF.Feature');
-ML.MyLib.registerClass('ML.MyLib');
+My.Lib.Feature.registerClass('My.Lib.Feature');
+My.Lib.MyLib.registerClass('My.Lib.MyLib');

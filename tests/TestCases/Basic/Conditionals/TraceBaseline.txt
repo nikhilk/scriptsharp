@@ -1,22 +1,22 @@
-Type.registerNamespace('test');
+Type.registerNamespace('BasicTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyDebug
+// BasicTests.MyDebug
 
-test.MyDebug = function() {
+BasicTests.MyDebug = function() {
 }
-test.MyDebug.showInfo = function() {
+BasicTests.MyDebug.showInfo = function() {
 }
-test.MyDebug.traceInfo = function() {
+BasicTests.MyDebug.traceInfo = function() {
 }
-test.MyDebug.logInfo = function() {
+BasicTests.MyDebug.logInfo = function() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// BasicTests.App
 
-test.App = function(i) {
+BasicTests.App = function(i) {
     while (true) {
     }
     switch (i) {
@@ -24,9 +24,9 @@ test.App = function(i) {
             break;
     }
     i++;
-    test.MyDebug.traceInfo();
+    BasicTests.MyDebug.traceInfo();
 }
 
 
-test.MyDebug.registerClass('test.MyDebug');
-test.App.registerClass('test.App');
+BasicTests.MyDebug.registerClass('BasicTests.MyDebug');
+BasicTests.App.registerClass('BasicTests.App');

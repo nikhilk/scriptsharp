@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 
 namespace My.Lib {
-    [ScriptNamespace("MLF")]
+
     public class Feature {
         string _name;
 

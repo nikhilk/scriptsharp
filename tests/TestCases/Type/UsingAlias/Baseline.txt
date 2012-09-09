@@ -1,13 +1,13 @@
-Type.registerNamespace('test');
+Type.registerNamespace('TypeTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClass
+// TypeTests.MyClass
 
-test.MyClass = function test_MyClass() {
+TypeTests.MyClass = function TypeTests_MyClass() {
     var body = document.body;
     var head = document.getElementsByTagName('head')[0];
     head.appendChild(body);
 }
 
 
-test.MyClass.registerClass('test.MyClass');
+TypeTests.MyClass.registerClass('TypeTests.MyClass');

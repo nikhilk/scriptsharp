@@ -1,94 +1,94 @@
-Type.registerNamespace('test');
+Type.registerNamespace('TypeTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Colors
+// TypeTests.Colors
 
-test.Colors = function() { };
-test.Colors.prototype = {
+TypeTests.Colors = function() { };
+TypeTests.Colors.prototype = {
     red: 0, 
     green: 1, 
     blue: 2
 }
-test.Colors.registerEnum('test.Colors', false);
+TypeTests.Colors.registerEnum('TypeTests.Colors', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Sequence
+// TypeTests.Sequence
 
-test.Sequence = function() { };
-test.Sequence.prototype = {
+TypeTests.Sequence = function() { };
+TypeTests.Sequence.prototype = {
     item1: 1, 
     item2: 2, 
     item3: 3, 
     item4: 5
 }
-test.Sequence.registerEnum('test.Sequence', false);
+TypeTests.Sequence.registerEnum('TypeTests.Sequence', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Mode
+// TypeTests.Mode
 
-test.Mode = function() { };
-test.Mode.prototype = {
+TypeTests.Mode = function() { };
+TypeTests.Mode.prototype = {
     Public: 1, 
     Protected: 2, 
     Private: 4
 }
-test.Mode.registerEnum('test.Mode', true);
+TypeTests.Mode.registerEnum('TypeTests.Mode', true);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.UInt32Mask
+// TypeTests.UInt32Mask
 
-test.UInt32Mask = function() { };
-test.UInt32Mask.prototype = {
+TypeTests.UInt32Mask = function() { };
+TypeTests.UInt32Mask.prototype = {
     v: 4026531840, 
     a: 4278190080
 }
-test.UInt32Mask.registerEnum('test.UInt32Mask', false);
+TypeTests.UInt32Mask.registerEnum('TypeTests.UInt32Mask', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.ShortMask
+// TypeTests.ShortMask
 
-test.ShortMask = function() { };
-test.ShortMask.prototype = {
+TypeTests.ShortMask = function() { };
+TypeTests.ShortMask.prototype = {
     v: 1, 
     a: 4096
 }
-test.ShortMask.registerEnum('test.ShortMask', false);
+TypeTests.ShortMask.registerEnum('TypeTests.ShortMask', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Errors
+// TypeTests.Errors
 
-test.Errors = function() { };
-test.Errors.prototype = {
+TypeTests.Errors = function() { };
+TypeTests.Errors.prototype = {
     S_OK: 0, 
     S_FALSE: 1, 
     E_FAIL: -1
 }
-test.Errors.registerEnum('test.Errors', false);
+TypeTests.Errors.registerEnum('TypeTests.Errors', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Size
+// TypeTests.Size
 
-test.Size = function() { };
-test.Size.prototype = {
+TypeTests.Size = function() { };
+TypeTests.Size.prototype = {
     small: 'small', 
     Medium: 'Medium', 
     large: 'large'
 }
-test.Size.registerEnum('test.Size', false);
+TypeTests.Size.registerEnum('TypeTests.Size', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// TypeTests.App
 
-test.App = function test_App() {
+TypeTests.App = function TypeTests_App() {
 }
-test.App.main = function test_App$main() {
+TypeTests.App.main = function TypeTests_App$main() {
     var m = 1;
     m = 1 | 4;
     var c = 0;
@@ -96,15 +96,15 @@ test.App.main = function test_App$main() {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App2
+// TypeTests.App2
 
-test.App2 = function test_App2() {
+TypeTests.App2 = function TypeTests_App2() {
 }
-test.App2.prototype = {
+TypeTests.App2.prototype = {
     _httpMethod: null,
     _sortMode: null,
     
-    run: function test_App2$run() {
+    run: function TypeTests_App2$run() {
         var method = 'POST';
         this.run1('GET');
         this.run2('status');
@@ -113,14 +113,14 @@ test.App2.prototype = {
         var s = 'Medium';
     },
     
-    run1: function test_App2$run1(m) {
+    run1: function TypeTests_App2$run1(m) {
         var s = m;
     },
     
-    run2: function test_App2$run2(m) {
+    run2: function TypeTests_App2$run2(m) {
     }
 }
 
 
-test.App.registerClass('test.App');
-test.App2.registerClass('test.App2');
+TypeTests.App.registerClass('TypeTests.App');
+TypeTests.App2.registerClass('TypeTests.App2');

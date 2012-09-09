@@ -10,7 +10,6 @@ namespace System {
     /// <summary>
     /// Used by event sources to pass event argument information.
     /// </summary>
-    [ScriptNamespace("ss")]
     [Imported]
     public class EventArgs {
 

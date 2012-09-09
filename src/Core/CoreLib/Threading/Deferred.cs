@@ -9,7 +9,6 @@ using System.Runtime.CompilerServices;
 namespace System.Threading {
 
     [Imported]
-    [ScriptNamespace("ss")]
     public class Deferred {
 
         [IntrinsicProperty]
@@ -30,7 +29,6 @@ namespace System.Threading {
     }
 
     [Imported]
-    [ScriptNamespace("ss")]
     [ScriptName("Deferred")]
     public sealed class Deferred<T> : Deferred {
 

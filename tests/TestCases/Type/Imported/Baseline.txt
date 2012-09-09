@@ -1,9 +1,9 @@
-Type.registerNamespace('test');
+Type.registerNamespace('TypeTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// TypeTests.App
 
-test.App = function() {
+TypeTests.App = function() {
     var elem = document.getElementById('foo');
     var s = elem.myString;
     elem['Smith'] = elem['Joe'];
@@ -14,4 +14,4 @@ test.App = function() {
 }
 
 
-test.App.registerClass('test.App');
+TypeTests.App.registerClass('TypeTests.App');

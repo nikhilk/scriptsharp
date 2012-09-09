@@ -1,9 +1,9 @@
-Type.registerNamespace('test');
+Type.registerNamespace('ExpressionTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Foo
+// ExpressionTests.Foo
 
-test.Foo = function() {
+ExpressionTests.Foo = function() {
     this._numbers = [];
     var s = this._numbers[10].format('{0}');
     var s2 = this._numbers.getEnumerator().current.format('{0}');
@@ -29,7 +29,7 @@ test.Foo = function() {
     var f = JSON.parse(json).setup().run().cleanup();
     var name = document.getElementById('nameTB').value;
 }
-test.Foo.prototype = {
+ExpressionTests.Foo.prototype = {
     _numbers: null,
     _func: null,
     
@@ -47,4 +47,4 @@ test.Foo.prototype = {
 }
 
 
-test.Foo.registerClass('test.Foo');
+ExpressionTests.Foo.registerClass('ExpressionTests.Foo');

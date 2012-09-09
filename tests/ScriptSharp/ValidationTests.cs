@@ -16,9 +16,7 @@ namespace ScriptSharp.Tests {
         [TestMethod]
         public void TestConflictingTypes() {
             string expectedErrors =
-                "The type 'test.App' conflicts with another existing type with the same full name. " +
-                "This might be because a referenced assembly uses the same type, or you have multiple " +
-                "types with the same name across namespaces mapped to the same script namespace. ";
+                "The type 'OtherTests.App' conflicts with with 'ValidationTests.App' as they have the same name. ";
 
             Compilation compilation = CreateCompilation();
             compilation.AddSource("Code.cs");

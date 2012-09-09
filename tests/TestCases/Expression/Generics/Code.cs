@@ -6,7 +6,6 @@ using System.Serialization;
 using jQueryApi;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace ExpressionTests {
 

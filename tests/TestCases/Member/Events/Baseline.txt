@@ -1,24 +1,24 @@
-Type.registerNamespace('test');
+Type.registerNamespace('MemberTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.EventArgs
+// MemberTests.EventArgs
 
-test.EventArgs = function() {
+MemberTests.EventArgs = function() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Button
+// MemberTests.Button
 
-test.Button = function() {
+MemberTests.Button = function() {
 }
-test.Button.add_test = function(value) {
-    test.Button.__test = ss.Delegate.combine(test.Button.__test, value);
+MemberTests.Button.add_test = function(value) {
+    MemberTests.Button.__test = ss.Delegate.combine(MemberTests.Button.__test, value);
 }
-test.Button.remove_test = function(value) {
-    test.Button.__test = ss.Delegate.remove(test.Button.__test, value);
+MemberTests.Button.remove_test = function(value) {
+    MemberTests.Button.__test = ss.Delegate.remove(MemberTests.Button.__test, value);
 }
-test.Button.prototype = {
+MemberTests.Button.prototype = {
     _aaa: null,
     
     add_click: function(value) {
@@ -44,12 +44,12 @@ test.Button.prototype = {
     
     performClick: function() {
         if (this.__click != null) {
-            this.__click(this, new test.EventArgs());
+            this.__click(this, new MemberTests.EventArgs());
         }
     }
 }
 
 
-test.EventArgs.registerClass('test.EventArgs');
-test.Button.registerClass('test.Button');
-test.Button.__test = null;
+MemberTests.EventArgs.registerClass('MemberTests.EventArgs');
+MemberTests.Button.registerClass('MemberTests.Button');
+MemberTests.Button.__test = null;

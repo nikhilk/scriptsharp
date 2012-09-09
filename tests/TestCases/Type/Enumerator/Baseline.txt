@@ -1,29 +1,29 @@
-Type.registerNamespace('test');
+Type.registerNamespace('TypeTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App1
+// TypeTests.App1
 
-test.App1 = function test_App1() {
+TypeTests.App1 = function TypeTests_App1() {
 }
-test.App1.prototype = {
+TypeTests.App1.prototype = {
     
-    getEnumerator: function test_App1$getEnumerator() {
+    getEnumerator: function TypeTests_App1$getEnumerator() {
         return null;
     }
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// TypeTests.App
 
-test.App = function test_App() {
+TypeTests.App = function TypeTests_App() {
 }
-test.App.prototype = {
+TypeTests.App.prototype = {
     
-    test1: function test_App$test1(arg) {
+    test1: function TypeTests_App$test1(arg) {
     },
     
-    test: function test_App$test(arg) {
+    test: function TypeTests_App$test(arg) {
         var a;
         var b;
         var s = new Array(5);
@@ -45,5 +45,5 @@ test.App.prototype = {
 }
 
 
-test.App1.registerClass('test.App1', null, ss.IEnumerable);
-test.App.registerClass('test.App');
+TypeTests.App1.registerClass('TypeTests.App1', null, ss.IEnumerable);
+TypeTests.App.registerClass('TypeTests.App');

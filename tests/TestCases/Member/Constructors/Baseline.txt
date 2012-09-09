@@ -1,43 +1,43 @@
-Type.registerNamespace('test');
+Type.registerNamespace('MemberTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClass
+// MemberTests.MyClass
 
-test.MyClass = function() {
+MemberTests.MyClass = function() {
     this._value = 1;
 }
-test.MyClass.prototype = {
+MemberTests.MyClass.prototype = {
     _value: 0
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClass2
+// MemberTests.MyClass2
 
-test.MyClass2 = function() {
+MemberTests.MyClass2 = function() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClass3
+// MemberTests.MyClass3
 
-test.MyClass3 = function(arg, arg2) {
+MemberTests.MyClass3 = function(arg, arg2) {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.MyClass4
+// MemberTests.MyClass4
 
-test.MyClass4 = function(arg, arg2, arg3) {
-    test.MyClass4.initializeBase(this, [ arg, arg2 ]);
+MemberTests.MyClass4 = function(arg, arg2, arg3) {
+    MemberTests.MyClass4.initializeBase(this, [ arg, arg2 ]);
 }
 
 
-test.MyClass.registerClass('test.MyClass');
-test.MyClass2.registerClass('test.MyClass2');
-test.MyClass3.registerClass('test.MyClass3');
-test.MyClass4.registerClass('test.MyClass4', test.MyClass3);
-test.MyClass2.x = null;
-test.MyClass2.x = 'Hello';
-test.MyClass3.c = null;
-test.MyClass3.c = new test.MyClass();
+MemberTests.MyClass.registerClass('MemberTests.MyClass');
+MemberTests.MyClass2.registerClass('MemberTests.MyClass2');
+MemberTests.MyClass3.registerClass('MemberTests.MyClass3');
+MemberTests.MyClass4.registerClass('MemberTests.MyClass4', MemberTests.MyClass3);
+MemberTests.MyClass2.x = null;
+MemberTests.MyClass2.x = 'Hello';
+MemberTests.MyClass3.c = null;
+MemberTests.MyClass3.c = new MemberTests.MyClass();

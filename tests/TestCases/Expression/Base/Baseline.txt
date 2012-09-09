@@ -1,11 +1,11 @@
-Type.registerNamespace('test');
+Type.registerNamespace('ExpressionTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Foo
+// ExpressionTests.Foo
 
-test.Foo = function(i, j) {
+ExpressionTests.Foo = function(i, j) {
 }
-test.Foo.prototype = {
+ExpressionTests.Foo.prototype = {
     
     toString: function() {
         return 'Foo';
@@ -18,22 +18,22 @@ test.Foo.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Bar
+// ExpressionTests.Bar
 
-test.Bar = function(i, j, f) {
-    test.Bar.initializeBase(this, [ i, j ]);
+ExpressionTests.Bar = function(i, j, f) {
+    ExpressionTests.Bar.initializeBase(this, [ i, j ]);
 }
-test.Bar.prototype = {
+ExpressionTests.Bar.prototype = {
     
     sum: function() {
-        return test.Bar.callBaseMethod(this, 'sum', [ 1 ]) + 1;
+        return ExpressionTests.Bar.callBaseMethod(this, 'sum', [ 1 ]) + 1;
     },
     
     toString: function() {
-        return test.Bar.callBaseMethod(this, 'toString') + ' -> Bar';
+        return ExpressionTests.Bar.callBaseMethod(this, 'toString') + ' -> Bar';
     }
 }
 
 
-test.Foo.registerClass('test.Foo');
-test.Bar.registerClass('test.Bar', test.Foo);
+ExpressionTests.Foo.registerClass('ExpressionTests.Foo');
+ExpressionTests.Bar.registerClass('ExpressionTests.Bar', ExpressionTests.Foo);

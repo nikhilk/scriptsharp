@@ -11,7 +11,6 @@ namespace System {
     /// Provides an optimized mechanism to concatenate strings.
     /// </summary>
     [Imported]
-    [ScriptNamespace("ss")]
     public sealed class StringBuilder {
 
         /// <summary>

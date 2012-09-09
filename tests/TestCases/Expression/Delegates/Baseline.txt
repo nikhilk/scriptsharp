@@ -1,31 +1,31 @@
-Type.registerNamespace('test');
+Type.registerNamespace('ExpressionTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.EventArgs
+// ExpressionTests.EventArgs
 
-test.EventArgs = function() {
+ExpressionTests.EventArgs = function() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.SomeClass
+// ExpressionTests.SomeClass
 
-test.SomeClass = function(handler) {
+ExpressionTests.SomeClass = function(handler) {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Test
+// ExpressionTests.Test
 
-test.Test = function() {
+ExpressionTests.Test = function() {
     this._handler = ss.Delegate.create(this, this.onEvent);
     this._handler = ss.Delegate.create(this, this.onEvent);
     this._handler = ss.Delegate.create(this, this.onEvent);
-    this._handler = test.Test2.onGlobalEvent;
-    var s1 = new test.SomeClass(ss.Delegate.create(this, this.onEvent));
-    var s2 = new test.SomeClass(this._handler);
+    this._handler = ExpressionTests.Test2.onGlobalEvent;
+    var s1 = new ExpressionTests.SomeClass(ss.Delegate.create(this, this.onEvent));
+    var s2 = new ExpressionTests.SomeClass(this._handler);
 }
-test.Test.prototype = {
+ExpressionTests.Test.prototype = {
     _handler: null,
     
     doStuff: function() {
@@ -40,15 +40,15 @@ test.Test.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Test2
+// ExpressionTests.Test2
 
-test.Test2 = function() {
+ExpressionTests.Test2 = function() {
 }
-test.Test2.onGlobalEvent = function(sender, e) {
+ExpressionTests.Test2.onGlobalEvent = function(sender, e) {
 }
 
 
-test.EventArgs.registerClass('test.EventArgs');
-test.SomeClass.registerClass('test.SomeClass');
-test.Test.registerClass('test.Test');
-test.Test2.registerClass('test.Test2');
+ExpressionTests.EventArgs.registerClass('ExpressionTests.EventArgs');
+ExpressionTests.SomeClass.registerClass('ExpressionTests.SomeClass');
+ExpressionTests.Test.registerClass('ExpressionTests.Test');
+ExpressionTests.Test2.registerClass('ExpressionTests.Test2');

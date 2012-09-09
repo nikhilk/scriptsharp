@@ -1,24 +1,20 @@
-Type.registerNamespace('MAF');
-
-Type.registerNamespace('MA');
-
-Type.registerNamespace('Test');
+Type.registerNamespace('My.App');
 
 ////////////////////////////////////////////////////////////////////////////////
-// MAF.AppFeature
+// My.App.AppFeature
 
-MAF.AppFeature = function MAF_AppFeature(name) {
+My.App.AppFeature = function My_App_AppFeature(name) {
     this._name = name;
-    this._feature = new MLF.Feature(name);
+    this._feature = new Lib.Feature(name);
 }
-MAF.AppFeature.prototype = {
+My.App.AppFeature.prototype = {
     _name: null,
     _feature: null,
     
-    get_name: function MAF_AppFeature$get_name() {
+    get_name: function My_App_AppFeature$get_name() {
         return this._name;
     },
-    set_name: function MAF_AppFeature$set_name(value) {
+    set_name: function My_App_AppFeature$set_name(value) {
         this._name = value;
         return value;
     }
@@ -26,27 +22,27 @@ MAF.AppFeature.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// MA.MyApp
+// My.App.MyApp
 
-MA.MyApp = function MA_MyApp(name, appFeatureName, libName, libFeatureName) {
+My.App.MyApp = function My_App_MyApp(name, appFeatureName, libName, libFeatureName) {
     this._name = name;
-    this._appfeature = new MAF.AppFeature(appFeatureName);
-    this._lib = new ML.MyLib('lib1', libName);
-    this._lib.set_feature(new MLF.Feature(libFeatureName));
+    this._appfeature = new My.App.AppFeature(appFeatureName);
+    this._lib = new Lib.MyLib('lib1', libName);
+    this._lib.set_feature(new Lib.Feature(libFeatureName));
 }
-MA.MyApp.prototype = {
+My.App.MyApp.prototype = {
     _name: null,
     _appfeature: null,
     _lib: null,
     
-    get_name: function MA_MyApp$get_name() {
+    get_name: function My_App_MyApp$get_name() {
         return this._name;
     },
     
-    get_lib: function MA_MyApp$get_lib() {
+    get_lib: function My_App_MyApp$get_lib() {
         return this._lib;
     },
-    set_lib: function MA_MyApp$set_lib(value) {
+    set_lib: function My_App_MyApp$set_lib(value) {
         this._lib = value;
         return value;
     }
@@ -54,12 +50,12 @@ MA.MyApp.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Test.Foo
+// My.App.Foo
 
-Test.Foo = function Test_Foo() {
+My.App.Foo = function My_App_Foo() {
 }
 
 
-MAF.AppFeature.registerClass('MAF.AppFeature');
-MA.MyApp.registerClass('MA.MyApp');
-Test.Foo.registerClass('Test.Foo');
+My.App.AppFeature.registerClass('My.App.AppFeature');
+My.App.MyApp.registerClass('My.App.MyApp');
+My.App.Foo.registerClass('My.App.Foo');

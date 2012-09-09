@@ -9,7 +9,6 @@ namespace System {
 
     // Script Equivalent: IDisposable
     [Imported]
-    [ScriptNamespace("ss")]
     public interface IDisposable {
 
         void Dispose();

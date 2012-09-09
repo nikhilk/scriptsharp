@@ -1,22 +1,22 @@
-Type.registerNamespace('test');
+Type.registerNamespace('StatementTests');
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.Mode
+// StatementTests.Mode
 
-test.Mode = function() { };
-test.Mode.prototype = {
+StatementTests.Mode = function() { };
+StatementTests.Mode.prototype = {
     foo: 0, 
     bar: 1
 }
-test.Mode.registerEnum('test.Mode', false);
+StatementTests.Mode.registerEnum('StatementTests.Mode', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test.App
+// StatementTests.App
 
-test.App = function() {
+StatementTests.App = function() {
 }
-test.App.prototype = {
+StatementTests.App.prototype = {
     
     test: function(arg, m) {
         var i;
@@ -56,4 +56,4 @@ test.App.prototype = {
 }
 
 
-test.App.registerClass('test.App');
+StatementTests.App.registerClass('StatementTests.App');
