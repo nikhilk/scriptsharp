@@ -16,7 +16,7 @@ test.App.registerClass('test.App');
 
 alert('debug');
 
-ss.checkScripts('test', 'core');
+ss.checkScripts('test', 'ss');
 
 //! Copyright (c) 2007
  

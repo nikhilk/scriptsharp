@@ -5,16 +5,7 @@ Minimization Map
     Member '_intVal2' renamed to '$1_1'
     Member '_intVal3' renamed to '$1_2'
     Member '_strVal' renamed to '$1_3'
-Type 'BasicTests.ABC' renamed to '_ABC'
     Member 'Alpha' renamed to '$0'
-Type 'BasicTests.AppHelper' renamed to 'test$3'
-Type 'BasicTests.Bar' renamed to '_Bar'
-Type 'BasicTests.Bar2' renamed to '_Bar2'
-Type 'BasicTests.BarCustom2' renamed to 'test$6'
-Type 'BasicTests.BarEx' renamed to 'test$5'
-Type 'BasicTests.BaseBaseClass' renamed to 'test$1'
-Type 'BasicTests.BaseClass' renamed to 'test$4'
-Type 'BasicTests.DerivedClass' renamed to 'test$7'
     Member 'Dispose' renamed to '$1'
     Member 'DoStuff' renamed to '$0'
     Member 'DoStuff' renamed to '$0'
@@ -25,11 +16,7 @@ Type 'BasicTests.DerivedClass' renamed to 'test$7'
     Member 'DoStuffInternal' renamed to '$3'
     Member 'ExecuteHandler' renamed to '$1'
     Member 'Foo' renamed to '$2'
-Type 'BasicTests.IApp' renamed to '_IApp'
     Member 'Initialize' renamed to '$0'
-Type 'BasicTests.MaskTextBox' renamed to 'test$8'
-Type 'BasicTests.MyData' renamed to 'test$2'
-Type 'BasicTests.MyMode' renamed to 'test$0'
     Member 'Numeric' renamed to '$1'
     Member 'OnClicked' renamed to '$3_1'
     Member 'OnValueChanged' renamed to '$1_6'
@@ -59,11 +46,11 @@ test.AppFlags.prototype = {
 test.AppFlags.registerEnum('test.AppFlags', false);
 
 
-test._IApp = function() { };
-test._IApp.registerInterface('test._IApp');
+test.IApp = function() { };
+test.IApp.registerInterface('test.IApp');
 
 
-test.$create_test$2 = function(a, b) {
+test.$create_MyData = function(a, b) {
     var $o = { };
     $o.$0 = a;
     $o.$1 = b;
@@ -76,8 +63,8 @@ window.run = function() {
 
 
 test.App = function() {
-    var $0 = new test.test$3();
-    $0.$0();
+    var helper = new test.AppHelper();
+    helper.$0();
 }
 test.App.prototype = {
     
@@ -92,18 +79,18 @@ test.App.prototype = {
 }
 
 
-test.test$3 = function() {
+test.AppHelper = function() {
 }
-test.test$3.prototype = {
+test.AppHelper.prototype = {
     
     $0: function() {
     }
 }
 
 
-test._Bar = function() {
+test.Bar = function() {
 }
-test._Bar.prototype = {
+test.Bar.prototype = {
     
     $0: function() {
     },
@@ -117,25 +104,25 @@ test._Bar.prototype = {
 }
 
 
-test._Bar2 = function() {
-    test._Bar2.initializeBase(this);
+test.Bar2 = function() {
+    test.Bar2.initializeBase(this);
 }
 
 
-test.test$5 = function() {
-    test.test$5.initializeBase(this);
+test.BarEx = function() {
+    test.BarEx.initializeBase(this);
 }
-test.test$5.prototype = {
+test.BarEx.prototype = {
     
     $2: function() {
-        var $0 = 1;
+        var mode = 1;
     },
     
     $0: function() {
         this.$2();
-        test.test$5.callBaseMethod(this, '$0');
-        var $0 = test.$create_test$2('a', 'b');
-        $0.$0 = $0.$1;
+        test.BarEx.callBaseMethod(this, '$0');
+        var d = test.$create_MyData('a', 'b');
+        d.$0 = d.$1;
     },
     
     $3: function($p0) {
@@ -143,17 +130,17 @@ test.test$5.prototype = {
     },
     
     $4: function($p0) {
-        var $0 = $p0 + 1;
-        var $1 = $p0.toString();
-        var $2 = 0;
+        var numericValue = $p0 + 1;
+        var stringValue = $p0.toString();
+        var value = 0;
         this.$1(ss.Delegate.create(this, function($p1_0, $p1_1) {
             this.$1(function($p2_0, $p2_1) {
-                var $2_0 = 11;
+                var value = 11;
                 return $p2_0;
             });
-            var $1_0 = 10;
-            var $1_1 = 11;
-            return $0 + $p1_0 + $1 + $p1_1 + $1_0;
+            var value = 10;
+            var value2 = 11;
+            return numericValue + $p1_0 + stringValue + $p1_1 + value;
         }));
     },
     
@@ -161,33 +148,33 @@ test.test$5.prototype = {
         return 0;
     },
     set_$5: function($p0) {
-        var $0 = $p0;
+        var x = $p0;
         return $p0;
     },
     
     get_$6: function() {
         this.$1(ss.Delegate.create(this, function($p1_0, $p1_1) {
             this.$1(function($p2_0, $p2_1) {
-                var $2_0 = 11;
+                var value = 11;
                 return $p2_0;
             });
-            var $1_0 = 10;
-            var $1_1 = 11;
-            return $p1_0 + $p1_1 + $1_0;
+            var value = 10;
+            var value2 = 11;
+            return $p1_0 + $p1_1 + value;
         }));
         return 0;
     },
     set_$6: function($p0) {
-        var $0 = $p0 + 1;
-        var $1 = $p0.toString();
+        var numericValue = $p0 + 1;
+        var stringValue = $p0.toString();
         this.$1(ss.Delegate.create(this, function($p1_0, $p1_1) {
             this.$1(function($p2_0, $p2_1) {
-                var $2_0 = 11;
+                var value1 = 11;
                 return $p2_0;
             });
-            var $1_0 = 10;
-            var $1_1 = 11;
-            return $0 + $p1_0 + $1 + $p1_1 + $p0 + $1_1;
+            var value2 = 10;
+            var value3 = 11;
+            return numericValue + $p1_0 + stringValue + $p1_1 + $p0 + value3;
         }));
         return $p0;
     }
@@ -199,10 +186,10 @@ test.BarCustom = function() {
 }
 
 
-test.test$6 = function() {
-    test.test$6.initializeBase(this);
+test.BarCustom2 = function() {
+    test.BarCustom2.initializeBase(this);
 }
-test.test$6.prototype = {
+test.BarCustom2.prototype = {
     
     $2: function() {
         return 0;
@@ -254,10 +241,10 @@ test.FooBehavior.prototype = {
 }
 
 
-test.test$8 = function(e) {
-    test.test$8.initializeBase(this, [ e ]);
+test.MaskTextBox = function(e) {
+    test.MaskTextBox.initializeBase(this, [ e ]);
 }
-test.test$8.prototype = {
+test.MaskTextBox.prototype = {
     
     $3_0: function() {
     },
@@ -267,50 +254,50 @@ test.test$8.prototype = {
 }
 
 
-test.test$7 = function() {
-    test.test$7.initializeBase(this);
+test.DerivedClass = function() {
+    test.DerivedClass.initializeBase(this);
 }
-test.test$7.prototype = {
+test.DerivedClass.prototype = {
     
     $2: function() {
     }
 }
 
 
-test.test$4 = function() {
-    test.test$4.initializeBase(this);
+test.BaseClass = function() {
+    test.BaseClass.initializeBase(this);
 }
-test.test$4.prototype = {
+test.BaseClass.prototype = {
     
     $1: function() {
     }
 }
 
 
-test.test$1 = function() {
+test.BaseBaseClass = function() {
 }
-test.test$1.prototype = {
+test.BaseBaseClass.prototype = {
     
     $0: function() {
     }
 }
 
 
-test._ABC = function() {
+test.ABC = function() {
 }
 
 
 test.App.registerClass('test.App');
-test.test$3.registerClass('test.test$3');
-test._Bar.registerClass('test._Bar');
-test._Bar2.registerClass('test._Bar2', test._Bar);
-test.test$5.registerClass('test.test$5', test._Bar2);
-test.BarCustom.registerClass('test.BarCustom', test._Bar);
-test.test$6.registerClass('test.test$6', test.BarCustom);
+test.AppHelper.registerClass('test.AppHelper');
+test.Bar.registerClass('test.Bar');
+test.Bar2.registerClass('test.Bar2', test.Bar);
+test.BarEx.registerClass('test.BarEx', test.Bar2);
+test.BarCustom.registerClass('test.BarCustom', test.Bar);
+test.BarCustom2.registerClass('test.BarCustom2', test.BarCustom);
 test.FooBehavior.registerClass('test.FooBehavior', ScriptFX.Behavior);
-test.test$8.registerClass('test.test$8', ScriptFX.TextBox);
-test.test$1.registerClass('test.test$1');
-test.test$4.registerClass('test.test$4', test.test$1);
-test.test$7.registerClass('test.test$7', test.test$4);
-test._ABC.registerClass('test._ABC');
+test.MaskTextBox.registerClass('test.MaskTextBox', ScriptFX.TextBox);
+test.BaseBaseClass.registerClass('test.BaseBaseClass');
+test.BaseClass.registerClass('test.BaseClass', test.BaseBaseClass);
+test.DerivedClass.registerClass('test.DerivedClass', test.BaseClass);
+test.ABC.registerClass('test.ABC');
 test.FooBehavior.$1_3 = null;

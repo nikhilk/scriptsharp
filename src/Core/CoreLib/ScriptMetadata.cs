@@ -57,30 +57,6 @@ namespace System.Runtime.CompilerServices {
     }
 
     /// <summary>
-    /// Provides a prefix to use when generating types internal to this assembly so that
-    /// they can be unique within a given a script namespace.
-    /// The specified prefix overrides the script name provided in the ScriptAssembly
-    /// attribute.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
-    public sealed class ScriptQualifierAttribute : Attribute {
-
-        private string _prefix;
-
-        public ScriptQualifierAttribute(string prefix) {
-            _prefix = prefix;
-        }
-
-        public string Prefix {
-            get {
-                return _prefix;
-            }
-        }
-    }
-
-    /// <summary>
     /// This attribute indicates that the namespace of type within a system assembly
     /// should be ignored at script generation time. It is useful for creating namespaces
     /// for the purpose of c# code that don't exist at runtime.

@@ -260,9 +260,9 @@ test.DerivedClass.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test._internalClass
+// test.InternalClass
 
-test._internalClass = function test__internalClass() {
+test.InternalClass = function test_InternalClass() {
     /// <summary>
     /// An internal class.
     /// </summary>
@@ -270,9 +270,9 @@ test._internalClass = function test__internalClass() {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test._internalClassWithNoComments
+// test.InternalClassWithNoComments
 
-test._internalClassWithNoComments = function test__internalClassWithNoComments() {
+test.InternalClassWithNoComments = function test_InternalClassWithNoComments() {
 }
 
 
@@ -288,7 +288,7 @@ window.run = function test_GlobalMethodsClass$run() {
 
 test.BaseClass.registerClass('test.BaseClass');
 test.DerivedClass.registerClass('test.DerivedClass', test.BaseClass);
-test._internalClass.registerClass('test._internalClass');
-test._internalClassWithNoComments.registerClass('test._internalClassWithNoComments');
+test.InternalClass.registerClass('test.InternalClass');
+test.InternalClassWithNoComments.registerClass('test.InternalClassWithNoComments');
 test.BaseClass.constantField = 3;
 test.BaseClass.staticField = null;

@@ -20,13 +20,13 @@ test.EmptyClass = function test_EmptyClass() {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test._singleMemberClass
+// test.SingleMemberClass
 
-test._singleMemberClass = function test__singleMemberClass() {
+test.SingleMemberClass = function test_SingleMemberClass() {
 }
-test._singleMemberClass.prototype = {
+test.SingleMemberClass.prototype = {
     
-    run: function test__singleMemberClass$run() {
+    run: function test_SingleMemberClass$run() {
     }
 }
 
@@ -104,19 +104,19 @@ test.MyClass.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test._someClass
+// test.SomeClass
 
-test._someClass = function test__someClass() {
+test.SomeClass = function test_SomeClass() {
 }
-test._someClass.prototype = {
+test.SomeClass.prototype = {
     
-    close: function test__someClass$close() {
+    close: function test_SomeClass$close() {
     },
     
-    _cancel: function test__someClass$_cancel() {
+    _cancel: function test_SomeClass$_cancel() {
     },
     
-    run: function test__someClass$run() {
+    run: function test_SomeClass$run() {
     }
 }
 
@@ -138,10 +138,10 @@ test.App = function test_App() {
 
 
 test.EmptyClass.registerClass('test.EmptyClass');
-test._singleMemberClass.registerClass('test._singleMemberClass');
-test.DerivedMemberClass.registerClass('test.DerivedMemberClass', test._singleMemberClass);
+test.SingleMemberClass.registerClass('test.SingleMemberClass');
+test.DerivedMemberClass.registerClass('test.DerivedMemberClass', test.SingleMemberClass);
 test.MergedMembersClass.registerClass('test.MergedMembersClass');
 test.DerivedMergedMembersClass.registerClass('test.DerivedMergedMembersClass', test.MergedMembersClass);
 test.MyClass.registerClass('test.MyClass', null, test.IMyInterface);
-test._someClass.registerClass('test._someClass');
+test.SomeClass.registerClass('test.SomeClass');
 test.App.registerClass('test.App');

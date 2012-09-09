@@ -4,14 +4,14 @@ Type.registerNamespace('test');
 // test.App
 
 test.App = function test_App() {
-    var s1 = test._strings1.string1;
+    var s1 = test.Strings1.string1;
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test._strings1
+// test.Strings1
 
-test._strings1 = { 
+test.Strings1 = { 
     string1: 'neutral: aaa',
     string2: 'fr: bbb',
     string3: 'fr-FR: ccc'

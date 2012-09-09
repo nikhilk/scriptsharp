@@ -10,35 +10,11 @@ namespace ScriptSharp.ScriptModel {
 
     internal sealed class SymbolObfuscator : ISymbolTransformer {
 
-        private int _count;
-
         private static string GenerateName(int index, int offset) {
             if (offset == 0) {
                 return String.Format("${0:X}", index);
             }
             return String.Format("${0:X}_{1:X}", offset, index);
-        }
-
-        private string TransformLocal(LocalSymbol localSymbol) {
-            int depth = 0;
-
-            AnonymousMethodSymbol parentMethod = localSymbol.Parent as AnonymousMethodSymbol;
-            if (parentMethod != null) {
-                // If an anonymous method contains a local variable with the
-                // same name as a variable in the containing method, they will
-                // conflict at runtime, i.e. the value in the inner method
-                // will override the value of the outer method when it is run.
-                // Note that right now we aren't seeing if there is actually a conflict.
-                // We're always qualifying the inner variable with a depth prefix.
-                // REVIEW: Should we try to optimize when we qualify?
-
-                depth = parentMethod.Depth;
-            }
-
-            string transformedName = GenerateName(_count, depth);
-            _count++;
-
-            return transformedName;
         }
 
         private string TransformMember(MemberSymbol memberSymbol) {
@@ -110,43 +86,17 @@ namespace ScriptSharp.ScriptModel {
             return null;
         }
 
-        private string TransformType(TypeSymbol typeSymbol, out bool transformChildren) {
-            string transformedName = null;
-            transformChildren = (typeSymbol.Type != SymbolType.Interface) &&
-                                (typeSymbol.Type != SymbolType.Delegate);
-
-            if ((typeSymbol.IsPublic == false) && typeSymbol.IsTransformAllowed) {
-                string prefix = typeSymbol.SymbolSet.ScriptPrefix;
-
-                string name = String.Format("{0}${1:X}", prefix, _count);
-                if ((typeSymbol.Name.Length + 1) < name.Length) {
-                    transformedName = "_" + typeSymbol.Name;
-                }
-                else {
-                    transformedName = name;
-                    _count++;
-                }
-            }
-
-            return transformedName;
-        }
-
         #region Implementation of ISymbolTransformer
         string ISymbolTransformer.TransformSymbol(Symbol symbol, out bool transformChildren) {
             transformChildren = false;
 
             if (symbol is TypeSymbol) {
-                if ((symbol.Type == SymbolType.Class) && ((ClassSymbol)symbol).IsTestType) {
-                    return null;
-                }
-
-                return TransformType((TypeSymbol)symbol, out transformChildren);
+                transformChildren = (symbol.Type != SymbolType.Interface) &&
+                                    (symbol.Type != SymbolType.Delegate);
+                return null;
             }
             else if (symbol is MemberSymbol) {
                 return TransformMember((MemberSymbol)symbol);
-            }
-            else if (symbol is LocalSymbol) {
-                return TransformLocal((LocalSymbol)symbol);
             }
 
             return null;

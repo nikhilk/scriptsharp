@@ -297,18 +297,6 @@ namespace ScriptSharp.Compiler {
             }
             symbols.ScriptName = scriptName;
 
-            string scriptPrefix = GetAssemblyScriptPrefix(compilationUnits);
-            if (String.IsNullOrEmpty(scriptPrefix) == false) {
-                if (Utility.IsValidIdentifier(scriptPrefix) == false) {
-                    string errorMessage = "The ScriptQualifier attribute referenced an invalid prefix '{0}'. Script prefix must be valid identifiers.";
-                    _errorHandler.ReportError(String.Format(errorMessage, scriptPrefix), String.Empty);
-                }
-            }
-            else {
-                scriptPrefix = scriptName.Replace(".", String.Empty);
-            }
-            symbols.ScriptPrefix = scriptPrefix;
-
             string assemblyScriptNamespace = GetAssemblyScriptNamespace(compilationUnits);
             List<TypeSymbol> types = new List<TypeSymbol>();
 

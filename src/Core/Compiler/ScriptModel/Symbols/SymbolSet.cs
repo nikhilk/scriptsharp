@@ -26,7 +26,6 @@ namespace ScriptSharp.ScriptModel {
 
         private MemberSymbol _entryPoint;
         private string _scriptName;
-        private string _scriptPrefix;
 
         private Dictionary<string, Dictionary<string, ResXItem>> _resources;
 
@@ -78,15 +77,6 @@ namespace ScriptSharp.ScriptModel {
             }
             set {
                 _scriptName = value;
-            }
-        }
-
-        public string ScriptPrefix {
-            get {
-                return _scriptPrefix;
-            }
-            set {
-                _scriptPrefix = value;
             }
         }
 

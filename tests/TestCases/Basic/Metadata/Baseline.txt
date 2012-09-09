@@ -4083,13 +4083,13 @@ test.Mode.registerEnum('test.Mode', false);
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test._iFoo
+// test.IFoo
 
-test._iFoo = function() { };
-test._iFoo.prototype = {
+test.IFoo = function() { };
+test.IFoo.prototype = {
 
 }
-test._iFoo.registerInterface('test._iFoo');
+test.IFoo.registerInterface('test.IFoo');
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -4103,9 +4103,9 @@ test.IApp.registerInterface('test.IApp');
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test._point
+// test.Point
 
-test.$create__point = function test__point(x, y) {
+test.$create_Point = function test_Point(x, y) {
     var $o = { };
     $o.x = x;
     $o.y = y;
@@ -4143,37 +4143,37 @@ test.App.prototype = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test._appHelper
+// test.AppHelper
 
-test._appHelper = function test__appHelper() {
+test.AppHelper = function test_AppHelper() {
 }
-test._appHelper.prototype = {
+test.AppHelper.prototype = {
     
-    get_prop1: function test__appHelper$get_prop1() {
+    get_prop1: function test_AppHelper$get_prop1() {
         return 0;
     },
     
-    get_prop2: function test__appHelper$get_prop2() {
+    get_prop2: function test_AppHelper$get_prop2() {
         return 0;
     },
-    set_prop2: function test__appHelper$set_prop2(value) {
+    set_prop2: function test_AppHelper$set_prop2(value) {
         return value;
     },
     
-    _showHelp: function test__appHelper$_showHelp() {
+    _showHelp: function test_AppHelper$_showHelp() {
     },
-    get_item: function test__appHelper$get_item(name) {
+    get_item: function test_AppHelper$get_item(name) {
         return 0;
     }
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test._util
+// test.Util
 
-window._showHelp = function test__util$_showHelp() {
+window._showHelp = function test_Util$_showHelp() {
 }
 
 
 test.App.registerClass('test.App', null, test.IApp);
-test._appHelper.registerClass('test._appHelper');
+test.AppHelper.registerClass('test.AppHelper');
