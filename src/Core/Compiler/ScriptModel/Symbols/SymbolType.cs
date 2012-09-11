@@ -11,17 +11,17 @@ namespace ScriptSharp.ScriptModel {
 
         Namespace = 0,
 
-        Class = 1,
+        Delegate = 1,
 
-        Interface = 2,
+        Enumeration = 2,
 
-        Enumeration = 3,
+        Resources = 3,
 
-        Delegate = 4,
+        Interface = 4,
 
         Record = 5,
 
-        Resources = 6,
+        Class = 6,
 
         Field = 7,
 
