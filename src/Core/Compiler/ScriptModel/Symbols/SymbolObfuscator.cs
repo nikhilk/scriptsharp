@@ -11,10 +11,15 @@ namespace ScriptSharp.ScriptModel {
     internal sealed class SymbolObfuscator : ISymbolTransformer {
 
         private static string GenerateName(int index, int offset) {
+            // Shorten the name - the use of "$" ensures it won't conflict with a
+            // name in the source code.
+
+            string name = Utility.CreateEncodedName(index, /* useDigits */ true);
+
             if (offset == 0) {
-                return String.Format("${0:X}", index);
+                return "$" + name;
             }
-            return String.Format("${0:X}_{1:X}", offset, index);
+            return Utility.CreateEncodedName(offset, /* useDigits */ false) + "$" + name;
         }
 
         private string TransformMember(MemberSymbol memberSymbol) {
