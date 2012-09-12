@@ -12,16 +12,6 @@ Array.prototype.addRange = function#? DEBUG Array$addRange##(items) {
     this.push.apply(this, items);
 }
 
-Array.prototype.aggregate = function#? DEBUG Array$aggregate##(seed, callback, instance) {
-    var length = this.length;
-    for (var i = 0; i < length; i++) {
-        if (i in this) {
-            seed = callback.call(instance, seed, this[i], i, this);
-        }
-    }
-    return seed;
-}
-
 Array.prototype.clear = function#? DEBUG Array$clear##() {
     this.length = 0;
 }
@@ -178,6 +168,18 @@ Array.prototype.insertRange = function#? DEBUG Array$insertRange##(index, items)
     }
 }
 
+if (!Array.prototype.lastIndexOf) {
+    Array.prototype.lastIndexOf = function#? DEBUG Array$lastIndexOf##(item, fromIndex) {
+        fromIndex = fromIndex || this.length - 1;
+        for (var index = fromIndex; index >= 0; index--) {
+            if (this[index] === item) {
+                return index;
+            }
+        }
+        return -1;
+    }
+}
+
 if (!Array.prototype.map) {
     Array.prototype.map = function#? DEBUG Array$map##(callback, instance) {
         var length = this.length;
@@ -193,6 +195,39 @@ if (!Array.prototype.map) {
 
 Array.parse = function#? DEBUG Array$parse##(s) {
     return eval('(' + s + ')');
+}
+
+if (!Array.prototype.reduce) {
+    Array.prototype.reduce = function#? DEBUG Array$reduce##(callback, initialValue) {
+        var value = initialValue;
+        var length = this.length;
+        if (length) {
+            var i = 0;
+            if (arguments.length == 1) {
+                value = this[0];
+                i++;
+            }
+            for (; i < length; i++) {
+                value = callback(value, this[i], i, this);
+            }
+        }
+        return value;
+    }
+    Array.prototype.reduceRight = function#? DEBUG Array$reduceRight##(callback, initialValue) {
+        var value = initialValue;
+        var length = this.length;
+        if (length) {
+            var i = length - 1;
+            if (arguments.length == 1) {
+                value = this[i];
+                i--;
+            }
+            for (; i >= 0; i--) {
+                value = callback(value, this[i], i, this);
+            }
+        }
+        return value;
+    }
 }
 
 Array.prototype.remove = function#? DEBUG Array$remove##(item) {

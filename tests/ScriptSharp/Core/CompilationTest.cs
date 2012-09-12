@@ -95,6 +95,11 @@ namespace ScriptSharp.Tests.Core {
             string output = compilation.Output.GeneratedOutput;
 
             bool validResults = ValidateResults(output, baselineFile);
+            if (validResults == false) {
+                string outputPath = Path.Combine(_context.TestRunDirectory, "..", this.GetType().Name + "." + _context.TestName + ".txt");
+                File.WriteAllText(outputPath, output);
+            }
+
             Assert.IsTrue(validResults, "Unexpected differences between baseline and result.");
         }
 

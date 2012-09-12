@@ -36,13 +36,6 @@ namespace System.Collections.Generic {
                 return default(T);
             }
         }
-        public TAccumulated Aggregate<TAccumulated>(TAccumulated seed, ListAggregator<TAccumulated, T> aggregator) {
-            return default(TAccumulated);
-        }
-
-        public TAccumulated Aggregate<TAccumulated>(TAccumulated seed, ListItemAggregator<TAccumulated, T> aggregator) {
-            return default(TAccumulated);
-        }
 
         public bool Contains(T item) {
             return false;
@@ -108,6 +101,14 @@ namespace System.Collections.Generic {
 
         public string Join(string delimiter) {
             return null;
+        }
+
+        public int LastIndexOf(object item) {
+            return 0;
+        }
+
+        public int LastIndexOf(object item, int fromIndex) {
+            return 0;
         }
 
         public List<TTarget> Map<TTarget>(ListMapCallback<T, TTarget> mapCallback) {

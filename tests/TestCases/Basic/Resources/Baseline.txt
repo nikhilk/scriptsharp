@@ -19,9 +19,9 @@ test._strings1 = {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// test._strings2
+// test.Strings2
 
-test._strings2 = { 
+test.Strings2 = { 
     string1: 's2',
     string2: '1234'
 };

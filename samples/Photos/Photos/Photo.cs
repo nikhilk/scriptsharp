@@ -17,6 +17,7 @@ namespace Photos {
         public string url;
         public string thumbnailUrl;
         public string imageUrl;
+        public string squareImageUrl;
 
         public int imageWidth;
         public int imageHeight;
@@ -24,7 +25,7 @@ namespace Photos {
         public int thumbnailWidth;
         public int thumbnailHeight;
 
-        public Photo(string id, string title, string url, string imageUrl, string thumbnailUrl, int imageWidth, int imageHeight, int thumbnailWidth, int thumbnailHeight) {
+        public Photo(string id, string title, string url, string imageUrl, string thumbnailUrl, int imageWidth, int imageHeight, int thumbnailWidth, int thumbnailHeight, string squareImageUrl) {
             this.id = id;
             this.title = title;
             this.url = url;
@@ -34,6 +35,7 @@ namespace Photos {
             this.thumbnailWidth = thumbnailWidth;
             this.thumbnailHeight = thumbnailHeight;
             this.thumbnailUrl = thumbnailUrl;
+            this.squareImageUrl = squareImageUrl;
         }
     }
 }

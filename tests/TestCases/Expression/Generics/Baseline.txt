@@ -7,9 +7,9 @@ test.Foo = function() {
     this._numbers = [];
     var s = this._numbers[10].format('{0}');
     var s2 = this._numbers.getEnumerator().current.format('{0}');
-    var s3 = this._numbers.aggregate(0, function(accumulated, item) {
+    var s3 = this._numbers.reduce(function(accumulated, item) {
         return accumulated + item;
-    }).format('{0}');
+    }, 0).format('{0}');
     var s4 = encodeURIComponent(this._func(10));
     var f2 = this._func;
     f2(11).trim();

@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ScriptInfo Include="Properties\ScriptInfo.txt" />
+    <Compile Include="Gridster.cs" />
     <Compile Include="Isotope.cs" />
     <Compile Include="LightBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

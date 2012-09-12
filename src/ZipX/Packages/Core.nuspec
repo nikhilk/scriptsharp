@@ -14,7 +14,7 @@
       This package contains the Script# compiler and the associated mscorlib.dll assembly that all Script# projects reference.
       It also includes msbuild support for easily using Script# within Visual Studio.
     </description>
-    <tags>script javascript ajax html html5 mobile scriptsharp compiler tool</tags>
+    <tags>script javascript ajax html html5 mobile scriptsharp compiler tool thescriptsharp</tags>
     <language>en-US</language>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>

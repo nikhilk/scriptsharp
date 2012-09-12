@@ -86,11 +86,11 @@ namespace ScriptSharp.Tests {
             ResXCodeBuilder resxCodeBuilder = new ResXCodeBuilder();
 
             resxCodeBuilder.Start("Resources");
-            resxCodeBuilder.GenerateCode("Strings1.resx", resource1Markup);
+            resxCodeBuilder.GenerateCode("Strings1.resx", resource1Markup, null);
             string code1 = resxCodeBuilder.End();
 
             resxCodeBuilder.Start("Resources");
-            resxCodeBuilder.GenerateCode("Strings2.resx", resource2Markup);
+            resxCodeBuilder.GenerateCode("Strings2.resx", resource2Markup, "PublicResxScriptGenerator");
             string code2 = resxCodeBuilder.End();
 
             RunTest((c) => {

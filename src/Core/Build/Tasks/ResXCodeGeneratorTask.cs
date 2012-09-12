@@ -70,9 +70,10 @@ namespace ScriptSharp.Tasks {
             codeBuilder.Start(_namespace);
             foreach (ITaskItem resourceItem in _resources) {
                 string resourceFileName = resourceItem.ItemSpec;
+                string resourceGenerator = resourceItem.GetMetadata("Generator");
                 string resourceContent = File.ReadAllText(resourceFileName);
 
-                codeBuilder.GenerateCode(resourceFileName, resourceContent);
+                codeBuilder.GenerateCode(resourceFileName, resourceContent, resourceGenerator);
             }
 
             string code = codeBuilder.End();

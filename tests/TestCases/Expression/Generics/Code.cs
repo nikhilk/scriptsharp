@@ -20,7 +20,7 @@ namespace ExpressionTests {
             
             string s = _numbers[10].Format("{0}");
             string s2 = _numbers.GetEnumerator().Current.Format("{0}");
-            string s3 = _numbers.Aggregate<int>(0, delegate(int accumulated, int item) { return accumulated + item; }).Format("{0}");
+            string s3 = _numbers.Reduce<int>(delegate(int accumulated, int item) { return accumulated + item; }, 0).Format("{0}");
             
             string s4 = _func(10).EncodeUriComponent();
             

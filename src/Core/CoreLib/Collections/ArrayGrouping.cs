@@ -41,14 +41,6 @@ namespace System.Collections {
             }
         }
 
-        public object Aggregate(object seedValue, ArrayAggregator aggregator) {
-            return null;
-        }
-
-        public object Aggregate(object seedValue, ArrayItemAggregator aggregator) {
-            return null;
-        }
-
         public Array Clone() {
             return null;
         }
@@ -117,6 +109,14 @@ namespace System.Collections {
 
         public string Join(string delimiter) {
             return null;
+        }
+
+        public int LastIndexOf(object item) {
+            return 0;
+        }
+
+        public int LastIndexOf(object item, int fromIndex) {
+            return 0;
         }
 
         public Array Map(ArrayMapCallback mapCallback) {

@@ -50,14 +50,6 @@ namespace System.Collections.Generic {
         public void AddRange(List<T> items) {
         }
 
-        public TAccumulated Aggregate<TAccumulated>(TAccumulated seed, ListAggregator<TAccumulated, T> aggregator) {
-            return default(TAccumulated);
-        }
-
-        public TAccumulated Aggregate<TAccumulated>(TAccumulated seed, ListItemAggregator<TAccumulated, T> aggregator) {
-            return default(TAccumulated);
-        }
-
         public List<T> Clone() {
             return null;
         }
@@ -141,6 +133,14 @@ namespace System.Collections.Generic {
             return null;
         }
 
+        public int LastIndexOf(object item) {
+            return 0;
+        }
+
+        public int LastIndexOf(object item, int fromIndex) {
+            return 0;
+        }
+
         public List<TTarget> Map<TTarget>(ListMapCallback<T, TTarget> mapCallback) {
             return null;
         }
@@ -151,6 +151,38 @@ namespace System.Collections.Generic {
 
         public static List<T> Parse(string s) {
             return null;
+        }
+
+        public TReduced Reduce<TReduced>(ListReduceCallback<TReduced, T> callback) {
+            return default(TReduced);
+        }
+
+        public TReduced Reduce<TReduced>(ListReduceCallback<TReduced, T> callback, TReduced initialValue) {
+            return default(TReduced);
+        }
+
+        public TReduced Reduce<TReduced>(ListItemReduceCallback<TReduced, T> callback) {
+            return default(TReduced);
+        }
+
+        public TReduced Reduce<TReduced>(ListItemReduceCallback<TReduced, T> callback, TReduced initialValue) {
+            return default(TReduced);
+        }
+
+        public TReduced ReduceRight<TReduced>(ListReduceCallback<TReduced, T> callback) {
+            return default(TReduced);
+        }
+
+        public TReduced ReduceRight<TReduced>(ListReduceCallback<TReduced, T> callback, TReduced initialValue) {
+            return default(TReduced);
+        }
+
+        public TReduced ReduceRight<TReduced>(ListItemReduceCallback<TReduced, T> callback) {
+            return default(TReduced);
+        }
+
+        public TReduced ReduceRight<TReduced>(ListItemReduceCallback<TReduced, T> callback, TReduced initialValue) {
+            return default(TReduced);
         }
 
         public bool Remove(T item) {
@@ -167,6 +199,14 @@ namespace System.Collections.Generic {
         public void Reverse() {
         }
 
+        public List<T> Slice(int start) {
+            return null;
+        }
+
+        public List<T> Slice(int start, int end) {
+            return null;
+        }
+
         public bool Some(ListFilterCallback<T> filterCallback) {
             return false;
         }
@@ -179,6 +219,15 @@ namespace System.Collections.Generic {
         }
 
         public void Sort(CompareCallback<T> compareCallback) {
+        }
+
+        public void Splice(int start, int deleteCount) {
+        }
+
+        public void Splice(int start, int deleteCount, params T[] itemsToInsert) {
+        }
+
+        public void Unshift(params T[] items) {
         }
 
         public static explicit operator Array(List<T> list) {

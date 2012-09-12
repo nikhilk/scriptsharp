@@ -42,7 +42,7 @@ namespace {0} {{
             return _codeBuilder.ToString();
         }
 
-        public void GenerateCode(string resourceFileName, string resourceFileContent) {
+        public void GenerateCode(string resourceFileName, string resourceFileContent, string resourceGenerator) {
             if (IsLocalizedResourceFile(resourceFileName)) {
                 return;
             }
@@ -53,6 +53,10 @@ namespace {0} {{
             }
 
             string className = Path.GetFileNameWithoutExtension(resourceFileName);
+            string accessModifier = "internal";
+            if (String.Compare(resourceGenerator, "PublicResxScriptGenerator", StringComparison.OrdinalIgnoreCase) == 0) {
+                accessModifier = "public";
+            }
 
             _codeBuilder.AppendLine();
             _codeBuilder.AppendFormat("    /// <summary>{0} resources class</summary>", className);
@@ -62,7 +66,7 @@ namespace {0} {{
                                      this.GetType().Name,
                                      typeof(ResXCodeBuilder).Assembly.GetName().Version.ToString());
             _codeBuilder.AppendLine();
-            _codeBuilder.AppendFormat("    internal static class {0} {{", className);
+            _codeBuilder.AppendFormat("    {0} static class {1} {{", accessModifier, className);
             _codeBuilder.AppendLine();
 
             foreach (ResXItem resourceItem in resourceItems) {

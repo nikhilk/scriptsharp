@@ -64,7 +64,7 @@ ss.Task.prototype = {
 ss.Task._join = function(tasks, any) {
   tasks = Array.toArray(tasks);
 #if DEBUG
-  ss.Debug.assert(tasks.length > 1);
+  console.assert(tasks.length > 1);
 #endif // DEBUG
 
   var count = tasks.length;

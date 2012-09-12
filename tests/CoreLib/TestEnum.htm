@@ -34,15 +34,6 @@ Test.Modes.prototype = {
 };
 Test.Modes.registerEnum('Test.Modes', true);
 
-module('Enum');
-test('isEnum', function() {
-    QUnit.equal(Type.isEnum(Test.Color), true, 'Color is an enum');
-    QUnit.equal(Type.isFlags(Test.Color), false, 'Color is not a flags enum');
-    QUnit.equal(Type.isEnum(Test.Modes), true, 'Modes is an enum');
-    QUnit.equal(Type.isFlags(Test.Modes), true, 'Modes is a flags enum');
-    QUnit.equal(Type.isEnum(ss.IEnumerable), false, 'IEnumerable is not an enum');
-});
-
 test('enum values', function() {
     QUnit.equal(Test.Color.Green, 1, 'Green should be 1');
 });
