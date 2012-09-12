@@ -13,7 +13,7 @@
     <description>
       This package contains scripts like mscorlib.js which provides the runtime script implementations of a type system and core APIs available to scripts generated using Script# for deployment within web applications (such as asp.net mvc projects).
     </description>
-    <tags>script scriptsharp javascript html aspnet mvc</tags>
+    <tags>script scriptsharp javascript html aspnet mvc thescriptsharp</tags>
     <language>en-US</language>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>

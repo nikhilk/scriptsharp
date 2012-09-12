@@ -13,7 +13,7 @@
     <description>
       This package provides additional rules specifically implemented for Script# code and scripting scenarios.
     </description>
-    <tags>script javascript ajax html html5 scriptsharp fxcop static analysis tool</tags>
+    <tags>script javascript ajax html html5 scriptsharp fxcop static analysis tool thescriptsharp</tags>
     <language>en-US</language>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
