@@ -38,10 +38,107 @@ function createType(typeName, typeInfo, typeRegistry) {
       type.$type = _interfaceMarker;
     }
 
+    type.$name = typeName;
     return typeRegistry[typeName] = type;
   }
 
   return typeInfo;
+}
+
+function isClass(fn) {
+  return fn.$type == _classMarker;
+}
+
+function isInterface(fn) {
+  return fn.$type == _interfaceMarker;
+}
+
+function getType(instance) {
+  var ctor = null;
+
+  // NOTE: We have to catch exceptions because the constructor
+  //       cannot be looked up on native COM objects
+  try {
+    ctor = instance.constructor;
+  }
+  catch (ex) {
+  }
+  if (!ctor || !ctor.$type) {
+    ctor = Object;
+  }
+  return ctor;
+}
+
+function getBaseType(type) {
+  return type.$base || Object;
+}
+
+function getInterfaces(type) {
+  return type.$interfaces || [];
+}
+
+function canAssign(type, otherType) {
+  // Checks if the specified type is equal to otherType,
+  // or is a parent of otherType
+
+  if ((type == Object) || (type == otherType)) {
+    return true;
+  }
+  if (type.$type == _classMarker) {
+    var baseType = otherType.$base;
+    while (baseType) {
+      if (type == baseType) {
+        return true;
+      }
+      baseType = baseType.$base;
+    }
+  }
+  else if (type.$type == _interfaceMarker) {
+    var baseType = otherType;
+    while (baseType) {
+      var interfaces = baseType.$interfaces;
+      if (interfaces && (interfaces.indexOf(type) >= 0)) {
+        return true;
+      }
+      baseType = baseType.$base;
+    }
+  }
+  return false;
+}
+
+function isOfType(instance, type) {
+  // Checks if the specified instance is of the specified type
+
+  if (!isValue(instance)) {
+    return false;
+  }
+
+  if ((type == Object) || (instance instanceof type)) {
+    return true;
+  }
+
+  var instanceType = getType(instance);
+  return canAssign(type, instanceType);
+}
+
+function canCast(instance, type) {
+  return isOfType(instance, type);
+}
+
+function safeCast(instance, type) {
+  return isOfType(instance, type) ? instance : null;
+}
+
+function getTypeName(type) {
+  return type.$name;
+}
+
+function parseType(s) {
+  var nsIndex = s.indexOf('.');
+  var ns = nsIndex > 0 ? _modules[s.substr(0, nsIndex)] : global;
+  var name = nsIndex > 0 ? s.substr(nsIndex + 1) : s;
+
+  return ns ? ns[name] : null;
 }
 
 function module(name, implementation, exports) {

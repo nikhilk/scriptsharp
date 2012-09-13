@@ -5,6 +5,8 @@
 define('ss', [], function() {
 "use strict";
 
+var global = this;
+
 // TODO: Inline and remove
 function isUndefined(o) {
   return (o === undefined);
@@ -43,7 +45,18 @@ return extend(ss, {
   isNullOrUndefined: isNullOrUndefined,
   isValue: isValue,
 
-  module: module
+  module: module,
+  isClass: isClass,
+  isInterface: isInterface,
+  getType: getType,
+  baseType: getBaseType,
+  interfaces: getInterfaces,
+  canCast: canCast,
+  safeCast: safeCast,
+  canAssign: canAssign,
+  isOfType: isOfType,
+  typeName: getTypeName,
+  type: parseType
 });
 
 });

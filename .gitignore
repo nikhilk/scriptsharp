@@ -5,4 +5,5 @@ obj/
 *.cache
 *.trx
 packages/
+Tests/*/Scripts
 TestResults/
