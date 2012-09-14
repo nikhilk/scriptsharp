@@ -129,10 +129,6 @@ extend(Array.prototype, {
   }
 });
 
-Array.parse = function(s) {
-  return eval('(' + s + ')');
-}
-
 Array.toArray = function(obj) {
   return Array.prototype.slice.call(obj);
 }

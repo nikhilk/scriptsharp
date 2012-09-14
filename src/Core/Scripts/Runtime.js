@@ -35,7 +35,9 @@ function extend(o, items) {
 
 #include "Runtime\Object.js"
 #include "Runtime\Array.js"
+#include "Runtime\String.js"
 #include "Runtime\Console.js"
+#include "Runtime\Error.js"
 
 #include "Runtime\TypeSystem.js"
 #include "Runtime\Delegate.js"
@@ -44,8 +46,11 @@ function extend(o, items) {
 #include "Runtime\Enumerator.js"
 #include "Runtime\StringBuilder.js"
 #include "Runtime\Observable.js"
+#include "Runtime\Tuple.js"
 #include "Runtime\Task.js"
 #include "Runtime\Culture.js"
+#include "Runtime\Parse.js"
+#include "Runtime\Format.js"
 
 var ss = module('ss', null, {
   IDisposable: [ IDisposable ],
@@ -64,6 +69,7 @@ var ss = module('ss', null, {
   StringBuilder: [ StringBuilder, StringBuilder$ ],
   Observable: [ Observable, Observable$ ],
   ObservableCollection: [ ObservableCollection, ObservableCollection$, null, IEnumerable ],
+  Tuple: [ Tuple, { } ],
   Task: [ Task, Task$ ],
   Deferred: [ Deferred, Deferred$ ]
 });
