@@ -74,7 +74,7 @@ define(['ss', 'oop'], function(ss, oop) {
   test('testEmpty', function() {
       var tc = new TargetClass();
       var delegate = ss.Delegate.create(tc, tc.instanceCallback1);
-      delegate = ss.Delegate.remove(delegate, ss.Delegate.create(tc, tc.instanceCallback1));
+      delegate = ss.Delegate.remove(delegate, delegate);
 
       QUnit.equal(delegate, null);
   });
@@ -125,26 +125,35 @@ define(['ss', 'oop'], function(ss, oop) {
       var delegate = ss.Delegate.combine(delegate1, ss.Delegate.combine(delegate2, delegate3));
       delegate(delegate);
 
-      QUnit.equal(logs.length, 2);
+      // delegate1 removes delegate2 from the delegate it is passed in.
+      // This test makes sure that removing a delegate from a delegate chain
+      // while the delegate is being invoked doesn't affect the delegate chain
+      // being invoked!
+
+      QUnit.equal(logs.length, 3);
   });
 
-  test('testExports', function() {
+  test('testPublish', function() {
       var logs = setupLog();
       
       var delegate = ss.Delegate.create(null, function() { log('delegate invoked') });
 
-      var name = ss.Delegate.createExport(delegate, /* multiUse */ true, 'xyz');
-      QUnit.equal(window[name] !== null, true, 'Expected window member');
-      window[name]();
-      QUnit.equal(window[name] !== null, true, 'Expected window member since it was multiuse');
-      
-      ss.Delegate.deleteExport(name);
-      QUnit.equal(!window[name], true, 'Did not expect window member since it was deleted');
+      var api = ss.Delegate.publish(delegate, /* multiUse */ true, 'xyz');
+      QUnit.equal(api.name, 'xyz', 'Expected published delegate to be named "xyz"');
+      QUnit.equal(window[api.name] !== null, true, 'Expected window member');
+      window[api.name]();
+      QUnit.equal(window[api.name] !== null, true, 'Expected window member since it was multiuse');
 
-      var name = ss.Delegate.createExport(delegate);
-      QUnit.equal(window[name] !== null, true, 'Expected window member');
-      window[name]();
-      QUnit.equal(!window[name], true, 'Did not expect window member since it was deleted');
+      api.clear();
+      QUnit.equal(window[api.name] !== null, true, 'Expected window member');
+      api.dispose();
+      QUnit.equal(!window[api.name], true, 'Did not expect window member since it was deleted');
+
+      // Test single use delegate
+      api = ss.Delegate.publish(delegate);
+      QUnit.equal(window[api.name] !== null, true, 'Expected window member');
+      window[api.name]();
+      QUnit.equal(!window[api.name], true, 'Did not expect window member since it was deleted');
   });
 });
 </script>

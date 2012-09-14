@@ -13,6 +13,11 @@ namespace Runtime.Tests {
     public class TypeSystemTests : RuntimeTest {
 
         [TestMethod]
+        public void TestDelegates() {
+            RunTest("/TestDelegates.htm");
+        }
+
+        [TestMethod]
         public void TestOOP() {
             RunTest("/TestOOP.htm");
         }

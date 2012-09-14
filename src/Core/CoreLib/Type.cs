@@ -22,12 +22,6 @@ namespace System {
             }
         }
 
-        public string FullName {
-            get {
-                return null;
-            }
-        }
-
         public string Name {
             get {
                 return null;

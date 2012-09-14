@@ -1,116 +1,90 @@
 // Delegate
 
-function _delegateContains(targets, object, method) {
-  for (var i = 0; i < targets.length; i += 2) {
-    if (targets[i] === object && targets[i + 1] === method) {
-      return true;
+function _createDelegate(fnList) {
+  var d = function() {
+    var args = arguments;
+    var result = null;
+    for (var i = 0, l = fnList.length; i < l; i++) {
+      result = args.length ? fnList[i].apply(null, args) : fnList[i].call(null);
     }
-  }
-  return false;
-}
-
-function _createDelegate(targets) {
-  var delegate = function() {
-    if (targets.length == 2) {
-      return targets[1].apply(targets[0], arguments);
-    }
-    else {
-      var clone = targets.clone();
-      for (var i = 0; i < clone.length; i += 2) {
-        if (_delegateContains(targets, clone[i], clone[i + 1])) {
-          clone[i + 1].apply(clone[i], arguments);
-        }
-      }
-      return null;
-    }
+    return result;
   };
-  delegate._targets = targets;
-
-  return delegate;
+  d._fnList = fnList;
+  return d;
 }
 
 function Delegate() {
 }
 
-Delegate.create = function(object, method) {
-  if (!object) {
-      return method;
+Delegate.create = function(o, fn) {
+  if (!o) {
+    return fn;
   }
-  return _createDelegate([object, method]);
+
+  // Create a function that invokes the specified function, in the
+  // context of the specified object.
+  return function() {
+    return fn.apply(o, arguments);
+  };
 }
 
-Delegate.combine = function(delegate1, delegate2) {
-  if (!delegate1) {
-    if (!delegate2._targets) {
-      return Delegate.create(null, delegate2);
-    }
-    return delegate2;
+Delegate.combine = function(delegate, value) {
+  if (!delegate) {
+    return value;
   }
-  if (!delegate2) {
-    if (!delegate1._targets) {
-      return sDelegate.create(null, delegate1);
-    }
-    return delegate1;
+  if (!value) {
+    return delegate;
   }
 
-  var targets1 = delegate1._targets ? delegate1._targets : [null, delegate1];
-  var targets2 = delegate2._targets ? delegate2._targets : [null, delegate2];
-
-  return _createDelegate(targets1.concat(targets2));
+  var fnList = [].concat(delegate._fnList || delegate, value);
+  return _createDelegate(fnList);
 }
 
-Delegate.remove = function(delegate1, delegate2) {
-  if (!delegate1 || (delegate1 === delegate2)) {
+Delegate.remove = function(delegate, value) {
+  if (!delegate) {
     return null;
   }
-  if (!delegate2) {
-    return delegate1;
+  if (!value) {
+    return delegate;
   }
 
-  var targets = delegate1._targets;
-  var object = null;
-  var method;
-  if (delegate2._targets) {
-    object = delegate2._targets[0];
-    method = delegate2._targets[1];
-  }
-  else {
-    method = delegate2;
-  }
-
-  for (var i = 0; i < targets.length; i += 2) {
-    if ((targets[i] === object) && (targets[i + 1] === method)) {
-      if (targets.length == 2) {
-        return null;
-      }
-      targets.splice(i, 2);
-      return _createDelegate(targets);
+  var fnList = delegate._fnList || [delegate];
+  var index = fnList.indexOf(value);
+  if (index >= 0) {
+    if (fnList.length == 1) {
+      return null;
     }
-  }
 
-  return delegate1;
+    fnList = index ? fnList.slice(0, index).concat(fnList.slice(index + 1)) : fnList.slice(1);
+    return _createDelegate(fnList);
+  }
+  return delegate;
 }
 
-Delegate.createExport = function(delegate, multiUse, name) {
+Delegate.publish = function(fn, multiUse, name, root) {
   // Generate a unique name if one is not specified
   name = name || '__' + (new Date()).valueOf();
 
-  // Exported delegates go on global object (so they are callable using a simple identifier).
+  // If unspecified, exported delegates go on the global object
+  // (so they are callable using a simple identifier).
+  root = root || global;
+
+  var exp = {
+    name: name,
+    clear: function() {
+      root[name] = Delegate.Empty;
+    },
+    dispose: function() {
+      try { delete root[name]; } catch (e) { root[name] = undefined; }
+    }
+  };
 
   // Multi-use delegates are exported directly; for the rest a stub is exported, and the stub
   // first deletes, and then invokes the actual delegate.
-  global[name] = multiUse ? delegate : function() {
-    try { delete global[name]; } catch(e) { global[name] = undefined; }
-    delegate.apply(null, arguments);
+  root[name] = multiUse ? fn : function() {
+    exp.dispose();
+    return fn.apply(null, arguments);
   };
 
-  return name;
-}
-
-Delegate.deleteExport = function(name) {
-  delete global[name];
-}
-
-Delegate.clearExport = function(name) {
-  global[name] = Delegate.empty;
+  return exp;
 }

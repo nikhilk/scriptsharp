@@ -67,7 +67,7 @@ var ss = module('ss', null, {
   Deferred: [ Deferred, Deferred$ ]
 });
 
-Delegate.empty = function() { };
+Delegate.Empty = function() { };
 EventArgs.Empty = new EventArgs();
 
 return extend(ss, {

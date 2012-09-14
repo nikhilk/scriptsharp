@@ -10,15 +10,13 @@ namespace System {
     [Imported]
     public abstract class Delegate {
 
+        [PreserveCase]
         public static readonly Delegate Empty = null;
 
         protected Delegate(object target, string method) {
         }
 
         protected Delegate(Type target, string method) {
-        }
-
-        public static void ClearExport(string name) {
         }
 
         public static Delegate Combine(Delegate a, Delegate b) {
@@ -29,19 +27,24 @@ namespace System {
             return null;
         }
 
-        public static string CreateExport(Delegate d) {
+        [ScriptName("publish")]
+        public static Export Export(Delegate d) {
             return null;
         }
 
-        public static string CreateExport(Delegate d, bool multiUse) {
+        [ScriptName("publish")]
+        public static Export Export(Delegate d, bool multiUse) {
             return null;
         }
 
-        public static string CreateExport(Delegate d, bool multiUse, string name) {
+        [ScriptName("publish")]
+        public static Export Export(Delegate d, bool multiUse, string name) {
             return null;
         }
 
-        public static void DeleteExport(string name) {
+        [ScriptName("publish")]
+        public static Export Export(Delegate d, bool multiUse, string name, object root) {
+            return null;
         }
 
         public static Delegate Remove(Delegate source, Delegate value) {
