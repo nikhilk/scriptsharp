@@ -33,10 +33,40 @@ function extend(o, items) {
   return o;
 }
 
+#include "Runtime\Object.js"
+#include "Runtime\Array.js"
 #include "Runtime\Console.js"
-#include "Runtime\TypeSystem.js"
 
-var ss = module('ss');
+#include "Runtime\EventArgs.js"
+#include "Runtime\TypeSystem.js"
+#include "Runtime\Contracts.js"
+#include "Runtime\Enumerator.js"
+#include "Runtime\StringBuilder.js"
+#include "Runtime\Observable.js"
+#include "Runtime\Task.js"
+
+var ss = module('ss', null, {
+  IDisposable: [ IDisposable ],
+  IEnumerable: [ IEnumerable ],
+  IEnumerator: [ IEnumerator ],
+  IObserver: [ IObserver ],
+  IApplication: [ IApplication ],
+  IContainer: [ IContainer ],
+  IObjectFactory: [ IObjectFactory ],
+  IEventManager: [ IEventManager ],
+  IInitializable: [ IInitializable ],
+  ArrayEnumerator: [ ArrayEnumerator, ArrayEnumerator$, null, IEnumerator ],
+  EventArgs: [ EventArgs, { } ],
+  CancelEventArgs: [ CancelEventArgs, { }, EventArgs ],
+  StringBuilder: [ StringBuilder, StringBuilder$ ],
+  Observable: [ Observable, Observable$ ],
+  ObservableCollection: [ ObservableCollection, ObservableCollection$, null, IEnumerable ],
+  Task: [ Task, Task$ ],
+  Deferred: [ Deferred, Deferred$ ]
+});
+
+EventArgs.Empty = new EventArgs();
+
 return extend(ss, {
   version: '0.7.6.0',
 

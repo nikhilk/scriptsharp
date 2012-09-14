@@ -23,12 +23,14 @@
 
       var logUrl = '/log/' + ((failures === 0) ? 'success' : 'failure');
       var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-          window.open('', '_self', '');
-          window.close();
-        }
-      };
+      if (failures === 0) {
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4) {
+            window.open('', '_self', '');
+            window.close();
+          }
+        };
+      }
       xhr.open('POST', logUrl, /* async */ false);
       xhr.setRequestHeader('Content-Type', 'text/plain');
       xhr.send(logData);
