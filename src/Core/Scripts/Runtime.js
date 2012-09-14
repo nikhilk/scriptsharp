@@ -37,8 +37,9 @@ function extend(o, items) {
 #include "Runtime\Array.js"
 #include "Runtime\Console.js"
 
-#include "Runtime\EventArgs.js"
 #include "Runtime\TypeSystem.js"
+#include "Runtime\Delegate.js"
+#include "Runtime\EventArgs.js"
 #include "Runtime\Contracts.js"
 #include "Runtime\Enumerator.js"
 #include "Runtime\StringBuilder.js"
@@ -56,6 +57,7 @@ var ss = module('ss', null, {
   IEventManager: [ IEventManager ],
   IInitializable: [ IInitializable ],
   ArrayEnumerator: [ ArrayEnumerator, ArrayEnumerator$, null, IEnumerator ],
+  Delegate: [ Delegate, { } ],
   EventArgs: [ EventArgs, { } ],
   CancelEventArgs: [ CancelEventArgs, { }, EventArgs ],
   StringBuilder: [ StringBuilder, StringBuilder$ ],
@@ -65,6 +67,7 @@ var ss = module('ss', null, {
   Deferred: [ Deferred, Deferred$ ]
 });
 
+Delegate.empty = function() { };
 EventArgs.Empty = new EventArgs();
 
 return extend(ss, {
