@@ -45,6 +45,7 @@ function extend(o, items) {
 #include "Runtime\StringBuilder.js"
 #include "Runtime\Observable.js"
 #include "Runtime\Task.js"
+#include "Runtime\Culture.js"
 
 var ss = module('ss', null, {
   IDisposable: [ IDisposable ],
@@ -89,7 +90,12 @@ return extend(ss, {
   canAssign: canAssign,
   isOfType: isOfType,
   typeName: getTypeName,
-  type: parseType
+  type: parseType,
+
+  culture: {
+    neutral: neutralCulture,
+    current: currentCulture
+  }
 });
 
 });
