@@ -1,108 +1,110 @@
-Type.registerNamespace('ExpressionTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.IFoo
+  // ExpressionTests.IFoo
 
-ExpressionTests.IFoo = function() { };
-ExpressionTests.IFoo.registerInterface('ExpressionTests.IFoo');
-
-
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.BApp
-
-ExpressionTests.BApp = function() {
-}
+  function ExpressionTests$IFoo() { }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.App
+  // ExpressionTests.BApp
 
-ExpressionTests.App = function() {
-    ExpressionTests.App.initializeBase(this);
-}
-ExpressionTests.App.prototype = {
-    _value: 0,
-    _value2: 0,
-    
+  function ExpressionTests$BApp() {
+  }
+  var ExpressionTests$BApp$ = {
+
+  };
+
+
+  // ExpressionTests.App
+
+  function ExpressionTests$App() {
+    this._value = 0;
+    this._value2 = 0;
+    ExpressionTests$BApp.call(this);
+  }
+  var ExpressionTests$App$ = {
     get_XYZ: function() {
-        return 1;
+      return 1;
     },
     set_XYZ: function(value) {
-        return value;
+      return value;
     },
-    
     test: function(arg) {
-        var s = '';
-        var n = s.length;
-        var n2 = Number.MAX_VALUE;
-        var m = 0;
-        n = this.get_XYZ();
-        n = this.get_XYZ();
-        this.set_XYZ(n);
-        this.set_XYZ(n);
-        var a;
-        n = a.get_XYZ();
-        a.set_XYZ(n);
-        n = this._value;
-        n = this._value;
-        this._value = n;
-        this._value = n;
-        n = ExpressionTests.App.myDefault;
-        n = ExpressionTests.App.myDefault;
-        n = 3;
-        n = 3;
-        n = 3;
-        n = 3;
-        n = 3;
+      var s = '';
+      var n = s.length;
+      var n2 = Number.MAX_VALUE;
+      var m = 0;
+      n = this.get_XYZ();
+      n = this.get_XYZ();
+      this.set_XYZ(n);
+      this.set_XYZ(n);
+      var a;
+      n = a.get_XYZ();
+      a.set_XYZ(n);
+      n = this._value;
+      n = this._value;
+      this._value = n;
+      this._value = n;
+      n = ExpressionTests$App.myDefault;
+      n = ExpressionTests$App.myDefault;
+      n = 3;
+      n = 3;
+      n = 3;
+      n = 3;
+      n = 3;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.DApp
+  // ExpressionTests.DApp
 
-ExpressionTests.DApp = function() {
-    ExpressionTests.DApp.initializeBase(this);
-}
-ExpressionTests.DApp.prototype = {
-    
+  function ExpressionTests$DApp() {
+    ExpressionTests$App.call(this);
+  }
+  var ExpressionTests$DApp$ = {
     test2: function() {
-        var n = this.get_XYZ();
-        n = this.get_XYZ();
-        n = ExpressionTests.DApp.callBaseMethod(this, 'get_XYZ');
-        this.set_XYZ(n);
-        this.set_XYZ(n);
-        ExpressionTests.DApp.callBaseMethod(this, 'set_XYZ', [ n ]);
-        this._value2 = n;
-        this._value2 = n;
-        this._value2 = n;
-        n = ExpressionTests.App.myDefault2;
-        n = ExpressionTests.App.myDefault2;
-        n = 3;
-        n = 3;
-        n = 3;
-        n = 3;
-        n = 3;
-        n = 3;
+      var n = this.get_XYZ();
+      n = this.get_XYZ();
+      n = ExpressionTests$App$.get_XYZ.call(this);
+      this.set_XYZ(n);
+      this.set_XYZ(n);
+      ExpressionTests$App$.set_XYZ.call(this, n);
+      this._value2 = n;
+      this._value2 = n;
+      this._value2 = n;
+      n = ExpressionTests$App.myDefault2;
+      n = ExpressionTests$App.myDefault2;
+      n = 3;
+      n = 3;
+      n = 3;
+      n = 3;
+      n = 3;
+      n = 3;
     },
-    
     test3: function() {
-        var i = [ 1, 2 ];
-        i[0] = 1;
-        i[1] = i[0];
-        i[i[0]] = 20;
+      var i = [ 1, 2 ];
+      i[0] = 1;
+      i[1] = i[0];
+      i[i[0]] = 20;
     },
-    
     test4: function(foo) {
-        foo.bar();
+      foo.bar();
     }
-}
+  };
 
 
-ExpressionTests.BApp.registerClass('ExpressionTests.BApp');
-ExpressionTests.App.registerClass('ExpressionTests.App', ExpressionTests.BApp);
-ExpressionTests.DApp.registerClass('ExpressionTests.DApp', ExpressionTests.App);
-ExpressionTests.BApp.myConstant = 3;
-ExpressionTests.App.myConstant2 = 3;
-ExpressionTests.App.myDefault = 1;
-ExpressionTests.App.myDefault2 = 2;
+  var $test = ss.module('test', null,
+    {
+      IFoo: [ ExpressionTests$IFoo ],
+      BApp: [ ExpressionTests$BApp, ExpressionTests$BApp$, null ],
+      App: [ ExpressionTests$App, ExpressionTests$App$, ExpressionTests$BApp ],
+      DApp: [ ExpressionTests$DApp, ExpressionTests$DApp$, ExpressionTests$App ]
+    });
+
+  ExpressionTests$BApp.myConstant = 3;
+  ExpressionTests$App.myConstant2 = 3;
+  ExpressionTests$App.myDefault = 1;
+  ExpressionTests$App.myDefault2 = 2;
+
+  return $test;
+});

@@ -1,32 +1,44 @@
-Type.registerNamespace('BasicTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.MyDebug
+  // BasicTests.MyDebug
 
-BasicTests.MyDebug = function() {
-}
-BasicTests.MyDebug.showInfo = function() {
-}
-BasicTests.MyDebug.traceInfo = function() {
-}
-BasicTests.MyDebug.logInfo = function() {
-}
+  function BasicTests$MyDebug() {
+  }
+  BasicTests$MyDebug.showInfo = function() {
+  }
+  BasicTests$MyDebug.traceInfo = function() {
+  }
+  BasicTests$MyDebug.logInfo = function() {
+  }
+  var BasicTests$MyDebug$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.App
+  // BasicTests.App
 
-BasicTests.App = function(i) {
+  function BasicTests$App(i) {
     while (true) {
     }
     switch (i) {
-        case 0:
-            break;
+      case 0:
+        break;
     }
     i++;
-    BasicTests.MyDebug.traceInfo();
-}
+    BasicTests$MyDebug.traceInfo();
+  }
+  var BasicTests$App$ = {
+
+  };
 
 
-BasicTests.MyDebug.registerClass('BasicTests.MyDebug');
-BasicTests.App.registerClass('BasicTests.App');
+  var $test = ss.module('test', null,
+    {
+      MyDebug: [ BasicTests$MyDebug, BasicTests$MyDebug$, null ],
+      App: [ BasicTests$App, BasicTests$App$, null ]
+    });
+
+
+  return $test;
+});

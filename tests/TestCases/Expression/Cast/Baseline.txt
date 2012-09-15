@@ -1,37 +1,43 @@
-Type.registerNamespace('ExpressionTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.App
+  // ExpressionTests.App
 
-ExpressionTests.App = function() {
-}
-ExpressionTests.App.prototype = {
-    
+  function ExpressionTests$App() {
+  }
+  var ExpressionTests$App$ = {
     test: function(arg) {
-        var f = arg / 2;
-        var d = 0.25;
-        var i = parseInt(f);
-        var j = parseInt(d);
-        var f2 = d;
-        var a = 1;
-        var b = 2;
-        var n1 = a / b;
-        var n2 = parseInt((a / b));
-        var d2 = a / b;
-        var action = function() {
-        };
-        var secondAction = Type.safeCast(action, Function);
-        if (Type.canCast(action, Function)) {
-        }
-        var cb = Type.safeCast(action, Function);
-        if (Type.canCast(action, Function)) {
-            cb = action;
-        }
-        var action2 = Type.safeCast(action, Function);
-        if (action2 != null) {
-        }
+      var f = arg / 2;
+      var d = 0.25;
+      var i = parseInt(f);
+      var j = parseInt(d);
+      var f2 = d;
+      var a = 1;
+      var b = 2;
+      var n1 = a / b;
+      var n2 = parseInt((a / b));
+      var d2 = a / b;
+      var action = function() {
+      };
+      var secondAction = Type.safeCast(action, Function);
+      if (Type.canCast(action, Function)) {
+      }
+      var cb = Type.safeCast(action, Function);
+      if (Type.canCast(action, Function)) {
+        cb = action;
+      }
+      var action2 = Type.safeCast(action, Function);
+      if (action2 != null) {
+      }
     }
-}
+  };
 
 
-ExpressionTests.App.registerClass('ExpressionTests.App');
+  var $test = ss.module('test', null,
+    {
+      App: [ ExpressionTests$App, ExpressionTests$App$, null ]
+    });
+
+
+  return $test;
+});

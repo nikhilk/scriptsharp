@@ -72,7 +72,12 @@ namespace ScriptSharp.ScriptModel {
                 if (_ignoreNamespace == false) {
                     string namespaceName = GeneratedNamespace;
                     if (namespaceName.Length != 0) {
-                        return namespaceName + "." + GeneratedName;
+                        if (IsApplicationType) {
+                            return namespaceName + "$" + GeneratedName;
+                        }
+                        else {
+                            return namespaceName + "." + GeneratedName;
+                        }
                     }
                 }
                 return GeneratedName;
@@ -81,11 +86,9 @@ namespace ScriptSharp.ScriptModel {
 
         public string FullName {
             get {
-                if (_ignoreNamespace == false) {
-                    string namespaceName = Namespace;
-                    if (namespaceName.Length != 0) {
-                        return namespaceName + "." + Name;
-                    }
+                string namespaceName = Namespace;
+                if (namespaceName.Length != 0) {
+                    return namespaceName + "." + Name;
                 }
                 return Name;
             }
@@ -93,7 +96,10 @@ namespace ScriptSharp.ScriptModel {
 
         public string GeneratedNamespace {
             get {
-                return _scriptNamespace != null ? _scriptNamespace : Namespace;
+                if (IsApplicationType) {
+                    return Namespace.Replace(".", "$");
+                }
+                return _scriptNamespace != null ? _scriptNamespace : String.Empty;
             }
         }
 

@@ -18,24 +18,14 @@ namespace ScriptSharp.Generator {
 
         private ScriptTextWriter _writer;
         private CompilerOptions _options;
-        private IErrorHandler _errorHandler;
+        private SymbolSet _symbols;
 
-        private List<ClassSymbol> _classes;
-
-        public ScriptGenerator(TextWriter writer, CompilerOptions options, IErrorHandler errorHandler) {
+        public ScriptGenerator(TextWriter writer, CompilerOptions options, SymbolSet symbols) {
             Debug.Assert(writer != null);
-            _writer = new ScriptTextWriter(writer, options);
+            _writer = new ScriptTextWriter(writer);
 
             _options = options;
-            _errorHandler = errorHandler;
-
-            _classes = new List<ClassSymbol>();
-        }
-
-        public IErrorHandler ErrorHandler {
-            get {
-                return _errorHandler;
-            }
+            _symbols = symbols;
         }
 
         public CompilerOptions Options {
@@ -50,58 +40,189 @@ namespace ScriptSharp.Generator {
             }
         }
 
-        public void AddGeneratedClass(ClassSymbol classSymbol) {
-            Debug.Assert(classSymbol != null);
-            _classes.Add(classSymbol);
-        }
-
-        private void GenerateClassRegistration(ClassSymbol classSymbol, List<ClassSymbol> generatedClasses) {
-            Debug.Assert(classSymbol != null);
-
-            if (generatedClasses.Contains(classSymbol)) {
-                return;
-            }
-
-            ClassSymbol baseClass = classSymbol.BaseClass;
-            if ((baseClass != null) && baseClass.IsApplicationType) {
-                GenerateClassRegistration(baseClass, generatedClasses);
-            }
-
-            TypeGenerator.GenerateClassRegistrationScript(this, classSymbol);
-            generatedClasses.Add(classSymbol);
-        }
-
         public void GenerateScript(SymbolSet symbolSet) {
             Debug.Assert(symbolSet != null);
 
-            Dictionary<string, bool> generatedNamespaces = new Dictionary<string, bool>();
+            List<TypeSymbol> types = new List<TypeSymbol>();
+            List<TypeSymbol> publicTypes = new List<TypeSymbol>();
+            List<TypeSymbol> internalTypes = new List<TypeSymbol>();
+
             foreach (NamespaceSymbol namespaceSymbol in symbolSet.Namespaces) {
                 if (namespaceSymbol.HasApplicationTypes) {
-                    NamespaceGenerator.GenerateScript(this, namespaceSymbol, generatedNamespaces);
-                }
-            }
+                    foreach (TypeSymbol type in namespaceSymbol.Types) {
+                        if (type.IsApplicationType == false) {
+                            continue;
+                        }
 
-            List<ClassSymbol> generatedClasses = new List<ClassSymbol>(_classes.Count);
-            foreach (ClassSymbol generatedClass in _classes) {
-                if (generatedClass.HasGlobalMethods == false) {
-                    GenerateClassRegistration(generatedClass, generatedClasses);
-                }
-            }
+                        if (type.Type == SymbolType.Delegate) {
+                            // Nothing needs to be generated for delegate types.
+                            continue;
+                        }
 
-            // TODO: Couple of line-breaks would be nice here
-            //       but only if there are any classes with static
-            //       ctors or members
+                        if (type.IsTestType && (_options.IncludeTests == false)) {
+                            continue;
+                        }
 
-            foreach (ClassSymbol generatedClass in _classes) {
-                TypeGenerator.GenerateClassConstructorScript(this, generatedClass);
-            }
+                        if ((type.Type == SymbolType.Enumeration) && (type.IsPublic == false)) {
+                            // Internal enums can be skipped since their values have been inlined.
+                            continue;
+                        }
 
-            if (Options.IncludeTests) {
-                foreach (ClassSymbol generatedClass in _classes) {
-                    if (generatedClass.IsTestClass) {
-                        TestGenerator.GenerateScript(this, generatedClass);
+                        types.Add(type);
+                        if (type.IsPublic) {
+                            publicTypes.Add(type);
+                        }
+                        else {
+                            internalTypes.Add(type);
+                        }
                     }
                 }
+            }
+
+            // Sort the types, so similar types of types are grouped, and parent classes
+            // come before derived classes.
+            types.Sort(new TypeComparer());
+
+            string moduleName = symbolSet.ScriptName;
+
+            _writer.Write("define('");
+            _writer.Write(moduleName);
+            _writer.Write("', [");
+
+            bool firstDependency = true;
+            foreach (string dependency in _symbols.Dependencies) {
+                if (firstDependency == false) {
+                    _writer.Write(", ");
+                }
+                _writer.Write("'" + dependency + "'");
+                firstDependency = false;
+            }
+
+            _writer.Write("], function(");
+
+            firstDependency = true;
+            foreach (string dependency in _symbols.Dependencies) {
+                if (firstDependency == false) {
+                    _writer.Write(", ");
+                }
+                _writer.Write(dependency);
+                firstDependency = false;
+            }
+
+            _writer.WriteLine(") {");
+            _writer.Indent++;
+            _writer.WriteLine("\'use strict';");
+            _writer.WriteLine();
+
+            foreach (TypeSymbol type in types) {
+                TypeGenerator.GenerateScript(this, type);
+            }
+
+            _writer.Write("var $" + moduleName + " = ss.module('");
+            _writer.Write(symbolSet.ScriptName);
+            _writer.Write("',");
+            if (internalTypes.Count != 0) {
+                _writer.WriteLine();
+                _writer.Indent++;
+                _writer.WriteLine("{");
+                _writer.Indent++;
+                bool firstType = true;
+                foreach (TypeSymbol type in types) {
+                    if (type.IsPublic == false) {
+                        if ((type.Type == SymbolType.Class) &&
+                            ((ClassSymbol)type).HasGlobalMethods) {
+                            continue;
+                        }
+
+                        if (firstType == false) {
+                            _writer.WriteLine(",");
+                        }
+                        TypeGenerator.GenerateRegistrationScript(this, type);
+                        firstType = false;
+                    }
+                }
+                _writer.Indent--;
+                _writer.WriteLine();
+                _writer.Write("},");
+                _writer.Indent--;
+            }
+            else {
+                _writer.Write(" null,");
+            }
+            if (publicTypes.Count != 0) {
+                _writer.WriteLine();
+                _writer.Indent++;
+                _writer.WriteLine("{");
+                _writer.Indent++;
+                bool firstType = true;
+                foreach (TypeSymbol type in types) {
+                    if (type.IsPublic) {
+                        if ((type.Type == SymbolType.Class) &&
+                            ((ClassSymbol)type).HasGlobalMethods) {
+                            continue;
+                        }
+
+                        if (firstType == false) {
+                            _writer.WriteLine(",");
+                        }
+                        TypeGenerator.GenerateRegistrationScript(this, type);
+                        firstType = false;
+                    }
+                }
+                _writer.Indent--;
+                _writer.WriteLine();
+                _writer.Write("}");
+                _writer.Indent--;
+            }
+            else {
+                _writer.Write(" null");
+            }
+            _writer.WriteLine(");");
+            _writer.WriteLine();
+
+            foreach (TypeSymbol type in types) {
+                if (type.Type == SymbolType.Class) {
+                    TypeGenerator.GenerateClassConstructorScript(this, (ClassSymbol)type);
+                }
+            }
+
+            if (_options.IncludeTests) {
+                foreach (TypeSymbol type in types) {
+                    ClassSymbol classSymbol = type as ClassSymbol;
+                    if ((classSymbol != null) && classSymbol.IsTestClass) {
+                        TestGenerator.GenerateScript(this, classSymbol);
+                    }
+                }
+            }
+
+            _writer.WriteLine();
+            _writer.WriteLine("return $" +  moduleName + ";");
+
+            _writer.Indent--;
+            _writer.WriteLine("});");
+        }
+
+
+        private sealed class TypeComparer : IComparer<TypeSymbol> {
+
+            public int Compare(TypeSymbol x, TypeSymbol y) {
+                if (x.Type != y.Type) {
+                    // If types are different, then use the symbol type to
+                    // similar types of types together.
+                    return (int)x.Type - (int)y.Type;
+                }
+
+                if (x.Type == SymbolType.Class) {
+                    // For classes, sort by inheritance depth. This is a crude
+                    // way to ensure the base class for a class is generated
+                    // first, without specifically looking at the inheritance
+                    // chain for any particular type. A parent class with lesser
+                    // inheritance depth has to by definition come first.
+
+                    return ((ClassSymbol)x).InheritanceDepth - ((ClassSymbol)y).InheritanceDepth;
+                }
+
+                return 0;
             }
         }
     }

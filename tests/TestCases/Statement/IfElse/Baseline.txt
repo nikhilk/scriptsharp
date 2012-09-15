@@ -1,34 +1,40 @@
-Type.registerNamespace('StatementTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// StatementTests.App
+  // StatementTests.App
 
-StatementTests.App = function() {
-}
-StatementTests.App.prototype = {
-    
+  function StatementTests$App() {
+  }
+  var StatementTests$App$ = {
     testMethod: function(boolValue, numValue) {
-        if (boolValue) {
-        }
-        if (boolValue) {
-            boolValue = false;
-        }
-        if (boolValue) {
-        }
-        else {
-        }
-        if (numValue === 1) {
-        }
-        else if (numValue === 2) {
-        }
-        if (numValue === 1) {
-        }
-        else if (numValue === 2) {
-        }
-        else {
-        }
+      if (boolValue) {
+      }
+      if (boolValue) {
+        boolValue = false;
+      }
+      if (boolValue) {
+      }
+      else {
+      }
+      if (numValue === 1) {
+      }
+      else if (numValue === 2) {
+      }
+      if (numValue === 1) {
+      }
+      else if (numValue === 2) {
+      }
+      else {
+      }
     }
-}
+  };
 
 
-StatementTests.App.registerClass('StatementTests.App');
+  var $test = ss.module('test', null,
+    {
+      App: [ StatementTests$App, StatementTests$App$, null ]
+    });
+
+
+  return $test;
+});

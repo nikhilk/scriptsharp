@@ -465,7 +465,6 @@
     <Compile Include="Generator\MemberGenerator.cs" />
     <Compile Include="Generator\TypeGenerator.cs" />
     <Compile Include="Generator\ScriptTextWriter.cs" />
-    <Compile Include="Generator\NamespaceGenerator.cs" />
     <Compile Include="Generator\ScriptGenerator.cs" />
     <Compile Include="Generator\TestGenerator.cs" />
   </ItemGroup>

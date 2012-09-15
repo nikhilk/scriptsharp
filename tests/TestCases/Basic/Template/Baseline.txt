@@ -2,17 +2,27 @@
 
 alert('some static script');
 
-Type.registerNamespace('BasicTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.App
+  // BasicTests.App
 
-BasicTests.App = function BasicTests_App() {
+  function BasicTests$App() {
     var e = document.body;
-}
+  }
+  var BasicTests$App$ = {
+
+  };
 
 
-BasicTests.App.registerClass('BasicTests.App');
+  var $test = ss.module('test', null,
+    {
+      App: [ BasicTests$App, BasicTests$App$, null ]
+    });
+
+
+  return $test;
+});
 
 alert('debug');
 

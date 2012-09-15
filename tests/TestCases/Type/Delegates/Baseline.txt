@@ -1,10 +1,20 @@
-Type.registerNamespace('TypeTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.EventArgs
+  // TypeTests.EventArgs
 
-TypeTests.EventArgs = function TypeTests_EventArgs() {
-}
+  function TypeTests$EventArgs() {
+  }
+  var TypeTests$EventArgs$ = {
+
+  };
 
 
-TypeTests.EventArgs.registerClass('TypeTests.EventArgs');
+  var $test = ss.module('test', null,
+    {
+      EventArgs: [ TypeTests$EventArgs, TypeTests$EventArgs$, null ]
+    });
+
+
+  return $test;
+});

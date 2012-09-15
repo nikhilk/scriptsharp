@@ -35,7 +35,6 @@ namespace ScriptSharp.Tests {
                 c.AddReference("Lib1.dll").
                   AddReference("Lib2.dll").
                   AddReference("Lib3.dll").
-                  AddTemplate("Template.js").
                   AddSource("Code1.cs");
                 c.Options.DebugFlavor = true;
             }, "Code1Baseline.txt");
@@ -44,7 +43,6 @@ namespace ScriptSharp.Tests {
                 c.AddReference("Lib1.dll").
                   AddReference("Lib2.dll").
                   AddReference("Lib3.dll").
-                  AddTemplate("Template.js").
                   AddSource("Code2.cs");
                 c.Options.DebugFlavor = true;
             }, "Code2Baseline.txt");

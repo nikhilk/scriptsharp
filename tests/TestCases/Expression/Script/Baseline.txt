@@ -1,19 +1,25 @@
-Type.registerNamespace('ExpressionTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.App
+  // ExpressionTests.App
 
-ExpressionTests.App = function() {
-}
-ExpressionTests.App.prototype = {
-    
+  function ExpressionTests$App() {
+  }
+  var ExpressionTests$App$ = {
     test: function(arg) {
-        arg = (arg || 10);
-        arg = (arg || 10 || 100);
-        var s = (arg || 10).format('{0}');
-        var b = !!arg;
+      arg = (arg || 10);
+      arg = (arg || 10 || 100);
+      var s = (arg || 10).toString(10);
+      var b = !!arg;
     }
-}
+  };
 
 
-ExpressionTests.App.registerClass('ExpressionTests.App');
+  var $test = ss.module('test', null,
+    {
+      App: [ ExpressionTests$App, ExpressionTests$App$, null ]
+    });
+
+
+  return $test;
+});

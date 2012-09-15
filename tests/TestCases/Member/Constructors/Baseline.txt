@@ -1,43 +1,55 @@
-Type.registerNamespace('MemberTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.MyClass
+  // MemberTests.MyClass
 
-MemberTests.MyClass = function() {
+  function MemberTests$MyClass() {
+    this._value = 0;
     this._value = 1;
-}
-MemberTests.MyClass.prototype = {
-    _value: 0
-}
+  }
+  var MemberTests$MyClass$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.MyClass2
+  // MemberTests.MyClass2
 
-MemberTests.MyClass2 = function() {
-}
+  function MemberTests$MyClass2() {
+  }
+  var MemberTests$MyClass2$ = {
 
-
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.MyClass3
-
-MemberTests.MyClass3 = function(arg, arg2) {
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.MyClass4
+  // MemberTests.MyClass3
 
-MemberTests.MyClass4 = function(arg, arg2, arg3) {
-    MemberTests.MyClass4.initializeBase(this, [ arg, arg2 ]);
-}
+  function MemberTests$MyClass3(arg, arg2) {
+  }
+  var MemberTests$MyClass3$ = {
+
+  };
 
 
-MemberTests.MyClass.registerClass('MemberTests.MyClass');
-MemberTests.MyClass2.registerClass('MemberTests.MyClass2');
-MemberTests.MyClass3.registerClass('MemberTests.MyClass3');
-MemberTests.MyClass4.registerClass('MemberTests.MyClass4', MemberTests.MyClass3);
-MemberTests.MyClass2.x = null;
-MemberTests.MyClass2.x = 'Hello';
-MemberTests.MyClass3.c = null;
-MemberTests.MyClass3.c = new MemberTests.MyClass();
+  // MemberTests.MyClass4
+
+  function MemberTests$MyClass4(arg, arg2, arg3) {
+    MemberTests$MyClass3.call(this, arg, arg2);
+  }
+  var MemberTests$MyClass4$ = {
+
+  };
+
+
+  var $test = ss.module('test', null,
+    {
+      MyClass: [ MemberTests$MyClass, MemberTests$MyClass$, null ],
+      MyClass2: [ MemberTests$MyClass2, MemberTests$MyClass2$, null ],
+      MyClass3: [ MemberTests$MyClass3, MemberTests$MyClass3$, null ],
+      MyClass4: [ MemberTests$MyClass4, MemberTests$MyClass4$, MemberTests$MyClass3 ]
+    });
+
+  MemberTests$MyClass2.x = 'Hello';
+  MemberTests$MyClass3.c = new MemberTests$MyClass();
+
+  return $test;
+});

@@ -1,59 +1,66 @@
-Type.registerNamespace('ExpressionTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.SomeClass
+  // ExpressionTests.SomeClass
 
-ExpressionTests.SomeClass = function(cb) {
-}
+  function ExpressionTests$SomeClass(cb) {
+  }
+  var ExpressionTests$SomeClass$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.Test
+  // ExpressionTests.Test
 
-ExpressionTests.Test = function() {
-}
-ExpressionTests.Test.main = function(args) {
+  function ExpressionTests$Test() {
+    this._n = 0;
+  }
+  ExpressionTests$Test.main = function(args) {
     var o = {};
     var name;
-    ExpressionTests.Test.doStuffStatic(o, function(i, s, b) {
-        name = s;
+    ExpressionTests$Test.doStuffStatic(o, function(i, s, b) {
+      name = s;
     });
-}
-ExpressionTests.Test.doStuffStatic = function(o, callback) {
-}
-ExpressionTests.Test.prototype = {
-    _n: 0,
-    
+  }
+  ExpressionTests$Test.doStuffStatic = function(o, callback) {
+  }
+  var ExpressionTests$Test$ = {
     AAA: function() {
-        var o = {};
-        this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
-            this._n = i;
-        }));
-        var s = new ExpressionTests.SomeClass(function() {
+      var o = {};
+      this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
+        this._n = i;
+      }));
+      var s = new ExpressionTests$SomeClass(function() {
+      });
+      for (var i = 0; i < 10; i++) {
+        var foo;
+        this.doStuff(o, function(i, s, b) {
+          foo = i + s;
         });
-        for (var i = 0; i < 10; i++) {
-            var foo;
-            this.doStuff(o, function(i, s, b) {
-                foo = i + s;
-            });
-            this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
-                this._n += i;
-            }));
-            ExpressionTests.Test.doStuffStatic(o, function() {
-            });
-            ExpressionTests.Test.doStuffStatic(o, ss.Delegate.create(this, function() {
-                this._n++;
-            }));
-        }
-        var s2 = new ExpressionTests.SomeClass(ss.Delegate.create(this, function() {
-            var numbers = [ this._n ];
+        this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
+          this._n += i;
         }));
+        ExpressionTests$Test.doStuffStatic(o, function() {
+        });
+        ExpressionTests$Test.doStuffStatic(o, ss.Delegate.create(this, function() {
+          this._n++;
+        }));
+      }
+      var s2 = new ExpressionTests$SomeClass(ss.Delegate.create(this, function() {
+        var numbers = [ this._n ];
+      }));
     },
-    
     doStuff: function(o, callback) {
     }
-}
+  };
 
 
-ExpressionTests.SomeClass.registerClass('ExpressionTests.SomeClass');
-ExpressionTests.Test.registerClass('ExpressionTests.Test');
+  var $test = ss.module('test', null,
+    {
+      SomeClass: [ ExpressionTests$SomeClass, ExpressionTests$SomeClass$, null ],
+      Test: [ ExpressionTests$Test, ExpressionTests$Test$, null ]
+    });
+
+
+  return $test;
+});

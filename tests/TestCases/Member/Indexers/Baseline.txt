@@ -1,207 +1,208 @@
-Type.registerNamespace('MemberTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.IIndexable
+  // MemberTests.IIndexable
 
-MemberTests.IIndexable = function() { };
-MemberTests.IIndexable.registerInterface('MemberTests.IIndexable');
+  function MemberTests$IIndexable() { }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.Normal
+  // MemberTests.Normal
 
-MemberTests.Normal = function() {
+  function MemberTests$Normal() {
+    this.n = 0;
     var i = this.get_item('name');
     this.set_item('name', i + 1);
-}
-MemberTests.Normal.prototype = {
-    n: 0,
+  }
+  var MemberTests$Normal$ = {
     get_item: function(name) {
-        return this.n;
+      return this.n;
     },
     set_item: function(name, value) {
-        this.n = value;
-        return value;
+      this.n = value;
+      return value;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.GetterOnly
+  // MemberTests.GetterOnly
 
-MemberTests.GetterOnly = function() {
+  function MemberTests$GetterOnly() {
+    this.n = 0;
     var i = this.get_item('name');
-}
-MemberTests.GetterOnly.prototype = {
-    n: 0,
+  }
+  var MemberTests$GetterOnly$ = {
     get_item: function(name) {
-        return this.n;
+      return this.n;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.VirtualIndexer
+  // MemberTests.VirtualIndexer
 
-MemberTests.VirtualIndexer = function() {
+  function MemberTests$VirtualIndexer() {
+    this.n = 0;
     var i = this.get_item('name');
     this.set_item('name', i + 1);
-}
-MemberTests.VirtualIndexer.prototype = {
-    n: 0,
+  }
+  var MemberTests$VirtualIndexer$ = {
     get_item: function(name) {
-        return this.n;
+      return this.n;
     },
     set_item: function(name, value) {
-        this.n = value;
-        return value;
+      this.n = value;
+      return value;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.OverriddenIndexer
+  // MemberTests.AbstractIndexer
 
-MemberTests.OverriddenIndexer = function() {
-    MemberTests.OverriddenIndexer.initializeBase(this);
+  function MemberTests$AbstractIndexer() {
+    this.n = 0;
     var i = this.get_item('name');
     this.set_item('name', i + 1);
-    var j = MemberTests.OverriddenIndexer.callBaseMethod(this, 'get_item', [ 'name' ]);
-    MemberTests.OverriddenIndexer.callBaseMethod(this, 'set_item', [ 'name', 43 ]);
-}
-MemberTests.OverriddenIndexer.prototype = {
-    get_item: function(name) {
-        return MemberTests.OverriddenIndexer.callBaseMethod(this, 'get_item', [ name ]) + 1;
-    },
-    set_item: function(name, value) {
-        MemberTests.OverriddenIndexer.callBaseMethod(this, 'set_item', [ name, value - 1 ]);
-        return value;
-    }
-}
+  }
+  var MemberTests$AbstractIndexer$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.AbstractIndexer
+  // MemberTests.MultipleArgs
 
-MemberTests.AbstractIndexer = function() {
-    var i = this.get_item('name');
-    this.set_item('name', i + 1);
-}
-MemberTests.AbstractIndexer.prototype = {
-    n: 0,
-
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.ImplementedIndexer
-
-MemberTests.ImplementedIndexer = function() {
-    MemberTests.ImplementedIndexer.initializeBase(this);
-    var i = this.get_item('name');
-    this.set_item('name', i + 1);
-}
-MemberTests.ImplementedIndexer.prototype = {
-    n: 0,
-
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.MultipleArgs
-
-MemberTests.MultipleArgs = function() {
+  function MemberTests$MultipleArgs() {
+    this.n = 0;
     var i = this.get_item('name', 'name2', 'name3');
     this.set_item('name', 'name2', 'name3', i + 1);
-}
-MemberTests.MultipleArgs.prototype = {
-    n: 0,
+  }
+  var MemberTests$MultipleArgs$ = {
     get_item: function(first, middle, last) {
-        var value = first + middle + last;
-        return value.length;
+      var value = first + middle + last;
+      return value.length;
     },
     set_item: function(first, middle, last, value) {
-        this.n = value;
-        return value;
+      this.n = value;
+      return value;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.ImplementedIndexer2
+  // MemberTests.ImplementedIndexer2
 
-MemberTests.ImplementedIndexer2 = function() {
-}
-MemberTests.ImplementedIndexer2.prototype = {
+  function MemberTests$ImplementedIndexer2() {
+  }
+  var MemberTests$ImplementedIndexer2$ = {
     get_item: function(index) {
-        return 0;
+      return 0;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.Test
+  // MemberTests.Test
 
-MemberTests.Test = function() {
-    var ma = new MemberTests.MultipleArgs();
+  function MemberTests$Test() {
+    var ma = new MemberTests$MultipleArgs();
     ma.set_item('1', '2', '3', ma.get_item('3', '2', '1'));
-    var ii = new MemberTests.ImplementedIndexer();
+    var ii = new MemberTests$ImplementedIndexer();
     ii.set_item('big', ii.get_item('small'));
     var ai = ii;
     ai.set_item('small', ai.get_item('big'));
-    var indexable = new MemberTests.ImplementedIndexer2();
+    var indexable = new MemberTests$ImplementedIndexer2();
     var o = indexable.get_item(0);
-}
+  }
+  var MemberTests$Test$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.A
+  // MemberTests.A
 
-MemberTests.A = function() {
-}
-MemberTests.A.prototype = {
+  function MemberTests$A() {
+  }
+  var MemberTests$A$ = {
     get_item: function(name) {
-        return name;
+      return name;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.B
+  // MemberTests.OverriddenIndexer
 
-MemberTests.B = function() {
-    MemberTests.B.initializeBase(this);
-}
+  function MemberTests$OverriddenIndexer() {
+    MemberTests$VirtualIndexer.call(this);
+    var i = this.get_item('name');
+    this.set_item('name', i + 1);
+    var j = MemberTests$VirtualIndexer$.get_item.call(this, 'name');
+    MemberTests$VirtualIndexer$.set_item.call(this, 'name', 43);
+  }
+  var MemberTests$OverriddenIndexer$ = {
+    get_item: function(name) {
+      return MemberTests$VirtualIndexer$.get_item.call(this, name) + 1;
+    },
+    set_item: function(name, value) {
+      MemberTests$VirtualIndexer$.set_item.call(this, name, value - 1);
+      return value;
+    }
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.C
+  // MemberTests.ImplementedIndexer
 
-MemberTests.C = function() {
-    MemberTests.C.initializeBase(this);
-}
-MemberTests.C.main = function() {
-    var c = new MemberTests.C();
+  function MemberTests$ImplementedIndexer() {
+    this.n = 0;
+    MemberTests$AbstractIndexer.call(this);
+    var i = this.get_item('name');
+    this.set_item('name', i + 1);
+  }
+  var MemberTests$ImplementedIndexer$ = {
+
+  };
+
+
+  // MemberTests.B
+
+  function MemberTests$B() {
+    MemberTests$A.call(this);
+  }
+  var MemberTests$B$ = {
+
+  };
+
+
+  // MemberTests.C
+
+  function MemberTests$C() {
+    MemberTests$B.call(this);
+  }
+  MemberTests$C.main = function() {
+    var c = new MemberTests$C();
     c.set_item('a', c.get_item('b'));
     var a = c;
     a.set_item('b', a.get_item('c'));
-}
-MemberTests.C.prototype = {
+  }
+  var MemberTests$C$ = {
     get_item: function(name) {
-        return name;
+      return name;
     }
-}
+  };
 
 
-MemberTests.Normal.registerClass('MemberTests.Normal');
-MemberTests.GetterOnly.registerClass('MemberTests.GetterOnly');
-MemberTests.VirtualIndexer.registerClass('MemberTests.VirtualIndexer');
-MemberTests.OverriddenIndexer.registerClass('MemberTests.OverriddenIndexer', MemberTests.VirtualIndexer);
-MemberTests.AbstractIndexer.registerClass('MemberTests.AbstractIndexer');
-MemberTests.ImplementedIndexer.registerClass('MemberTests.ImplementedIndexer', MemberTests.AbstractIndexer);
-MemberTests.MultipleArgs.registerClass('MemberTests.MultipleArgs');
-MemberTests.ImplementedIndexer2.registerClass('MemberTests.ImplementedIndexer2', null, MemberTests.IIndexable);
-MemberTests.Test.registerClass('MemberTests.Test');
-MemberTests.A.registerClass('MemberTests.A');
-MemberTests.B.registerClass('MemberTests.B', MemberTests.A);
-MemberTests.C.registerClass('MemberTests.C', MemberTests.B);
+  var $test = ss.module('test', null,
+    {
+      IIndexable: [ MemberTests$IIndexable ],
+      Normal: [ MemberTests$Normal, MemberTests$Normal$, null ],
+      GetterOnly: [ MemberTests$GetterOnly, MemberTests$GetterOnly$, null ],
+      VirtualIndexer: [ MemberTests$VirtualIndexer, MemberTests$VirtualIndexer$, null ],
+      AbstractIndexer: [ MemberTests$AbstractIndexer, MemberTests$AbstractIndexer$, null ],
+      MultipleArgs: [ MemberTests$MultipleArgs, MemberTests$MultipleArgs$, null ],
+      ImplementedIndexer2: [ MemberTests$ImplementedIndexer2, MemberTests$ImplementedIndexer2$, null, MemberTests$IIndexable ],
+      Test: [ MemberTests$Test, MemberTests$Test$, null ],
+      A: [ MemberTests$A, MemberTests$A$, null ],
+      OverriddenIndexer: [ MemberTests$OverriddenIndexer, MemberTests$OverriddenIndexer$, MemberTests$VirtualIndexer ],
+      ImplementedIndexer: [ MemberTests$ImplementedIndexer, MemberTests$ImplementedIndexer$, MemberTests$AbstractIndexer ],
+      B: [ MemberTests$B, MemberTests$B$, MemberTests$A ],
+      C: [ MemberTests$C, MemberTests$C$, MemberTests$B ]
+    });
+
+
+  return $test;
+});

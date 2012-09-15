@@ -14,40 +14,23 @@ namespace ScriptSharp.Generator {
     internal static class TypeGenerator {
 
         private static void GenerateClass(ScriptGenerator generator, ClassSymbol classSymbol) {
-            if (classSymbol.HasGlobalMethods) {
-                GenerateGlobalMethods(generator, classSymbol);
-                generator.AddGeneratedClass(classSymbol);
-                return;
-            }
-
             ScriptTextWriter writer = generator.Writer;
             string name = classSymbol.FullGeneratedName;
 
-            if (classSymbol.Namespace.Length == 0) {
-                writer.Write("window.");
-            }
-
+            writer.Write("function ");
             writer.Write(name);
-            writer.WriteTrimmed(" = ");
-            writer.Write("function");
-            if (generator.Options.DebugFlavor) {
-                writer.Write(" ");
-                writer.Write(name.Replace(".", "_"));
-            }
             writer.Write("(");
             if ((classSymbol.Constructor != null) && (classSymbol.Constructor.Parameters != null)) {
                 bool firstParameter = true;
                 foreach (ParameterSymbol parameterSymbol in classSymbol.Constructor.Parameters) {
                     if (firstParameter == false) {
-                        writer.WriteTrimmed(", ");
+                        writer.Write(", ");
                     }
                     writer.Write(parameterSymbol.GeneratedName);
                     firstParameter = false;
                 }
             }
-            writer.WriteTrimmed(") ");
-            writer.Write("{");
-            writer.WriteNewLine();
+            writer.WriteLine(") {");
             writer.Indent++;
 
             if (generator.Options.EnableDocComments) {
@@ -61,24 +44,23 @@ namespace ScriptSharp.Generator {
                     if (fieldSymbol.HasInitializer) {
                         writer.Write("this.");
                         writer.Write(fieldSymbol.GeneratedName);
-                        writer.WriteTrimmed(" = ");
+                        writer.Write(" = ");
                         CodeGenerator.GenerateScript(generator, fieldSymbol);
                         writer.Write(";");
-                        writer.WriteNewLine();
+                        writer.WriteLine();
                     }
                 }
             }
             if (classSymbol.Constructor != null) {
                 CodeGenerator.GenerateScript(generator, classSymbol.Constructor);
             }
-            else if (classSymbol.BaseClass != null) {
-                writer.Write(classSymbol.FullGeneratedName);
-                writer.Write(".initializeBase(this);");
-                writer.WriteNewLine();
+            else if ((classSymbol.BaseClass != null) && (classSymbol.IsTestClass == false)) {
+                writer.Write(classSymbol.BaseClass.FullGeneratedName);
+                writer.Write(".call(this);");
+                writer.WriteLine();
             }
             writer.Indent--;
-            writer.Write("}");
-            writer.WriteSignificantNewLine();
+            writer.WriteLine("}");
 
             foreach (MemberSymbol memberSymbol in classSymbol.Members) {
                 if ((memberSymbol.Type != SymbolType.Field) &&
@@ -87,13 +69,15 @@ namespace ScriptSharp.Generator {
                 }
             }
 
-            bool hasPrototypeMembers = false;
+            writer.Write("var ");
+            writer.Write(name);
+            writer.WriteLine("$ = {");
+            writer.Indent++;
+
             bool firstMember = true;
-            bool lastMemberWasField = true;
             foreach (MemberSymbol memberSymbol in classSymbol.Members) {
                 if ((memberSymbol.Visibility & MemberVisibility.Static) == 0) {
-                    if ((memberSymbol.Type == SymbolType.Field) &&
-                        ((FieldSymbol)memberSymbol).HasInitializer) {
+                    if (memberSymbol.Type == SymbolType.Field) {
                         continue;
                     }
 
@@ -102,86 +86,36 @@ namespace ScriptSharp.Generator {
                         continue;
                     }
 
-                    if (hasPrototypeMembers == false) {
-                        hasPrototypeMembers = true;
-
-                        writer.Write(name);
-                        writer.Write(".prototype");
-                        writer.WriteTrimmed(" = ");
-                        writer.Write("{");
-                        writer.WriteNewLine();
-                        writer.Indent++;
-                    }
-
                     if (firstMember == false) {
-                        writer.Write(",");
-                        writer.WriteNewLine();
-                    }
-                    if ((lastMemberWasField == false) || !(memberSymbol is FieldSymbol)) {
-                        writer.WriteNewLine();
+                        writer.WriteLine(",");
                     }
 
                     MemberGenerator.GenerateScript(generator, memberSymbol);
-                    lastMemberWasField = (memberSymbol is FieldSymbol);
                     firstMember = false;
                 }
             }
 
             if (classSymbol.Indexer != null) {
-                if (hasPrototypeMembers == false) {
-                    hasPrototypeMembers = true;
-
-                    writer.Write(name);
-                    writer.Write(".prototype");
-                    writer.WriteTrimmed(" = ");
-                    writer.Write("{");
-                    writer.WriteNewLine();
-                    writer.Indent++;
-                
-                }
                 if (firstMember == false) {
-                    writer.Write(",");
-                    writer.WriteNewLine();
+                    writer.WriteLine(",");
                 }
 
                 MemberGenerator.GenerateScript(generator, classSymbol.Indexer);
             }
 
-            if (hasPrototypeMembers) {
-                writer.Indent--;
-                writer.WriteNewLine();
-                writer.Write("}");
-                writer.WriteSignificantNewLine();
-            }
-
-            generator.AddGeneratedClass(classSymbol);
-        }
-
-        private static void GenerateDelegate(ScriptGenerator generator, DelegateSymbol delegateSymbol) {
-            // No-op
-            // There is currently nothing to generate for a particular delegate type
+            writer.Indent--;
+            writer.WriteLine();
+            writer.Write("};");
+            writer.WriteLine();
         }
 
         private static void GenerateEnumeration(ScriptGenerator generator, EnumerationSymbol enumSymbol) {
             ScriptTextWriter writer = generator.Writer;
+            string enumName = enumSymbol.FullGeneratedName;
 
-            if (enumSymbol.Namespace.Length == 0) {
-                writer.Write("window.");
-            }
-
+            writer.Write("var ");
             writer.Write(enumSymbol.FullGeneratedName);
-            writer.WriteTrimmed(" = ");
-            writer.Write("function()");
-            writer.WriteTrimmed(" { ");
-
-            if (generator.Options.EnableDocComments) {
-                DocCommentGenerator.GenerateComment(generator, enumSymbol);
-            }
-
-            writer.Write("};");
-            writer.WriteNewLine();
-            writer.Write(enumSymbol.FullGeneratedName);
-            writer.Write(".prototype = {");
+            writer.Write(" = {");
             writer.Indent++;
 
             bool firstValue = true;
@@ -192,12 +126,12 @@ namespace ScriptSharp.Generator {
                 }
 
                 if (firstValue == false) {
-                    writer.WriteTrimmed(", ");
+                    writer.Write(", ");
                 }
 
-                writer.WriteNewLine();
+                writer.WriteLine();
                 writer.Write(fieldSymbol.GeneratedName);
-                writer.WriteTrimmed(": ");
+                writer.Write(": ");
                 if (enumSymbol.UseNamedValues) {
                     writer.Write(Utility.QuoteString(enumSymbol.CreateNamedValue(fieldSymbol)));
                 }
@@ -208,97 +142,18 @@ namespace ScriptSharp.Generator {
             }
 
             writer.Indent--;
-            writer.WriteNewLine();
-            writer.WriteTrimmed("}");
-            writer.WriteSignificantNewLine();
-
-            writer.Write(enumSymbol.FullGeneratedName);
-            writer.Write(".registerEnum('");
-            writer.Write(enumSymbol.FullGeneratedName);
-            writer.WriteTrimmed("', ");
-            writer.Write(enumSymbol.Flags ? "true" : "false");
-            writer.Write(");");
-            writer.WriteNewLine();
+            writer.WriteLine();
+            writer.Write("};");
+            writer.WriteLine();
         }
 
         private static void GenerateInterface(ScriptGenerator generator, InterfaceSymbol interfaceSymbol) {
             ScriptTextWriter writer = generator.Writer;
             string interfaceName = interfaceSymbol.FullGeneratedName;
 
-            if (interfaceSymbol.Namespace.Length == 0) {
-                writer.Write("window.");
-            }
-
+            writer.Write("function ");
             writer.Write(interfaceName);
-            writer.WriteTrimmed(" = ");
-            writer.Write("function()");
-            writer.WriteTrimmed(" { ");
-
-            if (generator.Options.EnableDocComments) {
-                DocCommentGenerator.GenerateComment(generator, interfaceSymbol);
-            }
-
-            writer.Write("};");
-            writer.WriteNewLine();
-
-            if (generator.Options.DebugFlavor) {
-                writer.Write(interfaceName);
-                writer.Write(".prototype = {");
-                writer.WriteLine();
-                writer.Indent++;
-                bool firstMember = true;
-                foreach (MemberSymbol member in interfaceSymbol.Members) {
-                    if (firstMember == false) {
-                        writer.Write(",");
-                        writer.WriteLine();
-                    }
-
-                    if (member.Type == SymbolType.Property) {
-                        writer.Write("get_");
-                        writer.Write(member.GeneratedName);
-                        writer.WriteTrimmed(" : ");
-                        writer.Write("null");
-
-                        if (((PropertySymbol)member).IsReadOnly == false) {
-                            writer.Write(",");
-                            writer.WriteLine();
-
-                            writer.Write("set_");
-                            writer.Write(member.GeneratedName);
-                            writer.WriteTrimmed(" : ");
-                            writer.Write("null");
-                        }
-                    }
-                    else if (member.Type == SymbolType.Event) {
-                        writer.Write("add_");
-                        writer.Write(member.GeneratedName);
-                        writer.WriteTrimmed(" : ");
-                        writer.Write("null,");
-                        writer.WriteLine();
-
-                        writer.Write("remove_");
-                        writer.Write(member.GeneratedName);
-                        writer.WriteTrimmed(" : ");
-                        writer.Write("null");
-                    }
-                    else {
-                        writer.Write(member.GeneratedName);
-                        writer.WriteTrimmed(" : ");
-                        writer.Write("null");
-                    }
-                    firstMember = false;
-                }
-                writer.Indent--;
-                writer.WriteLine();
-                writer.Write("}");
-                writer.WriteSignificantNewLine();
-            }
-
-            writer.Write(interfaceName);
-            writer.Write(".registerInterface('");
-            writer.Write(interfaceName);
-            writer.Write("');");
-            writer.WriteNewLine();
+            writer.WriteLine("() { }");
         }
 
         public static void GenerateClassConstructorScript(ScriptGenerator generator, ClassSymbol classSymbol) {
@@ -308,13 +163,17 @@ namespace ScriptSharp.Generator {
             foreach (MemberSymbol memberSymbol in classSymbol.Members) {
                 if ((memberSymbol.Type == SymbolType.Field) &&
                     ((memberSymbol.Visibility & MemberVisibility.Static) != 0)) {
-                    if (((FieldSymbol)memberSymbol).IsConstant &&
+                    FieldSymbol fieldSymbol = (FieldSymbol)memberSymbol;
+
+                    if (fieldSymbol.IsConstant &&
                         ((memberSymbol.Visibility & (MemberVisibility.Public | MemberVisibility.Protected)) == 0)) {
                         // PrivateInstance/Internal constant fields are omitted since they have been inlined
                         continue;
                     }
 
-                    MemberGenerator.GenerateScript(generator, memberSymbol);
+                    if (fieldSymbol.HasInitializer) {
+                        MemberGenerator.GenerateScript(generator, memberSymbol);
+                    }
                 }
             }
 
@@ -325,62 +184,16 @@ namespace ScriptSharp.Generator {
                 bool requiresFunctionScope = implementation.DeclaresVariables;
 
                 if (requiresFunctionScope) {
-                    writer.Write("(function");
-                    writer.WriteTrimmed(" () ");
-                    writer.Write("{");
-                    writer.WriteNewLine();
+                    writer.WriteLine("(function() {");
                     writer.Indent++;
                 }
                 CodeGenerator.GenerateScript(generator, classSymbol.StaticConstructor);
                 if (requiresFunctionScope) {
                     writer.Indent--;
                     writer.Write("})();");
-                    writer.WriteSignificantNewLine();
+                    writer.WriteLine();
                 }
             }
-        }
-
-        public static void GenerateClassRegistrationScript(ScriptGenerator generator, ClassSymbol classSymbol) {
-            // NOTE: This is emitted towards the end of the script file as opposed to immediately after the
-            //       class definition, because it allows us to reference other class (base class, interfaces)
-            //       without having to do a manual topological sort to get the ordering of class definitions
-            //       that would be needed otherwise.
-
-            ScriptTextWriter writer = generator.Writer;
-            string name = classSymbol.FullGeneratedName;
-
-            writer.Write(name);
-            writer.Write(".registerClass('");
-            writer.Write(name);
-            writer.Write("'");
-
-            // TODO: We need to introduce the notion of a base class that only exists in the metadata
-            //       and not at runtime. At that point this check of IsTestClass can be generalized.
-            if (classSymbol.IsTestClass) {
-                writer.Write(");");
-                writer.WriteNewLine();
-
-                return;
-            }
-
-            if (classSymbol.BaseClass != null) {
-                writer.WriteTrimmed(", ");
-                writer.Write(classSymbol.BaseClass.FullGeneratedName);
-            }
-
-            if (classSymbol.Interfaces != null) {
-                if (classSymbol.BaseClass == null) {
-                    writer.WriteTrimmed(", ");
-                    writer.Write("null");
-                }
-                foreach (InterfaceSymbol interfaceSymbol in classSymbol.Interfaces) {
-                    writer.WriteTrimmed(", ");
-                    writer.Write(interfaceSymbol.FullGeneratedName);
-                }
-            }
-
-            writer.Write(");");
-            writer.WriteNewLine();
         }
 
         private static void GenerateGlobalMethods(ScriptGenerator generator, ClassSymbol classSymbol) {
@@ -394,23 +207,10 @@ namespace ScriptSharp.Generator {
 
         private static void GenerateRecord(ScriptGenerator generator, RecordSymbol recordSymbol) {
             ScriptTextWriter writer = generator.Writer;
-            string recordName = recordSymbol.GeneratedName;
+            string recordName = recordSymbol.FullGeneratedName;
 
-            if ((recordSymbol.Namespace.Length == 0) || recordSymbol.IgnoreNamespace) {
-                writer.Write("window.");
-            }
-            else {
-                writer.Write(recordSymbol.GeneratedNamespace);
-                writer.Write(".");
-            }
-            writer.Write("$create_");
+            writer.Write("function ");
             writer.Write(recordName);
-            writer.WriteTrimmed(" = ");
-            writer.Write("function");
-            if (generator.Options.DebugFlavor) {
-                writer.Write(" ");
-                writer.Write(recordSymbol.FullGeneratedName.Replace(".", "_"));
-            }
             writer.Write("(");
             if (recordSymbol.Constructor != null) {
                 ConstructorSymbol ctorSymbol = recordSymbol.Constructor;
@@ -419,43 +219,86 @@ namespace ScriptSharp.Generator {
                     bool firstParameter = true;
                     foreach (ParameterSymbol parameterSymbol in ctorSymbol.Parameters) {
                         if (firstParameter == false) {
-                            writer.WriteTrimmed(", ");
+                            writer.Write(", ");
                         }
                         writer.Write(parameterSymbol.GeneratedName);
                         firstParameter = false;
                     }
                 }
             }
-            writer.WriteTrimmed(")");
-            writer.WriteTrimmed(" {");
+            writer.Write(") {");
             if (recordSymbol.Constructor != null) {
                 writer.Indent++;
-                writer.WriteNewLine();
-                writer.Write("var $o");
-                writer.WriteTrimmed(" = ");
-                writer.WriteTrimmed("{ ");
-                writer.Write("};");
-                writer.WriteNewLine();
+                writer.WriteLine();
+                writer.WriteLine("var $o = {};");
                 CodeGenerator.GenerateScript(generator, recordSymbol.Constructor);
                 writer.Write("return $o;");
-                writer.WriteNewLine();
+                writer.WriteLine();
                 writer.Indent--;
             }
             else {
-                writer.WriteTrimmed(" return {}; ");
+                writer.Write(" return {}; ");
             }
             writer.Write("}");
-            writer.WriteSignificantNewLine();
+            writer.WriteLine();
+        }
+
+        public static void GenerateRegistrationScript(ScriptGenerator generator, TypeSymbol typeSymbol) {
+            ClassSymbol classSymbol = typeSymbol as ClassSymbol;
+
+            if ((classSymbol != null) && classSymbol.HasGlobalMethods) {
+                return;
+            }
+
+            ScriptTextWriter writer = generator.Writer;
+
+            writer.Write(typeSymbol.GeneratedName);
+            writer.Write(": ");
+
+            switch (typeSymbol.Type) {
+                case SymbolType.Class:
+                    writer.Write("[ ");
+                    writer.Write(typeSymbol.FullGeneratedName);
+                    writer.Write(", ");
+                    writer.Write(typeSymbol.FullGeneratedName);
+                    writer.Write("$, ");
+                    if ((classSymbol.BaseClass == null) || classSymbol.IsTestClass) {
+                        // TODO: We need to introduce the notion of a base class that only exists in the metadata
+                        //       and not at runtime. At that point this check of IsTestClass can be generalized.
+
+                        writer.Write("null");
+                    }
+                    else {
+                        writer.Write(classSymbol.BaseClass.FullGeneratedName);
+                    }
+                    if (classSymbol.Interfaces != null) {
+                        foreach (InterfaceSymbol interfaceSymbol in classSymbol.Interfaces) {
+                            writer.Write(", ");
+                            writer.Write(interfaceSymbol.FullGeneratedName);
+                        }
+                    }
+                    writer.Write(" ]");
+                    break;
+                case SymbolType.Interface:
+                    writer.Write("[ ");
+                    writer.Write(typeSymbol.FullGeneratedName);
+                    writer.Write(" ]");
+                    break;
+                case SymbolType.Record:
+                case SymbolType.Resources:
+                case SymbolType.Enumeration:
+                    writer.Write(typeSymbol.FullGeneratedName);
+                    break;
+            }
         }
 
         private static void GenerateResources(ScriptGenerator generator, ResourcesSymbol resourcesSymbol) {
             ScriptTextWriter writer = generator.Writer;
             string resourcesName = resourcesSymbol.FullGeneratedName;
 
+            writer.Write("var ");
             writer.Write(resourcesName);
-            writer.WriteTrimmed(" = ");
-            writer.WriteTrimmed("{ ");
-            writer.WriteNewLine();
+            writer.WriteLine(" = {");
             writer.Indent++;
 
             bool firstValue = true;
@@ -468,7 +311,7 @@ namespace ScriptSharp.Generator {
                 }
 
                 writer.Write(member.GeneratedName);
-                writer.WriteTrimmed(": ");
+                writer.Write(": ");
                 writer.Write(Utility.QuoteString((string)member.Value));
 
                 firstValue = false;
@@ -477,7 +320,7 @@ namespace ScriptSharp.Generator {
             writer.Indent--;
             writer.WriteLine();
             writer.Write("};");
-            writer.WriteNewLine();
+            writer.WriteLine();
         }
 
         public static void GenerateScript(ScriptGenerator generator, TypeSymbol typeSymbol) {
@@ -485,22 +328,19 @@ namespace ScriptSharp.Generator {
             Debug.Assert(typeSymbol != null);
             Debug.Assert(typeSymbol.IsApplicationType);
 
-            if ((typeSymbol.Type == SymbolType.Enumeration) && (typeSymbol.IsPublic == false)) {
-                // Internal enums can be skipped since their values have been inlined.
-                return;
-            }
-
             ScriptTextWriter writer = generator.Writer;
 
-            if (generator.Options.Minimize == false) {
-                writer.WriteLine(new String('/', 80));
-                writer.WriteLine("// " + typeSymbol.FullGeneratedName);
-                writer.WriteLine();
-            }
+            writer.WriteLine("// " + typeSymbol.FullName);
+            writer.WriteLine();
 
             switch (typeSymbol.Type) {
                 case SymbolType.Class:
-                    GenerateClass(generator, (ClassSymbol)typeSymbol);
+                    if (((ClassSymbol)typeSymbol).HasGlobalMethods) {
+                        GenerateGlobalMethods(generator, (ClassSymbol)typeSymbol);
+                    }
+                    else {
+                        GenerateClass(generator, (ClassSymbol)typeSymbol);
+                    }
                     break;
                 case SymbolType.Interface:
                     GenerateInterface(generator, (InterfaceSymbol)typeSymbol);
@@ -509,7 +349,7 @@ namespace ScriptSharp.Generator {
                     GenerateEnumeration(generator, (EnumerationSymbol)typeSymbol);
                     break;
                 case SymbolType.Delegate:
-                    GenerateDelegate(generator, (DelegateSymbol)typeSymbol);
+                    // No-op ... there is currently nothing to generate for a particular delegate type
                     break;
                 case SymbolType.Record:
                     GenerateRecord(generator, (RecordSymbol)typeSymbol);
@@ -519,8 +359,8 @@ namespace ScriptSharp.Generator {
                     break;
             }
 
-            writer.WriteNewLine();
-            writer.WriteNewLine();
+            writer.WriteLine();
+            writer.WriteLine();
         }
     }
 }

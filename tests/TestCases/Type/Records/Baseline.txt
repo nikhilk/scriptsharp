@@ -1,19 +1,27 @@
-Type.registerNamespace('TypeTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.Point
+  // TypeTests.Point
 
-TypeTests.$create_Point = function TypeTests_Point(x, y) {
-    var $o = { };
+  function TypeTests$Point(x, y) {
+    var $o = {};
     $o.x = x;
     $o.y = y;
     return $o;
-}
+  }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.Pair
+  // TypeTests.Pair
 
-TypeTests.$create_Pair = function TypeTests_Pair() { return {}; }
+  function TypeTests$Pair() { return {}; }
 
 
+  var $test = ss.module('test', null,
+    {
+      Point: TypeTests$Point,
+      Pair: TypeTests$Pair
+    });
+
+
+  return $test;
+});

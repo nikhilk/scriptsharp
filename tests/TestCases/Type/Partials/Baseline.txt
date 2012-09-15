@@ -1,130 +1,73 @@
-Type.registerNamespace('TypeTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.IMyInterface
+  // TypeTests.IMyInterface
 
-TypeTests.IMyInterface = function() { };
-TypeTests.IMyInterface.prototype = {
-    start : null,
-    Stop : null,
-    resume : null
-}
-TypeTests.IMyInterface.registerInterface('TypeTests.IMyInterface');
+  function TypeTests$IMyInterface() { }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.EmptyClass
+  // TypeTests.EmptyClass
 
-TypeTests.EmptyClass = function TypeTests_EmptyClass() {
-}
+  function TypeTests$EmptyClass() {
+  }
+  var TypeTests$EmptyClass$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.SingleMemberClass
+  // TypeTests.SingleMemberClass
 
-TypeTests.SingleMemberClass = function TypeTests_SingleMemberClass() {
-}
-TypeTests.SingleMemberClass.prototype = {
-    
-    run: function TypeTests_SingleMemberClass$run() {
+  function TypeTests$SingleMemberClass() {
+  }
+  var TypeTests$SingleMemberClass$ = {
+    run: function() {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.DerivedMemberClass
+  // TypeTests.MergedMembersClass
 
-TypeTests.DerivedMemberClass = function TypeTests_DerivedMemberClass() {
-    TypeTests.DerivedMemberClass.initializeBase(this);
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.MergedMembersClass
-
-TypeTests.MergedMembersClass = function TypeTests_MergedMembersClass() {
-}
-TypeTests.MergedMembersClass.prototype = {
-    foo: false,
-    bar: null,
-    
-    testMethod: function TypeTests_MergedMembersClass$testMethod() {
-        return null;
+  function TypeTests$MergedMembersClass() {
+    this.foo = false;
+  }
+  var TypeTests$MergedMembersClass$ = {
+    testMethod: function() {
+      return null;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.DerivedMergedMembersClass
+  // TypeTests.MyClass
 
-TypeTests.DerivedMergedMembersClass = function TypeTests_DerivedMergedMembersClass() {
-    TypeTests.DerivedMergedMembersClass.initializeBase(this);
-    this.name = this.bar + this.bar + 'Name';
-}
-TypeTests.DerivedMergedMembersClass.prototype = {
-    name: null,
-    value: null,
-    
-    testMethod: function TypeTests_DerivedMergedMembersClass$testMethod() {
-        return null;
+  function TypeTests$MyClass() {
+  }
+  var TypeTests$MyClass$ = {
+    start: function() {
     },
-    
-    testMethod2: function TypeTests_DerivedMergedMembersClass$testMethod2() {
-        return this.get_item('foo');
+    Stop: function() {
     },
-    
-    someMethod: function TypeTests_DerivedMergedMembersClass$someMethod() {
-        var e1 = document.getElementById(this.bar);
-        var e2 = document.getElementById(this.name);
-        var e3 = document.getElementById(this.bar);
-        var s = this.testMethod() + TypeTests.DerivedMergedMembersClass.callBaseMethod(this, 'testMethod');
-    },
-    get_item: function TypeTests_DerivedMergedMembersClass$get_item(s) {
-        return s;
+    resume: function() {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.MyClass
+  // TypeTests.SomeClass
 
-TypeTests.MyClass = function TypeTests_MyClass() {
-}
-TypeTests.MyClass.prototype = {
-    
-    start: function TypeTests_MyClass$start() {
+  function TypeTests$SomeClass() {
+  }
+  var TypeTests$SomeClass$ = {
+    close: function() {
     },
-    
-    Stop: function TypeTests_MyClass$Stop() {
+    _cancel: function() {
     },
-    
-    resume: function TypeTests_MyClass$resume() {
+    run: function() {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.SomeClass
+  // TypeTests.App
 
-TypeTests.SomeClass = function TypeTests_SomeClass() {
-}
-TypeTests.SomeClass.prototype = {
-    
-    close: function TypeTests_SomeClass$close() {
-    },
-    
-    _cancel: function TypeTests_SomeClass$_cancel() {
-    },
-    
-    run: function TypeTests_SomeClass$run() {
-    }
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.App
-
-TypeTests.App = function TypeTests_App() {
+  function TypeTests$App() {
     var s;
     s.run();
     var d;
@@ -134,14 +77,62 @@ TypeTests.App = function TypeTests_App() {
     mc.start();
     mc.Stop();
     mc.resume();
-}
+  }
+  var TypeTests$App$ = {
+
+  };
 
 
-TypeTests.EmptyClass.registerClass('TypeTests.EmptyClass');
-TypeTests.SingleMemberClass.registerClass('TypeTests.SingleMemberClass');
-TypeTests.DerivedMemberClass.registerClass('TypeTests.DerivedMemberClass', TypeTests.SingleMemberClass);
-TypeTests.MergedMembersClass.registerClass('TypeTests.MergedMembersClass');
-TypeTests.DerivedMergedMembersClass.registerClass('TypeTests.DerivedMergedMembersClass', TypeTests.MergedMembersClass);
-TypeTests.MyClass.registerClass('TypeTests.MyClass', null, TypeTests.IMyInterface);
-TypeTests.SomeClass.registerClass('TypeTests.SomeClass');
-TypeTests.App.registerClass('TypeTests.App');
+  // TypeTests.DerivedMemberClass
+
+  function TypeTests$DerivedMemberClass() {
+    TypeTests$SingleMemberClass.call(this);
+  }
+  var TypeTests$DerivedMemberClass$ = {
+
+  };
+
+
+  // TypeTests.DerivedMergedMembersClass
+
+  function TypeTests$DerivedMergedMembersClass() {
+    TypeTests$MergedMembersClass.call(this);
+    this.name = this.bar + this.bar + 'Name';
+  }
+  var TypeTests$DerivedMergedMembersClass$ = {
+    testMethod: function() {
+      return null;
+    },
+    testMethod2: function() {
+      return this.get_item('foo');
+    },
+    someMethod: function() {
+      var e1 = document.getElementById(this.bar);
+      var e2 = document.getElementById(this.name);
+      var e3 = document.getElementById(this.bar);
+      var s = this.testMethod() + TypeTests$MergedMembersClass$.testMethod.call(this);
+    },
+    get_item: function(s) {
+      return s;
+    }
+  };
+
+
+  var $test = ss.module('test',
+    {
+      SingleMemberClass: [ TypeTests$SingleMemberClass, TypeTests$SingleMemberClass$, null ],
+      SomeClass: [ TypeTests$SomeClass, TypeTests$SomeClass$, null ]
+    },
+    {
+      IMyInterface: [ TypeTests$IMyInterface ],
+      EmptyClass: [ TypeTests$EmptyClass, TypeTests$EmptyClass$, null ],
+      MergedMembersClass: [ TypeTests$MergedMembersClass, TypeTests$MergedMembersClass$, null ],
+      MyClass: [ TypeTests$MyClass, TypeTests$MyClass$, null, TypeTests$IMyInterface ],
+      App: [ TypeTests$App, TypeTests$App$, null ],
+      DerivedMemberClass: [ TypeTests$DerivedMemberClass, TypeTests$DerivedMemberClass$, TypeTests$SingleMemberClass ],
+      DerivedMergedMembersClass: [ TypeTests$DerivedMergedMembersClass, TypeTests$DerivedMergedMembersClass$, TypeTests$MergedMembersClass ]
+    });
+
+
+  return $test;
+});

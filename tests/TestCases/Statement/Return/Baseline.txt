@@ -1,31 +1,35 @@
-Type.registerNamespace('StatementTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// StatementTests.App
+  // StatementTests.App
 
-StatementTests.App = function() {
-}
-StatementTests.App.prototype = {
-    
+  function StatementTests$App() {
+  }
+  var StatementTests$App$ = {
     test1: function(arg) {
-        return 0;
+      return 0;
     },
-    
     test2: function(arg) {
-        return arg;
+      return arg;
     },
-    
     test3: function(a) {
-        if (a) {
-            return;
-        }
-        var i;
-        switch (i) {
-            case 0:
-                return;
-        }
+      if (a) {
+        return;
+      }
+      var i;
+      switch (i) {
+        case 0:
+          return;
+      }
     }
-}
+  };
 
 
-StatementTests.App.registerClass('StatementTests.App');
+  var $test = ss.module('test', null,
+    {
+      App: [ StatementTests$App, StatementTests$App$, null ]
+    });
+
+
+  return $test;
+});

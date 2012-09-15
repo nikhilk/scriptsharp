@@ -22,6 +22,9 @@ namespace BasicTests {
 
 namespace BasicTests.Tests {
 
+    internal sealed class Foo {
+    }
+
     internal sealed class PublicTests : TestClass {
 
         public void TestFormat() {

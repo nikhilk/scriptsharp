@@ -1,20 +1,24 @@
-define('test', [ 'ss','lib1','comp3','comp4' ], function(ss,lib1,comp3,comp4) {
+define('test', ['ss', 'lib1', 'comp3', 'comp4'], function(ss, lib1, comp3, comp4) {
+  'use strict';
 
+  // BasicTests.App
 
-Type.registerNamespace('BasicTests');
-
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.App
-
-BasicTests.App = function BasicTests_App() {
+  function BasicTests$App() {
     var c1 = new lib1.Component1();
     var c2 = new Component2();
     var c3 = new comp3.Component3();
     var c4 = new Component4();
-}
+  }
+  var BasicTests$App$ = {
+
+  };
 
 
-BasicTests.App.registerClass('BasicTests.App');
+  var $test = ss.module('test', null,
+    {
+      App: [ BasicTests$App, BasicTests$App$, null ]
+    });
 
+
+  return $test;
 });
- 

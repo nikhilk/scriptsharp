@@ -1,94 +1,89 @@
-Type.registerNamespace('MemberTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.Test
+  // MemberTests.Test
 
-MemberTests.Test = function() {
-}
-MemberTests.Test.prototype = {
-    
+  function MemberTests$Test() {
+  }
+  var MemberTests$Test$ = {
     do1: function() {
     },
-    
     do2: function() {
-        return 0;
+      return 0;
     },
-    
     do3: function(i, j) {
-        return i;
+      return i;
     },
-    
     run: function() {
-        this.do1();
-        var v = this.do2();
-        var s = String.fromCharCode(0);
-        s = String.fromCharCode(32, 65, 66);
-        var i = s.indexOf('A');
-        i = s.indexOf('A', 1);
+      this.do1();
+      var v = this.do2();
+      var s = String.fromCharCode(0);
+      s = String.fromCharCode(32, 65, 66);
+      var i = s.indexOf('A');
+      i = s.indexOf('A', 1);
     },
-    
     toString: function() {
-        window.m1();
-        var x = new MemberTests.X();
-        $.fn.extend(x, 10);
-        return null;
+      window.m1();
+      var x = new MemberTests$X();
+      $.fn.extend(x, 10);
+      return null;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.Foo
+  // MemberTests.Foo
 
-window.doStuff = function() {
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.Bar
-
-window.m1 = function() {
-}
-window.m2 = function() {
-}
+  this.doStuff = function() {
+  }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.FooBar
+  // MemberTests.Bar
 
-window.doStuff2 = function() {
-}
+  window.m1 = function() {
+  }
+  window.m2 = function() {
+  }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.FooBar2
+  // MemberTests.FooBar
+
+  this.doStuff2 = function() {
+  }
+
+
+  // MemberTests.FooBar2
 
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.X
+  // MemberTests.X
 
-MemberTests.X = function() {
-}
-MemberTests.X.prototype = {
-    
+  function MemberTests$X() {
+  }
+  var MemberTests$X$ = {
     update: function(i) {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.Plugin
+  // MemberTests.Plugin
 
-$.fn.extend = function(x, i) {
+  $.fn.extend = function(x, i) {
     x.update(i);
     return x;
-}
+  }
 
 
-MemberTests.Test.registerClass('MemberTests.Test');
-MemberTests.X.registerClass('MemberTests.X');
-alert('Startup code in FooBar');
-(function () {
+  var $test = ss.module('test', null,
+    {
+      Test: [ MemberTests$Test, MemberTests$Test$, null ],
+      X: [ MemberTests$X, MemberTests$X$, null ]
+    });
+
+  alert('Startup code in FooBar');
+  (function() {
     var timeStamp = new Date().getMilliseconds();
     alert('Startup code in FooBar: ' + timeStamp);
-})();
+  })();
+
+  return $test;
+});

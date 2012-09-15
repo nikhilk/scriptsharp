@@ -1,45 +1,63 @@
-Type.registerNamespace('TypeTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.FooBarBaz
+  // TypeTests.Foo
 
-TypeTests.FooBarBaz = function TypeTests_FooBarBaz() {
-}
+  function TypeTests$FooBarBaz() {
+  }
+  var TypeTests$FooBarBaz$ = {
 
-
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.MyClass
-
-TypeTests.MyClass = function TypeTests_MyClass() {
-    TypeTests.FooBarBaz = new TypeTests.FooBarBaz();
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.MyClass2
+  // TypeTests.MyClass
 
-TypeTests.MyClass2 = function TypeTests_MyClass2() {
-    TypeTests.MyClass2.initializeBase(this);
-}
+  function TypeTests$MyClass() {
+    var f = new TypeTests$FooBarBaz();
+  }
+  var TypeTests$MyClass$ = {
 
-
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.MyClass3
-
-TypeTests.MyClass3 = function TypeTests_MyClass3() {
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.MyClass4
+  // TypeTests.MyClass3
 
-TypeTests.MyClass4 = function TypeTests_MyClass4() {
-    TypeTests.MyClass4.initializeBase(this);
-}
+  function TypeTests$MyClass3() {
+  }
+  var TypeTests$MyClass3$ = {
+
+  };
 
 
-TypeTests.FooBarBaz.registerClass('TypeTests.FooBarBaz');
-TypeTests.MyClass.registerClass('TypeTests.MyClass');
-TypeTests.MyClass2.registerClass('TypeTests.MyClass2', TypeTests.MyClass);
-TypeTests.MyClass3.registerClass('TypeTests.MyClass3', null, ss.IDisposable);
-TypeTests.MyClass4.registerClass('TypeTests.MyClass4', TypeTests.MyClass, ss.IDisposable);
+  // TypeTests.MyClass2
+
+  function TypeTests$MyClass2() {
+    TypeTests$MyClass.call(this);
+  }
+  var TypeTests$MyClass2$ = {
+
+  };
+
+
+  // TypeTests.MyClass4
+
+  function TypeTests$MyClass4() {
+    TypeTests$MyClass.call(this);
+  }
+  var TypeTests$MyClass4$ = {
+
+  };
+
+
+  var $test = ss.module('test', null,
+    {
+      FooBarBaz: [ TypeTests$FooBarBaz, TypeTests$FooBarBaz$, null ],
+      MyClass: [ TypeTests$MyClass, TypeTests$MyClass$, null ],
+      MyClass3: [ TypeTests$MyClass3, TypeTests$MyClass3$, null, ss.IDisposable ],
+      MyClass2: [ TypeTests$MyClass2, TypeTests$MyClass2$, TypeTests$MyClass ],
+      MyClass4: [ TypeTests$MyClass4, TypeTests$MyClass4$, TypeTests$MyClass, ss.IDisposable ]
+    });
+
+
+  return $test;
+});

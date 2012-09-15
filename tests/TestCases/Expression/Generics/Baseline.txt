@@ -1,50 +1,52 @@
-Type.registerNamespace('ExpressionTests');
+define('test', ['ss', 'jQuery'], function(ss, jQuery) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.Foo
+  // ExpressionTests.Foo
 
-ExpressionTests.Foo = function() {
+  function ExpressionTests$Foo() {
     this._numbers = [];
-    var s = this._numbers[10].format('{0}');
-    var s2 = this._numbers.getEnumerator().current.format('{0}');
+    var s = this._numbers[10].toString(10);
+    var s2 = this._numbers.getEnumerator().current.toString(10);
     var s3 = this._numbers.reduce(function(accumulated, item) {
-        return accumulated + item;
-    }, 0).format('{0}');
+      return accumulated + item;
+    }, 0).toString(10);
     var s4 = encodeURIComponent(this._func(10));
     var f2 = this._func;
     f2(11).trim();
     var d = {};
-    var s5 = $.extend(d, d)['abc'].format('{0}');
+    var s5 = $.extend(d, d)['abc'].toString(10);
     var keys = Object.getKeyCount(d);
     var b = Object.keyExists(d, 'abc');
     delete d.abc;
     var $dict1 = d;
     for (var $key2 in $dict1) {
-        var de = { key: $key2, value: $dict1[$key2] };
+      var de = { key: $key2, value: $dict1[$key2] };
     }
     $.ajax('http://example.com').success(function(html) {
-        alert(html);
+      alert(html);
     });
     var json = '';
     var f = JSON.parse(json).setup().run().cleanup();
     var name = document.getElementById('nameTB').value;
-}
-ExpressionTests.Foo.prototype = {
-    _numbers: null,
-    _func: null,
-    
+  }
+  var ExpressionTests$Foo$ = {
     cleanup: function() {
-        return this;
+      return this;
     },
-    
     run: function() {
-        return this;
+      return this;
     },
-    
     setup: function() {
-        return this;
+      return this;
     }
-}
+  };
 
 
-ExpressionTests.Foo.registerClass('ExpressionTests.Foo');
+  var $test = ss.module('test', null,
+    {
+      Foo: [ ExpressionTests$Foo, ExpressionTests$Foo$, null ]
+    });
+
+
+  return $test;
+});

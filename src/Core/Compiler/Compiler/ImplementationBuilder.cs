@@ -104,7 +104,7 @@ namespace ScriptSharp.Compiler {
             _rootScope = new SymbolScope((ISymbolTable)fieldSymbol.Parent);
             _currentScope = _rootScope;
 
-            Expression initializerExpression;
+            Expression initializerExpression = null;
 
             FieldDeclarationNode fieldDeclarationNode = (FieldDeclarationNode)fieldSymbol.ParseContext;
             Debug.Assert(fieldDeclarationNode != null);
@@ -150,15 +150,22 @@ namespace ScriptSharp.Compiler {
                     defaultValue = false;
                 }
 
-                initializerExpression =
-                    new LiteralExpression(symbolSet.ResolveIntrinsicType(IntrinsicType.Object),
-                                          defaultValue);
+                if (defaultValue != null) {
+                    initializerExpression =
+                        new LiteralExpression(symbolSet.ResolveIntrinsicType(IntrinsicType.Object),
+                                              defaultValue);
+                    fieldSymbol.SetImplementationState(/* hasInitializer */ true);
+                }
             }
 
-            List<Statement> statements = new List<Statement>();
-            statements.Add(new ExpressionStatement(initializerExpression, /* isFragment */ true));
+            if (initializerExpression != null) {
+                List<Statement> statements = new List<Statement>();
+                statements.Add(new ExpressionStatement(initializerExpression, /* isFragment */ true));
 
-            return new SymbolImplementation(statements, null);
+                return new SymbolImplementation(statements, null);
+            }
+
+            return null;
         }
 
         public SymbolImplementation BuildMethod(MethodSymbol methodSymbol) {

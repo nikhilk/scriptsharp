@@ -146,11 +146,17 @@ namespace ScriptSharp {
             }
 #endif // DEBUG
 
+            ISymbolTransformer transformer = null;
             if (_options.Minimize) {
-                SymbolObfuscator obfuscator = new SymbolObfuscator();
-                SymbolSetTransformer obfuscationTransformer = new SymbolSetTransformer(obfuscator);
+                transformer = new SymbolObfuscator();
+            }
+            else if (_options.DebugFlavor) {
+                transformer = new SymbolInternalizer();
+            }
 
-                ICollection<Symbol> obfuscatedSymbols = obfuscationTransformer.TransformSymbolSet(_symbols, /* useInheritanceOrder */ true);
+            if (transformer != null) {
+                SymbolSetTransformer symbolSetTransformer = new SymbolSetTransformer(transformer);
+                ICollection<Symbol> transformedSymbols = symbolSetTransformer.TransformSymbolSet(_symbols, /* useInheritanceOrder */ true);
 
 #if DEBUG
                 if (_options.InternalTestType == "minimizationMap") {
@@ -159,21 +165,14 @@ namespace ScriptSharp {
                     testWriter.WriteLine("Minimization Map");
                     testWriter.WriteLine("================================================================");
 
-                    List<Symbol> sortedObfuscatedSymbols = new List<Symbol>(obfuscatedSymbols);
-                    sortedObfuscatedSymbols.Sort(delegate(Symbol s1, Symbol s2) {
+                    List<Symbol> sortedTransformedSymbols = new List<Symbol>(transformedSymbols);
+                    sortedTransformedSymbols.Sort(delegate(Symbol s1, Symbol s2) {
                         return String.Compare(s1.Name, s2.Name);
                     });
 
-                    foreach (Symbol obfuscatedSymbol in sortedObfuscatedSymbols) {
-                        if (obfuscatedSymbol is TypeSymbol) {
-                            TypeSymbol typeSymbol = (TypeSymbol)obfuscatedSymbol;
-
-                            testWriter.WriteLine("Type '" + typeSymbol.FullName + "' renamed to '" + typeSymbol.GeneratedName + "'");
-                        }
-                        else {
-                            Debug.Assert(obfuscatedSymbol is MemberSymbol);
-                            testWriter.WriteLine("    Member '" + obfuscatedSymbol.Name + "' renamed to '" + obfuscatedSymbol.GeneratedName + "'");
-                        }
+                    foreach (Symbol transformedSymbol in sortedTransformedSymbols) {
+                        Debug.Assert(transformedSymbol is MemberSymbol);
+                        testWriter.WriteLine("    Member '" + transformedSymbol.Name + "' renamed to '" + transformedSymbol.GeneratedName + "'");
                     }
 
                     testWriter.WriteLine();
@@ -182,14 +181,6 @@ namespace ScriptSharp {
                     _testOutput = testWriter.ToString();
                 }
 #endif // DEBUG
-            }
-            else {
-                if (_options.DebugFlavor) {
-                    SymbolInternalizer internalizer = new SymbolInternalizer();
-                    SymbolSetTransformer internalizingTransformer = new SymbolSetTransformer(internalizer);
-
-                    internalizingTransformer.TransformSymbolSet(_symbols, /* useInheritanceOrder */ true);
-                }
             }
         }
 
@@ -287,7 +278,7 @@ namespace ScriptSharp {
         }
 
         private void GenerateScriptCore(TextWriter writer) {
-            ScriptGenerator scriptGenerator = new ScriptGenerator(writer, _options, this);
+            ScriptGenerator scriptGenerator = new ScriptGenerator(writer, _options, _symbols);
             scriptGenerator.GenerateScript(_symbols);
         }
 

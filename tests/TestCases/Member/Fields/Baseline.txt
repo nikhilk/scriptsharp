@@ -1,71 +1,76 @@
-Type.registerNamespace('MemberTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.Mode
+  // MemberTests.Mode
 
-MemberTests.Mode = function() { };
-MemberTests.Mode.prototype = {
+  var MemberTests$Mode = {
     a: 0, 
     b: 1
-}
-MemberTests.Mode.registerEnum('MemberTests.Mode', false);
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.Point
+  // MemberTests.Point
 
-MemberTests.$create_Point = function(x, y) {
-    var $o = { };
+  function MemberTests$Point(x, y) {
+    var $o = {};
     $o.x = x;
     $o.y = y;
     return $o;
-}
+  }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.Test
+  // MemberTests.Test
 
-MemberTests.Test = function() {
+  function MemberTests$Test() {
+    this._value = 0;
+    this._uintValue = 0;
+    this._dblValue = 0;
+    this._enumValue = 0;
+    this._boolValue = false;
     this._value = 2006;
     this.s = 'aaa';
     this.s = 'bbb';
     this.s = 'aaa';
-}
-MemberTests.Test.prototype = {
-    _value: 0,
-    _uintValue: 0,
-    _dblValue: 0,
-    _enumValue: 0,
-    _boolValue: false,
-    s: null
-}
+  }
+  var MemberTests$Test$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.App
+  // MemberTests.App
 
-MemberTests.App = function() {
-    this._t = new MemberTests.Test();
-}
-MemberTests.App.prototype = {
-    _i: 5,
-    
+  function MemberTests$App() {
+    this._t = new MemberTests$Test();
+    this._i = 5;
+  }
+  var MemberTests$App$ = {
     doTest: function() {
-        var t = new MemberTests.Test();
-        t.s = 'World';
-        var i = 1;
-        MemberTests.Test.done = true;
-        var p = MemberTests.$create_Point(1, 10);
-        p.x = p.y;
+      var t = new MemberTests$Test();
+      t.s = 'World';
+      var i = 1;
+      MemberTests$Test.done = true;
+      var p = MemberTests$Point(1, 10);
+      p.x = p.y;
     }
-}
+  };
 
 
-MemberTests.Test.registerClass('MemberTests.Test');
-MemberTests.App.registerClass('MemberTests.App');
-MemberTests.Test.greeting = 'Hello!';
-MemberTests.Test.myNumber = 1;
-MemberTests.Test.defaultValue = 'aaa';
-MemberTests.Test.done = false;
-MemberTests.Test.XYZ = 1;
-MemberTests.Test.key = {};
+  var $test = ss.module('test',
+    {
+      Point: MemberTests$Point
+    },
+    {
+      Mode: MemberTests$Mode,
+      Test: [ MemberTests$Test, MemberTests$Test$, null ],
+      App: [ MemberTests$App, MemberTests$App$, null ]
+    });
+
+  MemberTests$Test.greeting = 'Hello!';
+  MemberTests$Test.myNumber = 1;
+  MemberTests$Test.defaultValue = 'aaa';
+  MemberTests$Test.done = false;
+  MemberTests$Test.XYZ = 1;
+  MemberTests$Test.key = {};
+
+  return $test;
+});

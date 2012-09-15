@@ -1,54 +1,64 @@
-Type.registerNamespace('ExpressionTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.EventArgs
+  // ExpressionTests.EventArgs
 
-ExpressionTests.EventArgs = function() {
-}
+  function ExpressionTests$EventArgs() {
+  }
+  var ExpressionTests$EventArgs$ = {
 
-
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.SomeClass
-
-ExpressionTests.SomeClass = function(handler) {
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.Test
+  // ExpressionTests.SomeClass
 
-ExpressionTests.Test = function() {
+  function ExpressionTests$SomeClass(handler) {
+  }
+  var ExpressionTests$SomeClass$ = {
+
+  };
+
+
+  // ExpressionTests.Test
+
+  function ExpressionTests$Test() {
     this._handler = ss.Delegate.create(this, this.onEvent);
     this._handler = ss.Delegate.create(this, this.onEvent);
     this._handler = ss.Delegate.create(this, this.onEvent);
-    this._handler = ExpressionTests.Test2.onGlobalEvent;
-    var s1 = new ExpressionTests.SomeClass(ss.Delegate.create(this, this.onEvent));
-    var s2 = new ExpressionTests.SomeClass(this._handler);
-}
-ExpressionTests.Test.prototype = {
-    _handler: null,
-    
+    this._handler = ExpressionTests$Test2.onGlobalEvent;
+    var s1 = new ExpressionTests$SomeClass(ss.Delegate.create(this, this.onEvent));
+    var s2 = new ExpressionTests$SomeClass(this._handler);
+  }
+  var ExpressionTests$Test$ = {
     doStuff: function() {
-        if (this._handler != null) {
-            this._handler(this, null);
-        }
+      if (this._handler != null) {
+        this._handler(this, null);
+      }
     },
-    
     onEvent: function(sender, e) {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.Test2
+  // ExpressionTests.Test2
 
-ExpressionTests.Test2 = function() {
-}
-ExpressionTests.Test2.onGlobalEvent = function(sender, e) {
-}
+  function ExpressionTests$Test2() {
+  }
+  ExpressionTests$Test2.onGlobalEvent = function(sender, e) {
+  }
+  var ExpressionTests$Test2$ = {
+
+  };
 
 
-ExpressionTests.EventArgs.registerClass('ExpressionTests.EventArgs');
-ExpressionTests.SomeClass.registerClass('ExpressionTests.SomeClass');
-ExpressionTests.Test.registerClass('ExpressionTests.Test');
-ExpressionTests.Test2.registerClass('ExpressionTests.Test2');
+  var $test = ss.module('test', null,
+    {
+      EventArgs: [ ExpressionTests$EventArgs, ExpressionTests$EventArgs$, null ],
+      SomeClass: [ ExpressionTests$SomeClass, ExpressionTests$SomeClass$, null ],
+      Test: [ ExpressionTests$Test, ExpressionTests$Test$, null ],
+      Test2: [ ExpressionTests$Test2, ExpressionTests$Test2$, null ]
+    });
+
+
+  return $test;
+});

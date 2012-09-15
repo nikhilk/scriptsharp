@@ -84,7 +84,7 @@ namespace ScriptSharp.Compiler {
                 if (fieldNode.Initializers.Count != 0) {
                     VariableInitializerNode initializer = (VariableInitializerNode)fieldNode.Initializers[0];
 
-                    if ((initializer.Value != null) && (initializer.Value.NodeType != ParseNodeType.Literal)) {
+                    if (initializer.Value != null) {
                         symbol.SetImplementationState(/* hasInitializer */ true);
                     }
                 }

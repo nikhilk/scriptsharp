@@ -10,7 +10,7 @@ namespace TypeTests {
     }
 
     public class MyClass {
-        public MyClass() { Foo = new Foo(); }
+        public MyClass() { Foo f = new Foo(); }
     }
 
     public class MyClass2 : MyClass {

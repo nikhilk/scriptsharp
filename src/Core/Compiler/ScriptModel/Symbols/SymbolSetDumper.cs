@@ -28,13 +28,13 @@ namespace ScriptSharp.ScriptModel {
 
             if (classSymbol.BaseClass != null) {
                 _writer.Write("BaseClass: ");
-                _writer.WriteLine(classSymbol.BaseClass.FullName);
+                _writer.WriteLine(classSymbol.BaseClass.Name);
             }
             if (classSymbol.Interfaces != null) {
                 _writer.WriteLine("Interfaces:");
                 _writer.Indent++;
                 foreach (InterfaceSymbol interfaceSymbol in classSymbol.Interfaces) {
-                    _writer.WriteLine(interfaceSymbol.FullName);
+                    _writer.WriteLine(interfaceSymbol.Name);
                 }
                 _writer.Indent--;
             }
@@ -100,7 +100,7 @@ namespace ScriptSharp.ScriptModel {
             _writer.Indent++;
 
             _writer.Write("AssociatedType: ");
-            _writer.WriteLine(memberSymbol.AssociatedType.FullName);
+            _writer.WriteLine(memberSymbol.AssociatedType.Name);
             _writer.Write("Visibility: ");
             _writer.WriteLine(memberSymbol.Visibility.ToString());
             _writer.Write("Generated Name: ");
@@ -182,7 +182,7 @@ namespace ScriptSharp.ScriptModel {
 
         private void DumpParameter(ParameterSymbol parameterSymbol) {
             _writer.Write("AssociatedType: ");
-            _writer.WriteLine(parameterSymbol.ValueType.FullName);
+            _writer.WriteLine(parameterSymbol.ValueType.Name);
             _writer.Write("Mode: ");
             _writer.WriteLine(parameterSymbol.Mode.ToString());
         }

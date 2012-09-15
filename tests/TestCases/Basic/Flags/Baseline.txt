@@ -1,22 +1,27 @@
-Type.registerNamespace('BasicTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.App
+  // BasicTests.App
 
-BasicTests.App = function() {
-}
-BasicTests.App.prototype = {
-    
+  function BasicTests$App() {
+  }
+  var BasicTests$App$ = {
     method1: function(i) {
-        var j = i;
-        var x = j++;
+      var j = i;
+      var x = j++;
     },
-    
     method2: function(i) {
-        var j = 10;
-        var x = j++;
+      var j = 10;
+      var x = j++;
     }
-}
+  };
 
 
-BasicTests.App.registerClass('BasicTests.App');
+  var $test = ss.module('test', null,
+    {
+      App: [ BasicTests$App, BasicTests$App$, null ]
+    });
+
+
+  return $test;
+});

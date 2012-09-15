@@ -1,34 +1,42 @@
-Type.registerNamespace('MemberTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.Test
+  // MemberTests.Test
 
-MemberTests.Test = function(name) {
-}
-MemberTests.Test.doSomething = function(o) {
-}
-MemberTests.Test.prototype = {
-    
+  function MemberTests$Test(name) {
+  }
+  MemberTests$Test.doSomething = function(o) {
+  }
+  var MemberTests$Test$ = {
     invoke: function(successCallback, errorCallback, context) {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// MemberTests.App
+  // MemberTests.App
 
-MemberTests.App = function() {
-    MemberTests.Test.doSomething();
-    MemberTests.Test.doSomething(null);
-    var t1 = new MemberTests.Test();
-    var t2 = new MemberTests.Test('test');
+  function MemberTests$App() {
+    MemberTests$Test.doSomething();
+    MemberTests$Test.doSomething(null);
+    var t1 = new MemberTests$Test();
+    var t2 = new MemberTests$Test('test');
     var cb1 = null;
     var cb2 = null;
     t1.invoke(cb1);
     t1.invoke(cb1, cb2);
     t2.invoke(cb1, cb2, t1);
-}
+  }
+  var MemberTests$App$ = {
+
+  };
 
 
-MemberTests.Test.registerClass('MemberTests.Test');
-MemberTests.App.registerClass('MemberTests.App');
+  var $test = ss.module('test', null,
+    {
+      Test: [ MemberTests$Test, MemberTests$Test$, null ],
+      App: [ MemberTests$App, MemberTests$App$, null ]
+    });
+
+
+  return $test;
+});

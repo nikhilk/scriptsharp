@@ -1,40 +1,46 @@
-Type.registerNamespace('ExpressionTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.App
+  // ExpressionTests.App
 
-ExpressionTests.App = function() {
-}
-ExpressionTests.App.prototype = {
-    
+  function ExpressionTests$App() {
+  }
+  var ExpressionTests$App$ = {
     test: function(arg) {
-        var i = 0;
-        i = -1;
-        i = 1;
-        i = 1000000;
-        var n = 10000;
-        var f = 1;
-        var d = 1.01;
-        var d2 = 0.5;
-        var d3 = -0.5;
-        var b = true;
-        b = false;
-        var ch = '\n';
-        ch = 'a';
-        var s = 'Hello';
-        var s2 = 'Hello\r\n';
-        var s3 = 'abc' + '123';
-        var s4 = "abc\"def'xyz";
-        var s5 = 'abc\u00a9';
-        var s6 = "abc'xyz";
-        var s7 = 'abc"xyz';
-        var t = ExpressionTests.App;
-        var t2 = Number;
-        var t3 = Number;
-        var t4 = Object;
-        var items = [ 1, 2, 3 ];
+      var i = 0;
+      i = -1;
+      i = 1;
+      i = 1000000;
+      var n = 10000;
+      var f = 1;
+      var d = 1.01;
+      var d2 = 0.5;
+      var d3 = -0.5;
+      var b = true;
+      b = false;
+      var ch = '\n';
+      ch = 'a';
+      var s = 'Hello';
+      var s2 = 'Hello\r\n';
+      var s3 = 'abc' + '123';
+      var s4 = "abc\"def'xyz";
+      var s5 = 'abc\u00a9';
+      var s6 = "abc'xyz";
+      var s7 = 'abc"xyz';
+      var t = ExpressionTests$App;
+      var t2 = Number;
+      var t3 = Number;
+      var t4 = Object;
+      var items = [ 1, 2, 3 ];
     }
-}
+  };
 
 
-ExpressionTests.App.registerClass('ExpressionTests.App');
+  var $test = ss.module('test', null,
+    {
+      App: [ ExpressionTests$App, ExpressionTests$App$, null ]
+    });
+
+
+  return $test;
+});

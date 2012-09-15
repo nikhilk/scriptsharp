@@ -1,38 +1,42 @@
-Type.registerNamespace('BasicTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.PublicClass
+  // BasicTests.PublicClass
 
-BasicTests.PublicClass = function() {
-}
-BasicTests.PublicClass.prototype = {
-    
+  function BasicTests$PublicClass() {
+  }
+  var BasicTests$PublicClass$ = {
     format: function(i) {
-        return '0';
+      return '0';
     },
-    
     parse: function(s) {
-        return 0;
+      return 0;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.InternalClass
+  // BasicTests.InternalClass
 
-BasicTests.InternalClass = function() {
-}
-BasicTests.InternalClass.prototype = {
-    
+  function BasicTests$InternalClass() {
+  }
+  var BasicTests$InternalClass$ = {
     format: function(i) {
-        return null;
+      return null;
     },
-    
     parse: function(s) {
-        return 0;
+      return 0;
     }
-}
+  };
 
 
-BasicTests.PublicClass.registerClass('BasicTests.PublicClass');
-BasicTests.InternalClass.registerClass('BasicTests.InternalClass');
+  var $test = ss.module('test',
+    {
+      InternalClass: [ BasicTests$InternalClass, BasicTests$InternalClass$, null ]
+    },
+    {
+      PublicClass: [ BasicTests$PublicClass, BasicTests$PublicClass$, null ]
+    });
+
+
+  return $test;
+});

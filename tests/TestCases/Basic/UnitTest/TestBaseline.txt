@@ -1,124 +1,125 @@
-Type.registerNamespace('BasicTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.PublicClass
+  // BasicTests.PublicClass
 
-BasicTests.PublicClass = function() {
-}
-BasicTests.PublicClass.prototype = {
-    
+  function BasicTests$PublicClass() {
+  }
+  var BasicTests$PublicClass$ = {
     format: function(i) {
-        return '0';
+      return '0';
     },
-    
     parse: function(s) {
-        return 0;
+      return 0;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.InternalClass
+  // BasicTests.InternalClass
 
-BasicTests.InternalClass = function() {
-}
-BasicTests.InternalClass.prototype = {
-    
+  function BasicTests$InternalClass() {
+  }
+  var BasicTests$InternalClass$ = {
     format: function(i) {
-        return null;
+      return null;
     },
-    
     parse: function(s) {
-        return 0;
+      return 0;
     }
-}
+  };
 
 
-Type.registerNamespace('BasicTests.Tests');
+  // BasicTests.Tests.Foo
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.Tests.PublicTests
+  function BasicTests$Tests$Foo() {
+  }
+  var BasicTests$Tests$Foo$ = {
 
-BasicTests.Tests.PublicTests = function() {
-    BasicTests.Tests.PublicTests.initializeBase(this);
-}
-BasicTests.Tests.PublicTests.prototype = {
-    
+  };
+
+
+  // BasicTests.Tests.PublicTests
+
+  function BasicTests$Tests$PublicTests() {
+  }
+  var BasicTests$Tests$PublicTests$ = {
     testFormat: function() {
-        QUnit.expect(1);
-        var testee = new BasicTests.PublicClass();
-        var s = testee.format(0);
-        QUnit.equal(s, '0', "Expected '0' for result.");
+      QUnit.expect(1);
+      var testee = new BasicTests$PublicClass();
+      var s = testee.format(0);
+      QUnit.equal(s, '0', "Expected '0' for result.");
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.Tests.InternalTests
+  // BasicTests.Tests.InternalTests
 
-BasicTests.Tests.InternalTests = function() {
-    BasicTests.Tests.InternalTests.initializeBase(this);
-}
-BasicTests.Tests.InternalTests.prototype = {
-    _startTime: null,
-    _endTime: null,
-    
+  function BasicTests$Tests$InternalTests() {
+  }
+  var BasicTests$Tests$InternalTests$ = {
     testFormat: function() {
-        QUnit.expect(1);
-        var testee = new BasicTests.InternalClass();
-        var s = testee.format(0);
-        QUnit.equal(s, '0', "Expected '0' for result.");
+      QUnit.expect(1);
+      var testee = new BasicTests$InternalClass();
+      var s = testee.format(0);
+      QUnit.equal(s, '0', "Expected '0' for result.");
     },
-    
     testParse: function() {
-        QUnit.expect(1);
-        var testee = new BasicTests.InternalClass();
-        var i = testee.parse('0');
-        QUnit.equal(i, 0, 'Expected 0 for result.');
+      QUnit.expect(1);
+      var testee = new BasicTests$InternalClass();
+      var i = testee.parse('0');
+      QUnit.equal(i, 0, 'Expected 0 for result.');
     },
-    
     setup: function() {
-        this._startTime = Date.get_now();
+      this._startTime = Date.get_now();
     },
-    
     cleanup: function() {
-        this._endTime = Date.get_now();
+      this._endTime = Date.get_now();
     }
-}
+  };
 
 
-BasicTests.PublicClass.registerClass('BasicTests.PublicClass');
-BasicTests.InternalClass.registerClass('BasicTests.InternalClass');
-BasicTests.Tests.PublicTests.registerClass('BasicTests.Tests.PublicTests');
-BasicTests.Tests.InternalTests.registerClass('BasicTests.Tests.InternalTests');
+  var $test = ss.module('test',
+    {
+      InternalClass: [ BasicTests$InternalClass, BasicTests$InternalClass$, null ],
+      Foo: [ BasicTests$Tests$Foo, BasicTests$Tests$Foo$, null ],
+      PublicTests: [ BasicTests$Tests$PublicTests, BasicTests$Tests$PublicTests$, null ],
+      InternalTests: [ BasicTests$Tests$InternalTests, BasicTests$Tests$InternalTests$, null ]
+    },
+    {
+      PublicClass: [ BasicTests$PublicClass, BasicTests$PublicClass$, null ]
+    });
 
-module('PublicTests', {
+
+  module('PublicTests', {
     setup: function() {
-        this.instance = new BasicTests.Tests.PublicTests();
+      this.instance = new BasicTests$Tests$PublicTests();
     },
     teardown: function() {
-        delete this.instance;
+      delete this.instance;
     }
-});
+  });
 
-test('testFormat', function() {
+  test('testFormat', function() {
     this.instance.testFormat();
-});
+  });
 
-module('InternalTests', {
+  module('InternalTests', {
     setup: function() {
-        this.instance = new BasicTests.Tests.InternalTests();
-        this.instance.setup();
+      this.instance = new BasicTests$Tests$InternalTests();
+      this.instance.setup();
     },
     teardown: function() {
-        this.instance.cleanup();
-        delete this.instance;
+      this.instance.cleanup();
+      delete this.instance;
     }
-});
+  });
 
-test('testFormat', function() {
+  test('testFormat', function() {
     this.instance.testFormat();
-});
-test('testParse', function() {
+  });
+  test('testParse', function() {
     this.instance.testParse();
+  });
+
+  return $test;
 });

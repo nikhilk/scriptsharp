@@ -1,9 +1,9 @@
-Type.registerNamespace('TypeTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.App
+  // TypeTests.App
 
-TypeTests.App = function() {
+  function TypeTests$App() {
     var elem = document.getElementById('foo');
     var s = elem.myString;
     elem['Smith'] = elem['Joe'];
@@ -11,7 +11,17 @@ TypeTests.App = function() {
     var parser = new DOMParser();
     var doc = parser.parseFromString('<markup></markup>', 'text/xml');
     var d = Date.parseDate('1/1/2010');
-}
+  }
+  var TypeTests$App$ = {
+
+  };
 
 
-TypeTests.App.registerClass('TypeTests.App');
+  var $test = ss.module('test', null,
+    {
+      App: [ TypeTests$App, TypeTests$App$, null ]
+    });
+
+
+  return $test;
+});

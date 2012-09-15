@@ -1,75 +1,72 @@
-Type.registerNamespace('Basic');
+define('basic', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// Basic.EventArgs
+  // Basic.EventArgs
 
-Basic.EventArgs = function() {
-}
+  function Basic$EventArgs() {
+  }
+  var Basic$EventArgs$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// Basic.Button
+  // Basic.Button
 
-Basic.Button = function(text) {
+  function Basic$Button(text) {
     this._text = text;
-}
-Basic.Button.prototype = {
-    _text: null,
-    
+  }
+  var Basic$Button$ = {
     add_click: function(value) {
-        this.__click = ss.Delegate.combine(this.__click, value);
+      this.__click = ss.Delegate.combine(this.__click, value);
     },
     remove_click: function(value) {
-        this.__click = ss.Delegate.remove(this.__click, value);
+      this.__click = ss.Delegate.remove(this.__click, value);
     },
-    
-    __click: null,
-    
     get_text: function() {
-        return this._text;
+      return this._text;
     },
-    
     performClick: function() {
-        if (this.__click != null) {
-            this.__click(this, Basic.EventArgs.Empty);
-        }
+      if (this.__click != null) {
+        this.__click(this, Basic$EventArgs.Empty);
+      }
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// Basic.App
+  // Basic.App
 
-Basic.App = function() {
-    this._btn1 = new Basic.Button('OK');
+  function Basic$App() {
+    this._btn1 = new Basic$Button('OK');
     this._btn1.add_click(ss.Delegate.create(this, this.onClickButton));
     this._btn1.add_click(ss.Delegate.create(this, this.onClickButtonDup));
-    this._btn2 = new Basic.Button('Cancel');
+    this._btn2 = new Basic$Button('Cancel');
     this._btn2.add_click(ss.Delegate.create(this, this.onClickButton));
-}
-Basic.App.main = function(args) {
-    var theApp = new Basic.App();
+  }
+  Basic$App.main = function(args) {
+    var theApp = new Basic$App();
     theApp._btn1.performClick();
     theApp._btn2.performClick();
-}
-Basic.App.prototype = {
-    _btn1: null,
-    _btn2: null,
-    
+  }
+  var Basic$App$ = {
     echo: function(s) {
     },
-    
     onClickButton: function(sender, e) {
-        this.echo((sender).get_text() + ' was clicked!');
+      this.echo((sender).get_text() + ' was clicked!');
     },
-    
     onClickButtonDup: function(sender, e) {
-        this.echo((sender).get_text() + ' was clicked as well!');
+      this.echo((sender).get_text() + ' was clicked as well!');
     }
-}
+  };
 
 
-Basic.EventArgs.registerClass('Basic.EventArgs');
-Basic.Button.registerClass('Basic.Button');
-Basic.App.registerClass('Basic.App');
-Basic.EventArgs.Empty = new Basic.EventArgs();
+  var $basic = ss.module('basic', null,
+    {
+      EventArgs: [ Basic$EventArgs, Basic$EventArgs$, null ],
+      Button: [ Basic$Button, Basic$Button$, null ],
+      App: [ Basic$App, Basic$App$, null ]
+    });
+
+  Basic$EventArgs.Empty = new Basic$EventArgs();
+
+  return $basic;
+});

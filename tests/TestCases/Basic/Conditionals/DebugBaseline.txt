@@ -1,46 +1,58 @@
-Type.registerNamespace('BasicTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.MyDebug
+  // BasicTests.MyDebug
 
-BasicTests.MyDebug = function BasicTests_MyDebug() {
-}
-BasicTests.MyDebug.showInfo = function BasicTests_MyDebug$showInfo() {
-}
-BasicTests.MyDebug.traceInfo = function BasicTests_MyDebug$traceInfo() {
-}
-BasicTests.MyDebug.logInfo = function BasicTests_MyDebug$logInfo() {
-}
+  function BasicTests$MyDebug() {
+  }
+  BasicTests$MyDebug.showInfo = function() {
+  }
+  BasicTests$MyDebug.traceInfo = function() {
+  }
+  BasicTests$MyDebug.logInfo = function() {
+  }
+  var BasicTests$MyDebug$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// BasicTests.App
+  // BasicTests.App
 
-BasicTests.App = function BasicTests_App(i) {
+  function BasicTests$App(i) {
     console.assert(false);
-    BasicTests.MyDebug.showInfo();
+    BasicTests$MyDebug.showInfo();
     while (true) {
-        console.assert(false);
+      console.assert(false);
     }
     switch (i) {
-        case 0:
-            console.assert(false);
-            break;
+      case 0:
+        console.assert(false);
+        break;
     }
     console.assert(!!i);
     console.assert(!!i);
     i++;
     if (false) {
-        console.log('Debug spew');
+      console.log('Debug spew');
     }
     while (false) {
-        console.log('.');
+      console.log('.');
     }
     for (var i = 0; i < 10; i++) {
-        console.log('.');
+      console.log('.');
     }
-}
+  }
+  var BasicTests$App$ = {
+
+  };
 
 
-BasicTests.MyDebug.registerClass('BasicTests.MyDebug');
-BasicTests.App.registerClass('BasicTests.App');
+  var $test = ss.module('test', null,
+    {
+      MyDebug: [ BasicTests$MyDebug, BasicTests$MyDebug$, null ],
+      App: [ BasicTests$App, BasicTests$App$, null ]
+    });
+
+
+  return $test;
+});

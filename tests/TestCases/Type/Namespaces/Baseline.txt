@@ -1,95 +1,97 @@
-Type.registerNamespace('TypeTests.Sub1.Sub2');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.Sub1.Sub2.MyClass
+  // TypeTests.Sub1.Sub2.MyClass
 
-TypeTests.Sub1.Sub2.MyClass = function TypeTests_Sub1_Sub2_MyClass() {
-    var yc = new TypeTests.Sub1.YourClass();
+  function TypeTests$Sub1$Sub2$MyClass() {
+    var yc = new TypeTests$Sub1$YourClass();
     yc.run();
-}
+  }
+  var TypeTests$Sub1$Sub2$MyClass$ = {
+
+  };
 
 
-Type.registerNamespace('TypeTests.Sub1');
+  // TypeTests.Sub1.YourClass
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.Sub1.YourClass
-
-TypeTests.Sub1.YourClass = function TypeTests_Sub1_YourClass() {
-}
-TypeTests.Sub1.YourClass.prototype = {
-    
-    run: function TypeTests_Sub1_YourClass$run() {
+  function TypeTests$Sub1$YourClass() {
+  }
+  var TypeTests$Sub1$YourClass$ = {
+    run: function() {
     }
-}
+  };
 
 
-Type.registerNamespace('TypeTests');
+  // TypeTests.YourClass1
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.YourClass1
+  function TypeTests$YourClass1() {
+  }
+  var TypeTests$YourClass1$ = {
 
-TypeTests.YourClass1 = function TypeTests_YourClass1() {
-}
-
-
-Type.registerNamespace('MyApp.Foo');
-
-////////////////////////////////////////////////////////////////////////////////
-// MyApp.Foo.MyClassF
-
-MyApp.Foo.MyClassF = function MyApp_Foo_MyClassF() {
-}
+  };
 
 
-Type.registerNamespace('MyApp');
+  // MyApp.Foo.MyClassF
 
-////////////////////////////////////////////////////////////////////////////////
-// MyApp.Test
+  function MyApp$Foo$MyClassF() {
+  }
+  var MyApp$Foo$MyClassF$ = {
 
-MyApp.Test = function MyApp_Test() {
-    var c = new TypeTests.Sub1.Sub2.MyClass();
-}
+  };
 
 
-Type.registerNamespace('MyCompany');
+  // MyApp.Test
 
-////////////////////////////////////////////////////////////////////////////////
-// MyCompany.Utility
+  function MyApp$Test() {
+    var c = new TypeTests$Sub1$Sub2$MyClass();
+  }
+  var MyApp$Test$ = {
 
-MyCompany.Utility = function MyCompany_Utility() {
-}
-MyCompany.Utility.prototype = {
-    
-    run: function MyCompany_Utility$run() {
+  };
+
+
+  // MyCompany.Utility
+
+  function MyCompany$Utility() {
+  }
+  var MyCompany$Utility$ = {
+    run: function() {
     }
-}
+  };
 
 
-Type.registerNamespace('MyCompany.MyProduct');
+  // MyCompany.MyProduct.UtilityP
 
-////////////////////////////////////////////////////////////////////////////////
-// MyCompany.MyProduct.UtilityP
+  function MyCompany$MyProduct$UtilityP() {
+  }
+  var MyCompany$MyProduct$UtilityP$ = {
 
-MyCompany.MyProduct.UtilityP = function MyCompany_MyProduct_UtilityP() {
-}
+  };
 
 
-Type.registerNamespace('MyCompany.MyProduct.MyComponent');
+  // MyCompany.MyProduct.MyComponent.Component
 
-////////////////////////////////////////////////////////////////////////////////
-// MyCompany.MyProduct.MyComponent.Component
-
-MyCompany.MyProduct.MyComponent.Component = function MyCompany_MyProduct_MyComponent_Component() {
-    var u = new MyCompany.Utility();
+  function MyCompany$MyProduct$MyComponent$Component() {
+    var u = new MyCompany$Utility();
     u.run();
-}
+  }
+  var MyCompany$MyProduct$MyComponent$Component$ = {
+
+  };
 
 
-TypeTests.Sub1.Sub2.MyClass.registerClass('TypeTests.Sub1.Sub2.MyClass');
-TypeTests.Sub1.YourClass.registerClass('TypeTests.Sub1.YourClass');
-TypeTests.YourClass1.registerClass('TypeTests.YourClass1');
-MyApp.Foo.MyClassF.registerClass('MyApp.Foo.MyClassF');
-MyApp.Test.registerClass('MyApp.Test');
-MyCompany.Utility.registerClass('MyCompany.Utility');
-MyCompany.MyProduct.UtilityP.registerClass('MyCompany.MyProduct.UtilityP');
-MyCompany.MyProduct.MyComponent.Component.registerClass('MyCompany.MyProduct.MyComponent.Component');
+  var $test = ss.module('test', null,
+    {
+      MyClass: [ TypeTests$Sub1$Sub2$MyClass, TypeTests$Sub1$Sub2$MyClass$, null ],
+      YourClass: [ TypeTests$Sub1$YourClass, TypeTests$Sub1$YourClass$, null ],
+      YourClass1: [ TypeTests$YourClass1, TypeTests$YourClass1$, null ],
+      MyClassF: [ MyApp$Foo$MyClassF, MyApp$Foo$MyClassF$, null ],
+      Test: [ MyApp$Test, MyApp$Test$, null ],
+      Utility: [ MyCompany$Utility, MyCompany$Utility$, null ],
+      UtilityP: [ MyCompany$MyProduct$UtilityP, MyCompany$MyProduct$UtilityP$, null ],
+      Component: [ MyCompany$MyProduct$MyComponent$Component, MyCompany$MyProduct$MyComponent$Component$, null ]
+    });
+
+
+  return $test;
+});

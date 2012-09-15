@@ -1,39 +1,42 @@
-Type.registerNamespace('ExpressionTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.Point
+  // ExpressionTests.Point
 
-ExpressionTests.$create_Point = function(x, y) {
-    var $o = { };
+  function ExpressionTests$Point(x, y) {
+    var $o = {};
     $o.x = x;
     $o.y = y;
     return $o;
-}
+  }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.Foo
+  // ExpressionTests.Foo
 
-ExpressionTests.Foo = function(i, j) {
-}
+  function ExpressionTests$Foo(i, j) {
+  }
+  var ExpressionTests$Foo$ = {
 
-
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.Bar
-
-ExpressionTests.Bar = function(i, j, f) {
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// ExpressionTests.Test
+  // ExpressionTests.Bar
 
-ExpressionTests.Test = function() {
-}
-ExpressionTests.Test.main = function() {
-    var f = new ExpressionTests.Foo(0, 1);
-    var b = new ExpressionTests.Bar(0, 1, new ExpressionTests.Foo(0, 1));
-    var t = new ExpressionTests.Test();
+  function ExpressionTests$Bar(i, j, f) {
+  }
+  var ExpressionTests$Bar$ = {
+
+  };
+
+
+  // ExpressionTests.Test
+
+  function ExpressionTests$Test() {
+  }
+  ExpressionTests$Test.main = function() {
+    var f = new ExpressionTests$Foo(0, 1);
+    var b = new ExpressionTests$Bar(0, 1, new ExpressionTests$Foo(0, 1));
+    var t = new ExpressionTests$Test();
     var d = new Date('3/9/1976');
     var items = [];
     var items2 = [ 1, 2 ];
@@ -44,19 +47,30 @@ ExpressionTests.Test.main = function() {
     var list3 = ['abc', 'def', 'ghi'];
     var list4 = [1, 2, 3];
     var dates = [ new Date('1/1/2006'), new Date('1/1/2005') ];
-    var p = ExpressionTests.$create_Point(0, 0);
+    var p = ExpressionTests$Point(0, 0);
     var cd = {};
     var cd2 = { abc: 123, def: true };
-    var o1 = new ExpressionTests.Test();
-    var type1 = ExpressionTests.Foo;
+    var o1 = new ExpressionTests$Test();
+    var type1 = ExpressionTests$Foo;
     var o2 = new type1(1, 2);
-    var o3 = new ExpressionTests.Bar(1, 2, o2);
+    var o3 = new ExpressionTests$Bar(1, 2, o2);
     var f1 = new Function("alert('hello');");
     var f2 = new Function('s', 'alert(s);');
     var f3 = new Function('greeting', 'name', "alert(greeting + ' ' + name + '!');");
-}
+  }
+  var ExpressionTests$Test$ = {
+
+  };
 
 
-ExpressionTests.Foo.registerClass('ExpressionTests.Foo');
-ExpressionTests.Bar.registerClass('ExpressionTests.Bar');
-ExpressionTests.Test.registerClass('ExpressionTests.Test');
+  var $test = ss.module('test', null,
+    {
+      Point: ExpressionTests$Point,
+      Foo: [ ExpressionTests$Foo, ExpressionTests$Foo$, null ],
+      Bar: [ ExpressionTests$Bar, ExpressionTests$Bar$, null ],
+      Test: [ ExpressionTests$Test, ExpressionTests$Test$, null ]
+    });
+
+
+  return $test;
+});

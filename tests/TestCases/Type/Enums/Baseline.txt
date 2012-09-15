@@ -1,126 +1,116 @@
-Type.registerNamespace('TypeTests');
+define('test', ['ss'], function(ss) {
+  'use strict';
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.Colors
+  // TypeTests.Colors
 
-TypeTests.Colors = function() { };
-TypeTests.Colors.prototype = {
+  var TypeTests$Colors = {
     red: 0, 
     green: 1, 
     blue: 2
-}
-TypeTests.Colors.registerEnum('TypeTests.Colors', false);
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.Sequence
+  // TypeTests.Sequence
 
-TypeTests.Sequence = function() { };
-TypeTests.Sequence.prototype = {
+  var TypeTests$Sequence = {
     item1: 1, 
     item2: 2, 
     item3: 3, 
     item4: 5
-}
-TypeTests.Sequence.registerEnum('TypeTests.Sequence', false);
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.Mode
+  // TypeTests.Mode
 
-TypeTests.Mode = function() { };
-TypeTests.Mode.prototype = {
+  var TypeTests$Mode = {
     Public: 1, 
     Protected: 2, 
     Private: 4
-}
-TypeTests.Mode.registerEnum('TypeTests.Mode', true);
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.UInt32Mask
+  // TypeTests.UInt32Mask
 
-TypeTests.UInt32Mask = function() { };
-TypeTests.UInt32Mask.prototype = {
+  var TypeTests$UInt32Mask = {
     v: 4026531840, 
     a: 4278190080
-}
-TypeTests.UInt32Mask.registerEnum('TypeTests.UInt32Mask', false);
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.ShortMask
+  // TypeTests.ShortMask
 
-TypeTests.ShortMask = function() { };
-TypeTests.ShortMask.prototype = {
+  var TypeTests$ShortMask = {
     v: 1, 
     a: 4096
-}
-TypeTests.ShortMask.registerEnum('TypeTests.ShortMask', false);
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.Errors
+  // TypeTests.Errors
 
-TypeTests.Errors = function() { };
-TypeTests.Errors.prototype = {
+  var TypeTests$Errors = {
     S_OK: 0, 
     S_FALSE: 1, 
     E_FAIL: -1
-}
-TypeTests.Errors.registerEnum('TypeTests.Errors', false);
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.Size
+  // TypeTests.Size
 
-TypeTests.Size = function() { };
-TypeTests.Size.prototype = {
+  var TypeTests$Size = {
     small: 'small', 
     Medium: 'Medium', 
     large: 'large'
-}
-TypeTests.Size.registerEnum('TypeTests.Size', false);
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.App
+  // TypeTests.App
 
-TypeTests.App = function TypeTests_App() {
-}
-TypeTests.App.main = function TypeTests_App$main() {
+  function TypeTests$App() {
+  }
+  TypeTests$App.main = function() {
     var m = 1;
     m = 1 | 4;
     var c = 0;
-}
+  }
+  var TypeTests$App$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.App2
+  // TypeTests.App2
 
-TypeTests.App2 = function TypeTests_App2() {
-}
-TypeTests.App2.prototype = {
-    _httpMethod: null,
-    _sortMode: null,
-    
-    run: function TypeTests_App2$run() {
-        var method = 'POST';
-        this.run1('GET');
-        this.run2('status');
-        this.run2('Group');
-        this.run2('Ct');
-        var s = 'Medium';
+  function TypeTests$App2() {
+  }
+  var TypeTests$App2$ = {
+    run: function() {
+      var method = 'POST';
+      this.run1('GET');
+      this.run2('status');
+      this.run2('Group');
+      this.run2('Ct');
+      var s = 'Medium';
     },
-    
-    run1: function TypeTests_App2$run1(m) {
-        var s = m;
+    run1: function(m) {
+      var s = m;
     },
-    
-    run2: function TypeTests_App2$run2(m) {
+    run2: function(m) {
     }
-}
+  };
 
 
-TypeTests.App.registerClass('TypeTests.App');
-TypeTests.App2.registerClass('TypeTests.App2');
+  var $test = ss.module('test', null,
+    {
+      Colors: TypeTests$Colors,
+      Sequence: TypeTests$Sequence,
+      Mode: TypeTests$Mode,
+      UInt32Mask: TypeTests$UInt32Mask,
+      ShortMask: TypeTests$ShortMask,
+      Errors: TypeTests$Errors,
+      Size: TypeTests$Size,
+      App: [ TypeTests$App, TypeTests$App$, null ],
+      App2: [ TypeTests$App2, TypeTests$App2$, null ]
+    });
+
+
+  return $test;
+});
