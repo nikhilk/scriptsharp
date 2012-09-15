@@ -15,14 +15,6 @@ namespace System {
     [ScriptName("Number")]
     public struct Double {
 
-        public string Format(string format) {
-            return null;
-        }
-
-        public string LocaleFormat(string format) {
-            return null;
-        }
-
         [ScriptAlias("parseFloat")]
         public static double Parse(string s) {
             return 0;

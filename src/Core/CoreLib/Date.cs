@@ -17,6 +17,7 @@ namespace System {
         /// <summary>
         /// Represents a null date.
         /// </summary>
+        [PreserveCase]
         public static readonly Date Empty;
 
         /// <summary>
@@ -112,10 +113,6 @@ namespace System {
             }
         }
 
-        public string Format(string format) {
-            return null;
-        }
-
         public int GetDate() {
             return 0;
         }
@@ -190,10 +187,6 @@ namespace System {
 
         public static bool IsEmpty(Date d) {
             return false;
-        }
-
-        public string LocaleFormat(string format) {
-            return null;
         }
 
         [ScriptName("parseDate")]

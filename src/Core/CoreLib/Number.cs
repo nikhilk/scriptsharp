@@ -29,10 +29,6 @@ namespace System {
         [PreserveCase]
         public const int POSITIVE_INFINITY = 0;
 
-        public string Format(string format) {
-            return null;
-        }
-
         [ScriptAlias("isFinite")]
         public static bool IsFinite(Number n) {
             return false;
@@ -41,10 +37,6 @@ namespace System {
         [ScriptAlias("isNaN")]
         public static bool IsNaN(Number n) {
             return false;
-        }
-
-        public string LocaleFormat(string format) {
-            return null;
         }
 
         public static Number Parse(string s) {

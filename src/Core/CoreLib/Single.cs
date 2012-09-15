@@ -17,14 +17,6 @@ namespace System {
     [ScriptName("Number")]
     public struct Single {
 
-        public string Format(string format) {
-            return null;
-        }
-
-        public string LocaleFormat(string format) {
-            return null;
-        }
-
         [ScriptAlias("parseFloat")]
         public static float Parse(string s) {
             return 0;

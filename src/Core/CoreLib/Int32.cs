@@ -15,14 +15,6 @@ namespace System {
     [ScriptName("Number")]
     public struct Int32 {
 
-        public string Format(string format) {
-            return null;
-        }
-
-        public string LocaleFormat(string format) {
-            return null;
-        }
-
         [ScriptAlias("parseInt")]
         public static int Parse(string s) {
             return 0;

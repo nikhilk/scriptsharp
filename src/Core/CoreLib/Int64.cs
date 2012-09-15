@@ -15,14 +15,6 @@ namespace System {
     [ScriptName("Number")]
     public struct Int64 {
 
-        public string Format(string format) {
-            return null;
-        }
-
-        public string LocaleFormat(string format) {
-            return null;
-        }
-
         /// <summary>
         /// Converts the value to its string representation.
         /// </summary>

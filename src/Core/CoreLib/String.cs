@@ -4,6 +4,7 @@
 //
 
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 
 namespace System {
@@ -192,19 +193,15 @@ namespace System {
             return null;
         }
 
+        public static string Format(CultureInfo culture, string format, params object[] values) {
+            return null;
+        }
+
         public static string FromChar(char ch, int count) {
             return null;
         }
 
         public static string FromCharCode(params int[] charCodes) {
-            return null;
-        }
-
-        public string HtmlDecode() {
-            return null;
-        }
-
-        public string HtmlEncode() {
             return null;
         }
 
@@ -274,14 +271,6 @@ namespace System {
 
         public int LastIndexOfAny(char[] ch, int startIndex, int count) {
             return 0;
-        }
-
-        public int LocaleCompare(string string2) {
-            return 0;
-        }
-
-        public static string LocaleFormat(string format, params object[] values) {
-            return null;
         }
 
         public string[] Match(RegularExpression regex) {
