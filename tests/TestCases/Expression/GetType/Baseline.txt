@@ -10,9 +10,17 @@ define('test', ['ss'], function(ss) {
       return 0;
     },
     test: function(x) {
-      var t = Type.getInstanceType(x);
-      var t2 = Type.getInstanceType(x.toString());
-      var t3 = Type.getInstanceType(this.get_foo());
+      var t = ss.typeOf(x);
+      var t2 = ss.typeOf(x.toString());
+      var t3 = ss.typeOf(this.get_foo());
+      var t4 = ss.type('String');
+      var t5 = ss.type('test.Foo');
+      var b1 = ss.canAssign((Object), ExpressionTests$App);
+      var b2 = ss.canAssign((ss.IDisposable), ExpressionTests$App);
+      var b3 = ss.canAssign(t, ExpressionTests$App);
+      var b4 = ss.instanceOf((ExpressionTests$App), new ExpressionTests$App());
+      var b5 = ss.instanceOf((ss.IDisposable), new ExpressionTests$App());
+      var b6 = ss.instanceOf(t, new ExpressionTests$App());
     }
   };
 

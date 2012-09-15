@@ -150,7 +150,7 @@ namespace ScriptSharp.Generator {
                 TypeExpression typeExpression = expression.RightOperand as TypeExpression;
                 Debug.Assert(typeExpression != null);
 
-                writer.Write("Type.");
+                writer.Write("ss.");
                 if (expression.Operator == Operator.Is) {
                     writer.Write("canCast(");
                 }

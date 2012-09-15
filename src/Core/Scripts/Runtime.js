@@ -90,15 +90,12 @@ return extend(ss, {
   module: module,
   isClass: isClass,
   isInterface: isInterface,
-  getType: getType,
-  baseType: getBaseType,
-  interfaces: getInterfaces,
+  typeOf: typeOf,
+  type: type,
   canCast: canCast,
   safeCast: safeCast,
   canAssign: canAssign,
-  isOfType: isOfType,
-  typeName: getTypeName,
-  type: parseType,
+  instanceOf: instanceOf,
 
   culture: {
     neutral: neutralCulture,

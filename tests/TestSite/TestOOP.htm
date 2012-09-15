@@ -42,22 +42,22 @@ define(['ss', 'oop'], function(ss, oop) {
     QUnit.equal(ss.canAssign(Object, oop.Cat), true, 'Cat should be assignable to an Object');
   });
 
-  test('isOfType', function() {
+  test('instanceOf', function() {
     var c = new oop.Cat();
     var g = new oop.Garfield();
 
-    QUnit.equal(ss.isOfType(c, oop.Animal), true, 'Cat instance should be an Animal instance');
-    QUnit.equal(ss.isOfType(c, oop.IMammal), true, 'Cat instance should be an IMammal instance');
-    QUnit.equal(ss.isOfType(g, oop.IMammal), true, 'Garfield instance should be an IMammal instance');
-    QUnit.equal(ss.isOfType(c, oop.Zoo), false, 'Cat instance should not be a Zoo instance');
-    QUnit.equal(ss.isOfType(c, oop.IPet), false, 'Cat instance should not be an IPet instance');
-    QUnit.equal(ss.isOfType(c, Object), true, 'Cat instance should not be an Object instance');
+    QUnit.equal(ss.instanceOf(oop.Animal, c), true, 'Cat instance should be an Animal instance');
+    QUnit.equal(ss.instanceOf(oop.IMammal, c), true, 'Cat instance should be an IMammal instance');
+    QUnit.equal(ss.instanceOf(oop.IMammal, g), true, 'Garfield instance should be an IMammal instance');
+    QUnit.equal(ss.instanceOf(oop.Zoo, c), false, 'Cat instance should not be a Zoo instance');
+    QUnit.equal(ss.instanceOf(oop.IPet, c), false, 'Cat instance should not be an IPet instance');
+    QUnit.equal(ss.instanceOf(Object, c), true, 'Cat instance should not be an Object instance');
   });
 
   test('baseType', function() {
-    QUnit.equal(ss.typeName(ss.baseType(oop.Cat)), 'Animal', 'Cat\'s base type should be Animal');
-    QUnit.equal(ss.baseType(oop.Animal), Object, 'Animal\'s base type should be Object');
-    QUnit.equal(ss.baseType(Object), Object, 'Object\'s base type should be Object');
+    QUnit.equal(oop.Cat.$base.$name, 'Animal', 'Cat\'s base type should be Animal');
+    QUnit.equal(oop.Animal.$base, Object, 'Animal\'s base type should be Object');
+    QUnit.equal(Object.$base, undefined, 'Object\'s base type should not be set');
   });
 
   test('canCast and safeCast', function() {
@@ -81,20 +81,20 @@ define(['ss', 'oop'], function(ss, oop) {
     QUnit.equal(g.speak(), 'meow\r\nTranslation: I am fat, lazy, and cynical, but still, a favorite cat...', 'Garfield meows and says something cute');
   });
 
-  test('getType', function() {
+  test('typeOf', function() {
     var g = new oop.Garfield();
-    QUnit.equal(ss.getType(g), oop.Garfield, "Expected Garfield instance.");
+    QUnit.equal(ss.typeOf(g), oop.Garfield, "Expected Garfield instance.");
 
     var c = new oop.Comic();
-    QUnit.equal(ss.getType(c), oop.Comic, "Expected Comic instance.");
+    QUnit.equal(ss.typeOf(c), oop.Comic, "Expected Comic instance.");
   });
 
-  test('typeNames', function() {
+  test('type names', function() {
     var g = new oop.Garfield();
-    QUnit.equal(ss.typeName(ss.getType(g)), 'Garfield', "Expected 'Garfield' for type name.");
+    QUnit.equal(ss.typeOf(g).$name, 'Garfield', "Expected 'Garfield' for type name.");
 
     var c = new oop.Comic();
-    QUnit.equal(ss.typeName(ss.getType(c)), 'Comic', "Expected 'Comic' for type name.");
+    QUnit.equal(ss.typeOf(c).$name, 'Comic', "Expected 'Comic' for type name.");
   });
 
   test('type parsing', function() {

@@ -1577,6 +1577,39 @@ Types:
                 Visibility: Public, Static
                 Generated Name: decodeURIComponent
                 Abstract: False
+            Method: GetType
+                AssociatedType: Type
+                Visibility: Public, Static
+                Generated Name: ss.typeOf
+                Abstract: False
+                Parameters:
+                    Parameter: instance
+                    AssociatedType: Object
+                    Mode: In
+            Method: IsInstanceOfType
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: ss.instanceOf
+                Abstract: False
+                Parameters:
+                    Parameter: type
+                    AssociatedType: Type
+                    Mode: In
+                    Parameter: instance
+                    AssociatedType: Object
+                    Mode: In
+            Method: IsAssignableFrom
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: ss.canAssign
+                Abstract: False
+                Parameters:
+                    Parameter: type
+                    AssociatedType: Type
+                    Mode: In
+                    Parameter: otherType
+                    AssociatedType: Type
+                    Mode: In
         
     Class: Single
         Application Type: False
@@ -1924,18 +1957,14 @@ Types:
         Global Methods: False
         BaseClass: Object
         Members:
-            Property: BaseType
+            Field: BaseType
                 AssociatedType: Type
                 Visibility: Public
-                Generated Name: baseType
-                ReadOnly: True
-                Abstract: False
-            Property: Name
+                Generated Name: $base
+            Field: Name
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: name
-                ReadOnly: True
-                Abstract: False
+                Generated Name: $name
             Field: Prototype
                 AssociatedType: Dictionary
                 Visibility: Public
@@ -1943,7 +1972,7 @@ Types:
             Method: GetType
                 AssociatedType: Type
                 Visibility: Public, Static
-                Generated Name: getType
+                Generated Name: ss.type
                 Abstract: False
             Method: IsAssignableFrom
                 AssociatedType: Boolean
@@ -1970,15 +1999,6 @@ Types:
                 Visibility: Public, Static
                 Generated Name: getTypeFromHandle
                 Abstract: False
-            Method: GetInstanceType
-                AssociatedType: Type
-                Visibility: Public, Static
-                Generated Name: getInstanceType
-                Abstract: False
-                Parameters:
-                    Parameter: instance
-                    AssociatedType: Object
-                    Mode: In
         
     Class: UInt16
         Application Type: False

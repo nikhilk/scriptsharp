@@ -112,9 +112,6 @@ namespace ScriptSharp.Importer {
 
                         ImportPseudoMembers(PseudoClassMembers.Object, (ClassSymbol)typeSymbol);
                     }
-                    else if (typeSymbol.Name.Equals("Type", StringComparison.Ordinal)) {
-                        ImportPseudoMembers(PseudoClassMembers.Type, (ClassSymbol)typeSymbol);
-                    }
                     else if (typeSymbol.Name.Equals("Dictionary", StringComparison.Ordinal)) {
                         // The Dictionary class contains static methods at runtime, rather
                         // than instance methods.
@@ -528,6 +525,12 @@ namespace ScriptSharp.Importer {
                 TypeSymbol stringType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("String", null, SymbolFilter.Types);
                 Debug.Assert(stringType != null);
 
+                TypeSymbol objectType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Object", null, SymbolFilter.Types);
+                Debug.Assert(objectType != null);
+
+                TypeSymbol typeType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Type", null, SymbolFilter.Types);
+                Debug.Assert(objectType != null);
+
                 // Define the Escape, Unescape, encodeURI, decodeURI, encodeURIComponent, decodeURIComponent methods
                 MethodSymbol escapeMethod = new MethodSymbol("Escape", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
                 classSymbol.AddMember(escapeMethod);
@@ -551,6 +554,32 @@ namespace ScriptSharp.Importer {
                 decodeURIComponentMethod.SetTransformedName("decodeURIComponent");
                 classSymbol.AddMember(decodeURIComponentMethod);
 
+                // GetType
+                // Define the Script.GetType static method which provides the functionality of
+                // Object.GetType instance method. We don't extend Object.prototype in script to add
+                // GetType, since we want to keep Object's protoype clean of any extensions.
+
+                MethodSymbol getTypeMethod = new MethodSymbol("GetType", classSymbol, typeType, MemberVisibility.Public | MemberVisibility.Static);
+                getTypeMethod.SetAlias("ss.typeOf");
+                getTypeMethod.AddParameter(new ParameterSymbol("instance", getTypeMethod, objectType, ParameterMode.In));
+                classSymbol.AddMember(getTypeMethod);
+
+                // IsInstanceOfType - Type.IsInstanceOfType gets mapped to this
+
+                MethodSymbol isInstanceOfTypeMethod = new MethodSymbol("IsInstanceOfType", classSymbol, boolType, MemberVisibility.Public | MemberVisibility.Static);
+                isInstanceOfTypeMethod.SetAlias("ss.instanceOf");
+                isInstanceOfTypeMethod.AddParameter(new ParameterSymbol("type", isInstanceOfTypeMethod, typeType, ParameterMode.In));
+                isInstanceOfTypeMethod.AddParameter(new ParameterSymbol("instance", isInstanceOfTypeMethod, objectType, ParameterMode.In));
+                classSymbol.AddMember(isInstanceOfTypeMethod);
+
+                // IsAssignableFrom - Type.IsAssignableFrom gets mapped to this
+
+                MethodSymbol isAssignableFromMethod = new MethodSymbol("IsAssignableFrom", classSymbol, boolType, MemberVisibility.Public | MemberVisibility.Static);
+                isAssignableFromMethod.SetAlias("ss.canAssign");
+                isAssignableFromMethod.AddParameter(new ParameterSymbol("type", isAssignableFromMethod, typeType, ParameterMode.In));
+                isAssignableFromMethod.AddParameter(new ParameterSymbol("otherType", isAssignableFromMethod, typeType, ParameterMode.In));
+                classSymbol.AddMember(isAssignableFromMethod);
+
                 return;
             }
 
@@ -561,26 +590,6 @@ namespace ScriptSharp.Importer {
                 IndexerSymbol indexer = new IndexerSymbol(classSymbol, objectType, MemberVisibility.Public | MemberVisibility.Static);
                 indexer.SetIntrinsic();
                 classSymbol.AddMember(indexer);
-
-                return;
-            }
-
-            if (memberSet == PseudoClassMembers.Type) {
-                // Define the Type.GetInstanceType static method which provides the functionality of
-                // Object.GetType instance method. We don't extend Object.prototype in script to add
-                // GetType, since we want to keep Object's protoype clean of any extensions.
-                //
-                // We create this symbol here, so that later the ExpressionBuilder can transform
-                // calls to Object.GetType to this.
-                TypeSymbol objectType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Object", null, SymbolFilter.Types);
-                Debug.Assert(objectType != null);
-
-                TypeSymbol typeType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Type", null, SymbolFilter.Types);
-                Debug.Assert(objectType != null);
-
-                MethodSymbol getTypeMethod = new MethodSymbol("GetInstanceType", classSymbol, typeType, MemberVisibility.Public | MemberVisibility.Static);
-                getTypeMethod.AddParameter(new ParameterSymbol("instance", getTypeMethod, objectType, ParameterMode.In));
-                classSymbol.AddMember(getTypeMethod);
 
                 return;
             }
@@ -823,17 +832,15 @@ namespace ScriptSharp.Importer {
 
         private enum PseudoClassMembers {
 
-            Type = 0,
+            Script,
 
-            Script = 1,
+            Dictionary,
 
-            Dictionary = 2,
+            Arguments,
 
-            Arguments = 3,
+            Object,
 
-            Object = 4,
-
-            String = 5
+            String
         }
     }
 }

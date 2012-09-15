@@ -16,12 +16,16 @@ namespace System {
     [Imported]
     public sealed class Type {
 
+        [ScriptName("$base")]
+        [IntrinsicProperty]
         public Type BaseType {
             get {
                 return null;
             }
         }
 
+        [ScriptName("$name")]
+        [IntrinsicProperty]
         public string Name {
             get {
                 return null;
@@ -38,6 +42,7 @@ namespace System {
             }
         }
 
+        [ScriptAlias("ss.type")]
         public static Type GetType(string typeName) {
             return null;
         }

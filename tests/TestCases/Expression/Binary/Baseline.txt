@@ -68,8 +68,8 @@ define('test', ['ss'], function(ss) {
       var b = (f < 10);
       sum = arg1 + (arg2 + 1) * 10;
       sum = arg1 + (arg2 + ~arg1) * (arg1 - 10);
-      var b2 = Type.canCast(sum, Number);
-      var o = Type.safeCast(b, ss.IDisposable);
+      var b2 = ss.canCast(sum, Number);
+      var o = ss.safeCast(b, ss.IDisposable);
       this.set_foo(this.get_foo() + 10);
       this.set_foo(this.get_foo() - this.get_bar());
       sum = sum << 1;

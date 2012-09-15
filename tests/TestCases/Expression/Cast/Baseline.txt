@@ -19,14 +19,14 @@ define('test', ['ss'], function(ss) {
       var d2 = a / b;
       var action = function() {
       };
-      var secondAction = Type.safeCast(action, Function);
-      if (Type.canCast(action, Function)) {
+      var secondAction = ss.safeCast(action, Function);
+      if (ss.canCast(action, Function)) {
       }
-      var cb = Type.safeCast(action, Function);
-      if (Type.canCast(action, Function)) {
+      var cb = ss.safeCast(action, Function);
+      if (ss.canCast(action, Function)) {
         cb = action;
       }
-      var action2 = Type.safeCast(action, Function);
+      var action2 = ss.safeCast(action, Function);
       if (action2 != null) {
       }
     }

@@ -13,6 +13,17 @@ namespace ExpressionTests {
             Type t = x.GetType();
             Type t2 = x.ToString().GetType();
             Type t3 = Foo.GetType();
+
+            Type t4 = Type.GetType("String");
+            Type t5 = Type.GetType("test.Foo");
+
+            bool b1 = typeof(Object).IsAssignableFrom(typeof(App));
+            bool b2 = typeof(IDisposable).IsAssignableFrom(typeof(App));
+            bool b3 = t.IsAssignableFrom(typeof(App));
+
+            bool b4 = typeof(App).IsInstanceOfType(new App());
+            bool b5 = typeof(IDisposable).IsInstanceOfType(new App());
+            bool b6 = t.IsInstanceOfType(new App());
         }
     }
 }

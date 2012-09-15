@@ -961,16 +961,32 @@ namespace ScriptSharp.Compiler {
                     method.Name.Equals("GetType", StringComparison.Ordinal)) {
                     // Since we can't extend object's prototype, we need to transform the
                     // natural c# syntax into a static method.
-                    // Object.GetType instance method becomes Type.GetInstanceType static method
+                    // Object.GetType instance method becomes Script.GetType static method
 
-                    TypeSymbol typeSymbol = typeType;
-
-                    method = (MethodSymbol)typeSymbol.GetMember("GetInstanceType");
+                    method = (MethodSymbol)scriptType.GetMember("GetType");
                     Debug.Assert(method != null);
 
-                    methodExpression = new MethodExpression(new TypeExpression(typeSymbol, SymbolFilter.Public | SymbolFilter.StaticMembers),
+                    methodExpression = new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
                                                             method);
                     methodExpression.AddParameterValue(memberExpression.ObjectReference);
+                    return methodExpression;
+                }
+                else if ((method.Parent == typeType) &&
+                         (method.Name.Equals("IsAssignableFrom", StringComparison.Ordinal) ||
+                          method.Name.Equals("IsInstanceOfType", StringComparison.Ordinal))) {
+                    Debug.Assert(args.Count == 1);
+
+                    // These need to get mapped over to the methods on the Script type, since
+                    // we are minimizing extensions to built-in script types.
+
+                    method = (MethodSymbol)scriptType.GetMember(method.Name);
+                    Debug.Assert(method != null);
+
+                    methodExpression = new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
+                                                            method);
+                    methodExpression.AddParameterValue(memberExpression.ObjectReference);
+                    methodExpression.AddParameterValue(args[0]);
+
                     return methodExpression;
                 }
                 else if ((method.Parent == objectType) &&

@@ -63,7 +63,7 @@ define('test', ['ss'], function(ss) {
     someMethod: function() {
       var xyz = null;
       var c2 = new MyClass2();
-      xyz = Type.safeCast(c2, IXyzInterface);
+      xyz = ss.safeCast(c2, IXyzInterface);
     }
   };
 

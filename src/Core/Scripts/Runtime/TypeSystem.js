@@ -53,7 +53,7 @@ function isInterface(fn) {
   return fn.$type == _interfaceMarker;
 }
 
-function getType(instance) {
+function typeOf(instance) {
   var ctor = null;
 
   // NOTE: We have to catch exceptions because the constructor
@@ -69,12 +69,12 @@ function getType(instance) {
   return ctor;
 }
 
-function getBaseType(type) {
-  return type.$base || Object;
-}
+function type(s) {
+  var nsIndex = s.indexOf('.');
+  var ns = nsIndex > 0 ? _modules[s.substr(0, nsIndex)] : global;
+  var name = nsIndex > 0 ? s.substr(nsIndex + 1) : s;
 
-function getInterfaces(type) {
-  return type.$interfaces || [];
+  return ns ? ns[name] : null;
 }
 
 function canAssign(type, otherType) {
@@ -106,7 +106,7 @@ function canAssign(type, otherType) {
   return false;
 }
 
-function isOfType(instance, type) {
+function instanceOf(type, instance) {
   // Checks if the specified instance is of the specified type
 
   if (!isValue(instance)) {
@@ -117,28 +117,16 @@ function isOfType(instance, type) {
     return true;
   }
 
-  var instanceType = getType(instance);
+  var instanceType = typeOf(instance);
   return canAssign(type, instanceType);
 }
 
 function canCast(instance, type) {
-  return isOfType(instance, type);
+  return instanceOf(type, instance);
 }
 
 function safeCast(instance, type) {
-  return isOfType(instance, type) ? instance : null;
-}
-
-function getTypeName(type) {
-  return type.$name;
-}
-
-function parseType(s) {
-  var nsIndex = s.indexOf('.');
-  var ns = nsIndex > 0 ? _modules[s.substr(0, nsIndex)] : global;
-  var name = nsIndex > 0 ? s.substr(nsIndex + 1) : s;
-
-  return ns ? ns[name] : null;
+  return instanceOf(type, instance) ? instance : null;
 }
 
 function module(name, implementation, exports) {
