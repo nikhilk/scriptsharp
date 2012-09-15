@@ -248,10 +248,7 @@ namespace ScriptSharp.Generator {
 
             if ((expression.Method.Visibility & MemberVisibility.Static) == 0) {
                 createDelegate = true;
-
-                writer.Write("ss.Delegate.create(");
-                ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
-                writer.Write(", ");
+                writer.Write("ss.bind(");
             }
 
             AnonymousMethodSymbol anonymousMethod = expression.Method as AnonymousMethodSymbol;
@@ -294,6 +291,8 @@ namespace ScriptSharp.Generator {
             }
 
             if (createDelegate) {
+                writer.Write(", ");
+                ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
                 writer.Write(")");
             }
         }

@@ -1,6 +1,6 @@
-// Delegate
+// Delegate Functionality
 
-function _createDelegate(fnList) {
+function _bindList(fnList) {
   var d = function() {
     var args = arguments;
     var result = null;
@@ -13,10 +13,7 @@ function _createDelegate(fnList) {
   return d;
 }
 
-function Delegate() {
-}
-
-Delegate.create = function(o, fn) {
+function bind(fn, o) {
   if (!o) {
     return fn;
   }
@@ -28,27 +25,27 @@ Delegate.create = function(o, fn) {
   };
 }
 
-Delegate.combine = function(delegate, value) {
-  if (!delegate) {
+function bindAdd(binding, value) {
+  if (!binding) {
     return value;
   }
   if (!value) {
-    return delegate;
+    return binding;
   }
 
-  var fnList = [].concat(delegate._fnList || delegate, value);
-  return _createDelegate(fnList);
+  var fnList = [].concat(binding._fnList || binding, value);
+  return _bindList(fnList);
 }
 
-Delegate.remove = function(delegate, value) {
-  if (!delegate) {
+function bindSub(binding, value) {
+  if (!binding) {
     return null;
   }
   if (!value) {
-    return delegate;
+    return binding;
   }
 
-  var fnList = delegate._fnList || [delegate];
+  var fnList = binding._fnList || [binding];
   var index = fnList.indexOf(value);
   if (index >= 0) {
     if (fnList.length == 1) {
@@ -56,31 +53,32 @@ Delegate.remove = function(delegate, value) {
     }
 
     fnList = index ? fnList.slice(0, index).concat(fnList.slice(index + 1)) : fnList.slice(1);
-    return _createDelegate(fnList);
+    return _bindList(fnList);
   }
-  return delegate;
+  return binding;
 }
 
-Delegate.publish = function(fn, multiUse, name, root) {
+
+function bindExport(fn, multiUse, name, root) {
   // Generate a unique name if one is not specified
   name = name || '__' + (new Date()).valueOf();
 
-  // If unspecified, exported delegates go on the global object
+  // If unspecified, exported bindings go on the global object
   // (so they are callable using a simple identifier).
   root = root || global;
 
   var exp = {
     name: name,
-    clear: function() {
-      root[name] = Delegate.Empty;
+    detach: function() {
+      root[name] = _nop;
     },
     dispose: function() {
       try { delete root[name]; } catch (e) { root[name] = undefined; }
     }
   };
 
-  // Multi-use delegates are exported directly; for the rest a stub is exported, and the stub
-  // first deletes, and then invokes the actual delegate.
+  // Multi-use bindings are exported directly; for the rest a stub is exported, and the stub
+  // first auto-disposes, and then invokes the actual binding.
   root[name] = multiUse ? fn : function() {
     exp.dispose();
     return fn.apply(null, arguments);
@@ -88,3 +86,4 @@ Delegate.publish = function(fn, multiUse, name, root) {
 
   return exp;
 }
+

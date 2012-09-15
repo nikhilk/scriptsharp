@@ -7,31 +7,8 @@ define('ss', [], function() {
 
 var global = this;
 
-// TODO: Inline and remove
-function isUndefined(o) {
-  return (o === undefined);
-}
-
-// TODO: Inline and remove
-function isNull(o) {
-  return (o === null);
-}
-
-// TODO: Use !isValue
-function isNullOrUndefined(o) {
-  return (o === null) || (o === undefined);
-}
-
-function isValue(o) {
-  return (o !== null) && (o !== undefined);
-}
-
-function extend(o, items) {
-  for (var n in items) {
-    o[n] = items[n];
-  }
-  return o;
-}
+#include "Runtime\Misc.js"
+#include "Runtime\Delegate.js"
 
 #include "Runtime\Object.js"
 #include "Runtime\Array.js"
@@ -39,10 +16,8 @@ function extend(o, items) {
 #include "Runtime\Console.js"
 #include "Runtime\Error.js"
 #include "Runtime\Date.js"
-#include "Runtime\Math.js"
 
 #include "Runtime\TypeSystem.js"
-#include "Runtime\Delegate.js"
 #include "Runtime\EventArgs.js"
 #include "Runtime\Contracts.js"
 #include "Runtime\Enumerator.js"
@@ -65,7 +40,6 @@ var ss = module('ss', null, {
   IEventManager: [ IEventManager ],
   IInitializable: [ IInitializable ],
   ArrayEnumerator: [ ArrayEnumerator, ArrayEnumerator$, null, IEnumerator ],
-  Delegate: [ Delegate, { } ],
   EventArgs: [ EventArgs, { } ],
   CancelEventArgs: [ CancelEventArgs, { }, EventArgs ],
   StringBuilder: [ StringBuilder, StringBuilder$ ],
@@ -76,7 +50,6 @@ var ss = module('ss', null, {
   Deferred: [ Deferred, Deferred$ ]
 });
 
-Delegate.Empty = function() { };
 EventArgs.Empty = new EventArgs();
 
 return extend(ss, {
@@ -87,7 +60,15 @@ return extend(ss, {
   isNullOrUndefined: isNullOrUndefined,
   isValue: isValue,
 
+  extend: extend,
+
+  bind: bind,
+  bindAdd: bindAdd,
+  bindSub: bindSub,
+  bindExport: bindExport,
+
   module: module,
+
   isClass: isClass,
   isInterface: isInterface,
   typeOf: typeOf,

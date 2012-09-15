@@ -66,7 +66,7 @@ namespace ScriptSharp.Generator {
 
             if (eventSymbol.DefaultImplementation) {
                 writer.Write(fieldReference);
-                writer.Write(" = ss.Delegate.combine(");
+                writer.Write(" = ss.bindAdd(");
                 writer.Write(fieldReference);
                 writer.Write(", ");
                 writer.Write(valueParameter.GeneratedName);
@@ -108,7 +108,7 @@ namespace ScriptSharp.Generator {
 
             if (eventSymbol.DefaultImplementation) {
                 writer.Write(fieldReference);
-                writer.Write(" = ss.Delegate.remove(");
+                writer.Write(" = ss.bindSub(");
                 writer.Write(fieldReference);
                 writer.Write(", ");
                 writer.Write(valueParameter.GeneratedName);

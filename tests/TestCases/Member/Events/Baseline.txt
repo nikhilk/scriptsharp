@@ -15,28 +15,28 @@ define('test', ['ss'], function(ss) {
   function MemberTests$Button() {
   }
   MemberTests$Button.add_test = function(value) {
-    MemberTests$Button.__test = ss.Delegate.combine(MemberTests$Button.__test, value);
+    MemberTests$Button.__test = ss.bindAdd(MemberTests$Button.__test, value);
   }
   MemberTests$Button.remove_test = function(value) {
-    MemberTests$Button.__test = ss.Delegate.remove(MemberTests$Button.__test, value);
+    MemberTests$Button.__test = ss.bindSub(MemberTests$Button.__test, value);
   }
   var MemberTests$Button$ = {
     add_click: function(value) {
-      this.__click = ss.Delegate.combine(this.__click, value);
+      this.__click = ss.bindAdd(this.__click, value);
     },
     remove_click: function(value) {
-      this.__click = ss.Delegate.remove(this.__click, value);
+      this.__click = ss.bindSub(this.__click, value);
     },
     add_aaa: function(value) {
       if (this._aaa == null) {
         this._aaa = value;
       }
       else {
-        this._aaa = ss.Delegate.combine(this._aaa, value);
+        this._aaa = ss.bindAdd(this._aaa, value);
       }
     },
     remove_aaa: function(value) {
-      this._aaa = ss.Delegate.remove(this._aaa, value);
+      this._aaa = ss.bindSub(this._aaa, value);
     },
     performClick: function() {
       if (this.__click != null) {

@@ -27,9 +27,9 @@ define('test', ['ss'], function(ss) {
   var ExpressionTests$Test$ = {
     AAA: function() {
       var o = {};
-      this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
+      this.doStuff(o, ss.bind(function(i, s, b) {
         this._n = i;
-      }));
+      }, this));
       var s = new ExpressionTests$SomeClass(function() {
       });
       for (var i = 0; i < 10; i++) {
@@ -37,18 +37,18 @@ define('test', ['ss'], function(ss) {
         this.doStuff(o, function(i, s, b) {
           foo = i + s;
         });
-        this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
+        this.doStuff(o, ss.bind(function(i, s, b) {
           this._n += i;
-        }));
+        }, this));
         ExpressionTests$Test.doStuffStatic(o, function() {
         });
-        ExpressionTests$Test.doStuffStatic(o, ss.Delegate.create(this, function() {
+        ExpressionTests$Test.doStuffStatic(o, ss.bind(function() {
           this._n++;
-        }));
+        }, this));
       }
-      var s2 = new ExpressionTests$SomeClass(ss.Delegate.create(this, function() {
+      var s2 = new ExpressionTests$SomeClass(ss.bind(function() {
         var numbers = [ this._n ];
-      }));
+      }, this));
     },
     doStuff: function(o, callback) {
     }

@@ -6,39 +6,39 @@ define('test', ['ss'], function(ss) {
   function ExpressionTests$Button() {
   }
   ExpressionTests$Button.add_test = function(value) {
-    ExpressionTests$Button.__test = ss.Delegate.combine(ExpressionTests$Button.__test, value);
+    ExpressionTests$Button.__test = ss.bindAdd(ExpressionTests$Button.__test, value);
   }
   ExpressionTests$Button.remove_test = function(value) {
-    ExpressionTests$Button.__test = ss.Delegate.remove(ExpressionTests$Button.__test, value);
+    ExpressionTests$Button.__test = ss.bindSub(ExpressionTests$Button.__test, value);
   }
   var ExpressionTests$Button$ = {
     add_click: function(value) {
-      this.__click = ss.Delegate.combine(this.__click, value);
+      this.__click = ss.bindAdd(this.__click, value);
     },
     remove_click: function(value) {
-      this.__click = ss.Delegate.remove(this.__click, value);
+      this.__click = ss.bindSub(this.__click, value);
     },
     add_aaa: function(value) {
       if (this._aaa == null) {
         this._aaa = value;
       }
       else {
-        this._aaa = ss.Delegate.combine(this._aaa, value);
+        this._aaa = ss.bindAdd(this._aaa, value);
       }
     },
     remove_aaa: function(value) {
-      this._aaa = ss.Delegate.remove(this._aaa, value);
+      this._aaa = ss.bindSub(this._aaa, value);
     },
     add_bbb: function(value) {
       if (this._bbb == null) {
         this._bbb = value;
       }
       else {
-        this._bbb = ss.Delegate.combine(this._bbb, value);
+        this._bbb = ss.bindAdd(this._bbb, value);
       }
     },
     remove_bbb: function(value) {
-      this._bbb = ss.Delegate.remove(this._bbb, value);
+      this._bbb = ss.bindSub(this._bbb, value);
     }
   };
 
@@ -46,24 +46,24 @@ define('test', ['ss'], function(ss) {
   // ExpressionTests.App
 
   function ExpressionTests$App() {
-    this._btn.add_click(ss.Delegate.create(this, this.onClickButton));
-    this._btn.add_click(ss.Delegate.create(this, this.onClickButton));
-    this._btn.add_click(ss.Delegate.create(this, this.onClickButton));
-    this._btn.remove_click(ss.Delegate.create(this, this.onClickButton));
-    this._btn.remove_click(ss.Delegate.create(this, this.onClickButton));
-    this._btn.remove_click(ss.Delegate.create(this, this.onClickButton));
+    this._btn.add_click(ss.bind(this.onClickButton, this));
+    this._btn.add_click(ss.bind(this.onClickButton, this));
+    this._btn.add_click(ss.bind(this.onClickButton, this));
+    this._btn.remove_click(ss.bind(this.onClickButton, this));
+    this._btn.remove_click(ss.bind(this.onClickButton, this));
+    this._btn.remove_click(ss.bind(this.onClickButton, this));
     ExpressionTests$Button.add_test(ExpressionTests$App.onTestButton);
     ExpressionTests$Button.add_test(ExpressionTests$App.onTestButton);
     ExpressionTests$Button.add_test(ExpressionTests$App.onTestButton);
     ExpressionTests$Button.remove_test(ExpressionTests$App.onTestButton);
     ExpressionTests$Button.remove_test(ExpressionTests$App.onTestButton);
     ExpressionTests$Button.remove_test(ExpressionTests$App.onTestButton);
-    this._btn.add_aaa(ss.Delegate.create(this, this.onAAAButton));
-    this._btn.add_aaa(ss.Delegate.create(this, this.onAAAButton));
-    this._btn.add_aaa(ss.Delegate.create(this, this.onAAAButton));
-    this._btn.remove_aaa(ss.Delegate.create(this, this.onAAAButton));
-    this._btn.remove_aaa(ss.Delegate.create(this, this.onAAAButton));
-    this._btn.remove_aaa(ss.Delegate.create(this, this.onAAAButton));
+    this._btn.add_aaa(ss.bind(this.onAAAButton, this));
+    this._btn.add_aaa(ss.bind(this.onAAAButton, this));
+    this._btn.add_aaa(ss.bind(this.onAAAButton, this));
+    this._btn.remove_aaa(ss.bind(this.onAAAButton, this));
+    this._btn.remove_aaa(ss.bind(this.onAAAButton, this));
+    this._btn.remove_aaa(ss.bind(this.onAAAButton, this));
   }
   ExpressionTests$App.onTestButton = function(sender, e) {
   }

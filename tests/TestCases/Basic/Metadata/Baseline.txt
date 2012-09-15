@@ -789,29 +789,25 @@ Types:
         Global Methods: False
         BaseClass: Object
         Members:
-            Field: Empty
-                AssociatedType: Delegate
-                Visibility: Public, Static
-                Generated Name: Empty
             Method: Combine
                 AssociatedType: Delegate
                 Visibility: Public, Static
-                Generated Name: combine
+                Generated Name: ss.bindAdd
                 Abstract: False
             Method: Create
                 AssociatedType: Delegate
                 Visibility: Public, Static
-                Generated Name: create
+                Generated Name: ss.bind
                 Abstract: False
             Method: Export
                 AssociatedType: Export
                 Visibility: Public, Static
-                Generated Name: publish
+                Generated Name: ss.bindExport
                 Abstract: False
             Method: Remove
                 AssociatedType: Delegate
                 Visibility: Public, Static
-                Generated Name: remove
+                Generated Name: ss.bindSub
                 Abstract: False
         
     Class: Double
@@ -925,10 +921,10 @@ Types:
                 AssociatedType: String
                 Visibility: Public
                 Generated Name: name
-            Method: Clear
+            Method: Detach
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: clear
+                Generated Name: detach
                 Abstract: False
             Method: Dispose
                 AssociatedType: Void
@@ -4032,10 +4028,10 @@ define('test', ['ss'], function(ss) {
   }
   var BasicTests$App$ = {
     add_event1: function(value) {
-      this.__event1 = ss.Delegate.combine(this.__event1, value);
+      this.__event1 = ss.bindAdd(this.__event1, value);
     },
     remove_event1: function(value) {
-      this.__event1 = ss.Delegate.remove(this.__event1, value);
+      this.__event1 = ss.bindSub(this.__event1, value);
     },
     add_event2: function(value) {
     },

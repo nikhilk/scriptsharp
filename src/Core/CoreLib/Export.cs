@@ -21,7 +21,7 @@ namespace System {
             }
         }
 
-        public void Clear() {
+        public void Detach() {
         }
 
         public void Dispose() {

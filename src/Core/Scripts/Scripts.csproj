@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Runtime\Array.js" />
-    <Content Include="Runtime\Math.js" />
+    <Content Include="Runtime\Misc.js" />
     <Content Include="Runtime\Date.js" />
     <Content Include="Runtime\Error.js" />
     <Content Include="Runtime\Format.js" />

@@ -119,14 +119,14 @@ define('test', ['ss'], function(ss) {
       /// Adds or removes a delegate for the Initialized event.
       /// </summary>
       /// <param name="value" type="Function" />
-      this.__initialized = ss.Delegate.combine(this.__initialized, value);
+      this.__initialized = ss.bindAdd(this.__initialized, value);
     },
     remove_initialized: function(value) {
       /// <summary>
       /// Adds or removes a delegate for the Initialized event.
       /// </summary>
       /// <param name="value" type="Function" />
-      this.__initialized = ss.Delegate.remove(this.__initialized, value);
+      this.__initialized = ss.bindSub(this.__initialized, value);
     },
     method1: function() {
       /// <summary>

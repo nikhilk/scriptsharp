@@ -10,43 +10,43 @@ namespace System {
     [Imported]
     public abstract class Delegate {
 
-        [PreserveCase]
-        public static readonly Delegate Empty = null;
-
         protected Delegate(object target, string method) {
         }
 
         protected Delegate(Type target, string method) {
         }
 
+        [ScriptAlias("ss.bindAdd")]
         public static Delegate Combine(Delegate a, Delegate b) {
             return null;
         }
 
-        public static Delegate Create(object instance, Function f) {
+        [ScriptAlias("ss.bind")]
+        public static Delegate Create(Function f, object instance) {
             return null;
         }
 
-        [ScriptName("publish")]
+        [ScriptAlias("ss.bindExport")]
         public static Export Export(Delegate d) {
             return null;
         }
 
-        [ScriptName("publish")]
+        [ScriptAlias("ss.bindExport")]
         public static Export Export(Delegate d, bool multiUse) {
             return null;
         }
 
-        [ScriptName("publish")]
+        [ScriptAlias("ss.bindExport")]
         public static Export Export(Delegate d, bool multiUse, string name) {
             return null;
         }
 
-        [ScriptName("publish")]
+        [ScriptAlias("ss.bindExport")]
         public static Export Export(Delegate d, bool multiUse, string name, object root) {
             return null;
         }
 
+        [ScriptAlias("ss.bindSub")]
         public static Delegate Remove(Delegate source, Delegate value) {
             return null;
         }
