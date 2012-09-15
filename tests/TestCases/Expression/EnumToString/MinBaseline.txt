@@ -12,11 +12,11 @@ define('test', ['ss'], function(ss) {
       var s3 = '$0';
       var s4 = (0).toString();
     },
-    $0: function($p0, $p1, $p2, $p3) {
-      var mstr = $p0.toString();
-      var cstr = $p1.toString();
-      var sstr = $p2;
-      var tstr = $p3.toString();
+    $0: function(m, c, s, t) {
+      var mstr = m.toString();
+      var cstr = c.toString();
+      var sstr = s;
+      var tstr = t.toString();
     }
   };
 

@@ -264,19 +264,10 @@ namespace ScriptSharp.Generator {
             else {
                 writer.Write("function(");
                 if ((anonymousMethod.Parameters != null) && (anonymousMethod.Parameters.Count != 0)) {
-                    bool obfuscateParams = generator.Options.Minimize;
-                    string obfuscationPrefix = null;
-
                     int paramIndex = 0;
                     foreach (ParameterSymbol parameterSymbol in anonymousMethod.Parameters) {
                         if (paramIndex > 0) {
                             writer.Write(", ");
-                        }
-                        if (obfuscateParams) {
-                            if (paramIndex == 0) {
-                                obfuscationPrefix = "$p" + anonymousMethod.Depth.ToString(CultureInfo.InvariantCulture) + "_";
-                            }
-                            parameterSymbol.SetTransformedName(obfuscationPrefix + paramIndex);
                         }
                         writer.Write(parameterSymbol.GeneratedName);
 

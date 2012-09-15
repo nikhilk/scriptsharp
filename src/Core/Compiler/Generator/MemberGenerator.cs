@@ -163,14 +163,6 @@ namespace ScriptSharp.Generator {
                 writer.Write(".");
             }
 
-            bool obfuscateParams = !indexerSymbol.IsPublic;
-            if (obfuscateParams && generator.Options.Minimize) {
-                for (int i = 0; i < indexerSymbol.Parameters.Count; i++) {
-                    ParameterSymbol parameterSymbol = indexerSymbol.Parameters[i];
-                    parameterSymbol.SetTransformedName("$p" + i);
-                }
-            }
-
             writer.Write("get_");
             writer.Write(indexerSymbol.GeneratedName);
             if (instanceMember) {
@@ -287,18 +279,10 @@ namespace ScriptSharp.Generator {
 
             writer.Write("function(");
             if (methodSymbol.Parameters != null) {
-                bool obfuscateParams = false;
-                if (generator.Options.Minimize) {
-                    obfuscateParams = !methodSymbol.IsPublic;
-                }
-
                 int paramIndex = 0;
                 foreach (ParameterSymbol parameterSymbol in methodSymbol.Parameters) {
                     if (paramIndex > 0) {
                         writer.Write(", ");
-                    }
-                    if (obfuscateParams) {
-                        parameterSymbol.SetTransformedName("$p" + paramIndex);
                     }
                     writer.Write(parameterSymbol.GeneratedName);
 
@@ -360,13 +344,6 @@ namespace ScriptSharp.Generator {
 
             if (propertySymbol.IsReadOnly == false) {
                 ParameterSymbol valueParameter = propertySymbol.Parameters[0];
-                if (generator.Options.Minimize) {
-                    bool obfuscateParams = !propertySymbol.IsPublic;
-                    if (obfuscateParams) {
-                        valueParameter.SetTransformedName("$p0");
-                    }
-                }
-
                 if (instanceMember) {
                     writer.WriteLine(",");
                 }
