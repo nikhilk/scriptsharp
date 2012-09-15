@@ -24,6 +24,9 @@ extend(String, {
 
     return (s1 == s2) ? 0 : (s1 < s2) ? -1 : 1;
   },
+  equals: function(s1, s2, ignoreCase) {
+    return String.compare(s1, s2, ignoreCase) == 0;
+  },
   format: function(cultureOrFormat) {
     var culture = neutralCulture;
     var format = cultureOrFormat;
@@ -56,10 +59,19 @@ extend(String, {
         }
         return culture == neutralCulture ? value.toString() : value.toLocaleString();
       });
+  },
+  isNullOrEmpty: function(s) {
+    return !s || !s.length;
+  },
+  isNullOrWhiteSpace: function(s) {
+    return String.isNullOrEmpty(s) || s.trim() === "";
   }
 });
 
 extend(String.prototype, {
+  compareTo: function(s, ignoreCase) {
+    return String.Compare(this, s, ignoreCase);
+  },
   endsWith: function(suffix) {
     if (!suffix.length) {
       return true;
@@ -68,6 +80,75 @@ extend(String.prototype, {
       return false;
     }
     return this.substr(-suffix.length) == suffix;
+  },
+  indexOfAny: function(chars, startIndex, count) {
+    var length = this.length;
+    if (!length) {
+      return -1;
+    }
+
+    startIndex = startIndex || 0;
+    count = count || length;
+
+    var endIndex = startIndex + count - 1;
+    if (endIndex >= length) {
+      endIndex = length - 1;
+    }
+
+    for (var i = startIndex; i <= endIndex; i++) {
+      if (chars.indexOf(this.charAt(i)) >= 0) {
+        return i;
+      }
+    }
+    return -1;
+  },
+  insert: function(index, value) {
+    if (!value) {
+      return this.valueOf();
+    }
+    if (!index) {
+      return value + this;
+    }
+    var s1 = this.substr(0, index);
+    var s2 = this.substr(index);
+    return s1 + value + s2;
+  },
+  lastIndexOfAny: function(chars, startIndex, count) {
+    var length = this.length;
+    if (!length) {
+      return -1;
+    }
+
+    startIndex = startIndex || length - 1;
+    count = count || length;
+
+    var endIndex = startIndex - count + 1;
+    if (endIndex < 0) {
+      endIndex = 0;
+    }
+
+    for (var i = startIndex; i >= endIndex; i--) {
+      if (chars.indexOf(this.charAt(i)) >= 0) {
+        return i;
+      }
+    }
+    return -1;
+  },
+  padLeft: function(totalWidth, ch) {
+    return (this.length < totalWidth) ? stringFromChar(ch || ' ', totalWidth - this.length) + this : this.valueOf();
+  },
+  padRight: function(totalWidth, ch) {
+    return (this.length < totalWidth) ? this + stringFromChar(ch || ' ', totalWidth - this.length) : this.valueOf();
+  },
+  remove: function(index, count) {
+    if (!count || ((index + count) > this.length)) {
+      return this.substr(0, index);
+    }
+    return this.substr(0, index) + this.substr(index + count);
+  },
+  replaceAll: function(oldValue, newValue) {
+    newValue = newValue || '';
+    return this.split(oldValue).join(newValue);
   },
   startsWith: function(prefix) {
     if (!prefix.length) {
@@ -78,35 +159,11 @@ extend(String.prototype, {
     }
     return this.substr(0, prefix.length) == prefix;
   },
-  padLeft: function(totalWidth, ch) {
-    return (this.length < totalWidth) ? stringFromChar(ch || ' ', totalWidth - this.length) + this : this.valueOf();
-  },
-  padRight: function(totalWidth, ch) {
-    return (this.length < totalWidth) ? this + stringFromChar(ch || ' ', totalWidth - this.length) : this.valueOf();
-  },
   trimEnd: function() {
     return this.replace(/\s*$/, '');
   },
   trimStart: function() {
     return this.replace(/^\s*/, '');
-  },
-  insert: function(index, value) {
-    if (!value) {
-      return this.valueOf();
-    }
-    if (!index) {
-      return value + this;
-    }
-    return this.substr(0, index) + value + this.substr(index);
-  },
-  remove: function(index, count) {
-    if (!count || ((index + count) > this.length)) {
-      return this.substr(0, index);
-    }
-    return this.substr(0, index) + this.substr(index + count);
-  },
-  replaceAll: function(oldValue, newValue) {
-    return this.split(oldValue).join(newValue || '');
   }
 });
 

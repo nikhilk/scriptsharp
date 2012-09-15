@@ -60,6 +60,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BCLTests.cs" />
+    <Compile Include="ExtensionTests.cs" />
     <Compile Include="Core\Compilation.cs" />
     <Compile Include="Core\FileStreamSource.cs" />
     <Compile Include="Core\RuntimeTest.cs" />

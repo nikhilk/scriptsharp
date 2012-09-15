@@ -38,6 +38,8 @@ function extend(o, items) {
 #include "Runtime\String.js"
 #include "Runtime\Console.js"
 #include "Runtime\Error.js"
+#include "Runtime\Date.js"
+#include "Runtime\Math.js"
 
 #include "Runtime\TypeSystem.js"
 #include "Runtime\Delegate.js"
