@@ -21,6 +21,9 @@ define('test', ['ss'], function(ss) {
         case 0:
           return;
       }
+    },
+    test4: function() {
+      return { a: 123, b: '456' };
     }
   };
 

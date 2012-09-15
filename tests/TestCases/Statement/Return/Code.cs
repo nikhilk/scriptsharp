@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
@@ -25,6 +26,10 @@ namespace StatementTests {
                 case 0:
                     return;
             }
+        }
+
+        public Dictionary<string, object> Test4() {
+            return new Dictionary<string, object>("a", 123, "b", "456");
         }
     }
 }
