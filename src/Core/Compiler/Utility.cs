@@ -32,7 +32,7 @@ namespace ScriptSharp {
                 "protected", "throws", "class", "final", "interface", "public",
                 "transient", "const", "float", "long", "short", "volatile",
                 // Script#-specific words
-                "ss"
+                "ss", "global"
             };
         private static Hashtable _keywordTable;
 

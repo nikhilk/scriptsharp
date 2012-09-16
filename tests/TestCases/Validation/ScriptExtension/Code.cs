@@ -11,9 +11,9 @@ namespace ValidationTests {
     }
 
     [ScriptExtension("$global")]
-    public static class A {
+    public static class B {
 
-        static A() {
+        static B() {
         }
     }
 }

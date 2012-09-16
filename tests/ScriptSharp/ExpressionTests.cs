@@ -89,6 +89,13 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestExtensionMethods() {
+            RunTest((c) => {
+                c.AddSource("Code.cs");
+            });
+        }
+
+        [TestMethod]
         public void TestGenerics() {
             RunTest((c) => {
                 c.AddReference("Script.Web.dll").
@@ -99,13 +106,6 @@ namespace ScriptSharp.Tests {
 
         [TestMethod]
         public void TestGetType() {
-            RunTest((c) => {
-                c.AddSource("Code.cs");
-            });
-        }
-
-        [TestMethod]
-        public void TestGlobalMethods() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
             });
