@@ -1435,7 +1435,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Script
-        Global Methods: True
+        Global Methods: False
         BaseClass: Object
         Members:
             Method: Boolean
@@ -1452,11 +1452,6 @@ Types:
                 AssociatedType: Void
                 Visibility: Public, Static
                 Generated Name: clearTimeout
-                Abstract: False
-            Method: Confirm
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: confirm
                 Abstract: False
             Method: CreateInstance
                 AssociatedType: Object

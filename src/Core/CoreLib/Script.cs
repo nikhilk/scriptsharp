@@ -11,7 +11,6 @@ namespace System {
     /// The Script class contains various methods that represent global
     /// methods present in the underlying script engine.
     /// </summary>
-    [GlobalMethods]
     [IgnoreNamespace]
     [Imported]
     public static class Script {
@@ -25,20 +24,12 @@ namespace System {
             return false;
         }
 
+        [ScriptAlias("clearInterval")]
         public static void ClearInterval(int intervalID) {
         }
 
+        [ScriptAlias("clearTimeout")]
         public static void ClearTimeout(int timeoutID) {
-        }
-
-        /// <summary>
-        /// Prompts the user with a yes/no question.
-        /// </summary>
-        /// <param name="message">The text of the question.</param>
-        /// <returns>true if the user chooses yes; false otherwise.</returns>
-        [Obsolete("Use Window.Confirm instead.", true)]
-        public static bool Confirm(string message) {
-            return false;
         }
 
         public static object CreateInstance(Type type, params object[] arguments) {
@@ -58,6 +49,7 @@ namespace System {
         /// </summary>
         /// <param name="s">The script to be evaluated.</param>
         /// <returns>The result of the evaluation.</returns>
+        [ScriptAlias("eval")]
         public static object Eval(string s) {
             return null;
         }
@@ -177,42 +169,52 @@ namespace System {
         public static void SetField(Type type, string name, object value) {
         }
 
+        [ScriptAlias("setInterval")]
         public static int SetInterval(string code, int milliseconds) {
             return 0;
         }
 
+        [ScriptAlias("setInterval")]
         public static int SetInterval(Action callback, int milliseconds) {
             return 0;
         }
 
+        [ScriptAlias("setInterval")]
         public static int SetInterval<T>(Action<T> callback, int milliseconds, T arg) {
             return 0;
         }
 
+        [ScriptAlias("setInterval")]
         public static int SetInterval<T1, T2>(Action<T1, T2> callback, int milliseconds, T1 arg1, T2 arg2) {
             return 0;
         }
 
+        [ScriptAlias("setInterval")]
         public static int SetInterval(Delegate d, int milliseconds, params object[] args) {
             return 0;
         }
 
+        [ScriptAlias("setTimeout")]
         public static int SetTimeout(string code, int milliseconds) {
             return 0;
         }
 
+        [ScriptAlias("setTimeout")]
         public static int SetTimeout(Action callback, int milliseconds) {
             return 0;
         }
 
+        [ScriptAlias("setTimeout")]
         public static int SetTimeout<T>(Action<T> callback, int milliseconds, T arg) {
             return 0;
         }
 
+        [ScriptAlias("setTimeout")]
         public static int SetTimeout<T1, T2>(Action<T1, T2> callback, int milliseconds, T1 arg1, T2 arg2) {
             return 0;
         }
 
+        [ScriptAlias("setTimeout")]
         public static int SetTimeout(Delegate d, int milliseconds, params object[] args) {
             return 0;
         }

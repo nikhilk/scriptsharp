@@ -11,6 +11,18 @@ define('test', ['ss'], function(ss) {
       arg = (arg || 10 || 100);
       var s = (arg || 10).toString(10);
       var b = !!arg;
+      var sb = new ss.StringBuilder();
+      sb = new ss.StringBuilder('aaa');
+      var i;
+      var tick = function() {
+        i = 10;
+      };
+      var cookie = setInterval(tick, 500);
+      clearInterval(cookie);
+      var isSet = !ss.isNullOrUndefined(i);
+      var addition = eval('2 + 2');
+      addition = 2 + 2;
+      addition = 2 + 3;
     }
   };
 

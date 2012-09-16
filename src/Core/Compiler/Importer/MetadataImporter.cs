@@ -533,25 +533,27 @@ namespace ScriptSharp.Importer {
 
                 // Define the Escape, Unescape, encodeURI, decodeURI, encodeURIComponent, decodeURIComponent methods
                 MethodSymbol escapeMethod = new MethodSymbol("Escape", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
+                escapeMethod.SetAlias("escape");
                 classSymbol.AddMember(escapeMethod);
 
                 MethodSymbol unescapeMethod = new MethodSymbol("Unescape", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
+                unescapeMethod.SetAlias("unescape");
                 classSymbol.AddMember(unescapeMethod);
 
                 MethodSymbol encodeURIMethod = new MethodSymbol("EncodeUri", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                encodeURIMethod.SetTransformedName("encodeURI");
+                encodeURIMethod.SetAlias("encodeURI");
                 classSymbol.AddMember(encodeURIMethod);
 
                 MethodSymbol decodeURIMethod = new MethodSymbol("DecodeUri", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                decodeURIMethod.SetTransformedName("decodeURI");
+                decodeURIMethod.SetAlias("decodeURI");
                 classSymbol.AddMember(decodeURIMethod);
 
                 MethodSymbol encodeURIComponentMethod = new MethodSymbol("EncodeUriComponent", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                encodeURIComponentMethod.SetTransformedName("encodeURIComponent");
+                encodeURIComponentMethod.SetAlias("encodeURIComponent");
                 classSymbol.AddMember(encodeURIComponentMethod);
 
                 MethodSymbol decodeURIComponentMethod = new MethodSymbol("DecodeUriComponent", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                decodeURIComponentMethod.SetTransformedName("decodeURIComponent");
+                decodeURIComponentMethod.SetAlias("decodeURIComponent");
                 classSymbol.AddMember(decodeURIComponentMethod);
 
                 // GetType
