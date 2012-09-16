@@ -20,12 +20,22 @@ namespace ScriptSharp.Generator {
         private CompilerOptions _options;
         private SymbolSet _symbols;
 
+        private Stack<SymbolImplementation> _implementationStack;
+
         public ScriptGenerator(TextWriter writer, CompilerOptions options, SymbolSet symbols) {
             Debug.Assert(writer != null);
             _writer = new ScriptTextWriter(writer);
 
             _options = options;
             _symbols = symbols;
+
+            _implementationStack = new Stack<SymbolImplementation>();
+        }
+
+        public SymbolImplementation CurrentImplementation {
+            get {
+                return _implementationStack.Peek();
+            }
         }
 
         public CompilerOptions Options {
@@ -38,6 +48,11 @@ namespace ScriptSharp.Generator {
             get {
                 return _writer;
             }
+        }
+
+        public void EndImplementation() {
+            Debug.Assert(_implementationStack.Count != 0);
+            _implementationStack.Pop();
         }
 
         public void GenerateScript(SymbolSet symbolSet) {
@@ -200,6 +215,11 @@ namespace ScriptSharp.Generator {
 
             _writer.Indent--;
             _writer.WriteLine("});");
+        }
+
+        public void StartImplementation(SymbolImplementation implementation) {
+            Debug.Assert(implementation != null);
+            _implementationStack.Push(implementation);
         }
 
 

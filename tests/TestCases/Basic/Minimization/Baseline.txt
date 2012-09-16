@@ -178,18 +178,20 @@ define('test', ['ss', 'lib'], function(ss, lib) {
       blah = blah + 2;
     },
     $4: function(currentValue) {
+      var $this = this;
+
       var numericValue = currentValue + 1;
       var stringValue = currentValue.toString();
       var value = 0;
-      this.$1(ss.bind(function(indexValue, textValue) {
-        this.$1(function(indexValue, textValue) {
+      this.$1(function(indexValue, textValue) {
+        $this.$1(function(indexValue, textValue) {
           var value = 11;
           return indexValue;
         });
         var value = 10;
         var value2 = 11;
         return numericValue + indexValue + stringValue + textValue + value;
-      }, this));
+      });
     },
     get_$5: function() {
       return 0;
@@ -199,29 +201,33 @@ define('test', ['ss', 'lib'], function(ss, lib) {
       return value;
     },
     get_$6: function() {
-      this.$1(ss.bind(function(indexValue, textValue) {
-        this.$1(function(indexValue, textValue) {
+      var $this = this;
+
+      this.$1(function(indexValue, textValue) {
+        $this.$1(function(indexValue, textValue) {
           var value = 11;
           return indexValue;
         });
         var value = 10;
         var value2 = 11;
         return indexValue + textValue + value;
-      }, this));
+      });
       return 0;
     },
     set_$6: function(value) {
+      var $this = this;
+
       var numericValue = value + 1;
       var stringValue = value.toString();
-      this.$1(ss.bind(function(indexValue, textValue) {
-        this.$1(function(indexValue, textValue) {
+      this.$1(function(indexValue, textValue) {
+        $this.$1(function(indexValue, textValue) {
           var value1 = 11;
           return indexValue;
         });
         var value2 = 10;
         var value3 = 11;
         return numericValue + indexValue + stringValue + textValue + value + value3;
-      }, this));
+      });
       return value;
     }
   };

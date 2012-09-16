@@ -52,9 +52,32 @@ namespace ExpressionTests {
             SomeClass s2 = new SomeClass(delegate {
                int[] numbers = new int[] { _n };
             });
+
+            SomeClass s3 = new SomeClass(delegate {
+                SomeClass s4 = new SomeClass(delegate {
+                    int[] numbers = new int[] { _n * 2 };
+                });
+            });
+        }
+
+        public void BBB(object o) {
+            SomeClass s = new SomeClass(delegate {
+                object temp = o;
+            });
+        }
+
+        public void CCC(object o) {
+            SomeClass s = new SomeClass(delegate {
+                SomeClass s = new SomeClass(delegate {
+                    int[] numbers = new int[] { _n * 2 };
+                });
+            });
         }
 
         public static void DoStuffStatic(object o, Foo callback) {
+            SomeClass s = new SomeClass(delegate {
+                object temp = o;
+            });
         }
 
         public void DoStuff(object o, Foo callback) {

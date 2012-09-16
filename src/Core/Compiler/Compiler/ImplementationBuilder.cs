@@ -81,7 +81,12 @@ namespace ScriptSharp.Compiler {
                 }
             }
 
-            return new SymbolImplementation(statements, _rootScope);
+            string thisIdentifier = "this";
+            if (symbolContext.Type == SymbolType.AnonymousMethod) {
+                thisIdentifier = "$this";
+            }
+
+            return new SymbolImplementation(statements, _rootScope, thisIdentifier);
         }
 
         public SymbolImplementation BuildEventAdd(EventSymbol eventSymbol) {
@@ -162,7 +167,7 @@ namespace ScriptSharp.Compiler {
                 List<Statement> statements = new List<Statement>();
                 statements.Add(new ExpressionStatement(initializerExpression, /* isFragment */ true));
 
-                return new SymbolImplementation(statements, null);
+                return new SymbolImplementation(statements, null, "this");
             }
 
             return null;

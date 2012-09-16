@@ -15,10 +15,12 @@ namespace ScriptSharp.ScriptModel {
 
         private SymbolScope _scope;
         private ICollection<Statement> _statements;
+        private string _thisIdentifier;
 
-        public SymbolImplementation(ICollection<Statement> statements, SymbolScope scope) {
+        public SymbolImplementation(ICollection<Statement> statements, SymbolScope scope, string thisIdentifier) {
             _scope = scope;
             _statements = statements;
+            _thisIdentifier = thisIdentifier;
         }
 
         public bool DeclaresVariables {
@@ -29,12 +31,6 @@ namespace ScriptSharp.ScriptModel {
                     }
                 }
                 return false;
-            }
-        }
-
-        public SymbolScope Scope {
-            get {
-                return _scope;
             }
         }
 
@@ -49,9 +45,21 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public SymbolScope Scope {
+            get {
+                return _scope;
+            }
+        }
+
         public ICollection<Statement> Statements {
             get {
                 return _statements;
+            }
+        }
+
+        public string ThisIdentifier {
+            get {
+                return _thisIdentifier;
             }
         }
     }

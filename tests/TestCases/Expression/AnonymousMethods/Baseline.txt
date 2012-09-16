@@ -23,13 +23,18 @@ define('test', ['ss'], function(ss) {
     });
   }
   ExpressionTests$Test.doStuffStatic = function(o, callback) {
+    var s = new ExpressionTests$SomeClass(function() {
+      var temp = o;
+    });
   }
   var ExpressionTests$Test$ = {
     AAA: function() {
+      var $this = this;
+
       var o = {};
-      this.doStuff(o, ss.bind(function(i, s, b) {
-        this._n = i;
-      }, this));
+      this.doStuff(o, function(i, s, b) {
+        $this._n = i;
+      });
       var s = new ExpressionTests$SomeClass(function() {
       });
       for (var i = 0; i < 10; i++) {
@@ -37,18 +42,37 @@ define('test', ['ss'], function(ss) {
         this.doStuff(o, function(i, s, b) {
           foo = i + s;
         });
-        this.doStuff(o, ss.bind(function(i, s, b) {
-          this._n += i;
-        }, this));
+        this.doStuff(o, function(i, s, b) {
+          $this._n += i;
+        });
         ExpressionTests$Test.doStuffStatic(o, function() {
         });
-        ExpressionTests$Test.doStuffStatic(o, ss.bind(function() {
-          this._n++;
-        }, this));
+        ExpressionTests$Test.doStuffStatic(o, function() {
+          $this._n++;
+        });
       }
-      var s2 = new ExpressionTests$SomeClass(ss.bind(function() {
-        var numbers = [ this._n ];
-      }, this));
+      var s2 = new ExpressionTests$SomeClass(function() {
+        var numbers = [ $this._n ];
+      });
+      var s3 = new ExpressionTests$SomeClass(function() {
+        var s4 = new ExpressionTests$SomeClass(function() {
+          var numbers = [ $this._n * 2 ];
+        });
+      });
+    },
+    BBB: function(o) {
+      var s = new ExpressionTests$SomeClass(function() {
+        var temp = o;
+      });
+    },
+    CCC: function(o) {
+      var $this = this;
+
+      var s = new ExpressionTests$SomeClass(function() {
+        var s = new ExpressionTests$SomeClass(function() {
+          var numbers = [ $this._n * 2 ];
+        });
+      });
     },
     doStuff: function(o, callback) {
     }

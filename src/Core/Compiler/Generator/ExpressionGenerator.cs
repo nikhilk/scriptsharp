@@ -57,7 +57,9 @@ namespace ScriptSharp.Generator {
                         }
                         writer.Write("set_");
                         writer.Write(propExpression.Property.GeneratedName);
-                        writer.Write(".call(this, ");
+                        writer.Write(".call(");
+                        writer.Write(generator.CurrentImplementation.ThisIdentifier);
+                        writer.Write(", ");
                         GenerateExpression(generator, symbol, expression.RightOperand);
                         writer.Write(")");
                     }
@@ -93,7 +95,9 @@ namespace ScriptSharp.Generator {
                         }
                         writer.Write("set_");
                         writer.Write(indexExpression.Indexer.GeneratedName);
-                        writer.Write(".call(this, ");
+                        writer.Write(".call(");
+                        writer.Write(generator.CurrentImplementation.ThisIdentifier);
+                        writer.Write(", ");
                         GenerateExpressionList(generator, symbol, indexExpression.Indices);
                         writer.Write(", ");
                         GenerateExpression(generator, symbol, expression.RightOperand);
@@ -244,15 +248,15 @@ namespace ScriptSharp.Generator {
         private static void GenerateDelegateExpression(ScriptGenerator generator, MemberSymbol symbol, DelegateExpression expression) {
             ScriptTextWriter writer = generator.Writer;
 
+            AnonymousMethodSymbol anonymousMethod = expression.Method as AnonymousMethodSymbol;
             bool createDelegate = false;
 
-            if ((expression.Method.Visibility & MemberVisibility.Static) == 0) {
-                createDelegate = true;
-                writer.Write("ss.bind(");
-            }
-
-            AnonymousMethodSymbol anonymousMethod = expression.Method as AnonymousMethodSymbol;
             if (anonymousMethod == null) {
+                if ((expression.Method.Visibility & MemberVisibility.Static) == 0) {
+                    createDelegate = true;
+                    writer.Write("ss.bind(");
+                }
+
                 // TODO: This probably needs to handle global method roots...
 
                 if (expression.Method.IsGlobalMethod == false) {
@@ -484,7 +488,9 @@ namespace ScriptSharp.Generator {
                 }
                 writer.Write("get_");
                 writer.Write(expression.Indexer.GeneratedName);
-                writer.Write(".call(this, ");
+                writer.Write(".call(");
+                writer.Write(generator.CurrentImplementation.ThisIdentifier);
+                writer.Write(", ");
                 GenerateExpressionList(generator, symbol, expression.Indices);
                 writer.Write(")");
             }
@@ -721,7 +727,8 @@ namespace ScriptSharp.Generator {
                     writer.Write(".prototype.");
                 }
                 writer.Write(expression.Method.GeneratedName);
-                writer.Write(".call(this");
+                writer.Write(".call(");
+                writer.Write(generator.CurrentImplementation.ThisIdentifier);
                 if ((expression.Parameters != null) && (expression.Parameters.Count != 0)) {
                     writer.Write(", ");
                     GenerateExpressionList(generator, symbol, expression.Parameters);
@@ -834,7 +841,9 @@ namespace ScriptSharp.Generator {
                 }
                 writer.Write("get_");
                 writer.Write(expression.Property.GeneratedName);
-                writer.Write(".call(this)");
+                writer.Write(".call(");
+                writer.Write(generator.CurrentImplementation.ThisIdentifier);
+                writer.Write(")");
             }
             else {
                 ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
@@ -846,7 +855,7 @@ namespace ScriptSharp.Generator {
 
         private static void GenerateThisExpression(ScriptGenerator generator, MemberSymbol symbol, ThisExpression expression) {
             ScriptTextWriter writer = generator.Writer;
-            writer.Write("this");
+            writer.Write(generator.CurrentImplementation.ThisIdentifier);
         }
 
         private static void GenerateTypeExpression(ScriptGenerator generator, MemberSymbol symbol, TypeExpression expression) {
