@@ -1,5 +1,6 @@
 define('test', ['ss'], function(ss) {
   'use strict';
+  var $global = this;
 
   // MemberTests.EventArgs
 

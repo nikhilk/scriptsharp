@@ -1,5 +1,6 @@
 define('test', ['ss', 'lib1'], function(ss, lib1) {
   'use strict';
+  var $global = this;
 
   // BasicTests.App
 

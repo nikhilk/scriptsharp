@@ -1,5 +1,6 @@
 define('basic', ['ss'], function(ss) {
   'use strict';
+  var $global = this;
 
   // Basic.EventArgs
 

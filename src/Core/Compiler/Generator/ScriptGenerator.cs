@@ -130,6 +130,7 @@ namespace ScriptSharp.Generator {
             _writer.WriteLine(") {");
             _writer.Indent++;
             _writer.WriteLine("\'use strict';");
+            _writer.WriteLine("var $global = this;");
             _writer.WriteLine();
 
             foreach (TypeSymbol type in types) {

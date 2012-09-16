@@ -1,5 +1,6 @@
 define('test', ['ss', 'jQuery'], function(ss, jQuery) {
   'use strict';
+  var $global = this;
 
   // MyApp
 
