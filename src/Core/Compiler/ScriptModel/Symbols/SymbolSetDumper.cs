@@ -23,8 +23,8 @@ namespace ScriptSharp.ScriptModel {
         }
 
         private void DumpClass(ClassSymbol classSymbol) {
-            _writer.Write("Global Methods: ");
-            _writer.WriteLine(classSymbol.HasGlobalMethods);
+            _writer.Write("Extension Methods: ");
+            _writer.WriteLine(classSymbol.IsExtenderClass);
 
             if (classSymbol.BaseClass != null) {
                 _writer.Write("BaseClass: ");

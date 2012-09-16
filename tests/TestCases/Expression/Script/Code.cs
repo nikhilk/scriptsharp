@@ -29,6 +29,8 @@ namespace ExpressionTests {
 
             addition = (int)Script.Literal("2 + 2");
             addition = (int)Script.Literal("{0} + {1}", 2, 3);
+
+            object g = Script.Global;
         }
     }
 }

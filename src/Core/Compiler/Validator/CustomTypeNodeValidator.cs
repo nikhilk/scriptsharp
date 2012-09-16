@@ -98,22 +98,20 @@ namespace ScriptSharp.Validator {
                     }
                 }
 
-                AttributeNode globalMethodsAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "GlobalMethods");
-                if (globalMethodsAttribute != null) {
+                AttributeNode extensionAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptExtension");
+                if (extensionAttribute != null) {
                     restrictToMethodMembers = true;
 
                     if ((typeNode.Modifiers & Modifiers.Static) == 0) {
-                        errorHandler.ReportError("GlobalMethods attribute can only be set on static classes.",
+                        errorHandler.ReportError("ScriptExtension attribute can only be set on static classes.",
                                                  typeNode.Token.Location);
                     }
-                }
 
-                AttributeNode mixinAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "Mixin");
-                if (mixinAttribute != null) {
-                    restrictToMethodMembers = true;
-
-                    if ((typeNode.Modifiers & Modifiers.Static) == 0) {
-                        errorHandler.ReportError("Mixin attribute can only be set on static classes.",
+                    if ((extensionAttribute.Arguments.Count != 1) ||
+                        !(extensionAttribute.Arguments[0] is LiteralNode) ||
+                        !(((LiteralNode)extensionAttribute.Arguments[0]).Value is string) ||
+                        String.IsNullOrEmpty((string)((LiteralNode)extensionAttribute.Arguments[0]).Value)) {
+                        errorHandler.ReportError("ScriptExtension attribute declaration must specify the object being extended.",
                                                  typeNode.Token.Location);
                     }
                 }
@@ -137,10 +135,8 @@ namespace ScriptSharp.Validator {
                         continue;
                     }
 
-                    if (restrictToMethodMembers &&
-                        (memberNode.NodeType != ParseNodeType.MethodDeclaration) &&
-                        (memberNode.NodeType != ParseNodeType.ConstructorDeclaration)) {
-                        errorHandler.ReportError("Classes marked with GlobalMethods or Mixin attribute should only have methods.",
+                    if (restrictToMethodMembers && (memberNode.NodeType != ParseNodeType.MethodDeclaration)) {
+                        errorHandler.ReportError("Classes marked with ScriptExtension attribute should only have methods.",
                                                  memberNode.Token.Location);
                     }
 

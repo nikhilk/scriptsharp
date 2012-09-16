@@ -196,7 +196,7 @@ namespace ScriptSharp.Generator {
             }
         }
 
-        private static void GenerateGlobalMethods(ScriptGenerator generator, ClassSymbol classSymbol) {
+        private static void GenerateExtensionMethods(ScriptGenerator generator, ClassSymbol classSymbol) {
             foreach (MemberSymbol memberSymbol in classSymbol.Members) {
                 Debug.Assert(memberSymbol.Type == SymbolType.Method);
                 Debug.Assert((memberSymbol.Visibility & MemberVisibility.Static) != 0);
@@ -246,7 +246,7 @@ namespace ScriptSharp.Generator {
         public static void GenerateRegistrationScript(ScriptGenerator generator, TypeSymbol typeSymbol) {
             ClassSymbol classSymbol = typeSymbol as ClassSymbol;
 
-            if ((classSymbol != null) && classSymbol.HasGlobalMethods) {
+            if ((classSymbol != null) && classSymbol.IsExtenderClass) {
                 return;
             }
 
@@ -347,8 +347,8 @@ namespace ScriptSharp.Generator {
 
             switch (typeSymbol.Type) {
                 case SymbolType.Class:
-                    if (((ClassSymbol)typeSymbol).HasGlobalMethods) {
-                        GenerateGlobalMethods(generator, (ClassSymbol)typeSymbol);
+                    if (((ClassSymbol)typeSymbol).IsExtenderClass) {
+                        GenerateExtensionMethods(generator, (ClassSymbol)typeSymbol);
                     }
                     else {
                         GenerateClass(generator, (ClassSymbol)typeSymbol);

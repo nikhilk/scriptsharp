@@ -89,17 +89,15 @@ namespace ScriptSharp.Importer {
             return (String.CompareOrdinal(type.BaseType.FullName, "System.Enum") == 0);
         }
 
-        public static bool ShouldGlobalizeMembers(TypeDefinition type, out string mixinRoot) {
-            mixinRoot = null;
+        public static bool IsScriptExtension(TypeDefinition type, out string extendee) {
+            extendee = null;
 
-            CustomAttribute globalMethodsAttribute = GetAttribute(type, "System.Runtime.CompilerServices.GlobalMethodsAttribute");
-            if (globalMethodsAttribute != null) {
-                return true;
-            }
-
-            CustomAttribute mixinAttribute = GetAttribute(type, "System.Runtime.CompilerServices.MixinAttribute");
-            if (mixinAttribute != null) {
-                mixinRoot = GetAttributeArgument(mixinAttribute);
+            CustomAttribute extensionAttribute = GetAttribute(type, "System.Runtime.CompilerServices.ScriptExtensionAttribute");
+            if (extensionAttribute != null) {
+                extendee = GetAttributeArgument(extensionAttribute);
+                if (String.IsNullOrEmpty(extendee) == false) {
+                    return true;
+                }
             }
 
             return false;

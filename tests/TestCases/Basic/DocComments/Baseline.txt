@@ -214,7 +214,7 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.GlobalMethodsClass
 
-  this.run = function() {
+  $global.run = function() {
     /// <summary>
     /// Runs.
     /// </summary>

@@ -251,16 +251,16 @@ namespace ScriptSharp.Generator {
 
             bool instanceMember = ((methodSymbol.Visibility & MemberVisibility.Static) == 0);
             if (instanceMember == false) {
-                if (methodSymbol.IsGlobalMethod) {
-                    string mixinRoot = null;
+                if (methodSymbol.IsExtension) {
+                    string extendee = null;
                     if (methodSymbol.Parent.Type == SymbolType.Class) {
-                        mixinRoot = ((ClassSymbol)methodSymbol.Parent).MixinRoot;
+                        extendee = ((ClassSymbol)methodSymbol.Parent).Extendee;
                     }
-                    if (String.IsNullOrEmpty(mixinRoot)) {
-                        mixinRoot = "this";
+                    if (String.IsNullOrEmpty(extendee)) {
+                        extendee = "this";
                     }
 
-                    writer.Write(mixinRoot);
+                    writer.Write(extendee);
                 }
                 else {
                     writer.Write(typeName);

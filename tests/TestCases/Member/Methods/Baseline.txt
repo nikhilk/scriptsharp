@@ -33,7 +33,7 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.Foo
 
-  this.doStuff = function() {
+  $global.doStuff = function() {
   }
 
 
@@ -43,16 +43,6 @@ define('test', ['ss'], function(ss) {
   }
   window.m2 = function() {
   }
-
-
-  // MemberTests.FooBar
-
-  this.doStuff2 = function() {
-  }
-
-
-  // MemberTests.FooBar2
-
 
 
   // MemberTests.X
@@ -79,11 +69,6 @@ define('test', ['ss'], function(ss) {
       X: [ MemberTests$X, MemberTests$X$, null ]
     });
 
-  alert('Startup code in FooBar');
-  (function() {
-    var timeStamp = new Date().getMilliseconds();
-    alert('Startup code in FooBar: ' + timeStamp);
-  })();
 
   return $test;
 });

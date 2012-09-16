@@ -11,7 +11,7 @@ Types:
         Application Type: True
         Public: True
         Generated Name: App
-        Global Methods: False
+        Extension Methods: False
         Interfaces:
             IApp
         Constructor:
@@ -63,7 +63,7 @@ Types:
         Application Type: True
         Public: False
         Generated Name: AppHelper
-        Global Methods: False
+        Extension Methods: False
         Indexer:
             Indexer: Item
                 AssociatedType: Int32
@@ -137,7 +137,7 @@ Types:
         Application Type: True
         Public: False
         Generated Name: Point
-        Global Methods: False
+        Extension Methods: False
         Constructor:
             Constructor: 
                 AssociatedType: Point
@@ -163,7 +163,7 @@ Types:
         Application Type: True
         Public: False
         Generated Name: Util
-        Global Methods: True
+        Extension Methods: True
         Members:
             Method: ShowHelp
                 AssociatedType: Void
@@ -278,7 +278,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: arguments
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -311,7 +311,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -455,7 +455,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Boolean
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: Parse
                 AssociatedType: Boolean
@@ -467,7 +467,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: ToString
                 AssociatedType: String
@@ -490,7 +490,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: CancelEventArgs
-        Global Methods: False
+        Extension Methods: False
         BaseClass: EventArgs
         Members:
             Field: Cancel
@@ -502,7 +502,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: String
-        Global Methods: False
+        Extension Methods: False
         Members:
         
     Delegate: CompareCallback
@@ -520,7 +520,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Date
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Empty
@@ -759,7 +759,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: Format
                 AssociatedType: String
@@ -786,7 +786,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Delegate
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Method: Combine
@@ -814,7 +814,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: Parse
                 AssociatedType: Double
@@ -841,14 +841,14 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Enum
-        Global Methods: False
+        Extension Methods: False
         Members:
         
     Class: EventArgs
         Application Type: False
         Public: True
         Generated Name: EventArgs
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Empty
@@ -882,7 +882,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Error
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -914,7 +914,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Export
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Name
@@ -1035,7 +1035,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Function
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Length
@@ -1068,7 +1068,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: ToString
                 AssociatedType: String
@@ -1080,7 +1080,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: Parse
                 AssociatedType: Int32
@@ -1097,7 +1097,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: ToString
                 AssociatedType: String
@@ -1109,7 +1109,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Math
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: E
@@ -1244,7 +1244,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Nullable`1
-        Global Methods: False
+        Extension Methods: False
         Members:
             Property: HasValue
                 AssociatedType: Boolean
@@ -1268,7 +1268,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: MAX_VALUE
@@ -1346,7 +1346,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Object
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: GetType
                 AssociatedType: Type
@@ -1368,7 +1368,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Record
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
         
@@ -1376,7 +1376,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: RegExp
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: LastIndex
@@ -1423,7 +1423,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: ToString
                 AssociatedType: String
@@ -1435,9 +1435,13 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Script
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
+            Field: Global
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: $global
             Method: Boolean
                 AssociatedType: Boolean
                 Visibility: Public, Static
@@ -1606,7 +1610,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: Parse
                 AssociatedType: Single
@@ -1633,7 +1637,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: String
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -1866,7 +1870,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: StringBuilder
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: IsEmpty
@@ -1909,7 +1913,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Tuple
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Item1
@@ -1925,7 +1929,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Tuple
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Item1
@@ -1945,7 +1949,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Tuple
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Item1
@@ -1969,7 +1973,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Type
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: BaseType
@@ -2019,7 +2023,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: ToString
                 AssociatedType: String
@@ -2031,7 +2035,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: ToString
                 AssociatedType: String
@@ -2043,7 +2047,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: ToString
                 AssociatedType: String
@@ -2055,7 +2059,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Void
-        Global Methods: False
+        Extension Methods: False
         Members:
         
 
@@ -2088,7 +2092,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -2251,7 +2255,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -2452,7 +2456,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Object
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -2524,7 +2528,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: DictionaryEntry
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Key
@@ -2591,7 +2595,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: ObservableCollection
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -2657,7 +2661,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Count
@@ -2694,7 +2698,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Count
@@ -2746,7 +2750,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Object
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -2859,7 +2863,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Object
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Key
@@ -2875,7 +2879,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -3066,7 +3070,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -3231,7 +3235,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: ObservableCollection
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Indexer:
             Indexer: Item
@@ -3297,7 +3301,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Count
@@ -3334,7 +3338,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Count
@@ -3455,7 +3459,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Observable
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Method: GetValue
@@ -3473,7 +3477,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Observable
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Method: RegisterObserver
@@ -3490,7 +3494,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: console
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Method: Assert
@@ -3523,7 +3527,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: culture
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: CurrentCulture
@@ -3551,7 +3555,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: DateFormatInfo
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: AMDesignator
@@ -3631,7 +3635,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: NumberFormatInfo
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: NaNSymbol
@@ -3735,7 +3739,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: JSON
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Method: Parse
@@ -3784,7 +3788,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Assert
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Method: AreEqual
@@ -3812,7 +3816,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: TestClass
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Method: Cleanup
@@ -3830,7 +3834,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: TestEngine
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Method: Log
@@ -3862,7 +3866,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Deferred
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Field: Task
@@ -3884,7 +3888,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Deferred
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Deferred
         Members:
             Field: Task
@@ -3901,7 +3905,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Task
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Object
         Members:
             Property: Completed
@@ -3958,7 +3962,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Task
-        Global Methods: False
+        Extension Methods: False
         BaseClass: Task
         Members:
             Field: Result
@@ -4087,7 +4091,7 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.Util
 
-  this._showHelp = function() {
+  $global._showHelp = function() {
   }
 
 

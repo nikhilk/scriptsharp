@@ -64,7 +64,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.GlobalMethodsClass
 
-  this.run = function() {
+  $global.run = function() {
   }
 
 

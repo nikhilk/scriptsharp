@@ -99,25 +99,15 @@ namespace System.Runtime.CompilerServices {
     public sealed class ResourcesAttribute : Attribute {
     }
 
-    /// <summary>
-    /// This attribute turns methods on a static class as global methods in the generated
-    /// script. Note that the class must be static, and must contain only methods.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
-    [NonScriptable]
-    [Imported]
-    public sealed class GlobalMethodsAttribute : Attribute {
-    }
-
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
     [NonScriptable]
     [Imported]
-    public sealed class MixinAttribute : Attribute {
+    public sealed class ScriptExtensionAttribute : Attribute {
 
         private string _expression;
 
-        public MixinAttribute(string expression) {
-            _expression = expression;
+        public ScriptExtensionAttribute(string extendeeExpression) {
+            _expression = extendeeExpression;
         }
 
         public string Expression {

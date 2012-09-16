@@ -259,7 +259,7 @@ namespace ScriptSharp.Generator {
 
                 // TODO: This probably needs to handle global method roots...
 
-                if (expression.Method.IsGlobalMethod == false) {
+                if (expression.Method.IsExtension == false) {
                     ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
                     writer.Write(".");
                 }
@@ -714,7 +714,7 @@ namespace ScriptSharp.Generator {
 
             if (expression.ObjectReference is BaseExpression) {
                 Debug.Assert(symbol.Parent is ClassSymbol);
-                Debug.Assert(expression.Method.IsGlobalMethod == false);
+                Debug.Assert(expression.Method.IsExtension == false);
 
                 ClassSymbol baseClass = ((ClassSymbol)symbol.Parent).BaseClass;
                 Debug.Assert(baseClass != null);
@@ -736,11 +736,11 @@ namespace ScriptSharp.Generator {
                 writer.Write(")");
             }
             else {
-                if (expression.Method.IsGlobalMethod) {
+                if (expression.Method.IsExtension) {
                     if (expression.Method.Parent is ClassSymbol) {
-                        string mixinRoot = ((ClassSymbol)expression.Method.Parent).MixinRoot;
-                        if (String.IsNullOrEmpty(mixinRoot) == false) {
-                            writer.Write(mixinRoot);
+                        string extendee = ((ClassSymbol)expression.Method.Parent).Extendee;
+                        if (String.IsNullOrEmpty(extendee) == false) {
+                            writer.Write(extendee);
                             writer.Write(".");
                         }
                     }

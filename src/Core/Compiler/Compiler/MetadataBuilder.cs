@@ -726,26 +726,15 @@ namespace ScriptSharp.Compiler {
             }
 
             if (typeNode.Type == TokenType.Class) {
-                bool globalizeMembers = false;
-                string mixinRoot = null;
+                AttributeNode extensionAttribute = AttributeNode.FindAttribute(attributes, "ScriptExtension");
+                if (extensionAttribute != null) {
+                    Debug.Assert(extensionAttribute.Arguments[0] is LiteralNode);
+                    Debug.Assert(((LiteralNode)extensionAttribute.Arguments[0]).Value is string);
 
-                AttributeNode globalMethodsAttribute = AttributeNode.FindAttribute(attributes, "GlobalMethods");
-                if (globalMethodsAttribute != null) {
-                    globalizeMembers = true;
-                }
-                else {
-                    AttributeNode mixinAttribute = AttributeNode.FindAttribute(attributes, "Mixin");
-                    if (mixinAttribute != null) {
-                        Debug.Assert(mixinAttribute.Arguments[0] is LiteralNode);
-                        Debug.Assert(((LiteralNode)mixinAttribute.Arguments[0]).Value is string);
+                    string extendee = (string)((LiteralNode)extensionAttribute.Arguments[0]).Value;
+                    Debug.Assert(String.IsNullOrEmpty(extendee) == false);
 
-                        mixinRoot = (string)((LiteralNode)mixinAttribute.Arguments[0]).Value;
-                        globalizeMembers = true;
-                    }
-                }
-
-                if (globalizeMembers) {
-                    ((ClassSymbol)typeSymbol).SetGlobalMethods(mixinRoot);
+                    ((ClassSymbol)typeSymbol).SetExtenderClass(extendee);
                 }
             }
 

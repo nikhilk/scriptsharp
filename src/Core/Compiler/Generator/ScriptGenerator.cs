@@ -147,7 +147,7 @@ namespace ScriptSharp.Generator {
                 bool firstType = true;
                 foreach (TypeSymbol type in internalTypes) {
                     if ((type.Type == SymbolType.Class) &&
-                        ((ClassSymbol)type).HasGlobalMethods) {
+                        ((ClassSymbol)type).IsExtenderClass) {
                         continue;
                     }
                     if ((type.Type == SymbolType.Record) &&
@@ -177,7 +177,7 @@ namespace ScriptSharp.Generator {
                 bool firstType = true;
                 foreach (TypeSymbol type in publicTypes) {
                     if ((type.Type == SymbolType.Class) &&
-                        ((ClassSymbol)type).HasGlobalMethods) {
+                        ((ClassSymbol)type).IsExtenderClass) {
                         continue;
                     }
 

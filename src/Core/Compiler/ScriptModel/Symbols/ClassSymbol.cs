@@ -23,8 +23,7 @@ namespace ScriptSharp.ScriptModel {
         private ConstructorSymbol _staticConstructor;
         private IndexerSymbol _indexer;
 
-        private bool _globalMethods;
-        private string _mixinRoot;
+        private string _extendee;
         private bool _testClass;
 
         private ClassSymbol _primaryPartialClass;
@@ -58,18 +57,18 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public string Extendee {
+            get {
+                return _extendee;
+            }
+        }
+
         public override string GeneratedName {
             get {
                 if (_primaryPartialClass != null) {
                     return _primaryPartialClass.GeneratedName;
                 }
                 return base.GeneratedName;
-            }
-        }
-
-        public bool HasGlobalMethods {
-            get {
-                return _globalMethods;
             }
         }
 
@@ -105,6 +104,16 @@ namespace ScriptSharp.ScriptModel {
                     return _primaryPartialClass.Interfaces;
                 }
                 return _interfaces;
+            }
+        }
+
+        public bool IsExtenderClass {
+            get {
+                if (_primaryPartialClass != null) {
+                    return _primaryPartialClass.IsExtenderClass;
+                }
+
+                return (String.IsNullOrEmpty(_extendee) == false);
             }
         }
 
@@ -147,12 +156,6 @@ namespace ScriptSharp.ScriptModel {
                     }
                 }
                 return _minimizationDepth;
-            }
-        }
-
-        public string MixinRoot {
-            get {
-                return _mixinRoot;
             }
         }
 
@@ -263,9 +266,15 @@ namespace ScriptSharp.ScriptModel {
             return base.GetMember(name);
         }
 
-        public void SetGlobalMethods(string mixinRoot) {
-            _globalMethods = true;
-            _mixinRoot = mixinRoot;
+        public void SetExtenderClass(string extendee) {
+            Debug.Assert(String.IsNullOrEmpty(extendee) == false);
+
+            if (_primaryPartialClass != null) {
+                _primaryPartialClass.SetExtenderClass(extendee);
+                return;
+            }
+
+            _extendee = extendee;
         }
 
         public void SetInheritance(ClassSymbol baseClass, ICollection<InterfaceSymbol> interfaces) {

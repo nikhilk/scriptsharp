@@ -726,9 +726,9 @@ namespace ScriptSharp.Importer {
                 else {
                     typeSymbol = new ClassSymbol(name, namespaceSymbol);
 
-                    string mixinRoot;
-                    if (MetadataHelpers.ShouldGlobalizeMembers(type, out mixinRoot)) {
-                        ((ClassSymbol)typeSymbol).SetGlobalMethods(mixinRoot);
+                    string extendee;
+                    if (MetadataHelpers.IsScriptExtension(type, out extendee)) {
+                        ((ClassSymbol)typeSymbol).SetExtenderClass(extendee);
                     }
                 }
             }

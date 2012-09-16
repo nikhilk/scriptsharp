@@ -82,23 +82,23 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public bool IsExtension {
+            get {
+                if (_aliased) {
+                    // Methods with a script alias are considered extension methods.
+                    return true;
+                }
+                if (Parent.Type == SymbolType.Class) {
+                    return ((ClassSymbol)Parent).IsExtenderClass;
+                }
+                return false;
+            }
+        }
+
         public bool IsGeneric {
             get {
                 return (_genericArguments != null) &&
                        (_genericArguments.Count != 0);
-            }
-        }
-
-        public bool IsGlobalMethod {
-            get {
-                if (_aliased) {
-                    // Methods with a script alias are considered global methods.
-                    return true;
-                }
-                if (Parent.Type == SymbolType.Class) {
-                    return ((ClassSymbol)Parent).HasGlobalMethods;
-                }
-                return false;
             }
         }
 

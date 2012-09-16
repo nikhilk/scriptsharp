@@ -61,7 +61,7 @@ namespace BasicTests {
         void Run();
     }
 
-    [GlobalMethods]
+    [ScriptExtension("$global")]
     internal static class Util {
 
         internal static void ShowHelp() { }

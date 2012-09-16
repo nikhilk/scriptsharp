@@ -41,14 +41,14 @@ namespace MemberTests {
         }
     }
 
-    [GlobalMethods]
+    [ScriptExtension("$global")]
     public static class Foo {
 
         public static void DoStuff() {
         }
     }
 
-    [Mixin("window")]
+    [ScriptExtension("window")]
     public static class Bar {
 
         public static void M1() {
@@ -58,32 +58,12 @@ namespace MemberTests {
         }
     }
 
-    [GlobalMethods]
-    public static class FooBar {
-    
-        static FooBar() {
-            Window.Alert("Startup code in FooBar");
-        }
-
-        public static void DoStuff2() {
-        }
-    }
-
-    [GlobalMethods]
-    public static class FooBar2 {
-    
-        static FooBar2() {
-            int timeStamp = (new Date()).GetMilliseconds();
-            Window.Alert("Startup code in FooBar: " + timeStamp);
-        }
-    }
-
     public class X {
 
         public void Update(int i) { }
     }
 
-    [Mixin("$.fn")]
+    [ScriptExtension("$.fn")]
     public static class Plugin {
 
         public static X Extend(X x, int i) {

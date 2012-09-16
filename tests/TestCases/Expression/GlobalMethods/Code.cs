@@ -14,7 +14,7 @@ namespace ExpressionTests {
         }
     }
 
-    [GlobalMethods]
+    [ScriptExtension("$global")]
     public static class Util {
 
         public static void Foo() {

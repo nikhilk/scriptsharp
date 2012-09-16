@@ -15,6 +15,14 @@ namespace System {
     [Imported]
     public static class Script {
 
+        [IntrinsicProperty]
+        [ScriptAlias("$global")]
+        public static object Global {
+            get {
+                return null;
+            }
+        }
+
         /// <summary>
         /// Converts an object into a boolean.
         /// </summary>

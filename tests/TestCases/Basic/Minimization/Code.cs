@@ -7,7 +7,7 @@ using ScriptFX;
 
 namespace BasicTests {
 
-    [GlobalMethods]
+    [ScriptExtension("$global")]
     public static class GlobalMethodsClass {
 
         public static void Run() {

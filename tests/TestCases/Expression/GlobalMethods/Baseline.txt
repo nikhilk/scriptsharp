@@ -8,7 +8,7 @@ define('test', ['ss'], function(ss) {
   var ExpressionTests$App$ = {
     test: function(arg) {
       eval('[ 1, 2 ]');
-      foo();
+      $global.foo();
       setTimeout(foo, 0);
     }
   };
@@ -16,7 +16,7 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Util
 
-  this.foo = function() {
+  $global.foo = function() {
   }
 
 

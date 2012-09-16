@@ -236,6 +236,31 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestScriptExtension() {
+            string expectedErrors1 =
+                "ScriptExtension attribute declaration must specify the object being extended. Code.cs(9, 5)" + Environment.NewLine +
+                "Classes marked with ScriptExtension attribute should only have methods. Code.cs(16, 9)";
+
+            Compilation compilation = CreateCompilation();
+            compilation.AddSource("Code.cs");
+
+            bool result = compilation.Execute();
+            Assert.IsFalse(result, "Expected compilation to fail.");
+
+            Assert.IsTrue(compilation.HasErrors, "Expected compilation to fail with errors.");
+            if (String.CompareOrdinal(compilation.ErrorMessages, expectedErrors1) != 0) {
+                Console.WriteLine("Expected Errors:");
+                Console.WriteLine(expectedErrors1);
+                Console.WriteLine();
+                Console.WriteLine("Actual Errors:");
+                Console.WriteLine(compilation.ErrorMessages);
+                Console.WriteLine();
+
+                Assert.Fail("Unexpected errors.");
+            }
+        }
+
+        [TestMethod]
         public void TestUnsupported() {
             string expectedErrors1 =
                 "Type destructors are not supported. Code1.cs(14, 9)" + Environment.NewLine +

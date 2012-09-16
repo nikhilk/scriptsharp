@@ -247,9 +247,9 @@ namespace BasicTests {
     }
 
     /// <summary>
-    /// Class with global methods.
+    /// Class with extension methods.
     /// </summary>
-    [GlobalMethods]
+    [ScriptExtension("$global")]
     public static class GlobalMethodsClass {
 
         /// <summary>
