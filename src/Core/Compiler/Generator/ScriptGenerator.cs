@@ -96,7 +96,10 @@ namespace ScriptSharp.Generator {
 
             // Sort the types, so similar types of types are grouped, and parent classes
             // come before derived classes.
-            types.Sort(new TypeComparer());
+            IComparer<TypeSymbol> typeComparer = new TypeComparer();
+            types.Sort(typeComparer);
+            publicTypes.Sort(typeComparer);
+            internalTypes.Sort(typeComparer);
 
             string moduleName = symbolSet.ScriptName;
 
@@ -142,19 +145,21 @@ namespace ScriptSharp.Generator {
                 _writer.WriteLine("{");
                 _writer.Indent++;
                 bool firstType = true;
-                foreach (TypeSymbol type in types) {
-                    if (type.IsPublic == false) {
-                        if ((type.Type == SymbolType.Class) &&
-                            ((ClassSymbol)type).HasGlobalMethods) {
-                            continue;
-                        }
-
-                        if (firstType == false) {
-                            _writer.WriteLine(",");
-                        }
-                        TypeGenerator.GenerateRegistrationScript(this, type);
-                        firstType = false;
+                foreach (TypeSymbol type in internalTypes) {
+                    if ((type.Type == SymbolType.Class) &&
+                        ((ClassSymbol)type).HasGlobalMethods) {
+                        continue;
                     }
+                    if ((type.Type == SymbolType.Record) &&
+                        ((RecordSymbol)type).Constructor == null) {
+                        continue;
+                    }
+
+                    if (firstType == false) {
+                        _writer.WriteLine(",");
+                    }
+                    TypeGenerator.GenerateRegistrationScript(this, type);
+                    firstType = false;
                 }
                 _writer.Indent--;
                 _writer.WriteLine();
@@ -170,19 +175,17 @@ namespace ScriptSharp.Generator {
                 _writer.WriteLine("{");
                 _writer.Indent++;
                 bool firstType = true;
-                foreach (TypeSymbol type in types) {
-                    if (type.IsPublic) {
-                        if ((type.Type == SymbolType.Class) &&
-                            ((ClassSymbol)type).HasGlobalMethods) {
-                            continue;
-                        }
-
-                        if (firstType == false) {
-                            _writer.WriteLine(",");
-                        }
-                        TypeGenerator.GenerateRegistrationScript(this, type);
-                        firstType = false;
+                foreach (TypeSymbol type in publicTypes) {
+                    if ((type.Type == SymbolType.Class) &&
+                        ((ClassSymbol)type).HasGlobalMethods) {
+                        continue;
                     }
+
+                    if (firstType == false) {
+                        _writer.WriteLine(",");
+                    }
+                    TypeGenerator.GenerateRegistrationScript(this, type);
+                    firstType = false;
                 }
                 _writer.Indent--;
                 _writer.WriteLine();

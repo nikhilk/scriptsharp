@@ -19,8 +19,8 @@ Minimization Map
     Member 'Initialize' renamed to '$0'
     Member 'Numeric' renamed to '$1'
     Member 'OnClicked' renamed to 'e$1'
-    Member 'OnValueChanged' renamed to 'e$0'
     Member 'OnValueChanged' renamed to 'c$6'
+    Member 'OnValueChanged' renamed to 'e$0'
     Member 'Property1' renamed to 'c$7'
     Member 'Setup' renamed to '$2'
     Member 'ShowHelp' renamed to '$0'
@@ -81,9 +81,25 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   // BasicTests.ABC
 
   function BasicTests$ABC() {
+    var d = { };
   }
   var BasicTests$ABC$ = {
 
+  };
+
+
+  // BasicTests.Bar
+
+  function BasicTests$Bar() {
+  }
+  var BasicTests$Bar$ = {
+    $0: function() {
+    },
+    toString: function() {
+      return null;
+    },
+    $1: function(handler) {
+    }
   };
 
 
@@ -113,17 +129,13 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   };
 
 
-  // BasicTests.Bar
+  // BasicTests.BaseClass
 
-  function BasicTests$Bar() {
+  function BasicTests$BaseClass() {
+    BasicTests$BaseBaseClass.call(this);
   }
-  var BasicTests$Bar$ = {
-    $0: function() {
-    },
-    toString: function() {
-      return null;
-    },
-    $1: function(handler) {
+  var BasicTests$BaseClass$ = {
+    $1: function() {
     }
   };
 
@@ -135,17 +147,6 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   }
   var BasicTests$Bar2$ = {
 
-  };
-
-
-  // BasicTests.BaseClass
-
-  function BasicTests$BaseClass() {
-    BasicTests$BaseBaseClass.call(this);
-  }
-  var BasicTests$BaseClass$ = {
-    $1: function() {
-    }
   };
 
 
@@ -311,13 +312,13 @@ define('test', ['ss', 'lib'], function(ss, lib) {
     {
       IApp: [ BasicTests$IApp ],
       MyData: BasicTests$MyData,
-      BaseBaseClass: [ BasicTests$BaseBaseClass, BasicTests$BaseBaseClass$, null ],
-      ABC: [ BasicTests$ABC, BasicTests$ABC$, null ],
       AppHelper: [ BasicTests$AppHelper, BasicTests$AppHelper$, null ],
       Bar: [ BasicTests$Bar, BasicTests$Bar$, null ],
+      BaseBaseClass: [ BasicTests$BaseBaseClass, BasicTests$BaseBaseClass$, null ],
+      ABC: [ BasicTests$ABC, BasicTests$ABC$, null ],
       Bar2: [ BasicTests$Bar2, BasicTests$Bar2$, BasicTests$Bar ],
-      BaseClass: [ BasicTests$BaseClass, BasicTests$BaseClass$, BasicTests$BaseBaseClass ],
       BarCustom: [ BasicTests$BarCustom, BasicTests$BarCustom$, BasicTests$Bar ],
+      BaseClass: [ BasicTests$BaseClass, BasicTests$BaseClass$, BasicTests$BaseBaseClass ],
       BarEx: [ BasicTests$BarEx, BasicTests$BarEx$, BasicTests$Bar2 ],
       BarCustom2: [ BasicTests$BarCustom2, BasicTests$BarCustom2$, BasicTests$BarCustom ],
       DerivedClass: [ BasicTests$DerivedClass, BasicTests$DerivedClass$, BasicTests$BaseClass ],

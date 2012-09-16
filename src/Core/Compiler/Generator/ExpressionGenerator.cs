@@ -797,6 +797,12 @@ namespace ScriptSharp.Generator {
                     return;
                 }
                 else if (expression.AssociatedType.Type == SymbolType.Record) {
+                    if (expression.AssociatedType.IsApplicationType &&
+                        ((RecordSymbol)expression.AssociatedType).Constructor == null) {
+                        writer.Write("{ }");
+                        return;
+                    }
+
                     writer.Write(expression.AssociatedType.FullGeneratedName);
                     writer.Write("(");
                     if (expression.Parameters != null) {

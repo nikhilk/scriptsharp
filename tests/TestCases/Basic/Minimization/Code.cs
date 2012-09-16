@@ -220,6 +220,16 @@ namespace BasicTests {
         }
     }
 
+    internal sealed class DataHolder : Record {
+
+        public string s1;
+        public string s2;
+    }
+
     internal class ABC {
+
+        public ABC() {
+            DataHolder d = new DataHolder();
+        }
     }
 }

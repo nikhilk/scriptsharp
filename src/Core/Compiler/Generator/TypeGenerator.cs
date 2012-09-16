@@ -328,6 +328,18 @@ namespace ScriptSharp.Generator {
             Debug.Assert(typeSymbol != null);
             Debug.Assert(typeSymbol.IsApplicationType);
 
+            if (typeSymbol.Type == SymbolType.Delegate) {
+                // No-op ... there is currently nothing to generate for a particular delegate type
+                return;
+            }
+
+            if ((typeSymbol.Type == SymbolType.Record) &&
+                (typeSymbol.IsPublic == false) &&
+                (((RecordSymbol)typeSymbol).Constructor == null)) {
+                // Nothing to generate for internal records with no explicit ctor
+                return;
+            }
+
             ScriptTextWriter writer = generator.Writer;
 
             writer.WriteLine("// " + typeSymbol.FullName);
@@ -347,9 +359,6 @@ namespace ScriptSharp.Generator {
                     break;
                 case SymbolType.Enumeration:
                     GenerateEnumeration(generator, (EnumerationSymbol)typeSymbol);
-                    break;
-                case SymbolType.Delegate:
-                    // No-op ... there is currently nothing to generate for a particular delegate type
                     break;
                 case SymbolType.Record:
                     GenerateRecord(generator, (RecordSymbol)typeSymbol);
