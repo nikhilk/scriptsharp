@@ -98,6 +98,15 @@ namespace ScriptSharp.ScriptModel {
             if (symbol is TypeSymbol) {
                 transformChildren = (symbol.Type != SymbolType.Interface) &&
                                     (symbol.Type != SymbolType.Delegate);
+
+                if ((symbol.Type == SymbolType.Enumeration) &&
+                    ((EnumerationSymbol)symbol).UseNamedValues) {
+                    // If the enum uses named values, then don't transform, as its
+                    // unlikely the code wants to use some random generated name as the
+                    // named value.
+                    transformChildren = false;
+                }
+
                 return null;
             }
             else if (symbol is MemberSymbol) {

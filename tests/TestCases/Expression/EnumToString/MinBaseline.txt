@@ -9,7 +9,7 @@ define('test', ['ss'], function(ss) {
     test: function(arg) {
       var s1 = (0).toString();
       var s2 = (2).toString();
-      var s3 = '$0';
+      var s3 = 'starting';
       var s4 = (0).toString();
     },
     $0: function(m, c, s, t) {
