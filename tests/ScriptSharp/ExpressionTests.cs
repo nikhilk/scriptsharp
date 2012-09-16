@@ -182,6 +182,13 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestTuples() {
+            RunTest((c) => {
+                c.AddSource("Code.cs");
+            });
+        }
+
+        [TestMethod]
         public void TestUnary() {
             RunTest((c) => {
                 c.AddSource("Code.cs");

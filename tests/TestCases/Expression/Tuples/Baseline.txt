@@ -1,0 +1,25 @@
+define('test', ['ss'], function(ss) {
+  'use strict';
+
+  // ExpressionTests.App
+
+  function ExpressionTests$App() {
+  }
+  var ExpressionTests$App$ = {
+    test: function(arg) {
+      var t1 = { };
+      var t2 = { item1: 1, item2: 2 };
+      var t3 = { };
+      var t4 = { item1: 1, item2: 22, item3: '333' };
+    }
+  };
+
+
+  var $test = ss.module('test', null,
+    {
+      App: [ ExpressionTests$App, ExpressionTests$App$, null ]
+    });
+
+
+  return $test;
+});

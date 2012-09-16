@@ -796,6 +796,27 @@ namespace ScriptSharp.Generator {
                     }
                     return;
                 }
+                else if (type.Equals("Tuple")) {
+                    if ((expression.Parameters == null) || (expression.Parameters.Count == 0)) {
+                        writer.Write("{ }");
+                    }
+                    else {
+                        writer.Write("{ ");
+                        for (int i = 0; i < expression.Parameters.Count; i++) {
+                            if (i != 0) {
+                                writer.Write(", ");
+                            }
+
+                            writer.Write("item");
+                            writer.Write(i + 1);
+                            writer.Write(": ");
+                            GenerateExpression(generator, symbol, expression.Parameters[i]);
+                        }
+                        writer.Write(" }");
+                    }
+
+                    return;
+                }
                 else if (expression.AssociatedType.Type == SymbolType.Record) {
                     if (expression.AssociatedType.IsApplicationType &&
                         ((RecordSymbol)expression.AssociatedType).Constructor == null) {

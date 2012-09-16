@@ -9,17 +9,18 @@ using System.Runtime.CompilerServices;
 namespace System {
 
     [Imported]
+    [IgnoreNamespace]
     [ScriptName("Tuple")]
     public sealed class Tuple<T1, T2> {
 
         public Tuple() {
         }
 
-        public Tuple(T1 first, T2 second) {
+        public Tuple(T1 item1, T2 item2) {
         }
 
         [IntrinsicProperty]
-        public T1 First {
+        public T1 Item1 {
             get {
                 return default(T1);
             }
@@ -28,7 +29,7 @@ namespace System {
         }
 
         [IntrinsicProperty]
-        public T2 Second {
+        public T2 Item2 {
             get {
                 return default(T2);
             }
@@ -38,17 +39,18 @@ namespace System {
     }
 
     [Imported]
+    [IgnoreNamespace]
     [ScriptName("Tuple")]
     public sealed class Tuple<T1, T2, T3> {
 
         public Tuple() {
         }
 
-        public Tuple(T1 first, T2 second, T3 third) {
+        public Tuple(T1 item1, T2 item2, T3 item3) {
         }
 
         [IntrinsicProperty]
-        public T1 First {
+        public T1 Item1 {
             get {
                 return default(T1);
             }
@@ -57,7 +59,7 @@ namespace System {
         }
 
         [IntrinsicProperty]
-        public T2 Second {
+        public T2 Item2 {
             get {
                 return default(T2);
             }
@@ -66,9 +68,57 @@ namespace System {
         }
 
         [IntrinsicProperty]
-        public T3 Third {
+        public T3 Item3 {
             get {
                 return default(T3);
+            }
+            set {
+            }
+        }
+    }
+
+    [Imported]
+    [IgnoreNamespace]
+    [ScriptName("Tuple")]
+    public sealed class Tuple<T1, T2, T3, T4> {
+
+        public Tuple() {
+        }
+
+        public Tuple(T1 item1, T2 item2, T3 item3, T4 item4) {
+        }
+
+        [IntrinsicProperty]
+        public T1 Item1 {
+            get {
+                return default(T1);
+            }
+            set {
+            }
+        }
+
+        [IntrinsicProperty]
+        public T2 Item2 {
+            get {
+                return default(T2);
+            }
+            set {
+            }
+        }
+
+        [IntrinsicProperty]
+        public T3 Item3 {
+            get {
+                return default(T3);
+            }
+            set {
+            }
+        }
+
+        [IntrinsicProperty]
+        public T4 Item4 {
+            get {
+                return default(T4);
             }
             set {
             }

@@ -1917,14 +1917,14 @@ Types:
         Global Methods: False
         BaseClass: Object
         Members:
-            Field: First
+            Field: Item1
                 AssociatedType: T1
                 Visibility: Public
-                Generated Name: first
-            Field: Second
+                Generated Name: item1
+            Field: Item2
                 AssociatedType: T2
                 Visibility: Public
-                Generated Name: second
+                Generated Name: item2
         
     Class: Tuple`3
         Application Type: False
@@ -1933,18 +1933,42 @@ Types:
         Global Methods: False
         BaseClass: Object
         Members:
-            Field: First
+            Field: Item1
                 AssociatedType: T1
                 Visibility: Public
-                Generated Name: first
-            Field: Second
+                Generated Name: item1
+            Field: Item2
                 AssociatedType: T2
                 Visibility: Public
-                Generated Name: second
-            Field: Third
+                Generated Name: item2
+            Field: Item3
                 AssociatedType: T3
                 Visibility: Public
-                Generated Name: third
+                Generated Name: item3
+        
+    Class: Tuple`4
+        Application Type: False
+        Public: True
+        Generated Name: Tuple
+        Global Methods: False
+        BaseClass: Object
+        Members:
+            Field: Item1
+                AssociatedType: T1
+                Visibility: Public
+                Generated Name: item1
+            Field: Item2
+                AssociatedType: T2
+                Visibility: Public
+                Generated Name: item2
+            Field: Item3
+                AssociatedType: T3
+                Visibility: Public
+                Generated Name: item3
+            Field: Item4
+                AssociatedType: T4
+                Visibility: Public
+                Generated Name: item4
         
     Class: Type
         Application Type: False
