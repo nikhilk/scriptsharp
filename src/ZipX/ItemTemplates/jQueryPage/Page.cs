@@ -7,17 +7,14 @@ using System.Html;
 using System.Runtime.CompilerServices;
 using jQueryApi;
 
-namespace $rootnamespace$
+[ScriptModule]
+internal static class $safeitemrootname$
 {
-    [GlobalMethods]
-    internal static class $safeitemrootname$
+    static $safeitemrootname$()
     {
-        static $safeitemrootname$()
-        {
-            jQuery.OnDocumentReady(delegate() {
-                // Add script that runs once the document is ready for being
-                // consumed by script.
-            });
-        }
+        jQuery.OnDocumentReady(delegate() {
+            // Add script that runs once the document is ready for being
+            // consumed by script.
+        });
     }
 }

@@ -161,6 +161,31 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestModules() {
+            string expectedErrors =
+                "ScriptModule attribute can only be set on internal static classes. Code.cs(9, 5)" + Environment.NewLine +
+                "Classes marked with ScriptModule attribute should only have a static constructor. Code.cs(19, 9)";
+
+            Compilation compilation = CreateCompilation();
+            compilation.AddSource("Code.cs");
+
+            bool result = compilation.Execute();
+            Assert.IsFalse(result, "Expected compilation to fail.");
+
+            Assert.IsTrue(compilation.HasErrors, "Expected compilation to fail with errors.");
+            if (String.CompareOrdinal(compilation.ErrorMessages, expectedErrors) != 0) {
+                Console.WriteLine("Expected Errors:");
+                Console.WriteLine(expectedErrors);
+                Console.WriteLine();
+                Console.WriteLine("Actual Errors:");
+                Console.WriteLine(compilation.ErrorMessages);
+                Console.WriteLine();
+
+                Assert.Fail("Unexpected errors.");
+            }
+        }
+
+        [TestMethod]
         public void TestNestedTypes() {
             string expectedErrors =
                 "Only members are allowed inside types. Nested types are not supported. Code.cs(9, 5)" + Environment.NewLine +
@@ -237,7 +262,7 @@ namespace ScriptSharp.Tests {
 
         [TestMethod]
         public void TestScriptExtension() {
-            string expectedErrors1 =
+            string expectedErrors =
                 "ScriptExtension attribute declaration must specify the object being extended. Code.cs(9, 5)" + Environment.NewLine +
                 "Classes marked with ScriptExtension attribute should only have methods. Code.cs(16, 9)";
 
@@ -248,9 +273,9 @@ namespace ScriptSharp.Tests {
             Assert.IsFalse(result, "Expected compilation to fail.");
 
             Assert.IsTrue(compilation.HasErrors, "Expected compilation to fail with errors.");
-            if (String.CompareOrdinal(compilation.ErrorMessages, expectedErrors1) != 0) {
+            if (String.CompareOrdinal(compilation.ErrorMessages, expectedErrors) != 0) {
                 Console.WriteLine("Expected Errors:");
-                Console.WriteLine(expectedErrors1);
+                Console.WriteLine(expectedErrors);
                 Console.WriteLine();
                 Console.WriteLine("Actual Errors:");
                 Console.WriteLine(compilation.ErrorMessages);

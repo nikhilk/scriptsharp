@@ -19,6 +19,7 @@ namespace ScriptSharp.Validator {
             CustomTypeNode typeNode = (CustomTypeNode)node;
 
             bool restrictToMethodMembers = false;
+            bool restrictToCtors = false;
             bool hasCodeMembers = false;
             ParseNode codeMemberNode = null;
 
@@ -29,16 +30,6 @@ namespace ScriptSharp.Validator {
                 // for now that translates into skipping the members.
 
                 return false;
-            }
-
-            AttributeNode scriptNamespaceNode = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptNamespace");
-            if (scriptNamespaceNode != null) {
-                string scriptNamespace = (string)((LiteralNode)scriptNamespaceNode.Arguments[0]).Value;
-
-                if (Utility.IsValidScriptNamespace(scriptNamespace) == false) {
-                    errorHandler.ReportError("A script namespace must be a valid script identifier.",
-                                             scriptNamespaceNode.Token.Location);
-                }
             }
 
             if (typeNode.Type == TokenType.Struct) {
@@ -115,6 +106,17 @@ namespace ScriptSharp.Validator {
                                                  typeNode.Token.Location);
                     }
                 }
+
+                AttributeNode moduleAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptModule");
+                if (moduleAttribute != null) {
+                    restrictToCtors = true;
+
+                    if (((typeNode.Modifiers & Modifiers.Static) == 0) ||
+                        ((typeNode.Modifiers & Modifiers.Internal) == 0)) {
+                        errorHandler.ReportError("ScriptModule attribute can only be set on internal static classes.",
+                                                 typeNode.Token.Location);
+                    }
+                }
             }
 
             if ((typeNode.Members != null) && (typeNode.Members.Count != 0)) {
@@ -137,6 +139,11 @@ namespace ScriptSharp.Validator {
 
                     if (restrictToMethodMembers && (memberNode.NodeType != ParseNodeType.MethodDeclaration)) {
                         errorHandler.ReportError("Classes marked with ScriptExtension attribute should only have methods.",
+                                                 memberNode.Token.Location);
+                    }
+
+                    if (restrictToCtors && (memberNode.NodeType != ParseNodeType.ConstructorDeclaration)) {
+                        errorHandler.ReportError("Classes marked with ScriptModule attribute should only have a static constructor.",
                                                  memberNode.Token.Location);
                     }
 

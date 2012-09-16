@@ -117,6 +117,12 @@ namespace System.Runtime.CompilerServices {
         }
     }
 
+    [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
+    [NonScriptable]
+    [Imported]
+    public sealed class ScriptModuleAttribute : Attribute {
+    }
+
     /// <summary>
     /// This attribute marks an enumeration type within a system assembly as as a set of
     /// names. Rather than the specific value, the name of the enumeration field is

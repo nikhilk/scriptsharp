@@ -340,6 +340,12 @@ namespace ScriptSharp.Generator {
                 return;
             }
 
+            if ((typeSymbol.Type == SymbolType.Class) &&
+                ((ClassSymbol)typeSymbol).IsModuleClass) {
+                // No members on script modules, which only contain startup code
+                return;
+            }
+
             ScriptTextWriter writer = generator.Writer;
 
             writer.WriteLine("// " + typeSymbol.FullName);

@@ -1,0 +1,13 @@
+define('test', ['ss'], function(ss) {
+  'use strict';
+  var $global = this;
+
+  var $test = ss.module('test', null, null);
+
+  alert('Hello Startup');
+  window.addEventListener('load', function(e) {
+    alert('Loaded');
+  }, false);
+
+  return $test;
+});

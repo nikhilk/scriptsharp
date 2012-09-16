@@ -77,6 +77,14 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestModules() {
+            RunTest((c) => {
+                c.AddReference("Script.Web.dll").
+                  AddSource("Code.cs");
+            });
+        }
+
+        [TestMethod]
         public void TestNullable() {
             RunTest((c) => {
                 c.AddSource("Code.cs");

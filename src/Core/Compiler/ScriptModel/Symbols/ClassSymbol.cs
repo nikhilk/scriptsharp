@@ -25,6 +25,7 @@ namespace ScriptSharp.ScriptModel {
 
         private string _extendee;
         private bool _testClass;
+        private bool _moduleClass;
 
         private ClassSymbol _primaryPartialClass;
 
@@ -114,6 +115,12 @@ namespace ScriptSharp.ScriptModel {
                 }
 
                 return (String.IsNullOrEmpty(_extendee) == false);
+            }
+        }
+
+        public bool IsModuleClass {
+            get {
+                return _moduleClass;
             }
         }
 
@@ -283,6 +290,10 @@ namespace ScriptSharp.ScriptModel {
 
             _baseClass = baseClass;
             _interfaces = interfaces;
+        }
+
+        public void SetModuleClass() {
+            _moduleClass = true;
         }
 
         public void SetPrimaryPartialClass(ClassSymbol primaryPartialClass) {

@@ -6,15 +6,12 @@ using System.Collections.Generic;
 using System.Html;
 using System.Runtime.CompilerServices;
 
-namespace $rootnamespace$
+[ScriptModule]
+internal static class $safeitemrootname$
 {
-    [GlobalMethods]
-    internal static class $safeitemrootname$
+    static $safeitemrootname$()
     {
-        static $safeitemrootname$()
-        {
-            // Add script that runs on startup as the script is loaded into
-            // the page
-        }
+        // Add script that runs on startup as the script is loaded into
+        // the page
     }
 }

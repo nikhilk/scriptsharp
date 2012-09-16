@@ -736,6 +736,11 @@ namespace ScriptSharp.Compiler {
 
                     ((ClassSymbol)typeSymbol).SetExtenderClass(extendee);
                 }
+
+                AttributeNode moduleAttribute = AttributeNode.FindAttribute(attributes, "ScriptModule");
+                if (moduleAttribute != null) {
+                    ((ClassSymbol)typeSymbol).SetModuleClass();
+                }
             }
 
             if (typeNode.Type == TokenType.Enum) {

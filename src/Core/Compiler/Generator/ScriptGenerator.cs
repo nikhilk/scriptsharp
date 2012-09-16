@@ -62,6 +62,8 @@ namespace ScriptSharp.Generator {
             List<TypeSymbol> publicTypes = new List<TypeSymbol>();
             List<TypeSymbol> internalTypes = new List<TypeSymbol>();
 
+            bool hasNonModuleInternalTypes = false;
+
             foreach (NamespaceSymbol namespaceSymbol in symbolSet.Namespaces) {
                 if (namespaceSymbol.HasApplicationTypes) {
                     foreach (TypeSymbol type in namespaceSymbol.Types) {
@@ -88,6 +90,10 @@ namespace ScriptSharp.Generator {
                             publicTypes.Add(type);
                         }
                         else {
+                            if ((type.Type != SymbolType.Class) ||
+                                (((ClassSymbol)type).IsModuleClass == false)) {
+                                hasNonModuleInternalTypes = true;
+                            }
                             internalTypes.Add(type);
                         }
                     }
@@ -140,7 +146,7 @@ namespace ScriptSharp.Generator {
             _writer.Write("var $" + moduleName + " = ss.module('");
             _writer.Write(symbolSet.ScriptName);
             _writer.Write("',");
-            if (internalTypes.Count != 0) {
+            if ((internalTypes.Count != 0) && hasNonModuleInternalTypes) {
                 _writer.WriteLine();
                 _writer.Indent++;
                 _writer.WriteLine("{");
@@ -148,7 +154,7 @@ namespace ScriptSharp.Generator {
                 bool firstType = true;
                 foreach (TypeSymbol type in internalTypes) {
                     if ((type.Type == SymbolType.Class) &&
-                        ((ClassSymbol)type).IsExtenderClass) {
+                        (((ClassSymbol)type).IsExtenderClass || ((ClassSymbol)type).IsModuleClass)) {
                         continue;
                     }
                     if ((type.Type == SymbolType.Record) &&
