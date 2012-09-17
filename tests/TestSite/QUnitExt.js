@@ -21,9 +21,13 @@
   QUnit.done = function(failures, total) {
       appendLog('\r\nCompleted; ' + 'failures = ' + failures + '; total = ' + total);
 
+      if (window.location.protocol === 'file:') {
+        return;
+      }
+
       var logUrl = '/log/' + ((failures === 0) ? 'success' : 'failure');
       var xhr = new XMLHttpRequest();
-      if (failures === 0) {
+      if ((failures === 0) && (location.search !== '?debug')) {
         xhr.onreadystatechange = function() {
           if (xhr.readyState == 4) {
             window.open('', '_self', '');

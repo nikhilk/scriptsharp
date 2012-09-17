@@ -41,6 +41,10 @@
   //                roundtrips, and not paying the price of inlining on
   //                subsequent requests.
   //
+  // Scripts not following the AMD patten can be shimmed by explicitly
+  // specifying the exported object using data-export. Optionally dependencies
+  // can be specified as well, using the data-requires attribute.
+  //
   // TODO: Improve convention + provide ability to customize/replace it.
   //       Provide ability to plug in other types of loaders (like for css
   //       and templates).
@@ -77,6 +81,7 @@
 
         var script = _scripts[name] = {
           name: name,
+          amd: true,
           src: scriptElement.getAttribute('data-src')
         };
 
@@ -113,6 +118,18 @@
           }
           script.text = text;
           script.useText = true;
+        }
+        else {
+          var exp = scriptElement.getAttribute('data-export');
+          if (exp) {
+            script.amd = false;
+            script.exp = exp;
+
+            var requires = scriptElement.getAttribute('data-requires');
+            if (requires) {
+              script.requires = requires.split(',');
+            }
+          }
         }
 
         if (inline || scriptElement.hasAttribute('data-autoload')) {
@@ -177,18 +194,57 @@
   // TODO: Provide ability to plug in a shim for scripts that don't follow
   //       the AMD pattern.
 
+  var _head = document.getElementsByTagName('head')[0];
   function _loadScript(scriptName) {
     var script = _getScript(scriptName);
+    if (script.amd) {
+      // We don't listen to load events, since the expectation is an AMD
+      // compatible script will call into define(). Consequently, we require
+      // define() calls to include the leading module identifier to
+      // know which module was just loaded.
+
+      var scriptElement = document.createElement('script');
+      scriptElement.type = 'text/javascript';
+      if (script.useText) {
+        scriptElement.text = script.text;
+      }
+      else {
+        scriptElement.src = script.src;
+      }
+
+      _head.appendChild(scriptElement);
+    }
+    else {
+      script.requires ?
+        require(script.requires, function() { _loadNonAMDScript(script); }) :
+        _loadNonAMDScript(script);
+    }
+  }
+
+  function _loadNonAMDScript(script) {
+    // Listen the loaded/readystatechange events to figure out when the
+    // script is loaded, and when has, evaluate the export expression to
+    // get a reference to the object that will be treated as the module
+    // object.
 
     var scriptElement = document.createElement('script');
     scriptElement.type = 'text/javascript';
-    if (script.useText) {
-      scriptElement.text = script.text;
+    scriptElement.src = script.src;
+
+    scriptElement.onload = scriptElement.onreadystatechange = function() {
+      var rs = scriptElement.readyState;
+      if (rs && rs != 'complete' && rs != 'loaded') {
+        return;
+      }
+
+      scriptElement.onload = scriptElement.onreadystatechange = null;
+      try {
+        _completeModule(script.name, eval(script.exp));
+      }
+      catch (e) {
+      }
     }
-    else {
-      scriptElement.src = script.src;
-    }
-    document.getElementsByTagName('head')[0].appendChild(scriptElement);
+    _head.appendChild(scriptElement);
   }
 
 
@@ -248,7 +304,10 @@
 
     var dependencyCount = dependencyNames.length;
     if (dependencyCount == 0) {
-      callback.apply(global);
+      // No dependencies, so go ahead and invoke the callback
+      // immediately, but do so in an async way to mimic how
+      // it would have been invoked if there were dependencies.
+      setTimeout(callback, 0);
       return;
     }
 
@@ -270,13 +329,14 @@
   }
 
   function define(name, dependencyNames, callback) {
+    _getModule(name);
     require(dependencyNames, function() {
       _completeModule(name, callback.apply(global, arguments));
     });
   }
 
   // Enable using this loader to load jQuery (1.7+) as well.
-  define.amd = { jquery: true };
+  define.amd = { jQuery: true };
 
   global.require = require;
   global.define = define;
