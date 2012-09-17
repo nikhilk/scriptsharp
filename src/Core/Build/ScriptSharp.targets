@@ -40,6 +40,7 @@ Copyright (C) 2012. Script# Project. All rights reserved.
       OutputPath="$(OutputPath)"
       DeploymentPath="$(DeploymentPath)"
       CSharpAssembly="@(IntermediateAssembly)"
+      CrunchScript="$(CrunchScript)"
       ScriptDocumentation="$(UseDocumentation)"
       DocumentationFile="$(DocumentationFile)"
       ProjectPath="$(MSBuildProjectFullPath)">

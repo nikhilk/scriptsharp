@@ -38,6 +38,9 @@
     <Reference Include="System.XML" />
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities" />
+    <Reference Include="AjaxMin">
+      <HintPath>..\..\..\tools\ext\AjaxMin.dll</HintPath>
+    </Reference>
     <ProjectReference Include="..\Compiler\Compiler.csproj">
       <Project>{9f14036f-673f-418e-b817-7e2289d7f3f6}</Project>
       <Name>Compiler</Name>

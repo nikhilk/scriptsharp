@@ -13,6 +13,10 @@ using Microsoft.Build;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
+using ScriptCruncher = Microsoft.Ajax.Utilities.Minifier;
+using ScriptCruncherSettings = Microsoft.Ajax.Utilities.CodeSettings;
+using ScriptSourceMap = Microsoft.Ajax.Utilities.ScriptSharpSourceMap;
+
 namespace ScriptSharp.Tasks {
 
     /// <summary>
@@ -29,6 +33,7 @@ namespace ScriptSharp.Tasks {
         private string _defines;
         private bool _scriptDocumentation;
 
+        private bool _crunchScript;
         private bool _copyReferences;
         private string _outputPath;
         private string _deploymentPath;
@@ -38,6 +43,7 @@ namespace ScriptSharp.Tasks {
 
         public ScriptCompilerTask() {
             _copyReferences = true;
+            _crunchScript = true;
         }
 
         public bool CopyReferences {
@@ -46,6 +52,15 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _copyReferences = value;
+            }
+        }
+
+        public bool CrunchScript {
+            get {
+                return _crunchScript;
+            }
+            set {
+                _crunchScript = value;
             }
         }
 
@@ -213,6 +228,10 @@ namespace ScriptSharp.Tasks {
             ScriptCompiler minimizingCompiler = new ScriptCompiler(this);
             minimizingCompiler.Compile(minimizeOptions);
             if (_hasErrors == false) {
+                if (CrunchScript) {
+                    ExecuteCruncher(scriptTaskItem);
+                }
+
                 OnScriptFileGenerated(scriptTaskItem, minimizeOptions, /* copyReferences */ false);
             }
             else {
@@ -275,6 +294,24 @@ namespace ScriptSharp.Tasks {
             }
 
             return false;
+        }
+
+        private void ExecuteCruncher(ITaskItem scriptItem) {
+            string script = File.ReadAllText(scriptItem.ItemSpec);
+
+            ScriptCruncher cruncher = new ScriptCruncher();
+            ScriptCruncherSettings cruncherSettings = new ScriptCruncherSettings() {
+                StripDebugStatements = false,
+                OutputMode = Microsoft.Ajax.Utilities.OutputMode.SingleLine,
+                IgnorePreprocessorDefines = true,
+                IgnoreConditionalCompilation = true
+            };
+            cruncherSettings.AddNoAutoRename("$");
+            cruncherSettings.SetDebugNamespaces(null);
+
+            string crunchedScript = cruncher.MinifyJavaScript(script, cruncherSettings);
+
+            File.WriteAllText(scriptItem.ItemSpec, crunchedScript);
         }
 
         private ICollection<string> GetDefines() {
@@ -401,7 +438,7 @@ namespace ScriptSharp.Tasks {
                 string scriptFile = Path.ChangeExtension(reference, minimized ? ".min.js" : ".js");
 
                 string fileName = Path.GetFileNameWithoutExtension(scriptFile);
-                if (String.Compare(fileName, "mscorlib", StringComparison.OrdinalIgnoreCase) == 0) {
+                if (fileName.StartsWith("mscorlib", StringComparison.OrdinalIgnoreCase)) {
                     fileName = (minimized ? "ss.min" : "ss") + Path.GetExtension(scriptFile);
                     scriptFile = Path.Combine(Path.GetDirectoryName(scriptFile), fileName);
                 }

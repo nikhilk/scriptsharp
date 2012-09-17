@@ -27,6 +27,7 @@
     <file src="..\..\..\bin\Release\ScriptSharp.Build.dll" target="tools" />
     <file src="..\..\..\bin\Release\ScriptSharp.targets" target="tools" />
     <file src="..\..\..\bin\Release\ssc.exe" target="tools" />
+    <file src="..\..\..\bin\Release\AjaxMin.dll" target="tools" />
     <file src="Core\Install.ps1" target="tools" />
     <file src="Core\Uninstall.ps1" target="tools" />
     <file src="Core\Reset.psm1" target="tools" />
