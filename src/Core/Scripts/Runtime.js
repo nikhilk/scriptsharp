@@ -51,7 +51,7 @@ var ss = module('ss', null, {
 EventArgs.Empty = new EventArgs();
 
 return extend(ss, {
-  version: '0.7.6.0',
+  version: '0.8',
 
   isUndefined: isUndefined,
   isNull: isNull,

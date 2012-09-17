@@ -23,8 +23,8 @@
   </WizardExtension>
   <WizardData>
     <packages repository="extension" repositoryId="ScriptSharp.Extension.Templates">
-      <package id="ScriptSharp" version="0.7.6" />
-      <package id="ScriptSharp.Lib.HTML" version="0.7.6" />
+      <package id="ScriptSharp" version="0.8" />
+      <package id="ScriptSharp.Lib.HTML" version="0.8" />
     </packages>
   </WizardData>
 </VSTemplate>

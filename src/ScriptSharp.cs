@@ -12,6 +12,6 @@ using System.Reflection;
 [assembly: AssemblyCopyright("Copyright © 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("0.7.0.0")]
-[assembly: AssemblyFileVersion("0.7.6.0")]
+[assembly: AssemblyVersion("0.8.0.0")]
+[assembly: AssemblyFileVersion("0.8.0.0")]
 [assembly: CLSCompliant(true)]
