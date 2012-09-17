@@ -402,11 +402,18 @@ namespace ScriptSharp.Tasks {
 
             Func<string, bool, string> getScriptFile = delegate(string reference, bool debug) {
                 string scriptFile = Path.ChangeExtension(reference, debug ? ".debug.js" : ".js");
+
+                string fileName = Path.GetFileNameWithoutExtension(scriptFile);
+                if (String.Compare(fileName, "mscorlib", StringComparison.OrdinalIgnoreCase) == 0) {
+                    fileName = "ss" + Path.GetExtension(scriptFile);
+                    scriptFile = Path.Combine(Path.GetDirectoryName(scriptFile), fileName);
+                }
+
                 if (File.Exists(scriptFile)) {
                     return scriptFile;
                 }
 
-                string fileName = Path.GetFileName(scriptFile);
+                fileName = Path.GetFileName(scriptFile);
                 if ((fileName.Length > 7) && fileName.StartsWith("Script.", StringComparison.OrdinalIgnoreCase)) {
                     fileName = fileName.Substring(7);
                     scriptFile = Path.Combine(Path.GetDirectoryName(scriptFile), fileName);

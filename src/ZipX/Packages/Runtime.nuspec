@@ -18,9 +18,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="..\..\..\bin\Release\mscorlib.js" target="content\Scripts" />
-    <file src="..\..\..\bin\Release\mscorlib.debug.js" target="content\Scripts" />
+    <file src="..\..\..\bin\Release\ss.js" target="content\Scripts" />
+    <file src="..\..\..\bin\Release\ss.min.js" target="content\Scripts" />
     <file src="..\..\..\bin\Release\ssloader.js" target="content\Scripts" />
-    <file src="..\..\..\bin\Release\ssloader.debug.js" target="content\Scripts" />
+    <file src="..\..\..\bin\Release\ssloader.min.js" target="content\Scripts" />
   </files>
 </package>
