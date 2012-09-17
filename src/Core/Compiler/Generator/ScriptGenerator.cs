@@ -129,7 +129,17 @@ namespace ScriptSharp.Generator {
                 if (firstDependency == false) {
                     _writer.Write(", ");
                 }
-                _writer.Write(dependency);
+
+                if (String.Compare(dependency, "jquery", StringComparison.OrdinalIgnoreCase) == 0) {
+                    // TODO: This is a hack ... may want to generalize
+                    //       to allow module name and associated variable
+                    //       to differ.
+                    _writer.Write("$");
+                }
+                else {
+                    _writer.Write(dependency);
+                }
+
                 firstDependency = false;
             }
 

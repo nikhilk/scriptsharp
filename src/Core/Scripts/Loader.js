@@ -269,13 +269,17 @@
     });
   }
 
-  global.require = require;
-  global.define = function(name, dependencyNames, callback) {
+  function define(name, dependencyNames, callback) {
     require(dependencyNames, function() {
       _completeModule(name, callback.apply(global, arguments));
     });
   }
 
+  // Enable using this loader to load jQuery (1.7+) as well.
+  define.amd = { jquery: true };
+
+  global.require = require;
+  global.define = define;
 
   // Bootstrapping
   // If the document has already loaded (i.e. when this script was

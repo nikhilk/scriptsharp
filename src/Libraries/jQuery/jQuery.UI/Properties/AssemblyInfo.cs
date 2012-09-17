@@ -10,4 +10,4 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("Script.jQuery.UI")]
 [assembly: AssemblyDescription("Script# jQuery UI Plugin")]
-[assembly: ScriptAssembly("jQueryUI")]
+[assembly: ScriptAssembly("jqueryUI")]

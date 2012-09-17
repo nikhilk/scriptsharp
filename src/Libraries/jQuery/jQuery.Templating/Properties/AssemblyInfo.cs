@@ -9,4 +9,4 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("Script.jQuery.Templating")]
 [assembly: AssemblyDescription("Script# jQuery Templates Plugin")]
-[assembly: ScriptAssembly("jQueryTmpl")]
+[assembly: ScriptAssembly("jqueryTmpl")]

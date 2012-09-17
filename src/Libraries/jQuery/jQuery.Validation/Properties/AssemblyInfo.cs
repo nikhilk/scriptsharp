@@ -9,4 +9,4 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("Script.jQuery.Validation")]
 [assembly: AssemblyDescription("Script# jQuery Validation Plugin")]
-[assembly: ScriptAssembly("jQueryValidation")]
+[assembly: ScriptAssembly("jqueryValidation")]
