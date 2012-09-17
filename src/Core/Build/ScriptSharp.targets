@@ -39,7 +39,6 @@ Copyright (C) 2012. Script# Project. All rights reserved.
       Defines="$(DefineConstants)"
       OutputPath="$(OutputPath)"
       DeploymentPath="$(DeploymentPath)"
-      Template="$(ScriptTemplate)"
       CSharpAssembly="@(IntermediateAssembly)"
       DocumentationFile="$(DocumentationFile)"
       SuppressDocumentation="$(SuppressDocumentation)"

@@ -20,7 +20,6 @@ namespace ScriptSharp {
         private ICollection<string> _defines;
         private ICollection<IStreamSource> _sources;
         private ICollection<IStreamSource> _resources;
-        private IStreamSource _templateFile;
         private IStreamSource _scriptFile;
         private IStreamSource _docCommentFile;
         private bool _debugFlavor;
@@ -156,15 +155,6 @@ namespace ScriptSharp {
             }
             set {
                 _sources = value;
-            }
-        }
-
-        public IStreamSource TemplateFile {
-            get {
-                return _templateFile;
-            }
-            set {
-                _templateFile = value;
             }
         }
 

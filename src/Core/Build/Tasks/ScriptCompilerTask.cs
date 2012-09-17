@@ -24,7 +24,6 @@ namespace ScriptSharp.Tasks {
         private ITaskItem[] _references;
         private ITaskItem[] _sources;
         private ITaskItem[] _resources;
-        private ITaskItem _template;
         private ITaskItem _docCommentFile;
         private ITaskItem _csharpAssembly;
 
@@ -82,15 +81,6 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _deploymentPath = value;
-            }
-        }
-
-        public ITaskItem Template {
-            get {
-                return _template;
-            }
-            set {
-                _template = value;
             }
         }
 
@@ -245,9 +235,6 @@ namespace ScriptSharp.Tasks {
             options.References = GetReferences();
             options.Sources = GetSources(sourceItems);
             options.Resources = GetResources(resourceItems, locale);
-            if (_template != null) {
-                options.TemplateFile = new TaskItemInputStreamSource(_template, "Template");
-            }
             if ((_docCommentFile != null) && (_suppressDocumentation == false)) {
                 options.DocCommentFile = new TaskItemInputStreamSource(_docCommentFile, "DocComment");
             }

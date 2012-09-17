@@ -67,7 +67,6 @@
     <Compile Include="Tasks\ResXCodeGeneratorTask.cs" />
     <Compile Include="Tasks\ScriptCompilerExecTask.cs" />
     <Compile Include="Tasks\ScriptCompilerTask.cs" />
-    <Compile Include="Tasks\ScriptPreprocessorTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ScriptSharp.targets">

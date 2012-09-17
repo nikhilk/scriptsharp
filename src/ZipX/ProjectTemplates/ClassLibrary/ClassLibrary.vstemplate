@@ -12,7 +12,6 @@
   <TemplateContent>
     <Project File="ClassLibrary.csproj" ReplaceParameters="true">
       <ProjectItem TargetFileName="Properties\FxCop.ruleset">FxCop.ruleset</ProjectItem>
-      <ProjectItem TargetFileName="Properties\Script.template">Script.template</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Class1.cs</ProjectItem>
     </Project>

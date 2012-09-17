@@ -126,17 +126,6 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
-        public void TestTemplate() {
-            RunTest((c) => {
-                c.AddReference("Script.Web.dll").
-                  AddTemplate("Template.js").
-                  AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
-                c.Options.Defines = new string[] { "DEBUG" };
-            });
-        }
-
-        [TestMethod]
         public void TestUnitTest() {
             RunTest((c) => {
                 c.AddSource("Code.cs");

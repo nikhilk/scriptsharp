@@ -22,7 +22,7 @@ namespace ScriptSharp {
     /// <summary>
     /// The Script# compiler.
     /// </summary>
-    public sealed class ScriptCompiler : IErrorHandler, IStreamResolver, IScriptInfo {
+    public sealed class ScriptCompiler : IErrorHandler {
 
         private CompilerOptions _options;
         private IErrorHandler _errorHandler;
@@ -222,64 +222,45 @@ namespace ScriptSharp {
         }
 
         private void GenerateScript() {
-            if (_options.TemplateFile != null) {
-                PreprocessorOptions preprocessorOptions = new PreprocessorOptions();
-                preprocessorOptions.SourceFile = _options.TemplateFile;
-                preprocessorOptions.TargetFile = _options.ScriptFile;
-                preprocessorOptions.DebugFlavor = _options.DebugFlavor;
-                preprocessorOptions.Minimize = _options.Minimize;
-                // preprocessorOptions.StripCommentsOnly = _options.StripCommentsOnly;
-                preprocessorOptions.UseWindowsLineBreaks = !_options.Minimize;
-                preprocessorOptions.PreprocessorVariables = _options.Defines;
+            Stream outputStream = null;
+            TextWriter outputWriter = null;
 
-                ScriptPreprocessor preprocessor = new ScriptPreprocessor(this, this, this);
-                preprocessor.Preprocess(preprocessorOptions);
-            }
-            else {
-                Stream outputStream = null;
-                TextWriter outputWriter = null;
+            try {
+                outputStream = _options.ScriptFile.GetStream();
+                if (outputStream == null) {
+                    ((IErrorHandler)this).ReportError("Unable to write to file " + _options.ScriptFile.FullName,
+                                                      _options.ScriptFile.FullName);
+                    return;
+                }
 
-                try {
-                    outputStream = _options.ScriptFile.GetStream();
-                    if (outputStream == null) {
-                        ((IErrorHandler)this).ReportError("Unable to write to file " + _options.ScriptFile.FullName,
-                                                                  _options.ScriptFile.FullName);
-                        return;
-                    }
-
-                    outputWriter = new StreamWriter(outputStream);
+                outputWriter = new StreamWriter(outputStream);
 
 #if DEBUG
-                    if (_options.InternalTestMode) {
-                        if (_testOutput != null) {
-                            outputWriter.Write(_testOutput);
-                            outputWriter.WriteLine("Script");
-                            outputWriter.WriteLine("================================================================");
-                            outputWriter.WriteLine();
-                            outputWriter.WriteLine();
-                        }
+                if (_options.InternalTestMode) {
+                    if (_testOutput != null) {
+                        outputWriter.Write(_testOutput);
+                        outputWriter.WriteLine("Script");
+                        outputWriter.WriteLine("================================================================");
+                        outputWriter.WriteLine();
+                        outputWriter.WriteLine();
                     }
+                }
 #endif // DEBUG
 
-                    GenerateScriptCore(outputWriter);
+                ScriptGenerator scriptGenerator = new ScriptGenerator(outputWriter, _options, _symbols);
+                scriptGenerator.GenerateScript(_symbols);
+            }
+            catch (Exception e) {
+                Debug.Fail(e.ToString());
+            }
+            finally {
+                if (outputWriter != null) {
+                    outputWriter.Flush();
                 }
-                catch (Exception e) {
-                    Debug.Fail(e.ToString());
-                }
-                finally {
-                    if (outputWriter != null) {
-                        outputWriter.Flush();
-                    }
-                    if (outputStream != null) {
-                        _options.ScriptFile.CloseStream(outputStream);
-                    }
+                if (outputStream != null) {
+                    _options.ScriptFile.CloseStream(outputStream);
                 }
             }
-        }
-
-        private void GenerateScriptCore(TextWriter writer) {
-            ScriptGenerator scriptGenerator = new ScriptGenerator(writer, _options, _symbols);
-            scriptGenerator.GenerateScript(_symbols);
         }
 
         private void ImportMetadata() {
@@ -305,112 +286,5 @@ namespace ScriptSharp {
             Console.Error.WriteLine(errorMessage);
         }
         #endregion
-
-        #region Implementation of IStreamResolver
-        IStreamSource IStreamResolver.ResolveInclude(IStreamSource baseStream, string includePath) {
-            if (includePath == "%code%") {
-                StringBuilder sb = new StringBuilder(4096);
-                StringWriter sw = new StringWriter(sb);
-
-                sw.WriteLine();
-                GenerateScriptCore(sw);
-
-                string compiledCode = sb.ToString();
-                return new CodeStreamSource(compiledCode);
-            }
-            else {
-                IStreamResolver resolver = baseStream as IStreamResolver;
-                if (resolver != null) {
-                    return resolver.ResolveInclude(baseStream, includePath);
-                }
-
-                string resolvedPath = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(baseStream.FullName)), includePath);
-                return new FileInputStreamSource(resolvedPath);
-            }
-        }
-        #endregion
-
-        #region Implementation of IScriptInfo
-        string IScriptInfo.GetValue(string name) {
-            if (_symbols == null) {
-                return null;
-            }
-
-            if (String.CompareOrdinal(name, "Name") == 0) {
-                return _symbols.ScriptName;
-            }
-            if (String.CompareOrdinal(name, "DependencyNames") == 0) {
-                bool first = true;
-                StringBuilder sb = new StringBuilder();
-                foreach (string scriptName in _symbols.Dependencies) {
-                    if (first == false) {
-                        sb.Append(",");
-                    }
-                    sb.Append("'");
-                    sb.Append(scriptName);
-                    sb.Append("'");
-                    first = false;
-                }
-
-                return sb.ToString();
-            }
-            if (String.CompareOrdinal(name, "Dependencies") == 0) {
-                bool first = true;
-                StringBuilder sb = new StringBuilder();
-                foreach (string scriptName in _symbols.Dependencies) {
-                    if (first == false) {
-                        sb.Append(",");
-                    }
-                    sb.Append(scriptName);
-                    first = false;
-                }
-
-                return sb.ToString();
-            }
-            if (String.CompareOrdinal(name, "ScriptFile") == 0) {
-                return Path.GetFileName(_options.ScriptFile.Name);
-            }
-            if (String.CompareOrdinal(name, "CompilerVersion") == 0) {
-                string exePath = typeof(ScriptCompiler).Assembly.GetModules()[0].FullyQualifiedName;
-                FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(exePath);
-
-                return versionInfo.FileVersion;
-            }
-
-            return null;
-        }
-        #endregion
-
-
-        private sealed class CodeStreamSource : IStreamSource {
-
-            private string _code;
-
-            public CodeStreamSource(string code) {
-                _code = code;
-            }
-
-            public string FullName {
-                get {
-                    return "%code%";
-                }
-            }
-
-            public string Name {
-                get {
-                    return "%code%";
-                }
-            }
-
-            public void CloseStream(Stream stream) {
-                Debug.Assert(stream != null);
-                stream.Close();
-            }
-
-            public Stream GetStream() {
-                byte[] buffer = Encoding.Default.GetBytes(_code);
-                return new MemoryStream(buffer);
-            }
-        }
     }
 }

@@ -27,7 +27,6 @@ Usage:
       [/tests]
       [/minimize]
       [/D:<variable>]
-      [/template:<template text file>]
       [/doc:<file>]
       [/res:<resource file>]
       /ref:<assembly path>
@@ -44,12 +43,6 @@ Usage:
             This is only used in non-debug builds.
 /D          Defines one or more variables that are used to conditionally
             compile code.
-/template   This can be used to provide a template file for the generated
-            script. The template can be used to include static content
-            such as copyright information. It can be used to #include
-            other script files. It can be used for conditional compilation
-            via #if etc. Finally #include[as-is] ""%code%"" can be used
-            to specify where the generated code appears in the template.
 /ref        One or more references to C# assemblies to be used
             to import metadata corresponding to dependency script files.
             (Note you must include a reference to mscorlib.dll)
@@ -71,7 +64,6 @@ Usage:
             bool includeTests = false;
             bool minimize = true;
             IStreamSource scriptFile = null;
-            IStreamSource templateFile = null;
             IStreamSource docCommentFile = null;
 
             foreach (string fileName in commandLine.Arguments) {
@@ -135,10 +127,6 @@ Usage:
                 }
             }
 
-            if (commandLine.Options.Contains("template")) {
-                templateFile = new FileInputStreamSource((string)commandLine.Options["template"], "Template");
-            }
-
             if (commandLine.Options.Contains("doc")) {
                 docCommentFile = new FileInputStreamSource((string)commandLine.Options["doc"], "DocComment");
             }
@@ -160,7 +148,6 @@ Usage:
             compilerOptions.Sources = sources;
             compilerOptions.Resources = resources;
             compilerOptions.ScriptFile = scriptFile;
-            compilerOptions.TemplateFile = templateFile;
             compilerOptions.DocCommentFile = docCommentFile;
 
             compilerOptions.InternalTestMode = commandLine.Options.Contains("test");

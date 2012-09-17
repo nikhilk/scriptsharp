@@ -18,7 +18,6 @@ namespace ScriptSharp.Tests.Core {
         private List<string> _references;
         private List<CompilationInput> _sources;
         private List<CompilationInput> _resources;
-        private CompilationInput _template;
         private CompilationInput _comments;
         private CompilationOutput _output;
 
@@ -119,20 +118,12 @@ namespace ScriptSharp.Tests.Core {
             return this;
         }
 
-        public Compilation AddTemplate(string name) {
-            string templatePath = _test.GetTestFilePath(name);
-
-            _template = new CompilationInput(templatePath, name);
-            return this;
-        }
-
         public bool Execute() {
             _output = new CompilationOutput(_test.TestContext.TestName);
 
             _options.References = _references;
             _options.Sources = _sources.Cast<IStreamSource>().ToList();
             _options.Resources = _resources.Cast<IStreamSource>().ToList();
-            _options.TemplateFile = _template;
             _options.DocCommentFile = _comments;
             _options.ScriptFile = _output;
 

@@ -179,9 +179,6 @@ namespace ScriptSharp.Tasks {
             options.References = GetReferences();
             options.Sources = GetSources(_sources);
             options.Resources = GetResources(_resources);
-            if (_template != null) {
-                options.TemplateFile = new TaskItemInputStreamSource(_template, "Template");
-            }
             if (_docCommentFile != null) {
                 options.DocCommentFile = new TaskItemInputStreamSource(_docCommentFile, "DocComment");
             }

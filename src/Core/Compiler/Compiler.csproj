@@ -172,7 +172,6 @@
     <Compile Include="Importer\IL\Utility\CryptoService.cs" />
     <Compile Include="Importer\IL\Utility\Empty.cs" />
     <Compile Include="Importer\IL\VariantType.cs" />
-    <Compile Include="IStreamResolver.cs" />
     <Compile Include="IStreamSource.cs" />
     <Compile Include="ScriptModel\Symbols\IntrinsicType.cs" />
     <Compile Include="ScriptModel\Symbols\GenericParameterSymbol.cs" />
@@ -180,17 +179,10 @@
     <Compile Include="CompilerOptions.cs" />
     <Compile Include="IErrorHandler.cs" />
     <Compile Include="ScriptCompiler.cs" />
-    <Compile Include="ScriptPreprocessor.cs" />
-    <Compile Include="PreprocessorOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\ScriptSharp.cs">
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Preprocessor\CondenserTextReader.cs" />
-    <Compile Include="Preprocessor\PreprocessorException.cs" />
-    <Compile Include="Preprocessor\PreprocessorTextReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Importer\MetadataImporter.cs" />
@@ -470,7 +462,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Importer\MetadataHelpers.cs" />
-    <Compile Include="IScriptInfo.cs" />
     <Compile Include="Compiler\ResourcesBuilder.cs" />
   </ItemGroup>
   <ItemGroup />
