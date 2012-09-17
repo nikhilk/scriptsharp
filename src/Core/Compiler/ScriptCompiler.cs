@@ -337,9 +337,6 @@ namespace ScriptSharp {
             }
 
             if (String.CompareOrdinal(name, "Name") == 0) {
-                if (String.IsNullOrEmpty(_options.ScriptNameSuffix) == false) {
-                    return _symbols.ScriptName + "." + _options.ScriptNameSuffix;
-                }
                 return _symbols.ScriptName;
             }
             if (String.CompareOrdinal(name, "DependencyNames") == 0) {

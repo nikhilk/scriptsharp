@@ -23,7 +23,6 @@ namespace ScriptSharp {
         private IStreamSource _templateFile;
         private IStreamSource _scriptFile;
         private IStreamSource _docCommentFile;
-        private string _scriptNameSuffix;
         private bool _debugFlavor;
         private bool _includeTests;
         private bool _minimize;
@@ -148,15 +147,6 @@ namespace ScriptSharp {
             }
             set {
                 _scriptFile = value;
-            }
-        }
-
-        public string ScriptNameSuffix {
-            get {
-                return _scriptNameSuffix ?? String.Empty;
-            }
-            set {
-                _scriptNameSuffix = value;
             }
         }
 
