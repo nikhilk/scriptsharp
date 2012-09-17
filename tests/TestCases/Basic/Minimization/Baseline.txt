@@ -36,8 +36,9 @@ Script
 ================================================================
 
 
+"use strict";
+
 define('test', ['ss', 'lib'], function(ss, lib) {
-  'use strict';
   var $global = this;
 
   // BasicTests.AppFlags

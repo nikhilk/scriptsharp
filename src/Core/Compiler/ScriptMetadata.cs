@@ -57,7 +57,7 @@ namespace ScriptSharp {
                 return String.Empty;
             }
 
-            return Environment.NewLine + ExpandContent(_footer);
+            return Environment.NewLine + ExpandContent(_footer) + Environment.NewLine;
         }
     }
 }

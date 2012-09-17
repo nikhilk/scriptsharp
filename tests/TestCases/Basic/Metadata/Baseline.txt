@@ -4006,8 +4006,9 @@ Script
 ================================================================
 
 
+"use strict";
+
 define('test', ['ss'], function(ss) {
-  'use strict';
   var $global = this;
 
   // BasicTests.AppFlags

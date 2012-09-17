@@ -107,7 +107,9 @@ namespace ScriptSharp.Generator {
             publicTypes.Sort(typeComparer);
             internalTypes.Sort(typeComparer);
 
-            _writer.WriteLine(_options.Metadata.GetOutputHeader());
+            _writer.Write(_options.Metadata.GetOutputHeader());
+            _writer.WriteLine("\"use strict\";");
+            _writer.WriteLine();
 
             string moduleName = symbolSet.ScriptName;
 
@@ -147,7 +149,6 @@ namespace ScriptSharp.Generator {
 
             _writer.WriteLine(") {");
             _writer.Indent++;
-            _writer.WriteLine("\'use strict';");
             _writer.WriteLine("var $global = this;");
             _writer.WriteLine();
 
@@ -238,7 +239,7 @@ namespace ScriptSharp.Generator {
             _writer.Indent--;
             _writer.WriteLine("});");
 
-            _writer.WriteLine(_options.Metadata.GetOutputFooter());
+            _writer.Write(_options.Metadata.GetOutputFooter());
         }
 
         public void StartImplementation(SymbolImplementation implementation) {
