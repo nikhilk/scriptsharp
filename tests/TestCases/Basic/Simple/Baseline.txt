@@ -38,10 +38,10 @@ define('basic', ['ss'], function(ss) {
 
   function Basic$App() {
     this._btn1 = new Basic$Button('OK');
-    this._btn1.add_click(ss.bind(this.onClickButton, this));
-    this._btn1.add_click(ss.bind(this.onClickButtonDup, this));
+    this._btn1.add_click(ss.bind(this._onClickButton, this));
+    this._btn1.add_click(ss.bind(this._onClickButtonDup, this));
     this._btn2 = new Basic$Button('Cancel');
-    this._btn2.add_click(ss.bind(this.onClickButton, this));
+    this._btn2.add_click(ss.bind(this._onClickButton, this));
   }
   Basic$App.main = function(args) {
     var theApp = new Basic$App();
@@ -49,13 +49,13 @@ define('basic', ['ss'], function(ss) {
     theApp._btn2.performClick();
   }
   var Basic$App$ = {
-    echo: function(s) {
+    _echo: function(s) {
     },
-    onClickButton: function(sender, e) {
-      this.echo((sender).get_text() + ' was clicked!');
+    _onClickButton: function(sender, e) {
+      this._echo((sender).get_text() + ' was clicked!');
     },
-    onClickButtonDup: function(sender, e) {
-      this.echo((sender).get_text() + ' was clicked as well!');
+    _onClickButtonDup: function(sender, e) {
+      this._echo((sender).get_text() + ' was clicked as well!');
     }
   };
 

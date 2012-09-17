@@ -35,7 +35,7 @@ Usage:
 
 /nologo     Hides the about information.
 /?          Displays usage information.
-/debug      Turns on debug mode. Automatically defines the 'DEBUG'
+/debug      Turns on debug mode. Specifically, it defines the 'DEBUG'
             variable.
 /tests      Includes test classes defined in the sources into the
             generated script.
@@ -140,7 +140,6 @@ Usage:
             minimize = commandLine.Options.Contains("minimize");
 
             CompilerOptions compilerOptions = new CompilerOptions();
-            compilerOptions.DebugFlavor = debug;
             compilerOptions.IncludeTests = includeTests;
             compilerOptions.Defines = defines;
             compilerOptions.Minimize = minimize;

@@ -19,7 +19,7 @@ define('test', ['ss'], function(ss) {
   // ExpressionTests.App
 
   function ExpressionTests$App() {
-    this._value = 0;
+    this._value$1 = 0;
     this._value2 = 0;
     ExpressionTests$BApp.call(this);
   }
@@ -42,12 +42,12 @@ define('test', ['ss'], function(ss) {
       var a;
       n = a.get_XYZ();
       a.set_XYZ(n);
-      n = this._value;
-      n = this._value;
-      this._value = n;
-      this._value = n;
-      n = ExpressionTests$App.myDefault;
-      n = ExpressionTests$App.myDefault;
+      n = this._value$1;
+      n = this._value$1;
+      this._value$1 = n;
+      this._value$1 = n;
+      n = ExpressionTests$App._myDefault$1;
+      n = ExpressionTests$App._myDefault$1;
       n = 3;
       n = 3;
       n = 3;
@@ -104,7 +104,7 @@ define('test', ['ss'], function(ss) {
 
   ExpressionTests$BApp.myConstant = 3;
   ExpressionTests$App.myConstant2 = 3;
-  ExpressionTests$App.myDefault = 1;
+  ExpressionTests$App._myDefault$1 = 1;
   ExpressionTests$App.myDefault2 = 2;
 
   return $test;

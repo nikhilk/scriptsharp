@@ -30,7 +30,7 @@ define('test', ['ss'], function(ss) {
     get_name: function() {
       return 'nk';
     },
-    get_isInitialized: function() {
+    get__isInitialized: function() {
       return false;
     }
   };

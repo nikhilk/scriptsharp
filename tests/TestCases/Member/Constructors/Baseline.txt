@@ -49,7 +49,7 @@ define('test', ['ss'], function(ss) {
       MyClass4: [ MemberTests$MyClass4, MemberTests$MyClass4$, MemberTests$MyClass3 ]
     });
 
-  MemberTests$MyClass2.x = 'Hello';
+  MemberTests$MyClass2._x = 'Hello';
   MemberTests$MyClass3.c = new MemberTests$MyClass();
 
   return $test;

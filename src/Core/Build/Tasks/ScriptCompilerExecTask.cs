@@ -28,7 +28,6 @@ namespace ScriptSharp.Tasks {
         private ITaskItem _template;
         private ITaskItem _docCommentFile;
 
-        private bool _debug;
         private bool _minimize;
         private bool _tests;
         private string _defines;
@@ -38,15 +37,6 @@ namespace ScriptSharp.Tasks {
         private ITaskItem _script;
 
         private bool _hasErrors;
-
-        public bool DebugFlavor {
-            get {
-                return _debug;
-            }
-            set {
-                _debug = value;
-            }
-        }
 
         public string Defines {
             get {
@@ -168,13 +158,8 @@ namespace ScriptSharp.Tasks {
 
         private bool Compile() {
             CompilerOptions options = new CompilerOptions();
-            options.DebugFlavor = DebugFlavor;
-            if (DebugFlavor) {
-                options.IncludeTests = IncludeTests;
-            }
-            else {
-                options.Minimize = Minimize;
-            }
+            options.IncludeTests = IncludeTests;
+            options.Minimize = Minimize;
             options.Defines = GetDefines();
             options.References = GetReferences();
             options.Sources = GetSources(_sources);

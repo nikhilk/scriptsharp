@@ -1,4 +1,4 @@
-define('test', ['ss', 'jQuery'], function(ss, jQuery) {
+define('test', ['ss', 'jquery'], function(ss, $) {
   'use strict';
   var $global = this;
 

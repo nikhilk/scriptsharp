@@ -150,7 +150,7 @@ namespace ScriptSharp {
             if (_options.Minimize) {
                 transformer = new SymbolObfuscator();
             }
-            else if (_options.DebugFlavor) {
+            else {
                 transformer = new SymbolInternalizer();
             }
 

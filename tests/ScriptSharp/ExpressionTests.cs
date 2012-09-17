@@ -76,7 +76,6 @@ namespace ScriptSharp.Tests {
 
             RunTest((c) => {
                 c.AddSource("Code2.cs");
-                c.Options.DebugFlavor = false;
                 c.Options.Minimize = true;
             }, "MinBaseline.txt");
         }

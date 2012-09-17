@@ -6,8 +6,8 @@ define('test', ['ss'], function(ss) {
 
   function ExpressionTests$Point(x, y) {
     var $o = {};
-    $o.x = x;
-    $o.y = y;
+    $o._x = x;
+    $o._y = y;
     return $o;
   }
 

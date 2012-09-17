@@ -71,7 +71,7 @@ define('test', ['ss'], function(ss) {
   MemberTests$Test.defaultValue = 'aaa';
   MemberTests$Test.done = false;
   MemberTests$Test.XYZ = 1;
-  MemberTests$Test.key = {};
+  MemberTests$Test._key = {};
 
   return $test;
 });

@@ -29,16 +29,16 @@ define('test', ['ss'], function(ss) {
   function ExpressionTests$App() {
   }
   var ExpressionTests$App$ = {
-    get_foo: function() {
+    get__foo: function() {
       return 0;
     },
-    set_foo: function(value) {
+    set__foo: function(value) {
       return value;
     },
-    get_bar: function() {
+    get__bar: function() {
       return 0;
     },
-    set_bar: function(value) {
+    set__bar: function(value) {
       return value;
     },
     get_data: function() {
@@ -71,8 +71,8 @@ define('test', ['ss'], function(ss) {
       sum = arg1 + (arg2 + ~arg1) * (arg1 - 10);
       var b2 = ss.canCast(sum, Number);
       var o = ss.safeCast(b, ss.IDisposable);
-      this.set_foo(this.get_foo() + 10);
-      this.set_foo(this.get_foo() - this.get_bar());
+      this.set__foo(this.get__foo() + 10);
+      this.set__foo(this.get__foo() - this.get__bar());
       sum = sum << 1;
       sum <<= 1;
       var xyz;

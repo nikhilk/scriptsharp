@@ -22,7 +22,6 @@ namespace ScriptSharp {
         private ICollection<IStreamSource> _resources;
         private IStreamSource _scriptFile;
         private IStreamSource _docCommentFile;
-        private bool _debugFlavor;
         private bool _includeTests;
         private bool _minimize;
 
@@ -36,15 +35,6 @@ namespace ScriptSharp {
 
         public CompilerOptions() {
             _testsSubnamespace = ".Tests";
-        }
-
-        public bool DebugFlavor {
-            get {
-                return _debugFlavor;
-            }
-            set {
-                _debugFlavor = value;
-            }
         }
 
         public ICollection<string> Defines {
@@ -67,10 +57,7 @@ namespace ScriptSharp {
 
         public bool EnableDocComments {
             get {
-                if (DebugFlavor) {
-                    return (_docCommentFile != null);
-                }
-                return false;
+                return (_docCommentFile != null);
             }
         }
 
@@ -112,10 +99,7 @@ namespace ScriptSharp {
 
         public bool Minimize {
             get {
-                if (!DebugFlavor) {
-                    return _minimize;
-                }
-                return false;
+                return _minimize;
             }
             set {
                 _minimize = value;

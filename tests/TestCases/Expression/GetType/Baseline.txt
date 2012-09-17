@@ -7,13 +7,13 @@ define('test', ['ss'], function(ss) {
   function ExpressionTests$App() {
   }
   var ExpressionTests$App$ = {
-    get_foo: function() {
+    get__foo: function() {
       return 0;
     },
     test: function(x) {
       var t = ss.typeOf(x);
       var t2 = ss.typeOf(x.toString());
-      var t3 = ss.typeOf(this.get_foo());
+      var t3 = ss.typeOf(this.get__foo());
       var t4 = ss.type('String');
       var t5 = ss.type('test.Foo');
       var b1 = ss.canAssign((Object), ExpressionTests$App);

@@ -41,7 +41,7 @@ define('test', ['ss'], function(ss) {
       var s3 = 'starting';
       var s4 = (0).toString();
     },
-    display: function(m, c, s, t) {
+    _display: function(m, c, s, t) {
       var mstr = m.toString();
       var cstr = c.toString();
       var sstr = s;

@@ -47,31 +47,31 @@ define('test', ['ss'], function(ss) {
   // ExpressionTests.App
 
   function ExpressionTests$App() {
-    this._btn.add_click(ss.bind(this.onClickButton, this));
-    this._btn.add_click(ss.bind(this.onClickButton, this));
-    this._btn.add_click(ss.bind(this.onClickButton, this));
-    this._btn.remove_click(ss.bind(this.onClickButton, this));
-    this._btn.remove_click(ss.bind(this.onClickButton, this));
-    this._btn.remove_click(ss.bind(this.onClickButton, this));
-    ExpressionTests$Button.add_test(ExpressionTests$App.onTestButton);
-    ExpressionTests$Button.add_test(ExpressionTests$App.onTestButton);
-    ExpressionTests$Button.add_test(ExpressionTests$App.onTestButton);
-    ExpressionTests$Button.remove_test(ExpressionTests$App.onTestButton);
-    ExpressionTests$Button.remove_test(ExpressionTests$App.onTestButton);
-    ExpressionTests$Button.remove_test(ExpressionTests$App.onTestButton);
-    this._btn.add_aaa(ss.bind(this.onAAAButton, this));
-    this._btn.add_aaa(ss.bind(this.onAAAButton, this));
-    this._btn.add_aaa(ss.bind(this.onAAAButton, this));
-    this._btn.remove_aaa(ss.bind(this.onAAAButton, this));
-    this._btn.remove_aaa(ss.bind(this.onAAAButton, this));
-    this._btn.remove_aaa(ss.bind(this.onAAAButton, this));
+    this._btn.add_click(ss.bind(this._onClickButton, this));
+    this._btn.add_click(ss.bind(this._onClickButton, this));
+    this._btn.add_click(ss.bind(this._onClickButton, this));
+    this._btn.remove_click(ss.bind(this._onClickButton, this));
+    this._btn.remove_click(ss.bind(this._onClickButton, this));
+    this._btn.remove_click(ss.bind(this._onClickButton, this));
+    ExpressionTests$Button.add_test(ExpressionTests$App._onTestButton);
+    ExpressionTests$Button.add_test(ExpressionTests$App._onTestButton);
+    ExpressionTests$Button.add_test(ExpressionTests$App._onTestButton);
+    ExpressionTests$Button.remove_test(ExpressionTests$App._onTestButton);
+    ExpressionTests$Button.remove_test(ExpressionTests$App._onTestButton);
+    ExpressionTests$Button.remove_test(ExpressionTests$App._onTestButton);
+    this._btn.add_aaa(ss.bind(this._onAAAButton, this));
+    this._btn.add_aaa(ss.bind(this._onAAAButton, this));
+    this._btn.add_aaa(ss.bind(this._onAAAButton, this));
+    this._btn.remove_aaa(ss.bind(this._onAAAButton, this));
+    this._btn.remove_aaa(ss.bind(this._onAAAButton, this));
+    this._btn.remove_aaa(ss.bind(this._onAAAButton, this));
   }
-  ExpressionTests$App.onTestButton = function(sender, e) {
+  ExpressionTests$App._onTestButton = function(sender, e) {
   }
   var ExpressionTests$App$ = {
-    onAAAButton: function(sender, e) {
+    _onAAAButton: function(sender, e) {
     },
-    onClickButton: function(sender, e) {
+    _onClickButton: function(sender, e) {
     }
   };
 

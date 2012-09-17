@@ -40,8 +40,8 @@ Copyright (C) 2012. Script# Project. All rights reserved.
       OutputPath="$(OutputPath)"
       DeploymentPath="$(DeploymentPath)"
       CSharpAssembly="@(IntermediateAssembly)"
+      ScriptDocumentation="$(UseDocumentation)"
       DocumentationFile="$(DocumentationFile)"
-      SuppressDocumentation="$(SuppressDocumentation)"
       ProjectPath="$(MSBuildProjectFullPath)">
       <Output TaskParameter="Scripts" ItemName="Scripts" />
     </ScriptCompilerTask>

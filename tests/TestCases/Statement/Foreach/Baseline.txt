@@ -36,10 +36,10 @@ define('test', ['ss'], function(ss) {
       var $enum4 = ss.IEnumerator.getEnumerator(s);
       while ($enum4.moveNext()) {
         var o = $enum4.current;
-        this.doStuff(o);
+        this._doStuff(o);
       }
     },
-    doStuff: function(o) {
+    _doStuff: function(o) {
       var $dict1 = o;
       for (var $key2 in $dict1) {
         var entry = { key: $key2, value: $dict1[$key2] };

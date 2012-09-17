@@ -10,16 +10,16 @@ define('test', ['ss'], function(ss) {
   // MemberTests.Normal
 
   function MemberTests$Normal() {
-    this.n = 0;
+    this._n = 0;
     var i = this.get_item('name');
     this.set_item('name', i + 1);
   }
   var MemberTests$Normal$ = {
     get_item: function(name) {
-      return this.n;
+      return this._n;
     },
     set_item: function(name, value) {
-      this.n = value;
+      this._n = value;
       return value;
     }
   };
@@ -28,12 +28,12 @@ define('test', ['ss'], function(ss) {
   // MemberTests.GetterOnly
 
   function MemberTests$GetterOnly() {
-    this.n = 0;
+    this._n = 0;
     var i = this.get_item('name');
   }
   var MemberTests$GetterOnly$ = {
     get_item: function(name) {
-      return this.n;
+      return this._n;
     }
   };
 
@@ -41,16 +41,16 @@ define('test', ['ss'], function(ss) {
   // MemberTests.VirtualIndexer
 
   function MemberTests$VirtualIndexer() {
-    this.n = 0;
+    this._n = 0;
     var i = this.get_item('name');
     this.set_item('name', i + 1);
   }
   var MemberTests$VirtualIndexer$ = {
     get_item: function(name) {
-      return this.n;
+      return this._n;
     },
     set_item: function(name, value) {
-      this.n = value;
+      this._n = value;
       return value;
     }
   };
@@ -59,7 +59,7 @@ define('test', ['ss'], function(ss) {
   // MemberTests.AbstractIndexer
 
   function MemberTests$AbstractIndexer() {
-    this.n = 0;
+    this._n = 0;
     var i = this.get_item('name');
     this.set_item('name', i + 1);
   }
@@ -71,7 +71,7 @@ define('test', ['ss'], function(ss) {
   // MemberTests.MultipleArgs
 
   function MemberTests$MultipleArgs() {
-    this.n = 0;
+    this._n = 0;
     var i = this.get_item('name', 'name2', 'name3');
     this.set_item('name', 'name2', 'name3', i + 1);
   }
@@ -81,7 +81,7 @@ define('test', ['ss'], function(ss) {
       return value.length;
     },
     set_item: function(first, middle, last, value) {
-      this.n = value;
+      this._n = value;
       return value;
     }
   };
@@ -149,7 +149,7 @@ define('test', ['ss'], function(ss) {
   // MemberTests.ImplementedIndexer
 
   function MemberTests$ImplementedIndexer() {
-    this.n = 0;
+    this._n$1 = 0;
     MemberTests$AbstractIndexer.call(this);
     var i = this.get_item('name');
     this.set_item('name', i + 1);

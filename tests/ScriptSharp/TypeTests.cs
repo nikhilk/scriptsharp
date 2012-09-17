@@ -16,7 +16,6 @@ namespace ScriptSharp.Tests {
         public void TestClasses() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -24,7 +23,6 @@ namespace ScriptSharp.Tests {
         public void TestDelegates() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -32,7 +30,6 @@ namespace ScriptSharp.Tests {
         public void TestEnumerator() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -40,7 +37,6 @@ namespace ScriptSharp.Tests {
         public void TestEnums() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -48,7 +44,6 @@ namespace ScriptSharp.Tests {
         public void TestGlobals() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -64,7 +59,6 @@ namespace ScriptSharp.Tests {
         public void TestInterfaces() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -72,7 +66,6 @@ namespace ScriptSharp.Tests {
         public void TestNamespaces() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -88,7 +81,6 @@ namespace ScriptSharp.Tests {
         public void TestNullable() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -98,7 +90,6 @@ namespace ScriptSharp.Tests {
                 c.AddReference("Script.Web.dll").
                   AddSource("Code1.cs").
                   AddSource("Code2.cs");
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -106,7 +97,6 @@ namespace ScriptSharp.Tests {
         public void TestRecords() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -115,7 +105,6 @@ namespace ScriptSharp.Tests {
             RunTest((c) => {
                 c.AddReference("Script.Web.dll").
                   AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
             });
         }
     }

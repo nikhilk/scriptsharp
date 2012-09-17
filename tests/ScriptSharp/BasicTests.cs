@@ -19,7 +19,6 @@ namespace ScriptSharp.Tests {
         public void TestConditionals() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
                 c.Options.Defines = new string[] { "DEBUG" };
             }, "DebugBaseline.txt");
 
@@ -36,7 +35,6 @@ namespace ScriptSharp.Tests {
                   AddReference("Lib2.dll").
                   AddReference("Lib3.dll").
                   AddSource("Code1.cs");
-                c.Options.DebugFlavor = true;
             }, "Code1Baseline.txt");
 
             RunTest((c) => {
@@ -44,7 +42,6 @@ namespace ScriptSharp.Tests {
                   AddReference("Lib2.dll").
                   AddReference("Lib3.dll").
                   AddSource("Code2.cs");
-                c.Options.DebugFlavor = true;
             }, "Code2Baseline.txt");
         }
 
@@ -54,7 +51,6 @@ namespace ScriptSharp.Tests {
                 c.AddReference("Script.Web.dll").
                   AddSource("Code.cs").
                   AddComments("DocComments.xml");
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -79,7 +75,6 @@ namespace ScriptSharp.Tests {
                 c.AddReference("Lib.dll").
                   AddSource("Code.cs");
                 c.Options.InternalTestType = "metadata";
-                c.Options.DebugFlavor = true;
             });
         }
 
@@ -120,7 +115,6 @@ namespace ScriptSharp.Tests {
                   AddResource("Strings1.fr.resx").
                   AddResource("Strings1.fr-FR.resx").
                   AddResource("Strings2.resx");
-                c.Options.DebugFlavor = true;
                 c.Options.Defines = new string[] { "DEBUG" };
             });
         }

@@ -28,7 +28,6 @@ namespace Runtime.Tests.Core {
             _output = new FileStreamSource(outputPath, writable: true);
 
             _options = new CompilerOptions();
-            _options.DebugFlavor = true;
             _options.Minimize = false;
         }
 

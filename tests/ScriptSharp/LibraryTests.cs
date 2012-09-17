@@ -18,7 +18,6 @@ namespace ScriptSharp.Tests {
                 c.AddReference("Script.Web.dll").
                   AddReference("Script.jQuery.dll").
                   AddSource("Code.cs");
-                c.Options.DebugFlavor = true;
                 c.Options.Defines = new string[] { "DEBUG" };
             });
         }

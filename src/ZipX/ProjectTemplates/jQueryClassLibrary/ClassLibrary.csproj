@@ -12,6 +12,7 @@
     <CodeAnalysisRuleSet>Properties\FxCop.ruleset</CodeAnalysisRuleSet>
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
+    <UseDocumentation>False</UseDocumentation>
    </PropertyGroup>
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
