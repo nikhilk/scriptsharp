@@ -238,4 +238,34 @@ namespace System.Runtime.CompilerServices {
     [Imported]
     public sealed class ScriptSkipAttribute : Attribute {
     }
+
+    [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
+    [NonScriptable]
+    [Imported]
+    public sealed class ScriptOutputAttribute : Attribute {
+
+        private string _header;
+        private string _footer;
+
+        public ScriptOutputAttribute(string header)
+            : this(header, String.Empty) {
+        }
+
+        public ScriptOutputAttribute(string header, string footer) {
+            _header = header;
+            _footer = footer;
+        }
+
+        public string Footer {
+            get {
+                return _footer;
+            }
+        }
+
+        public string Header {
+            get {
+                return _header;
+            }
+        }
+    }
 }

@@ -295,7 +295,16 @@ namespace ScriptSharp.Compiler {
                 string errorMessage = "The ScriptAssembly attribute referenced an invalid name '{0}'. Script names must only contain letters, numbers, dots or underscores.";
                 _errorHandler.ReportError(String.Format(errorMessage, scriptName), String.Empty);
             }
+
             symbols.ScriptName = scriptName;
+            options.Metadata.Name = scriptName;
+
+            string header;
+            string footer;
+            if (GetScriptOutputOptions(compilationUnits, out header, out footer)) {
+                options.Metadata.Header = header;
+                options.Metadata.Footer = footer;
+            }
 
             List<TypeSymbol> types = new List<TypeSymbol>();
 
@@ -811,6 +820,37 @@ namespace ScriptSharp.Compiler {
                 return (string)((LiteralNode)node.Arguments[0]).Value;
             }
             return null;
+        }
+
+        private bool GetScriptOutputOptions(ParseNodeList compilationUnits, out string header, out string footer) {
+            header = null;
+            footer = null;
+
+            foreach (CompilationUnitNode compilationUnit in compilationUnits) {
+                foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
+                    AttributeNode attr = AttributeNode.FindAttribute(attribBlock.Attributes, "ScriptOutput");
+
+                    if (attr != null) {
+                        if (attr.Arguments.Count > 0) {
+                            Debug.Assert(attr.Arguments[0] is LiteralNode);
+                            Debug.Assert(((LiteralNode)attr.Arguments[0]).Value is string);
+
+                            header = (string)((LiteralNode)attr.Arguments[0]).Value;
+                        }
+
+                        if (attr.Arguments.Count > 1) {
+                            Debug.Assert(attr.Arguments[1] is LiteralNode);
+                            Debug.Assert(((LiteralNode)attr.Arguments[1]).Value is string);
+
+                            footer = (string)((LiteralNode)attr.Arguments[1]).Value;
+                        }
+
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private MemberVisibility GetVisibility(MemberNode node, TypeSymbol typeSymbol) {

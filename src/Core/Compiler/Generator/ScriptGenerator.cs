@@ -107,6 +107,8 @@ namespace ScriptSharp.Generator {
             publicTypes.Sort(typeComparer);
             internalTypes.Sort(typeComparer);
 
+            _writer.WriteLine(_options.Metadata.GetOutputHeader());
+
             string moduleName = symbolSet.ScriptName;
 
             _writer.Write("define('");
@@ -235,6 +237,8 @@ namespace ScriptSharp.Generator {
 
             _writer.Indent--;
             _writer.WriteLine("});");
+
+            _writer.WriteLine(_options.Metadata.GetOutputFooter());
         }
 
         public void StartImplementation(SymbolImplementation implementation) {

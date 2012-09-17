@@ -7,6 +7,13 @@ using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("basic")]
 
+[assembly: ScriptOutput(@"
+// {name}.js
+// Sample script...
+", @"
+// Generated with Script#
+")]
+
 namespace Basic {
 
     public class EventArgs {

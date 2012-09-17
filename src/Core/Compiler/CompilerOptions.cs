@@ -27,6 +27,7 @@ namespace ScriptSharp {
 
         private string _testsSubnamespace;
 
+        private ScriptMetadata _metadata;
         private bool _hasTestTypes;
 
         // TODO: Get rid of internal test mode/type...
@@ -34,6 +35,7 @@ namespace ScriptSharp {
         private string _internalTestType;
 
         public CompilerOptions() {
+            _metadata = new ScriptMetadata();
             _testsSubnamespace = ".Tests";
         }
 
@@ -94,6 +96,12 @@ namespace ScriptSharp {
             }
             set {
                 _internalTestType = value;
+            }
+        }
+
+        public ScriptMetadata Metadata {
+            get {
+                return _metadata;
             }
         }
 
