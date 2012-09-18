@@ -17,7 +17,7 @@ namespace Runtime.Tests.Core {
 
         private static readonly WebTest _webTest;
         private static readonly string[] _scripts = new string[] {
-            "ss.debug.js", "ssloader.debug.js"
+            "ss.js", "ss.min.js", "ssloader.js", "ssloader.min.js"
         };
         private static readonly string[] _codeFiles = new string[] {
             "OOP.cs"

@@ -23,6 +23,16 @@ namespace Runtime.Tests {
         }
 
         [TestMethod]
+        public void TestLoaderCombined() {
+            RunTest("/TestLoaderCombined.htm");
+        }
+
+        [TestMethod]
+        public void TestLoaderConfig() {
+            RunTest("/TestLoaderConfig.htm");
+        }
+
+        [TestMethod]
         public void TestLoaderNonAMD() {
             RunTest("/TestLoaderNonAMD.htm");
         }

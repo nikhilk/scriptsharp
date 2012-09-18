@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TestScriptLoading - Loader</title>
+  <title>TestScriptLoading - LoaderConfig</title>
   <link rel="stylesheet" href="QUnit.css" type="text/css" />
   <script type="text/javascript" src="QUnit.js"></script>
   <script type="text/javascript" src="QUnitExt.js"></script>
@@ -15,10 +15,12 @@
   <textarea id="qunit-log" rows="10" cols="100"></textarea>
 </body>
 
-<script type="text/script" data-name="ss" data-src="Scripts/ss.js"></script>
 <script type="text/script" data-name="jquery" data-src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.js"></script>
-
 <script type="text/javascript" src="Scripts/ssloader.js"></script>
+<script type="text/javascript">
+define.config.scriptPath = 'Scripts/{name}.min.js';
+</script>
+
 <script type="text/javascript">
 module('Loader');
 
