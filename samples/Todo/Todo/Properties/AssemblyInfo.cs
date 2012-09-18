@@ -20,3 +20,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: ScriptAssembly("Todo")]
+[assembly: ScriptOutput(@"
+/*! {name}.js
+ */
+")]
