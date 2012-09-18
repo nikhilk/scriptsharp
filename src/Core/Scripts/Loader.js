@@ -1,12 +1,13 @@
+"use strict";
 (function(global) {
-  "use strict";
-
   // Helpers
 
   function each(items, action) {
     var results = [];
-    for (var i = 0, len = items.length; i < len; i++) {
-      results.push(action(items[i], i));
+    if (items) {
+      for (var i = 0, len = items.length; i < len; i++) {
+        results.push(action(items[i], i));
+      }
     }
     return results;
   }
@@ -45,12 +46,10 @@
   // specifying the exported object using data-export. Optionally dependencies
   // can be specified as well, using the data-requires attribute.
   //
-  // TODO: Improve convention + provide ability to customize/replace it.
-  //       Provide ability to plug in other types of loaders (like for css
+  // TODO: Provide ability to plug in other types of loaders (like for css
   //       and templates).
 
   var _xdomainRegex = /^https?:\/\/.*/;
-  var _storageCookie = !!window.localStorage ? (document.scriptCookie || 'scripts') : null;
 
   var _scripts = {};
   var _startupScripts = [];
@@ -59,7 +58,10 @@
     var script = _scripts[name];
     if (!script) {
       // Create a script object with a url based on convention
-      script = _scripts[name] = { name: name, src: '/scripts/' + name + '.js' };
+      script = _scripts[name] = {
+        name: name, amd: true,
+        src: define.config.scriptPath.replace('{name}', name)
+      };
     }
     return script;
   }
@@ -89,7 +91,7 @@
           // No src was specified, so use script text instead.
           var text;
 
-          var storage = _storageCookie ? scriptElement.getAttribute('data-store') : null;
+          var storage = define.config.localStore ? scriptElement.getAttribute('data-store') : null;
           if (storage == 'load') {
             // Storage was set to load, so load script text from local storage.
             text = _loadLocalScript(name);
@@ -141,6 +143,12 @@
       }
     }
   }
+
+  // Local storage
+  // Scripts are stored in local storage with a key = script.<name of script>.
+  // Additionally a script.$ key is stored containing the versions of all scripts
+  // that have been saved to storage. This is also set as the cookie value, so
+  // a server can detect which scripts exist on the client.
   function _loadLocalScript(name) {
     return localStorage['script.' + name];
   }
@@ -159,7 +167,7 @@
     localStorage['script.$'] = scriptIndex;
 
     // A cookie with 180 days = 60 * 60 * 24 * 180 seconds
-    document.cookie = _storageCookie + '=' + encodeURIComponent(scriptIndex) +
+    document.cookie = define.config.cookie + '=' + encodeURIComponent(scriptIndex) +
                       '; max-age=15552000; path=/';
   }
   function _downloadScript(name) {
@@ -329,7 +337,15 @@
   }
 
   function define(name, dependencyNames, callback) {
-    _getModule(name);
+    var m = _getModule(name);
+    if (!m.callbacks) {
+      // Looks like a module is being reloaded... for now, just
+      // ignore, i.e. don't execute the script. This is because we already
+      // have an object representing this module that might have been handed
+      // out as a depedency to other modules.
+      return;
+    }
+    m.loading = true;
     require(dependencyNames, function() {
       _completeModule(name, callback.apply(global, arguments));
     });
@@ -338,6 +354,14 @@
   // Enable using this loader to load jQuery (1.7+) as well.
   define.amd = { jQuery: true };
 
+  // Customizable configuration
+  define.config = {
+    scriptPath: '/scripts/{name}.js',
+    cookie: 'scripts',
+    localStore: !!global.localStorage
+  };
+
+  // Export define and require as API additions on the global object
   global.require = require;
   global.define = define;
 
@@ -363,8 +387,8 @@
       _startup() :
       document.addEventListener('DOMContentLoaded', _startup, false);
   }
-  else if (window.attachEvent) {
-    window.attachEvent('onload', function() {
+  else if (global.attachEvent) {
+    global.attachEvent('onload', function() {
       _startup();
     });
   }
