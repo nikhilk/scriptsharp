@@ -48,24 +48,24 @@ define('test', ['ss'], function(ss) {
   // ExpressionTests.App
 
   function ExpressionTests$App() {
-    this._btn.add_click(ss.bind(this._onClickButton, this));
-    this._btn.add_click(ss.bind(this._onClickButton, this));
-    this._btn.add_click(ss.bind(this._onClickButton, this));
-    this._btn.remove_click(ss.bind(this._onClickButton, this));
-    this._btn.remove_click(ss.bind(this._onClickButton, this));
-    this._btn.remove_click(ss.bind(this._onClickButton, this));
+    this._btn.add_click(ss.bind('_onClickButton', this));
+    this._btn.add_click(ss.bind('_onClickButton', this));
+    this._btn.add_click(ss.bind('_onClickButton', this));
+    this._btn.remove_click(ss.bind('_onClickButton', this));
+    this._btn.remove_click(ss.bind('_onClickButton', this));
+    this._btn.remove_click(ss.bind('_onClickButton', this));
     ExpressionTests$Button.add_test(ExpressionTests$App._onTestButton);
     ExpressionTests$Button.add_test(ExpressionTests$App._onTestButton);
     ExpressionTests$Button.add_test(ExpressionTests$App._onTestButton);
     ExpressionTests$Button.remove_test(ExpressionTests$App._onTestButton);
     ExpressionTests$Button.remove_test(ExpressionTests$App._onTestButton);
     ExpressionTests$Button.remove_test(ExpressionTests$App._onTestButton);
-    this._btn.add_aaa(ss.bind(this._onAAAButton, this));
-    this._btn.add_aaa(ss.bind(this._onAAAButton, this));
-    this._btn.add_aaa(ss.bind(this._onAAAButton, this));
-    this._btn.remove_aaa(ss.bind(this._onAAAButton, this));
-    this._btn.remove_aaa(ss.bind(this._onAAAButton, this));
-    this._btn.remove_aaa(ss.bind(this._onAAAButton, this));
+    this._btn.add_aaa(ss.bind('_onAAAButton', this));
+    this._btn.add_aaa(ss.bind('_onAAAButton', this));
+    this._btn.add_aaa(ss.bind('_onAAAButton', this));
+    this._btn.remove_aaa(ss.bind('_onAAAButton', this));
+    this._btn.remove_aaa(ss.bind('_onAAAButton', this));
+    this._btn.remove_aaa(ss.bind('_onAAAButton', this));
   }
   ExpressionTests$App._onTestButton = function(sender, e) {
   }

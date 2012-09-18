@@ -24,11 +24,11 @@ define('test', ['ss'], function(ss) {
   // ExpressionTests.Test
 
   function ExpressionTests$Test() {
-    this._handler = ss.bind(this.onEvent, this);
-    this._handler = ss.bind(this.onEvent, this);
-    this._handler = ss.bind(this.onEvent, this);
+    this._handler = ss.bind('onEvent', this);
+    this._handler = ss.bind('onEvent', this);
+    this._handler = ss.bind('onEvent', this);
     this._handler = ExpressionTests$Test2.onGlobalEvent;
-    var s1 = new ExpressionTests$SomeClass(ss.bind(this.onEvent, this));
+    var s1 = new ExpressionTests$SomeClass(ss.bind('onEvent', this));
     var s2 = new ExpressionTests$SomeClass(this._handler);
     var e = ss.bindExport(this._handler);
     e.dispose();

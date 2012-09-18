@@ -11,7 +11,7 @@ define('test', ['ss'], function(ss) {
     test: function(arg) {
       eval('[ 1, 2 ]');
       $global.foo();
-      setTimeout(foo, 0);
+      setTimeout($global.foo, 0);
     }
   };
 

@@ -41,10 +41,10 @@ define('basic', ['ss'], function(ss) {
 
   function Basic$App() {
     this._btn1 = new Basic$Button('OK');
-    this._btn1.add_click(ss.bind(this._onClickButton, this));
-    this._btn1.add_click(ss.bind(this._onClickButtonDup, this));
+    this._btn1.add_click(ss.bind('_onClickButton', this));
+    this._btn1.add_click(ss.bind('_onClickButtonDup', this));
     this._btn2 = new Basic$Button('Cancel');
-    this._btn2.add_click(ss.bind(this._onClickButton, this));
+    this._btn2.add_click(ss.bind('_onClickButton', this));
   }
   Basic$App.main = function(args) {
     var theApp = new Basic$App();

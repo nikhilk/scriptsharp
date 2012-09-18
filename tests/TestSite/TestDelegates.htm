@@ -17,7 +17,7 @@
 <script type="text/javascript" src="Scripts/ssloader.js"></script>
 <script type="text/script" data-name="ss" data-src="Scripts/ss.js"></script>
 <script type="text/script">
-define(['ss', 'oop'], function(ss, oop) {
+define(['ss'], function(ss) {
   var TargetClass = function() {
   }
   TargetClass.prototype.instanceCallback1 = function() {
@@ -36,7 +36,7 @@ define(['ss', 'oop'], function(ss, oop) {
   TargetClass.complexCallback1 = function(delegate) {
       log('ComplexCallback1 invoked');
 
-      var delegate2 = ss.bind(TargetClass.complexCallback2, null);
+      var delegate2 = TargetClass.complexCallback2;
       ss.bindSub(delegate, delegate2);
   }
   TargetClass.complexCallback2 = function(delegate) {
@@ -97,7 +97,7 @@ define(['ss', 'oop'], function(ss, oop) {
       var delegate = ss.bind(TargetClass.staticCallback2);
       delegate('abc');
 
-      var delegate2 = staticGlobalCallback;
+      var delegate2 = ss.bind(staticGlobalCallback, null);
       delegate2('abc');
 
       QUnit.equal(logs.length, 4);
@@ -109,7 +109,7 @@ define(['ss', 'oop'], function(ss, oop) {
 
       var delegate = ss.bind(tc.instanceCallback1, tc);
       delegate = ss.bindAdd(delegate, ss.bind(tc.instanceCallback2, tc));
-      delegate = ss.bindAdd(delegate, ss.bind(TargetClass.staticCallback1));
+      delegate = ss.bindAdd(delegate, TargetClass.staticCallback1);
       delegate();
 
       QUnit.equal(logs.length, 3);
@@ -120,7 +120,7 @@ define(['ss', 'oop'], function(ss, oop) {
 
       var delegate1 = ss.bind(TargetClass.complexCallback1);
       var delegate2 = ss.bind(TargetClass.complexCallback2);
-      var delegate3 = ss.bind(TargetClass.complexCallback3);
+      var delegate3 = TargetClass.complexCallback3;
 
       var delegate = ss.bindAdd(delegate1, ss.bindAdd(delegate2, delegate3));
       delegate(delegate);
@@ -154,6 +154,28 @@ define(['ss', 'oop'], function(ss, oop) {
       QUnit.equal(window[api.name] !== null, true, 'Expected window member');
       window[api.name]();
       QUnit.equal(!window[api.name], true, 'Did not expect window member since it was deleted');
+  });
+
+  module('Delegate');
+  test('testCache', function() {
+      var tc = new TargetClass();
+      var tc2 = new TargetClass();
+
+      var b1 = ss.bind(tc.instanceCallback1, tc);
+      var b2 = ss.bind(tc.instanceCallback1, tc);
+      QUnit.notEqual(b1, b2, 'Expected different bindings as result of each bind call');
+
+      var b3 = ss.bind('instanceCallback1', tc);
+      var b4 = ss.bind('instanceCallback1', tc);
+      QUnit.equal(b3, b4, 'Expected same bindings as result of each caching bind call');
+
+      var b5 = ss.bind('instanceCallback1', tc);
+      var b6 = ss.bind('instanceCallback2', tc);
+      QUnit.notEqual(b5, b6, 'Expected different bindings for different cache keys');
+
+      var b7 = ss.bind('instanceCallback1', tc);
+      var b8 = ss.bind('instanceCallback1', tc2);
+      QUnit.notEqual(b7, b8, 'Expected different bindings for different objects');
   });
 });
 </script>

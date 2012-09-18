@@ -249,23 +249,7 @@ namespace ScriptSharp.Generator {
             ScriptTextWriter writer = generator.Writer;
 
             AnonymousMethodSymbol anonymousMethod = expression.Method as AnonymousMethodSymbol;
-            bool createDelegate = false;
-
-            if (anonymousMethod == null) {
-                if ((expression.Method.Visibility & MemberVisibility.Static) == 0) {
-                    createDelegate = true;
-                    writer.Write("ss.bind(");
-                }
-
-                // TODO: This probably needs to handle global method roots...
-
-                if (expression.Method.IsExtension == false) {
-                    ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
-                    writer.Write(".");
-                }
-                writer.Write(expression.Method.GeneratedName);
-            }
-            else {
+            if (anonymousMethod != null) {
                 writer.Write("function(");
                 if ((anonymousMethod.Parameters != null) && (anonymousMethod.Parameters.Count != 0)) {
                     int paramIndex = 0;
@@ -284,9 +268,27 @@ namespace ScriptSharp.Generator {
                 writer.Indent--;
                 writer.Write("}");
             }
+            else if ((expression.Method.Visibility & MemberVisibility.Static) != 0) {
+                if (expression.Method.IsExtension) {
+                    Debug.Assert(expression.Method.Parent.Type == SymbolType.Class);
 
-            if (createDelegate) {
-                writer.Write(", ");
+                    ClassSymbol classSymbol = (ClassSymbol)expression.Method.Parent;
+                    Debug.Assert(classSymbol.IsExtenderClass);
+
+                    writer.Write(classSymbol.Extendee);
+                    writer.Write(".");
+                    writer.Write(expression.Method.GeneratedName);
+                }
+                else {
+                    ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
+                    writer.Write(".");
+                    writer.Write(expression.Method.GeneratedName);
+                }
+            }
+            else {
+                writer.Write("ss.bind('");
+                writer.Write(expression.Method.GeneratedName);
+                writer.Write("', ");
                 ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
                 writer.Write(")");
             }

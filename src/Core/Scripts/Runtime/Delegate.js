@@ -18,11 +18,24 @@ function bind(fn, o) {
     return fn;
   }
 
-  // Create a function that invokes the specified function, in the
-  // context of the specified object.
-  return function() {
-    return fn.apply(o, arguments);
-  };
+  var name = null;
+  fn = typeof fn == 'string' ? o[name = fn] : fn;
+
+  var cache = name ? o.$$b || (o.$$b = {}) : null;
+  var binding = cache ? cache[name] : null;
+
+  if (!binding) {
+    // Create a function that invokes the specified function, in the
+    // context of the specified object.
+    binding = function() {
+      return fn.apply(o, arguments);
+    };
+
+    if (cache) {
+      cache[name] = binding;
+    }
+  }
+  return binding;
 }
 
 function bindAdd(binding, value) {
