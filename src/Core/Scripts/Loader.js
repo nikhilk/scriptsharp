@@ -383,7 +383,8 @@
   }
 
   if (document.addEventListener) {
-    document.readyState == 'complete' ?
+    var rs = document.readyState;
+    rs == 'complete' || rs == 'interactive' ?
       _startup() :
       document.addEventListener('DOMContentLoaded', _startup, false);
   }
