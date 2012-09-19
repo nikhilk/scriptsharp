@@ -10,7 +10,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FishTank</RootNamespace>
     <AssemblyName>FishTank</AssemblyName>
-    <ScriptTemplate>Properties\Script.template</ScriptTemplate>
     <CodeAnalysisRuleSet>Properties\FxCop.ruleset</CodeAnalysisRuleSet>
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
@@ -37,16 +36,10 @@
     <None Include="Properties\FxCop.ruleset">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\Script.template" />
     <Compile Include="Fish.cs" />
     <Compile Include="FishTank.cs" />
     <Compile Include="FishTankApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Script.Web">
-      <HintPath>packages\ScriptSharp.Lib.HTML.0.7.5.0\lib\Script.Web.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="FishSprites.png">
@@ -59,7 +52,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Script.Web, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\ScriptSharp.Lib.HTML.0.8\lib\Script.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="packages\ScriptSharp.0.7.5.0\tools\ScriptSharp.targets" Condition="Exists('packages\ScriptSharp.0.7.5.0\tools\ScriptSharp.targets')" />
   <Import Project="packages\nuget.targets" />
+  <Import Project="packages\ScriptSharp.0.8\tools\ScriptSharp.targets" Condition="Exists('packages\ScriptSharp.0.8\tools\ScriptSharp.targets')" />
 </Project>
