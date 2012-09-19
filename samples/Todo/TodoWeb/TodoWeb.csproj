@@ -51,6 +51,10 @@
     <Content Include="Assets\Todo.css" />
     <Content Include="Default.htm" />
     <Content Include="favicon.ico" />
+    <Content Include="Scripts\ss.js" />
+    <Content Include="Scripts\ss.min.js" />
+    <Content Include="Scripts\ssloader.js" />
+    <Content Include="Scripts\ssloader.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
