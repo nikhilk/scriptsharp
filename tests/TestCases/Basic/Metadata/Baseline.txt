@@ -1522,6 +1522,11 @@ Types:
                 Visibility: Public, Static
                 Generated Name: literal
                 Abstract: False
+            Method: Require
+                AssociatedType: Void
+                Visibility: Public, Static
+                Generated Name: require
+                Abstract: False
             Method: SetField
                 AssociatedType: Void
                 Visibility: Public, Static

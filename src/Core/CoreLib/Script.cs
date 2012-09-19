@@ -171,6 +171,22 @@ namespace System {
             return null;
         }
 
+        [ScriptAlias("require")]
+        public static void Require<T>(string[] names, Action<T> callback) {
+        }
+
+        [ScriptAlias("require")]
+        public static void Require<T1, T2>(string[] names, Action<T1, T2> callback) {
+        }
+
+        [ScriptAlias("require")]
+        public static void Require<T1, T2, T3>(string[] names, Action<T1, T2, T3> callback) {
+        }
+
+        [ScriptAlias("require")]
+        public static void Require(string[] names, Delegate callback) {
+        }
+
         public static void SetField(object instance, string name, object value) {
         }
 
