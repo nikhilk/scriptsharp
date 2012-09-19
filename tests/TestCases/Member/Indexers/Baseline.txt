@@ -188,7 +188,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       IIndexable: [ MemberTests$IIndexable ],
       Normal: [ MemberTests$Normal, MemberTests$Normal$, null ],
@@ -206,5 +206,5 @@ define('test', ['ss'], function(ss) {
     });
 
 
-  return $test;
+  return $exports;
 });

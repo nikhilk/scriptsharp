@@ -57,7 +57,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test',
+  var $exports = ss.module('test',
     {
       Point: MemberTests$Point
     },
@@ -74,5 +74,5 @@ define('test', ['ss'], function(ss) {
   MemberTests$Test.XYZ = 1;
   MemberTests$Test._key = {};
 
-  return $test;
+  return $exports;
 });

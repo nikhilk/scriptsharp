@@ -310,7 +310,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   };
 
 
-  var $test = ss.module('test',
+  var $exports = ss.module('test',
     {
       IApp: [ BasicTests$IApp ],
       MyData: BasicTests$MyData,
@@ -333,5 +333,5 @@ define('test', ['ss', 'lib'], function(ss, lib) {
     });
 
 
-  return $test;
+  return $exports;
 });

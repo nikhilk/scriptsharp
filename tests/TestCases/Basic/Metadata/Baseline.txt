@@ -4097,7 +4097,7 @@ define('test', ['ss'], function(ss) {
   }
 
 
-  var $test = ss.module('test',
+  var $exports = ss.module('test',
     {
       IFoo: [ BasicTests$IFoo ],
       Point: BasicTests$Point,
@@ -4111,5 +4111,5 @@ define('test', ['ss'], function(ss) {
     });
 
 
-  return $test;
+  return $exports;
 });

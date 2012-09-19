@@ -95,7 +95,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       IFoo: [ ExpressionTests$IFoo ],
       BApp: [ ExpressionTests$BApp, ExpressionTests$BApp$, null ],
@@ -108,5 +108,5 @@ define('test', ['ss'], function(ss) {
   ExpressionTests$App._myDefault$1 = 1;
   ExpressionTests$App.myDefault2 = 2;
 
-  return $test;
+  return $exports;
 });

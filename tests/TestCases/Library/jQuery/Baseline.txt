@@ -37,7 +37,7 @@ define('test', ['ss', 'jquery'], function(ss, $) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       MyApp: [ MyApp, MyApp$, null ]
     });
@@ -49,5 +49,5 @@ define('test', ['ss', 'jquery'], function(ss, $) {
     $('.special').html('<span></span>');
   })();
 
-  return $test;
+  return $exports;
 });

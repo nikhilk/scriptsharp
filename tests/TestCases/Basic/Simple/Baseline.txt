@@ -63,7 +63,7 @@ define('basic', ['ss'], function(ss) {
   };
 
 
-  var $basic = ss.module('basic', null,
+  var $exports = ss.module('basic', null,
     {
       EventArgs: [ Basic$EventArgs, Basic$EventArgs$, null ],
       Button: [ Basic$Button, Basic$Button$, null ],
@@ -72,7 +72,7 @@ define('basic', ['ss'], function(ss) {
 
   Basic$EventArgs.Empty = new Basic$EventArgs();
 
-  return $basic;
+  return $exports;
 
 });
 

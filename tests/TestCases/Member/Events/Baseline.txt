@@ -48,12 +48,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       EventArgs: [ MemberTests$EventArgs, MemberTests$EventArgs$, null ],
       Button: [ MemberTests$Button, MemberTests$Button$, null ]
     });
 
 
-  return $test;
+  return $exports;
 });

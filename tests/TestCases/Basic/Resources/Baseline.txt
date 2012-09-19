@@ -30,7 +30,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test',
+  var $exports = ss.module('test',
     {
       Strings1: Resources$Strings1
     },
@@ -40,5 +40,5 @@ define('test', ['ss'], function(ss) {
     });
 
 
-  return $test;
+  return $exports;
 });

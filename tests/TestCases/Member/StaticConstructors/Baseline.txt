@@ -58,7 +58,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       Behavior: [ MemberTests$Behavior, MemberTests$Behavior$, null ],
       MyClass: [ MemberTests$MyClass, MemberTests$MyClass$, null ],
@@ -81,5 +81,5 @@ define('test', ['ss'], function(ss) {
     new MemberTests$MyBehavior(e);
   })();
 
-  return $test;
+  return $exports;
 });

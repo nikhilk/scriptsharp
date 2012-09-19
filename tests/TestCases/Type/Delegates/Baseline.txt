@@ -12,11 +12,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       EventArgs: [ TypeTests$EventArgs, TypeTests$EventArgs$, null ]
     });
 
 
-  return $test;
+  return $exports;
 });

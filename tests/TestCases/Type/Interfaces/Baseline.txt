@@ -58,7 +58,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       IMarker: [ TypeTests$IMarker ],
       ISerializable: [ TypeTests$ISerializable ],
@@ -69,5 +69,5 @@ define('test', ['ss'], function(ss) {
     });
 
 
-  return $test;
+  return $exports;
 });

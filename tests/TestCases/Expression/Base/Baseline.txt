@@ -32,12 +32,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       Foo: [ ExpressionTests$Foo, ExpressionTests$Foo$, null ],
       Bar: [ ExpressionTests$Bar, ExpressionTests$Bar$, ExpressionTests$Foo ]
     });
 
 
-  return $test;
+  return $exports;
 });

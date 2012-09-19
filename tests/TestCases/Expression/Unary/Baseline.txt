@@ -47,12 +47,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       Data: [ ExpressionTests$Data, ExpressionTests$Data$, null ],
       App: [ ExpressionTests$App, ExpressionTests$App$, null ]
     });
 
 
-  return $test;
+  return $exports;
 });

@@ -3,12 +3,12 @@
 define('test', ['ss'], function(ss) {
   var $global = this;
 
-  var $test = ss.module('test', null, null);
+  var $exports = ss.module('test', null, null);
 
   alert('Hello Startup');
   window.addEventListener('load', function(e) {
     alert('Loaded');
   }, false);
 
-  return $test;
+  return $exports;
 });

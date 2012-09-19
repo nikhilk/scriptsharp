@@ -55,7 +55,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       EventArgs: [ ExpressionTests$EventArgs, ExpressionTests$EventArgs$, null ],
       SomeClass: [ ExpressionTests$SomeClass, ExpressionTests$SomeClass$, null ],
@@ -64,5 +64,5 @@ define('test', ['ss'], function(ss) {
     });
 
 
-  return $test;
+  return $exports;
 });

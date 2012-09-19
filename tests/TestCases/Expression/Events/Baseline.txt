@@ -87,7 +87,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       Button: [ ExpressionTests$Button, ExpressionTests$Button$, null ],
       App: [ ExpressionTests$App, ExpressionTests$App$, null ],
@@ -95,5 +95,5 @@ define('test', ['ss'], function(ss) {
     });
 
 
-  return $test;
+  return $exports;
 });

@@ -18,12 +18,12 @@ define('test', ['ss'], function(ss) {
   function TypeTests$Pair() { return {}; }
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       Point: TypeTests$Point,
       Pair: TypeTests$Pair
     });
 
 
-  return $test;
+  return $exports;
 });

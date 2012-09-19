@@ -51,7 +51,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       FooBarBaz: [ TypeTests$FooBarBaz, TypeTests$FooBarBaz$, null ],
       MyClass: [ TypeTests$MyClass, TypeTests$MyClass$, null ],
@@ -61,5 +61,5 @@ define('test', ['ss'], function(ss) {
     });
 
 
-  return $test;
+  return $exports;
 });

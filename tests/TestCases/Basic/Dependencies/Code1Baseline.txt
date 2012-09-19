@@ -14,11 +14,11 @@ define('test', ['ss', 'lib1'], function(ss, lib1) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       App: [ BasicTests$App, BasicTests$App$, null ]
     });
 
 
-  return $test;
+  return $exports;
 });

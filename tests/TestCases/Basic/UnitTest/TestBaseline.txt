@@ -80,7 +80,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test',
+  var $exports = ss.module('test',
     {
       InternalClass: [ BasicTests$InternalClass, BasicTests$InternalClass$, null ],
       Foo: [ BasicTests$Tests$Foo, BasicTests$Tests$Foo$, null ],
@@ -123,5 +123,5 @@ define('test', ['ss'], function(ss) {
     this.instance.testParse();
   });
 
-  return $test;
+  return $exports;
 });

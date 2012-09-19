@@ -81,12 +81,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       SomeClass: [ ExpressionTests$SomeClass, ExpressionTests$SomeClass$, null ],
       Test: [ ExpressionTests$Test, ExpressionTests$Test$, null ]
     });
 
 
-  return $test;
+  return $exports;
 });

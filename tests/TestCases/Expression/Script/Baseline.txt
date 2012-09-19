@@ -30,11 +30,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       App: [ ExpressionTests$App, ExpressionTests$App$, null ]
     });
 
 
-  return $test;
+  return $exports;
 });

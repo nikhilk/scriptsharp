@@ -44,11 +44,11 @@ define('test', ['ss', 'jquery'], function(ss, $) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       Foo: [ ExpressionTests$Foo, ExpressionTests$Foo$, null ]
     });
 
 
-  return $test;
+  return $exports;
 });

@@ -49,12 +49,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       MyDebug: [ BasicTests$MyDebug, BasicTests$MyDebug$, null ],
       App: [ BasicTests$App, BasicTests$App$, null ]
     });
 
 
-  return $test;
+  return $exports;
 });

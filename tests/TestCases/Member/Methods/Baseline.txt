@@ -65,12 +65,12 @@ define('test', ['ss'], function(ss) {
   }
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       Test: [ MemberTests$Test, MemberTests$Test$, null ],
       X: [ MemberTests$X, MemberTests$X$, null ]
     });
 
 
-  return $test;
+  return $exports;
 });

@@ -246,7 +246,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test',
+  var $exports = ss.module('test',
     {
       InternalClass: [ BasicTests$InternalClass, BasicTests$InternalClass$, null ],
       InternalClassWithNoComments: [ BasicTests$InternalClassWithNoComments, BasicTests$InternalClassWithNoComments$, null ]
@@ -261,5 +261,5 @@ define('test', ['ss'], function(ss) {
 
   BasicTests$BaseClass.constantField = 3;
 
-  return $test;
+  return $exports;
 });

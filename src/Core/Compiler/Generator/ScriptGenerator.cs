@@ -107,8 +107,6 @@ namespace ScriptSharp.Generator {
             publicTypes.Sort(typeComparer);
             internalTypes.Sort(typeComparer);
 
-            string moduleName = symbolSet.ScriptName;
-
             bool initialIndent = (String.IsNullOrEmpty(_options.Template) == false);
             if (initialIndent) {
                 _writer.Indent++;
@@ -118,7 +116,7 @@ namespace ScriptSharp.Generator {
                 TypeGenerator.GenerateScript(this, type);
             }
 
-            _writer.Write("var $" + moduleName + " = ss.module('");
+            _writer.Write("var $exports = ss.module('");
             _writer.Write(symbolSet.ScriptName);
             _writer.Write("',");
             if ((internalTypes.Count != 0) && hasNonModuleInternalTypes) {
@@ -196,7 +194,7 @@ namespace ScriptSharp.Generator {
             }
 
             _writer.WriteLine();
-            _writer.WriteLine("return $" +  moduleName + ";");
+            _writer.WriteLine("return $exports;");
 
             if (initialIndent) {
                 _writer.Indent--;

@@ -82,7 +82,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       MyClass: [ TypeTests$Sub1$Sub2$MyClass, TypeTests$Sub1$Sub2$MyClass$, null ],
       YourClass: [ TypeTests$Sub1$YourClass, TypeTests$Sub1$YourClass$, null ],
@@ -95,5 +95,5 @@ define('test', ['ss'], function(ss) {
     });
 
 
-  return $test;
+  return $exports;
 });

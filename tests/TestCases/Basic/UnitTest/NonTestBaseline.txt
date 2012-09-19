@@ -31,7 +31,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test',
+  var $exports = ss.module('test',
     {
       InternalClass: [ BasicTests$InternalClass, BasicTests$InternalClass$, null ]
     },
@@ -40,5 +40,5 @@ define('test', ['ss'], function(ss) {
     });
 
 
-  return $test;
+  return $exports;
 });

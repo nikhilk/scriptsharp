@@ -100,7 +100,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       Colors: TypeTests$Colors,
       Sequence: TypeTests$Sequence,
@@ -114,5 +114,5 @@ define('test', ['ss'], function(ss) {
     });
 
 
-  return $test;
+  return $exports;
 });

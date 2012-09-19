@@ -42,7 +42,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       MyClass: [ MemberTests$MyClass, MemberTests$MyClass$, null ],
       MyClass2: [ MemberTests$MyClass2, MemberTests$MyClass2$, null ],
@@ -53,5 +53,5 @@ define('test', ['ss'], function(ss) {
   MemberTests$MyClass2._x = 'Hello';
   MemberTests$MyClass3.c = new MemberTests$MyClass();
 
-  return $test;
+  return $exports;
 });

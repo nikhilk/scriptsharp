@@ -54,12 +54,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $test = ss.module('test', null,
+  var $exports = ss.module('test', null,
     {
       Mode: StatementTests$Mode,
       App: [ StatementTests$App, StatementTests$App$, null ]
     });
 
 
-  return $test;
+  return $exports;
 });
