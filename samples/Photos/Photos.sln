@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photos", "Photos\Photos.csproj", "{336CC726-E62D-484B-A15E-3E70A676D989}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flickr", "Flickr\Flickr.csproj", "{336CC726-E62D-484B-A15E-3E70A676D989}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins", "Plugins\Plugins.csproj", "{A441A116-8F91-4FBC-8420-D21C98283BD3}"
 EndProject

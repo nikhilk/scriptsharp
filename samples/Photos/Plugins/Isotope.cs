@@ -32,6 +32,7 @@ namespace jQueryApi.Isotope {
 
     [Imported]
     [IgnoreNamespace]
+    [ScriptDependency("jqueryIsotope")]
     public sealed class jQueryIsotopeObject : jQueryObject {
 
         private jQueryIsotopeObject() {

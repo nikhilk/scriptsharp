@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using jQueryApi;
-using Photos.FlickrClient;
+using Flickr.FlickrClient;
 
-namespace Photos {
+namespace Flickr {
 
     public sealed class FlickrPhotoService : IPhotoService {
 

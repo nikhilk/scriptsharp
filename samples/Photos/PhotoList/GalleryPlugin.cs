@@ -7,9 +7,9 @@ using System.Html;
 using System.Runtime.CompilerServices;
 using jQueryApi;
 using jQueryApi.Templating;
-using Photos.FlickrClient;
+using Flickr.FlickrClient;
 
-[Mixin("$.fn")]
+[ScriptExtension("$.fn")]
 public static class GalleryPlugin {
 
     public static jQueryObject Gallery(GalleryPluginOptions customOptions) {

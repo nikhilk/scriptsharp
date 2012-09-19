@@ -1,8 +1,0 @@
-//! #= ScriptFile ##
-//
-
-(function() {
-#include[as-is] "%code%"
-})();
-
-//! This script was generated using Script# v#= CompilerVersion ##

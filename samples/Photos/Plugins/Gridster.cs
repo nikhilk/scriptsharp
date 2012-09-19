@@ -187,6 +187,7 @@ namespace jQueryApi.Gridster {
 
     [Imported]
     [IgnoreNamespace]
+    [ScriptDependency("jqueryGridster")]
     public sealed class jQueryGridsterObject : jQueryObject {
 
         private jQueryGridsterObject() {

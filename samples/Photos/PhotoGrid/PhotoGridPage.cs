@@ -9,52 +9,49 @@ using jQueryApi;
 using jQueryApi.Templating;
 using jQueryApi.Isotope;
 using jQueryApi.LightBox;
-using Photos;
+using Flickr;
 
-namespace PhotoGrid {
-
-    [GlobalMethods]
-    internal static class PhotoGridPage {
+[ScriptModule]
+internal static class PhotoGridPage {
     
-        static PhotoGridPage() {
-            jQuery.OnDocumentReady(delegate() {
-                string apiKey = (string)jQuery.FromElement(Document.Body).GetDataValue("flickrKey");
-                IPhotoService flickrService = new FlickrPhotoService();
+    static PhotoGridPage() {
+        jQuery.OnDocumentReady(delegate() {
+            string apiKey = (string)jQuery.FromElement(Document.Body).GetDataValue("flickrKey");
+            IPhotoService flickrService = new FlickrPhotoService();
 
-                jQuery.Select("#searchButton").Click(delegate(jQueryEvent e) {
-                    string tags = jQuery.Select("#tagsTextBox").GetValue();
+            jQuery.Select("#searchButton").Click(delegate(jQueryEvent e) {
+                string tags = jQuery.Select("#tagsTextBox").GetValue();
 
-                    flickrService.SearchPhotos(tags, 20).Done(
-                        delegate(IEnumerable<Photo> photos) {
-                            jQueryObject thumbnailList = jQuery.Select("#thumbsList");
-                            thumbnailList.Empty();
+                flickrService.SearchPhotos(tags, 20).Done(
+                    delegate(IEnumerable<Photo> photos) {
+                        jQueryObject thumbnailList = jQuery.Select("#thumbsList");
+                        thumbnailList.Empty();
 
-                            if (photos == null) {
-                                return;
-                            }
+                        if (photos == null) {
+                            return;
+                        }
 
-                            jQuery.Select("#thumbnailTemplate").Plugin<jQueryTemplateObject>().
-                                RenderTemplate(photos).
-                                AppendTo(thumbnailList);
+                        jQuery.Select("#thumbnailTemplate").Plugin<jQueryTemplateObject>().
+                            RenderTemplate(photos).
+                            AppendTo(thumbnailList);
 
-                            thumbnailList.
-                                Plugin<jQueryIsotopeObject>().Isotope(new IsotopeOptions("layoutMode", IsotopeLayout.Masonry)).
-                                Find("a").
-                                Plugin<jQueryLightBoxObject>().LightBox();
+                        thumbnailList.
+                            Plugin<jQueryIsotopeObject>().Isotope(new IsotopeOptions("layoutMode", IsotopeLayout.Masonry)).
+                            Find("a").
+                            Plugin<jQueryLightBoxObject>().LightBox();
 
-                            thumbnailList.Find("li").
-                                MouseOver(delegate(jQueryEvent e2) {
-                                    jQuery.This.CSS("box-shadow", "0 0 15px #888");
-                                }).
-                                MouseOut(delegate(jQueryEvent e2) {
-                                    jQuery.This.CSS("box-shadow", "");
-                                });
-                        });
+                        thumbnailList.Find("li").
+                            MouseOver(delegate(jQueryEvent e2) {
+                                jQuery.This.CSS("box-shadow", "0 0 15px #888");
+                            }).
+                            MouseOut(delegate(jQueryEvent e2) {
+                                jQuery.This.CSS("box-shadow", "");
+                            });
+                    });
 
-                    jQuery.FromElement(Document.Body).Focus();
-                    e.PreventDefault();
-                });
+                jQuery.FromElement(Document.Body).Focus();
+                e.PreventDefault();
             });
-        }
+        });
     }
 }

@@ -21,6 +21,7 @@ namespace PhotoList {
             });
 
             jQuery.Select("#searchButton").Bind("click", delegate(jQueryEvent e) {
+                e.PreventDefault();
                 string tags = jQuery.Select("#tagsTextBox").GetValue();
                 ShowPhotos(tags);
             });

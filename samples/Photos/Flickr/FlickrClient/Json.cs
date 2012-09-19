@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using jQueryApi;
 
-namespace Photos.FlickrClient {
+namespace Flickr.FlickrClient {
 
     [Imported]
     public sealed class PhotoSearchResponse {

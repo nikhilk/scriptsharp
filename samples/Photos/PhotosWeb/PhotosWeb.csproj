@@ -70,8 +70,8 @@
     <Content Include="Scripts\jquery.isotope.min.js" />
     <Content Include="Scripts\jquery.lightbox-0.5.js" />
     <Content Include="Scripts\jquery.tmpl.js" />
-    <Content Include="Scripts\mscorlib.debug.js" />
-    <Content Include="Scripts\mscorlib.js" />
+    <Content Include="Scripts\ssloader.js" />
+    <Content Include="Scripts\ssloader.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

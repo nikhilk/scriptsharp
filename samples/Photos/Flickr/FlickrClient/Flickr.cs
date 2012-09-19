@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Html;
 using System.Runtime.CompilerServices;
 
-namespace Photos.FlickrClient {
+namespace Flickr.FlickrClient {
 
     public interface IFlickrService {
 
@@ -22,9 +22,10 @@ namespace Photos.FlickrClient {
             FlickrCallback requestCallback = delegate(PhotoSearchResponse response) {
                 callback(response.Photos.Results);
             };
-            string callbackName = Delegate.CreateExport(requestCallback);
 
-            string url = String.Format(FlickrSearchURLFormat, tags.EncodeUriComponent(), count, callbackName);
+            Export exportedDelegate = Delegate.Export(requestCallback);
+
+            string url = String.Format(FlickrSearchURLFormat, tags.EncodeUriComponent(), count, exportedDelegate.Name);
             ScriptElement script = (ScriptElement)Document.CreateElement("script");
             script.Type = "text/javascript";
             script.Src = url;

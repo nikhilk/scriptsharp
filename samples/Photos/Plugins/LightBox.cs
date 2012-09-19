@@ -10,6 +10,7 @@ namespace jQueryApi.LightBox {
 
     [Imported]
     [IgnoreNamespace]
+    [ScriptDependency("jqueryLightBox")]
     public sealed class jQueryLightBoxObject : jQueryObject {
 
         private jQueryLightBoxObject() {

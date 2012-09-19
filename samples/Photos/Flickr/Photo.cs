@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Photos {
+namespace Flickr {
 
     /// <summary>
     /// Represents a geo-tagged photo along with various bits of metadata.

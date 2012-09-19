@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using jQueryApi;
 
-namespace Photos {
+namespace Flickr {
 
     public interface IPhotoService {
 
