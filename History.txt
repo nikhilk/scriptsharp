@@ -32,6 +32,7 @@ v0.7.6
                  (Change Custom Tool property of resx file to
                  ResxPublicScriptGenerator)
     - [git #230] Add String.IsNullOrWhitespace
+    - [git #234] Knockout API update - added CompareResult status enum
 
 v0.7.5.0
     - DOM metadata update (readyState property on Document,
