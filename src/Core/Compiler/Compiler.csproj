@@ -50,7 +50,6 @@
     <Compile Include="..\ResXParser.cs">
       <Link>ResXParser.cs</Link>
     </Compile>
-    <Compile Include="ScriptMetadata.cs" />
     <Compile Include="Importer\IL\ArrayType.cs" />
     <Compile Include="Importer\IL\AssemblyDefinition.cs" />
     <Compile Include="Importer\IL\AssemblyFlags.cs" />

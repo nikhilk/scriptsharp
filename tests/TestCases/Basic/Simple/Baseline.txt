@@ -73,6 +73,7 @@ define('basic', ['ss'], function(ss) {
   Basic$EventArgs.Empty = new Basic$EventArgs();
 
   return $basic;
+
 });
 
 // Generated with Script#

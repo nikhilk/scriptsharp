@@ -297,13 +297,10 @@ namespace ScriptSharp.Compiler {
             }
 
             symbols.ScriptName = scriptName;
-            options.Metadata.Name = scriptName;
 
-            string header;
-            string footer;
-            if (GetScriptOutputOptions(compilationUnits, out header, out footer)) {
-                options.Metadata.Header = header;
-                options.Metadata.Footer = footer;
+            string template;
+            if (GetScriptTemplate(compilationUnits, out template)) {
+                options.Template = template;
             }
 
             List<TypeSymbol> types = new List<TypeSymbol>();
@@ -822,29 +819,13 @@ namespace ScriptSharp.Compiler {
             return null;
         }
 
-        private bool GetScriptOutputOptions(ParseNodeList compilationUnits, out string header, out string footer) {
-            header = null;
-            footer = null;
+        private bool GetScriptTemplate(ParseNodeList compilationUnits, out string template) {
+            template = null;
 
             foreach (CompilationUnitNode compilationUnit in compilationUnits) {
                 foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
-                    AttributeNode attr = AttributeNode.FindAttribute(attribBlock.Attributes, "ScriptOutput");
-
-                    if (attr != null) {
-                        if (attr.Arguments.Count > 0) {
-                            Debug.Assert(attr.Arguments[0] is LiteralNode);
-                            Debug.Assert(((LiteralNode)attr.Arguments[0]).Value is string);
-
-                            header = (string)((LiteralNode)attr.Arguments[0]).Value;
-                        }
-
-                        if (attr.Arguments.Count > 1) {
-                            Debug.Assert(attr.Arguments[1] is LiteralNode);
-                            Debug.Assert(((LiteralNode)attr.Arguments[1]).Value is string);
-
-                            footer = (string)((LiteralNode)attr.Arguments[1]).Value;
-                        }
-
+                    template = GetAttributeValue(attribBlock.Attributes, "ScriptTemplate");
+                    if (template != null) {
                         return true;
                     }
                 }

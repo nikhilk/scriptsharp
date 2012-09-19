@@ -242,29 +242,17 @@ namespace System.Runtime.CompilerServices {
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
     [NonScriptable]
     [Imported]
-    public sealed class ScriptOutputAttribute : Attribute {
+    public sealed class ScriptTemplateAttribute : Attribute {
 
-        private string _header;
-        private string _footer;
+        private string _template;
 
-        public ScriptOutputAttribute(string header)
-            : this(header, String.Empty) {
+        public ScriptTemplateAttribute(string template) {
+            _template = template;
         }
 
-        public ScriptOutputAttribute(string header, string footer) {
-            _header = header;
-            _footer = footer;
-        }
-
-        public string Footer {
+        public string Template {
             get {
-                return _footer;
-            }
-        }
-
-        public string Header {
-            get {
-                return _header;
+                return _template;
             }
         }
     }

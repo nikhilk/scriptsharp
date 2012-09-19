@@ -7,10 +7,17 @@ using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("basic")]
 
-[assembly: ScriptOutput(@"
+[assembly: ScriptTemplate(@"
 // {name}.js
 // Sample script...
-", @"
+""use strict"";
+
+define('{name}', [{requires}], function({dependencies}) {
+  var $global = this;
+
+  {script}
+});
+
 // Generated with Script#
 ")]
 

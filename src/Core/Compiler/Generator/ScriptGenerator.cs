@@ -107,50 +107,12 @@ namespace ScriptSharp.Generator {
             publicTypes.Sort(typeComparer);
             internalTypes.Sort(typeComparer);
 
-            _writer.Write(_options.Metadata.GetOutputHeader());
-            _writer.WriteLine("\"use strict\";");
-            _writer.WriteLine();
-
             string moduleName = symbolSet.ScriptName;
 
-            _writer.Write("define('");
-            _writer.Write(moduleName);
-            _writer.Write("', [");
-
-            bool firstDependency = true;
-            foreach (string dependency in _symbols.Dependencies) {
-                if (firstDependency == false) {
-                    _writer.Write(", ");
-                }
-                _writer.Write("'" + dependency + "'");
-                firstDependency = false;
+            bool initialIndent = (String.IsNullOrEmpty(_options.Template) == false);
+            if (initialIndent) {
+                _writer.Indent++;
             }
-
-            _writer.Write("], function(");
-
-            firstDependency = true;
-            foreach (string dependency in _symbols.Dependencies) {
-                if (firstDependency == false) {
-                    _writer.Write(", ");
-                }
-
-                if (String.Compare(dependency, "jquery", StringComparison.OrdinalIgnoreCase) == 0) {
-                    // TODO: This is a hack ... may want to generalize
-                    //       to allow module name and associated variable
-                    //       to differ.
-                    _writer.Write("$");
-                }
-                else {
-                    _writer.Write(dependency);
-                }
-
-                firstDependency = false;
-            }
-
-            _writer.WriteLine(") {");
-            _writer.Indent++;
-            _writer.WriteLine("var $global = this;");
-            _writer.WriteLine();
 
             foreach (TypeSymbol type in types) {
                 TypeGenerator.GenerateScript(this, type);
@@ -236,10 +198,9 @@ namespace ScriptSharp.Generator {
             _writer.WriteLine();
             _writer.WriteLine("return $" +  moduleName + ";");
 
-            _writer.Indent--;
-            _writer.WriteLine("});");
-
-            _writer.Write(_options.Metadata.GetOutputFooter());
+            if (initialIndent) {
+                _writer.Indent--;
+            }
         }
 
         public void StartImplementation(SymbolImplementation implementation) {

@@ -247,8 +247,8 @@ namespace ScriptSharp {
                 }
 #endif // DEBUG
 
-                ScriptGenerator scriptGenerator = new ScriptGenerator(outputWriter, _options, _symbols);
-                scriptGenerator.GenerateScript(_symbols);
+                string script = GenerateScriptWithTemplate();
+                outputWriter.Write(script);
             }
             catch (Exception e) {
                 Debug.Fail(e.ToString());
@@ -261,6 +261,61 @@ namespace ScriptSharp {
                     _options.ScriptFile.CloseStream(outputStream);
                 }
             }
+        }
+
+        private string GenerateScriptCore() {
+            StringWriter scriptWriter = new StringWriter();
+
+            try {
+                ScriptGenerator scriptGenerator = new ScriptGenerator(scriptWriter, _options, _symbols);
+                scriptGenerator.GenerateScript(_symbols);
+            }
+            catch (Exception e) {
+                Debug.Fail(e.ToString());
+            }
+            finally {
+                scriptWriter.Flush();
+            }
+
+            return scriptWriter.ToString();
+        }
+
+        private string GenerateScriptWithTemplate() {
+            string script = GenerateScriptCore();
+            if (String.IsNullOrEmpty(_options.Template)) {
+                return script;
+            }
+
+            StringBuilder requiresBuilder = new StringBuilder();
+            StringBuilder dependenciesBuilder = new StringBuilder();
+
+            bool firstDependency = true;
+            foreach (string dependency in _symbols.Dependencies) {
+                if (firstDependency == false) {
+                    requiresBuilder.Append(", ");
+                    dependenciesBuilder.Append(", ");
+                }
+
+                requiresBuilder.Append("'" + dependency + "'");
+
+                if (String.Compare(dependency, "jquery", StringComparison.OrdinalIgnoreCase) == 0) {
+                    // TODO: This is a hack ... may want to generalize
+                    //       to allow module name and associated variable
+                    //       to differ.
+                    dependenciesBuilder.Append("$");
+                }
+                else {
+                    dependenciesBuilder.Append(dependency);
+                }
+
+                firstDependency = false;
+            }
+
+            return _options.Template.TrimStart()
+                                    .Replace("{name}", _symbols.ScriptName)
+                                    .Replace("{requires}", requiresBuilder.ToString())
+                                    .Replace("{dependencies}", dependenciesBuilder.ToString())
+                                    .Replace("{script}", script);
         }
 
         private void ImportMetadata() {

@@ -16,6 +16,15 @@ namespace ScriptSharp {
     /// </summary>
     public sealed class CompilerOptions {
 
+        private static readonly string DefaultScriptTemplate = @"
+""use strict"";
+
+define('{name}', [{requires}], function({dependencies}) {
+  var $global = this;
+
+  {script}});
+";
+
         private ICollection<string> _references;
         private ICollection<string> _defines;
         private ICollection<IStreamSource> _sources;
@@ -24,10 +33,10 @@ namespace ScriptSharp {
         private IStreamSource _docCommentFile;
         private bool _includeTests;
         private bool _minimize;
+        private string _template;
 
         private string _testsSubnamespace;
 
-        private ScriptMetadata _metadata;
         private bool _hasTestTypes;
 
         // TODO: Get rid of internal test mode/type...
@@ -35,7 +44,7 @@ namespace ScriptSharp {
         private string _internalTestType;
 
         public CompilerOptions() {
-            _metadata = new ScriptMetadata();
+            _template = DefaultScriptTemplate;
             _testsSubnamespace = ".Tests";
         }
 
@@ -99,12 +108,6 @@ namespace ScriptSharp {
             }
         }
 
-        public ScriptMetadata Metadata {
-            get {
-                return _metadata;
-            }
-        }
-
         public bool Minimize {
             get {
                 return _minimize;
@@ -147,6 +150,15 @@ namespace ScriptSharp {
             }
             set {
                 _sources = value;
+            }
+        }
+
+        public string Template {
+            get {
+                return _template;
+            }
+            set {
+                _template = value;
             }
         }
 
