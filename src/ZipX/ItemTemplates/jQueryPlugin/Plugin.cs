@@ -7,7 +7,7 @@ using System.Html;
 using System.Runtime.CompilerServices;
 using jQueryApi;
 
-[Mixin("$.fn")]
+[ScriptExtension("$.fn")]
 public static class $safeitemrootname$Plugin
 {
     public static jQueryObject $safeitemrootname$($safeitemrootname$Options customOptions)
