@@ -13,7 +13,8 @@ namespace KnockoutApi {
     public class CompareResult<T> {
 
         [IntrinsicProperty]
-        public string Status {
+        public CompareResultStatus Status
+        {
             get;
             set;
         }
@@ -23,5 +24,12 @@ namespace KnockoutApi {
             get;
             set;
         }
+    }
+
+    [NamedValues]
+    public enum CompareResultStatus{
+        added,
+        deleted,
+        retained
     }
 }
