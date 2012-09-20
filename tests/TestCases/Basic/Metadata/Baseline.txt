@@ -1610,6 +1610,15 @@ Types:
                     Parameter: otherType
                     AssociatedType: Type
                     Mode: In
+            Method: Enumerate
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: ss.enumerate
+                Abstract: False
+                Parameters:
+                    Parameter: obj
+                    AssociatedType: Object
+                    Mode: In
         
     Class: Single
         Application Type: False

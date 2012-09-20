@@ -582,6 +582,13 @@ namespace ScriptSharp.Importer {
                 isAssignableFromMethod.AddParameter(new ParameterSymbol("otherType", isAssignableFromMethod, typeType, ParameterMode.In));
                 classSymbol.AddMember(isAssignableFromMethod);
 
+                // Enumerate - IEnumerable.GetEnumerator gets mapped to this
+
+                MethodSymbol enumerateMethod = new MethodSymbol("Enumerate", classSymbol, objectType, MemberVisibility.Public | MemberVisibility.Static);
+                enumerateMethod.SetAlias("ss.enumerate");
+                enumerateMethod.AddParameter(new ParameterSymbol("obj", enumerateMethod, objectType, ParameterMode.In));
+                classSymbol.AddMember(enumerateMethod);
+
                 return;
             }
 

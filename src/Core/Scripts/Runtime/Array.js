@@ -53,10 +53,6 @@ extend(Array.prototype, {
     return this.slice(index, index + count);
   },
 
-  getEnumerator: function() {
-    return new ArrayEnumerator(this);
-  },
-
   groupBy: function(callback, instance) {
     var length = this.length;
     var groups = [];

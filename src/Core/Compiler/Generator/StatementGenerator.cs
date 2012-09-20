@@ -87,17 +87,24 @@ namespace ScriptSharp.Generator {
             ScriptTextWriter writer = generator.Writer;
 
             if (statement.IsDictionaryEnumeration) {
-                writer.Write("var ");
-                writer.Write(statement.DictionaryVariable.GeneratedName);
-                writer.Write(" = ");
-                ExpressionGenerator.GenerateExpression(generator, symbol, statement.CollectionExpression);
-                writer.Write(";");
-                writer.WriteLine();
+                if (statement.DictionaryVariable != null) {
+                    writer.Write("var ");
+                    writer.Write(statement.DictionaryVariable.GeneratedName);
+                    writer.Write(" = ");
+                    ExpressionGenerator.GenerateExpression(generator, symbol, statement.CollectionExpression);
+                    writer.Write(";");
+                    writer.WriteLine();
+                }
 
                 writer.Write("for (var ");
                 writer.Write(statement.LoopVariable.GeneratedName);
                 writer.Write(" in ");
-                writer.Write(statement.DictionaryVariable.GeneratedName);
+                if (statement.DictionaryVariable != null) {
+                    writer.Write(statement.DictionaryVariable.GeneratedName);
+                }
+                else {
+                    ExpressionGenerator.GenerateExpression(generator, symbol, statement.CollectionExpression);
+                }
                 writer.WriteLine(") {");
                 writer.Indent++;
                 writer.Write("var ");
@@ -105,7 +112,12 @@ namespace ScriptSharp.Generator {
                 writer.Write(" = { key: ");
                 writer.Write(statement.LoopVariable.GeneratedName);
                 writer.Write(", value: ");
-                writer.Write(statement.DictionaryVariable.GeneratedName);
+                if (statement.DictionaryVariable != null) {
+                    writer.Write(statement.DictionaryVariable.GeneratedName);
+                }
+                else {
+                    ExpressionGenerator.GenerateExpression(generator, symbol, statement.CollectionExpression);
+                }
                 writer.Write("[");
                 writer.Write(statement.LoopVariable.GeneratedName);
                 writer.WriteLine("] };");
@@ -118,7 +130,7 @@ namespace ScriptSharp.Generator {
                 writer.Write(statement.LoopVariable.GeneratedName);
                 writer.Write(" = ");
 
-                writer.Write("ss.IEnumerator.getEnumerator(");
+                writer.Write("ss.enumerate(");
                 ExpressionGenerator.GenerateExpression(generator, symbol, statement.CollectionExpression);
                 writer.Write(");");
 

@@ -10,10 +10,3 @@ function IObjectFactory() { }
 function IEventManager() { }
 function IInitializable() { }
 
-IEnumerator.getEnumerator = function(enumerable) {
-  if (enumerable) {
-    return enumerable.getEnumerator ? enumerable.getEnumerator() : new ArrayEnumerator(enumerable);
-  }
-  return null;
-}
-

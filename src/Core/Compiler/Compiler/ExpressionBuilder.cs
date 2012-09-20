@@ -957,6 +957,23 @@ namespace ScriptSharp.Compiler {
                 TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
                 TypeSymbol argsType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Arguments);
 
+                if (method.Name.Equals("GetEnumerator", StringComparison.Ordinal)) {
+                    // This is a bit dangerous - GetEnumerator on any type gets mapped to
+                    // Script.Enumerate. This actually somewhat matches c# semantics, where you
+                    // can perform a foreach on any type that has a GetEnumerator method, rather
+                    // than only types that implement IEnumerable.
+
+                    MethodSymbol enumerateMethod = (MethodSymbol)scriptType.GetMember("Enumerate");
+                    Debug.Assert(enumerateMethod != null);
+
+                    methodExpression = new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
+                                                            enumerateMethod);
+                    methodExpression.AddParameterValue(memberExpression.ObjectReference);
+                    methodExpression.Reevaluate(memberExpression.EvaluatedType);
+
+                    return methodExpression;
+                }
+
                 if ((method.Parent == objectType) &&
                     method.Name.Equals("GetType", StringComparison.Ordinal)) {
                     // Since we can't extend object's prototype, we need to transform the

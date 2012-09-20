@@ -27,7 +27,6 @@
     <Content Include="Runtime\String.js" />
     <Content Include="Runtime\Culture.js" />
     <Content Include="Runtime\Delegate.js" />
-    <Content Include="Runtime\Enumerator.js" />
     <Content Include="Runtime\Console.js" />
     <Content Include="Runtime\Contracts.js" />
     <Content Include="Runtime\EventArgs.js" />

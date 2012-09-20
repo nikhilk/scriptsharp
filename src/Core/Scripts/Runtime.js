@@ -20,7 +20,6 @@
   #include "Runtime\TypeSystem.js"
   #include "Runtime\EventArgs.js"
   #include "Runtime\Contracts.js"
-  #include "Runtime\Enumerator.js"
   #include "Runtime\StringBuilder.js"
   #include "Runtime\Observable.js"
   #include "Runtime\Task.js"
@@ -38,7 +37,6 @@
       IObjectFactory: [ IObjectFactory ],
       IEventManager: [ IEventManager ],
       IInitializable: [ IInitializable ],
-      ArrayEnumerator: [ ArrayEnumerator, ArrayEnumerator$, null, IEnumerator ],
       EventArgs: [ EventArgs, { } ],
       CancelEventArgs: [ CancelEventArgs, { }, EventArgs ],
       StringBuilder: [ StringBuilder, StringBuilder$ ],
@@ -55,6 +53,7 @@
       isValue: isValue,
 
       extend: extend,
+      enumerate: enumerate,
 
       bind: bind,
       bindAdd: bindAdd,

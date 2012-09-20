@@ -26,7 +26,6 @@ namespace StatementTests {
             }
 
             Dictionary d = new Dictionary();
-
             foreach (DictionaryEntry entry in d) {
                 string s = entry.Key + " = " + entry.Value;
             }
@@ -35,11 +34,19 @@ namespace StatementTests {
             foreach (object o in s) {
                 DoStuff(o);
             }
+
+            foreach (DictionaryEntry entry in GetDictionary()) {
+                string s = entry.Key + " = " + entry.Value;
+            }
         }
 
         private void DoStuff(object o) {
             foreach (DictionaryEntry entry in Dictionary.GetDictionary(o)) {
             }
+        }
+
+        private Dictionary GetDictionary() {
+            return null;
         }
     }
 }
