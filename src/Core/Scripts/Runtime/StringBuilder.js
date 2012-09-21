@@ -1,12 +1,12 @@
 // StringBuilder
 
 function StringBuilder(s) {
-  this._parts = ss.isNullOrUndefined(s) || s === '' ? [] : [s];
+  this._parts = ss.isValue(s) && s !== '' ? [s] : [];
   this.isEmpty = this._parts.length == 0;
 }
 var StringBuilder$ = {
   append: function(s) {
-    if (!isNullOrUndefined(s) && s !== '') {
+    if (isValue(s) && s !== '') {
       this._parts.push(s);
       this.isEmpty = false;
     }

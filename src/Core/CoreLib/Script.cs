@@ -23,6 +23,14 @@ namespace System {
             }
         }
 
+        [IntrinsicProperty]
+        [ScriptAlias("undefined")]
+        public static object Undefined {
+            get {
+                return null;
+            }
+        }
+
         /// <summary>
         /// Converts an object into a boolean.
         /// </summary>

@@ -1,20 +1,5 @@
 // Various Helpers/Utilities
 
-// TODO: Inline and remove
-function isUndefined(o) {
-  return (o === undefined);
-}
-
-// TODO: Inline and remove
-function isNull(o) {
-  return (o === null);
-}
-
-// TODO: Use !isValue
-function isNullOrUndefined(o) {
-  return (o === null) || (o === undefined);
-}
-
 function isValue(o) {
   return (o !== null) && (o !== undefined);
 }
@@ -134,28 +119,27 @@ function enumerate(o) {
 }
 
 function _popStackFrame(e) {
-  if (isNullOrUndefined(e.stack) ||
-      isNullOrUndefined(e.fileName) ||
-      isNullOrUndefined(e.lineNumber)) {
+  if (!isValue(e.stack) ||
+      !isValue(e.fileName) ||
+      !isValue(e.lineNumber)) {
     return;
   }
 
   var stackFrames = e.stack.split('\n');
   var currentFrame = stackFrames[0];
   var pattern = e.fileName + ':' + e.lineNumber;
-  while (!isNullOrUndefined(currentFrame) &&
-         currentFrame.indexOf(pattern) === -1) {
+  while (isValue(currentFrame) && currentFrame.indexOf(pattern) === -1) {
     stackFrames.shift();
     currentFrame = stackFrames[0];
   }
 
   var nextFrame = stackFrames[1];
-  if (isNullOrUndefined(nextFrame)) {
+  if (!isValue(nextFrame)) {
     return;
   }
 
   var nextFrameParts = nextFrame.match(/@(.*):(\d+)$/);
-  if (isNullOrUndefined(nextFrameParts)) {
+  if (!isValue(nextFrameParts)) {
     return;
   }
 

@@ -20,11 +20,11 @@ define('test', ['ss', 'jquery'], function(ss, $) {
     returnType = returnType || 'text';
     requestType = requestType || 'POST';
     $.ajax({ cache: false, data: data, dataType: returnType, error: function(req, textStatus, error) {
-      if (!ss.isNullOrUndefined(errorCallback)) {
+      if (ss.isValue(errorCallback)) {
         errorCallback(req, textStatus, error);
       }
     }, success: function(dataSuccess, textStatus, request) {
-      if (ss.isNullOrUndefined(succesCallback)) {
+      if (!ss.isValue(succesCallback)) {
         $(document).append(dataSuccess);
       }
       else {

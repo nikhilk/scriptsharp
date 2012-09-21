@@ -51,7 +51,7 @@ public sealed class MyApp {
             "data", data,
             "dataType", returnType,
             "error", (AjaxErrorCallback)delegate(jQueryXmlHttpRequest req, string textStatus, Exception error) {
-                if (!Script.IsNullOrUndefined(errorCallback))
+                if (Script.IsValue(errorCallback))
                     errorCallback(req, textStatus, error);
             },
             "success", (AjaxRequestCallback)delegate(object dataSuccess, string textStatus, jQueryXmlHttpRequest request) {

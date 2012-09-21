@@ -1429,6 +1429,10 @@ Types:
                 AssociatedType: Object
                 Visibility: Public, Static
                 Generated Name: $global
+            Field: Undefined
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: undefined
             Method: Boolean
                 AssociatedType: Boolean
                 Visibility: Public, Static

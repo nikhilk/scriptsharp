@@ -979,104 +979,246 @@ namespace ScriptSharp.Compiler {
 
                 if ((method.Parent == objectType) &&
                     (method.Name.Equals("ToString", StringComparison.Ordinal) ||
-                    method.Name.Equals("ToLocaleString", StringComparison.Ordinal)) &&
-                    (memberExpression.ObjectReference.EvaluatedType == stringType)) {
-                    // No-op ToString calls on strings (this happens when performing a ToString
-                    // on a named enum value.
-                    return memberExpression.ObjectReference;
-                }
-                else if ((method.Parent == objectType) &&
-                         (method.Name.Equals("ToString", StringComparison.Ordinal) ||
-                          method.Name.Equals("ToLocaleString", StringComparison.Ordinal)) &&
-                         (memberExpression.ObjectReference.EvaluatedType is EnumerationSymbol)) {
-                    EnumerationSymbol enumSymbol = (EnumerationSymbol)memberExpression.ObjectReference.EvaluatedType;
-
-                    if (enumSymbol.UseNamedValues) {
-                        // If the enum value is a named enum, then it is already a string.
+                    method.Name.Equals("ToLocaleString", StringComparison.Ordinal))) {
+                    if (memberExpression.ObjectReference.EvaluatedType == stringType) {
+                        // No-op ToString calls on strings (this happens when performing a ToString
+                        // on a named enum value.
                         return memberExpression.ObjectReference;
                     }
+                    if (memberExpression.ObjectReference.EvaluatedType.Type == SymbolType.Enumeration) {
+                        EnumerationSymbol enumSymbol = (EnumerationSymbol)memberExpression.ObjectReference.EvaluatedType;
 
-                    return new MethodExpression(memberExpression.ObjectReference, method);
-                }
-                else if (((method.Parent == dictionaryType) || (method.Parent == genericDictionaryType)) &&
-                         method.Name.Equals("Remove", StringComparison.Ordinal)) {
-                    // Switch the instance Remove method on Dictionary to
-                    // calls to the delete operator.
-                    Debug.Assert(args.Count == 1);
-
-                    return new LateBoundExpression(memberExpression.ObjectReference,
-                                                   args[0], LateBoundOperation.DeleteField,
-                                                   objectType);
-                }
-                else if (((method.Parent == dictionaryType) || (((TypeSymbol)method.Parent).GenericType == genericDictionaryType)) &&
-                         ((method.Visibility & MemberVisibility.Static) != 0) &&
-                         method.Name.Equals("GetDictionary", StringComparison.Ordinal)) {
-                    // Dictionary.GetDictionary is a no-op method; we're just interested
-                    // in the object being passed in.
-                    // However we'll re-evaluate the argument to be of dictionary type
-                    // so that subsequent use of this expression sees it as a dictionary.
-                    Debug.Assert(args.Count == 1);
-                    args[0].Reevaluate((TypeSymbol)method.Parent);
-
-                    return args[0];
-                }
-                else if ((method.Parent == scriptType) &&
-                         method.Name.Equals("Literal", StringComparison.Ordinal)) {
-                    // Convert a call to Script.Literal into a literal expression
-
-                    Debug.Assert(args.Count >= 1);
-                    string script = null;
-
-                    if (args[0].Type == ExpressionType.Field) {
-                        Debug.Assert(args[0].EvaluatedType == stringType);
-
-                        FieldSymbol field = ((FieldExpression)args[0]).Field;
-                        if (field.IsConstant) {
-                            Debug.Assert(field.Value is string);
-                            script = (string)field.Value;
+                        if (enumSymbol.UseNamedValues) {
+                            // If the enum value is a named enum, then it is already a string.
+                            return memberExpression.ObjectReference;
                         }
-                    }
-                    else if (args[0].Type == ExpressionType.Literal) {
-                        Debug.Assert(((LiteralExpression)args[0]).Value is string);
-                        script = (string)((LiteralExpression)args[0]).Value;
-                    }
 
-                    if (script == null) {
-                        // TODO: When we start raising errors at the expression level instead of the statement
-                        //       level, we should return an ErrorExpression instead of a dummy expression.
-                        Token argToken = argNodes.Expressions[0].Token;
-
-                        _errorHandler.ReportError("The argument to Script.Literal must be a constant string.",
-                                                  argToken.Location);
-                        return new InlineScriptExpression("", objectType);
+                        return new MethodExpression(memberExpression.ObjectReference, method);
                     }
-
-                    InlineScriptExpression scriptExpression = new InlineScriptExpression(script, objectType);
-                    for (int i = 1; i < args.Count; i++) {
-                        scriptExpression.AddParameterValue(args[i]);
-                    }
-
-                    return scriptExpression;
                 }
-                else if ((method.Parent == scriptType) &&
-                         method.Name.Equals("Boolean", StringComparison.Ordinal)) {
-                    Debug.Assert(args.Count == 1);
+                else if ((method.Parent == dictionaryType) || (method.Parent == genericDictionaryType)) {
+                    if (method.Name.Equals("Remove", StringComparison.Ordinal)) {
+                        // Switch the instance Remove method on Dictionary to
+                        // calls to the delete operator.
+                        Debug.Assert(args.Count == 1);
 
-                    return new UnaryExpression(Operator.LogicalNot, new UnaryExpression(Operator.LogicalNot, args[0]));
+                        return new LateBoundExpression(memberExpression.ObjectReference,
+                                                       args[0], LateBoundOperation.DeleteField,
+                                                       objectType);
+                    }
+                    else if (method.Name.Equals("GetDictionary", StringComparison.Ordinal)) {
+                        // Dictionary.GetDictionary is a no-op method; we're just interested
+                        // in the object being passed in.
+                        // However we'll re-evaluate the argument to be of dictionary type
+                        // so that subsequent use of this expression sees it as a dictionary.
+                        Debug.Assert(args.Count == 1);
+                        args[0].Reevaluate((TypeSymbol)method.Parent);
+
+                        return args[0];
+                    }
                 }
-                else if ((method.Parent == scriptType) &&
-                         method.Name.Equals("Value", StringComparison.Ordinal)) {
-                    Debug.Assert(args.Count >= 2);
+                else if (method.Parent == scriptType) {
+                    if (method.Name.Equals("Literal", StringComparison.Ordinal)) {
+                        // Convert a call to Script.Literal into a literal expression
 
-                    Expression expr = args[0];
-                    for (int i = 1; i < args.Count; i++) {
-                        expr = new BinaryExpression(Operator.LogicalOr, expr, args[i]);
+                        Debug.Assert(args.Count >= 1);
+                        string script = null;
+
+                        if (args[0].Type == ExpressionType.Field) {
+                            Debug.Assert(args[0].EvaluatedType == stringType);
+
+                            FieldSymbol field = ((FieldExpression)args[0]).Field;
+                            if (field.IsConstant) {
+                                Debug.Assert(field.Value is string);
+                                script = (string)field.Value;
+                            }
+                        }
+                        else if (args[0].Type == ExpressionType.Literal) {
+                            Debug.Assert(((LiteralExpression)args[0]).Value is string);
+                            script = (string)((LiteralExpression)args[0]).Value;
+                        }
+
+                        if (script == null) {
+                            // TODO: When we start raising errors at the expression level instead of the statement
+                            //       level, we should return an ErrorExpression instead of a dummy expression.
+                            Token argToken = argNodes.Expressions[0].Token;
+
+                            _errorHandler.ReportError("The argument to Script.Literal must be a constant string.",
+                                                      argToken.Location);
+                            return new InlineScriptExpression("", objectType);
+                        }
+
+                        InlineScriptExpression scriptExpression = new InlineScriptExpression(script, objectType);
+                        for (int i = 1; i < args.Count; i++) {
+                            scriptExpression.AddParameterValue(args[i]);
+                        }
+
+                        return scriptExpression;
+                    }
+                    else if (method.Name.Equals("Boolean", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        return new UnaryExpression(Operator.LogicalNot, new UnaryExpression(Operator.LogicalNot, args[0]));
+                    }
+                    else if (method.Name.Equals("Value", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count >= 2);
+
+                        Expression expr = args[0];
+                        for (int i = 1; i < args.Count; i++) {
+                            expr = new BinaryExpression(Operator.LogicalOr, expr, args[i]);
+                        }
+
+                        expr.Reevaluate(args[0].EvaluatedType);
+                        expr.AddParenthesisHint();
+
+                        return expr;
+                    }
+                    else if (method.Name.Equals("IsNull", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        return new BinaryExpression(Operator.EqualEqualEqual, args[0],
+                                                    new LiteralExpression(objectType, null));
+                    }
+                    else if (method.Name.Equals("IsUndefined", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        MemberSymbol undefinedMember = scriptType.GetMember("Undefined");
+                        Debug.Assert(undefinedMember != null);
+
+                        MemberExpression undefinedExpression =
+                            new MemberExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
+                                                 undefinedMember);
+
+                        return new BinaryExpression(Operator.EqualEqualEqual, args[0], TransformMemberExpression(undefinedExpression));
+                    }
+                    else if (method.Name.Equals("IsNullOrUndefined", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        MethodSymbol isValueMethod = (MethodSymbol)scriptType.GetMember("IsValue");
+                        Debug.Assert(isValueMethod != null);
+
+                        methodExpression = new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
+                                                                isValueMethod);
+                        methodExpression.AddParameterValue(args[0]);
+
+                        return new UnaryExpression(Operator.LogicalNot, methodExpression);
+                    }
+                    else if (method.Name.Equals("CreateInstance", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count >= 1);
+
+                        if ((args[0].Type == ExpressionType.MethodInvoke) ||
+                            (args[0].Type == ExpressionType.PropertyGet)) {
+                            // When using the result of a method call/property access directly
+                            // with Type.CreateInstance, the following script would be generated:
+                            //
+                            // new method()()
+                            // which is invalid. Instead we need to generate the following:
+                            // var type = method();
+                            // new type()
+
+                            _errorHandler.ReportError("You must store the type returned from a method or property into a local variable to use with Type.CreateInstance.",
+                                                      node.Token.Location);
+                        }
+
+                        NewExpression newExpression = new NewExpression(args[0], objectType);
+                        if (args.Count > 1) {
+                            bool first = true;
+                            foreach (Expression paramExpr in args) {
+                                if (first) {
+                                    first = false;
+                                    continue;
+                                }
+                                newExpression.AddParameterValue(paramExpr);
+                            }
+                        }
+                        return newExpression;
                     }
 
-                    expr.Reevaluate(args[0].EvaluatedType);
-                    expr.AddParenthesisHint();
+                    bool lateBound = false;
+                    LateBoundOperation lateBoundOperation = LateBoundOperation.InvokeMethod;
 
-                    return expr;
+                    if (method.Name.Equals("InvokeMethod", StringComparison.Ordinal)) {
+                        lateBound = true;
+                    }
+                    else if (method.Name.Equals("DeleteField", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.DeleteField;
+                    }
+                    else if (method.Name.Equals("GetField", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.GetField;
+                    }
+                    else if (method.Name.Equals("SetField", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.SetField;
+                    }
+                    else if (method.Name.Equals("GetScriptType", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.GetScriptType;
+                    }
+                    else if (method.Name.Equals("HasField", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.HasField;
+                    }
+                    else if (method.Name.Equals("HasMethod", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.HasMethod;
+                    }
+
+                    if (lateBound) {
+                        // Switch explicit late-bound calls into implicit late-bound expressions
+                        // in script
+                        Debug.Assert((args != null) &&
+                                     (((lateBoundOperation == LateBoundOperation.GetScriptType) && (args.Count == 1)) ||
+                                     (args.Count >= 2)));
+
+                        LateBoundExpression lateBoundExpression = null;
+                        Expression instanceExpression = null;
+                        Expression nameExpression = null;
+
+                        foreach (Expression paramExpr in args) {
+                            if (instanceExpression == null) {
+                                instanceExpression = paramExpr;
+
+                                if (lateBoundOperation == LateBoundOperation.GetScriptType) {
+                                    // GetScriptType only takes an instance
+                                    return new LateBoundExpression(instanceExpression, null,
+                                                                    lateBoundOperation, objectType);
+                                }
+                                continue;
+                            }
+                            if (nameExpression == null) {
+                                nameExpression = paramExpr;
+
+                                Expression objectExpression = instanceExpression;
+                                if (lateBoundOperation == LateBoundOperation.InvokeMethod) {
+                                    if ((instanceExpression.Type == ExpressionType.Literal) &&
+                                        (((LiteralExpression)instanceExpression).Value == null)) {
+                                        objectExpression = null;
+
+                                        LiteralExpression literalExpression = nameExpression as LiteralExpression;
+                                        if (literalExpression == null) {
+                                            _errorHandler.ReportError("The name of a global method must be a constant string known at compile time.",
+                                                                        argNodes.Expressions[0].Token.Location);
+                                        }
+                                        else if (!Utility.IsValidIdentifier((string)literalExpression.Value)) {
+                                            _errorHandler.ReportError("The name of a global method must be a valid identifer.",
+                                                                        argNodes.Expressions[0].Token.Location);
+                                        }
+                                    }
+                                }
+
+                                lateBoundExpression = new LateBoundExpression(objectExpression, nameExpression,
+                                                                                lateBoundOperation, objectType);
+                                continue;
+                            }
+
+                            lateBoundExpression.AddParameterValue(paramExpr);
+                        }
+
+                        Debug.Assert(lateBoundExpression != null);
+                        return lateBoundExpression;
+                    }
                 }
                 else if (method.Parent == argsType) {
                     if (method.Name.Equals("GetArgument", StringComparison.Ordinal)) {
@@ -1104,126 +1246,6 @@ namespace ScriptSharp.Compiler {
                         toArrayExpression.AddParameterValue(argsExpression);
 
                         return toArrayExpression;
-                    }
-                }
-                else {
-                    bool lateBound = false;
-
-                    if (method.Parent == scriptType) {
-                        LateBoundOperation lateBoundOperation = LateBoundOperation.InvokeMethod;
-
-                        if (method.Name.Equals("InvokeMethod", StringComparison.Ordinal)) {
-                            lateBound = true;
-                        }
-                        else if (method.Name.Equals("DeleteField", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.DeleteField;
-                        }
-                        else if (method.Name.Equals("GetField", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.GetField;
-                        }
-                        else if (method.Name.Equals("SetField", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.SetField;
-                        }
-                        else if (method.Name.Equals("GetScriptType", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.GetScriptType;
-                        }
-                        else if (method.Name.Equals("HasField", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.HasField;
-                        }
-                        else if (method.Name.Equals("HasMethod", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.HasMethod;
-                        }
-                        else if (method.Name.Equals("CreateInstance", StringComparison.Ordinal)) {
-                            Debug.Assert(args.Count >= 1);
-
-                            if ((args[0].Type == ExpressionType.MethodInvoke) ||
-                                (args[0].Type == ExpressionType.PropertyGet)) {
-                                // When using the result of a method call/property access directly
-                                // with Type.CreateInstance, the following script would be generated:
-                                //
-                                // new method()()
-                                // which is invalid. Instead we need to generate the following:
-                                // var type = method();
-                                // new type()
-
-                                _errorHandler.ReportError("You must store the type returned from a method or property into a local variable to use with Type.CreateInstance.",
-                                                          node.Token.Location);
-                            }
-
-                            NewExpression newExpression = new NewExpression(args[0], objectType);
-                            if (args.Count > 1) {
-                                bool first = true;
-                                foreach (Expression paramExpr in args) {
-                                    if (first) {
-                                        first = false;
-                                        continue;
-                                    }
-                                    newExpression.AddParameterValue(paramExpr);
-                                }
-                            }
-                            return newExpression;
-                        }
-
-                        if (lateBound) {
-                            // Switch explicit late-bound calls into implicit late-bound expressions
-                            // in script
-                            Debug.Assert((args != null) &&
-                                         (((lateBoundOperation == LateBoundOperation.GetScriptType) && (args.Count == 1)) ||
-                                          (args.Count >= 2)));
-
-                            LateBoundExpression lateBoundExpression = null;
-                            Expression instanceExpression = null;
-                            Expression nameExpression = null;
-
-                            foreach (Expression paramExpr in args) {
-                                if (instanceExpression == null) {
-                                    instanceExpression = paramExpr;
-
-                                    if (lateBoundOperation == LateBoundOperation.GetScriptType) {
-                                        // GetScriptType only takes an instance
-                                        return new LateBoundExpression(instanceExpression, null,
-                                                                       lateBoundOperation, objectType);
-                                    }
-                                    continue;
-                                }
-                                if (nameExpression == null) {
-                                    nameExpression = paramExpr;
-
-                                    Expression objectExpression = instanceExpression;
-                                    if (lateBoundOperation == LateBoundOperation.InvokeMethod) {
-                                        if ((instanceExpression.Type == ExpressionType.Literal) &&
-                                            (((LiteralExpression)instanceExpression).Value == null)) {
-                                            objectExpression = null;
-
-                                            LiteralExpression literalExpression = nameExpression as LiteralExpression;
-                                            if (literalExpression == null) {
-                                                _errorHandler.ReportError("The name of a global method must be a constant string known at compile time.",
-                                                                          argNodes.Expressions[0].Token.Location);
-                                            }
-                                            else if (!Utility.IsValidIdentifier((string)literalExpression.Value)) {
-                                                _errorHandler.ReportError("The name of a global method must be a valid identifer.",
-                                                                          argNodes.Expressions[0].Token.Location);
-                                            }
-                                        }
-                                    }
-
-                                    lateBoundExpression = new LateBoundExpression(objectExpression, nameExpression,
-                                                                                  lateBoundOperation, objectType);
-                                    continue;
-                                }
-
-                                lateBoundExpression.AddParameterValue(paramExpr);
-                            }
-
-                            Debug.Assert(lateBoundExpression != null);
-                            return lateBoundExpression;
-                        }
                     }
                 }
 

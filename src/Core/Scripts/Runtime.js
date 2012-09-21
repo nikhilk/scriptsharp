@@ -42,11 +42,7 @@
     }), {
       version: '0.8',
 
-      isUndefined: isUndefined,
-      isNull: isNull,
-      isNullOrUndefined: isNullOrUndefined,
       isValue: isValue,
-
       extend: extend,
       enumerate: enumerate,
       keys: keys,

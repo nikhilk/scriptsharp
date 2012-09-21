@@ -23,7 +23,10 @@ namespace ExpressionTests {
             int cookie = Script.SetInterval(tick, 500);
             Script.ClearInterval(cookie);
 
-            bool isSet = Script.IsNullOrUndefined(i) == false;
+            bool isNotSet = Script.IsNullOrUndefined(i);
+            b = Script.IsNull(i);
+            b = Script.IsUndefined(i);
+            b = Script.IsValue(i);
 
             int addition = (int)Script.Eval("2 + 2");
 
@@ -31,6 +34,7 @@ namespace ExpressionTests {
             addition = (int)Script.Literal("{0} + {1}", 2, 3);
 
             object g = Script.Global;
+            object u = Script.Undefined;
         }
     }
 }
