@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ExtensionTests - Object</title>
+  <title>BCLTests - Dictionary</title>
   <link rel="stylesheet" href="QUnit.css" type="text/css" />
   <script type="text/javascript" src="QUnit.js"></script>
   <script type="text/javascript" src="QUnitExt.js"></script>
@@ -18,24 +18,24 @@
 <script type="text/script" data-name="ss" data-src="Scripts/ss.js"></script>
 <script type="text/script">
 define(['ss'], function(ss) {
-  module('Object');
+  module('Dictionary');
   test('clearKeys', function() {
     var d = { 'abc': 123, 'def': 456 };
     var d2 = { };
 
-    QUnit.equal(Object.getKeyCount(d), 2);
-    Object.clearKeys(d);
-    QUnit.equal(Object.getKeyCount(d), 0);
-    Object.clearKeys(d2);
-    QUnit.equal(Object.getKeyCount(d2), 0);
+    QUnit.equal(ss.keyCount(d), 2);
+    ss.clearKeys(d);
+    QUnit.equal(ss.keyCount(d), 0);
+    ss.clearKeys(d2);
+    QUnit.equal(ss.keyCount(d2), 0);
   });
 
   test('keys', function() {
     var d = { 'abc': 123, 'def': 456 };
     var d2 = { };
 
-    var keys = Object.keys(d);
-    var keys2 = Object.keys(d2);
+    var keys = ss.keys(d);
+    var keys2 = ss.keys(d2);
 
     QUnit.equal(keys.length, 2);
     QUnit.equal(keys.contains('abc'), true);
@@ -47,9 +47,9 @@ define(['ss'], function(ss) {
     var d = { 'abc': 123, 'def': 456 };
     var d2 = { };
 
-    QUnit.equal(Object.keyExists(d, 'abc'), true);
-    QUnit.equal(Object.keyExists(d, 'ghi'), false);
-    QUnit.equal(Object.keyExists(d2, 'abc'), false);
+    QUnit.equal(ss.keyExists(d, 'abc'), true);
+    QUnit.equal(ss.keyExists(d, 'ghi'), false);
+    QUnit.equal(ss.keyExists(d2, 'abc'), false);
   });
 });
 </script>

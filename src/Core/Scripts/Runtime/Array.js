@@ -124,7 +124,3 @@ extend(Array.prototype, {
     return this.splice(index, count);
   }
 });
-
-Array.toArray = function(obj) {
-  return Array.prototype.slice.call(obj);
-}

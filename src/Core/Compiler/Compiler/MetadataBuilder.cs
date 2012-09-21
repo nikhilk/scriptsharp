@@ -525,11 +525,9 @@ namespace ScriptSharp.Compiler {
                     }
                 }
 
-                if ((method.Visibility & MemberVisibility.Static) != 0) {
-                    string scriptAlias = GetAttributeValue(methodNode.Attributes, "ScriptAlias");
-                    if (scriptAlias != null) {
-                        method.SetAlias(scriptAlias);
-                    }
+                string scriptAlias = GetAttributeValue(methodNode.Attributes, "ScriptAlias");
+                if (scriptAlias != null) {
+                    method.SetAlias(scriptAlias);
                 }
             }
 

@@ -68,7 +68,7 @@ define('test', ['ss'], function(ss) {
       MyBehavior: [ MemberTests$MyBehavior, MemberTests$MyBehavior$, MemberTests$Behavior ]
     });
 
-  MemberTests$MyClass.instance = new MemberTests$MyClass(Date.get_now());
+  MemberTests$MyClass.instance = new MemberTests$MyClass(ss.now());
   alert('simple static ctor');
   alert('simple static ctor with multiple statements');
   document.getElementById('foo').innerHTML = '...';

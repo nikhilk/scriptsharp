@@ -21,26 +21,26 @@ define('test', ['ss'], function(ss) {
     test2: function(arg) {
       var dictionary1 = { aaa: 123, xyz: true };
       var key = 'blah';
-      var c = Object.getKeyCount(dictionary1);
-      var c2 = Object.getKeyCount(this.getData());
-      var b = Object.keyExists(dictionary1, 'aaa');
+      var c = ss.keyCount(dictionary1);
+      var c2 = ss.keyCount(this.getData());
+      var b = ss.keyExists(dictionary1, 'aaa');
       delete dictionary1.aaa;
       delete dictionary1['Proxy-Connection'];
       delete dictionary1[key];
-      Object.clearKeys(dictionary1);
-      var keys = Object.keys(dictionary1);
+      ss.clearKeys(dictionary1);
+      var keys = ss.keys(dictionary1);
     },
     test3: function(arg) {
       var dictionary1 = { aaa: 123, xyz: true };
       var key = 'blah';
-      var c = Object.getKeyCount(dictionary1);
-      var c2 = Object.getKeyCount(this.getData2());
-      var b = Object.keyExists(dictionary1, 'aaa');
+      var c = ss.keyCount(dictionary1);
+      var c2 = ss.keyCount(this.getData2());
+      var b = ss.keyExists(dictionary1, 'aaa');
       delete dictionary1.aaa;
       delete dictionary1['Proxy-Connection'];
       delete dictionary1[key];
-      Object.clearKeys(dictionary1);
-      var keys = Object.keys(dictionary1);
+      ss.clearKeys(dictionary1);
+      var keys = ss.keys(dictionary1);
     }
   };
 

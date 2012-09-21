@@ -50,9 +50,11 @@ namespace System.Collections.Generic {
         public void Add(TKey key, TValue value) {
         }
 
+        [ScriptAlias("ss.clearKeys")]
         public void Clear() {
         }
 
+        [ScriptAlias("ss.keyExists")]
         public bool ContainsKey(TKey key) {
             return false;
         }

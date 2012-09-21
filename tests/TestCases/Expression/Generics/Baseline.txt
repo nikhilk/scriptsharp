@@ -17,8 +17,8 @@ define('test', ['ss', 'jquery'], function(ss, $) {
     f2(11).trim();
     var d = {};
     var s5 = $.extend(d, d)['abc'].toString(10);
-    var keys = Object.getKeyCount(d);
-    var b = Object.keyExists(d, 'abc');
+    var keys = ss.keyCount(d);
+    var b = ss.keyExists(d, 'abc');
     delete d.abc;
     for (var $key1 in d) {
       var de = { key: $key1, value: d[$key1] };

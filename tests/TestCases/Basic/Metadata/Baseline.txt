@@ -398,7 +398,7 @@ Types:
             Method: Parse
                 AssociatedType: Array
                 Visibility: Public, Static
-                Generated Name: parse
+                Generated Name: ss.array
                 Abstract: False
             Method: Reduce
                 AssociatedType: Object
@@ -443,7 +443,7 @@ Types:
             Method: ToArray
                 AssociatedType: Array
                 Visibility: Public, Static
-                Generated Name: toArray
+                Generated Name: ss.array
                 Abstract: False
             Method: Unshift
                 AssociatedType: Void
@@ -460,7 +460,7 @@ Types:
             Method: Parse
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: parse
+                Generated Name: ss.boolean
                 Abstract: False
         
     Class: Byte
@@ -523,22 +523,14 @@ Types:
         Extension Methods: False
         BaseClass: Object
         Members:
-            Field: Empty
+            Field: Now
                 AssociatedType: Date
                 Visibility: Public, Static
-                Generated Name: Empty
-            Property: Now
+                Generated Name: ss.now()
+            Field: Today
                 AssociatedType: Date
                 Visibility: Public, Static
-                Generated Name: now
-                ReadOnly: True
-                Abstract: False
-            Property: Today
-                AssociatedType: Date
-                Visibility: Public, Static
-                Generated Name: today
-                ReadOnly: True
-                Abstract: False
+                Generated Name: ss.today()
             Method: GetDate
                 AssociatedType: Int32
                 Visibility: Public
@@ -628,11 +620,6 @@ Types:
                 AssociatedType: Int32
                 Visibility: Public
                 Generated Name: getUTCSeconds
-                Abstract: False
-            Method: IsEmpty
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: isEmpty
                 Abstract: False
             Method: Parse
                 AssociatedType: Date
@@ -907,7 +894,7 @@ Types:
             Method: Create
                 AssociatedType: Exception
                 Visibility: Public, Static
-                Generated Name: Error.createError
+                Generated Name: ss.error
                 Abstract: False
         
     Class: Export
@@ -1237,7 +1224,7 @@ Types:
             Method: Truncate
                 AssociatedType: Int32
                 Visibility: Public, Static
-                Generated Name: parseInt
+                Generated Name: ss.truncate
                 Abstract: False
         
     Class: Nullable`1
@@ -1304,7 +1291,7 @@ Types:
             Method: Parse
                 AssociatedType: Number
                 Visibility: Public, Static
-                Generated Name: parse
+                Generated Name: ss.number
                 Abstract: False
             Method: ParseDouble
                 AssociatedType: Double
@@ -1351,7 +1338,7 @@ Types:
             Method: GetType
                 AssociatedType: Type
                 Visibility: Public
-                Generated Name: getType
+                Generated Name: ss.typeOf
                 Abstract: False
             Method: ToString
                 AssociatedType: String
@@ -1411,7 +1398,7 @@ Types:
             Method: Parse
                 AssociatedType: RegularExpression
                 Visibility: Public, Static
-                Generated Name: parse
+                Generated Name: ss.regexp
                 Abstract: False
             Method: Test
                 AssociatedType: Boolean
@@ -1547,69 +1534,6 @@ Types:
                 Visibility: Public, Static
                 Generated Name: value
                 Abstract: False
-            Method: Escape
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: escape
-                Abstract: False
-            Method: Unescape
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: unescape
-                Abstract: False
-            Method: EncodeUri
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: encodeURI
-                Abstract: False
-            Method: DecodeUri
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: decodeURI
-                Abstract: False
-            Method: EncodeUriComponent
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: encodeURIComponent
-                Abstract: False
-            Method: DecodeUriComponent
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: decodeURIComponent
-                Abstract: False
-            Method: GetType
-                AssociatedType: Type
-                Visibility: Public, Static
-                Generated Name: ss.typeOf
-                Abstract: False
-                Parameters:
-                    Parameter: instance
-                    AssociatedType: Object
-                    Mode: In
-            Method: IsInstanceOfType
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: ss.instanceOf
-                Abstract: False
-                Parameters:
-                    Parameter: type
-                    AssociatedType: Type
-                    Mode: In
-                    Parameter: instance
-                    AssociatedType: Object
-                    Mode: In
-            Method: IsAssignableFrom
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: ss.canAssign
-                Abstract: False
-                Parameters:
-                    Parameter: type
-                    AssociatedType: Type
-                    Mode: In
-                    Parameter: otherType
-                    AssociatedType: Type
-                    Mode: In
             Method: Enumerate
                 AssociatedType: Object
                 Visibility: Public, Static
@@ -2010,22 +1934,22 @@ Types:
             Method: IsAssignableFrom
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: isAssignableFrom
+                Generated Name: ss.canAssign
                 Abstract: False
             Method: IsClass
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: isClass
+                Generated Name: ss.isClass
                 Abstract: False
             Method: IsInterface
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: isInterface
+                Generated Name: ss.isInterface
                 Abstract: False
             Method: IsInstanceOfType
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: isInstanceOfType
+                Generated Name: ss.instanceOf
                 Abstract: False
             Method: GetTypeFromHandle
                 AssociatedType: Type
@@ -2495,12 +2419,12 @@ Types:
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: clear
+                Generated Name: ss.clearKeys
                 Abstract: False
             Method: ContainsKey
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: containsKey
+                Generated Name: ss.keyExists
                 Abstract: False
             Method: GetDictionary
                 AssociatedType: Dictionary
@@ -2515,27 +2439,12 @@ Types:
             Method: GetKeys
                 AssociatedType: Array
                 Visibility: Public, Static
-                Generated Name: keys
+                Generated Name: ss.keys
                 Abstract: False
             Method: GetKeyCount
                 AssociatedType: Int32
                 Visibility: Public, Static
-                Generated Name: getKeyCount
-                Abstract: False
-            Method: ClearKeys
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: clearKeys
-                Abstract: False
-            Method: DeleteKey
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: deleteKey
-                Abstract: False
-            Method: KeyExists
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: keyExists
+                Generated Name: ss.keyCount
                 Abstract: False
         
     Class: DictionaryEntry
@@ -2794,12 +2703,12 @@ Types:
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: clear
+                Generated Name: ss.clearKeys
                 Abstract: False
             Method: ContainsKey
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: containsKey
+                Generated Name: ss.keyExists
                 Abstract: False
             Method: GetDictionary
                 AssociatedType: Dictionary`2
@@ -3521,7 +3430,7 @@ Types:
             Method: Fail
                 AssociatedType: Void
                 Visibility: Public, Static
-                Generated Name: fail
+                Generated Name: ss.fail
                 Abstract: False
                 Conditions:
                     DEBUG

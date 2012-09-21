@@ -69,6 +69,7 @@ namespace System {
             return null;
         }
 
+        [ScriptAlias("ss.regexp")]
         public static RegularExpression Parse(string s) {
             return null;
         }

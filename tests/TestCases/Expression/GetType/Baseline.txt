@@ -23,6 +23,7 @@ define('test', ['ss'], function(ss) {
       var b4 = ss.instanceOf((ExpressionTests$App), new ExpressionTests$App());
       var b5 = ss.instanceOf((ss.IDisposable), new ExpressionTests$App());
       var b6 = ss.instanceOf(t, new ExpressionTests$App());
+      var b7 = ss.isInterface(t) || ss.isClass(t);
     }
   };
 

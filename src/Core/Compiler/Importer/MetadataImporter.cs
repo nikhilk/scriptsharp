@@ -418,11 +418,9 @@ namespace ScriptSharp.Importer {
                     methodSymbol.SetSkipGeneration();
                 }
 
-                if ((methodSymbol.Visibility & MemberVisibility.Static) != 0) {
-                    string alias = MetadataHelpers.GetScriptAlias(method);
-                    if (String.IsNullOrEmpty(alias) == false) {
-                        methodSymbol.SetAlias(alias);
-                    }
+                string alias = MetadataHelpers.GetScriptAlias(method);
+                if (String.IsNullOrEmpty(alias) == false) {
+                    methodSymbol.SetAlias(alias);
                 }
 
                 ICollection<string> conditions;
@@ -513,74 +511,8 @@ namespace ScriptSharp.Importer {
             // and aren't meant to be referenced directly in C# code.
 
             if (memberSet == PseudoClassMembers.Script) {
-                TypeSymbol boolType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Boolean", null, SymbolFilter.Types);
-                Debug.Assert(boolType != null);
-
-                TypeSymbol intType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Int32", null, SymbolFilter.Types);
-                Debug.Assert(intType != null);
-
-                TypeSymbol floatType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Single", null, SymbolFilter.Types);
-                Debug.Assert(floatType != null);
-
-                TypeSymbol stringType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("String", null, SymbolFilter.Types);
-                Debug.Assert(stringType != null);
-
                 TypeSymbol objectType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Object", null, SymbolFilter.Types);
                 Debug.Assert(objectType != null);
-
-                TypeSymbol typeType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Type", null, SymbolFilter.Types);
-                Debug.Assert(objectType != null);
-
-                // Define the Escape, Unescape, encodeURI, decodeURI, encodeURIComponent, decodeURIComponent methods
-                MethodSymbol escapeMethod = new MethodSymbol("Escape", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                escapeMethod.SetAlias("escape");
-                classSymbol.AddMember(escapeMethod);
-
-                MethodSymbol unescapeMethod = new MethodSymbol("Unescape", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                unescapeMethod.SetAlias("unescape");
-                classSymbol.AddMember(unescapeMethod);
-
-                MethodSymbol encodeURIMethod = new MethodSymbol("EncodeUri", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                encodeURIMethod.SetAlias("encodeURI");
-                classSymbol.AddMember(encodeURIMethod);
-
-                MethodSymbol decodeURIMethod = new MethodSymbol("DecodeUri", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                decodeURIMethod.SetAlias("decodeURI");
-                classSymbol.AddMember(decodeURIMethod);
-
-                MethodSymbol encodeURIComponentMethod = new MethodSymbol("EncodeUriComponent", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                encodeURIComponentMethod.SetAlias("encodeURIComponent");
-                classSymbol.AddMember(encodeURIComponentMethod);
-
-                MethodSymbol decodeURIComponentMethod = new MethodSymbol("DecodeUriComponent", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                decodeURIComponentMethod.SetAlias("decodeURIComponent");
-                classSymbol.AddMember(decodeURIComponentMethod);
-
-                // GetType
-                // Define the Script.GetType static method which provides the functionality of
-                // Object.GetType instance method. We don't extend Object.prototype in script to add
-                // GetType, since we want to keep Object's protoype clean of any extensions.
-
-                MethodSymbol getTypeMethod = new MethodSymbol("GetType", classSymbol, typeType, MemberVisibility.Public | MemberVisibility.Static);
-                getTypeMethod.SetAlias("ss.typeOf");
-                getTypeMethod.AddParameter(new ParameterSymbol("instance", getTypeMethod, objectType, ParameterMode.In));
-                classSymbol.AddMember(getTypeMethod);
-
-                // IsInstanceOfType - Type.IsInstanceOfType gets mapped to this
-
-                MethodSymbol isInstanceOfTypeMethod = new MethodSymbol("IsInstanceOfType", classSymbol, boolType, MemberVisibility.Public | MemberVisibility.Static);
-                isInstanceOfTypeMethod.SetAlias("ss.instanceOf");
-                isInstanceOfTypeMethod.AddParameter(new ParameterSymbol("type", isInstanceOfTypeMethod, typeType, ParameterMode.In));
-                isInstanceOfTypeMethod.AddParameter(new ParameterSymbol("instance", isInstanceOfTypeMethod, objectType, ParameterMode.In));
-                classSymbol.AddMember(isInstanceOfTypeMethod);
-
-                // IsAssignableFrom - Type.IsAssignableFrom gets mapped to this
-
-                MethodSymbol isAssignableFromMethod = new MethodSymbol("IsAssignableFrom", classSymbol, boolType, MemberVisibility.Public | MemberVisibility.Static);
-                isAssignableFromMethod.SetAlias("ss.canAssign");
-                isAssignableFromMethod.AddParameter(new ParameterSymbol("type", isAssignableFromMethod, typeType, ParameterMode.In));
-                isAssignableFromMethod.AddParameter(new ParameterSymbol("otherType", isAssignableFromMethod, typeType, ParameterMode.In));
-                classSymbol.AddMember(isAssignableFromMethod);
 
                 // Enumerate - IEnumerable.GetEnumerator gets mapped to this
 
@@ -607,35 +539,18 @@ namespace ScriptSharp.Importer {
                 TypeSymbol intType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Int32", null, SymbolFilter.Types);
                 Debug.Assert(intType != null);
 
-                TypeSymbol boolType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Boolean", null, SymbolFilter.Types);
-                Debug.Assert(boolType != null);
-
-                TypeSymbol voidType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Void", null, SymbolFilter.Types);
-                Debug.Assert(boolType != null);
-
                 TypeSymbol stringType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("String", null, SymbolFilter.Types);
-                Debug.Assert(boolType != null);
+                Debug.Assert(stringType != null);
 
                 // Define Dictionary.Keys
                 MethodSymbol getKeysMethod = new MethodSymbol("GetKeys", classSymbol, _symbols.CreateArrayTypeSymbol(stringType), MemberVisibility.Public | MemberVisibility.Static);
-                getKeysMethod.SetTransformedName("keys");
+                getKeysMethod.SetAlias("ss.keys");
                 classSymbol.AddMember(getKeysMethod);
 
                 // Define Dictionary.GetCount
                 MethodSymbol countMethod = new MethodSymbol("GetKeyCount", classSymbol, intType, MemberVisibility.Public | MemberVisibility.Static);
+                countMethod.SetAlias("ss.keyCount");
                 classSymbol.AddMember(countMethod);
-
-                // Define Dictionary.ClearKeys
-                MethodSymbol clearMethod = new MethodSymbol("ClearKeys", classSymbol, voidType, MemberVisibility.Public | MemberVisibility.Static);
-                classSymbol.AddMember(clearMethod);
-
-                // Define Dictionary.DeleteKey
-                MethodSymbol deleteMethod = new MethodSymbol("DeleteKey", classSymbol, voidType, MemberVisibility.Public | MemberVisibility.Static);
-                classSymbol.AddMember(deleteMethod);
-
-                // Define Dictionary.KeyExists
-                MethodSymbol existsMethod = new MethodSymbol("KeyExists", classSymbol, boolType, MemberVisibility.Public | MemberVisibility.Static);
-                classSymbol.AddMember(existsMethod);
 
                 return;
             }

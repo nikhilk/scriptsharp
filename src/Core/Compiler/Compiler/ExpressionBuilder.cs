@@ -944,15 +944,18 @@ namespace ScriptSharp.Compiler {
             else {
                 // The member being accessed is a method...
 
+                MethodSymbol method = (MethodSymbol)memberExpression.Member;
+                if (!method.MatchesConditions(_options.Defines)) {
+                    return null;
+                }
+
                 // REVIEW: Uggh... this has become too complex over time with all the transformations
                 //         added over time. Refactoring needed...
 
-                MethodSymbol method = (MethodSymbol)memberExpression.Member;
                 TypeSymbol objectType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Object);
                 TypeSymbol typeType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
                 TypeSymbol dictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Dictionary);
                 TypeSymbol genericDictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.GenericDictionary);
-                TypeSymbol numberType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Number);
                 TypeSymbol stringType = _symbolSet.ResolveIntrinsicType(IntrinsicType.String);
                 TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
                 TypeSymbol argsType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Arguments);
@@ -975,41 +978,9 @@ namespace ScriptSharp.Compiler {
                 }
 
                 if ((method.Parent == objectType) &&
-                    method.Name.Equals("GetType", StringComparison.Ordinal)) {
-                    // Since we can't extend object's prototype, we need to transform the
-                    // natural c# syntax into a static method.
-                    // Object.GetType instance method becomes Script.GetType static method
-
-                    method = (MethodSymbol)scriptType.GetMember("GetType");
-                    Debug.Assert(method != null);
-
-                    methodExpression = new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
-                                                            method);
-                    methodExpression.AddParameterValue(memberExpression.ObjectReference);
-                    return methodExpression;
-                }
-                else if ((method.Parent == typeType) &&
-                         (method.Name.Equals("IsAssignableFrom", StringComparison.Ordinal) ||
-                          method.Name.Equals("IsInstanceOfType", StringComparison.Ordinal))) {
-                    Debug.Assert(args.Count == 1);
-
-                    // These need to get mapped over to the methods on the Script type, since
-                    // we are minimizing extensions to built-in script types.
-
-                    method = (MethodSymbol)scriptType.GetMember(method.Name);
-                    Debug.Assert(method != null);
-
-                    methodExpression = new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
-                                                            method);
-                    methodExpression.AddParameterValue(memberExpression.ObjectReference);
-                    methodExpression.AddParameterValue(args[0]);
-
-                    return methodExpression;
-                }
-                else if ((method.Parent == objectType) &&
-                         (method.Name.Equals("ToString", StringComparison.Ordinal) ||
-                          method.Name.Equals("ToLocaleString", StringComparison.Ordinal)) &&
-                         (memberExpression.ObjectReference.EvaluatedType == stringType)) {
+                    (method.Name.Equals("ToString", StringComparison.Ordinal) ||
+                    method.Name.Equals("ToLocaleString", StringComparison.Ordinal)) &&
+                    (memberExpression.ObjectReference.EvaluatedType == stringType)) {
                     // No-op ToString calls on strings (this happens when performing a ToString
                     // on a named enum value.
                     return memberExpression.ObjectReference;
@@ -1028,42 +999,14 @@ namespace ScriptSharp.Compiler {
                     return new MethodExpression(memberExpression.ObjectReference, method);
                 }
                 else if (((method.Parent == dictionaryType) || (method.Parent == genericDictionaryType)) &&
-                         method.Name.Equals("ContainsKey", StringComparison.Ordinal)) {
-                    // Switch the instance ContainsKey method on Dictionary to
-                    // calls to the static KeyExists method.
-                    Debug.Assert(args.Count == 1);
-
-                    MethodSymbol keyExistsMethod = (MethodSymbol)dictionaryType.GetMember("KeyExists");
-                    Debug.Assert(keyExistsMethod != null);
-
-                    methodExpression = new MethodExpression(new TypeExpression(dictionaryType, SymbolFilter.Public | SymbolFilter.StaticMembers),
-                                                            keyExistsMethod);
-                    methodExpression.AddParameterValue(memberExpression.ObjectReference);
-                    methodExpression.AddParameterValue(args[0]);
-
-                    return methodExpression;
-                }
-                else if (((method.Parent == dictionaryType) || (method.Parent == genericDictionaryType)) &&
                          method.Name.Equals("Remove", StringComparison.Ordinal)) {
                     // Switch the instance Remove method on Dictionary to
-                    // calls to the static DeleteKey method.
+                    // calls to the delete operator.
                     Debug.Assert(args.Count == 1);
 
                     return new LateBoundExpression(memberExpression.ObjectReference,
                                                    args[0], LateBoundOperation.DeleteField,
                                                    objectType);
-                }
-                else if (((method.Parent == dictionaryType) || (method.Parent == genericDictionaryType)) &&
-                         method.Name.Equals("Clear")) {
-                    // Switch the instance Clear method on Dictionary to
-                    // calls to the static ClearKeys method.
-                    MethodSymbol clearKeysMethod = (MethodSymbol)dictionaryType.GetMember("ClearKeys");
-                    Debug.Assert(clearKeysMethod != null);
-
-                    methodExpression = new MethodExpression(new TypeExpression(dictionaryType, SymbolFilter.Public | SymbolFilter.StaticMembers),
-                                                            clearKeysMethod);
-                    methodExpression.AddParameterValue(memberExpression.ObjectReference);
-                    return methodExpression;
                 }
                 else if (((method.Parent == dictionaryType) || (((TypeSymbol)method.Parent).GenericType == genericDictionaryType)) &&
                          ((method.Visibility & MemberVisibility.Static) != 0) &&
@@ -1076,21 +1019,6 @@ namespace ScriptSharp.Compiler {
                     args[0].Reevaluate((TypeSymbol)method.Parent);
 
                     return args[0];
-                }
-                else if ((method.Parent == stringType) &&
-                         (method.Name.Equals("Escape", StringComparison.Ordinal) ||
-                          method.Name.Equals("Unescape", StringComparison.Ordinal) ||
-                          method.Name.Equals("EncodeUri", StringComparison.Ordinal) ||
-                          method.Name.Equals("DecodeUri", StringComparison.Ordinal) ||
-                          method.Name.Equals("EncodeUriComponent", StringComparison.Ordinal) ||
-                          method.Name.Equals("DecodeUriComponent", StringComparison.Ordinal))) {
-                    // String.<Method> becomes Script.<Method>, as its a global method in script
-                    MethodSymbol scriptMethod = (MethodSymbol)scriptType.GetMember(method.Name);
-
-                    methodExpression = new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
-                                                            scriptMethod);
-                    methodExpression.AddParameterValue(memberExpression.ObjectReference);
-                    return methodExpression;
                 }
                 else if ((method.Parent == scriptType) &&
                          method.Name.Equals("Literal", StringComparison.Ordinal)) {
@@ -1297,25 +1225,23 @@ namespace ScriptSharp.Compiler {
                             return lateBoundExpression;
                         }
                     }
+                }
 
-                    if (!method.MatchesConditions(_options.Defines)) {
-                        return null;
+                methodExpression = new MethodExpression(memberExpression.ObjectReference, method);
+            }
+
+            if (methodExpression != null) {
+                if (args != null) {
+                    foreach (Expression paramExpr in args) {
+                        methodExpression.AddParameterValue(paramExpr);
                     }
+                }
 
-                    methodExpression = new MethodExpression(memberExpression.ObjectReference,
-                                                            method);
+                if (isDelegateInvoke) {
+                    return new DelegateInvokeExpression(methodExpression);
                 }
             }
 
-            if (args != null) {
-                foreach (Expression paramExpr in args) {
-                    methodExpression.AddParameterValue(paramExpr);
-                }
-            }
-
-            if (isDelegateInvoke) {
-                return new DelegateInvokeExpression(methodExpression);
-            }
             return methodExpression;
         }
 

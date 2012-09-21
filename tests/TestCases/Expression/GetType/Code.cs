@@ -24,6 +24,8 @@ namespace ExpressionTests {
             bool b4 = typeof(App).IsInstanceOfType(new App());
             bool b5 = typeof(IDisposable).IsInstanceOfType(new App());
             bool b6 = t.IsInstanceOfType(new App());
+
+            bool b7 = Type.IsInterface(t) || Type.IsClass(t);
         }
     }
 }

@@ -15,12 +15,6 @@ namespace System {
     public sealed class Date {
 
         /// <summary>
-        /// Represents a null date.
-        /// </summary>
-        [PreserveCase]
-        public static readonly Date Empty;
-
-        /// <summary>
         /// Creates a new instance of Date initialized from the current time.
         /// </summary>
         public Date() {
@@ -98,6 +92,8 @@ namespace System {
         /// <summary>
         /// Returns the current date and time.
         /// </summary>
+        [IntrinsicProperty]
+        [ScriptAlias("ss.now()")]
         public static Date Now {
             get {
                 return null;
@@ -107,6 +103,8 @@ namespace System {
         /// <summary>
         /// Returns the current date with the time part set to 00:00:00.
         /// </summary>
+        [IntrinsicProperty]
+        [ScriptAlias("ss.today()")]
         public static Date Today {
             get {
                 return null;
@@ -183,10 +181,6 @@ namespace System {
 
         public int GetUTCSeconds() {
             return 0;
-        }
-
-        public static bool IsEmpty(Date d) {
-            return false;
         }
 
         [ScriptName("parseDate")]

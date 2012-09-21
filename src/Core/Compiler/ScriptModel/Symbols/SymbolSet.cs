@@ -187,8 +187,14 @@ namespace ScriptSharp.ScriptModel {
                 MethodSymbol templateMethod = (MethodSymbol)templateMember;
                 MethodSymbol instanceMethod = new MethodSymbol(templateMethod.Name, parentType, instanceAssociatedType);
 
+                if (templateMethod.IsAliased) {
+                    instanceMethod.SetAlias(templateMethod.Alias);
+                }
                 if (templateMethod.IsTransformed) {
                     instanceMethod.SetTransformedName(templateMethod.GeneratedName);
+                }
+                if (templateMethod.SkipGeneration) {
+                    instanceMethod.SetSkipGeneration();
                 }
                 if (templateMethod.InterfaceMember != null) {
                     instanceMethod.SetInterfaceMember(templateMethod.InterfaceMember);

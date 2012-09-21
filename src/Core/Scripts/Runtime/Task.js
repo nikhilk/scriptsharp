@@ -62,7 +62,7 @@ var Task$ = {
 };
 
 function _joinTasks(tasks, any) {
-  tasks = Array.toArray(tasks);
+  tasks = toArray(tasks);
 
   var count = tasks.length;
 

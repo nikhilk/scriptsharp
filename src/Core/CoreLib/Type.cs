@@ -47,18 +47,22 @@ namespace System {
             return null;
         }
 
+        [ScriptAlias("ss.canAssign")]
         public bool IsAssignableFrom(Type type) {
             return false;
         }
 
+        [ScriptAlias("ss.isClass")]
         public static bool IsClass(Type type) {
             return false;
         }
 
+        [ScriptAlias("ss.isInterface")]
         public static bool IsInterface(Type type) {
             return false;
         }
 
+        [ScriptAlias("ss.instanceOf")]
         public bool IsInstanceOfType(object instance) {
             return false;
         }

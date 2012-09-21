@@ -13,8 +13,8 @@ namespace ScriptSharp.ScriptModel {
 
     internal class MethodSymbol : CodeMemberSymbol {
 
+        private string _alias;
         private ICollection<string> _conditions;
-        private bool _aliased;
         private bool _skipGeneration;
         private ICollection<GenericParameterSymbol> _genericArguments;
 
@@ -31,6 +31,12 @@ namespace ScriptSharp.ScriptModel {
 
         protected MethodSymbol(SymbolType type, string name, TypeSymbol parent, TypeSymbol returnType)
             : base(type, name, parent, returnType) {
+        }
+
+        public string Alias {
+            get {
+                return _alias;
+            }
         }
 
         public ICollection<string> Conditions {
@@ -82,12 +88,14 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public bool IsAliased {
+            get {
+                return String.IsNullOrEmpty(_alias) == false;
+            }
+        }
+
         public bool IsExtension {
             get {
-                if (_aliased) {
-                    // Methods with a script alias are considered extension methods.
-                    return true;
-                }
                 if (Parent.Type == SymbolType.Class) {
                     return ((ClassSymbol)Parent).IsExtenderClass;
                 }
@@ -137,10 +145,11 @@ namespace ScriptSharp.ScriptModel {
         }
 
         public void SetAlias(string alias) {
-            Debug.Assert((Visibility & MemberVisibility.Static) != 0);
+            Debug.Assert(_alias == null);
+            Debug.Assert(String.IsNullOrEmpty(alias) == false);
 
+            _alias = alias;
             SetTransformedName(alias);
-            _aliased = true;
         }
 
         public void SetConditions(ICollection<string> conditions) {

@@ -39,6 +39,7 @@ namespace System {
             return false;
         }
 
+        [ScriptAlias("ss.number")]
         public static Number Parse(string s) {
             return null;
         }

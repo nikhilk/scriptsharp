@@ -13,6 +13,11 @@ namespace Runtime.Tests {
     public class BCLTests : RuntimeTest {
 
         [TestMethod]
+        public void TestDictionary() {
+            RunTest("/TestDictionary.htm");
+        }
+
+        [TestMethod]
         public void TestEnumerator() {
             RunTest("/TestEnumerator.htm");
         }

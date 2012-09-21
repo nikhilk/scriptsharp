@@ -72,10 +72,10 @@ define('test', ['ss'], function(ss) {
       QUnit.equal(i, 0, 'Expected 0 for result.');
     },
     setup: function() {
-      this._startTime$2 = Date.get_now();
+      this._startTime$2 = ss.now();
     },
     cleanup: function() {
-      this._endTime$2 = Date.get_now();
+      this._endTime$2 = ss.now();
     }
   };
 

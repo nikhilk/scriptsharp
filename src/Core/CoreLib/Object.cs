@@ -18,6 +18,7 @@ namespace System {
         /// Retrieves the type associated with an object instance.
         /// </summary>
         /// <returns>The type of the object.</returns>
+        [ScriptAlias("ss.typeOf")]
         public Type GetType() {
             return null;
         }

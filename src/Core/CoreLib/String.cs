@@ -123,7 +123,7 @@ namespace System {
         /// Returns the unencoded version of a complete encoded URI.
         /// </summary>
         /// <returns>The unencoded string.</returns>
-        [ScriptName("decodeURI")]
+        [ScriptAlias("decodeURI")]
         public string DecodeUri() {
             return null;
         }
@@ -132,7 +132,7 @@ namespace System {
         /// Returns the unencoded version of a single part or component of an encoded URI.
         /// </summary>
         /// <returns>The unencoded string.</returns>
-        [ScriptName("decodeURIComponent")]
+        [ScriptAlias("decodeURIComponent")]
         public string DecodeUriComponent() {
             return null;
         }
@@ -141,7 +141,7 @@ namespace System {
         /// Encodes the complete URI.
         /// </summary>
         /// <returns>The encoded string.</returns>
-        [ScriptName("encodeURI")]
+        [ScriptAlias("encodeURI")]
         public string EncodeUri() {
             return null;
         }
@@ -150,7 +150,7 @@ namespace System {
         /// Encodes a single part or component of a URI.
         /// </summary>
         /// <returns>The encoded string.</returns>
-        [ScriptName("encodeURIComponent")]
+        [ScriptAlias("encodeURIComponent")]
         public string EncodeUriComponent() {
             return null;
         }
@@ -185,6 +185,7 @@ namespace System {
         /// Encodes a string by replacing punctuation, spaces etc. with their escaped equivalents.
         /// </summary>
         /// <returns>The escaped string.</returns>
+        [ScriptAlias("escape")]
         public string Escape() {
             return null;
         }
@@ -401,6 +402,7 @@ namespace System {
         /// Decodes a string by replacing escaped parts with their equivalent textual representation.
         /// </summary>
         /// <returns>The unescaped string.</returns>
+        [ScriptAlias("unescape")]
         public string Unescape() {
             return null;
         }

@@ -738,30 +738,46 @@ namespace ScriptSharp.Generator {
                 writer.Write(")");
             }
             else {
-                if (expression.Method.IsExtension) {
-                    if (expression.Method.Parent is ClassSymbol) {
+                if (expression.Method.IsAliased) {
+                    writer.Write(expression.Method.Alias);
+                    writer.Write("(");
+                    if ((expression.Method.Visibility & MemberVisibility.Static) == 0) {
+                        GenerateExpression(generator, symbol, expression.ObjectReference);
+                        if ((expression.Parameters != null) && (expression.Parameters.Count != 0)) {
+                            writer.Write(", ");
+                        }
+                    }
+                    if ((expression.Parameters != null) && (expression.Parameters.Count != 0)) {
+                        GenerateExpressionList(generator, symbol, expression.Parameters);
+                    }
+                    writer.Write(")");
+                }
+                else {
+                    if (expression.Method.IsExtension) {
+                        Debug.Assert(expression.Method.Parent.Type == SymbolType.Class);
+
                         string extendee = ((ClassSymbol)expression.Method.Parent).Extendee;
-                        if (String.IsNullOrEmpty(extendee) == false) {
-                            writer.Write(extendee);
+                        Debug.Assert(String.IsNullOrEmpty(extendee) == false);
+
+                        writer.Write(extendee);
+                        writer.Write(".");
+                    }
+                    else {
+                        GenerateExpression(generator, symbol, expression.ObjectReference);
+                        if (expression.Method.GeneratedName.Length != 0) {
                             writer.Write(".");
                         }
                     }
-                }
-                else {
-                    GenerateExpression(generator, symbol, expression.ObjectReference);
-                    if (expression.Method.GeneratedName.Length != 0) {
-                        writer.Write(".");
-                    }
-                }
 
-                if (expression.Method.GeneratedName.Length != 0) {
-                    writer.Write(expression.Method.GeneratedName);
+                    if (expression.Method.GeneratedName.Length != 0) {
+                        writer.Write(expression.Method.GeneratedName);
+                    }
+                    writer.Write("(");
+                    if (expression.Parameters != null) {
+                        GenerateExpressionList(generator, symbol, expression.Parameters);
+                    }
+                    writer.Write(")");
                 }
-                writer.Write("(");
-                if (expression.Parameters != null) {
-                    GenerateExpressionList(generator, symbol, expression.Parameters);
-                }
-                writer.Write(")");
             }
         }
 

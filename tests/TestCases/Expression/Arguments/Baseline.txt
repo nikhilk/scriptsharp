@@ -11,7 +11,7 @@ define('test', ['ss'], function(ss) {
     test: function(arg) {
       var count = arguments.length;
       var value = arguments[0];
-      var items = Array.toArray(arguments);
+      var items = ss.array(arguments);
     }
   };
 

@@ -119,6 +119,7 @@ namespace System {
             return null;
         }
 
+        [ScriptAlias("ss.array")]
         public static Array Parse(string s) {
             return null;
         }
@@ -190,6 +191,7 @@ namespace System {
         public void Splice(int start, int deleteCount, params object[] itemsToInsert) {
         }
 
+        [ScriptAlias("ss.array")]
         public static Array ToArray(object o) {
             return null;
         }

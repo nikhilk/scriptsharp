@@ -9,7 +9,7 @@ define('test', ['ss'], function(ss) {
     var elem = document.getElementById('foo');
     var s = elem.myString;
     elem['Smith'] = elem['Joe'];
-    var n = parseInt(5.5);
+    var n = ss.truncate(5.5);
     var parser = new DOMParser();
     var doc = parser.parseFromString('<markup></markup>', 'text/xml');
     var d = Date.parseDate('1/1/2010');

@@ -48,12 +48,12 @@ namespace System {
             }
         }
 
-        [ScriptAlias("Error.createError")]
+        [ScriptAlias("ss.error")]
         public static Exception Create(string message, Dictionary errorInfo) {
             return null;
         }
 
-        [ScriptAlias("Error.createError")]
+        [ScriptAlias("ss.error")]
         public static Exception Create(string message, Dictionary errorInfo, Exception innerException) {
             return null;
         }

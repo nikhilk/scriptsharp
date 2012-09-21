@@ -43,9 +43,11 @@ namespace System.Collections {
             }
         }
 
+        [ScriptAlias("ss.clearKeys")]
         public void Clear() {
         }
 
+        [ScriptAlias("ss.keyExists")]
         public bool ContainsKey(string key) {
             return false;
         }

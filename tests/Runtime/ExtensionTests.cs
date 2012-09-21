@@ -18,11 +18,6 @@ namespace Runtime.Tests {
         }
 
         [TestMethod]
-        public void TestObject() {
-            RunTest("/TestObject.htm");
-        }
-
-        [TestMethod]
         public void TestString() {
             RunTest("/TestString.htm");
         }

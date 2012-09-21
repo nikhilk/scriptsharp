@@ -110,17 +110,17 @@ namespace System {
             return 0;
         }
 
-        [ScriptAlias("parseInt")]
+        [ScriptAlias("ss.truncate")]
         public static int Truncate(Number n) {
             return 0;
         }
 
-        [ScriptAlias("parseInt")]
+        [ScriptAlias("ss.truncate")]
         public static int Truncate(double n) {
             return 0;
         }
 
-        [ScriptAlias("parseInt")]
+        [ScriptAlias("ss.truncate")]
         public static int Truncate(float n) {
             return 0;
         }

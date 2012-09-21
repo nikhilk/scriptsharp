@@ -10,12 +10,8 @@
   #include "Runtime\Misc.js"
   #include "Runtime\Delegate.js"
 
-  #include "Runtime\Object.js"
   #include "Runtime\Array.js"
   #include "Runtime\String.js"
-  #include "Runtime\Console.js"
-  #include "Runtime\Error.js"
-  #include "Runtime\Date.js"
 
   #include "Runtime\TypeSystem.js"
   #include "Runtime\EventArgs.js"
@@ -24,7 +20,6 @@
   #include "Runtime\Observable.js"
   #include "Runtime\Task.js"
   #include "Runtime\Culture.js"
-  #include "Runtime\Parse.js"
   #include "Runtime\Format.js"
 
     var ss = extend(module('ss', null, {
@@ -54,6 +49,18 @@
 
       extend: extend,
       enumerate: enumerate,
+      keys: keys,
+      keyCount: keyCount,
+      keyExists: keyExists,
+      clearKeys: clearKeys,
+      array: toArray,
+      boolean: parseBoolean,
+      regexp: parseRegExp,
+      number: parseNumber,
+      truncate: truncate,
+      now: now,
+      today: today,
+      error: error,
 
       bind: bind,
       bindAdd: bindAdd,
@@ -74,7 +81,9 @@
       culture: {
         neutral: neutralCulture,
         current: currentCulture
-      }
+      },
+
+      fail: fail
     });
 
     if (!global.define) {

@@ -22,6 +22,7 @@ namespace System.Diagnostics {
         }
 
         [Conditional("DEBUG")]
+        [ScriptAlias("ss.fail")]
         public static void Fail(string message) {
         }
 
