@@ -13,11 +13,6 @@ namespace Runtime.Tests {
     public class ExtensionTests : RuntimeTest {
 
         [TestMethod]
-        public void TestArray() {
-            RunTest("/TestArray.htm");
-        }
-
-        [TestMethod]
         public void TestString() {
             RunTest("/TestString.htm");
         }

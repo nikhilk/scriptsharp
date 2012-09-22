@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
+    // NOTE: Keep in sync with ArrayList and Array
+
     /// <summary>
     /// Equivalent to the Array type in Javascript.
     /// </summary>
@@ -41,17 +43,12 @@ namespace System.Collections.Generic {
             }
         }
 
+        [ScriptName("push")]
         public void Add(T item) {
         }
 
-        public void AddRange(T[] items) {
-        }
-
-        public void AddRange(List<T> items) {
-        }
-
-        public List<T> Clone() {
-            return null;
+        [ScriptName("push")]
+        public void AddRange(params T[] items) {
         }
 
         public void Clear() {
@@ -73,14 +70,6 @@ namespace System.Collections.Generic {
             return false;
         }
 
-        public List<T> Extract(int index) {
-            return null;
-        }
-
-        public List<T> Extract(int index, int count) {
-            return null;
-        }
-
         public List<T> Filter(ListFilterCallback<T> filterCallback) {
             return null;
         }
@@ -99,17 +88,13 @@ namespace System.Collections.Generic {
             return null;
         }
 
-        public ListGrouping<T>[] GroupBy(ListItemKeyGenerator<T> keyCallback) {
+        public List<T> GetRange(int index) {
             return null;
         }
 
-        /*
-        // HACK: This should be T instead of object, but we have a problem
-        //       handling partial generic types in the compiler.
-        public Dictionary<string, object> Index(ListItemKeyGenerator<T> keyCallback) {
+        public List<T> GetRange(int index, int count) {
             return null;
         }
-        */
 
         public int IndexOf(T item) {
             return 0;

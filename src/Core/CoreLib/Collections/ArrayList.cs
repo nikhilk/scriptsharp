@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    // NOTE: Keep in sync with ArrayGrouping and Array
+    // NOTE: Keep in sync with Array and List
 
     /// <summary>
     /// Equivalent to the Array type in Javascript.
@@ -44,17 +44,12 @@ namespace System.Collections {
             }
         }
 
+        [ScriptName("push")]
         public void Add(object item) {
         }
 
-        public void AddRange(object[] items) {
-        }
-
-        public void AddRange(ArrayList items) {
-        }
-
-        public ArrayList Clone() {
-            return null;
+        [ScriptName("push")]
+        public void AddRange(params object[] items) {
         }
 
         public void Clear() {
@@ -76,14 +71,6 @@ namespace System.Collections {
             return false;
         }
 
-        public Array Extract(int index) {
-            return null;
-        }
-
-        public Array Extract(int index, int count) {
-            return null;
-        }
-
         public Array Filter(ArrayFilterCallback filterCallback) {
             return null;
         }
@@ -102,11 +89,11 @@ namespace System.Collections {
             return null;
         }
 
-        public ArrayGrouping[] GroupBy(ArrayItemKeyGenerator keyCallback) {
+        public Array GetRange(int index) {
             return null;
         }
 
-        public Dictionary Index(ArrayItemKeyGenerator keyCallback) {
+        public Array GetRange(int index, int count) {
             return null;
         }
 

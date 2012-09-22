@@ -27,6 +27,13 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestArray() {
+            RunTest((c) => {
+                c.AddSource("Code.cs");
+            });
+        }
+
+        [TestMethod]
         public void TestBase() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
