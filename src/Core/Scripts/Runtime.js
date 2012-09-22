@@ -10,7 +10,6 @@
   #include "Runtime\Misc.js"
   #include "Runtime\Delegate.js"
 
-  #include "Runtime\Array.js"
   #include "Runtime\String.js"
 
   #include "Runtime\TypeSystem.js"
@@ -47,6 +46,7 @@
 
       isValue: isValue,
       extend: extend,
+      remove: remove,
       enumerate: enumerate,
       keys: keys,
       keyCount: keyCount,

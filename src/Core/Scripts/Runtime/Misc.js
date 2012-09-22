@@ -4,6 +4,11 @@ function isValue(o) {
   return (o !== null) && (o !== undefined);
 }
 
+function remove(a, item) {
+  var index = a.indexOf(item);
+  return index >= 0 ? (a.splice(index, 1), true) : false;
+}
+
 function extend(o, items) {
   for (var n in items) {
     o[n] = items[n];

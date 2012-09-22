@@ -259,6 +259,9 @@ namespace ScriptSharp.ScriptModel {
                 else if (genericClass.IsTransformAllowed == false) {
                     instanceClass.DisableNameTransformation();
                 }
+                if (genericClass.IsArray) {
+                    instanceClass.SetArray();
+                }
 
                 instanceClass.AddGenericParameters(genericClass.GenericParameters);
                 instanceClass.AddGenericArguments(genericClass, typeArguments);

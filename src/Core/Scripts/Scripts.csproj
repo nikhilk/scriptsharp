@@ -19,7 +19,6 @@
     <Content Include="Runtime.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Runtime\Array.js" />
     <Content Include="Runtime\Collections.js" />
     <Content Include="Runtime\Misc.js" />
     <Content Include="Runtime\Format.js" />

@@ -15,6 +15,7 @@ namespace System {
     /// </summary>
     [IgnoreNamespace]
     [Imported]
+    [ScriptName("Array")]
     public sealed class Array : IEnumerable {
 
         [IntrinsicProperty]

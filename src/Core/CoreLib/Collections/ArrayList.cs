@@ -108,7 +108,7 @@ namespace System.Collections {
         public void Insert(int index, object item) {
         }
 
-        public void InsertRange(int index, object[] items) {
+        public void InsertRange(int index, params object[] items) {
         }
 
         public string Join() {
@@ -171,6 +171,7 @@ namespace System.Collections {
             return null;
         }
 
+        [ScriptAlias("ss.remove")]
         public bool Remove(object item) {
             return false;
         }

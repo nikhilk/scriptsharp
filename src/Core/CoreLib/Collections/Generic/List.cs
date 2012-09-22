@@ -107,7 +107,7 @@ namespace System.Collections.Generic {
         public void Insert(int index, T item) {
         }
 
-        public void InsertRange(int index, T[] items) {
+        public void InsertRange(int index, params T[] items) {
         }
 
         public string Join() {
@@ -170,6 +170,7 @@ namespace System.Collections.Generic {
             return default(TReduced);
         }
 
+        [ScriptAlias("ss.remove")]
         public bool Remove(T item) {
             return false;
         }

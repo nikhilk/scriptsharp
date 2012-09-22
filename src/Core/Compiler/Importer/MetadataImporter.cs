@@ -35,38 +35,6 @@ namespace ScriptSharp.Importer {
             _errorHandler = errorHandler;
         }
 
-#if STATIC_ARRAY_EXTENSIONS
-        private void ConvertInstanceMembersToStaticMembers() {
-            // Mark the following members on Array, ArrayList, Queue and Stack
-            // as generated static, as they aren't implemented as instance/prototype
-            // members at runtime.
-
-            string[] members = new string[] {
-                "Add", "AddRange", "Aggregate", "Clear", "Clone", "Contains",
-                "Dequeue", "Enqueue", "Every", "Extract", "Filter", "ForEach",
-                "GetEnumerator", "GroupBy", "Index", "IndexOf", "Insert", "InsertRange",
-                "Map", "Peek", "Remove", "RemoveAt", "RemoveRange", "Some"
-            };
-
-            foreach (TypeSymbol typeSymbol in _importedTypes) {
-                if ((typeSymbol.Type == SymbolType.Class) &&
-                    (typeSymbol.Name.Equals("Array", StringComparison.Ordinal) ||
-                     typeSymbol.Name.Equals("ArrayList", StringComparison.Ordinal) ||
-                     typeSymbol.Name.Equals("ArrayGrouping", StringComparison.Ordinal) ||
-                     typeSymbol.Name.Equals("Queue", StringComparison.Ordinal) ||
-                     typeSymbol.Name.Equals("Stack", StringComparison.Ordinal))) {
-
-                    foreach (string memberName in members) {
-                        MethodSymbol methodSymbol = typeSymbol.GetMember(memberName) as MethodSymbol;
-                        if ((methodSymbol != null) && ((methodSymbol.Visibility & MemberVisibility.Static) == 0)) {
-                            methodSymbol.GenerateAsStaticMethod();
-                        }
-                    }
-                }
-            }
-        }
-#endif // STATIC_ARRAY_EXTENSIONS
-
         private ICollection<TypeSymbol> ImportAssemblies(MetadataSource mdSource) {
             _importedTypes = new List<TypeSymbol>();
 
@@ -354,11 +322,6 @@ namespace ScriptSharp.Importer {
             if (_resolveError) {
                 return null;
             }
-
-#if STATIC_ARRAY_EXTENSIONS
-                // Update instance members that need to be generated as static methods
-                ConvertInstanceMembersToStaticMembers();
-#endif // STATIC_ARRAY_EXTENSIONS
 
             return importedTypes;
         }
@@ -651,6 +614,10 @@ namespace ScriptSharp.Importer {
                     string extendee;
                     if (MetadataHelpers.IsScriptExtension(type, out extendee)) {
                         ((ClassSymbol)typeSymbol).SetExtenderClass(extendee);
+                    }
+
+                    if (String.CompareOrdinal(scriptName, "Array") == 0) {
+                        typeSymbol.SetArray();
                     }
                 }
             }

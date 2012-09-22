@@ -325,11 +325,6 @@ Types:
                 AssociatedType: Int32
                 Visibility: Public
                 Generated Name: length
-            Method: Clone
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: clone
-                Abstract: False
             Method: Concat
                 AssociatedType: Array
                 Visibility: Public
@@ -344,11 +339,6 @@ Types:
                 AssociatedType: Boolean
                 Visibility: Public
                 Generated Name: every
-                Abstract: False
-            Method: Extract
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: extract
                 Abstract: False
             Method: Filter
                 AssociatedType: Array
@@ -365,15 +355,10 @@ Types:
                 Visibility: Public
                 Generated Name: getEnumerator
                 Abstract: False
-            Method: GroupBy
+            Method: GetRange
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: groupBy
-                Abstract: False
-            Method: Index
-                AssociatedType: Dictionary
-                Visibility: Public
-                Generated Name: index
+                Generated Name: getRange
                 Abstract: False
             Method: IndexOf
                 AssociatedType: Int32
@@ -2030,114 +2015,6 @@ Types:
                 Generated Name: 
                 Abstract: True
         
-    Class: ArrayGrouping
-        Application Type: False
-        Public: True
-        Generated Name: Array
-        Extension Methods: False
-        BaseClass: Object
-        Indexer:
-            Indexer: Item
-                AssociatedType: Object
-                Visibility: Public
-                Generated Name: item
-                ReadOnly: False
-                Abstract: False
-        Members:
-            Field: Key
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: key
-            Field: Length
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: length
-            Method: Clone
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: clone
-                Abstract: False
-            Method: Concat
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: concat
-                Abstract: False
-            Method: Contains
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: contains
-                Abstract: False
-            Method: Every
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: every
-                Abstract: False
-            Method: Extract
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: extract
-                Abstract: False
-            Method: Filter
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: filter
-                Abstract: False
-            Method: ForEach
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: forEach
-                Abstract: False
-            Method: GetEnumerator
-                AssociatedType: IEnumerator
-                Visibility: Public
-                Generated Name: getEnumerator
-                Abstract: False
-            Method: GroupBy
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: groupBy
-                Abstract: False
-            Method: Index
-                AssociatedType: Dictionary
-                Visibility: Public
-                Generated Name: index
-                Abstract: False
-            Method: IndexOf
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: indexOf
-                Abstract: False
-            Method: Join
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: join
-                Abstract: False
-            Method: LastIndexOf
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: lastIndexOf
-                Abstract: False
-            Method: Map
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: map
-                Abstract: False
-            Method: Reverse
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: reverse
-                Abstract: False
-            Method: Some
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: some
-                Abstract: False
-            Method: Sort
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: sort
-                Abstract: False
-        
     Delegate: ArrayItemCallback
         Application Type: False
         Public: True
@@ -2156,17 +2033,6 @@ Types:
         Members:
             Method: Invoke
                 AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: 
-                Abstract: True
-        
-    Delegate: ArrayItemKeyGenerator
-        Application Type: False
-        Public: True
-        Generated Name: Function
-        Members:
-            Method: Invoke
-                AssociatedType: String
                 Visibility: Public
                 Generated Name: 
                 Abstract: True
@@ -2214,17 +2080,12 @@ Types:
             Method: Add
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: add
+                Generated Name: push
                 Abstract: False
             Method: AddRange
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: addRange
-                Abstract: False
-            Method: Clone
-                AssociatedType: ArrayList
-                Visibility: Public
-                Generated Name: clone
+                Generated Name: push
                 Abstract: False
             Method: Clear
                 AssociatedType: Void
@@ -2246,11 +2107,6 @@ Types:
                 Visibility: Public
                 Generated Name: every
                 Abstract: False
-            Method: Extract
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: extract
-                Abstract: False
             Method: Filter
                 AssociatedType: Array
                 Visibility: Public
@@ -2266,15 +2122,10 @@ Types:
                 Visibility: Public
                 Generated Name: getEnumerator
                 Abstract: False
-            Method: GroupBy
+            Method: GetRange
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: groupBy
-                Abstract: False
-            Method: Index
-                AssociatedType: Dictionary
-                Visibility: Public
-                Generated Name: index
+                Generated Name: getRange
                 Abstract: False
             Method: IndexOf
                 AssociatedType: Int32
@@ -2324,7 +2175,7 @@ Types:
             Method: Remove
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: remove
+                Generated Name: ss.remove
                 Abstract: False
             Method: RemoveAt
                 AssociatedType: Void
@@ -2823,17 +2674,12 @@ Types:
             Method: Add
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: add
+                Generated Name: push
                 Abstract: False
             Method: AddRange
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: addRange
-                Abstract: False
-            Method: Clone
-                AssociatedType: List`1
-                Visibility: Public
-                Generated Name: clone
+                Generated Name: push
                 Abstract: False
             Method: Clear
                 AssociatedType: Void
@@ -2855,11 +2701,6 @@ Types:
                 Visibility: Public
                 Generated Name: every
                 Abstract: False
-            Method: Extract
-                AssociatedType: List`1
-                Visibility: Public
-                Generated Name: extract
-                Abstract: False
             Method: Filter
                 AssociatedType: List`1
                 Visibility: Public
@@ -2875,10 +2716,10 @@ Types:
                 Visibility: Public
                 Generated Name: getEnumerator
                 Abstract: False
-            Method: GroupBy
-                AssociatedType: Array
+            Method: GetRange
+                AssociatedType: List`1
                 Visibility: Public
-                Generated Name: groupBy
+                Generated Name: getRange
                 Abstract: False
             Method: IndexOf
                 AssociatedType: Int32
@@ -2928,7 +2769,7 @@ Types:
             Method: Remove
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: remove
+                Generated Name: ss.remove
                 Abstract: False
             Method: RemoveAt
                 AssociatedType: Void
@@ -2993,94 +2834,6 @@ Types:
                 Generated Name: 
                 Abstract: True
         
-    Class: ListGrouping`1
-        Application Type: False
-        Public: True
-        Generated Name: Array
-        Extension Methods: False
-        BaseClass: Object
-        Indexer:
-            Indexer: Item
-                AssociatedType: T
-                Visibility: Public
-                Generated Name: item
-                ReadOnly: True
-                Abstract: False
-        Members:
-            Field: Key
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: key
-            Field: Count
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: length
-            Method: Contains
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: contains
-                Abstract: False
-            Method: Every
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: every
-                Abstract: False
-            Method: Extract
-                AssociatedType: List`1
-                Visibility: Public
-                Generated Name: extract
-                Abstract: False
-            Method: Filter
-                AssociatedType: List`1
-                Visibility: Public
-                Generated Name: filter
-                Abstract: False
-            Method: ForEach
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: forEach
-                Abstract: False
-            Method: GetEnumerator
-                AssociatedType: IEnumerator`1
-                Visibility: Public
-                Generated Name: getEnumerator
-                Abstract: False
-            Method: GroupBy
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: groupBy
-                Abstract: False
-            Method: IndexOf
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: indexOf
-                Abstract: False
-            Method: Join
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: join
-                Abstract: False
-            Method: LastIndexOf
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: lastIndexOf
-                Abstract: False
-            Method: Map
-                AssociatedType: List`1
-                Visibility: Public
-                Generated Name: map
-                Abstract: False
-            Method: Reverse
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: reverse
-                Abstract: False
-            Method: Some
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: some
-                Abstract: False
-        
     Delegate: ListItemCallback`1
         Application Type: False
         Public: True
@@ -3099,17 +2852,6 @@ Types:
         Members:
             Method: Invoke
                 AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: 
-                Abstract: True
-        
-    Delegate: ListItemKeyGenerator`1
-        Application Type: False
-        Public: True
-        Generated Name: Function
-        Members:
-            Method: Invoke
-                AssociatedType: String
                 Visibility: Public
                 Generated Name: 
                 Abstract: True
