@@ -28,6 +28,16 @@ namespace Runtime.Tests {
         }
 
         [TestMethod]
+        public void TestQueue() {
+            RunTest("/TestQueue.htm");
+        }
+
+        [TestMethod]
+        public void TestStack() {
+            RunTest("/TestStack.htm");
+        }
+
+        [TestMethod]
         public void TestStringBuilder() {
             RunTest("/TestStringBuilder.htm");
         }

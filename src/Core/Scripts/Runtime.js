@@ -17,6 +17,7 @@
   #include "Runtime\EventArgs.js"
   #include "Runtime\Contracts.js"
   #include "Runtime\StringBuilder.js"
+  #include "Runtime\Collections.js"
   #include "Runtime\Observable.js"
   #include "Runtime\Task.js"
   #include "Runtime\Culture.js"
@@ -35,6 +36,8 @@
       EventArgs: [ EventArgs, { } ],
       CancelEventArgs: [ CancelEventArgs, { }, EventArgs ],
       StringBuilder: [ StringBuilder, StringBuilder$ ],
+      Stack: [ Stack, Stack$ ],
+      Queue: [ Queue, Queue$ ],
       Observable: [ Observable, Observable$ ],
       ObservableCollection: [ ObservableCollection, ObservableCollection$, null, IEnumerable ],
       Task: [ Task, Task$ ],

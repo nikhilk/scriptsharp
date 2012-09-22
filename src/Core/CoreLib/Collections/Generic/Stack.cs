@@ -7,16 +7,11 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
-    /// <summary>
-    /// The Stack data type which is mapped to the Array type in Javascript.
-    /// </summary>
-    [IgnoreNamespace]
     [Imported]
-    [ScriptName("Array")]
+    [ScriptName("Stack")]
     public sealed class Stack<T> {
 
         [IntrinsicProperty]
-        [ScriptName("length")]
         public int Count {
             get {
                 return 0;

@@ -2587,14 +2587,14 @@ Types:
     Class: Queue
         Application Type: False
         Public: True
-        Generated Name: Array
+        Generated Name: Queue
         Extension Methods: False
         BaseClass: Object
         Members:
             Field: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: length
+                Generated Name: count
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
@@ -2624,14 +2624,14 @@ Types:
     Class: Stack
         Application Type: False
         Public: True
-        Generated Name: Array
+        Generated Name: Stack
         Extension Methods: False
         BaseClass: Object
         Members:
             Field: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: length
+                Generated Name: count
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
@@ -3227,14 +3227,14 @@ Types:
     Class: Queue`1
         Application Type: False
         Public: True
-        Generated Name: Array
+        Generated Name: Queue
         Extension Methods: False
         BaseClass: Object
         Members:
             Field: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: length
+                Generated Name: count
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
@@ -3264,14 +3264,14 @@ Types:
     Class: Stack`1
         Application Type: False
         Public: True
-        Generated Name: Array
+        Generated Name: Stack
         Extension Methods: False
         BaseClass: Object
         Members:
             Field: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: length
+                Generated Name: count
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
