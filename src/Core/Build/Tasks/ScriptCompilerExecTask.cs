@@ -25,7 +25,6 @@ namespace ScriptSharp.Tasks {
         private ITaskItem[] _references;
         private ITaskItem[] _sources;
         private ITaskItem[] _resources;
-        private ITaskItem _template;
         private ITaskItem _docCommentFile;
 
         private bool _minimize;
@@ -144,15 +143,6 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _sources = value;
-            }
-        }
-
-        public ITaskItem Template {
-            get {
-                return _template;
-            }
-            set {
-                _template = value;
             }
         }
 
