@@ -38,8 +38,8 @@ define(['ss'], function(ss) {
     var keys2 = ss.keys(d2);
 
     QUnit.equal(keys.length, 2);
-    QUnit.equal(keys.contains('abc'), true);
-    QUnit.equal(keys.contains('def'), true);
+    QUnit.equal(keys.indexOf('abc') >= 0, true);
+    QUnit.equal(keys.indexOf('def') >= 0, true);
     QUnit.equal(keys2.length, 0);
   });
 

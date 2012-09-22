@@ -14,7 +14,7 @@ function _captureObservers(observers) {
     observers = observers || [];
     for (var i = 0; i < observerCount; i++) {
       var observer = registeredObservers[i];
-      if (!observers.contains(observer)) {
+      if (observers.indexOf(observer) < 0) {
         observers.push(observer);
       }
     }
@@ -83,7 +83,7 @@ var ObservableCollection$ = {
     this._updated();
   },
   contains: function(item) {
-    return this._items.contains(item);
+    return this._items.indexOf(item) >= 0;
   },
   getEnumerator: function() {
     this._observers = _captureObservers(this._observers);
@@ -105,7 +105,7 @@ var ObservableCollection$ = {
     return false;
   },
   removeAt: function(index) {
-    this._items.removeAt(index);
+    this._items.splice(index, 1);
     this._updated();
   },
   toArray: function() {

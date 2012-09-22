@@ -70,7 +70,7 @@ _formatters['Number'] = function(number, format, culture) {
     case 'd': case 'D':
       s = parseInt(Math.abs(number)).toString();
       if (precision != -1) {
-        s = s.padLeft(precision, '0');
+        s = padLeft(s, precision, '0');
       }
       if (number < 0) {
         s = '-' + s;
@@ -82,7 +82,7 @@ _formatters['Number'] = function(number, format, culture) {
         s = s.toUpperCase();
       }
       if (precision != -1) {
-        s = s.padLeft(precision, '0');
+        s = padLeft(s, precision, '0');
       }
       break;
     case 'e': case 'E':
@@ -182,7 +182,7 @@ _formatters['Date'] = function(dt, format, culture) {
       case 'G': format = dtf.sd + ' ' + dtf.lt; break;
 
       case 'R': case 'r':
-        dtf = ss.neutralCulture.dtf;
+        dtf = neutralCulture.dtf;
         format = dtf.gmt;
         break;
       case 'u': format = dtf.uni; break;
@@ -200,7 +200,7 @@ _formatters['Date'] = function(dt, format, culture) {
     format = format.substr(1);
   }
 
-  var sb = new ss.StringBuilder();
+  var sb = new StringBuilder();
 
   _dateFormatRE.lastIndex = 0;
   while (true) {
@@ -222,7 +222,7 @@ _formatters['Date'] = function(dt, format, culture) {
         part = dtf.sday[dt.getDay()];
         break;
       case 'dd':
-        part = dt.getDate().toString().padLeft(2, '0');
+        part = padLeft(dt.getDate().toString(), 2, '0');
         break;
       case 'd':
         part = dt.getDate();
@@ -234,7 +234,7 @@ _formatters['Date'] = function(dt, format, culture) {
         part = dtf.smon[dt.getMonth()];
         break;
       case 'MM':
-        part = (dt.getMonth() + 1).toString().padLeft(2, '0');
+        part = padLeft((dt.getMonth() + 1).toString(), 2, '0');
         break;
       case 'M':
         part = (dt.getMonth() + 1);
@@ -243,7 +243,7 @@ _formatters['Date'] = function(dt, format, culture) {
         part = dt.getFullYear();
         break;
       case 'yy':
-        part = (dt.getFullYear() % 100).toString().padLeft(2, '0');
+        part = padLeft((dt.getFullYear() % 100).toString(), 2, '0');
         break;
       case 'y':
         part = (dt.getFullYear() % 100);
@@ -254,23 +254,23 @@ _formatters['Date'] = function(dt, format, culture) {
           part = '12';
         }
         else if (fs == 'hh') {
-          part = part.toString().padLeft(2, '0');
+          part = padLeft(part.toString(), 2, '0');
         }
         break;
       case 'HH':
-        part = dt.getHours().toString().padLeft(2, '0');
+        part = padLeft(dt.getHours().toString(), 2, '0');
         break;
       case 'H':
         part = dt.getHours();
         break;
       case 'mm':
-        part = dt.getMinutes().toString().padLeft(2, '0');
+        part = padLeft(dt.getMinutes().toString(), 2, '0');
         break;
       case 'm':
         part = dt.getMinutes();
         break;
       case 'ss':
-        part = dt.getSeconds().toString().padLeft(2, '0');
+        part = padLeft(dt.getSeconds().toString(), 2, '0');
         break;
       case 's':
         part = dt.getSeconds();
@@ -282,13 +282,13 @@ _formatters['Date'] = function(dt, format, culture) {
         }
         break;
       case 'fff':
-        part = dt.getMilliseconds().toString().padLeft(3, '0');
+        part = padLeft(dt.getMilliseconds().toString(), 3, '0');
         break;
       case 'ff':
-        part = dt.getMilliseconds().toString().padLeft(3).substr(0, 2);
+        part = padLeft(dt.getMilliseconds().toString(), 3).substr(0, 2);
         break;
       case 'f':
-        part = dt.getMilliseconds().toString().padLeft(3).charAt(0);
+        part = padLeft(dt.getMilliseconds().toString(), 3).charAt(0);
         break;
       case 'z':
         part = dt.getTimezoneOffset() / 60;
@@ -296,9 +296,9 @@ _formatters['Date'] = function(dt, format, culture) {
         break;
       case 'zz': case 'zzz':
         part = dt.getTimezoneOffset() / 60;
-        part = ((part >= 0) ? '-' : '+') + Math.floor(Math.abs(part)).toString().padLeft(2, '0');
+        part = ((part >= 0) ? '-' : '+') + padLeft(Math.floor(Math.abs(part)).toString(), 2, '0');
         if (fs == 'zzz') {
-          part += dtf.ts + Math.abs(dt.getTimezoneOffset() % 60).toString().padLeft(2, '0');
+          part += dtf.ts + padLeft(Math.abs(dt.getTimezoneOffset() % 60).toString(), 2, '0');
         }
         break;
       default:

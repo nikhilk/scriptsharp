@@ -1,7 +1,7 @@
 // Task
 
 function Task(result) {
-  this._continuations = ss.isValue(result) ?
+  this._continuations = isValue(result) ?
                           (this.status = 'done', null) :
                           (this.status = 'pending', []);
   this.result = result;

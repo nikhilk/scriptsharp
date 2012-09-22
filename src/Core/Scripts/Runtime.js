@@ -1,6 +1,6 @@
-//! Script# Core Runtime
-//! More information at http://scriptsharp.com
-//!
+/*! Script# Core Runtime
+ *  More information at http://scriptsharp.com
+ */
 
 "use strict";
 
@@ -8,21 +8,19 @@
   function _ss() {
 
   #include "Runtime\Misc.js"
-  #include "Runtime\Delegate.js"
-
+  #include "Runtime\Collections.js"
   #include "Runtime\String.js"
-
-  #include "Runtime\TypeSystem.js"
+  #include "Runtime\Delegate.js"
   #include "Runtime\EventArgs.js"
   #include "Runtime\Contracts.js"
   #include "Runtime\StringBuilder.js"
-  #include "Runtime\Collections.js"
   #include "Runtime\Observable.js"
   #include "Runtime\Task.js"
   #include "Runtime\Culture.js"
   #include "Runtime\Format.js"
+  #include "Runtime\TypeSystem.js"
 
-    var ss = extend(module('ss', null, {
+  return extend(module('ss', null, {
       IDisposable: [ IDisposable ],
       IEnumerable: [ IEnumerable ],
       IEnumerator: [ IEnumerator ],
@@ -46,13 +44,13 @@
 
       isValue: isValue,
       extend: extend,
-      remove: remove,
-      enumerate: enumerate,
       keys: keys,
       keyCount: keyCount,
       keyExists: keyExists,
       clearKeys: clearKeys,
+      enumerate: enumerate,
       array: toArray,
+      remove: removeItem,
       boolean: parseBoolean,
       regexp: parseRegExp,
       number: parseNumber,
@@ -60,7 +58,20 @@
       now: now,
       today: today,
       error: error,
-
+      string: string,
+      emptyString: emptyString,
+      whitespace: whitespace,
+      format: format,
+      compareStrings: compareStrings,
+      startsWith: startsWith,
+      endsWith: endsWith,
+      padLeft: padLeft,
+      padRight: padRight,
+      trimStart: trimStart,
+      trimEnd: trimEnd,
+      insertString: insertString,
+      removeString: removeString,
+      replaceString: replaceString,
       bind: bind,
       bindAdd: bindAdd,
       bindSub: bindSub,
@@ -84,12 +95,7 @@
 
       fail: fail
     });
-
-    if (!global.define) {
-      global.ss = ss;
-    }
-    return ss;
   }
 
-  global.define ? global.define('ss', [], _ss) : _ss();
+  global.define ? global.define('ss', [], _ss) : global.ss = _ss();
 })(this);
