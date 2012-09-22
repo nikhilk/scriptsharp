@@ -66,7 +66,17 @@ namespace ScriptSharp.Tests {
         public void TestSimple() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-            });
+            }, "DefaultBaseline.txt");
+
+            RunTest((c) => {
+                c.AddSource("Code.cs");
+                c.Options.Defines = new string[] { "SIMPLE_TEMPLATE" };
+            }, "SimpleBaseline.txt");
+
+            RunTest((c) => {
+                c.AddSource("Code.cs");
+                c.Options.Defines = new string[] { "AMD_TEMPLATE" };
+            }, "AMDBaseline.txt");
         }
 
         [TestMethod]

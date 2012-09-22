@@ -282,18 +282,25 @@ namespace ScriptSharp {
 
         private string GenerateScriptWithTemplate() {
             string script = GenerateScriptCore();
-            if (String.IsNullOrEmpty(_options.Template)) {
+
+            string template = _options.ScriptInfo.Template;
+            if (String.IsNullOrEmpty(template)) {
                 return script;
             }
 
             StringBuilder requiresBuilder = new StringBuilder();
             StringBuilder dependenciesBuilder = new StringBuilder();
+            StringBuilder depLookupBuilder = new StringBuilder();
 
             bool firstDependency = true;
             foreach (string dependency in _symbols.Dependencies) {
-                if (firstDependency == false) {
+                if (firstDependency) {
+                    depLookupBuilder.Append("var ");
+                }
+                else {
                     requiresBuilder.Append(", ");
                     dependenciesBuilder.Append(", ");
+                    depLookupBuilder.Append(", ");
                 }
 
                 requiresBuilder.Append("'" + dependency + "'");
@@ -303,19 +310,31 @@ namespace ScriptSharp {
                     //       to allow module name and associated variable
                     //       to differ.
                     dependenciesBuilder.Append("$");
+                    depLookupBuilder.Append("$");
                 }
                 else {
                     dependenciesBuilder.Append(dependency);
+                    depLookupBuilder.Append(dependency);
                 }
+
+                depLookupBuilder.Append(" = require('" + dependency + "')");
 
                 firstDependency = false;
             }
 
-            return _options.Template.TrimStart()
-                                    .Replace("{name}", _symbols.ScriptName)
-                                    .Replace("{requires}", requiresBuilder.ToString())
-                                    .Replace("{dependencies}", dependenciesBuilder.ToString())
-                                    .Replace("{script}", script);
+            depLookupBuilder.Append(";");
+
+            return template.TrimStart()
+                           .Replace("{name}", _symbols.ScriptName)
+                           .Replace("{description}", _options.ScriptInfo.Description ?? String.Empty)
+                           .Replace("{copyright}", _options.ScriptInfo.Copyright ?? String.Empty)
+                           .Replace("{version}", _options.ScriptInfo.Version ?? String.Empty)
+                           .Replace("{compiler}", typeof(ScriptCompiler).Assembly.GetName().Version.ToString())
+                           .Replace("{description}", _options.ScriptInfo.Description)
+                           .Replace("{requires}", requiresBuilder.ToString())
+                           .Replace("{dependencies}", dependenciesBuilder.ToString())
+                           .Replace("{dependenciesLookup}", depLookupBuilder.ToString())
+                           .Replace("{script}", script);
         }
 
         private void ImportMetadata() {

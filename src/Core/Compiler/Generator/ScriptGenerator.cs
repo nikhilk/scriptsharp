@@ -107,7 +107,7 @@ namespace ScriptSharp.Generator {
             publicTypes.Sort(typeComparer);
             internalTypes.Sort(typeComparer);
 
-            bool initialIndent = (String.IsNullOrEmpty(_options.Template) == false);
+            bool initialIndent = (String.IsNullOrEmpty(_options.ScriptInfo.Template) == false);
             if (initialIndent) {
                 _writer.Indent++;
             }

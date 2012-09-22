@@ -16,15 +16,6 @@ namespace ScriptSharp {
     /// </summary>
     public sealed class CompilerOptions {
 
-        private static readonly string DefaultScriptTemplate = @"
-""use strict"";
-
-define('{name}', [{requires}], function({dependencies}) {
-  var $global = this;
-
-  {script}});
-";
-
         private ICollection<string> _references;
         private ICollection<string> _defines;
         private ICollection<IStreamSource> _sources;
@@ -33,7 +24,7 @@ define('{name}', [{requires}], function({dependencies}) {
         private IStreamSource _docCommentFile;
         private bool _includeTests;
         private bool _minimize;
-        private string _template;
+        private ScriptInfo _scriptInfo;
 
         private string _testsSubnamespace;
 
@@ -44,7 +35,7 @@ define('{name}', [{requires}], function({dependencies}) {
         private string _internalTestType;
 
         public CompilerOptions() {
-            _template = DefaultScriptTemplate;
+            _scriptInfo = new ScriptInfo();
             _testsSubnamespace = ".Tests";
         }
 
@@ -135,6 +126,12 @@ define('{name}', [{requires}], function({dependencies}) {
             }
         }
 
+        public ScriptInfo ScriptInfo {
+            get {
+                return _scriptInfo;
+            }
+        }
+
         public IStreamSource ScriptFile {
             get {
                 return _scriptFile;
@@ -150,15 +147,6 @@ define('{name}', [{requires}], function({dependencies}) {
             }
             set {
                 _sources = value;
-            }
-        }
-
-        public string Template {
-            get {
-                return _template;
-            }
-            set {
-                _template = value;
             }
         }
 

@@ -300,7 +300,21 @@ namespace ScriptSharp.Compiler {
 
             string template;
             if (GetScriptTemplate(compilationUnits, out template)) {
-                options.Template = template;
+                options.ScriptInfo.Template = template;
+            }
+
+            string description;
+            string copyright;
+            string version;
+            GetAssemblyMetadata(compilationUnits, out description, out copyright, out version);
+            if (description != null) {
+                options.ScriptInfo.Description = description;
+            }
+            if (copyright != null) {
+                options.ScriptInfo.Copyright = copyright;
+            }
+            if (version != null) {
+                options.ScriptInfo.Version = version;
             }
 
             List<TypeSymbol> types = new List<TypeSymbol>();
@@ -789,6 +803,26 @@ namespace ScriptSharp.Compiler {
 
                 if ((baseClass != null) || (interfaces != null)) {
                     classSymbol.SetInheritance(baseClass, interfaces);
+                }
+            }
+        }
+
+        private void GetAssemblyMetadata(ParseNodeList compilationUnits, out string description, out string copyright, out string version) {
+            description = null;
+            copyright = null;
+            version = null;
+
+            foreach (CompilationUnitNode compilationUnit in compilationUnits) {
+                foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
+                    if (description == null) {
+                        description = GetAttributeValue(attribBlock.Attributes, "AssemblyDescription");
+                    }
+                    if (copyright == null) {
+                        copyright = GetAttributeValue(attribBlock.Attributes, "AssemblyCopyright");
+                    }
+                    if (version == null) {
+                        version = GetAttributeValue(attribBlock.Attributes, "AssemblyFileVersion");
+                    }
                 }
             }
         }

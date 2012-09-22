@@ -1,5 +1,3 @@
-// basic.js
-// Sample script...
 "use strict";
 
 define('basic', ['ss'], function(ss) {
@@ -73,7 +71,4 @@ define('basic', ['ss'], function(ss) {
   Basic$EventArgs.Empty = new Basic$EventArgs();
 
   return $exports;
-
 });
-
-// Generated with Script#
