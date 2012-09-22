@@ -19,8 +19,7 @@ define('test', ['ss'], function(ss) {
     run: function() {
       this.do1();
       var v = this.do2();
-      var s = String.fromCharCode(0);
-      s = String.fromCharCode(32, 65, 66);
+      var s = ss.string('A', 3);
       var i = s.indexOf('A');
       i = s.indexOf('A', 1);
     },

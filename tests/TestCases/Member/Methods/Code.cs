@@ -23,8 +23,7 @@ namespace MemberTests {
             Do1();
             int v = Do2();
 
-            string s = String.FromCharCode(0);
-            s = String.FromCharCode(32, 65, 66);
+            string s = String.FromChar('A', 3);
             int i = s.IndexOf('A');
             i = s.IndexOf('A', 1);
         }

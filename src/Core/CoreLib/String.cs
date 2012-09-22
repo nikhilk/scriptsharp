@@ -62,30 +62,27 @@ namespace System {
             return 0;
         }
 
+        [ScriptAlias("ss.compareStrings")]
         public static int Compare(string s1, string s2) {
             return 0;
         }
 
+        [ScriptAlias("ss.compareStrings")]
         public static int Compare(string s1, string s2, bool ignoreCase) {
             return 0;
         }
 
-        public int CompareTo(string s) {
-            return 0;
-        }
-
-        public int CompareTo(string s, bool ignoreCase) {
-            return 0;
-        }
-
+        [ScriptAlias("ss.string")]
         public static string Concat(string s1, string s2) {
             return null;
         }
 
+        [ScriptAlias("ss.string")]
         public static string Concat(string s1, string s2, string s3) {
             return null;
         }
 
+        [ScriptAlias("ss.string")]
         public static string Concat(string s1, string s2, string s3, string s4) {
             return null;
         }
@@ -95,26 +92,31 @@ namespace System {
         /// </summary>
         /// <param name="strings">The sequence of strings</param>
         /// <returns>The concatenated string.</returns>
+        [ScriptAlias("ss.string")]
         public static string Concat(params string[] strings) {
             return null;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [ScriptAlias("ss.string")]
         public static string Concat(object o1, object o2) {
             return null;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [ScriptAlias("ss.string")]
         public static string Concat(object o1, object o2, object o3) {
             return null;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [ScriptAlias("ss.string")]
         public static string Concat(object o1, object o2, object o3, object o4) {
             return null;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [ScriptAlias("ss.string")]
         public static string Concat(params object[] o) {
             return null;
         }
@@ -160,6 +162,7 @@ namespace System {
         /// </summary>
         /// <param name="ch">The character to test for.</param>
         /// <returns>true if the string ends with the character; false otherwise.</returns>
+        [ScriptAlias("ss.endsWith")]
         public bool EndsWith(char ch) {
             return false;
         }
@@ -169,15 +172,8 @@ namespace System {
         /// </summary>
         /// <param name="suffix">The string to test for.</param>
         /// <returns>true if the string ends with the suffix; false otherwise.</returns>
+        [ScriptAlias("ss.endsWith")]
         public bool EndsWith(string suffix) {
-            return false;
-        }
-
-        /// <summary>
-        /// Determines if the strings are equal.
-        /// </summary>
-        /// <returns>true if the string s1 = s2; false otherwise.</returns>
-        public static bool Equals(string s1, string s2, bool ignoreCase) {
             return false;
         }
 
@@ -190,15 +186,22 @@ namespace System {
             return null;
         }
 
+        [ScriptAlias("ss.format")]
         public static string Format(string format, params object[] values) {
             return null;
         }
 
+        [ScriptAlias("ss.format")]
         public static string Format(CultureInfo culture, string format, params object[] values) {
             return null;
         }
 
+        [ScriptAlias("ss.string")]
         public static string FromChar(char ch, int count) {
+            return null;
+        }
+
+        public static string FromCharCode(int charCode) {
             return null;
         }
 
@@ -222,26 +225,17 @@ namespace System {
             return 0;
         }
 
-        public int IndexOfAny(char[] ch) {
-            return 0;
-        }
-
-        public int IndexOfAny(char[] ch, int startIndex) {
-            return 0;
-        }
-
-        public int IndexOfAny(char[] ch, int startIndex, int count) {
-            return 0;
-        }
-
+        [ScriptAlias("ss.insertString")]
         public string Insert(int index, string value) {
             return null;
         }
 
+        [ScriptAlias("emptyString")]
         public static bool IsNullOrEmpty(string s) {
             return false;
         }
 
+        [ScriptAlias("whitespace")]
         public static bool IsNullOrWhiteSpace(string s) {
             return false;
         }
@@ -262,58 +256,56 @@ namespace System {
             return 0;
         }
 
-        public int LastIndexOfAny(char[] ch) {
-            return 0;
-        }
-
-        public int LastIndexOfAny(char[] ch, int startIndex) {
-            return 0;
-        }
-
-        public int LastIndexOfAny(char[] ch, int startIndex, int count) {
-            return 0;
-        }
-
         public string[] Match(RegularExpression regex) {
             return null;
         }
 
+        [ScriptAlias("ss.padLeft")]
         public string PadLeft(int totalWidth) {
             return null;
         }
 
+        [ScriptAlias("ss.padLeft")]
         public string PadLeft(int totalWidth, char ch) {
             return null;
         }
 
+        [ScriptAlias("ss.padRight")]
         public string PadRight(int totalWidth) {
             return null;
         }
 
+        [ScriptAlias("ss.padRight")]
         public string PadRight(int totalWidth, char ch) {
             return null;
         }
 
+        [ScriptAlias("ss.removeString")]
         public string Remove(int index) {
             return null;
         }
 
+        [ScriptAlias("ss.removeString")]
         public string Remove(int index, int count) {
             return null;
         }
 
+        [ScriptName("ss.replaceString")]
         public string Replace(string oldText, string replaceText) {
             return null;
         }
 
+        [ScriptName("replace")]
         public string ReplaceFirst(string oldText, string replaceText) {
             return null;
         }
 
+        [ScriptName("replace")]
         public string ReplaceRegex(RegularExpression regex, string replaceText) {
             return null;
         }
 
+        [ScriptName("replace")]
         public string ReplaceRegex(RegularExpression regex, StringReplaceCallback callback) {
             return null;
         }
@@ -346,10 +338,12 @@ namespace System {
             return null;
         }
 
+        [ScriptAlias("ss.startsWith")]
         public bool StartsWith(char ch) {
             return false;
         }
 
+        [ScriptAlias("ss.startsWith")]
         public bool StartsWith(string prefix) {
             return false;
         }
@@ -390,11 +384,13 @@ namespace System {
             return null;
         }
 
-        public string TrimStart() {
+        [ScriptAlias("trimEnd")]
+        public string TrimEnd() {
             return null;
         }
 
-        public string TrimEnd() {
+        [ScriptAlias("ss.trimStart")]
+        public string TrimStart() {
             return null;
         }
 

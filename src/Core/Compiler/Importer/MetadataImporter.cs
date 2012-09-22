@@ -91,11 +91,6 @@ namespace ScriptSharp.Importer {
 
                         ImportPseudoMembers(PseudoClassMembers.Arguments, (ClassSymbol)typeSymbol);
                     }
-                    else if (typeSymbol.Name.Equals("String", StringComparison.Ordinal)) {
-                        // We need to change generated names on Replace methods
-
-                        ImportPseudoMembers(PseudoClassMembers.String, (ClassSymbol)typeSymbol);
-                    }
                 }
             }
 
@@ -517,28 +512,6 @@ namespace ScriptSharp.Importer {
 
                 return;
             }
-
-            if (memberSet == PseudoClassMembers.String) {
-                // In script, String.replace replaces only the first occurrence of a string
-                // whereas in C# all occurrences are replaced.
-                // Replace becomes replaceAll (a method we add) in generated script
-                // ReplaceFirst becomes replace in generated script.
-                // ReplaceRegex also becomes replace in generated script. (We added ReplaceRegex so
-                //   it could be mapped to the native replace method, rather than out replaceAll
-                //   extension)
-
-                MethodSymbol replaceFirstMethod = (MethodSymbol)classSymbol.GetMember("ReplaceFirst");
-                Debug.Assert(replaceFirstMethod != null);
-                replaceFirstMethod.SetTransformedName("replace");
-
-                MethodSymbol replaceMethod = (MethodSymbol)classSymbol.GetMember("Replace");
-                Debug.Assert(replaceMethod != null);
-                replaceMethod.SetTransformedName("replaceAll");
-
-                MethodSymbol replaceRegexMethod = (MethodSymbol)classSymbol.GetMember("ReplaceRegex");
-                Debug.Assert(replaceRegexMethod != null);
-                replaceRegexMethod.SetTransformedName("replace");
-            }
         }
 
         private void ImportScriptAssembly(MetadataSource mdSource, string assemblyPath, bool coreAssembly) {
@@ -729,9 +702,7 @@ namespace ScriptSharp.Importer {
 
             Arguments,
 
-            Object,
-
-            String
+            Object
         }
     }
 }

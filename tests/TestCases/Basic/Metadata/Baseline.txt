@@ -1595,17 +1595,12 @@ Types:
             Method: Compare
                 AssociatedType: Int32
                 Visibility: Public, Static
-                Generated Name: compare
-                Abstract: False
-            Method: CompareTo
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: compareTo
+                Generated Name: ss.compareStrings
                 Abstract: False
             Method: Concat
                 AssociatedType: String
                 Visibility: Public, Static
-                Generated Name: concat
+                Generated Name: ss.string
                 Abstract: False
             Method: DecodeUri
                 AssociatedType: String
@@ -1630,12 +1625,7 @@ Types:
             Method: EndsWith
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: endsWith
-                Abstract: False
-            Method: Equals
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: equals
+                Generated Name: ss.endsWith
                 Abstract: False
             Method: Escape
                 AssociatedType: String
@@ -1645,12 +1635,12 @@ Types:
             Method: Format
                 AssociatedType: String
                 Visibility: Public, Static
-                Generated Name: format
+                Generated Name: ss.format
                 Abstract: False
             Method: FromChar
                 AssociatedType: String
                 Visibility: Public, Static
-                Generated Name: fromChar
+                Generated Name: ss.string
                 Abstract: False
             Method: FromCharCode
                 AssociatedType: String
@@ -1662,35 +1652,25 @@ Types:
                 Visibility: Public
                 Generated Name: indexOf
                 Abstract: False
-            Method: IndexOfAny
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: indexOfAny
-                Abstract: False
             Method: Insert
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: insert
+                Generated Name: ss.insertString
                 Abstract: False
             Method: IsNullOrEmpty
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: isNullOrEmpty
+                Generated Name: emptyString
                 Abstract: False
             Method: IsNullOrWhiteSpace
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: isNullOrWhiteSpace
+                Generated Name: whitespace
                 Abstract: False
             Method: LastIndexOf
                 AssociatedType: Int32
                 Visibility: Public
                 Generated Name: lastIndexOf
-                Abstract: False
-            Method: LastIndexOfAny
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: lastIndexOfAny
                 Abstract: False
             Method: Match
                 AssociatedType: Array
@@ -1700,22 +1680,22 @@ Types:
             Method: PadLeft
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: padLeft
+                Generated Name: ss.padLeft
                 Abstract: False
             Method: PadRight
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: padRight
+                Generated Name: ss.padRight
                 Abstract: False
             Method: Remove
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: remove
+                Generated Name: ss.removeString
                 Abstract: False
             Method: Replace
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: replaceAll
+                Generated Name: ss.replaceString
                 Abstract: False
             Method: ReplaceFirst
                 AssociatedType: String
@@ -1740,7 +1720,7 @@ Types:
             Method: StartsWith
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: startsWith
+                Generated Name: ss.startsWith
                 Abstract: False
             Method: Substr
                 AssociatedType: String
@@ -1777,15 +1757,15 @@ Types:
                 Visibility: Public
                 Generated Name: trim
                 Abstract: False
-            Method: TrimStart
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: trimStart
-                Abstract: False
             Method: TrimEnd
                 AssociatedType: String
                 Visibility: Public
                 Generated Name: trimEnd
+                Abstract: False
+            Method: TrimStart
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: ss.trimStart
                 Abstract: False
             Method: Unescape
                 AssociatedType: String
