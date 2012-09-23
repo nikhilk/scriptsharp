@@ -209,7 +209,8 @@ namespace BasicTests {
         }
     }
 
-    internal sealed class MyData : Record {
+    [ScriptObject]
+    internal sealed class MyData {
 
         public string string1;
         public string string2;
@@ -220,7 +221,8 @@ namespace BasicTests {
         }
     }
 
-    internal sealed class DataHolder : Record {
+    [ScriptObject]
+    internal sealed class DataHolder {
 
         public string s1;
         public string s2;

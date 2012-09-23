@@ -141,12 +141,7 @@ namespace ScriptSharp.Importer {
         }
 
         public static bool ShouldTreatAsRecordType(TypeDefinition type) {
-            if ((type.BaseType != null) &&
-                (String.CompareOrdinal(type.BaseType.FullName, "System.Record") == 0)) {
-                return true;
-            }
-
-            return false;
+            return GetAttribute(type, "System.Runtime.CompilerServices.ScriptObjectAttribute") != null;
         }
 
         public static bool ShouldUseEnumNames(TypeDefinition type) {

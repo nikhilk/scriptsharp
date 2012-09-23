@@ -658,26 +658,23 @@ namespace ScriptSharp.Compiler {
                 CustomTypeNode customTypeNode = (CustomTypeNode)typeNode;
                 Debug.Assert(customTypeNode != null);
 
-                NameNode baseTypeNameNode = null;
-                if (customTypeNode.BaseTypes.Count != 0) {
-                    baseTypeNameNode = customTypeNode.BaseTypes[0] as NameNode;
-                }
-
-                if ((baseTypeNameNode != null) && (String.CompareOrdinal(baseTypeNameNode.Name, "Record") == 0)) {
+                if (AttributeNode.FindAttribute(attributes, "ScriptObject") != null) {
                     typeSymbol = new RecordSymbol(typeNode.Name, namespaceSymbol);
                 }
+                else if (AttributeNode.FindAttribute(attributes, "Resources") != null) {
+                    typeSymbol = new ResourcesSymbol(typeNode.Name, namespaceSymbol);
+                }
                 else {
-                    AttributeNode resourcesAttribute = AttributeNode.FindAttribute(attributes, "Resources");
-                    if (resourcesAttribute != null) {
-                        typeSymbol = new ResourcesSymbol(typeNode.Name, namespaceSymbol);
-                    }
-                    else {
-                        typeSymbol = new ClassSymbol(typeNode.Name, namespaceSymbol);
+                    typeSymbol = new ClassSymbol(typeNode.Name, namespaceSymbol);
 
-                        if ((baseTypeNameNode != null) &&
-                            (String.CompareOrdinal(baseTypeNameNode.Name, "TestClass") == 0)) {
-                            ((ClassSymbol)typeSymbol).SetTestClass();
-                        }
+                    NameNode baseTypeNameNode = null;
+                    if (customTypeNode.BaseTypes.Count != 0) {
+                        baseTypeNameNode = customTypeNode.BaseTypes[0] as NameNode;
+                    }
+
+                    if ((baseTypeNameNode != null) &&
+                        (String.CompareOrdinal(baseTypeNameNode.Name, "TestClass") == 0)) {
+                        ((ClassSymbol)typeSymbol).SetTestClass();
                     }
                 }
             }

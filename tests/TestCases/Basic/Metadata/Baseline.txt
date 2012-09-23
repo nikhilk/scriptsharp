@@ -1336,14 +1336,6 @@ Types:
                 Generated Name: toLocaleString
                 Abstract: False
         
-    Class: Record
-        Application Type: False
-        Public: True
-        Generated Name: Record
-        Extension Methods: False
-        BaseClass: Object
-        Members:
-        
     Class: RegularExpression
         Application Type: False
         Public: True

@@ -220,7 +220,8 @@ namespace BasicTests {
     /// <summary>
     /// Represents a record.
     /// </summary>
-    public sealed class RecordClass : Record {
+    [ScriptObject]
+    public sealed class RecordClass {
 
         /// <summary>
         /// Gets or sets a count.

@@ -23,7 +23,8 @@ public class MyClass4 : MyClass, IDisposable {
     }
 }
 
-public sealed class MyRecord : Record {
+[ScriptObject]
+public sealed class MyRecord {
 }
 
 public enum MyEnum {

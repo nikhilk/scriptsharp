@@ -34,7 +34,8 @@ namespace MemberTests {
         }
     }
 
-    internal sealed class Point : Record {
+    [ScriptObject]
+    internal sealed class Point {
          public int x;
          public int y;
 

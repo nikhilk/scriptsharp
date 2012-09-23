@@ -580,6 +580,7 @@ namespace ScriptSharp.Importer {
             else {
                 if (MetadataHelpers.ShouldTreatAsRecordType(type)) {
                     typeSymbol = new RecordSymbol(name, namespaceSymbol);
+                    typeSymbol.SetTransformedName("Object");
                 }
                 else {
                     typeSymbol = new ClassSymbol(name, namespaceSymbol);

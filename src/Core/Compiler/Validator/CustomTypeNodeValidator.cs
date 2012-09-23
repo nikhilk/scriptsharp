@@ -18,8 +18,9 @@ namespace ScriptSharp.Validator {
         bool IParseNodeValidator.Validate(ParseNode node, CompilerOptions options, IErrorHandler errorHandler) {
             CustomTypeNode typeNode = (CustomTypeNode)node;
 
-            bool restrictToMethodMembers = false;
-            bool restrictToCtors = false;
+            bool extensionRestrictions = false;
+            bool moduleRestrictions = false;
+            bool recordRestrictions = false;
             bool hasCodeMembers = false;
             ParseNode codeMemberNode = null;
 
@@ -57,18 +58,7 @@ namespace ScriptSharp.Validator {
                     NameNode baseTypeNameNode = typeNode.BaseTypes[0] as NameNode;
 
                     if (baseTypeNameNode != null) {
-                        if (String.CompareOrdinal(baseTypeNameNode.Name, "Record") == 0) {
-                            if ((typeNode.Modifiers & Modifiers.Sealed) == 0) {
-                                errorHandler.ReportError("Classes derived from the Record base class must be marked as sealed.",
-                                                         typeNode.Token.Location);
-                            }
-
-                            if (typeNode.BaseTypes.Count != 1) {
-                                errorHandler.ReportError("Classes derived from the Record base class cannot implement interfaces.",
-                                                         typeNode.Token.Location);
-                            }
-                        }
-                        else if (String.CompareOrdinal(baseTypeNameNode.Name, "TestClass") == 0) {
+                        if (String.CompareOrdinal(baseTypeNameNode.Name, "TestClass") == 0) {
                             if ((typeNode.Modifiers & Modifiers.Internal) == 0) {
                                 errorHandler.ReportError("Classes derived from TestClass must be marked as internal.",
                                                          typeNode.Token.Location);
@@ -89,9 +79,24 @@ namespace ScriptSharp.Validator {
                     }
                 }
 
+                AttributeNode objectAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptObject");
+                if (objectAttribute != null) {
+                    if ((typeNode.Modifiers & Modifiers.Sealed) == 0) {
+                        errorHandler.ReportError("ScriptObject attribute can only be set on sealed classes.",
+                                                 typeNode.Token.Location);
+                    }
+
+                    if (typeNode.BaseTypes.Count != 0) {
+                        errorHandler.ReportError("Classes marked with ScriptObject must not derive from another class or implement interfaces.",
+                                                 typeNode.Token.Location);
+                    }
+
+                    recordRestrictions = true;
+                }
+
                 AttributeNode extensionAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptExtension");
                 if (extensionAttribute != null) {
-                    restrictToMethodMembers = true;
+                    extensionRestrictions = true;
 
                     if ((typeNode.Modifiers & Modifiers.Static) == 0) {
                         errorHandler.ReportError("ScriptExtension attribute can only be set on static classes.",
@@ -109,7 +114,7 @@ namespace ScriptSharp.Validator {
 
                 AttributeNode moduleAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptModule");
                 if (moduleAttribute != null) {
-                    restrictToCtors = true;
+                    moduleRestrictions = true;
 
                     if (((typeNode.Modifiers & Modifiers.Static) == 0) ||
                         ((typeNode.Modifiers & Modifiers.Internal) == 0)) {
@@ -137,13 +142,21 @@ namespace ScriptSharp.Validator {
                         continue;
                     }
 
-                    if (restrictToMethodMembers && (memberNode.NodeType != ParseNodeType.MethodDeclaration)) {
+                    if (extensionRestrictions && (memberNode.NodeType != ParseNodeType.MethodDeclaration)) {
                         errorHandler.ReportError("Classes marked with ScriptExtension attribute should only have methods.",
                                                  memberNode.Token.Location);
                     }
 
-                    if (restrictToCtors && (memberNode.NodeType != ParseNodeType.ConstructorDeclaration)) {
+                    if (moduleRestrictions && (memberNode.NodeType != ParseNodeType.ConstructorDeclaration)) {
                         errorHandler.ReportError("Classes marked with ScriptModule attribute should only have a static constructor.",
+                                                 memberNode.Token.Location);
+                    }
+
+                    if (recordRestrictions &&
+                        (((memberNode.Modifiers & Modifiers.Static) != 0) ||
+                         ((memberNode.NodeType != ParseNodeType.ConstructorDeclaration) &&
+                          (memberNode.NodeType != ParseNodeType.FieldDeclaration)))) {
+                        errorHandler.ReportError("Classes marked with ScriptObject attribute should only have a constructor and field members.",
                                                  memberNode.Token.Location);
                     }
 
@@ -184,11 +197,6 @@ namespace ScriptSharp.Validator {
                         codeMemberNode = memberNode;
                     }
                 }
-            }
-
-            if ((typeNode.Type == TokenType.Struct) && hasCodeMembers) {
-                errorHandler.ReportError("A struct type is limited to field and constructor members.",
-                                         codeMemberNode.Token.Location);
             }
 
             return true;

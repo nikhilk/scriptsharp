@@ -261,6 +261,33 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestRecords() {
+            string expectedErrors =
+                "ScriptObject attribute can only be set on sealed classes. Code.cs(9, 5)" + Environment.NewLine +
+                "Classes marked with ScriptObject must not derive from another class or implement interfaces. Code.cs(13, 5)" + Environment.NewLine +
+                "Classes marked with ScriptObject attribute should only have a constructor and field members. Code.cs(20, 9)" + Environment.NewLine +
+                "Classes marked with ScriptObject attribute should only have a constructor and field members. Code.cs(30, 9)";
+
+            Compilation compilation = CreateCompilation();
+            compilation.AddSource("Code.cs");
+
+            bool result = compilation.Execute();
+            Assert.IsFalse(result, "Expected compilation to fail.");
+
+            Assert.IsTrue(compilation.HasErrors, "Expected compilation to fail with errors.");
+            if (String.CompareOrdinal(compilation.ErrorMessages, expectedErrors) != 0) {
+                Console.WriteLine("Expected Errors:");
+                Console.WriteLine(expectedErrors);
+                Console.WriteLine();
+                Console.WriteLine("Actual Errors:");
+                Console.WriteLine(compilation.ErrorMessages);
+                Console.WriteLine();
+
+                Assert.Fail("Unexpected errors.");
+            }
+        }
+
+        [TestMethod]
         public void TestScriptExtension() {
             string expectedErrors =
                 "ScriptExtension attribute declaration must specify the object being extended. Code.cs(9, 5)" + Environment.NewLine +

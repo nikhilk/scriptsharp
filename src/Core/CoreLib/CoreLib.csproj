@@ -114,7 +114,6 @@
     <Compile Include="Action.cs" />
     <Compile Include="Testing\Assert.cs" />
     <Compile Include="Func.cs" />
-    <Compile Include="Record.cs" />
     <Compile Include="Date.cs" />
     <Compile Include="Diagnostics\Debug.cs" />
     <Compile Include="Decimal.cs" />

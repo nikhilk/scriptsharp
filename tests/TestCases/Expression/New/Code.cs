@@ -18,7 +18,8 @@ namespace ExpressionTests {
         }
     }
 
-    public sealed class Point : Record {
+    [ScriptObject]
+    public sealed class Point {
          int x;
          int y;
 
