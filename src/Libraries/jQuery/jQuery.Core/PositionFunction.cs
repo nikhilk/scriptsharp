@@ -12,7 +12,7 @@ namespace jQueryApi {
     /// A callback that returns a value for the element at the specified index.
     /// </summary>
     /// <param name="index">The index of the element in the set.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate jQueryPosition PositionFunction(int index);
 
@@ -21,7 +21,7 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="index">The index of the element in the set.</param>
     /// <param name="currentValue">The current value.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate jQueryPosition PositionReplaceFunction(int index, jQueryPosition currentValue);
 }

@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Threading {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum TaskStatus {
 

@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 namespace System {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class Export : IDisposable {
 
         private Export() {

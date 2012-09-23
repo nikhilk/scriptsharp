@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Interactions {
     /// Events raised by Droppable.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum DroppableEvents {
 

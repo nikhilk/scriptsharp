@@ -9,7 +9,7 @@ using System.Html.Media.Filters;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("Object")]
     public class Element {

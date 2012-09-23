@@ -12,7 +12,7 @@ namespace jQueryApi {
     /// Basic effect easing functions.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum EffectEasing {
 

@@ -13,7 +13,7 @@ namespace KnockoutApi {
     /// vanilla script objects.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class KnockoutMapping {
 
         private KnockoutMapping() {

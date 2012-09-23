@@ -15,7 +15,7 @@ namespace jQueryApi.UI.Widgets {
     /// <para>A dialog is a floating window that contains a title bar and a content area. The dialog window can be moved, resized and closed with the 'x' icon by default.</para><para>If the content length exceeds the maximum height, a scrollbar will automatically appear.</para><para>A bottom button bar and semi-transparent modal overlay layer are common options that can be added.</para><para>This widget requires some functional CSS, otherwise it won't work. If you build a custom theme, use the widget's specific CSS file as a starting point.</para>
     /// </remarks>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class DialogObject : WidgetObject {
 
         private DialogObject() {

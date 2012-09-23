@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Effects {
     /// Options used to initialize or customize Drop.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class DropOptions {
 

@@ -10,7 +10,7 @@ namespace System {
     /// <summary>
     /// Equivalent to the Object type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public class Object {
 

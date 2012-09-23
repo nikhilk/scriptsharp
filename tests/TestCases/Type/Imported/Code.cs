@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace TypeTests {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class MyElement : Element {
 

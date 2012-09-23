@@ -10,7 +10,7 @@ namespace System.Html.Data {
 
     public delegate bool SqlErrorCallback(SqlError error);
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class SqlError {
 

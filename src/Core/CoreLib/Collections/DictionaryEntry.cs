@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class DictionaryEntry {
 

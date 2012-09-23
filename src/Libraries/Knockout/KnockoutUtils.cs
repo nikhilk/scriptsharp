@@ -12,7 +12,7 @@ using System.Html;
 namespace KnockoutApi {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("ko.utils")]
     public static class KnockoutUtils {
 

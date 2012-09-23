@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Interactions {
     /// Options used to initialize or customize Resizable.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class ResizableOptions {
 

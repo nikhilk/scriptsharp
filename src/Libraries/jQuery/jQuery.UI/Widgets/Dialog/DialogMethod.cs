@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Widgets {
     /// Operations supported by Dialog.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum DialogMethod {
 

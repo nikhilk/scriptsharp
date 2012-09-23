@@ -16,7 +16,7 @@ namespace jQueryApi.Templating {
     /// Represents a jQuery template that has been parsed and can
     /// be used to generate HTML.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class jQueryTemplate {
 

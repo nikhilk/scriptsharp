@@ -85,7 +85,7 @@ namespace System.Runtime.CompilerServices {
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Delegate | AttributeTargets.Interface | AttributeTargets.Struct, Inherited = true, AllowMultiple = false)]
     [ScriptIgnore]
-    public sealed class IgnoreNamespaceAttribute : Attribute {
+    public sealed class ScriptIgnoreNamespaceAttribute : Attribute {
     }
 
     /// <summary>

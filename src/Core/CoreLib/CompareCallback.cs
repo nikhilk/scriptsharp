@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate int CompareCallback(object x, object y);
 }

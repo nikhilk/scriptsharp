@@ -12,7 +12,7 @@ namespace System {
     /// <summary>
     /// The Type data type which is mapped to the Function type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class Type {
 

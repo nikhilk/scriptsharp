@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Interactions {
     /// Options for use with Droppable.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum DroppableOption {
 

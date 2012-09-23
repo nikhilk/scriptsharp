@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Diagnostics {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("console")]
     public static class Debug {
 

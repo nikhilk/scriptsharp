@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Widgets {
     /// Operations supported by Button.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum ButtonMethod {
 

@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Interactions {
     /// Options for use with Draggable.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum DraggableOption {
 

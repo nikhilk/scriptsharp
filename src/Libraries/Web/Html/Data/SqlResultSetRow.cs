@@ -9,7 +9,7 @@ using System.Collections;
 
 namespace System.Html.Data {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class SqlResultSetRow {
 

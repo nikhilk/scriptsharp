@@ -14,7 +14,7 @@ namespace jQueryApi {
     /// Represents an XMLHttpRequest object as a deferred object.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class jQueryXmlHttpRequest : IDeferred {
 
         private jQueryXmlHttpRequest() {

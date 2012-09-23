@@ -9,7 +9,7 @@ using System.Html;
 
 namespace System.Html.Editing {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class ControlRange : Range {
 

@@ -10,7 +10,7 @@ namespace System {
     /// <summary>
     /// Equivalent to the Number type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class Number {
 

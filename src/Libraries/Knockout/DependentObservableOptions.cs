@@ -13,7 +13,7 @@ namespace KnockoutApi {
     /// </summary>
     /// <typeparam name="T">The type of the observable value.</typeparam>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class DependentObservableOptions<T> {
 

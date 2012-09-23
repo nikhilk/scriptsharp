@@ -15,7 +15,7 @@ namespace KnockoutApi {
     /// Provides Knockout functionality.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("ko")]
     public static class Knockout {
 

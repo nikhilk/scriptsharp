@@ -5,8 +5,8 @@ using System.Runtime.CompilerServices;
 
 namespace Library2 {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public class Component2 {
 
         public Component2() {

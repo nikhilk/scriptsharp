@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Media.Graphics {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class Gradient {
 

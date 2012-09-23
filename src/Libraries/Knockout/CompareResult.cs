@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace KnockoutApi {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public class CompareResult<T> {
 
         [ScriptProperty]

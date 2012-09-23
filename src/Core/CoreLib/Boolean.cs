@@ -10,7 +10,7 @@ namespace System {
     /// <summary>
     /// Equivalent to the Boolean type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public struct Boolean {
 

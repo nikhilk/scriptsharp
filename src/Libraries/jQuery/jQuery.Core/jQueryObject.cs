@@ -14,7 +14,7 @@ namespace jQueryApi {
     /// <summary>
     /// Represents a jQuery result that wraps a set of elements.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public class jQueryObject {
 

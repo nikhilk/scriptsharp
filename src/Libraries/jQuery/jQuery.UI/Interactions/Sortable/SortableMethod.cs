@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Interactions {
     /// Operations supported by Sortable.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum SortableMethod {
 

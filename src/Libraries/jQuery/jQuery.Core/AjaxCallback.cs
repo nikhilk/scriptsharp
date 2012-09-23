@@ -13,7 +13,7 @@ namespace jQueryApi {
     /// A callback to be invoked for an Ajax request.
     /// </summary>
     /// <param name="data">The result of the request.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void AjaxCallback(object data);
 
@@ -21,7 +21,7 @@ namespace jQueryApi {
     /// A callback to be invoked for an Ajax request.
     /// </summary>
     /// <param name="data">The result of the request.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void AjaxCallback<TData>(TData data);
 
@@ -31,7 +31,7 @@ namespace jQueryApi {
     /// <param name="data">The result of the request.</param>
     /// <param name="textStatus">The status of the request.</param>
     /// <param name="request">The request that was invoked.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void AjaxRequestCallback(object data, string textStatus, jQueryXmlHttpRequest request);
 
@@ -41,7 +41,7 @@ namespace jQueryApi {
     /// <param name="data">The result of the request.</param>
     /// <param name="textStatus">The status of the request.</param>
     /// <param name="request">The request that was invoked.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void AjaxRequestCallback<TData>(TData data, string textStatus, jQueryDataHttpRequest<TData> request);
 
@@ -51,7 +51,7 @@ namespace jQueryApi {
     /// <param name="request">The request that was invoked.</param>
     /// <param name="textStatus">The status of the request.</param>
     /// <param name="error">The error or exception if any.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void AjaxErrorCallback(jQueryXmlHttpRequest request, string textStatus, Exception error);
 
@@ -61,7 +61,7 @@ namespace jQueryApi {
     /// <param name="request">The request that was invoked.</param>
     /// <param name="textStatus">The status of the request.</param>
     /// <param name="error">The error or exception if any.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void AjaxErrorCallback<TData>(jQueryDataHttpRequest<TData> request, string textStatus, Exception error);
 
@@ -70,7 +70,7 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="request">The request that was invoked.</param>
     /// <param name="textStatus">The status of the request.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void AjaxCompletedCallback(jQueryXmlHttpRequest request, string textStatus);
 
@@ -79,7 +79,7 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="request">The request that was invoked.</param>
     /// <param name="textStatus">The status of the request.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void AjaxCompletedCallback<TData>(jQueryDataHttpRequest<TData> request, string textStatus);
 
@@ -87,7 +87,7 @@ namespace jQueryApi {
     /// A callback to be invoked for an Ajax request being sent.
     /// </summary>
     /// <param name="request">The request that was invoked.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void AjaxSendingCallback(jQueryXmlHttpRequest request);
 
@@ -95,7 +95,7 @@ namespace jQueryApi {
     /// A callback to be invoked for an Ajax request being sent.
     /// </summary>
     /// <param name="request">The request that was invoked.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void AjaxSendingCallback<TData>(jQueryDataHttpRequest<TData> request);
 

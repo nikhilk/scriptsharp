@@ -11,7 +11,7 @@ namespace System {
     /// <summary>
     /// Provides access to the arguments of the current function.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("arguments")]
     public static class Arguments {

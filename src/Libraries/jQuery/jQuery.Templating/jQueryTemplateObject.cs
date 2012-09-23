@@ -16,7 +16,7 @@ namespace jQueryApi.Templating {
     /// Represents a jQuery result that wraps a set of elements, with templating
     /// APIs added.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class jQueryTemplateObject : jQueryObject {
 

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace Library3 {
 
-    [Imported]
+    [ScriptImport]
     [ScriptDependency("comp3")]
     public class Component3 {
 
@@ -13,9 +13,9 @@ namespace Library3 {
         }
     }
 
-    [Imported]
+    [ScriptImport]
     [ScriptDependency("comp4")]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public class Component4 {
 
         public Component4() {

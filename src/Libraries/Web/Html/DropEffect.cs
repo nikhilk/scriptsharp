@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptConstants(UseNames = true)]
     public enum DropEffect {

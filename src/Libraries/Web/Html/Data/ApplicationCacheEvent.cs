@@ -11,7 +11,7 @@ namespace System.Html.Data {
     /// <summary>
     /// Represents an event raised by the Application Cache.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptConstants(UseNames = true)]
     public enum ApplicationCacheEvent {

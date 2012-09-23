@@ -15,6 +15,6 @@ namespace jQueryApi.UI {
     /// <param name="e">The associated jQuery event object.</param>
     /// <param name="uiEvent">The widget event information.</param>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public delegate void jQueryUIEventHandler<T>(jQueryEvent e, T uiEvent);
 }

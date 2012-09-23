@@ -15,7 +15,7 @@ namespace jQueryApi.UI.Interactions {
     /// <para>The jQuery UI Sortable plugin makes selected elements sortable by dragging with the mouse.</para><para>All callbacks receive two arguments: The original browser event and a prepared ui object.</para>
     /// </remarks>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class SortableObject : WidgetObject {
 
         private SortableObject() {

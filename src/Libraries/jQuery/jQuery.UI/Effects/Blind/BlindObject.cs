@@ -15,7 +15,7 @@ namespace jQueryApi.UI.Effects {
     /// The container has <code>overflow:hidden</code> applied, so height changes affect what's visible.
     /// </remarks>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class BlindObject : EffectObject {
 
         private BlindObject() {

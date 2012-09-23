@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Media.Filters {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public class VisualFilter {
 

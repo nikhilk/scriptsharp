@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace KnockoutApi {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("Object")]
     public sealed class KnockoutMappingSpecification {

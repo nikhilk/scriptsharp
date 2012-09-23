@@ -12,7 +12,7 @@ namespace System.Html.Services {
 
     public delegate void GeolocationErrorCallback(GeolocationError error);
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class GeolocationService {
 

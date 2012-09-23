@@ -12,7 +12,7 @@ namespace System.Html {
     /// The window object represents the current browser window, and is the top-level
     /// scripting object.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class WindowInstance {
 

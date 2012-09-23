@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Effects {
     /// Operations supported by Effect.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum EffectMethod {
 

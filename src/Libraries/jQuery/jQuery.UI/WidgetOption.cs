@@ -12,7 +12,7 @@ namespace jQueryApi.UI {
     /// Options for use with Widget.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum WidgetOption {
 

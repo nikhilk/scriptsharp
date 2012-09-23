@@ -13,7 +13,7 @@ namespace System.Html.Editing {
     /// Represents the active selection, which is a highlighted block of text, and/or other elements in the document on which a user or a script
     /// can carry out some action.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class Selection {
 

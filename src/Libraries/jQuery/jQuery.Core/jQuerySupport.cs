@@ -12,7 +12,7 @@ namespace jQueryApi {
     /// Represents the properties that indicate existence of browser features
     /// and bugs.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class jQuerySupport {
 

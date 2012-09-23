@@ -756,7 +756,7 @@ namespace ScriptSharp.Compiler {
                 string dependencyName = GetAttributeValue(attributes, "ScriptDependency");
                 typeSymbol.SetImported(dependencyName);
 
-                if (AttributeNode.FindAttribute(attributes, "IgnoreNamespace") != null) {
+                if (AttributeNode.FindAttribute(attributes, "ScriptIgnoreNamespace") != null) {
                     typeSymbol.SetIgnoreNamespace();
                 }
                 else {

@@ -11,7 +11,7 @@ namespace System {
     /// The Script class contains various methods that represent global
     /// methods present in the underlying script engine.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public static class Script {
 

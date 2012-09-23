@@ -30,7 +30,7 @@ namespace ExpressionTests {
     }
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public class CustomDictionary {
     

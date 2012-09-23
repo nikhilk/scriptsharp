@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Xml {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("DOMParser")]
     public sealed class XmlDocumentParser {

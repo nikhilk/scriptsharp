@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace jQueryApi.UI.Widgets {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class DialogDragStopEvent {
 

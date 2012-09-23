@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Widgets {
     /// Options used to initialize or customize DatePicker.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class DatePickerOptions {
 

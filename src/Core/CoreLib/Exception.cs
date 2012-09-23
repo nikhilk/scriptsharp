@@ -11,7 +11,7 @@ namespace System {
     /// <summary>
     /// Equivalent to the Error type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("Error")]
     public sealed class Exception {

@@ -10,7 +10,7 @@ namespace System {
     /// <summary>
     /// Equivalent to the Math object in Javascript.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public static class Math {
 

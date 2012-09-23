@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace jQueryApi.Validation {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class jQueryValidationRules {
 

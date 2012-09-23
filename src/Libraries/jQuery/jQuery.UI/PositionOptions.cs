@@ -12,7 +12,7 @@ namespace jQueryApi.UI {
     /// Options used to initialize or customize Position.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class PositionOptions {
 

@@ -12,6 +12,6 @@ namespace jQueryApi {
     /// Handles a jQuery event.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public delegate void jQueryEventHandler(jQueryEvent e);
 }

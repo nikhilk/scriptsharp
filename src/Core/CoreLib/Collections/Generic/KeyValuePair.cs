@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("Object")]
     public sealed class KeyValuePair<TKey, TValue> {

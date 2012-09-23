@@ -121,7 +121,7 @@ namespace ScriptSharp.Importer {
         }
 
         public static bool ShouldIgnoreNamespace(TypeDefinition type) {
-            return GetAttribute(type, "System.Runtime.CompilerServices.IgnoreNamespaceAttribute") != null;
+            return GetAttribute(type, "System.Runtime.CompilerServices.ScriptIgnoreNamespaceAttribute") != null;
         }
 
         public static bool ShouldImportScriptCoreType(TypeDefinition type) {

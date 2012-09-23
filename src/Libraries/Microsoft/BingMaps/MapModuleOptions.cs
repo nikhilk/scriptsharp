@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace Microsoft.Maps {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class MapModuleOptions {
 

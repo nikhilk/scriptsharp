@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Tuple")]
     public sealed class Tuple<T1, T2> {
 
@@ -39,7 +39,7 @@ namespace System {
     }
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Tuple")]
     public sealed class Tuple<T1, T2, T3> {
 
@@ -78,7 +78,7 @@ namespace System {
     }
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Tuple")]
     public sealed class Tuple<T1, T2, T3, T4> {
 

@@ -12,7 +12,7 @@ namespace jQueryApi.UI {
     /// Options for use with Position.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum PositionOption {
 

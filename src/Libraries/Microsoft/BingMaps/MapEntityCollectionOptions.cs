@@ -10,7 +10,7 @@ namespace Microsoft.Maps {
 
     [ScriptImport]
     [ScriptName("Object")]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class MapEntityCollectionOptions {
 
         [ScriptProperty]

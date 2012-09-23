@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace jQueryApi.UI {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public abstract class jQueryUIObject : jQueryObject {
 
         protected jQueryUIObject() {

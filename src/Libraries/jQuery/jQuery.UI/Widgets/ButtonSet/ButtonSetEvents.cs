@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Widgets {
     /// Events raised by ButtonSet.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum ButtonSetEvents {
 

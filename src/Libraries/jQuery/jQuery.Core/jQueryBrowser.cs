@@ -12,7 +12,7 @@ namespace jQueryApi {
     /// Provides information about the current browser.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class jQueryBrowser {
 
         private jQueryBrowser() {

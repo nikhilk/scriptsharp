@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Widgets {
     /// Events raised by Accordion.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum AccordionEvents {
 

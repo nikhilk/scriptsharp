@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Testing {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public static class TestEngine {
 

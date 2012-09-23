@@ -14,7 +14,7 @@ namespace System.Html.Data {
 
     public delegate bool SqlStatementErrorCallback(SqlTransaction transaction, SqlError error);
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class SqlTransaction {
 

@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Services {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class GeoCoordinates {
 

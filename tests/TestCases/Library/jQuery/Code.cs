@@ -7,7 +7,7 @@ using jQueryApi;
 [assembly: ScriptAssembly("test")]
 
 [ScriptImport]
-[IgnoreNamespace]
+[ScriptIgnoreNamespace]
 public class FooObject : jQueryObject {
     
     public FooObject Foo() {

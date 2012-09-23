@@ -18,6 +18,6 @@ namespace System.Serialization {
     /// <param name="value">The value of the member.</param>
     /// <returns>The transformed value.</returns>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public delegate object JsonParseCallback(string name, object value);
 }

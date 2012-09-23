@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Testing {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public abstract class TestClass {
 
         public virtual void Cleanup() {

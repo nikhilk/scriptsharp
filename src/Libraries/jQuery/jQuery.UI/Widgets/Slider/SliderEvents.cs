@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Widgets {
     /// Events raised by Slider.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum SliderEvents {
 

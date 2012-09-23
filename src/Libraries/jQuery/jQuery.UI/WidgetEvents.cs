@@ -12,7 +12,7 @@ namespace jQueryApi.UI {
     /// Events raised by Widget.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum WidgetEvents {
 

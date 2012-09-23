@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace System.Net {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("XMLHttpRequest")]
     public sealed class XmlHttpRequest {

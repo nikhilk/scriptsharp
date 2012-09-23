@@ -14,7 +14,7 @@ namespace jQueryApi {
     /// <param name="item">The item within the array.</param>
     /// <param name="index">The index of the item.</param>
     /// <returns>The value that the item was mapped to.</returns>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate object ArrayMapCallback(object item, int index);
 }

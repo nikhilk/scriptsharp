@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Interactions {
     /// Options used to initialize or customize Sortable.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class SortableOptions {
 

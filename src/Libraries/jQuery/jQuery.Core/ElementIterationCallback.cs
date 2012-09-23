@@ -14,7 +14,7 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="index">The index of the element.</param>
     /// <param name="element">The element.</param>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void ElementIterationCallback(int index, Element element);
 
@@ -24,7 +24,7 @@ namespace jQueryApi {
     /// <param name="index">The index of the element.</param>
     /// <param name="element">The element.</param>
     /// <returns>false if the iteration is to be stopped; true otherwise.</returns>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate bool ElementInterruptibleIterationCallback(int index, Element element);
 }

@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Interactions {
     /// Options for use with Resizable.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum ResizableOption {
 

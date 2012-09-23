@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate TTarget ListItemMapCallback<TSource, TTarget>(TSource value);
 }

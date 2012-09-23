@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace System.Net {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptConstants]
     public enum ReadyState {

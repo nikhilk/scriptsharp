@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace Microsoft.Maps.VenueMaps {
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class VenueFloor {
 

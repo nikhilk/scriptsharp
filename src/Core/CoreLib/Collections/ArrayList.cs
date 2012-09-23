@@ -13,7 +13,7 @@ namespace System.Collections {
     /// <summary>
     /// Equivalent to the Array type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("Array")]
     public sealed class ArrayList : IEnumerable {

@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Effects {
     /// Options for use with Drop.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum DropOption {
 

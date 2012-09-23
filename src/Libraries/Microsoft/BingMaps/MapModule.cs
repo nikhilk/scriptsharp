@@ -10,7 +10,7 @@ namespace Microsoft.Maps {
 
     [ScriptImport]
     [ScriptConstants(UseNames = true)]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public enum MapModule {
 
         [ScriptName("Microsoft.Maps.Directions")]

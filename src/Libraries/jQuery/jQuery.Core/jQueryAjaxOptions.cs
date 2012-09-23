@@ -14,7 +14,7 @@ namespace jQueryApi {
     /// Represents Ajax request settings or options.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class jQueryAjaxOptions {
 

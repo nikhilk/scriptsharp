@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Effects {
     /// Options used to initialize or customize Pulsate.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class PulsateOptions {
 

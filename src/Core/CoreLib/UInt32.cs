@@ -10,7 +10,7 @@ namespace System {
     /// <summary>
     /// The uint data type which is mapped to the Number type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("Number")]
     public struct UInt32 {

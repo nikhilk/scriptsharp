@@ -10,7 +10,7 @@ namespace System.Xml {
     /// <summary>
     /// Represents the hierarchy of node objects parsed from XML markup.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class XmlDocument : XmlNode {
 

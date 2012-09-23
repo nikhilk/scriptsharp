@@ -15,7 +15,7 @@ namespace jQueryApi.UI.Widgets {
     /// <para>Tabs are generally used to break content into multiple sections that can be swapped to save space, much like an accordion.</para><para>By default a tab widget will swap between tabbed sections on click, but the events can be changed to onHover through an option. Tab content can be loaded via Ajax by setting an href on a tab.</para><para>This widget requires some functional CSS, otherwise it won't work. If you build a custom theme, use the widget's specific CSS file as a starting point.</para>
     /// </remarks>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class TabsObject : WidgetObject {
 
         private TabsObject() {

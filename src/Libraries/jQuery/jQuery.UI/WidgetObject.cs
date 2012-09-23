@@ -15,7 +15,7 @@ namespace jQueryApi.UI {
     /// <para>You can create new widgets from scratch, using just the <code>$.Widget</code> object as base to inherit from, or you can explicitly inherit from existing jQuery UI or third-party widgets. Defining a widget with the same name as you inherit from even allows you to extend widgets in place.</para><para>For now, more details can be found at <a href="https://github.com/scottgonzalez/widget-factory-docs/">github.com/scottgonzalez/widget-factory-docs/</a></para>
     /// </remarks>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("$.Widget")]
     public abstract class WidgetObject : jQueryUIObject {
 

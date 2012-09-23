@@ -11,7 +11,7 @@ namespace Microsoft.Maps.Location {
     // TODO: Make properties
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class GeoLocationCircleOptions {
 

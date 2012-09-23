@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Widgets {
     /// Options used to initialize or customize Tabs.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class TabsOptions {
 

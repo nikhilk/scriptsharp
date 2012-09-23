@@ -9,7 +9,7 @@ using System.Html.Editing;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class DocumentInstance {
 

@@ -10,7 +10,7 @@ namespace System {
     /// <summary>
     /// Equivalent to the RegExp type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("RegExp")]
     public sealed class RegularExpression {

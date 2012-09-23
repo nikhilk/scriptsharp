@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System {
 
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     public struct Nullable<T> where T : struct {
 

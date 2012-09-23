@@ -17,7 +17,7 @@ namespace jQueryApi {
     /// <summary>
     /// The global jQuery object.
     /// </summary>
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("$")]
     public sealed class jQuery {

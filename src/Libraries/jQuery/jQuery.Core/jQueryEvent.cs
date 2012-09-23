@@ -14,7 +14,7 @@ namespace jQueryApi {
     /// Provides information about the current event.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public class jQueryEvent {
 
         protected jQueryEvent() {

@@ -12,7 +12,7 @@ namespace jQueryApi.UI {
     /// Top-level jQueryUI methods.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("$")]
     public static class jQueryUI {
 

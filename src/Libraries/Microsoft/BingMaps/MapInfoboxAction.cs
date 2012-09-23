@@ -11,7 +11,7 @@ namespace Microsoft.Maps {
     // TODO: Make properties
 
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class MapInfoBoxAction {
 

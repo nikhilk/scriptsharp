@@ -12,7 +12,7 @@ namespace jQueryApi.UI.Effects {
     /// Options for use with Highlight.
     /// </summary>
     [ScriptImport]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptConstants(UseNames = true)]
     public enum HighlightOption {
 
