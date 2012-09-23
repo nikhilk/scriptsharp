@@ -96,7 +96,7 @@ namespace System.Runtime.CompilerServices {
     [AttributeUsage(AttributeTargets.Class)]
     [ScriptIgnore]
     [ScriptImport]
-    public sealed class ResourcesAttribute : Attribute {
+    public sealed class ScriptResourcesAttribute : Attribute {
     }
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]

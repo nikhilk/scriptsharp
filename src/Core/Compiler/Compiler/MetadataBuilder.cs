@@ -661,7 +661,7 @@ namespace ScriptSharp.Compiler {
                 if (AttributeNode.FindAttribute(attributes, "ScriptObject") != null) {
                     typeSymbol = new RecordSymbol(typeNode.Name, namespaceSymbol);
                 }
-                else if (AttributeNode.FindAttribute(attributes, "Resources") != null) {
+                else if (AttributeNode.FindAttribute(attributes, "ScriptResources") != null) {
                     typeSymbol = new ResourcesSymbol(typeNode.Name, namespaceSymbol);
                 }
                 else {
