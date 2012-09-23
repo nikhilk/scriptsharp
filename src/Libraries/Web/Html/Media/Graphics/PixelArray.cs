@@ -15,14 +15,14 @@ namespace System.Html.Media.Graphics {
         private PixelArray() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object this[int index] {
             get {
                 return null;

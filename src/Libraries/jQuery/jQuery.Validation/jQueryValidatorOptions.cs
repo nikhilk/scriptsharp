@@ -14,7 +14,7 @@ namespace jQueryApi.Validation {
     [ScriptName("Object")]
     public sealed class jQueryValidatorOptions {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Debug {
             get {
                 return false;
@@ -23,7 +23,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string ErrorClass {
             get {
                 return null;
@@ -32,7 +32,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string ErrorContainer {
             get {
                 return null;
@@ -41,7 +41,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string ErrorElement {
             get {
                 return null;
@@ -50,7 +50,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string ErrorLabelContainer {
             get {
                 return null;
@@ -59,7 +59,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool FocusCleanup {
             get {
                 return false;
@@ -68,7 +68,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool FocusInvalid {
             get {
                 return false;
@@ -77,7 +77,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Dictionary Groups {
             get {
                 return null;
@@ -86,7 +86,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("ignore")]
         public string IgnoreSelector {
             get {
@@ -96,7 +96,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Action<jQueryEvent, jQueryValidator> InvalidHandler {
             get {
                 return null;
@@ -105,7 +105,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Dictionary Messages {
             get {
                 return null;
@@ -114,7 +114,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Meta {
             get {
                 return null;
@@ -123,7 +123,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Dictionary Rules {
             get {
                 return null;
@@ -132,7 +132,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Action<jQueryObject> SubmitHandler {
             get {
                 return null;
@@ -141,7 +141,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("onclick")]
         public bool ValidateOnClick {
             get {
@@ -151,7 +151,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("onfocusout")]
         public bool ValidateOnFocusOut {
             get {
@@ -161,7 +161,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("onkeyup")]
         public bool ValidateOnKeyUp {
             get {
@@ -171,7 +171,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("onsubmit")]
         public bool ValidateOnSubmit {
             get {
@@ -181,7 +181,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string ValidClass {
             get {
                 return null;
@@ -190,7 +190,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Wrapper {
             get {
                 return null;

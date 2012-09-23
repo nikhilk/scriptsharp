@@ -17,21 +17,21 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("primitives")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public VenueEntity[] Entities {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Name {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int[] ZoomRange {
             get {
                 return null;

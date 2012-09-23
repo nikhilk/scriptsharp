@@ -16,21 +16,21 @@ namespace Microsoft.Maps.VenueMaps {
         private VenueEntityPolygon() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public MapBounds Bounds {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public MapLocation Center {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public MapLocation[] Locations {
             get {
                 return null;

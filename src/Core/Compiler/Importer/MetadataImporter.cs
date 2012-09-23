@@ -406,7 +406,7 @@ namespace ScriptSharp.Importer {
 
                 string propertyName = property.Name;
                 bool preserveCase = MetadataHelpers.ShouldPreserveCase(property);
-                bool intrinsicProperty = MetadataHelpers.ShouldTreatAsIntrinsicProperty(property);
+                bool scriptProperty = MetadataHelpers.ShouldTreatAsScriptProperty(property);
 
                 TypeSymbol propertyType = ResolveType(property.PropertyType);
                 if (propertyType == null) {
@@ -418,15 +418,15 @@ namespace ScriptSharp.Importer {
                     IndexerSymbol indexerSymbol = new IndexerSymbol(typeSymbol, propertyType);
                     ImportMemberDetails(indexerSymbol, property.GetMethod, property);
 
-                    if (intrinsicProperty) {
-                        indexerSymbol.SetIntrinsic();
+                    if (scriptProperty) {
+                        indexerSymbol.SetScriptIndexer();
                     }
 
                     propertySymbol = indexerSymbol;
                     propertySymbol.SetNameCasing(preserveCase);
                 }
                 else {
-                    if (intrinsicProperty) {
+                    if (scriptProperty) {
                         // Properties marked with this attribute are to be thought of as
                         // fields. If they are read-only, the C# compiler will enforce that,
                         // so we don't have to worry about making them read-write via a field
@@ -487,7 +487,7 @@ namespace ScriptSharp.Importer {
                 Debug.Assert(objectType != null);
 
                 IndexerSymbol indexer = new IndexerSymbol(classSymbol, objectType, MemberVisibility.Public | MemberVisibility.Static);
-                indexer.SetIntrinsic();
+                indexer.SetScriptIndexer();
                 classSymbol.AddMember(indexer);
 
                 return;

@@ -20,14 +20,14 @@ namespace System.Threading {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Exception Error {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public TaskStatus Status {
             get {
                 return TaskStatus.Pending;
@@ -78,7 +78,7 @@ namespace System.Threading {
         internal Task() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public T Result {
             get {
                 return default(T);

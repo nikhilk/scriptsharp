@@ -14,21 +14,21 @@ namespace System.Xml {
         internal XmlAttribute() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public override string Name {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Specified {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public override string Value {
             get {
                 return null;

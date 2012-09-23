@@ -14,7 +14,7 @@ namespace System.Net {
     [ScriptName("XMLHttpRequest")]
     public sealed class XmlHttpRequest {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("onreadystatechange")]
         public Action OnReadyStateChange {
             get {
@@ -24,14 +24,14 @@ namespace System.Net {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public ReadyState ReadyState {
             get {
                 return ReadyState.Uninitialized;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("responseXML")]
         public XmlDocument ResponseXml {
             get {
@@ -39,21 +39,21 @@ namespace System.Net {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string ResponseText {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Status {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string StatusText {
             get {
                 return null;

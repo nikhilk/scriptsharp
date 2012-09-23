@@ -11,7 +11,7 @@ namespace System.Collections.Generic {
     [ScriptName("Queue")]
     public sealed class Queue<T> {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Count {
             get {
                 return 0;

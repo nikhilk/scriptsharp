@@ -11,7 +11,7 @@ namespace System.Collections.Generic {
     [ScriptName("IEnumerator")]
     public interface IEnumerator<T> {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         T Current {
             get;
         }

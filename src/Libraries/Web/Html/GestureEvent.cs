@@ -15,14 +15,14 @@ namespace System.Html {
         internal GestureEvent() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Rotation {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Scale {
             get {
                 return 0;

@@ -15,7 +15,7 @@ namespace System.Html {
         internal FormElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string AcceptCharset {
             get {
                 return null;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Action {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Element[] Elements {
             get {
                 return null;
@@ -42,7 +42,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string EncType {
             get {
                 return null;
@@ -51,7 +51,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Encoding {
             get {
                 return null;
@@ -60,14 +60,14 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Name {
             get {
                 return null;
@@ -76,7 +76,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Method {
             get {
                 return null;
@@ -85,7 +85,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Target {
             get {
                 return null;

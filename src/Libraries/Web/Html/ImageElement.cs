@@ -22,7 +22,7 @@ namespace System.Html {
         public ImageElement(int width, int height) {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Alt {
             get {
                 return null;
@@ -31,14 +31,14 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Complete {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Src {
             get {
                 return null;
@@ -47,7 +47,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Height {
             get {
                 return 0;
@@ -56,7 +56,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int NaturalHeight {
             get {
                 return 0;
@@ -65,7 +65,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int NaturalWidth {
             get {
                 return 0;
@@ -74,7 +74,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Width {
             get {
                 return 0;

@@ -16,7 +16,7 @@ namespace System.Globalization {
         }
 
         [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("current")]
         public static CultureInfo CurrentCulture {
             get {
@@ -24,7 +24,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("dtf")]
         public DateFormatInfo DateFormat {
             get {
@@ -33,7 +33,7 @@ namespace System.Globalization {
         }
 
         [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("neutral")]
         public static CultureInfo InvariantCulture {
             get {
@@ -41,14 +41,14 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Name {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("nf")]
         public NumberFormatInfo NumberFormat {
             get {

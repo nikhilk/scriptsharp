@@ -15,7 +15,7 @@ namespace System.Html.Media.Filters {
         private VisualTransition() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Duration {
             get {
                 return 0f;
@@ -24,14 +24,14 @@ namespace System.Html.Media.Filters {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Percent {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public VisualTransitionState Status {
             get {
                 return VisualTransitionState.Stopped;

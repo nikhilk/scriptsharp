@@ -77,7 +77,7 @@ namespace ScriptSharp.Generator {
 
                 IndexerExpression indexExpression = expression.LeftOperand as IndexerExpression;
                 if ((indexExpression != null) &&
-                    !indexExpression.Indexer.IsIntrinsic) {
+                    !indexExpression.Indexer.UseScriptIndexer) {
                     Debug.Assert(indexExpression.Type == ExpressionType.Indexer);
 
                     if (indexExpression.ObjectReference is BaseExpression) {
@@ -469,7 +469,7 @@ namespace ScriptSharp.Generator {
         private static void GenerateIndexerExpression(ScriptGenerator generator, MemberSymbol symbol, IndexerExpression expression) {
             ScriptTextWriter writer = generator.Writer;
 
-            if (expression.Indexer.IsIntrinsic) {
+            if (expression.Indexer.UseScriptIndexer) {
                 GenerateExpression(generator, symbol, expression.ObjectReference);
                 writer.Write("[");
                 GenerateExpressionList(generator, symbol, expression.Indices);

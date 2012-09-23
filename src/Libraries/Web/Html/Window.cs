@@ -21,7 +21,7 @@ namespace System.Html {
         private Window() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static ApplicationCache ApplicationCache {
             get {
                 return null;
@@ -31,21 +31,21 @@ namespace System.Html {
         /// <summary>
         /// IE only.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static DataTransfer ClipboardData {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static bool Closed {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static string DefaultStatus {
             get { 
                 return null; 
@@ -54,14 +54,14 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static object DialogArguments {
             get { 
                 return null; 
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static DocumentInstance Document {
             get {
                 return null;
@@ -71,70 +71,70 @@ namespace System.Html {
         /// <summary>
         /// Provides information about the current event being handled.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static ElementEvent Event {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static IFrameElement FrameElement {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static History History {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static int InnerHeight {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static int InnerWidth {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static Storage LocalStorage {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static Location Location {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static Navigator Navigator {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static WindowInstance Parent {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static ErrorHandler Onerror {
             get { 
                 return null; 
@@ -143,70 +143,70 @@ namespace System.Html {
             } 
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static WindowInstance Opener {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static Orientation Orientation {
             get {
                 return Orientation.Portrait;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static int OuterHeight {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static int OuterWidth {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static int PageXOffset {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static int PageYOffset {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static Screen Screen {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static WindowInstance Self {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static Storage SessionStorage {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static string Status {
             get { 
                 return null; 
@@ -215,14 +215,14 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static WindowInstance Top {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static WindowInstance[] Frames {
             get {
                 return null;

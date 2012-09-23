@@ -14,21 +14,21 @@ namespace System.Html {
     [ScriptName("document")]
     public static class Document {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static Element ActiveElement {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static Element Body {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static string Cookie {
             get {
                 return null;
@@ -37,21 +37,21 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static string Doctype {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static Element DocumentElement {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static string DesignMode {
             get {
                 return null;
@@ -60,7 +60,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static string Domain {
             get {
                 return null;
@@ -69,42 +69,42 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static DocumentImplementation Implementation {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static WindowInstance ParentWindow {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static string ReadyState {
             get {
                 return null;
             }
         }
         
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static string Referrer {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static Selection Selection {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static string Title {
             get {
                 return null;
@@ -113,7 +113,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static string URL {
             get {
                 return null;

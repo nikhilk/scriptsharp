@@ -13,13 +13,13 @@ namespace TypeTests {
 
         private MyElement() { }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string myString {
             get { return null; }
             set { }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string this[string name] {
             get { return null; }
             set { }

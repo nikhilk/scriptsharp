@@ -16,14 +16,14 @@ namespace System.Html {
         private ClientRectList() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public ClientRect this[int index] {
             get {
                 return null;

@@ -15,7 +15,7 @@ namespace System.Html {
         private DataTransfer() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public DropEffect DropEffect {
             get {
                 return DropEffect.None;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public DropEffects EffectAllowed {
             get {
                 return DropEffects.None;

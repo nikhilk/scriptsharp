@@ -15,7 +15,7 @@ namespace System.Xml {
         internal XmlNodeList() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("length")]
         public int Count {
             get {
@@ -23,7 +23,7 @@ namespace System.Xml {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public XmlNode this[int index] {
             get {
                 return null;

@@ -27,9 +27,9 @@ namespace KnockoutApi {
         }
 
         /// <summary>
-        /// For dependent observables, we throttle *evaluations* so that, no matter how fast its dependencies        
+        /// For dependent observables, we throttle *evaluations* so that, no matter how fast its dependencies
         /// notify updates, the target doesn't re-evaluate (and hence doesn't notify) faster than a certain rate
-        /// For writable targets (observables, or writable dependent observables), we throttle *writes*        
+        /// For writable targets (observables, or writable dependent observables), we throttle *writes*
         /// so the target cannot change value synchronously or faster than a certain rate
         /// </summary>
         /// <param name="options"></param>

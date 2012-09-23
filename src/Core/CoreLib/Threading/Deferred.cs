@@ -11,7 +11,7 @@ namespace System.Threading {
     [Imported]
     public class Deferred {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Task Task {
             get {
                 return null;
@@ -32,7 +32,7 @@ namespace System.Threading {
     [ScriptName("Deferred")]
     public sealed class Deferred<T> : Deferred {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public new Task<T> Task {
             get {
                 return null;

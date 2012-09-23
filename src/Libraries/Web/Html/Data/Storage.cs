@@ -15,14 +15,14 @@ namespace System.Html.Data {
         private Storage() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object this[string key] {
             get {
                 return null;

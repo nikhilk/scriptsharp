@@ -25,7 +25,7 @@ namespace jQueryApi.UI {
         /// <summary>
         /// This event is triggered when the widget is created.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryEventHandler Create {
              get {
                 return null;
@@ -37,7 +37,7 @@ namespace jQueryApi.UI {
         /// <summary>
         /// Disables the widget if set to true.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Disabled {
             get {
                 return false;

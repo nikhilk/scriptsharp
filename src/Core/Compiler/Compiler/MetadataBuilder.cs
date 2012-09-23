@@ -116,8 +116,8 @@ namespace ScriptSharp.Compiler {
                 IndexerSymbol indexer = new IndexerSymbol(typeSymbol, indexerType);
                 BuildMemberDetails(indexer, typeSymbol, indexerNode, indexerNode.Attributes);
 
-                if (AttributeNode.FindAttribute(indexerNode.Attributes, "IntrinsicProperty") != null) {
-                    indexer.SetIntrinsic();
+                if (AttributeNode.FindAttribute(indexerNode.Attributes, "ScriptProperty") != null) {
+                    indexer.SetScriptIndexer();
                 }
 
                 SymbolImplementationFlags implFlags = SymbolImplementationFlags.Regular;
@@ -609,8 +609,8 @@ namespace ScriptSharp.Compiler {
         }
 
         private FieldSymbol BuildPropertyAsField(PropertyDeclarationNode propertyNode, TypeSymbol typeSymbol) {
-            AttributeNode intrinsicPropertyAttribute = AttributeNode.FindAttribute(propertyNode.Attributes, "IntrinsicProperty");
-            if (intrinsicPropertyAttribute == null) {
+            AttributeNode scriptPropertyAttribute = AttributeNode.FindAttribute(propertyNode.Attributes, "ScriptProperty");
+            if (scriptPropertyAttribute == null) {
                 return null;
             }
 

@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Widgets {
     [ScriptName("Object")]
     public sealed class SlideStartEvent {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject Handle {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Value {
             get {
                 return 0;

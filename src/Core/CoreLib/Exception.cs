@@ -19,21 +19,21 @@ namespace System {
         public Exception(string message) {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Exception InnerException {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Message {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("stack")]
         public string StackTrace {
             get {
@@ -41,7 +41,7 @@ namespace System {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object this[string key] {
             get {
                 return null;

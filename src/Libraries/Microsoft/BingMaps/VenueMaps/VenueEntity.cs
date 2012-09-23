@@ -16,7 +16,7 @@ namespace Microsoft.Maps.VenueMaps {
         private VenueEntity() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public MapBounds Bounds {
             get {
                 return null;
@@ -24,42 +24,42 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("categoryName")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Category {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public MapLocation Center {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public VenueFloor Floor {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string ID {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public MapLocation[] Locations {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Name {
             get {
                 return null;

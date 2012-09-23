@@ -16,7 +16,7 @@ namespace System.Html.Services {
         public GeolocationOptions(params object[] nameValuePairs) {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool EnableHighAccuracy {
             get {
                 return false;
@@ -25,7 +25,7 @@ namespace System.Html.Services {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int MaximumAge {
             get {
                 return 0;
@@ -34,7 +34,7 @@ namespace System.Html.Services {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Timeout {
             get {
                 return 0;

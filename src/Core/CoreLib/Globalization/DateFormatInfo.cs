@@ -15,7 +15,7 @@ namespace System.Globalization {
         private DateFormatInfo() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("am")]
         public string AMDesignator {
             get {
@@ -23,7 +23,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("pm")]
         public string PMDesignator {
             get {
@@ -31,7 +31,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("ds")]
         public string DateSeparator {
             get {
@@ -39,7 +39,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("ts")]
         public string TimeSeparator {
             get {
@@ -47,7 +47,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("gmt")]
         public string GMTDateTimePattern {
             get {
@@ -55,7 +55,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("uni")]
         public string UniversalDateTimePattern {
             get {
@@ -63,7 +63,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("sort")]
         public string SortableDateTimePattern {
             get {
@@ -71,7 +71,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("dt")]
         public string DateTimePattern {
             get {
@@ -79,7 +79,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("ld")]
         public string LongDatePattern {
             get {
@@ -87,7 +87,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("sd")]
         public string ShortDatePattern {
             get {
@@ -95,7 +95,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("lt")]
         public string LongTimePattern {
             get {
@@ -103,7 +103,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("st")]
         public string ShortTimePattern {
             get {
@@ -111,7 +111,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("day0")]
         public int FirstDayOfWeek {
             get {
@@ -119,7 +119,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("day")]
         public string[] DayNames {
             get {
@@ -127,7 +127,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("sday")]
         public string[] ShortDayNames {
             get {
@@ -135,7 +135,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("mday")]
         public string[] MinimizedDayNames {
             get {
@@ -143,7 +143,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("mon")]
         public string[] MonthNames {
             get {
@@ -151,7 +151,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("smon")]
         public string[] ShortMonthNames {
             get {

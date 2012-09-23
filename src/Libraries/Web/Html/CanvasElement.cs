@@ -16,7 +16,7 @@ namespace System.Html {
         private CanvasElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Height {
             get {
                 return 0;
@@ -25,7 +25,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Width {
             get {
                 return 0;

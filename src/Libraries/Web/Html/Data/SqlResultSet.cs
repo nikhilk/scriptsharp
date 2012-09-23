@@ -16,21 +16,21 @@ namespace System.Html.Data {
         private SqlResultSet() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int InsertId {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public SqlResultSetRowList Rows {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int RowsAffected {
             get {
                 return 0;

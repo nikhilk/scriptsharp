@@ -15,14 +15,14 @@ namespace System.Html {
         internal ElementCollection() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Element this[int index] {
             get {
                 return null;

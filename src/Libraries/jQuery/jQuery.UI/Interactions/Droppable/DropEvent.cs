@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Interactions {
     [ScriptName("Object")]
     public sealed class DropEvent {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject Draggable {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject Helper {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Offset {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Position {
             get {
                 return null;

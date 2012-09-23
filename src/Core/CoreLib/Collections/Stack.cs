@@ -11,7 +11,7 @@ namespace System.Collections {
     [Imported]
     public sealed class Stack {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Count {
             get {
                 return 0;

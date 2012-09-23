@@ -171,7 +171,7 @@ namespace System.Runtime.CompilerServices {
     [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
     [NonScriptable]
     [Imported]
-    public sealed class IntrinsicPropertyAttribute : Attribute {
+    public sealed class ScriptPropertyAttribute : Attribute {
     }
 
     /// <summary>

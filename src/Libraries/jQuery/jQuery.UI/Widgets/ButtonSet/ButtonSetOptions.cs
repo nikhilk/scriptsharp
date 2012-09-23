@@ -25,7 +25,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// This event is triggered when the button is created.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryEventHandler Create {
              get {
                 return null;
@@ -34,7 +34,7 @@ namespace jQueryApi.UI.Widgets {
              }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Items {
             get {
                 return null;

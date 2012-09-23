@@ -15,7 +15,7 @@ namespace System.Html {
         private TableSectionElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public ElementCollection Rows {
             get {
                 return null;

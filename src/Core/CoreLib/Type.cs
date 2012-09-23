@@ -17,7 +17,7 @@ namespace System {
     public sealed class Type {
 
         [ScriptName("$base")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Type BaseType {
             get {
                 return null;
@@ -25,7 +25,7 @@ namespace System {
         }
 
         [ScriptName("$name")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Name {
             get {
                 return null;
@@ -35,7 +35,7 @@ namespace System {
         /// <summary>
         /// Gets the prototype associated with the type.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Dictionary Prototype {
             get {
                 return null;

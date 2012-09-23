@@ -17,7 +17,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string DefaultFloor {
             get {
                 return null;
@@ -25,7 +25,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string FloorHeader {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public VenueFloor[] Floors {
             get {
                 return null;
@@ -41,7 +41,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public VenueFootprint Footprint {
             get {
                 return null;
@@ -49,7 +49,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("MapId")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string ID {
             get {
                 return null;
@@ -57,7 +57,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("CenterLat")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Latitude {
             get {
                 return 0;
@@ -65,7 +65,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("CenterLong")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Longitude {
             get {
                 return 0;
@@ -73,7 +73,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Name {
             get {
                 return null;
@@ -81,7 +81,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("MapType")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public VenueType Type {
             get {
                 return VenueType.Mall;

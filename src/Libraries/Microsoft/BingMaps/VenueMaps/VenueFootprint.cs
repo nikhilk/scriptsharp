@@ -16,14 +16,14 @@ namespace Microsoft.Maps.VenueMaps {
         private VenueFootprint() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public VenueEntityPolygon[] Polygons {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int[] ZoomRange {
             get {
                 return null;

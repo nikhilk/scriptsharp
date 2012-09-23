@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Widgets {
     [ScriptName("Object")]
     public sealed class TabsLoadEvent {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject Panel {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject Tab {
             get {
                 return null;

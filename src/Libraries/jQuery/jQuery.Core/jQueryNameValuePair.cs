@@ -21,7 +21,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the name.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Name {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the value.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Value {
             get {
                 return null;

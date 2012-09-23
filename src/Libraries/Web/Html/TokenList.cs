@@ -15,7 +15,7 @@ namespace System.Html {
         private TokenList() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("length")]
         public int Count {
             get {
@@ -23,7 +23,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string this[int index] {
             get {
                 return null;

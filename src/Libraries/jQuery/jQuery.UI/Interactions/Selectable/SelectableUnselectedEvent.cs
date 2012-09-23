@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Interactions {
     [ScriptName("Object")]
     public sealed class SelectableUnselectedEvent {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Unselected {
             get {
                 return null;

@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Widgets {
     [ScriptName("Object")]
     public sealed class TabsSelectEvent {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Index {
             get {
                 return 0;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject Panel {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject Tab {
             get {
                 return null;

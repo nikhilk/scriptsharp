@@ -15,14 +15,14 @@ namespace System.Html {
         private OptionElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public FormElement Form {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Selected {
             get {
                 return false;
@@ -31,7 +31,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Text {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Value {
             get {
                 return null;

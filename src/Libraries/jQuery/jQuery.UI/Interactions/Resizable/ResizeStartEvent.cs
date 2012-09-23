@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Interactions {
     [ScriptName("Object")]
     public sealed class ResizeStartEvent {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject Element {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject Helper {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject OriginalElement {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject OriginalPosition {
             get {
                 return null;
@@ -49,7 +49,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object OriginalSize {
             get {
                 return null;
@@ -58,7 +58,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Position {
             get {
                 return null;
@@ -67,7 +67,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Size {
             get {
                 return null;

@@ -25,7 +25,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// A callback function, executed when the effect completes
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Action Complete {
             get {
                 return null;
@@ -37,7 +37,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The number of ms the animation will run for
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Duration {
             get {
                 return 0;
@@ -49,7 +49,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The easing function to use
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Easing {
             get {
                 return null;
@@ -61,7 +61,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The mode of the effect. Can be "show" or "hide"
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Mode {
             get {
                 return null;
@@ -73,7 +73,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The percentage to scale to.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Percent {
             get {
                 return 0;

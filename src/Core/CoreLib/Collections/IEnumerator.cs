@@ -10,7 +10,7 @@ namespace System.Collections {
     [Imported]
     public interface IEnumerator {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         object Current {
             get;
         }

@@ -15,7 +15,7 @@ namespace System.Html.Services {
         private Geolocation() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("coords")]
         public GeoCoordinates Coordinates {
             get {
@@ -23,7 +23,7 @@ namespace System.Html.Services {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Timestamp {
             get {
                 return 0;

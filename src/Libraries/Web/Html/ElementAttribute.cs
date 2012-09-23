@@ -15,21 +15,21 @@ namespace System.Html {
         internal ElementAttribute() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Name {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Specified {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Value {
             get {
                 return null;

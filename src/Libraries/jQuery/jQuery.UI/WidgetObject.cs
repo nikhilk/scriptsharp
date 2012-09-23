@@ -22,28 +22,28 @@ namespace jQueryApi.UI {
         protected WidgetObject() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static object Prototype {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryObject Element {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Options {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("_setOption")]
         public Function SetOption {
             get {
@@ -51,7 +51,7 @@ namespace jQueryApi.UI {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("_setOptions")]
         public Function SetOptions {
             get {

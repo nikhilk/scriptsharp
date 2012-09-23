@@ -37,7 +37,7 @@ namespace System.Collections.Generic {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public TValue this[TKey key] {
             get {
                 return default(TValue);

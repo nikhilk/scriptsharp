@@ -25,7 +25,7 @@ namespace System {
         /// <summary>
         /// The number of characters in the string.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Length {
             get {
                 return 0;
@@ -37,7 +37,7 @@ namespace System {
         /// </summary>
         /// <param name="index">The specified 0-based position.</param>
         /// <returns>The character within the string.</returns>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public char this[int index] {
             get {
                 return '\0';

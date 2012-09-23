@@ -17,92 +17,92 @@ namespace System.Html.Media.Graphics {
         }
 
         [ScriptName("globalAlpha")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Alpha {
             get;
             set;
         }
 
         [ScriptName("globalCompositeOperation")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public CompositeOperation CompositeOperation {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object FillStyle {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Font {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public LineCap LineCap {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public LineJoin LineJoin {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double LineWidth {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int MiterLimit {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double ShadowBlur {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string ShadowColor {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double ShadowOffsetX {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double ShadowOffsetY {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object StrokeStyle {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public TextAlign TextAlign {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public TextBaseline TextBaseline {
             get;
             set;

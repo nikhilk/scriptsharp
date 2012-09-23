@@ -15,21 +15,21 @@ namespace Microsoft.Maps {
         public MapBounds(MapLocation center, double width, double height) {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public MapLocation Center {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Height {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Width {
             get {
                 return 0;

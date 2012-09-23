@@ -15,7 +15,7 @@ namespace System {
     [Imported]
     public static class Script {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptAlias("$global")]
         public static object Global {
             get {
@@ -23,7 +23,7 @@ namespace System {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptAlias("undefined")]
         public static object Undefined {
             get {

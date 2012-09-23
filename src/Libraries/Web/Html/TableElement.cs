@@ -15,35 +15,35 @@ namespace System.Html {
         private TableElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public ElementCollection Cells {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public ElementCollection Rows {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public ElementCollection tBodies {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Element tFoot {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public ElementCollection tHead {
             get {
                 return null;

@@ -15,7 +15,7 @@ namespace System.Html {
         internal ElementAttributeCollection() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Length {
             get {
                 return 0;

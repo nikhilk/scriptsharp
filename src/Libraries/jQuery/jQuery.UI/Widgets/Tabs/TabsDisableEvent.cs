@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Widgets {
     [ScriptName("Object")]
     public sealed class TabsDisableEvent {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Panel {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Tab {
             get {
                 return null;

@@ -15,7 +15,7 @@ namespace System.Globalization {
         private NumberFormatInfo() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("nan")]
         public string NaNSymbol {
             get {
@@ -23,7 +23,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("neg")]
         public string NegativeSign {
             get {
@@ -31,7 +31,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("pos")]
         public string PositiveSign {
             get {
@@ -39,7 +39,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("negInf")]
         public string NegativeInfinityText {
             get {
@@ -47,7 +47,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("posInf")]
         public string PositiveInfinityText {
             get {
@@ -55,7 +55,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("per")]
         public string PercentSymbol {
             get {
@@ -63,7 +63,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("perGW")]
         public int[] PercentGroupSizes {
             get {
@@ -71,7 +71,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("perDD")]
         public int PercentDecimalDigits {
             get {
@@ -79,7 +79,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("perDS")]
         public string PercentDecimalSeparator {
             get {
@@ -87,7 +87,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("perGS")]
         public string PercentGroupSeparator {
             get {
@@ -95,7 +95,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("perNP")]
         public string PercentNegativePattern {
             get {
@@ -103,7 +103,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("perPP")]
         public string PercentPositivePattern {
             get {
@@ -111,7 +111,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("cur")]
         public string CurrencySymbol {
             get {
@@ -119,7 +119,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("curGW")]
         public int[] CurrencyGroupSizes {
             get {
@@ -127,7 +127,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("curDD")]
         public int CurrencyDecimalDigits {
             get {
@@ -135,7 +135,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("curDS")]
         public string CurrencyDecimalSeparator {
             get {
@@ -143,7 +143,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("curGS")]
         public string CurrencyGroupSeparator {
             get {
@@ -151,7 +151,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("curNP")]
         public string CurrencyNegativePattern {
             get {
@@ -159,7 +159,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("curPP")]
         public string CurrencyPositivePattern {
             get {
@@ -167,7 +167,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("gw")]
         public int[] NumberGroupSizes {
             get {
@@ -175,7 +175,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("dd")]
         public int NumberDecimalDigits {
             get {
@@ -183,7 +183,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("ds")]
         public string NumberDecimalSeparator {
             get {
@@ -191,7 +191,7 @@ namespace System.Globalization {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("gs")]
         public string NumberGroupSeparator {
             get {

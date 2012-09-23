@@ -15,7 +15,7 @@ namespace System.Html {
         private AreaElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Shape {
             get {
                 return null;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Coords {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Name {
             get {
                 return null;
@@ -42,7 +42,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Alt {
             get {
                 return null;
@@ -51,7 +51,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Href {
             get {
                 return null;
@@ -60,7 +60,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string NoHref {
             get {
                 return null;

@@ -12,13 +12,13 @@ namespace KnockoutApi {
     [IgnoreNamespace]
     public class CompareResult<T> {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Status {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public T Value {
             get;
             set;

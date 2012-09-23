@@ -18,7 +18,7 @@ namespace System.Html {
         /// <summary>
         /// Retrieves the number of elements in the history list.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Length {
             get {
                 return 0;
@@ -28,7 +28,7 @@ namespace System.Html {
         /// <summary>
         /// Retrieves the current state object.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object State {
             get {
                 return null;

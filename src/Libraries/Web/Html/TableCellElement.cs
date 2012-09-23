@@ -15,7 +15,7 @@ namespace System.Html {
         private TableCellElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int ColSpan {
             get {
                 return 0;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool NoWrap {
             get {
                 return false;
@@ -33,7 +33,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int RowSpan {
             get {
                 return 0;

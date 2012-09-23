@@ -15,14 +15,14 @@ namespace System.Collections {
         internal DictionaryEntry() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Key {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Value {
             get {
                 return null;

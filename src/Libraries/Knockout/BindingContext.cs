@@ -13,28 +13,28 @@ namespace KnockoutApi {
     [IgnoreNamespace]
     public class BindingContext<TRoot, TParent, T> {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("$data")]
         public T Data {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("$parent")]
         public TParent Parent {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("$parents")]
         public TParent[] Parents {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         [ScriptName("$root")]
         public TRoot[] Root {
             get;

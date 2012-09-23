@@ -25,7 +25,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// A callback function, executed when the effect completes
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Action Complete {
             get {
                 return null;
@@ -37,7 +37,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The direction of the effect. Can be "both", "vertical" or "horizontal".
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Direction {
             get {
                 return null;
@@ -49,7 +49,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The number of ms the animation will run for
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Duration {
             get {
                 return 0;
@@ -61,7 +61,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The easing function to use
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Easing {
             get {
                 return null;
@@ -73,7 +73,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The vanishing point, default for show/hide.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Array Origin {
             get {
                 return null;
@@ -85,7 +85,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The percentage to scale to.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Percent {
             get {
                 return 0;
@@ -97,7 +97,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// Which areas of the element will be resized: 'both', 'box', 'content' Box resizes the border and padding of the element Content resizes any content inside of the element
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Scale {
             get {
                 return null;

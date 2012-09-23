@@ -17,14 +17,14 @@ namespace System.Xml {
         internal XmlDocument() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Doctype {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public XmlNode DocumentElement {
             get {
                 return null;

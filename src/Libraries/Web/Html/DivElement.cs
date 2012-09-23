@@ -15,7 +15,7 @@ namespace System.Html {
         private DivElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Align {
             get {
                 return null;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool NoWrap {
             get {
                 return false;

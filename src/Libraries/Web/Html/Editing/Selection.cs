@@ -20,7 +20,7 @@ namespace System.Html.Editing {
         private Selection() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Type {
             get {
                 return null;

@@ -15,7 +15,7 @@ namespace System.Html {
         private AnchorElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Href {
             get {
                 return null;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Rel {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Target {
             get {
                 return null;
@@ -42,7 +42,7 @@ namespace System.Html {
             }
         }
         
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Download {
             get {
                 return null;

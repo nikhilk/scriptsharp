@@ -14,7 +14,7 @@ namespace System {
         private Export() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Name {
             get {
                 return null;

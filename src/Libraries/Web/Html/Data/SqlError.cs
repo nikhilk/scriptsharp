@@ -17,14 +17,14 @@ namespace System.Html.Data {
         private SqlError() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Code {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Message {
             get {
                 return null;

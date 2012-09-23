@@ -15,7 +15,7 @@ namespace System.Html {
         private SelectElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Multiple {
             get {
                 return false;
@@ -24,14 +24,14 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public ElementCollection Options {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int SelectedIndex {
             get {
                 return 0;
@@ -40,7 +40,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Size {
             get {
                 return 0;

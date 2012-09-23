@@ -33,7 +33,7 @@ namespace System {
         /// <summary>
         /// Gets the number of parameters expected by the function.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Length {
             get {
                 return 0;

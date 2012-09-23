@@ -15,7 +15,7 @@ namespace System.Html {
         private AudioElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double CurrentTime {
             get {
                 return 0;
@@ -24,28 +24,28 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Duration {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Ended {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Paused {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Src {
             get {
                 return "";
@@ -54,7 +54,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public float Volume {
             get {
                 return 0;

@@ -25,7 +25,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// This event is triggered when the button is created.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public jQueryEventHandler Create {
              get {
                 return null;
@@ -37,7 +37,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// Disables the button if set to true.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Disabled {
             get {
                 return false;
@@ -49,7 +49,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// Icons to display, with or without text (see text option). The primary icon is displayed by default on the left of the label text, the secondary by default is on the right. Value for the primary and secondary properties must be a classname (String), eg. "ui-icon-gear". For using only one icon: icons: {primary:'ui-icon-locked'}. For using two icons: icons: {primary:'ui-icon-gear',secondary:'ui-icon-triangle-1-s'}
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Icons {
             get {
                 return null;
@@ -61,7 +61,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// Text to show on the button. When not specified (null), the element's html content is used, or its value attribute when it's an input element of type submit or reset; or the html content of the associated label element if its an input of type radio or checkbox
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Label {
             get {
                 return null;
@@ -73,7 +73,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// Whether to show any text - when set to false (display no text), icons (see icons option) must be enabled, otherwise it'll be ignored.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Text {
             get {
                 return false;

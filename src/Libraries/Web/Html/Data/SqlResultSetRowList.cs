@@ -16,7 +16,7 @@ namespace System.Html.Data {
         private SqlResultSetRowList() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Length {
             get {
                 return 0;

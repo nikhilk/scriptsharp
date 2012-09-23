@@ -13,7 +13,7 @@ namespace KnockoutApi {
     [ScriptName("Object")]
     public sealed class KnockoutMappingCreateOptions {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Data {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace KnockoutApi {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Parent {
             get {
                 return null;

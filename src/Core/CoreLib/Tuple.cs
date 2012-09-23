@@ -19,7 +19,7 @@ namespace System {
         public Tuple(T1 item1, T2 item2) {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public T1 Item1 {
             get {
                 return default(T1);
@@ -28,7 +28,7 @@ namespace System {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public T2 Item2 {
             get {
                 return default(T2);
@@ -49,7 +49,7 @@ namespace System {
         public Tuple(T1 item1, T2 item2, T3 item3) {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public T1 Item1 {
             get {
                 return default(T1);
@@ -58,7 +58,7 @@ namespace System {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public T2 Item2 {
             get {
                 return default(T2);
@@ -67,7 +67,7 @@ namespace System {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public T3 Item3 {
             get {
                 return default(T3);
@@ -88,7 +88,7 @@ namespace System {
         public Tuple(T1 item1, T2 item2, T3 item3, T4 item4) {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public T1 Item1 {
             get {
                 return default(T1);
@@ -97,7 +97,7 @@ namespace System {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public T2 Item2 {
             get {
                 return default(T2);
@@ -106,7 +106,7 @@ namespace System {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public T3 Item3 {
             get {
                 return default(T3);
@@ -115,7 +115,7 @@ namespace System {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public T4 Item4 {
             get {
                 return default(T4);

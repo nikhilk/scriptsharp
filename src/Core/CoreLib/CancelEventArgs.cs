@@ -17,7 +17,7 @@ namespace System {
         /// <summary>
         /// Whether the event has been canceled.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Cancel {
             get {
                 return false;

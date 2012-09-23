@@ -128,7 +128,7 @@ namespace ScriptSharp.ScriptModel {
 
             IndexerSymbol indexerSymbol = new IndexerSymbol(specificArrayTypeSymbol, itemTypeSymbol,
                                                             MemberVisibility.Public);
-            indexerSymbol.SetIntrinsic();
+            indexerSymbol.SetScriptIndexer();
             specificArrayTypeSymbol.AddMember(indexerSymbol);
             specificArrayTypeSymbol.SetIgnoreNamespace();
             specificArrayTypeSymbol.SetArray();
@@ -152,8 +152,8 @@ namespace ScriptSharp.ScriptModel {
                 IndexerSymbol templateIndexer = (IndexerSymbol)templateMember;
                 IndexerSymbol instanceIndexer = new IndexerSymbol(parentType, instanceAssociatedType);
 
-                if (templateIndexer.IsIntrinsic) {
-                    instanceIndexer.SetIntrinsic();
+                if (templateIndexer.UseScriptIndexer) {
+                    instanceIndexer.SetScriptIndexer();
                 }
                 instanceIndexer.SetVisibility(templateIndexer.Visibility);
 

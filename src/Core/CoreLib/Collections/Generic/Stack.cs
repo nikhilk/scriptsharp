@@ -11,7 +11,7 @@ namespace System.Collections.Generic {
     [ScriptName("Stack")]
     public sealed class Stack<T> {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Count {
             get {
                 return 0;

@@ -22,7 +22,7 @@ namespace KnockoutApi {
         /// <summary>
         /// Provides access to the currently registered binding handlers.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static Dictionary<string, BindingHandler> BindingHandlers {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace KnockoutApi {
         /// Gets the mapping plugin which allows converting models to plain
         /// objects and JSON and vice-versa.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static KnockoutMapping Mapping {
             get {
                 return null;
@@ -45,7 +45,7 @@ namespace KnockoutApi {
         /// </summary>
         /// <returns>The object represented by 'this' within a handler.</returns>
         [ScriptAlias("this")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public static object Model {
             get {
                 return null;
@@ -105,7 +105,7 @@ namespace KnockoutApi {
         }
 
         /// <summary>
-        /// Returns the data item associated with a particular DOM element 
+        /// Returns the data item associated with a particular DOM element
         /// </summary>
         /// <param name="node"></param>
         public static T DataFor<T>(Element node) {

@@ -18,14 +18,14 @@ namespace System {
     [ScriptName("Array")]
     public sealed class Array : IEnumerable {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object this[int index] {
             get {
                 return null;

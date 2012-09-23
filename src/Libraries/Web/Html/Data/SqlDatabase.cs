@@ -17,7 +17,7 @@ namespace System.Html.Data {
         private SqlDatabase() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Version {
             get {
                 return null;

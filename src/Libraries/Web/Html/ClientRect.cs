@@ -16,28 +16,28 @@ namespace System.Html {
         private ClientRect() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Bottom {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Left {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Right {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Top {
             get {
                 return 0;

@@ -15,7 +15,7 @@ namespace System.Html {
         internal CustomEvent() {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object Data {
             get {
                 return null;

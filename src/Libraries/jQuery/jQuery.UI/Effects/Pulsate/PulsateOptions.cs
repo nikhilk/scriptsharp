@@ -25,7 +25,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// A callback function, executed when the effect completes
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Action Complete {
             get {
                 return null;
@@ -37,7 +37,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The number of ms the animation will run for
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Duration {
             get {
                 return 0;
@@ -49,7 +49,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The easing function to use
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Easing {
             get {
                 return null;
@@ -61,7 +61,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// <para>UI Effect Mode</para><para>Possible Values: </para><dl><dt>hide</dt><dd>Hides the element.</dd><dt>show</dt><dd>Shows the element.</dd><dt>toggle</dt><dd>Will use <code>hide</code> or <code>show</code> depending on the current visibility of the element</dd><dt>effect</dt><dd>Just pulsates.</dd></dl>
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Mode {
             get {
                 return null;
@@ -73,7 +73,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The number of times the element should pulse.  An extra half pulse is added for hide/show
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Times {
             get {
                 return 0;

@@ -22,7 +22,7 @@ namespace KnockoutApi {
     [ScriptName("Object")]
     public sealed class KnockoutMappingPropertySpecification<TModel> : KnockoutMappingPropertySpecification {
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Func<KnockoutMappingCreateOptions, TModel> Create {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace KnockoutApi {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public Func<KnockoutMappingUpdateOptions, TModel> Update {
             get {
                 return null;

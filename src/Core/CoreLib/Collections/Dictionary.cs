@@ -34,7 +34,7 @@ namespace System.Collections {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public object this[string key] {
             get {
                 return null;
