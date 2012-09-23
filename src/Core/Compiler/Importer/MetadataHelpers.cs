@@ -56,13 +56,29 @@ namespace ScriptSharp.Importer {
             return null;
         }
 
-        public static string GetScriptName(ICustomAttributeProvider attributeProvider) {
-            CustomAttribute scriptAssemblyAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptNameAttribute");
-            if (scriptAssemblyAttribute != null) {
-                return GetAttributeArgument(scriptAssemblyAttribute);
+        public static string GetScriptName(ICustomAttributeProvider attributeProvider, out bool preserveName, out bool preserveCase) {
+            string name = null;
+            preserveName = false;
+            preserveCase = false;
+
+            CustomAttribute nameAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptNameAttribute");
+            if (nameAttribute != null) {
+                if (nameAttribute.HasConstructorArguments) {
+                    name = GetAttributeArgument(nameAttribute);
+                }
+                if (nameAttribute.HasProperties) {
+                    for (int i = 0; i < nameAttribute.Properties.Count; i++) {
+                        if (String.CompareOrdinal(nameAttribute.Properties[i].Name, "PreserveName") == 0) {
+                            preserveName = (bool)nameAttribute.Properties[i].Argument.Value;
+                        }
+                        else {
+                            preserveCase = (bool)nameAttribute.Properties[i].Argument.Value;
+                        }
+                    }
+                }
             }
 
-            return null;
+            return name;
         }
 
         public static bool IsCompilerGeneratedType(TypeDefinition type) {

@@ -268,12 +268,16 @@ namespace ScriptSharp.Importer {
                 memberSymbol.SetVisibility(visibility);
             }
 
-            memberSymbol.SetNameCasing(MetadataHelpers.ShouldPreserveCase(attributeProvider));
+            bool preserveName;
+            bool preserveCase;
+            string scriptName = MetadataHelpers.GetScriptName(attributeProvider, out preserveName, out preserveCase);
 
-            string scriptName = MetadataHelpers.GetScriptName(attributeProvider);
+            memberSymbol.SetNameCasing(preserveCase);
             if (scriptName != null) {
                 memberSymbol.SetTransformedName(scriptName);
             }
+
+            // PreserveName is ignored - it only is used for internal members, which are not imported.
         }
 
         private void ImportMembers(TypeSymbol typeSymbol) {
@@ -554,7 +558,9 @@ namespace ScriptSharp.Importer {
 
             string name = type.Name;
             string namespaceName = type.Namespace;
-            string scriptName = MetadataHelpers.GetScriptName(type);
+
+            bool dummy;
+            string scriptName = MetadataHelpers.GetScriptName(type, out dummy, out dummy);
 
             NamespaceSymbol namespaceSymbol = _symbols.GetNamespace(namespaceName);
             TypeSymbol typeSymbol = null;

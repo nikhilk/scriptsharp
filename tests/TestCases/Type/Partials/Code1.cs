@@ -48,8 +48,10 @@ namespace TypeTests {
 
     public interface IMyInterface {
         void Start();
-        [PreserveCase]
+
+        [ScriptName(PreserveCase = true)]
         void Stop();
+
         void Resume();
     }
 
@@ -68,7 +70,7 @@ namespace TypeTests {
 
 
     public partial class MyClass {
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public void Resume() {
         }
     }

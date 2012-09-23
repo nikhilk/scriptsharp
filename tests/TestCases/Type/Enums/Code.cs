@@ -15,11 +15,11 @@ namespace TypeTests {
 
     [Flags]
     public enum Mode {
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         Public = 1,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         Protected = 2,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         Private = 4
     }
 
@@ -36,11 +36,11 @@ namespace TypeTests {
 
     public enum Errors {
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         S_OK = 0,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         S_FALSE = 1,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         E_FAIL = -1
     }
 
@@ -65,7 +65,7 @@ namespace TypeTests {
     [ScriptConstants(UseNames = true)]
     internal enum SortMode {
         Status = 1,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         Group = 2,
         [ScriptName("Ct")]
         Count = 3
@@ -74,7 +74,7 @@ namespace TypeTests {
     [ScriptConstants(UseNames = true)]
     public enum Size {
         Small = 0,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         Medium = 1,
         Large = 2,
     }

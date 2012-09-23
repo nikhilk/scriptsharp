@@ -15,7 +15,6 @@ namespace System.Globalization {
         private CultureInfo() {
         }
 
-        [PreserveCase]
         [ScriptProperty]
         [ScriptName("current")]
         public static CultureInfo CurrentCulture {
@@ -32,7 +31,6 @@ namespace System.Globalization {
             }
         }
 
-        [PreserveCase]
         [ScriptProperty]
         [ScriptName("neutral")]
         public static CultureInfo InvariantCulture {

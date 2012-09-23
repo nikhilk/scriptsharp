@@ -14,28 +14,28 @@ namespace System {
     [ScriptImport]
     public static class Math {
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double E;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double LN2;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double LN10;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double LOG2E;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double LOG10E;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double PI;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double SQRT1_2;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double SQRT2;
 
         public static Number Abs(Number n) {

@@ -14,19 +14,19 @@ namespace System {
     [ScriptImport]
     public sealed class Number {
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public const int MAX_VALUE = 0;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public const int MIN_VALUE = 0;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public const int NaN = 0;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public const int NEGATIVE_INFINITY = 0;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public const int POSITIVE_INFINITY = 0;
 
         [ScriptAlias("isFinite")]

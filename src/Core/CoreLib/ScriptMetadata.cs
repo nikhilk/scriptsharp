@@ -164,6 +164,11 @@ namespace System.Runtime.CompilerServices {
     public sealed class ScriptNameAttribute : Attribute {
 
         private string _name;
+        private bool _preserveCase;
+        private bool _preserveName;
+
+        public ScriptNameAttribute() {
+        }
 
         public ScriptNameAttribute(string name) {
             _name = name;
@@ -174,24 +179,24 @@ namespace System.Runtime.CompilerServices {
                 return _name;
             }
         }
-    }
 
-    /// <summary>
-    /// This attribute allows suppressing the default behavior of converting
-    /// member names to camel-cased equivalents in the generated JavaScript.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Event | AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    [ScriptIgnore]
-    public sealed class PreserveCaseAttribute : Attribute {
-    }
+        public bool PreserveCase {
+            get {
+                return _preserveCase;
+            }
+            set {
+                _preserveCase = true;
+            }
+        }
 
-    /// <summary>
-    /// This attribute allows suppressing the default behavior of minimizing
-    /// private type names and member names in the generated JavaScript.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Event | AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    [ScriptIgnore]
-    public sealed class PreserveNameAttribute : Attribute {
+        public bool PreserveName {
+            get {
+                return _preserveName;
+            }
+            set {
+                _preserveName = value;
+            }
+        }
     }
 
     /// <summary>

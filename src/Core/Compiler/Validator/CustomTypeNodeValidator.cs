@@ -183,8 +183,23 @@ namespace ScriptSharp.Validator {
 
                     memberNames[name] = null;
 
-                    bool preserveCase = (AttributeNode.FindAttribute(memberNode.Attributes, "PreserveCase") != null);
-                    if (Utility.IsKeyword(name, /* testCamelCase */ (preserveCase == false))) {
+                    string nameToValidate = name;
+                    bool preserveCase = false;
+                    AttributeNode nameAttribute = AttributeNode.FindAttribute(memberNode.Attributes, "ScriptName");
+                    if ((nameAttribute != null) && (nameAttribute.Arguments.Count != 0)) {
+                        foreach (ParseNode argNode in nameAttribute.Arguments) {
+                            if (argNode.NodeType == ParseNodeType.Literal) {
+                                nameToValidate = (string)((LiteralNode)argNode).Value;
+                            }
+                            else if (argNode.NodeType == ParseNodeType.BinaryExpression) {
+                                if (String.CompareOrdinal(((NameNode)((BinaryExpressionNode)argNode).LeftChild).Name, "PreserveCase") == 0) {
+                                    preserveCase = (bool)((LiteralNode)((BinaryExpressionNode)argNode).RightChild).Value;
+                                }
+                            }
+                        }
+                    }
+
+                    if (Utility.IsKeyword(nameToValidate, /* testCamelCase */ (preserveCase == false))) {
                         errorHandler.ReportError("Invalid member name. Member names should not use keywords.",
                                                  memberNode.Token.Location);
                     }

@@ -1569,7 +1569,7 @@ Types:
             Field: Empty
                 AssociatedType: String
                 Visibility: Public, Static
-                Generated Name: Empty
+                Generated Name: empty
             Field: Length
                 AssociatedType: Int32
                 Visibility: Public

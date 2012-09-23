@@ -16,7 +16,7 @@ namespace Microsoft.Maps.VenueMaps {
         private VenueMetadata() {
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         [ScriptProperty]
         public string DefaultFloor {
             get {
@@ -24,7 +24,7 @@ namespace Microsoft.Maps.VenueMaps {
             }
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         [ScriptProperty]
         public string FloorHeader {
             get {
@@ -32,7 +32,7 @@ namespace Microsoft.Maps.VenueMaps {
             }
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         [ScriptProperty]
         public VenueFloor[] Floors {
             get {
@@ -40,7 +40,7 @@ namespace Microsoft.Maps.VenueMaps {
             }
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         [ScriptProperty]
         public VenueFootprint Footprint {
             get {
@@ -72,7 +72,7 @@ namespace Microsoft.Maps.VenueMaps {
             }
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         [ScriptProperty]
         public string Name {
             get {

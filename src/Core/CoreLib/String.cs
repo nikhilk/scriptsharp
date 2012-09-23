@@ -19,7 +19,6 @@ namespace System {
         /// <summary>
         /// An empty zero-length string.
         /// </summary>
-        [PreserveCase]
         public static readonly String Empty = "";
 
         /// <summary>

@@ -129,7 +129,7 @@ namespace BasicTests {
         }
     }
 
-    [PreserveName]
+    [ScriptName(PreserveName = true)]
     internal class BarCustom : Bar {
     }
 
@@ -137,10 +137,10 @@ namespace BasicTests {
 
         public int Foo() { return 0; }
 
-        [PreserveName]
+        [ScriptName(PreserveName = true)]
         public int Baz() { return 0; }
 
-        [PreserveName]
+        [ScriptName(PreserveName = true)]
         private void Xyz() { }
     }
 

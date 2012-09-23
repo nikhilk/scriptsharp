@@ -17,7 +17,7 @@ namespace System {
         /// A static object of type <see cref="EventArgs"/> that is used as a convenient way to
         /// specify an empty EventArgs instance.
         /// </summary>
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static readonly EventArgs Empty = null;
     }
 }

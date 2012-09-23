@@ -48,7 +48,7 @@ namespace Basic {
 
     public class EventArgs {
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static readonly EventArgs Empty = new EventArgs();
     }
 

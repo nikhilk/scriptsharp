@@ -266,27 +266,27 @@ namespace System {
             return null;
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static int UTC(int year, int month, int day) {
             return 0;
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static int UTC(int year, int month, int day, int hours) {
             return 0;
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static int UTC(int year, int month, int day, int hours, int minutes) {
             return 0;
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static int UTC(int year, int month, int day, int hours, int minutes, int seconds) {
             return 0;
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static int UTC(int year, int month, int day, int hours, int minutes, int seconds, int milliseconds) {
             return 0;
         }

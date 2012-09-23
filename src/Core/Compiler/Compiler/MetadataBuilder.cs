@@ -174,15 +174,48 @@ namespace ScriptSharp.Compiler {
                 memberSymbol.SetVisibility(GetVisibility(memberNode, typeSymbol));
             }
 
-            bool preserveCase = (AttributeNode.FindAttribute(attributes, "PreserveCase") != null);
-            memberSymbol.SetNameCasing(preserveCase);
+            AttributeNode nameAttribute = AttributeNode.FindAttribute(attributes, "ScriptName");
+            if ((nameAttribute != null) && (nameAttribute.Arguments != null) &&
+                (nameAttribute.Arguments.Count != 0)) {
+                string name = null;
+                bool preserveCase = false;
+                bool preserveName = false;
 
-            string scriptName = GetAttributeValue(attributes, "ScriptName");
-            if (scriptName != null) {
-                memberSymbol.SetTransformedName(scriptName);
-            }
-            else if (AttributeNode.FindAttribute(attributes, "PreserveName") != null) {
-                memberSymbol.DisableNameTransformation();
+                foreach (ParseNode argNode in nameAttribute.Arguments) {
+                    Debug.Assert((argNode.NodeType == ParseNodeType.Literal) ||
+                                 (argNode.NodeType == ParseNodeType.BinaryExpression));
+
+                    if (argNode.NodeType == ParseNodeType.Literal) {
+                        Debug.Assert(((LiteralNode)argNode).Value is string);
+                        name = (string)((LiteralNode)argNode).Value;
+                        preserveName = preserveCase = true;
+                        break;
+                    }
+                    else {
+                        BinaryExpressionNode propSetNode = (BinaryExpressionNode)argNode;
+
+                        if (String.CompareOrdinal(((NameNode)propSetNode.LeftChild).Name, "PreserveName") == 0) {
+                            preserveName = (bool)((LiteralNode)propSetNode.RightChild).Value;
+                        }
+                        else {
+                            preserveCase = (bool)((LiteralNode)propSetNode.RightChild).Value;
+                            if (preserveCase) {
+                                preserveName = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (String.IsNullOrEmpty(name) == false) {
+                    memberSymbol.SetTransformedName(name);
+                }
+                else {
+                    memberSymbol.SetNameCasing(preserveCase);
+                    if (preserveName) {
+                        memberSymbol.DisableNameTransformation();
+                    }
+                }
             }
         }
 
@@ -857,8 +890,8 @@ namespace ScriptSharp.Compiler {
         private string GetAttributeValue(ParseNodeList attributes, string attributeName) {
             AttributeNode node = AttributeNode.FindAttribute(attributes, attributeName);
 
-            if (node != null) {
-                Debug.Assert(node.Arguments[0] is LiteralNode);
+            if ((node != null) &&
+                (node.Arguments.Count != 0) && (node.Arguments[0].NodeType == ParseNodeType.Literal)) {
                 Debug.Assert(((LiteralNode)node.Arguments[0]).Value is string);
 
                 return (string)((LiteralNode)node.Arguments[0]).Value;
