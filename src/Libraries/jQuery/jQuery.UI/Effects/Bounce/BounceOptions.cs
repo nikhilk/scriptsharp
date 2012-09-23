@@ -11,7 +11,7 @@ namespace jQueryApi.UI.Effects {
     /// <summary>
     /// Options used to initialize or customize Bounce.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [ScriptName("Object")]
     public sealed class BounceOptions {

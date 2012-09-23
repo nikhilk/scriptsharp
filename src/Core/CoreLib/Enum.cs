@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System {
 
-    [Imported]
+    [ScriptImport]
     public abstract class Enum : ValueType {
     }
 }

@@ -8,6 +8,6 @@ using System.Runtime.CompilerServices;
 namespace System.Collections.Generic {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate TReduced ListItemReduceCallback<TReduced, TValue>(TReduced previousValue, TValue value);
 }

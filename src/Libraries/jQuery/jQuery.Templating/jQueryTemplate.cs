@@ -17,7 +17,7 @@ namespace jQueryApi.Templating {
     /// be used to generate HTML.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class jQueryTemplate {
 
         private jQueryTemplate() {

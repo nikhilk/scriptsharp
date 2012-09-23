@@ -11,7 +11,7 @@ namespace jQueryApi.UI.Effects {
     /// <summary>
     /// Options used to initialize or customize Scale.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [ScriptName("Object")]
     public sealed class ScaleOptions {

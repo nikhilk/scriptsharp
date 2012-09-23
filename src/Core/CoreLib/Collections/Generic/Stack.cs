@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Stack")]
     public sealed class Stack<T> {
 

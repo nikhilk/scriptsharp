@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    [Imported]
+    [ScriptImport]
     public sealed class Queue {
 
         [ScriptProperty]

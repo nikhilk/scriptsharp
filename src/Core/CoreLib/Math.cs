@@ -11,7 +11,7 @@ namespace System {
     /// Equivalent to the Math object in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public static class Math {
 
         [PreserveCase]

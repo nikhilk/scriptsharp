@@ -10,7 +10,7 @@ namespace System {
     /// <summary>
     /// Provides an optimized mechanism to concatenate strings.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     public sealed class StringBuilder {
 
         /// <summary>

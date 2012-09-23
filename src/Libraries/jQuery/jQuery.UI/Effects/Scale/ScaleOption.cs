@@ -11,7 +11,7 @@ namespace jQueryApi.UI.Effects {
     /// <summary>
     /// Options for use with Scale.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum ScaleOption {

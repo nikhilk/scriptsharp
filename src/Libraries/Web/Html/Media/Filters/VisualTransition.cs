@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Html.Media.Filters {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class VisualTransition : VisualFilter {
 
         private VisualTransition() {

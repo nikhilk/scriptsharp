@@ -10,7 +10,7 @@ using System.Html;
 namespace System.Html.Editing {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class TextRange : Range {
 
         private TextRange() {

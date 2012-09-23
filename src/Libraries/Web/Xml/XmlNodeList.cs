@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Xml {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class XmlNodeList : IEnumerable {
 
         internal XmlNodeList() {

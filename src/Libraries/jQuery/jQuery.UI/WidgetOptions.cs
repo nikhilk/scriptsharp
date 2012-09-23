@@ -11,7 +11,7 @@ namespace jQueryApi.UI {
     /// <summary>
     /// Options used to initialize or customize Widget.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [ScriptName("Object")]
     public  class WidgetOptions {

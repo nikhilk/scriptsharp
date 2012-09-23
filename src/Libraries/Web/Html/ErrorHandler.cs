@@ -16,6 +16,6 @@ namespace System.Html {
     /// <param name="line">The line number where the error occurred.</param>
     /// <returns>true if the error was handled; false otherwise.</returns>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate bool ErrorHandler(string message, string url, int line);
 }

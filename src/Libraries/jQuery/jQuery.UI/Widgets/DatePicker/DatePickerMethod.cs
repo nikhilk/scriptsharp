@@ -11,7 +11,7 @@ namespace jQueryApi.UI.Widgets {
     /// <summary>
     /// Operations supported by DatePicker.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum DatePickerMethod {

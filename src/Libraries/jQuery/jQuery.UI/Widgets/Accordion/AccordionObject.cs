@@ -14,7 +14,7 @@ namespace jQueryApi.UI.Widgets {
     /// <remarks>
     /// <para>Make the selected elements Accordion widgets.</para><para>The markup of your accordion container needs pairs of headers and content panels:</para><c><div id="accordion"><h3><a href="#">First header</a></h3><div>First content</div><h3><a href="#">Second header</a></h3><div>Second content</div></div></c><para>If you use a different element for the header, specify the header-option with an appropriate selector, eg. header: 'a.header'. The content element must be always next to its header.</para><para>If you have links inside a accordion panel and use a-elements as headers, add a class to them and use that as the header, eg. header: 'a.header'.</para><para>Use activate(Number) to change the active panel programmatically.</para><para>This widget requires some functional CSS, otherwise it won't work. If you build a custom theme, use the widget's specific CSS file as a starting point.</para>
     /// </remarks>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class AccordionObject : WidgetObject {
 

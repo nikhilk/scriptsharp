@@ -14,7 +14,7 @@ namespace jQueryApi {
     /// <param name="name">The name of the property.</param>
     /// <param name="value">The value of the property.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void ObjectIterationCallback(string name, object value);
 
     /// <summary>
@@ -24,6 +24,6 @@ namespace jQueryApi {
     /// <param name="value">The value of the property.</param>
     /// <returns>false if the iteration is to be stopped; true otherwise.</returns>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate bool ObjectInterruptableIterationCallback(string name, object value);
 }

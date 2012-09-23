@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Globalization {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class NumberFormatInfo {
 
         private NumberFormatInfo() {

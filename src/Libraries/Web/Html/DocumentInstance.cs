@@ -10,7 +10,7 @@ using System.Html.Editing;
 namespace System.Html {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class DocumentInstance {
 
         private DocumentInstance() {

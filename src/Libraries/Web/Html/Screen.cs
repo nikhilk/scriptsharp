@@ -12,7 +12,7 @@ namespace System.Html {
     /// The screen object represents information about the current desktop.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public class Screen {
 
         [ScriptProperty]

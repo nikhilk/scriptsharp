@@ -10,7 +10,7 @@ using System.Xml;
 namespace System.Net {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("XMLHttpRequest")]
     public sealed class XmlHttpRequest {
 

@@ -11,7 +11,7 @@ namespace jQueryApi.UI.Interactions {
     /// <summary>
     /// Options for use with Selectable.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum SelectableOption {

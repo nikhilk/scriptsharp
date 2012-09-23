@@ -14,7 +14,7 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// This is the only effect without a separate file, it shares a file with the scale effect.
     /// </remarks>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class PuffObject : EffectObject {
 

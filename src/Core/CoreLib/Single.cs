@@ -13,7 +13,7 @@ namespace System {
     /// The float data type which is mapped to the Number type in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("Number")]
     public struct Single {
 

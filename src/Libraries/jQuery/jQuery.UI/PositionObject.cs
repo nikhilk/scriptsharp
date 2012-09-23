@@ -14,7 +14,7 @@ namespace jQueryApi.UI {
     /// <remarks>
     /// <para>Utility script for positioning any widget relative to the window, document, a particular element, or the cursor/mouse.</para><para><em>Note: jQuery UI does not support positioning hidden elements.</em></para><para>This is a standalone jQuery plugin and has no dependencies on other jQuery UI components.</para><para>This plugin extends jQuery's built-in position getter method. If you forget to include this plugin, code calling position() won't fail directly, as the method still exists. But it'll just retrieve the position instead of setting it.</para>
     /// </remarks>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class PositionObject : jQueryUIObject {
 

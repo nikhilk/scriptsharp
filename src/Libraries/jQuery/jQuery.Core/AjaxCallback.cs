@@ -14,7 +14,7 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="data">The result of the request.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void AjaxCallback(object data);
 
     /// <summary>
@@ -22,7 +22,7 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="data">The result of the request.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void AjaxCallback<TData>(TData data);
 
     /// <summary>
@@ -32,7 +32,7 @@ namespace jQueryApi {
     /// <param name="textStatus">The status of the request.</param>
     /// <param name="request">The request that was invoked.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void AjaxRequestCallback(object data, string textStatus, jQueryXmlHttpRequest request);
 
     /// <summary>
@@ -42,7 +42,7 @@ namespace jQueryApi {
     /// <param name="textStatus">The status of the request.</param>
     /// <param name="request">The request that was invoked.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void AjaxRequestCallback<TData>(TData data, string textStatus, jQueryDataHttpRequest<TData> request);
 
     /// <summary>
@@ -52,7 +52,7 @@ namespace jQueryApi {
     /// <param name="textStatus">The status of the request.</param>
     /// <param name="error">The error or exception if any.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void AjaxErrorCallback(jQueryXmlHttpRequest request, string textStatus, Exception error);
 
     /// <summary>
@@ -62,7 +62,7 @@ namespace jQueryApi {
     /// <param name="textStatus">The status of the request.</param>
     /// <param name="error">The error or exception if any.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void AjaxErrorCallback<TData>(jQueryDataHttpRequest<TData> request, string textStatus, Exception error);
 
     /// <summary>
@@ -71,7 +71,7 @@ namespace jQueryApi {
     /// <param name="request">The request that was invoked.</param>
     /// <param name="textStatus">The status of the request.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void AjaxCompletedCallback(jQueryXmlHttpRequest request, string textStatus);
 
     /// <summary>
@@ -80,7 +80,7 @@ namespace jQueryApi {
     /// <param name="request">The request that was invoked.</param>
     /// <param name="textStatus">The status of the request.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void AjaxCompletedCallback<TData>(jQueryDataHttpRequest<TData> request, string textStatus);
 
     /// <summary>
@@ -88,7 +88,7 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="request">The request that was invoked.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void AjaxSendingCallback(jQueryXmlHttpRequest request);
 
     /// <summary>
@@ -96,7 +96,7 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="request">The request that was invoked.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void AjaxSendingCallback<TData>(jQueryDataHttpRequest<TData> request);
 
     /// <summary>

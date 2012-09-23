@@ -12,7 +12,7 @@ namespace System.Html {
 
     [IgnoreNamespace]
     [NamedValues]
-    [Imported]
+    [ScriptImport]
     public enum ElementAttributeName {
 
         Autocomplete = 0,

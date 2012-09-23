@@ -12,7 +12,7 @@ namespace KnockoutApi {
     /// Provides functionality for mapping between knockout models and JSON or
     /// vanilla script objects.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class KnockoutMapping {
 

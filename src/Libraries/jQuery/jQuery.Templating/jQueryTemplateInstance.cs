@@ -16,7 +16,7 @@ namespace jQueryApi.Templating {
     /// Represents an instantiated jQuery template.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class jQueryTemplateInstance {
 
         private jQueryTemplateInstance() {

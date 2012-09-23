@@ -13,7 +13,7 @@ namespace KnockoutApi {
     /// Represents an object containing an observable value.
     /// </summary>
     /// <typeparam name="T">The type of the contained value.</typeparam>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public class Observable<T> : Subscribable<T> {
 

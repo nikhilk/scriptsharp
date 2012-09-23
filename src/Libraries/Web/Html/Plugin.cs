@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 namespace System.Html {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class Plugin {
 

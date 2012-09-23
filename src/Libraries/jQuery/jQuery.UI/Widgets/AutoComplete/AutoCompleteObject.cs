@@ -14,7 +14,7 @@ namespace jQueryApi.UI.Widgets {
     /// <remarks>
     /// <para>By giving an Autocomplete field focus or entering something into it, the plugin starts searching for entries that match and displays a list of values to choose from. By entering more characters, the user can filter down the list to better matches.</para><para>This can be used to enter previous selected values, for example you could use Autocomplete for entering tags, to complete an address, you could enter a city name and get the zip code, or maybe enter email addresses from an address book.</para><para>You can pull data in from a local and/or a remote source: Local is good for small data sets (like an address book with 50 entries), remote is necessary for big data sets, like a database with hundreds or millions of entries to select from.</para><para>Autocomplete can be customized to work with various data sources, by just specifying the source option.</para><para>This widget requires some functional CSS, otherwise it won't work. If you build a custom theme, use the widget's specific CSS file as a starting point.</para>
     /// </remarks>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class AutoCompleteObject : WidgetObject {
 

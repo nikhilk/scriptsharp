@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.Location {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class GeoLocationError {
 

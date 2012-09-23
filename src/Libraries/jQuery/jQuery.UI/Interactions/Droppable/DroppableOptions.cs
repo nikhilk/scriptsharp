@@ -11,7 +11,7 @@ namespace jQueryApi.UI.Interactions {
     /// <summary>
     /// Options used to initialize or customize Droppable.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [ScriptName("Object")]
     public sealed class DroppableOptions {

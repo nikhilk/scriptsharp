@@ -15,7 +15,7 @@ namespace KnockoutApi {
     /// contained items.
     /// </summary>
     /// <typeparam name="T">The type of the contained values.</typeparam>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class ObservableArray<T> : Observable<T[]> {
 

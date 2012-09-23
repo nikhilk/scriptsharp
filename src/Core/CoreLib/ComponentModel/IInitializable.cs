@@ -13,7 +13,7 @@ namespace System.ComponentModel {
     /// Implemented by objects that supports a simple, transacted notification for batch
     /// initialization. 
     /// </summary>
-    [Imported]
+    [ScriptImport]
     public interface IInitializable {
 
         /// <summary>

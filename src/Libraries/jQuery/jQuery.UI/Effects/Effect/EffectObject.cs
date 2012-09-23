@@ -14,7 +14,7 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// 
     /// </remarks>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public abstract class EffectObject : jQueryUIObject {
 

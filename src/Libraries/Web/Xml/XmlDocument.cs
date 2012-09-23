@@ -11,7 +11,7 @@ namespace System.Xml {
     /// Represents the hierarchy of node objects parsed from XML markup.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class XmlDocument : XmlNode {
 
         internal XmlDocument() {

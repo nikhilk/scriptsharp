@@ -12,7 +12,7 @@ namespace jQueryApi {
     /// <summary>
     /// Provides information about the position of an element.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class jQueryPosition {
 

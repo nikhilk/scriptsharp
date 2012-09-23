@@ -12,7 +12,7 @@ namespace System.Collections {
     /// The Dictionary data type which is mapped to the Object type in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class Dictionary : IEnumerable {
 

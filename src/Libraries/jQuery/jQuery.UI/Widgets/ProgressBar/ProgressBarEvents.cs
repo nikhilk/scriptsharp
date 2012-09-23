@@ -11,7 +11,7 @@ namespace jQueryApi.UI.Widgets {
     /// <summary>
     /// Events raised by ProgressBar.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum ProgressBarEvents {

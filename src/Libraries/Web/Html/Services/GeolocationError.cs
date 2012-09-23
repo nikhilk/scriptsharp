@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Html.Services {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class GeolocationError {
 
         private GeolocationError() {

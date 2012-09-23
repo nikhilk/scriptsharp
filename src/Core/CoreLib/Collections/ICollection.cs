@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("ICollection")]
     public interface ICollection : IEnumerable {
 

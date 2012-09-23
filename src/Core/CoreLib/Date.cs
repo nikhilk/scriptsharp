@@ -11,7 +11,7 @@ namespace System {
     /// Equivalent to the Date type in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class Date {
 
         /// <summary>

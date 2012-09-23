@@ -11,7 +11,7 @@ namespace System.ComponentModel {
     /// <summary>
     /// Defines contextual information about the current application.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     public interface IApplication {
 
         /// <summary>

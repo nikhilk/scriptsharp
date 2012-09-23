@@ -11,7 +11,7 @@ namespace jQueryApi.UI.Widgets {
     /// <summary>
     /// Operations supported by ProgressBar.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum ProgressBarMethod {

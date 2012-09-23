@@ -13,7 +13,7 @@ namespace System.Html {
     /// scripting object.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class WindowInstance {
 
         private WindowInstance() {

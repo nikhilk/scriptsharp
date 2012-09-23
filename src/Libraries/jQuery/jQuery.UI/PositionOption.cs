@@ -11,7 +11,7 @@ namespace jQueryApi.UI {
     /// <summary>
     /// Options for use with Position.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum PositionOption {

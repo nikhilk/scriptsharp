@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Threading {
 
-    [Imported]
+    [ScriptImport]
     public class Deferred {
 
         [ScriptProperty]
@@ -28,7 +28,7 @@ namespace System.Threading {
         }
     }
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Deferred")]
     public sealed class Deferred<T> : Deferred {
 

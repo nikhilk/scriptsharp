@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Html.Services {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [NumericValues]
     public enum GeolocationErrorCode {
 

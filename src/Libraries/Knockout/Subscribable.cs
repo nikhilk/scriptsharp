@@ -13,7 +13,7 @@ namespace KnockoutApi {
     /// Represents an object containing an subscribable value.
     /// </summary>
     /// <typeparam name="T">The type of the contained value.</typeparam>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public abstract class Subscribable<T> : IDisposable {
 

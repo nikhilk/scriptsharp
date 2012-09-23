@@ -719,7 +719,7 @@ namespace ScriptSharp.Compiler {
 
             ParseNodeList attributes = typeNode.Attributes;
 
-            if (AttributeNode.FindAttribute(attributes, "Imported") != null) {
+            if (AttributeNode.FindAttribute(attributes, "ScriptImport") != null) {
                 string dependencyName = GetAttributeValue(attributes, "ScriptDependency");
                 typeSymbol.SetImported(dependencyName);
 

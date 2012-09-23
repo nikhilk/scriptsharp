@@ -14,7 +14,7 @@ namespace jQueryApi.UI.Interactions {
     /// <remarks>
     /// <para>The jQuery UI Draggable plugin makes selected elements draggable by mouse.</para><para>Draggable elements gets a class of <code>ui-draggable</code>. During drag the element also gets a class of <code>ui-draggable-dragging</code>. If you want not just drag, but drag-and-drop, see the jQuery UI Droppable plugin, which provides a drop target for draggables.</para>
     /// </remarks>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class DraggableObject : WidgetObject {
 

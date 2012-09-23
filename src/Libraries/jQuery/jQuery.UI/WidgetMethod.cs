@@ -11,7 +11,7 @@ namespace jQueryApi.UI {
     /// <summary>
     /// Operations supported by Widget.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum WidgetMethod {

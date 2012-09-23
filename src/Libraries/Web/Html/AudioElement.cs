@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class AudioElement : Element {
 

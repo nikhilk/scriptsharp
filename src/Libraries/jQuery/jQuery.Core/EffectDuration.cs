@@ -11,7 +11,7 @@ namespace jQueryApi {
     /// <summary>
     /// Stock duration values for effects.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum EffectDuration {

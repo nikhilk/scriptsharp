@@ -13,7 +13,7 @@ namespace System {
     /// Equivalent to the String type in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class String {
 
         /// <summary>

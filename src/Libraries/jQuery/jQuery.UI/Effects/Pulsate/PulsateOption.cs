@@ -11,7 +11,7 @@ namespace jQueryApi.UI.Effects {
     /// <summary>
     /// Options for use with Pulsate.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum PulsateOption {

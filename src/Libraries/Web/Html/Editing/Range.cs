@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Html.Editing {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public abstract class Range {
 
         internal Range() {

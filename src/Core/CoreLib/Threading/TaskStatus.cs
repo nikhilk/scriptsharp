@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Threading {
 
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum TaskStatus {

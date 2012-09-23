@@ -11,7 +11,7 @@ namespace jQueryApi.UI {
     /// <summary>
     /// The default widgets that are part of jQueryUI.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [ScriptName("$.ui")]
     public sealed class WidgetType {

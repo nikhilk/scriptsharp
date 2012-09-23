@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Queue")]
     public sealed class Queue<T> {
 

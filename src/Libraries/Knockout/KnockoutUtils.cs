@@ -11,7 +11,7 @@ using System.Html;
 
 namespace KnockoutApi {
 
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [ScriptName("ko.utils")]
     public static class KnockoutUtils {

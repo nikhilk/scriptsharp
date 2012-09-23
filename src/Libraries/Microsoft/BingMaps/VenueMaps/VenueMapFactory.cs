@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.VenueMaps {
 
-    [Imported]
+    [ScriptImport]
     public sealed class VenueMapFactory {
 
         public VenueMapFactory(Map map) {

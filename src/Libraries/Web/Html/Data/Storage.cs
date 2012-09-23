@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Html.Data {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class Storage {
 
         private Storage() {

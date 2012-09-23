@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Testing {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public static class Assert {
 
         [ScriptAlias("QUnit.equal")]

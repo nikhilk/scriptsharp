@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Html.Services {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class GeolocationOptions {
 

@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public struct Nullable<T> where T : struct {
 
         public Nullable(T value) {

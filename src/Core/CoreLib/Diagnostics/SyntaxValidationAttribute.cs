@@ -10,8 +10,8 @@ using System.Runtime.CompilerServices;
 namespace System.Diagnostics.CodeAnalysis {
 
     [AttributeUsage(AttributeTargets.Parameter, Inherited = false, AllowMultiple = true)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class SyntaxValidationAttribute : Attribute {
 
         private string _syntax;

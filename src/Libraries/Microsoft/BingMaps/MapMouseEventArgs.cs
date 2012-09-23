@@ -12,7 +12,7 @@ namespace Microsoft.Maps {
 
     // TODO: Make properties
 
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class MapMouseEventArgs : MapEventArgs {
 

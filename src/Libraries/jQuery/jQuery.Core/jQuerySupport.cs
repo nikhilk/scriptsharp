@@ -13,7 +13,7 @@ namespace jQueryApi {
     /// and bugs.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class jQuerySupport {
 
         private jQuerySupport() {

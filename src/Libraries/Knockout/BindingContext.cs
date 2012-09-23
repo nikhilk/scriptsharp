@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace KnockoutApi {
 
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public class BindingContext<TRoot, TParent, T> {
 

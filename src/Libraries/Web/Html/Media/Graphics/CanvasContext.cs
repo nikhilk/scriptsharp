@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Html.Media.Graphics {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public abstract class CanvasContext {
 
         internal CanvasContext() {

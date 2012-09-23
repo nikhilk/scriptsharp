@@ -13,7 +13,7 @@ namespace KnockoutApi {
     /// <summary>
     /// Represents a custom binding handler in Knockout.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [ScriptName("Object")]
     public abstract class BindingHandler {

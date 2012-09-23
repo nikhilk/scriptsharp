@@ -13,6 +13,6 @@ namespace System {
     //       middle of the signature!
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate string StringReplaceCallback(string matchedValue);
 }

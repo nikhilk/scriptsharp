@@ -10,7 +10,7 @@ using System.Html;
 namespace System.Html.Media.Graphics {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class CanvasContext2D : CanvasContext {
 
         private CanvasContext2D() {

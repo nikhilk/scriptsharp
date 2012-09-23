@@ -11,7 +11,7 @@ namespace System.Collections.Generic {
     /// The Dictionary data type which is mapped to the Object type in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class Dictionary<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>> {
 

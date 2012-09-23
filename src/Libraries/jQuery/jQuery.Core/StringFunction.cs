@@ -13,7 +13,7 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="index">The index of the element in the set.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate string StringFunction(int index);
 
     /// <summary>
@@ -22,6 +22,6 @@ namespace jQueryApi {
     /// <param name="index">The index of the element in the set.</param>
     /// <param name="currentValue">The current value.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate string StringReplaceFunction(int index, string currentValue);
 }

@@ -15,6 +15,6 @@ namespace jQueryApi {
     /// <param name="key">The key of the item.</param>
     /// <returns>The value that the item was mapped to.</returns>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate object ObjectMapCallback(object item, string key);
 }

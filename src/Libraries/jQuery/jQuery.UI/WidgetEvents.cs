@@ -11,7 +11,7 @@ namespace jQueryApi.UI {
     /// <summary>
     /// Events raised by Widget.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum WidgetEvents {

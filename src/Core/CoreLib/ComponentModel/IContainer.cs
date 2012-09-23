@@ -12,7 +12,7 @@ namespace System.ComponentModel {
     /// Encapsulates the functionality of a container that defines a scope of
     /// composition where objects can be registered and dependencies can be resolved.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     public interface IContainer {
 
         /// <summary>

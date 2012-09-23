@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("ObservableCollection")]
     public sealed class ObservableCollection : IEnumerable {
 

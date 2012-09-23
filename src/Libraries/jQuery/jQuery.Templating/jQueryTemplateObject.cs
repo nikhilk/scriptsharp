@@ -17,7 +17,7 @@ namespace jQueryApi.Templating {
     /// APIs added.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class jQueryTemplateObject : jQueryObject {
 
         private jQueryTemplateObject() {

@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace KnockoutApi {
 
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public class CompareResult<T> {
 

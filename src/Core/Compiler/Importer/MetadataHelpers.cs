@@ -108,7 +108,7 @@ namespace ScriptSharp.Importer {
         }
 
         public static bool ShouldImportScriptCoreType(TypeDefinition type) {
-            return GetAttribute(type, "System.Runtime.CompilerServices.NonScriptableAttribute") == null;
+            return GetAttribute(type, "System.Runtime.CompilerServices.ScriptIgnoreAttribute") == null;
         }
 
         public static bool ShouldPreserveCase(ICustomAttributeProvider attributeProvider) {

@@ -11,7 +11,7 @@ namespace System {
     /// The long data type which is mapped to the Number type in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("Number")]
     public struct Int64 {
 

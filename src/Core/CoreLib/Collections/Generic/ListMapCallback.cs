@@ -8,6 +8,6 @@ using System.Runtime.CompilerServices;
 namespace System.Collections.Generic {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate TTarget ListMapCallback<TSource, TTarget>(TSource value, int index, IReadonlyCollection<TSource> list);
 }

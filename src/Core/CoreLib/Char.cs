@@ -11,7 +11,7 @@ namespace System {
     /// The char data type which is mapped to the String type in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("String")]
     public struct Char {
 

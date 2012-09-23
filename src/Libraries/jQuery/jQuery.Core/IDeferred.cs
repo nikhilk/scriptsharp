@@ -11,7 +11,7 @@ namespace jQueryApi {
     /// <summary>
     /// Represents a deferred value.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public interface IDeferred {
 
@@ -130,7 +130,7 @@ namespace jQueryApi {
     /// <summary>
     /// Represents a deferred value.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public interface IDeferred<TData> {
 

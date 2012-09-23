@@ -11,7 +11,7 @@ namespace System {
     /// <summary>
     /// The event argument associated with cancelable events.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     public class CancelEventArgs : EventArgs {
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace System {
     /// Equivalent to the Object type in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public class Object {
 
         /// <summary>

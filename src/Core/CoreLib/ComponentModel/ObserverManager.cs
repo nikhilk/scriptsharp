@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.ComponentModel {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Observable")]
     public static class ObserverManager {
 

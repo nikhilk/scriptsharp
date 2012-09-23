@@ -12,7 +12,7 @@ namespace KnockoutApi {
     /// Provides advanced options for defining a dependent observable.
     /// </summary>
     /// <typeparam name="T">The type of the observable value.</typeparam>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [ScriptName("Object")]
     public sealed class DependentObservableOptions<T> {

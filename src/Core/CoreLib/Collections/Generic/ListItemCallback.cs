@@ -8,6 +8,6 @@ using System.Runtime.CompilerServices;
 namespace System.Collections.Generic {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void ListItemCallback<T>(T value);
 }

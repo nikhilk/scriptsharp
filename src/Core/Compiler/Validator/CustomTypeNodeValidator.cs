@@ -24,7 +24,7 @@ namespace ScriptSharp.Validator {
             bool hasCodeMembers = false;
             ParseNode codeMemberNode = null;
 
-            AttributeNode importedTypeAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "Imported");
+            AttributeNode importedTypeAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptImport");
             if (importedTypeAttribute != null) {
                 // This is an imported type definition... we'll assume its valid, since
                 // the set of restrictions for such types is fewer, and different, so

@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 namespace System.Xml {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public class XmlNode {
 
         internal XmlNode() {

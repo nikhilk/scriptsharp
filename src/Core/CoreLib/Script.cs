@@ -12,7 +12,7 @@ namespace System {
     /// methods present in the underlying script engine.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public static class Script {
 
         [ScriptProperty]

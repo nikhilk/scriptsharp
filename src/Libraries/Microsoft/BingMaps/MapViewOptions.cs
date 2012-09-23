@@ -10,7 +10,7 @@ namespace Microsoft.Maps {
 
     // TODO: Make properties
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
     [IgnoreNamespace]
     public sealed class MapViewOptions {

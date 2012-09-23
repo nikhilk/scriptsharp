@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Testing {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public static class TestEngine {
 
         [ScriptAlias("QUnit.log")]

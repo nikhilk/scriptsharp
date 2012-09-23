@@ -15,7 +15,7 @@ namespace jQueryApi.Templating {
     /// Provides access to jQuery Templating APIs.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public static class jQueryTemplating {
 
         /// <summary>

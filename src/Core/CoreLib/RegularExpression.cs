@@ -11,7 +11,7 @@ namespace System {
     /// Equivalent to the RegExp type in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("RegExp")]
     public sealed class RegularExpression {
 

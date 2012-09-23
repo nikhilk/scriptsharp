@@ -13,6 +13,6 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="index">The index of the element in the set.</param>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate bool BooleanFunction(int index);
 }

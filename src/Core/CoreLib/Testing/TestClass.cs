@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Testing {
 
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public abstract class TestClass {
 

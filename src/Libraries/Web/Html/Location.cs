@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace System.Html {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class Location {
 
         private Location() {

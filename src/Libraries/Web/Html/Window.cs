@@ -14,7 +14,7 @@ namespace System.Html {
     /// scripting object.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("window")]
     public sealed class Window {
 

@@ -13,7 +13,7 @@ namespace KnockoutApi {
     /// Represents an object containing a value dependent on other observable values.
     /// </summary>
     /// <typeparam name="T">The type of the contained value.</typeparam>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class DependentObservable<T> {
 

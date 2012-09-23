@@ -10,7 +10,7 @@ using System.Html.Media.Graphics;
 namespace System.Html {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class CanvasElement : Element {
 
         private CanvasElement() {

@@ -12,7 +12,7 @@ namespace System.Html.Data {
     /// Represents an event raised by the Application Cache.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [NamedValues]
     public enum ApplicationCacheEvent {
 

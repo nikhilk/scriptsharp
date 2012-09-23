@@ -9,6 +9,6 @@ using System.Runtime.CompilerServices;
 namespace System.Html {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate void ElementEventListener(ElementEvent e);
 }

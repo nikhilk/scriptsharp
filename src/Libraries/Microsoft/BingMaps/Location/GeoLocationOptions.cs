@@ -10,7 +10,7 @@ namespace Microsoft.Maps.Location {
 
     // TODO: Make properties
 
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [ScriptName("Object")]
     public sealed class GeoLocationOptions {

@@ -34,7 +34,7 @@ namespace ScriptSharp.Validator {
 
                     if (childNode is UserTypeNode) {
                         ParseNodeList attributes = ((UserTypeNode)childNode).Attributes;
-                        if (AttributeNode.FindAttribute(attributes, "Imported") != null) {
+                        if (AttributeNode.FindAttribute(attributes, "ScriptImport") != null) {
                             allowed = true;
                         }
                     }

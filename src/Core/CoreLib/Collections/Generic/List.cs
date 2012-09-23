@@ -13,7 +13,7 @@ namespace System.Collections.Generic {
     /// Equivalent to the Array type in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("Array")]
     public sealed class List<T> : ICollection<T> {
 

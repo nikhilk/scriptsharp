@@ -8,6 +8,6 @@ using System.Runtime.CompilerServices;
 namespace System {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate int CompareCallback(object x, object y);
 }

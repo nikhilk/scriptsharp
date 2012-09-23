@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 namespace System.Xml {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [NumericValues]
     public enum XmlNodeType {
 

@@ -14,10 +14,10 @@ namespace System.Runtime.CompilerServices {
     /// be imported. It is only meant to be used within mscorlib.dll.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Delegate | AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public sealed class NonScriptableAttribute : Attribute {
+    public sealed class ScriptIgnoreAttribute : Attribute {
     }
 
     /// <summary>
@@ -25,9 +25,9 @@ namespace System.Runtime.CompilerServices {
     /// script, as they represent existing script or native types.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Enum | AttributeTargets.Delegate | AttributeTargets.Struct)]
-    [NonScriptable]
-    [Imported]
-    public sealed class ImportedAttribute : Attribute {
+    [ScriptIgnore]
+    [ScriptImport]
+    public sealed class ScriptImportAttribute : Attribute {
     }
 
     /// <summary>
@@ -39,8 +39,8 @@ namespace System.Runtime.CompilerServices {
     /// shorter name if needed.
     /// </summary>
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ScriptAssemblyAttribute : Attribute {
 
         private string _name;
@@ -61,8 +61,8 @@ namespace System.Runtime.CompilerServices {
     /// The specified name is used as the name of the dependency, and the runtime identifier.
     /// </summary>
     [AttributeUsage(AttributeTargets.Type, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ScriptDependencyAttribute : Attribute {
 
         private string _name;
@@ -84,8 +84,8 @@ namespace System.Runtime.CompilerServices {
     /// for the purpose of c# code that don't exist at runtime.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Delegate | AttributeTargets.Interface | AttributeTargets.Struct, Inherited = true, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class IgnoreNamespaceAttribute : Attribute {
     }
 
@@ -94,14 +94,14 @@ namespace System.Runtime.CompilerServices {
     /// fields representing a set of resource strings.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ResourcesAttribute : Attribute {
     }
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ScriptExtensionAttribute : Attribute {
 
         private string _expression;
@@ -118,14 +118,14 @@ namespace System.Runtime.CompilerServices {
     }
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ScriptModuleAttribute : Attribute {
     }
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ScriptObjectAttribute : Attribute {
     }
 
@@ -135,8 +135,8 @@ namespace System.Runtime.CompilerServices {
     /// used as a string.
     /// </summary>
     [AttributeUsage(AttributeTargets.Enum, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class NamedValuesAttribute : Attribute {
     }
 
@@ -146,8 +146,8 @@ namespace System.Runtime.CompilerServices {
     /// used as a literal.
     /// </summary>
     [AttributeUsage(AttributeTargets.Enum, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class NumericValuesAttribute : Attribute {
     }
 
@@ -158,8 +158,8 @@ namespace System.Runtime.CompilerServices {
     /// method does not contain an actual method body.
     /// </summary>
     [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class AlternateSignatureAttribute : Attribute {
     }
 
@@ -169,8 +169,8 @@ namespace System.Runtime.CompilerServices {
     /// for use when defining OM corresponding to native objects exposed to script.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ScriptPropertyAttribute : Attribute {
     }
 
@@ -178,8 +178,8 @@ namespace System.Runtime.CompilerServices {
     /// Allows specifying the name to use for a type or member in the generated script.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Method | AttributeTargets.Event, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ScriptNameAttribute : Attribute {
 
         private string _name;
@@ -200,8 +200,8 @@ namespace System.Runtime.CompilerServices {
     /// member names to camel-cased equivalents in the generated JavaScript.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Event | AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class PreserveCaseAttribute : Attribute {
     }
 
@@ -210,8 +210,8 @@ namespace System.Runtime.CompilerServices {
     /// private type names and member names in the generated JavaScript.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Event | AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class PreserveNameAttribute : Attribute {
     }
 
@@ -222,8 +222,8 @@ namespace System.Runtime.CompilerServices {
     /// </summary>
     // REVIEW: Eventually do we want to support this on properties/field and instance methods as well?
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ScriptAliasAttribute : Attribute {
 
         private string _alias;
@@ -240,14 +240,14 @@ namespace System.Runtime.CompilerServices {
     }
 
     [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ScriptSkipAttribute : Attribute {
     }
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ScriptTemplateAttribute : Attribute {
 
         private string _template;

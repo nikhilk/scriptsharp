@@ -9,6 +9,6 @@ using System.Runtime.CompilerServices;
 namespace System.Collections {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate bool ArrayFilterCallback(object value, int index, Array array);
 }

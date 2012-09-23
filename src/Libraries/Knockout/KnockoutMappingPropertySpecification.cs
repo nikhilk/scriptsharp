@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace KnockoutApi {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
     public abstract class KnockoutMappingPropertySpecification {
 
@@ -18,7 +18,7 @@ namespace KnockoutApi {
     }
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class KnockoutMappingPropertySpecification<TModel> : KnockoutMappingPropertySpecification {
 

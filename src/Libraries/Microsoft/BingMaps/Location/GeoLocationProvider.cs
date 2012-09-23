@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.Location {
 
-    [Imported]
+    [ScriptImport]
     public sealed class GeoLocationProvider {
 
         public GeoLocationProvider(Map map) {

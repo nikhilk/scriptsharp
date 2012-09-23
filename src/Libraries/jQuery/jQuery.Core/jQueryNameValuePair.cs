@@ -11,7 +11,7 @@ namespace jQueryApi {
     /// <summary>
     /// Represents a name and value.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class jQueryNameValuePair {
 

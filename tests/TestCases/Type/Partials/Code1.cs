@@ -73,7 +73,7 @@ namespace TypeTests {
         }
     }
 
-    [Imported]
+    [ScriptImport]
     internal partial class ImportedClass {
     }
 

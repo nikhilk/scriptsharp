@@ -11,7 +11,7 @@ namespace System.Html.Data {
     public delegate bool SqlDatabaseCallback(SqlDatabase db);
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class SqlDatabase {
 
         private SqlDatabase() {

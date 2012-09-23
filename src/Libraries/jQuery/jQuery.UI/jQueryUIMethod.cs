@@ -11,7 +11,7 @@ namespace jQueryApi.UI {
     /// <summary>
     /// Operations supported by jQueryUI.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [NamedValues]
     public enum jQueryUIMethod {

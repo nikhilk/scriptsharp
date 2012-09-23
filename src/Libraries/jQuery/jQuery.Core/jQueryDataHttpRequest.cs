@@ -13,7 +13,7 @@ namespace jQueryApi {
     /// <summary>
     /// Represents an XMLHttpRequest object as a deferred object.
     /// </summary>
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     public sealed class jQueryDataHttpRequest<TData> : IDeferred<TData> {
 

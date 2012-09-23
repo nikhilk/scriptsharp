@@ -14,7 +14,7 @@ namespace System.Html.Editing {
     /// can carry out some action.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class Selection {
 
         private Selection() {

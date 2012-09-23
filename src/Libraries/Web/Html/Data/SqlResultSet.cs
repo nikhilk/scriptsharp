@@ -10,7 +10,7 @@ using System.Collections;
 namespace System.Html.Data {
 
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public sealed class SqlResultSet {
 
         private SqlResultSet() {

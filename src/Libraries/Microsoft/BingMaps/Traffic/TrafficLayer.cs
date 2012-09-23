@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.Traffic {
 
-    [Imported]
+    [ScriptImport]
     public sealed class TrafficLayer {
 
         public TrafficLayer(Map map) {

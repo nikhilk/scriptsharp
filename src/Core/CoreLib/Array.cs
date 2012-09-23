@@ -14,7 +14,7 @@ namespace System {
     /// Equivalent to the Array type in Javascript.
     /// </summary>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     [ScriptName("Array")]
     public sealed class Array : IEnumerable {
 

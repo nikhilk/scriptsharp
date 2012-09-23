@@ -14,6 +14,6 @@ namespace jQueryApi {
     /// <param name="index">The index of the element in the matching set.</param>
     /// <returns>true if the element should be included; false otherwise.</returns>
     [IgnoreNamespace]
-    [Imported]
+    [ScriptImport]
     public delegate bool ElementFilterCallback(int index);
 }

@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Diagnostics {
 
-    [Imported]
+    [ScriptImport]
     [IgnoreNamespace]
     [ScriptName("console")]
     public static class Debug {
