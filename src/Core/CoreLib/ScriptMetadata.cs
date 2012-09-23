@@ -152,18 +152,6 @@ namespace System.Runtime.CompilerServices {
     }
 
     /// <summary>
-    /// This attribute allows defining an alternate method signature that is not generated
-    /// into script, but can be used for defining overloads to enable optional parameter semantics
-    /// for a method. It must be applied on a method defined as extern, since an alternate signature
-    /// method does not contain an actual method body.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
-    [ScriptIgnore]
-    [ScriptImport]
-    public sealed class AlternateSignatureAttribute : Attribute {
-    }
-
-    /// <summary>
     /// This attribute denotes a C# property that manifests like a field in the generated
     /// JavaScript (i.e. is not accessed via get/set methods). This is really meant only
     /// for use when defining OM corresponding to native objects exposed to script.

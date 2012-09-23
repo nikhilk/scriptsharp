@@ -9,22 +9,18 @@ namespace MemberTests {
     
     public abstract class Test {
 
-        [AlternateSignature]
         public extern Test();
 
         public Test(string name) {
         }
 
-        [AlternateSignature]
         public static extern void DoSomething();
 
         public static void DoSomething(object o) {
         }
 
-        [AlternateSignature]
         public extern void Invoke(Callback successCallback);
 
-        [AlternateSignature]
         public extern void Invoke(Callback successCallback, Callback errorCallback);
 
         public void Invoke(Callback successCallback, Callback errorCallback, object context) {

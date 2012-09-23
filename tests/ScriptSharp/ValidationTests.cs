@@ -214,8 +214,8 @@ namespace ScriptSharp.Tests {
         public void TestOverloads() {
             string expectedErrors =
                 "Extern methods used to declare alternate signatures should have a corresponding non-extern implementation as well. Code.cs(11, 9)" + Environment.NewLine +
-                "The implemenation method and associated alternate signature methods should have the same access type. Code.cs(14, 9)" + Environment.NewLine +
-                "The implemenation method and associated alternate signature methods should have the same access type. Code.cs(17, 9)";
+                "The implemenation method and associated alternate signature methods should have the same access type. Code.cs(13, 9)" + Environment.NewLine +
+                "The implemenation method and associated alternate signature methods should have the same access type. Code.cs(15, 9)";
 
             Compilation compilation = CreateCompilation();
             compilation.AddSource("Code.cs");
