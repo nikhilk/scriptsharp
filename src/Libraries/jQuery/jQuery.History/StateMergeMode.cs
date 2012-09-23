@@ -13,7 +13,7 @@ namespace jQueryApi.History {
     /// </summary>
     [IgnoreNamespace]
     [ScriptImport]
-    [NumericValues]
+    [ScriptConstants]
     public enum StateMergeMode {
 
         /// <summary>

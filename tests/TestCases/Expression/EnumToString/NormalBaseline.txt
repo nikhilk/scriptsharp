@@ -12,15 +12,6 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  // ExpressionTests.State
-
-  var ExpressionTests$State = {
-    starting: 'starting', 
-    running: 'running', 
-    completed: 'completed'
-  };
-
-
   // ExpressionTests.Types
 
   var ExpressionTests$Types = {
@@ -54,7 +45,6 @@ define('test', ['ss'], function(ss) {
   var $exports = ss.module('test', null,
     {
       Color: ExpressionTests$Color,
-      State: ExpressionTests$State,
       Types: ExpressionTests$Types,
       App: [ ExpressionTests$App, ExpressionTests$App$, null ]
     });

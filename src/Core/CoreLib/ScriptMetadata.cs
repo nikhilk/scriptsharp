@@ -125,23 +125,25 @@ namespace System.Runtime.CompilerServices {
     }
 
     /// <summary>
-    /// This attribute marks an enumeration type within a system assembly as as a set of
-    /// names. Rather than the specific value, the name of the enumeration field is
-    /// used as a string.
+    /// This attribute is used to mark an enum as a set of constant values, i.e. if
+    /// specified, the enum does not exist/is not generated, but rather its values
+    /// are inlined as constants. If the UseName property is set to true, then instead
+    /// of actual values, the names of the fields are used as string constants.
     /// </summary>
     [AttributeUsage(AttributeTargets.Enum, Inherited = false, AllowMultiple = false)]
     [ScriptIgnore]
-    public sealed class NamedValuesAttribute : Attribute {
-    }
+    public sealed class ScriptConstantsAttribute : Attribute {
 
-    /// <summary>
-    /// This attribute marks an enumeration type within a system assembly as as a set of
-    /// numeric values. Rather than the enum field, the value of the enumeration field is
-    /// used as a literal.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Enum, Inherited = false, AllowMultiple = false)]
-    [ScriptIgnore]
-    public sealed class NumericValuesAttribute : Attribute {
+        private bool _useNames;
+
+        public bool UseNames {
+            get {
+                return _useNames;
+            }
+            set {
+                _useNames = value;
+            }
+        }
     }
 
     /// <summary>

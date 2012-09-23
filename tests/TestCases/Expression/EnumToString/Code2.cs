@@ -9,7 +9,7 @@ namespace ExpressionTests {
     
     enum Color { Red = 1, Green = 2, Blue = 3 }
 
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     enum State {
         Starting = 1,
         Running = 2,

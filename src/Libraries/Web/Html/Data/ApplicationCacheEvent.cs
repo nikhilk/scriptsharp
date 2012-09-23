@@ -13,7 +13,7 @@ namespace System.Html.Data {
     /// </summary>
     [IgnoreNamespace]
     [ScriptImport]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum ApplicationCacheEvent {
 
         /// <summary>

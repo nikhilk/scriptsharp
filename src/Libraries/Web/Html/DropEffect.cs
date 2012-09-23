@@ -10,7 +10,7 @@ namespace System.Html {
 
     [IgnoreNamespace]
     [ScriptImport]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum DropEffect {
 
         Copy = 0,

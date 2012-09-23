@@ -10,7 +10,7 @@ namespace System.Html.Media.Filters {
 
     [IgnoreNamespace]
     [ScriptImport]
-    [NumericValues]
+    [ScriptConstants]
     public enum VisualTransitionState {
 
         Stopped = 0,

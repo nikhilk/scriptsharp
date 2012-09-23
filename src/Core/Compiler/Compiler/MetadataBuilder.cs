@@ -759,11 +759,29 @@ namespace ScriptSharp.Compiler {
             }
 
             if (typeNode.Type == TokenType.Enum) {
-                if (AttributeNode.FindAttribute(attributes, "NamedValues") != null) {
-                    ((EnumerationSymbol)typeSymbol).SetNamedValues();
-                }
-                else if (AttributeNode.FindAttribute(attributes, "NumericValues") != null) {
-                    ((EnumerationSymbol)typeSymbol).SetNumericValues();
+                AttributeNode constantsAttribute = AttributeNode.FindAttribute(attributes, "ScriptConstants");
+                if (constantsAttribute != null) {
+                    bool useNames = false;
+
+                    if ((constantsAttribute.Arguments != null) && (constantsAttribute.Arguments.Count != 0)) {
+                        Debug.Assert(constantsAttribute.Arguments[0] is BinaryExpressionNode);
+
+                        BinaryExpressionNode propExpression = (BinaryExpressionNode)constantsAttribute.Arguments[0];
+                        Debug.Assert((propExpression.LeftChild.NodeType == ParseNodeType.Name) &&
+                                     (String.CompareOrdinal(((NameNode)propExpression.LeftChild).Name, "UseNames") == 0));
+
+                        Debug.Assert(propExpression.RightChild.NodeType == ParseNodeType.Literal);
+                        Debug.Assert(((LiteralNode)propExpression.RightChild).Value is bool);
+
+                        useNames = (bool)((LiteralNode)propExpression.RightChild).Value;
+                    }
+
+                    if (useNames) {
+                        ((EnumerationSymbol)typeSymbol).SetNamedValues();
+                    }
+                    else {
+                        ((EnumerationSymbol)typeSymbol).SetNumericValues();
+                    }
                 }
             }
         }

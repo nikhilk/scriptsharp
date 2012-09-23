@@ -11,7 +11,7 @@ namespace System.Html {
     // TODO: Complete this enumeration
 
     [IgnoreNamespace]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     [ScriptImport]
     public enum ElementAttributeName {
 

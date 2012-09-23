@@ -80,8 +80,11 @@ namespace ScriptSharp.Generator {
                             continue;
                         }
 
-                        if ((type.Type == SymbolType.Enumeration) && (type.IsPublic == false)) {
+                        if ((type.Type == SymbolType.Enumeration) &&
+                            ((type.IsPublic == false) || ((EnumerationSymbol)type).Constants)) {
                             // Internal enums can be skipped since their values have been inlined.
+                            // Public enums marked as constants can also be skipped since their
+                            // values will always be inlined.
                             continue;
                         }
 

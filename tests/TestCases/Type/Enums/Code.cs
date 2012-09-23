@@ -53,7 +53,7 @@ namespace TypeTests {
         }
     }
 
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     [ScriptImport]
     public enum HttpMethod {
         GET = 0,
@@ -62,7 +62,7 @@ namespace TypeTests {
         DELETE = 3,
     }
 
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     internal enum SortMode {
         Status = 1,
         [PreserveCase]
@@ -71,12 +71,17 @@ namespace TypeTests {
         Count = 3
     }
 
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum Size {
         Small = 0,
         [PreserveCase]
         Medium = 1,
         Large = 2,
+    }
+
+    [ScriptConstants]
+    public enum Chars {
+        A = 65, B = 66
     }
 
     public class App2 {
@@ -101,6 +106,8 @@ namespace TypeTests {
         }
 
         public void Run2(SortMode m) {
+            Chars aCode = Chars.A;
+            Chars bCode = Chars.B;
         }
     }
 }

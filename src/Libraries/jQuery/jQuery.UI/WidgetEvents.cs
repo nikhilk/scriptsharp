@@ -13,7 +13,7 @@ namespace jQueryApi.UI {
     /// </summary>
     [ScriptImport]
     [IgnoreNamespace]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum WidgetEvents {
 
         /// <summary>

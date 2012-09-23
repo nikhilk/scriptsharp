@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Widgets {
     /// </summary>
     [ScriptImport]
     [IgnoreNamespace]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum TabsEvents {
 
         /// <summary>

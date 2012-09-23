@@ -10,7 +10,7 @@ namespace System.Html.Media.Graphics {
 
     [IgnoreNamespace]
     [ScriptImport]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum Rendering {
 
         [ScriptName("2d")]

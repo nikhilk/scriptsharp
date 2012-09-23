@@ -10,7 +10,7 @@ namespace System.Html.Services {
 
     [IgnoreNamespace]
     [ScriptImport]
-    [NumericValues]
+    [ScriptConstants]
     public enum GeolocationErrorCode {
 
         PermissionDenied = 1,

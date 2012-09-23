@@ -13,7 +13,7 @@ namespace System.Html.Data {
     /// </summary>
     [IgnoreNamespace]
     [ScriptImport]
-    [NumericValues]
+    [ScriptConstants]
     public enum ApplicationCacheStatus {
 
         /// <summary>

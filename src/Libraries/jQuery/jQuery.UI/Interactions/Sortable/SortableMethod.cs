@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Interactions {
     /// </summary>
     [ScriptImport]
     [IgnoreNamespace]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum SortableMethod {
 
         /// <summary>

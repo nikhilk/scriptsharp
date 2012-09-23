@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using ScriptSharp.Importer.IL;
 using ScriptSharp.ScriptModel;
@@ -145,11 +146,35 @@ namespace ScriptSharp.Importer {
         }
 
         public static bool ShouldUseEnumNames(TypeDefinition type) {
-            return GetAttribute(type, "System.Runtime.CompilerServices.NamedValuesAttribute") != null;
+            CustomAttribute attribute = GetAttribute(type, "System.Runtime.CompilerServices.ScriptConstantsAttribute");
+            if (attribute != null) {
+                if (attribute.HasProperties) {
+                    Debug.Assert(attribute.Properties.Count == 1);
+                    Debug.Assert(String.CompareOrdinal(attribute.Properties[0].Name, "UseNames") == 0);
+                    Debug.Assert(attribute.Properties[0].Argument.Value is bool);
+
+                    return (bool)attribute.Properties[0].Argument.Value;
+                }
+            }
+
+            return false;
         }
 
         public static bool ShouldUseEnumValues(TypeDefinition type) {
-            return GetAttribute(type, "System.Runtime.CompilerServices.NumericValuesAttribute") != null;
+            CustomAttribute attribute = GetAttribute(type, "System.Runtime.CompilerServices.ScriptConstantsAttribute");
+            if (attribute != null) {
+                if (attribute.HasProperties) {
+                    Debug.Assert(attribute.Properties.Count == 1);
+                    Debug.Assert(String.CompareOrdinal(attribute.Properties[0].Name, "UseNames") == 0);
+                    Debug.Assert(attribute.Properties[0].Argument.Value is bool);
+
+                    return (bool)attribute.Properties[0].Argument.Value == false;
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Effects {
     /// </summary>
     [ScriptImport]
     [IgnoreNamespace]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum SlideOption {
 
         /// <summary>

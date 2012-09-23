@@ -11,7 +11,7 @@ namespace System.Net {
 
     [IgnoreNamespace]
     [ScriptImport]
-    [NumericValues]
+    [ScriptConstants]
     public enum ReadyState {
 
         Uninitialized = 0,

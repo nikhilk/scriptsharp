@@ -56,15 +56,6 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  // TypeTests.Size
-
-  var TypeTests$Size = {
-    small: 'small', 
-    Medium: 'Medium', 
-    large: 'large'
-  };
-
-
   // TypeTests.App
 
   function TypeTests$App() {
@@ -96,6 +87,8 @@ define('test', ['ss'], function(ss) {
       var s = m;
     },
     run2: function(m) {
+      var aCode = 65;
+      var bCode = 66;
     }
   };
 
@@ -108,7 +101,6 @@ define('test', ['ss'], function(ss) {
       UInt32Mask: TypeTests$UInt32Mask,
       ShortMask: TypeTests$ShortMask,
       Errors: TypeTests$Errors,
-      Size: TypeTests$Size,
       App: [ TypeTests$App, TypeTests$App$, null ],
       App2: [ TypeTests$App2, TypeTests$App2$, null ]
     });

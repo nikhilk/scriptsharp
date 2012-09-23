@@ -11,7 +11,7 @@ namespace System.Net {
 
     [IgnoreNamespace]
     [ScriptImport]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum HttpVerb {
 
         [ScriptName("GET")]

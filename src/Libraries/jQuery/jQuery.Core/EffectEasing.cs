@@ -13,7 +13,7 @@ namespace jQueryApi {
     /// </summary>
     [ScriptImport]
     [IgnoreNamespace]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum EffectEasing {
 
         Swing,

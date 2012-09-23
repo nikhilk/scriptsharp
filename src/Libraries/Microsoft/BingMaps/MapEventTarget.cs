@@ -14,7 +14,7 @@ namespace Microsoft.Maps {
 
     [ScriptImport]
     [IgnoreNamespace]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum MapEventTarget {
 
         Map = 0,

@@ -10,7 +10,7 @@ namespace System.Threading {
 
     [ScriptImport]
     [IgnoreNamespace]
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum TaskStatus {
 
         Pending,

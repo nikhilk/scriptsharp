@@ -9,7 +9,7 @@ namespace System.Xml {
 
     [IgnoreNamespace]
     [ScriptImport]
-    [NumericValues]
+    [ScriptConstants]
     public enum XmlNodeType {
 
         Element = 1,

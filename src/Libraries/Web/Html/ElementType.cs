@@ -10,7 +10,7 @@ namespace System.Html {
 
     [IgnoreNamespace]
     [ScriptImport]
-    [NumericValues]
+    [ScriptConstants]
     public enum ElementType {
 
         Element = 1,
