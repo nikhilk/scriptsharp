@@ -85,7 +85,6 @@ namespace System.Runtime.CompilerServices {
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Delegate | AttributeTargets.Interface | AttributeTargets.Struct, Inherited = true, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class IgnoreNamespaceAttribute : Attribute {
     }
 
@@ -95,13 +94,11 @@ namespace System.Runtime.CompilerServices {
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class ScriptResourcesAttribute : Attribute {
     }
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class ScriptExtensionAttribute : Attribute {
 
         private string _expression;
@@ -119,13 +116,11 @@ namespace System.Runtime.CompilerServices {
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class ScriptModuleAttribute : Attribute {
     }
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class ScriptObjectAttribute : Attribute {
     }
 
@@ -136,7 +131,6 @@ namespace System.Runtime.CompilerServices {
     /// </summary>
     [AttributeUsage(AttributeTargets.Enum, Inherited = false, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class NamedValuesAttribute : Attribute {
     }
 
@@ -147,7 +141,6 @@ namespace System.Runtime.CompilerServices {
     /// </summary>
     [AttributeUsage(AttributeTargets.Enum, Inherited = false, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class NumericValuesAttribute : Attribute {
     }
 
@@ -158,7 +151,6 @@ namespace System.Runtime.CompilerServices {
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class ScriptPropertyAttribute : Attribute {
     }
 
@@ -167,7 +159,6 @@ namespace System.Runtime.CompilerServices {
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Method | AttributeTargets.Event, Inherited = false, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class ScriptNameAttribute : Attribute {
 
         private string _name;
@@ -189,7 +180,6 @@ namespace System.Runtime.CompilerServices {
     /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Event | AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class PreserveCaseAttribute : Attribute {
     }
 
@@ -199,7 +189,6 @@ namespace System.Runtime.CompilerServices {
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Event | AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class PreserveNameAttribute : Attribute {
     }
 
@@ -211,7 +200,6 @@ namespace System.Runtime.CompilerServices {
     // REVIEW: Eventually do we want to support this on properties/field and instance methods as well?
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class ScriptAliasAttribute : Attribute {
 
         private string _alias;
@@ -229,13 +217,11 @@ namespace System.Runtime.CompilerServices {
 
     [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class ScriptSkipAttribute : Attribute {
     }
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
     public sealed class ScriptTemplateAttribute : Attribute {
 
         private string _template;
