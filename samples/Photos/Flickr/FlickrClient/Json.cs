@@ -8,21 +8,21 @@ using jQueryApi;
 
 namespace Flickr.FlickrClient {
 
-    [Imported]
+    [ScriptImport]
     public sealed class PhotoSearchResponse {
 
         [ScriptName("photos")]
         public PhotoCollection Photos;
     }
 
-    [Imported]
+    [ScriptImport]
     public sealed class PhotoCollection {
 
         [ScriptName("photo")]
         public List<PhotoResult> Results;
     }
 
-    [Imported]
+    [ScriptImport]
     public sealed class PhotoResult {
 
         public string ID;

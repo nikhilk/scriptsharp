@@ -8,57 +8,57 @@ using jQueryApi;
 
 namespace jQueryApi.Gridster {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class GridsterCollision {
     }
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class GridsterDraggable {
     }
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class GridsterCoordinates {
 
         [ScriptName("col")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Column {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Row {
             get;
             set;
         }
 
         [ScriptName("size_x")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int SizeX {
             get;
             set;
         }
 
         [ScriptName("size_y")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int SizeY {
             get;
             set;
         }
     }
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public delegate object GridsterSerializationCallback(jQueryObject widget, GridsterCoordinates coords);
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class GridsterOptions {
 
@@ -69,104 +69,104 @@ namespace jQueryApi.Gridster {
         }
 
         [ScriptName("autogenerate_stylesheet")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool AutoGenerateStyleSheet {
             get;
             set;
         }
 
         [ScriptName("avoid_overlapped_widgets")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool AvoidOverlapping {
             get;
             set;
         }
 
         [ScriptName("widget_base_dimensions")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int[] BaseDimensions {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public GridsterCollision Collision {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public GridsterDraggable Draggable {
             get;
             set;
         }
 
         [ScriptName("extra_cols")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int ExtraColumns {
             get;
             set;
         }
 
         [ScriptName("extra_rows")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int ExtraRows {
             get;
             set;
         }
 
         [ScriptName("widget_margins")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int[] Margins {
             get;
             set;
         }
 
         [ScriptName("max_size_x")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int MaximumColumnSpan {
             get;
             set;
         }
 
         [ScriptName("max_size_y")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int MaximumRowSpan {
             get;
             set;
         }
 
         [ScriptName("min_cols")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int MinimumColumns {
             get;
             set;
         }
 
         [ScriptName("min_rows")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int MinimumRows {
             get;
             set;
         }
 
         [ScriptName("widget_selector")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Selector {
             get;
             set;
         }
 
         [ScriptName("serialize_params")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public GridsterSerializationCallback SerializationCallback {
             get;
             set;
         }
     }
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class GridsterObject {
 
         private GridsterObject() {
@@ -185,8 +185,8 @@ namespace jQueryApi.Gridster {
         }
     }
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptDependency("jqueryGridster")]
     public sealed class jQueryGridsterObject : jQueryObject {
 

@@ -8,18 +8,18 @@ using jQueryApi;
 
 namespace jQueryApi.Isotope {
 
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum IsotopeLayout {
 
         Masonry
     }
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
-    public sealed class IsotopeOptions : Record {
+    public sealed class IsotopeOptions {
 
         public IsotopeLayout LayoutMode;
 
@@ -30,8 +30,8 @@ namespace jQueryApi.Isotope {
         }
     }
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptDependency("jqueryIsotope")]
     public sealed class jQueryIsotopeObject : jQueryObject {
 

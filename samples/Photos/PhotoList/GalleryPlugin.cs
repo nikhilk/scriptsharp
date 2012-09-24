@@ -61,7 +61,7 @@ public static class GalleryPlugin {
     }
 }
 
-[Imported]
+[ScriptImport]
 [ScriptName("Object")]
 public sealed class GalleryPluginOptions {
     public string tags;
@@ -79,7 +79,7 @@ public sealed class GalleryPluginOptions {
     }
 }
 
-[Imported]
+[ScriptImport]
 public sealed class GalleryObject : jQueryObject {
 
     public jQueryObject Gallery() {

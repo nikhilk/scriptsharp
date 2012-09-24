@@ -2,13 +2,15 @@
 //
 
 using System;
+using System.Runtime.CompilerServices;
 
 namespace Flickr {
 
     /// <summary>
     /// Represents a geo-tagged photo along with various bits of metadata.
     /// </summary>
-    public sealed class Photo : Record {
+    [ScriptObject]
+    public sealed class Photo {
 
         public string id;
 

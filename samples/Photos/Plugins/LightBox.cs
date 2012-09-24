@@ -8,8 +8,8 @@ using jQueryApi;
 
 namespace jQueryApi.LightBox {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptDependency("jqueryLightBox")]
     public sealed class jQueryLightBoxObject : jQueryObject {
 
