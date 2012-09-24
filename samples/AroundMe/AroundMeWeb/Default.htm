@@ -3,7 +3,7 @@
 <head>
   <title>Photos Around Me</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Schoolbell:regular" />
-  <link rel="stylesheet" type="text/css" href="Site.css" />
+  <link rel="stylesheet" type="text/css" href="/Content/Site.css" />
 </head>
 <body class="map" data-app="true"
   data-flickr-key="be9b6f66bd7a1c0c0f1465a1b7e8a764"
@@ -33,9 +33,14 @@
       <div id="photoTweet"></div>
     </div>
   </div>
-  <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
-  <script type="text/javascript" src="http://platform.twitter.com/anywhere.js?id=BDvnYA8jh6osbRb83Ybw&v=1"></script>
-  <script type="text/javascript" src="../mscorlib.debug.js"></script>
-  <script type="text/javascript" src="../AroundMe.debug.js"></script>
+
+  <script type="text/script" data-name="vemaps" data-src="/Scripts/VE.js"
+    data-export="Microsoft.Maps" data-autoload="true"></script>
+  <script type="text/script" data-name="twttr" data-src="http://platform.twitter.com/anywhere.js?id=BDvnYA8jh6osbRb83Ybw&v=1"
+    data-export="window.twttr" data-autoload="true"></script>
+  <script type="text/script" data-name="ss" data-src="/Scripts/ss.min.js" data-autoload="true"></script>
+  <script type="text/script" data-name="AroundMe" data-src="/Scripts/AroundMe.js" data-autoload="true"></script>
+
+  <script type="text/javascript" src="/Scripts/ssloader.min.js" async="async" defer="defer"></script>
 </body>
 </html>

@@ -3,12 +3,14 @@
 
 using System;
 using System.Html;
+using System.Runtime.CompilerServices;
 using Microsoft.Maps;
 using AroundMe.Graphs;
 
 namespace AroundMe.DataModel {
 
-    internal sealed class PhotoView : Record {
+    [ScriptObject]
+    internal sealed class PhotoView {
 
         public GraphNode pushpinNode;
         public GraphNode calloutNode;

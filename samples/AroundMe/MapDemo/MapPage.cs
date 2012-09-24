@@ -75,7 +75,7 @@ namespace MapDemo {
                         venueOptions.SuccessCallback = delegate(VenueMap venueMap, VenueMapOptions options) {
 
                             venueMap.Show();
-                            if (Script.Confirm("Zoom to " + venueMap.Name + "?")) {
+                            if (Window.Confirm("Zoom to " + venueMap.Name + "?")) {
                                 _map.SetView(venueMap.BestMapView);
                             }
                         };

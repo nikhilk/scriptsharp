@@ -10,8 +10,8 @@ namespace TwitterApi {
 
     public delegate void TwitterCallback(TwitterObject twitterObject);
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("twttr")]
     public static class Twitter {
 
@@ -19,8 +19,8 @@ namespace TwitterApi {
         }
     }
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class TweetBoxOptions {
 
@@ -30,52 +30,52 @@ namespace TwitterApi {
         public TweetBoxOptions(params object[] nameValuePairs) {
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public bool Counter {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public TweetBoxData Data {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string DefaultContent {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Height {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public string Label {
             get;
             set;
         }
 
         [ScriptName("onTweet")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public TweetCallback Callback {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptProperty]
         public int Width {
             get;
             set;
         }
     }
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class TweetBoxData {
 
@@ -86,14 +86,14 @@ namespace TwitterApi {
         }
 
         [ScriptName("lat")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Latitude {
             get;
             set;
         }
 
         [ScriptName("lon")]
-        [IntrinsicProperty]
+        [ScriptProperty]
         public double Longitude {
             get;
             set;
@@ -103,8 +103,8 @@ namespace TwitterApi {
 
     public delegate void TweetCallback(string text, string htmlText);
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class TwitterObject {
 
         private TwitterObject() {
