@@ -13,12 +13,12 @@ namespace ScriptSharp.Testing.WebServer {
     internal sealed class WebTestHttpServer : HttpServer {
 
         private Uri _baseUri;
-        private string _contentRoot;
+        private string[] _contentRoots;
 
         private Dictionary<string, Tuple<string, string>> _registeredContent;
 
-        public WebTestHttpServer(string contentRoot) {
-            _contentRoot = contentRoot;
+        public WebTestHttpServer(string[] contentRoots) {
+            _contentRoots = contentRoots;
             _baseUri = new Uri("http://localhost/", UriKind.Absolute);
 
             Initialize(HandleGetRequest, HandlePostRequest);
@@ -55,9 +55,7 @@ namespace ScriptSharp.Testing.WebServer {
 
             // Get the cleaned up path with the leading slash trimmed off
             cleanedUrlPath = resolvedUri.LocalPath;
-            string path = resolvedUri.LocalPath.Substring(1);
-
-            return Path.Combine(_contentRoot, path);
+            return resolvedUri.LocalPath.Substring(1);
         }
 
         private void HandleGetRequest(HttpMessage message) {
@@ -70,12 +68,15 @@ namespace ScriptSharp.Testing.WebServer {
                 return;
             }
 
-            if (File.Exists(path)) {
-                message.WriteFile(path, GetContentType(path));
+            foreach (string contentRoot in _contentRoots) {
+                string possiblePath = Path.Combine(contentRoot, path);
+                if (File.Exists(possiblePath)) {
+                    message.WriteFile(possiblePath, GetContentType(possiblePath));
+                    return;
+                }
             }
-            else {
-                message.WriteStatus(HttpStatusCode.NotFound);
-            }
+
+            message.WriteStatus(HttpStatusCode.NotFound);
         }
 
         private void HandlePostRequest(HttpMessage message) {

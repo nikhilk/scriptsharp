@@ -51,7 +51,7 @@ namespace Runtime.Tests.Core {
             }
 
             _webTest = new WebTest();
-            _webTest.StartWebServer(webRoot, _port);
+            _webTest.StartWebServer(_port, webRoot);
         }
 
         public TestContext TestContext {

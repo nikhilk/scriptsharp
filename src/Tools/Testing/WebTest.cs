@@ -144,20 +144,23 @@ namespace ScriptSharp.Testing {
             }
         }
 
-        public bool StartWebServer(string webRoot, int port) {
+        public bool StartWebServer(int port, params string[] webRoots) {
             if (_server != null) {
                 throw new InvalidOperationException("The server has already been started.");
             }
-            if (String.IsNullOrEmpty(webRoot)) {
-                throw new ArgumentNullException("webRoot");
+            if (webRoots == null) {
+                throw new ArgumentNullException("webRoots");
             }
-            if (Directory.Exists(webRoot) == false) {
-                throw new ArgumentException("Invalid directory specified as the web root.", "webRoot");
+
+            foreach (string webRoot in webRoots) {
+                if (Directory.Exists(webRoot) == false) {
+                    throw new ArgumentException("Invalid directory specified as the web root: '" + webRoot + "'");
+                }
             }
 
             bool started = false;
             try {
-                WebTestHttpServer server = new WebTestHttpServer(webRoot);
+                WebTestHttpServer server = new WebTestHttpServer(webRoots);
                 server.Start(port);
 
                 _server = server;
