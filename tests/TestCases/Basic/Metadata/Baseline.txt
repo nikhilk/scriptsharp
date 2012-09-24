@@ -1652,12 +1652,12 @@ Types:
             Method: IsNullOrEmpty
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: emptyString
+                Generated Name: ss.emptyString
                 Abstract: False
             Method: IsNullOrWhiteSpace
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: whitespace
+                Generated Name: ss.whitespace
                 Abstract: False
             Method: LastIndexOf
                 AssociatedType: Int32

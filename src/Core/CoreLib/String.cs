@@ -229,12 +229,12 @@ namespace System {
             return null;
         }
 
-        [ScriptAlias("emptyString")]
+        [ScriptAlias("ss.emptyString")]
         public static bool IsNullOrEmpty(string s) {
             return false;
         }
 
-        [ScriptAlias("whitespace")]
+        [ScriptAlias("ss.whitespace")]
         public static bool IsNullOrWhiteSpace(string s) {
             return false;
         }
