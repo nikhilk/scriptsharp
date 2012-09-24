@@ -409,8 +409,12 @@ namespace ScriptSharp.Importer {
                 }
 
                 string propertyName = property.Name;
-                bool preserveCase = MetadataHelpers.ShouldPreserveCase(property);
                 bool scriptProperty = MetadataHelpers.ShouldTreatAsScriptProperty(property);
+
+                // TODO: Why are we ignoring the other bits...
+                // bool dummyPreserveName;
+                // bool preserveCase;
+                // string dummyName = MetadataHelpers.GetScriptName(property, out dummyPreserveName, out preserveCase);
 
                 TypeSymbol propertyType = ResolveType(property.PropertyType);
                 if (propertyType == null) {
@@ -427,7 +431,7 @@ namespace ScriptSharp.Importer {
                     }
 
                     propertySymbol = indexerSymbol;
-                    propertySymbol.SetNameCasing(preserveCase);
+                    // propertySymbol.SetNameCasing(preserveCase);
                 }
                 else {
                     if (scriptProperty) {

@@ -128,10 +128,6 @@ namespace ScriptSharp.Importer {
             return GetAttribute(type, "System.Runtime.CompilerServices.ScriptIgnoreAttribute") == null;
         }
 
-        public static bool ShouldPreserveCase(ICustomAttributeProvider attributeProvider) {
-            return GetAttribute(attributeProvider, "System.Runtime.CompilerServices.PreserveCaseAttribute") != null;
-        }
-
         public static bool ShouldSkipFromScript(ICustomAttributeProvider attributeProvider) {
             return GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptSkipAttribute") != null;
         }
