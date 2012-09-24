@@ -39,27 +39,28 @@ var Task$ = {
     return this.continueWith(function(t) {
       t.status == 'done' ? doneCallback(t.result) : failCallback(t.error);
     });
-  },
-  _update: function(result, error) {
-    if (this.status == 'pending') {
-      if (error) {
-        this.error = error;
-        this.status = 'failed';
-      }
-      else {
-        this.result = result;
-        this.status = 'done';
-      }
-
-      var continuations = this._continuations;
-      this._continuations = null;
-
-      for (var i = 0, c = continuations.length; i < c; i++) {
-        continuations[i](this);
-      }
-    }
   }
 };
+
+function _updateTask(task, result, error) {
+  if (task.status == 'pending') {
+    if (error) {
+      task.error = error;
+      task.status = 'failed';
+    }
+    else {
+      task.result = result;
+      task.status = 'done';
+    }
+
+    var continuations = task._continuations;
+    task._continuations = null;
+
+    for (var i = 0, c = continuations.length; i < c; i++) {
+      continuations[i](task);
+    }
+  }
+}
 
 function _joinTasks(tasks, any) {
   tasks = toArray(tasks);
@@ -80,10 +81,10 @@ function _joinTasks(tasks, any) {
     if (joinTask.status == 'pending') {
       seen++;
       if (any) {
-        joinTask._update(t);
+        _updateTask(joinTask, t);
       }
       else if (seen == count) {
-        joinTask._update(true);
+        _updateTask(joinTask, true);
       }
     }
   }
@@ -91,10 +92,10 @@ function _joinTasks(tasks, any) {
   function timeout() {
     if (joinTask.status == 'pending') {
       if (any) {
-        joinTask._update(null);
+        _updateTask(joinTask, null);
       }
       else {
-        joinTask._update(false);
+        _updateTask(joinTask, false);
       }
     }
   }
@@ -119,21 +120,23 @@ Task.delay = function(timeout) {
   var timerTask = new Task();
 
   setTimeout(function() {
-    timerTask._update(true);
+    _updateTask(timerTask, true);
   }, timeout);
 
   return timerTask;
 }
 
+function deferred(result) {
+  var task = new Task(result);
 
-function Deferred(result) {
-  this.task = new Task(result);
+  return {
+    task: task,
+    resolve: function(result) {
+      _updateTask(task, result);
+    },
+    reject: function(error) {
+      _updateTask(task, null, (error || new Error()));
+    }
+  };
 }
-var Deferred$ = {
-  resolve: function(result) {
-    this.task._update(result);
-  },
-  reject: function(error) {
-    this.task._update(null, error || new Error());
-  }
-};
+

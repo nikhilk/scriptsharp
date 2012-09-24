@@ -3514,6 +3514,11 @@ Types:
                 AssociatedType: Task
                 Visibility: Public
                 Generated Name: task
+            Method: Create
+                AssociatedType: Deferred
+                Visibility: Public, Static
+                Generated Name: ss.deferred
+                Abstract: False
             Method: Reject
                 AssociatedType: Void
                 Visibility: Public

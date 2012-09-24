@@ -9,13 +9,31 @@ using System.Runtime.CompilerServices;
 namespace System.Threading {
 
     [ScriptImport]
-    public class Deferred {
+    public abstract class Deferred {
+
+        internal Deferred() {
+        }
 
         [ScriptProperty]
         public Task Task {
             get {
                 return null;
             }
+        }
+
+        [ScriptAlias("ss.deferred")]
+        public static Deferred Create() {
+            return null;
+        }
+
+        [ScriptAlias("ss.deferred")]
+        public static Deferred<T> Create<T>() {
+            return null;
+        }
+
+        [ScriptAlias("ss.deferred")]
+        public static Deferred<T> Create<T>(T result) {
+            return null;
         }
 
         public void Reject() {
@@ -31,6 +49,9 @@ namespace System.Threading {
     [ScriptImport]
     [ScriptName("Deferred")]
     public sealed class Deferred<T> : Deferred {
+
+        private Deferred() {
+        }
 
         [ScriptProperty]
         public new Task<T> Task {

@@ -21,7 +21,7 @@
 define(['ss'], function(ss) {
   module('Task');
   test('preresolved', function() {
-    var deferred = new ss.Deferred(10);
+    var deferred = ss.deferred(10);
     var task = deferred.task;
 
     QUnit.equal(task.status, 'done');
@@ -30,7 +30,7 @@ define(['ss'], function(ss) {
   asyncTest('resolve', function() {
     QUnit.expect(2);
 
-    var deferred = new ss.Deferred();
+    var deferred = ss.deferred();
     deferred.task.continueWith(function(t) {
       QUnit.start();
       QUnit.equal(t.status, 'done');
@@ -48,7 +48,7 @@ define(['ss'], function(ss) {
   asyncTest('reject', function() {
     QUnit.expect(2);
 
-    var deferred = new ss.Deferred();
+    var deferred = ss.deferred();
     deferred.task.continueWith(function(t) {
       QUnit.start();
       QUnit.equal(t.status, 'failed');
@@ -66,7 +66,7 @@ define(['ss'], function(ss) {
   asyncTest('reresolve', function() {
     QUnit.expect(2);
 
-    var deferred = new ss.Deferred();
+    var deferred = ss.deferred();
     deferred.task.continueWith(function(t) {
       QUnit.start();
       QUnit.equal(t.status, 'done');
@@ -85,8 +85,8 @@ define(['ss'], function(ss) {
   asyncTest('anyFirst', function() {
     QUnit.expect(3);
 
-    var deferred1 = new ss.Deferred();
-    var deferred2 = new ss.Deferred();
+    var deferred1 = ss.deferred();
+    var deferred2 = ss.deferred();
 
     ss.Task.any(deferred1.task, deferred2.task)
            .continueWith(function(t) {
@@ -111,9 +111,9 @@ define(['ss'], function(ss) {
   asyncTest('anySecond', function() {
     QUnit.expect(3);
 
-    var deferred1 = new ss.Deferred();
-    var deferred2 = new ss.Deferred();
-    var deferred3 = new ss.Deferred();
+    var deferred1 = ss.deferred();
+    var deferred2 = ss.deferred();
+    var deferred3 = ss.deferred();
 
     ss.Task.any(deferred1.task, deferred2.task, deferred3.task)
            .continueWith(function(t) {
@@ -142,9 +142,9 @@ define(['ss'], function(ss) {
   asyncTest('anyTimeout', function() {
     QUnit.expect(2);
 
-    var deferred1 = new ss.Deferred();
-    var deferred2 = new ss.Deferred();
-    var deferred3 = new ss.Deferred();
+    var deferred1 = ss.deferred();
+    var deferred2 = ss.deferred();
+    var deferred3 = ss.deferred();
 
     ss.Task.any(100, deferred1.task, deferred2.task, deferred3.task)
            .continueWith(function(t) {
@@ -172,8 +172,8 @@ define(['ss'], function(ss) {
   asyncTest('allSimple', function() {
     QUnit.expect(2);
 
-    var deferred1 = new ss.Deferred();
-    var deferred2 = new ss.Deferred();
+    var deferred1 = ss.deferred();
+    var deferred2 = ss.deferred();
 
     ss.Task.all(deferred1.task, deferred2.task)
            .continueWith(function(t) {
@@ -197,8 +197,8 @@ define(['ss'], function(ss) {
   asyncTest('allTimeout', function() {
     QUnit.expect(2);
 
-    var deferred1 = new ss.Deferred();
-    var deferred2 = new ss.Deferred();
+    var deferred1 = ss.deferred();
+    var deferred2 = ss.deferred();
 
     ss.Task.all(200, deferred1.task, deferred2.task)
            .continueWith(function(t) {
@@ -222,7 +222,7 @@ define(['ss'], function(ss) {
   asyncTest('resolveDone', function() {
     QUnit.expect(1);
 
-    var deferred = new ss.Deferred();
+    var deferred = ss.deferred();
     deferred.task.done(function(result) {
       QUnit.start();
       QUnit.equal(result, 123);
@@ -239,7 +239,7 @@ define(['ss'], function(ss) {
   asyncTest('rejectFail', function() {
     QUnit.expect(1);
 
-    var deferred = new ss.Deferred();
+    var deferred = ss.deferred();
     deferred.task.fail(function(error) {
       QUnit.start();
       QUnit.notEqual(error, null);
@@ -256,7 +256,7 @@ define(['ss'], function(ss) {
   asyncTest('completed', function() {
     QUnit.expect(4);
 
-    var deferred1 = new ss.Deferred();
+    var deferred1 = ss.deferred();
     deferred1.task.then(function(result) {
       QUnit.start();
       QUnit.equal(result, 123);
@@ -273,7 +273,7 @@ define(['ss'], function(ss) {
       deferred1.resolve(123);
     }, 100);
 
-    var deferred2 = new ss.Deferred();
+    var deferred2 = ss.deferred();
     deferred2.task.then(function(result) {
       QUnit.start();
       throw new Error('unexpected done');

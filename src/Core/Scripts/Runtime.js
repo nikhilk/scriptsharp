@@ -37,8 +37,7 @@
       Queue: [ Queue, Queue$ ],
       Observable: [ Observable, Observable$ ],
       ObservableCollection: [ ObservableCollection, ObservableCollection$, null, IEnumerable ],
-      Task: [ Task, Task$ ],
-      Deferred: [ Deferred, Deferred$ ]
+      Task: [ Task, Task$ ]
     }), {
       version: '0.8',
 
@@ -76,6 +75,7 @@
       bindAdd: bindAdd,
       bindSub: bindSub,
       bindExport: bindExport,
+      deferred: deferred,
 
       module: module,
 

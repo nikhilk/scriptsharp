@@ -190,7 +190,7 @@ namespace ScriptSharp.ScriptModel {
                 if (templateMethod.IsAliased) {
                     instanceMethod.SetAlias(templateMethod.Alias);
                 }
-                if (templateMethod.IsTransformed) {
+                else if (templateMethod.IsTransformed) {
                     instanceMethod.SetTransformedName(templateMethod.GeneratedName);
                 }
                 if (templateMethod.SkipGeneration) {

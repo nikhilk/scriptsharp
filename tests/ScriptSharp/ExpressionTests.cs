@@ -181,6 +181,13 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestTasks() {
+            RunTest((c) => {
+                c.AddSource("Code.cs");
+            });
+        }
+
+        [TestMethod]
         public void TestTruthy() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
