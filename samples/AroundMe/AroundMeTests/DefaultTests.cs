@@ -10,10 +10,9 @@ using ScriptSharp.Testing;
 namespace AroundMeTests {
 
     [TestClass]
-    [DeploymentItem("AroundMeTests\\Web", "Web")]
-    [DeploymentItem("AroundMe\\bin\\Debug\\mscorlib.debug.js", "Web")]
-    [DeploymentItem("AroundMe\\bin\\Debug\\AroundMe.test.js", "Web")]
     public class DefaultTests {
+
+        private const int Port = 3976;
 
         private static WebTest _webTest;
 
@@ -27,11 +26,11 @@ namespace AroundMeTests {
             // This starts the web server rooted at the specified directory
             // on http://localhost:<port>
 
-            string webRoot = Path.Combine(testContext.DeploymentDirectory, "Web");
-            int port = 3976;
+            string testContentRoot = Path.GetFullPath(Path.Combine(testContext.TestRunDirectory, "..\\..\\AroundMeTests\\Web"));
+            string scriptsRoot = Path.GetFullPath(Path.Combine(testContext.TestRunDirectory, "..\\..\\AroundMe\\bin\\Debug"));
 
             _webTest = new WebTest();
-            _webTest.StartWebServer(webRoot, port);
+            _webTest.StartWebServer(Port, testContentRoot, scriptsRoot);
         }
 
         [ClassCleanup()]
@@ -41,12 +40,7 @@ namespace AroundMeTests {
 
         [TestMethod]
         public void TestMethod1() {
-            WebTestPageBuilder pageBuilder = new WebTestPageBuilder("DefaultTests");
-            string html =
-                pageBuilder.AddScripts("mscorlib.debug.js", "AroundMe.test.js")
-                           .ToHtml();
-
-            Uri pageUri = _webTest.CreateContent("/DefaultTests.htm", html, "text/html");
+            Uri pageUri = _webTest.GetTestUri("/DefaultTests.htm");
 
             WebTestResult chromeResult = _webTest.RunTest(pageUri, WebBrowser.Chrome);
             Assert.IsTrue(chromeResult.Succeeded, "Chrome:\r\n" + chromeResult.Log);
