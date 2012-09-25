@@ -926,6 +926,19 @@ namespace ScriptSharp.Compiler {
                 args = BuildExpressionList(argNodes);
             }
 
+            // REVIEW: Uggh... this has become too complex over time with all the transformations
+            //         added over time. Refactoring needed...
+
+            TypeSymbol objectType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Object);
+            TypeSymbol typeType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
+            TypeSymbol dictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Dictionary);
+            TypeSymbol genericDictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.GenericDictionary);
+            TypeSymbol intType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Integer);
+            TypeSymbol stringType = _symbolSet.ResolveIntrinsicType(IntrinsicType.String);
+            TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
+            TypeSymbol argsType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Arguments);
+            TypeSymbol voidType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Void);
+
             MethodExpression methodExpression = null;
 
             if (memberExpression.Member.Type != SymbolType.Method) {
@@ -948,19 +961,6 @@ namespace ScriptSharp.Compiler {
                 if (!method.MatchesConditions(_options.Defines)) {
                     return null;
                 }
-
-                // REVIEW: Uggh... this has become too complex over time with all the transformations
-                //         added over time. Refactoring needed...
-
-                TypeSymbol objectType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Object);
-                TypeSymbol typeType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
-                TypeSymbol dictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Dictionary);
-                TypeSymbol genericDictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.GenericDictionary);
-                TypeSymbol intType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Integer);
-                TypeSymbol stringType = _symbolSet.ResolveIntrinsicType(IntrinsicType.String);
-                TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
-                TypeSymbol argsType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Arguments);
-                TypeSymbol voidType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Void);
 
                 if (method.Name.Equals("GetEnumerator", StringComparison.Ordinal)) {
                     // This is a bit dangerous - GetEnumerator on any type gets mapped to
@@ -1357,6 +1357,12 @@ namespace ScriptSharp.Compiler {
             }
 
             if (methodExpression != null) {
+                if (methodExpression.Method.HasSelector) {
+                    LiteralExpression selectorExpression =
+                        new LiteralExpression(stringType, methodExpression.Method.Selector);
+                    methodExpression.AddParameterValue(selectorExpression);
+                }
+
                 if (args != null) {
                     foreach (Expression paramExpr in args) {
                         methodExpression.AddParameterValue(paramExpr);

@@ -8,11 +8,17 @@ define('test', ['ss'], function(ss) {
   function TypeTests$App() {
     var elem = document.getElementById('foo');
     var s = elem.myString;
+    elem.do('foo');
+    elem.do('bar', 10);
     elem['Smith'] = elem['Joe'];
     var n = ss.truncate(5.5);
     var parser = new DOMParser();
     var doc = parser.parseFromString('<markup></markup>', 'text/xml');
     var d = Date.parseDate('1/1/2010');
+    var eventHandler = function() {
+    };
+    elem.addEventListener('click', eventHandler);
+    elem.removeEventListener('click', eventHandler);
   }
   var TypeTests$App$ = {
 

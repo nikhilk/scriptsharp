@@ -305,17 +305,36 @@ namespace ScriptSharp.Generator {
         private static void GenerateEventExpression(ScriptGenerator generator, MemberSymbol symbol, EventExpression expression) {
             ScriptTextWriter writer = generator.Writer;
 
+            EventSymbol eventSymbol = expression.Event;
+
             ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
-            if (expression.Type == ExpressionType.EventAdd) {
-                writer.Write(".add_");
+            if (eventSymbol.HasCustomAccessors) {
+                writer.Write(".");
+                if (expression.Type == ExpressionType.EventAdd) {
+                    writer.Write(eventSymbol.AddAccessor);
+                }
+                else {
+                    writer.Write(eventSymbol.RemoveAccessor);
+                }
+
+                writer.Write("('");
+                writer.Write(expression.Event.GeneratedName);
+                writer.Write("', ");
+                ExpressionGenerator.GenerateExpression(generator, symbol, expression.Handler);
+                writer.Write(")");
             }
             else {
-                writer.Write(".remove_");
+                if (expression.Type == ExpressionType.EventAdd) {
+                    writer.Write(".add_");
+                }
+                else {
+                    writer.Write(".remove_");
+                }
+                writer.Write(expression.Event.GeneratedName);
+                writer.Write("(");
+                ExpressionGenerator.GenerateExpression(generator, symbol, expression.Handler);
+                writer.Write(")");
             }
-            writer.Write(expression.Event.GeneratedName);
-            writer.Write("(");
-            ExpressionGenerator.GenerateExpression(generator, symbol, expression.Handler);
-            writer.Write(")");
         }
 
         public static void GenerateExpression(ScriptGenerator generator, MemberSymbol symbol, Expression expression) {

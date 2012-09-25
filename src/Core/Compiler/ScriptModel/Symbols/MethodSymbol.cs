@@ -15,6 +15,7 @@ namespace ScriptSharp.ScriptModel {
 
         private string _alias;
         private ICollection<string> _conditions;
+        private string _selector;
         private bool _skipGeneration;
         private ICollection<GenericParameterSymbol> _genericArguments;
 
@@ -81,6 +82,12 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public bool HasSelector {
+            get {
+                return (_selector != null);
+            }
+        }
+
         public SymbolImplementation Implementation {
             get {
                 Debug.Assert(_implementation != null);
@@ -107,6 +114,13 @@ namespace ScriptSharp.ScriptModel {
             get {
                 return (_genericArguments != null) &&
                        (_genericArguments.Count != 0);
+            }
+        }
+
+        public string Selector {
+            get {
+                Debug.Assert(_selector != null);
+                return _selector;
             }
         }
 
@@ -157,6 +171,13 @@ namespace ScriptSharp.ScriptModel {
             Debug.Assert(conditions != null);
 
             _conditions = conditions;
+        }
+
+        public void SetSelector(string selector) {
+            Debug.Assert(_selector == null);
+            Debug.Assert(String.IsNullOrEmpty(selector) == false);
+
+            _selector = selector;
         }
 
         public void SetSkipGeneration() {

@@ -24,6 +24,22 @@ namespace TypeTests {
             get { return null; }
             set { }
         }
+
+        [ScriptMethod("foo")]
+        [ScriptName("do")]
+        public void DoFoo() {
+        }
+
+        [ScriptMethod("bar")]
+        [ScriptName("do")]
+        public void DoBar(int n) {
+        }
+
+        [ScriptEvent("addEventListener", "removeEventListener")]
+        public event Action Click {
+            add { }
+            remove { }
+        }
     }
 
     public class App {
@@ -31,6 +47,8 @@ namespace TypeTests {
         public App() {
             MyElement elem = (MyElement)Document.GetElementById("foo");
             string s = elem.myString;
+            elem.DoFoo();
+            elem.DoBar(10);
 
             elem["Smith"] = elem["Joe"];
 
@@ -38,6 +56,10 @@ namespace TypeTests {
             XmlDocumentParser parser = new XmlDocumentParser();
             XmlDocument doc = parser.ParseFromString("<markup></markup>", "text/xml");
             Date d = Date.Parse("1/1/2010");
+
+            Action eventHandler = delegate() { };
+            elem.Click += eventHandler;
+            elem.Click -= eventHandler;
         }
     }
 }

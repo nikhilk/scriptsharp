@@ -67,6 +67,16 @@ namespace ScriptSharp.Compiler {
                     }
                 }
 
+                if (typeSymbol.IsApplicationType == false) {
+                    AttributeNode eventAttribute = AttributeNode.FindAttribute(eventNode.Attributes, "ScriptEvent");
+                    if ((eventAttribute != null) && (eventAttribute.Arguments != null) && (eventAttribute.Arguments.Count == 2)) {
+                        string addAccessor = (string)((LiteralNode)eventAttribute.Arguments[0]).Value;
+                        string removeAccessor = (string)((LiteralNode)eventAttribute.Arguments[1]).Value;
+
+                        eventSymbol.SetAccessors(addAccessor, removeAccessor);
+                    }
+                }
+
                 return eventSymbol;
             }
 
@@ -550,6 +560,18 @@ namespace ScriptSharp.Compiler {
 
                     if (conditions != null) {
                         method.SetConditions(conditions);
+                    }
+
+                    if (typeSymbol.IsApplicationType == false) {
+                        foreach (AttributeNode attrNode in methodNode.Attributes) {
+                            if (attrNode.TypeName.Equals("ScriptMethod", StringComparison.Ordinal)) {
+                                Debug.Assert(attrNode.Arguments[0] is LiteralNode);
+                                Debug.Assert(((LiteralNode)attrNode.Arguments[0]).Value is string);
+
+                                method.SetSelector((string)((LiteralNode)attrNode.Arguments[0]).Value);
+                                break;
+                            }
+                        }
                     }
                 }
             }

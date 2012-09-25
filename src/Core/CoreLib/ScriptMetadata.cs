@@ -227,6 +227,49 @@ namespace System.Runtime.CompilerServices {
     public sealed class ScriptSkipAttribute : Attribute {
     }
 
+    [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
+    [ScriptIgnore]
+    public sealed class ScriptMethodAttribute : Attribute {
+
+        private string _selector;
+
+        public ScriptMethodAttribute(string selector) {
+            _selector = selector;
+        }
+
+        public string Selector {
+            get {
+                return _selector;
+            }
+        }
+    }
+
+
+    [AttributeUsage(AttributeTargets.Event, Inherited = true, AllowMultiple = false)]
+    [ScriptIgnore]
+    public sealed class ScriptEventAttribute : Attribute {
+
+        private string _addAccessor;
+        private string _removeAccessor;
+
+        public ScriptEventAttribute(string addAccessor, string removeAccessor) {
+            _addAccessor = addAccessor;
+            _removeAccessor = removeAccessor;
+        }
+
+        public string AddAccessor {
+            get {
+                return _addAccessor;
+            }
+        }
+
+        public string RemoveAccessor {
+            get {
+                return _removeAccessor;
+            }
+        }
+    }
+    
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
     [ScriptIgnore]
     public sealed class ScriptTemplateAttribute : Attribute {

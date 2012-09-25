@@ -210,6 +210,12 @@ namespace ScriptSharp.Importer {
                 EventSymbol eventSymbol = new EventSymbol(eventName, typeSymbol, eventHandlerType);
                 ImportMemberDetails(eventSymbol, eventDef.AddMethod, eventDef);
 
+                string addAccessor;
+                string removeAccessor;
+                if (MetadataHelpers.GetScriptEventAccessors(eventDef, out addAccessor, out removeAccessor)) {
+                    eventSymbol.SetAccessors(addAccessor, removeAccessor);
+                }
+
                 typeSymbol.AddMember(eventSymbol);
             }
         }
@@ -383,6 +389,11 @@ namespace ScriptSharp.Importer {
                 string alias = MetadataHelpers.GetScriptAlias(method);
                 if (String.IsNullOrEmpty(alias) == false) {
                     methodSymbol.SetAlias(alias);
+                }
+
+                string selector = MetadataHelpers.GetScriptMethodSelector(method);
+                if (String.IsNullOrEmpty(selector) == false) {
+                    methodSymbol.SetSelector(selector);
                 }
 
                 ICollection<string> conditions;

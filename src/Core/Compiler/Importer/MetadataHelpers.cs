@@ -56,6 +56,30 @@ namespace ScriptSharp.Importer {
             return null;
         }
 
+        public static bool GetScriptEventAccessors(EventDefinition eventDefinition, out string addAccessor, out string removeAccessor) {
+            addAccessor = null;
+            removeAccessor = null;
+
+            CustomAttribute eventAttribute = GetAttribute(eventDefinition, "System.Runtime.CompilerServices.ScriptEventAttribute");
+            if (eventAttribute != null) {
+                addAccessor = eventAttribute.ConstructorArguments[0].Value as string;
+                removeAccessor = eventAttribute.ConstructorArguments[1].Value as string;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public static string GetScriptMethodSelector(MethodDefinition method) {
+            CustomAttribute selectorAttribute = GetAttribute(method, "System.Runtime.CompilerServices.ScriptMethodAttribute");
+            if (selectorAttribute != null) {
+                return GetAttributeArgument(selectorAttribute);
+            }
+
+            return null;
+        }
+
         public static string GetScriptName(ICustomAttributeProvider attributeProvider, out bool preserveName, out bool preserveCase) {
             string name = null;
             preserveName = false;
