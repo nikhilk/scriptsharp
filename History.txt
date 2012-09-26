@@ -1,6 +1,76 @@
 Changelog
 ===============================================================================
 
+v0.8 (combines changes from 0.7.6 that weren't released as an actual build
+      outside of the github repo)
+    - Support for AMD, and general reliance on the module pattern.
+      An assembly maps to a module (named by its ScriptAssembly attribute).
+      Its references map to dependencies. The ssloader.js provides a
+      small/compact loader that supports declarative configuration, local
+      storage integration, auto/pre-loading of scripts and the core
+      AMD constructs - define and require.
+    - Script generation optimizations leveraging module patterns, more
+      efficient constructs (eg. anonymous method generation, locally scoped
+      functions for type definitions etc.), smaller minimized identifiers in
+      some cases
+    - Optimize mscorlib.js (now renamed ss.js) in terms of size, more
+      streamlined type system, as well as removal of all global extensions
+      to existing script objects.
+    - Removed .debug and .release generated scripts. Debug build produces
+      Foo.js and minimized Foo.min.js (of the debug flavor), and release
+      build also produces Foo.js and corresponding minimized Foo.min.js.
+    - Leverage AjaxMin tool to perform minimization (better minimization
+      as a result)
+    - NodeJS support
+    - Removed metadata attributes
+      . ScriptNamespaceAttribute
+      . AlternateSignatureAttribute is gone ... just extern suffices
+      . ScriptQualifier
+    - Replace/renamed metadata attributes
+      . PreserveCase is now a property on ScriptName
+      . PreserveName is now a property on ScriptName
+      . Imported is now ScriptImport
+      . IgnoreNamespace is now ScriptIgnoreNamespace
+      . IntrinsicProperty in now ScriptProperty
+      . Resources is now ScriptResources
+      . NamedValues and NumericValues combined into ScriptConstants
+      . GlobalMethods is gone, and Mixin replaced with ScriptExtension
+      . NonScriptable is now ScriptIgnore
+    - New metadata attributes
+      . ScriptTemplate (to provide a template for script generation
+        instead of a template file within the project)
+      . ScriptModule
+      . ScriptMethod
+      . ScriptEvent
+      . ScriptDependency
+    - Removed Record base class. Use ScriptObject attribute instead.
+    - Runtime
+      . Added Stack/Queue implementations
+      . Various changes in mscorlib classes
+        Removed:
+        Array.Clone, Index, GroupBy
+        Format and LocaleFormat methods on numeric types (use String.Format)
+        Date.Empty, IsEmpty (use null)
+        Delegate.ClearExport, DeleteExport (use Detach/Dispose on new Export object)
+        String.CompareTo, Equals (use String.Compare)
+        String.HtmlEncode/Decode, IndexOfAny, LastIndexOfAny
+
+        Replaced:
+        Array.Extract -> GetRange
+        Delegate.CreateExport -> Export (returns Export object instead of string)
+        String.LocaleFormat -> use overload that takes in CultureInfo
+
+        Added:
+        Script.Global, Undefined
+        Script.Require
+    - MSBuild changes:
+      . Added support for a CrunchScripts property in your csproj to control
+        whether crunching happens for the .min.js script is produced.
+      . Added support for a ScriptDocumentation property in your csproj to
+        control whether doc-comments are added to generated scripts (replaces
+        old SuppressDocumentation property)
+
+
 v0.7.6
     - Removed script loading APIs from Script class in mscorlib
       (moved them to Loader class in Script.Web)
