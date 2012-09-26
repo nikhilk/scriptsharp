@@ -14,6 +14,10 @@ internal static class Startup {
 
 namespace App {
 
+#if INCLUDE_EXPORT
+    public class Dummy { }
+#endif
+
     [ScriptModule]
     internal static class Main {
 

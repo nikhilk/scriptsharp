@@ -74,7 +74,13 @@ namespace ScriptSharp.Tests {
             RunTest((c) => {
                 c.AddReference("Script.Web.dll").
                   AddSource("Code.cs");
+                c.Options.Defines = new string[] { "INCLUDE_EXPORT" };
             });
+
+            RunTest((c) => {
+                c.AddReference("Script.Web.dll").
+                  AddSource("Code.cs");
+            }, "ZeroExportsBaseline.txt");
         }
 
         [TestMethod]

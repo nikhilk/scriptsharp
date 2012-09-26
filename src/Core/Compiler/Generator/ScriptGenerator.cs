@@ -119,67 +119,72 @@ namespace ScriptSharp.Generator {
                 TypeGenerator.GenerateScript(this, type);
             }
 
-            _writer.Write("var $exports = ss.module('");
-            _writer.Write(symbolSet.ScriptName);
-            _writer.Write("',");
-            if ((internalTypes.Count != 0) && hasNonModuleInternalTypes) {
-                _writer.WriteLine();
-                _writer.Indent++;
-                _writer.WriteLine("{");
-                _writer.Indent++;
-                bool firstType = true;
-                foreach (TypeSymbol type in internalTypes) {
-                    if ((type.Type == SymbolType.Class) &&
-                        (((ClassSymbol)type).IsExtenderClass || ((ClassSymbol)type).IsModuleClass)) {
-                        continue;
-                    }
-                    if ((type.Type == SymbolType.Record) &&
-                        ((RecordSymbol)type).Constructor == null) {
-                        continue;
-                    }
+            bool generateModule = (publicTypes.Count != 0) ||
+                                  ((internalTypes.Count != 0) && hasNonModuleInternalTypes);
 
-                    if (firstType == false) {
-                        _writer.WriteLine(",");
-                    }
-                    TypeGenerator.GenerateRegistrationScript(this, type);
-                    firstType = false;
-                }
-                _writer.Indent--;
-                _writer.WriteLine();
-                _writer.Write("},");
-                _writer.Indent--;
-            }
-            else {
-                _writer.Write(" null,");
-            }
-            if (publicTypes.Count != 0) {
-                _writer.WriteLine();
-                _writer.Indent++;
-                _writer.WriteLine("{");
-                _writer.Indent++;
-                bool firstType = true;
-                foreach (TypeSymbol type in publicTypes) {
-                    if ((type.Type == SymbolType.Class) &&
-                        ((ClassSymbol)type).IsExtenderClass) {
-                        continue;
-                    }
+            if (generateModule) {
+                _writer.Write("var $exports = ss.module('");
+                _writer.Write(symbolSet.ScriptName);
+                _writer.Write("',");
+                if ((internalTypes.Count != 0) && hasNonModuleInternalTypes) {
+                    _writer.WriteLine();
+                    _writer.Indent++;
+                    _writer.WriteLine("{");
+                    _writer.Indent++;
+                    bool firstType = true;
+                    foreach (TypeSymbol type in internalTypes) {
+                        if ((type.Type == SymbolType.Class) &&
+                            (((ClassSymbol)type).IsExtenderClass || ((ClassSymbol)type).IsModuleClass)) {
+                            continue;
+                        }
+                        if ((type.Type == SymbolType.Record) &&
+                            ((RecordSymbol)type).Constructor == null) {
+                            continue;
+                        }
 
-                    if (firstType == false) {
-                        _writer.WriteLine(",");
+                        if (firstType == false) {
+                            _writer.WriteLine(",");
+                        }
+                        TypeGenerator.GenerateRegistrationScript(this, type);
+                        firstType = false;
                     }
-                    TypeGenerator.GenerateRegistrationScript(this, type);
-                    firstType = false;
+                    _writer.Indent--;
+                    _writer.WriteLine();
+                    _writer.Write("},");
+                    _writer.Indent--;
                 }
-                _writer.Indent--;
+                else {
+                    _writer.Write(" null,");
+                }
+                if (publicTypes.Count != 0) {
+                    _writer.WriteLine();
+                    _writer.Indent++;
+                    _writer.WriteLine("{");
+                    _writer.Indent++;
+                    bool firstType = true;
+                    foreach (TypeSymbol type in publicTypes) {
+                        if ((type.Type == SymbolType.Class) &&
+                            ((ClassSymbol)type).IsExtenderClass) {
+                            continue;
+                        }
+
+                        if (firstType == false) {
+                            _writer.WriteLine(",");
+                        }
+                        TypeGenerator.GenerateRegistrationScript(this, type);
+                        firstType = false;
+                    }
+                    _writer.Indent--;
+                    _writer.WriteLine();
+                    _writer.Write("}");
+                    _writer.Indent--;
+                }
+                else {
+                    _writer.Write(" null");
+                }
+                _writer.WriteLine(");");
                 _writer.WriteLine();
-                _writer.Write("}");
-                _writer.Indent--;
             }
-            else {
-                _writer.Write(" null");
-            }
-            _writer.WriteLine(");");
-            _writer.WriteLine();
 
             foreach (TypeSymbol type in types) {
                 if (type.Type == SymbolType.Class) {
@@ -196,8 +201,10 @@ namespace ScriptSharp.Generator {
                 }
             }
 
-            _writer.WriteLine();
-            _writer.WriteLine("return $exports;");
+            if (generateModule) {
+                _writer.WriteLine();
+                _writer.WriteLine("return $exports;");
+            }
 
             if (initialIndent) {
                 _writer.Indent--;

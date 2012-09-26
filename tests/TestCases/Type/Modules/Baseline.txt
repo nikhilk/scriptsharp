@@ -3,7 +3,19 @@
 define('test', ['ss'], function(ss) {
   var $global = this;
 
-  var $exports = ss.module('test', null, null);
+  // App.Dummy
+
+  function App$Dummy() {
+  }
+  var App$Dummy$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      Dummy: [ App$Dummy, App$Dummy$, null ]
+    });
 
   alert('Hello Startup');
   window.addEventListener('load', function(e) {

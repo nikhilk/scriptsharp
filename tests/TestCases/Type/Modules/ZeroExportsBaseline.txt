@@ -1,0 +1,10 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+
+  alert('Hello Startup');
+  window.addEventListener('load', function(e) {
+    alert('Loaded');
+  }, false);
+});
