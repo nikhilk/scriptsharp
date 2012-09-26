@@ -29,3 +29,4 @@ var StringBuilder$ = {
     return this._parts.join(s || '');
   }
 };
+

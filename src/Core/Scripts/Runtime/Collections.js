@@ -152,3 +152,4 @@ var Queue$ = {
     return this._items.length ? this._items[this._offset] : undefined;
   }
 }
+

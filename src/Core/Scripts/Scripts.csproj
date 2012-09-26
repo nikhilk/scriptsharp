@@ -33,11 +33,9 @@
     <Content Include="Runtime\TypeSystem.js" />
   </ItemGroup>
   <Target Name="Build">
-    <Exec Command="$(ToolsPath)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Runtime.js /output:$(OutputPath)\ss.debug.js" />
-    <Exec Command="$(ToolsPath)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Runtime.js /output:$(OutputPath)\ss.js" />
+    <Exec Command="$(ToolsPath)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Runtime.js /output:$(OutputPath)\ss.js" />
     <Exec Command="$(ToolsPath)\ajaxmin.exe -hc -clobber:true $(OutputPath)\ss.js -out $(OutputPath)\ss.min.js" />
-    <Exec Command="$(ToolsPath)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Loader.js /output:$(OutputPath)\ssloader.debug.js" />
-    <Exec Command="$(ToolsPath)\sspp.exe /nologo /stripCommentsOnly /crlf /input:$(ProjectDir)Loader.js /output:$(OutputPath)\ssloader.js" />
+    <Exec Command="$(ToolsPath)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Loader.js /output:$(OutputPath)\ssloader.js" />
     <Exec Command="$(ToolsPath)\ajaxmin.exe -hc -clobber:true $(OutputPath)\ssloader.js -out $(OutputPath)\ssloader.min.js" />
   </Target>
   <Target Name="Clean">
