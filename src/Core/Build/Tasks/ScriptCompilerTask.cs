@@ -221,21 +221,21 @@ namespace ScriptSharp.Tasks {
                 }
             }
 
-            if (CrunchScript) {
-                CompilerOptions minimizeOptions =
-                    CreateOptions(sourceItems, resourceItems, locale,
-                                  /* includeTests */ false, /* minimize */ true,
-                                  out scriptTaskItem);
-                ScriptCompiler minimizingCompiler = new ScriptCompiler(this);
-                minimizingCompiler.Compile(minimizeOptions);
-                if (_hasErrors == false) {
+            CompilerOptions minimizeOptions =
+                CreateOptions(sourceItems, resourceItems, locale,
+                                /* includeTests */ false, /* minimize */ true,
+                                out scriptTaskItem);
+            ScriptCompiler minimizingCompiler = new ScriptCompiler(this);
+            minimizingCompiler.Compile(minimizeOptions);
+            if (_hasErrors == false) {
+                if (CrunchScript) {
                     ExecuteCruncher(scriptTaskItem);
+                }
 
-                    OnScriptFileGenerated(scriptTaskItem, minimizeOptions, /* copyReferences */ false);
-                }
-                else {
-                    return false;
-                }
+                OnScriptFileGenerated(scriptTaskItem, minimizeOptions, /* copyReferences */ false);
+            }
+            else {
+                return false;
             }
 
             return true;
