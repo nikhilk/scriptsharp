@@ -13,8 +13,8 @@ namespace Runtime.Tests {
     public class ExtensionTests : RuntimeTest {
 
         [TestMethod]
-        public void TestString() {
-            RunTest("/TestString.htm");
+        public void TestGlobals() {
+            RunTest("/TestGlobals.htm");
         }
     }
 }

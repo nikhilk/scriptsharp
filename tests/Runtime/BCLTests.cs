@@ -38,6 +38,11 @@ namespace Runtime.Tests {
         }
 
         [TestMethod]
+        public void TestString() {
+            RunTest("/TestString.htm");
+        }
+
+        [TestMethod]
         public void TestStringBuilder() {
             RunTest("/TestStringBuilder.htm");
         }

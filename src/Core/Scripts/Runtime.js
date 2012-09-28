@@ -99,5 +99,11 @@
     });
   }
 
-  global.define ? global.define('ss', [], _ss) : global.ss = _ss();
+
+  function _export() {
+    var ss = _ss();
+    typeof exports == 'object' ? ss.extend(exports, ss) : global.ss = ss;
+  }
+
+  global.define ? global.define('ss', [], _ss) : _export();
 })(this);
