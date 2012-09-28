@@ -39,7 +39,7 @@ namespace ScriptSharp.Importer {
         }
 
         public static string GetScriptAssemblyName(ICustomAttributeProvider attributeProvider) {
-            CustomAttribute scriptAssemblyAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptAssemblyAttribute");
+            CustomAttribute scriptAssemblyAttribute = GetAttribute(attributeProvider, "System.ScriptAssemblyAttribute");
             if (scriptAssemblyAttribute != null) {
                 return GetAttributeArgument(scriptAssemblyAttribute);
             }
@@ -85,7 +85,7 @@ namespace ScriptSharp.Importer {
             preserveName = false;
             preserveCase = false;
 
-            CustomAttribute nameAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptNameAttribute");
+            CustomAttribute nameAttribute = GetAttribute(attributeProvider, "System.ScriptNameAttribute");
             if (nameAttribute != null) {
                 if (nameAttribute.HasConstructorArguments) {
                     name = GetAttributeArgument(nameAttribute);
@@ -133,7 +133,7 @@ namespace ScriptSharp.Importer {
         public static bool IsScriptExtension(TypeDefinition type, out string extendee) {
             extendee = null;
 
-            CustomAttribute extensionAttribute = GetAttribute(type, "System.Runtime.CompilerServices.ScriptExtensionAttribute");
+            CustomAttribute extensionAttribute = GetAttribute(type, "System.ScriptExtensionAttribute");
             if (extensionAttribute != null) {
                 extendee = GetAttributeArgument(extensionAttribute);
                 if (String.IsNullOrEmpty(extendee) == false) {
@@ -178,11 +178,11 @@ namespace ScriptSharp.Importer {
         }
 
         public static bool ShouldTreatAsRecordType(TypeDefinition type) {
-            return GetAttribute(type, "System.Runtime.CompilerServices.ScriptObjectAttribute") != null;
+            return GetAttribute(type, "System.ScriptObjectAttribute") != null;
         }
 
         public static bool ShouldUseEnumNames(TypeDefinition type) {
-            CustomAttribute attribute = GetAttribute(type, "System.Runtime.CompilerServices.ScriptConstantsAttribute");
+            CustomAttribute attribute = GetAttribute(type, "System.ScriptConstantsAttribute");
             if (attribute != null) {
                 if (attribute.HasProperties) {
                     Debug.Assert(attribute.Properties.Count == 1);
@@ -197,7 +197,7 @@ namespace ScriptSharp.Importer {
         }
 
         public static bool ShouldUseEnumValues(TypeDefinition type) {
-            CustomAttribute attribute = GetAttribute(type, "System.Runtime.CompilerServices.ScriptConstantsAttribute");
+            CustomAttribute attribute = GetAttribute(type, "System.ScriptConstantsAttribute");
             if (attribute != null) {
                 if (attribute.HasProperties) {
                     Debug.Assert(attribute.Properties.Count == 1);

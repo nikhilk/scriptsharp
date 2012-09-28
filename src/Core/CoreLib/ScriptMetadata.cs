@@ -7,28 +7,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace System.Runtime.CompilerServices {
-
-    /// <summary>
-    /// This attribute can be placed on types in system script assemblies that should not
-    /// be imported. It is only meant to be used within mscorlib.dll.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Delegate | AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-    [ScriptIgnore]
-    [ScriptImport]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public sealed class ScriptIgnoreAttribute : Attribute {
-    }
-
-    /// <summary>
-    /// This attribute can be placed on types that should not be emitted into generated
-    /// script, as they represent existing script or native types.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Enum | AttributeTargets.Delegate | AttributeTargets.Struct)]
-    [ScriptIgnore]
-    [ScriptImport]
-    public sealed class ScriptImportAttribute : Attribute {
-    }
+namespace System {
 
     /// <summary>
     /// Marks an assembly as a script assembly that can be used with Script#.
@@ -56,36 +35,21 @@ namespace System.Runtime.CompilerServices {
         }
     }
 
-    /// <summary>
-    /// Marks a type with a script dependency that is required at runtime.
-    /// The specified name is used as the name of the dependency, and the runtime identifier.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Type, Inherited = false, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
     [ScriptIgnore]
-    [ScriptImport]
-    public sealed class ScriptDependencyAttribute : Attribute {
+    public sealed class ScriptTemplateAttribute : Attribute {
 
-        private string _name;
+        private string _template;
 
-        public ScriptDependencyAttribute(string name) {
-            _name = name;
+        public ScriptTemplateAttribute(string template) {
+            _template = template;
         }
 
-        public string Name {
+        public string Template {
             get {
-                return _name;
+                return _template;
             }
         }
-    }
-
-    /// <summary>
-    /// This attribute indicates that the namespace of type within a system assembly
-    /// should be ignored at script generation time. It is useful for creating namespaces
-    /// for the purpose of c# code that don't exist at runtime.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Delegate | AttributeTargets.Interface | AttributeTargets.Struct, Inherited = true, AllowMultiple = false)]
-    [ScriptIgnore]
-    public sealed class ScriptIgnoreNamespaceAttribute : Attribute {
     }
 
     /// <summary>
@@ -146,15 +110,6 @@ namespace System.Runtime.CompilerServices {
         }
     }
 
-    /// <summary>
-    /// This attribute denotes a C# property that manifests like a field in the generated
-    /// JavaScript (i.e. is not accessed via get/set methods). This is really meant only
-    /// for use when defining OM corresponding to native objects exposed to script.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
-    [ScriptIgnore]
-    public sealed class ScriptPropertyAttribute : Attribute {
-    }
 
     /// <summary>
     /// Allows specifying the name to use for a type or member in the generated script.
@@ -198,6 +153,62 @@ namespace System.Runtime.CompilerServices {
             }
         }
     }
+}
+
+namespace System.Runtime.CompilerServices {
+
+    /// <summary>
+    /// This attribute can be placed on types in system script assemblies that should not
+    /// be imported. It is only meant to be used within mscorlib.dll.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Delegate | AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
+    [ScriptIgnore]
+    [ScriptImport]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public sealed class ScriptIgnoreAttribute : Attribute {
+    }
+
+    /// <summary>
+    /// This attribute can be placed on types that should not be emitted into generated
+    /// script, as they represent existing script or native types.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Enum | AttributeTargets.Delegate | AttributeTargets.Struct)]
+    [ScriptIgnore]
+    [ScriptImport]
+    public sealed class ScriptImportAttribute : Attribute {
+    }
+
+    /// <summary>
+    /// Marks a type with a script dependency that is required at runtime.
+    /// The specified name is used as the name of the dependency, and the runtime identifier.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Type, Inherited = false, AllowMultiple = false)]
+    [ScriptIgnore]
+    [ScriptImport]
+    public sealed class ScriptDependencyAttribute : Attribute {
+
+        private string _name;
+
+        public ScriptDependencyAttribute(string name) {
+            _name = name;
+        }
+
+        public string Name {
+            get {
+                return _name;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This attribute indicates that the namespace of type within a system assembly
+    /// should be ignored at script generation time. It is useful for creating namespaces
+    /// for the purpose of c# code that don't exist at runtime.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Delegate | AttributeTargets.Interface | AttributeTargets.Struct, Inherited = true, AllowMultiple = false)]
+    [ScriptIgnore]
+    public sealed class ScriptIgnoreNamespaceAttribute : Attribute {
+    }
 
     /// <summary>
     /// This attribute allows specifying a script name for an imported method.
@@ -225,6 +236,16 @@ namespace System.Runtime.CompilerServices {
     [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
     [ScriptIgnore]
     public sealed class ScriptSkipAttribute : Attribute {
+    }
+
+    /// <summary>
+    /// This attribute denotes a C# property that manifests like a field in the generated
+    /// JavaScript (i.e. is not accessed via get/set methods). This is really meant only
+    /// for use when defining OM corresponding to native objects exposed to script.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
+    [ScriptIgnore]
+    public sealed class ScriptPropertyAttribute : Attribute {
     }
 
     [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
@@ -266,23 +287,6 @@ namespace System.Runtime.CompilerServices {
         public string RemoveAccessor {
             get {
                 return _removeAccessor;
-            }
-        }
-    }
-    
-    [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
-    [ScriptIgnore]
-    public sealed class ScriptTemplateAttribute : Attribute {
-
-        private string _template;
-
-        public ScriptTemplateAttribute(string template) {
-            _template = template;
-        }
-
-        public string Template {
-            get {
-                return _template;
             }
         }
     }
