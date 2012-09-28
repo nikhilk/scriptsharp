@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Html;
-using System.Runtime.CompilerServices;
 
 [ScriptModule]
 internal static class $safeitemrootname$

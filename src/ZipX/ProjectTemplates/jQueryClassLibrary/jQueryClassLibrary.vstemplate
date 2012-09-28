@@ -4,7 +4,7 @@
     <Description>A jQuery-based script file.</Description>
     <Icon Package="{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}" ID="4547" />
     <ProjectType>CSharp</ProjectType>
-    <SortOrder>10</SortOrder>
+    <SortOrder>20</SortOrder>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>ScriptLibrary</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>

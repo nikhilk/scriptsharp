@@ -25,7 +25,7 @@ public static class $safeitemrootname$Plugin
     }
 }
 
-[Imported]
+[ScriptImport]
 [ScriptName("Object")]
 public sealed class $safeitemrootname$Options
 {
@@ -40,7 +40,7 @@ public sealed class $safeitemrootname$Options
 }
 
 #region Script# Support
-[Imported]
+[ScriptImport]
 public sealed class $safeitemrootname$Object : jQueryObject
 {
     public jQueryObject $safeitemrootname$() {

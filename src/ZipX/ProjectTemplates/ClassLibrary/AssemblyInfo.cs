@@ -20,3 +20,21 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: ScriptAssembly("$safeprojectname$")]
+
+// A script template allows customization of the generated script.
+[assembly: ScriptTemplate(@"
+/*! {name}.js {version}
+ * {description}
+ * {copyright}
+ */
+
+""use strict"";
+
+define('{name}', [{requires}], function({dependencies}) {
+  var $global = this;
+
+  {script}
+});
+
+// Generated with Script# {compiler}
+")]

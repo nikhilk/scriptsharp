@@ -13,7 +13,9 @@
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
     <UseDocumentation>False</UseDocumentation>
+    <MinimizeScript>True</MinimizeScript>
     <CrunchScript>True</CrunchScript>
+    <CopyReferences>True</CopyReferences>
    </PropertyGroup>
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -33,7 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="Properties\FxCop.ruleset" />
-    <None Include="Properties\Script.template" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class1.cs" />
   </ItemGroup>
