@@ -33,8 +33,10 @@ namespace ScriptSharp.Tasks {
         private string _defines;
         private bool _scriptDocumentation;
 
+        private bool _minimize;
         private bool _crunchScript;
         private bool _copyReferences;
+        private string _referencesPath;
         private string _outputPath;
         private string _deploymentPath;
         private List<ITaskItem> _scripts;
@@ -52,6 +54,18 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _copyReferences = value;
+            }
+        }
+
+        public string CopyReferencesPath {
+            get {
+                if (_referencesPath == null) {
+                    return String.Empty;
+                }
+                return _referencesPath;
+            }
+            set {
+                _referencesPath = value;
             }
         }
 
@@ -104,6 +118,15 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _docCommentFile = value;
+            }
+        }
+
+        public bool Minimize {
+            get {
+                return _minimize;
+            }
+            set {
+                _minimize = value;
             }
         }
 
@@ -221,21 +244,23 @@ namespace ScriptSharp.Tasks {
                 }
             }
 
-            CompilerOptions minimizeOptions =
-                CreateOptions(sourceItems, resourceItems, locale,
-                                /* includeTests */ false, /* minimize */ true,
-                                out scriptTaskItem);
-            ScriptCompiler minimizingCompiler = new ScriptCompiler(this);
-            minimizingCompiler.Compile(minimizeOptions);
-            if (_hasErrors == false) {
-                if (CrunchScript) {
-                    ExecuteCruncher(scriptTaskItem);
-                }
+            if (_minimize) {
+                CompilerOptions minimizeOptions =
+                    CreateOptions(sourceItems, resourceItems, locale,
+                                  /* includeTests */ false, /* minimize */ true,
+                                  out scriptTaskItem);
+                ScriptCompiler minimizingCompiler = new ScriptCompiler(this);
+                minimizingCompiler.Compile(minimizeOptions);
+                if (_hasErrors == false) {
+                    if (CrunchScript) {
+                        ExecuteCruncher(scriptTaskItem);
+                    }
 
-                OnScriptFileGenerated(scriptTaskItem, minimizeOptions, /* copyReferences */ false);
-            }
-            else {
-                return false;
+                    OnScriptFileGenerated(scriptTaskItem, minimizeOptions, /* copyReferences */ false);
+                }
+                else {
+                    return false;
+                }
             }
 
             return true;
@@ -462,6 +487,11 @@ namespace ScriptSharp.Tasks {
 
             Action<string, string> safeCopyFile = delegate(string sourceFilePath, string targetFilePath) {
                 try {
+                    string directory = Path.GetDirectoryName(targetFilePath);
+                    if (Directory.Exists(directory) == false) {
+                        Directory.CreateDirectory(directory);
+                    }
+
                     if (File.Exists(targetFilePath)) {
                         // If the file already exists, make sure it is not read-only, so
                         // it can be overrwritten.
@@ -491,14 +521,16 @@ namespace ScriptSharp.Tasks {
                 foreach (string reference in options.References) {
                     string scriptFile = getScriptFile(reference, /* minimized */ false);
                     if (scriptFile != null) {
-                        string path = Path.Combine(scriptFolder, Path.GetFileName(scriptFile));
+                        string path = Path.Combine(scriptFolder, CopyReferencesPath, Path.GetFileName(scriptFile));
                         safeCopyFile(scriptFile, path);
                     }
 
-                    string minScriptFile = getScriptFile(reference, /* minimized */ true);
-                    if (minScriptFile != null) {
-                        string path = Path.Combine(scriptFolder, Path.GetFileName(minScriptFile));
-                        safeCopyFile(minScriptFile, path);
+                    if (_minimize) {
+                        string minScriptFile = getScriptFile(reference, /* minimized */ true);
+                        if (minScriptFile != null) {
+                            string path = Path.Combine(scriptFolder, CopyReferencesPath, Path.GetFileName(minScriptFile));
+                            safeCopyFile(minScriptFile, path);
+                        }
                     }
                 }
             }
@@ -512,14 +544,16 @@ namespace ScriptSharp.Tasks {
                     foreach (string reference in options.References) {
                         string scriptFile = getScriptFile(reference, /* minimized */ false);
                         if (scriptFile != null) {
-                            string path = Path.Combine(deploymentPath, Path.GetFileName(scriptFile));
+                            string path = Path.Combine(deploymentPath, CopyReferencesPath, Path.GetFileName(scriptFile));
                             safeCopyFile(scriptFile, path);
                         }
 
-                        string minScriptFile = getScriptFile(reference, /* minimized */ true);
-                        if (minScriptFile != null) {
-                            string path = Path.Combine(deploymentPath, Path.GetFileName(minScriptFile));
-                            safeCopyFile(minScriptFile, path);
+                        if (_minimize) {
+                            string minScriptFile = getScriptFile(reference, /* minimized */ true);
+                            if (minScriptFile != null) {
+                                string path = Path.Combine(deploymentPath, CopyReferencesPath, Path.GetFileName(minScriptFile));
+                                safeCopyFile(minScriptFile, path);
+                            }
                         }
                     }
                 }
