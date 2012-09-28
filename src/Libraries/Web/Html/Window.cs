@@ -373,6 +373,14 @@ namespace System.Html {
         public static void RemoveEventListener(string eventName, ElementEventListener listener, bool useCapture) {
         }
 
+        [ScriptAlias("require")]
+        public static void Require(string[] names, Action callback) {
+        }
+
+        [ScriptAlias("require")]
+        public static void Require<T>(string name, Action<T> callback) {
+        }
+
         public static void Scroll(int x, int y) {
         }
 
