@@ -42,6 +42,8 @@
     <ProjectJQueryClassLibrary Include="ProjectTemplates\jQueryClassLibrary\*" />
     <ProjectUnitTest Include="ProjectTemplates\UnitTest\*" />
     <ProjectImportLibrary Include="ProjectTemplates\ImportLibrary\*" />
+    <ProjectNodeAppLibrary Include="ProjectTemplates\NodeApplication\*" />
+    <ProjectNodeModuleLibrary Include="ProjectTemplates\NodeModule\*" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="VSIX\Extension.vsixmanifest">
@@ -71,6 +73,7 @@
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.jQuery.Validation.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Knockout.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.BingMaps.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Runtime.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Zip ZipLevel="9" Files="@(ItemClass)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Class.zip" WorkingDirectory="ItemTemplates\Class" />
     <Zip ZipLevel="9" Files="@(ItemPage)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Page.zip" WorkingDirectory="ItemTemplates\Page" />
@@ -82,6 +85,8 @@
     <Zip ZipLevel="9" Files="@(ProjectJQueryClassLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\jQueryClassLibrary.zip" WorkingDirectory="ProjectTemplates\jQueryClassLibrary" />
     <Zip ZipLevel="9" Files="@(ProjectUnitTest)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\UnitTest.zip" WorkingDirectory="ProjectTemplates\UnitTest" />
     <Zip ZipLevel="9" Files="@(ProjectImportLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\ImportLibrary.zip" WorkingDirectory="ProjectTemplates\ImportLibrary" />
+    <Zip ZipLevel="9" Files="@(ProjectNodeAppLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\NodeApplication.zip" WorkingDirectory="ProjectTemplates\NodeApplication" />
+    <Zip ZipLevel="9" Files="@(ProjectNodeModuleLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\NodeModule.zip" WorkingDirectory="ProjectTemplates\NodeModule" />
     <Copy SourceFiles="@(Content)" DestinationFolder="$(OutputPath)" />
     <ItemGroup>
       <VsixFiles Include="$(OutputPath)**\*.*" Exclude="*.vsix" />
