@@ -21,5 +21,13 @@ namespace ScriptSharp.Tests {
                 c.Options.Defines = new string[] { "DEBUG" };
             });
         }
+
+        [TestMethod]
+        public void TestNode() {
+            RunTest((c) => {
+                c.AddReference("Script.Node.dll").
+                  AddSource("Code.cs");
+            });
+        }
     }
 }

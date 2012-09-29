@@ -42,11 +42,14 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="ScriptSharp, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Debug\ScriptSharp.dll</HintPath>
+      <HintPath>..\bin\Debug\ScriptSharp.dll</HintPath>
     </Reference>
     <Reference Include="ScriptSharp.Build, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Debug\ScriptSharp.Build.dll</HintPath>
+      <HintPath>..\bin\Debug\ScriptSharp.Build.dll</HintPath>
+    </Reference>
+    <Reference Include="ScriptSharp.Testing">
+      <HintPath>..\bin\Debug\ScriptSharp.Testing.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -56,7 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicTests.cs" />
+    <Compile Include="Core\BrowserTest.cs" />
+    <Compile Include="Core\SimpleCompilation.cs" />
     <Compile Include="ExpressionTests.cs" />
+    <Compile Include="ScriptTests.cs" />
     <Compile Include="StatementTests.cs" />
     <Compile Include="MemberTests.cs" />
     <Compile Include="TypeTests.cs" />

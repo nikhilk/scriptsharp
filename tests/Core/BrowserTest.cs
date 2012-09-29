@@ -1,5 +1,5 @@
-﻿// RuntimeTest.cs
-// Script#/Tests/Runtime
+﻿// BrowserTest.cs
+// Script#/Tests
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
@@ -11,9 +11,9 @@ using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ScriptSharp.Testing;
 
-namespace Runtime.Tests.Core {
+namespace ScriptSharp.Tests.Core {
 
-    public abstract class RuntimeTest {
+    public abstract class BrowserTest {
 
         private static readonly WebTest _webTest;
         private static readonly string[] _scripts = new string[] {
@@ -27,11 +27,11 @@ namespace Runtime.Tests.Core {
 
         private TestContext _context;
 
-        static RuntimeTest() {
-            string assemblyPath = typeof(RuntimeTest).Assembly.GetModules()[0].FullyQualifiedName;
-            string binDirectory = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\..\\bin\\Debug\\"));
+        static BrowserTest() {
+            string assemblyPath = typeof(BrowserTest).Assembly.GetModules()[0].FullyQualifiedName;
+            string binDirectory = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\bin\\Debug\\"));
 
-            string webRoot = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\TestSite\\"));
+            string webRoot = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\TestSite\\"));
             string scriptsDirectory = Path.Combine(webRoot, "Scripts");
             string codeDirectory = Path.Combine(webRoot, "Code");
 
@@ -44,7 +44,7 @@ namespace Runtime.Tests.Core {
             foreach (string codeFile in _codeFiles) {
                 string script = Path.GetFileNameWithoutExtension(codeFile) + Path.ChangeExtension(".cs", ".js");
 
-                Compilation compilation = new Compilation(Path.Combine(scriptsDirectory, script));
+                SimpleCompilation compilation = new SimpleCompilation(Path.Combine(scriptsDirectory, script));
                 compilation.AddReference(mscorlibPath)
                            .AddSource(Path.Combine(codeDirectory, codeFile))
                            .Execute();

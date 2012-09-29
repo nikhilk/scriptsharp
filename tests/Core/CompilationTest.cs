@@ -41,7 +41,7 @@ namespace ScriptSharp.Tests.Core {
         public string GetAssemblyFilePath(string fileName) {
             // Get the path to the ScriptSharp build output folder
             string assemblyPath = this.GetType().Assembly.GetModules()[0].FullyQualifiedName;
-            string binPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\..\\bin\\Debug"));
+            string binPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\bin\\Debug"));
 
             return Path.Combine(binPath, fileName);
         }
@@ -49,7 +49,7 @@ namespace ScriptSharp.Tests.Core {
         public string GetTestFilePath(string fileName) {
             // Get the path to the test cases folder
             string assemblyPath = this.GetType().Assembly.GetModules()[0].FullyQualifiedName;
-            string testCasesPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\TestCases\\"));
+            string testCasesPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\TestCases\\"));
 
             // Files within the test cases folder are organized into a two level folder
             // structure ... group\test
@@ -70,7 +70,7 @@ namespace ScriptSharp.Tests.Core {
         public string GetToolPath(string fileName) {
             // Get the path to the tools folder
             string assemblyPath = this.GetType().Assembly.GetModules()[0].FullyQualifiedName;
-            string toolsPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\..\\tools\\bin"));
+            string toolsPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\tools\\bin"));
 
             return Path.Combine(toolsPath, fileName);
         }
