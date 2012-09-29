@@ -1,5 +1,5 @@
 // CommandLine.cs
-// Script#/Common
+// Script#/Tools/Preprocessor
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
@@ -8,7 +8,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 
 namespace ScriptSharp {

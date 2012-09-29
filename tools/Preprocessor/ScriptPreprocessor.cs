@@ -1,5 +1,5 @@
 // ScriptSharpPreprocessor.cs
-// Script#/Core/ScriptSharp
+// Script#/Tools/Preprocessor
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
@@ -11,22 +11,12 @@ using ScriptSharp.Preprocessor;
 
 namespace ScriptSharp {
 
-    public sealed class ScriptPreprocessor {
+    internal sealed class ScriptPreprocessor {
 
-        private IScriptInfo _scriptInfo;
         private IStreamResolver _includeResolver;
         private IErrorHandler _errorHandler;
 
-        public ScriptPreprocessor()
-            : this(null, null, null) {
-        }
-
-        public ScriptPreprocessor(IStreamResolver includeResolver, IErrorHandler errorHandler)
-            : this(includeResolver, errorHandler, null) {
-        }
-
-        internal ScriptPreprocessor(IStreamResolver includeResolver, IErrorHandler errorHandler, IScriptInfo scriptInfo) {
-            _scriptInfo = scriptInfo;
+        public ScriptPreprocessor(IStreamResolver includeResolver, IErrorHandler errorHandler) {
             _includeResolver = includeResolver;
             _errorHandler = errorHandler;
         }
@@ -41,8 +31,7 @@ namespace ScriptSharp {
                     outputWriter = new StreamWriter(outputStream);
                     preprocessor = new PreprocessorTextReader(options.SourceFile,
                                                               options.PreprocessorVariables,
-                                                              _includeResolver,
-                                                              _scriptInfo);
+                                                              _includeResolver);
 
                     TextReader contentReader = preprocessor;
                     if (options.Minimize) {

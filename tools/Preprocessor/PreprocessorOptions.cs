@@ -1,5 +1,5 @@
 // PreprocessorOptions.cs
-// Script#/Core/ScriptSharp
+// Script#/Tools/Preprocessor
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
@@ -14,7 +14,7 @@ namespace ScriptSharp {
     /// <summary>
     /// Script# pre-processor options.
     /// </summary>
-    public sealed class PreprocessorOptions {
+    internal sealed class PreprocessorOptions {
 
         private ICollection<string> _preprocessorVariables;
         private IStreamSource _sourceFile;
