@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Html;
-using System.Runtime.CompilerServices;
 
 namespace Flickr.FlickrClient {
 

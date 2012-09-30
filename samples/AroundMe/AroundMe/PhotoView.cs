@@ -3,7 +3,6 @@
 
 using System;
 using System.Html;
-using System.Runtime.CompilerServices;
 using Microsoft.Maps;
 using AroundMe.Graphs;
 
