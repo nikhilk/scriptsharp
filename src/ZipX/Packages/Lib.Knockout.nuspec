@@ -13,7 +13,7 @@
     <description>
       This package contains contains the Script.Knockout assembly that allows you to reference and program against the Knockout APIs when creating MVVM-style HTML5/browser-based applications with Script#.
     </description>
-    <tags>script knockout mvvm javascript ajax html html5 scriptsharp</tags>
+    <tags>script knockout mvvm javascript ajax html html5 scriptsharp thescriptsharp</tags>
     <language>en-US</language>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>

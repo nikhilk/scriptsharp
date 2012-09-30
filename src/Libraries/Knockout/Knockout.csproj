@@ -57,6 +57,7 @@
     <Compile Include="Knockout.cs" />
     <Compile Include="Observable.cs" />
     <Compile Include="Subscribable.cs" />
+    <Compile Include="CompareResultStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

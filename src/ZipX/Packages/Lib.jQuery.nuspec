@@ -13,7 +13,7 @@
     <description>
       This package contains contains the Script.jQuery assembly that allows you to reference and program against the rich set of jQuery APIs when creating HTML5/browser-based applications with Script#.
     </description>
-    <tags>script jquery jqueryui javascript ajax html html5 mobile scriptsharp</tags>
+    <tags>script jquery jqueryui javascript ajax html html5 mobile scriptsharp thescriptsharp</tags>
     <language>en-US</language>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
