@@ -26,6 +26,7 @@
     <None Include="Packages\Lib.jQuery.Templating.nuspec" />
     <None Include="Packages\Lib.jQuery.Validation.nuspec" />
     <None Include="Packages\Lib.Knockout.nuspec" />
+    <None Include="Packages\Lib.Node.nuspec" />
     <None Include="Packages\Testing.nuspec" />
     <None Include="Packages\Runtime.nuspec" />
   </ItemGroup>
