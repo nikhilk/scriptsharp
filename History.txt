@@ -73,6 +73,7 @@ v0.8 (combines changes from 0.7.6 that weren't released as an actual build
       . Knockout - Rename DependentObservable<T> -> ComputedObservable<T> to
                    match Knockout API changes
       . jQuery - Added Unique
+      . Rename RegularExpression to RegExp (to match shorter script name)
 
 
 v0.7.6

@@ -1336,7 +1336,7 @@ Types:
                 Generated Name: toLocaleString
                 Abstract: False
         
-    Class: RegularExpression
+    Class: RegExp
         Application Type: False
         Public: True
         Generated Name: RegExp
@@ -1373,7 +1373,7 @@ Types:
                 Generated Name: exec
                 Abstract: False
             Method: Parse
-                AssociatedType: RegularExpression
+                AssociatedType: RegExp
                 Visibility: Public, Static
                 Generated Name: ss.regexp
                 Abstract: False

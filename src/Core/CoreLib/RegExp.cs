@@ -1,4 +1,4 @@
-// RegularExpression.cs
+// RegExp.cs
 // Script#/Libraries/CoreLib
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -13,12 +13,12 @@ namespace System {
     [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("RegExp")]
-    public sealed class RegularExpression {
+    public sealed class RegExp {
 
-        public RegularExpression(string pattern) {
+        public RegExp(string pattern) {
         }
 
-        public RegularExpression(string pattern, string flags) {
+        public RegExp(string pattern, string flags) {
         }
 
         [ScriptProperty]
@@ -70,7 +70,7 @@ namespace System {
         }
 
         [ScriptAlias("ss.regexp")]
-        public static RegularExpression Parse(string s) {
+        public static RegExp Parse(string s) {
             return null;
         }
 

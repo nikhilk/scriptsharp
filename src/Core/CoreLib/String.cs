@@ -255,7 +255,7 @@ namespace System {
             return 0;
         }
 
-        public string[] Match(RegularExpression regex) {
+        public string[] Match(RegExp regex) {
             return null;
         }
 
@@ -300,16 +300,16 @@ namespace System {
         }
 
         [ScriptName("replace")]
-        public string ReplaceRegex(RegularExpression regex, string replaceText) {
+        public string ReplaceRegex(RegExp regex, string replaceText) {
             return null;
         }
 
         [ScriptName("replace")]
-        public string ReplaceRegex(RegularExpression regex, StringReplaceCallback callback) {
+        public string ReplaceRegex(RegExp regex, StringReplaceCallback callback) {
             return null;
         }
 
-        public int Search(RegularExpression regex) {
+        public int Search(RegExp regex) {
             return 0;
         }
 
@@ -329,11 +329,11 @@ namespace System {
             return null;
         }
 
-        public string[] Split(RegularExpression regex) {
+        public string[] Split(RegExp regex) {
             return null;
         }
 
-        public string[] Split(RegularExpression regex, int limit) {
+        public string[] Split(RegExp regex, int limit) {
             return null;
         }
 

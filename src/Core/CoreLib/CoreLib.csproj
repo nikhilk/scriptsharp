@@ -136,7 +136,7 @@
     <Compile Include="Number.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="Collections\Queue.cs" />
-    <Compile Include="RegularExpression.cs" />
+    <Compile Include="RegExp.cs" />
     <Compile Include="SByte.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="Single.cs" />
