@@ -43,6 +43,22 @@ namespace ScriptSharp.Tests {
                   AddReference("Lib3.dll").
                   AddSource("Code2.cs");
             }, "Code2Baseline.txt");
+
+            RunTest((c) => {
+                c.AddReference("Script.Web.dll").
+                  AddReference("Lib1.dll").
+                  AddReference("Lib2.dll").
+                  AddReference("Lib3.dll").
+                  AddSource("Code3.cs");
+            }, "Code3Baseline.txt");
+
+            RunTest((c) => {
+                c.AddReference("Script.Web.dll").
+                  AddReference("Lib1.dll").
+                  AddReference("Lib2.dll").
+                  AddReference("Lib3.dll").
+                  AddSource("Code4.cs");
+            }, "Code4Baseline.txt");
         }
 
         [TestMethod]

@@ -381,6 +381,10 @@ namespace System.Html {
         public static void Require<T>(string name, Action<T> callback) {
         }
 
+        [ScriptAlias("require")]
+        public static void Require(string name, Action callback) {
+        }
+
         public static void Scroll(int x, int y) {
         }
 

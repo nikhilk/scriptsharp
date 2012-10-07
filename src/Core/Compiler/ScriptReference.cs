@@ -18,6 +18,8 @@ namespace ScriptSharp {
 
         public ScriptReference(string name, string identifier) {
             Debug.Assert(String.IsNullOrEmpty(name) == false);
+            Debug.Assert((identifier == null) || (identifier.Length != 0));
+
             _name = name;
             _identifier = identifier;
         }
@@ -31,9 +33,18 @@ namespace ScriptSharp {
             }
         }
 
+        public bool HasIdentifier {
+            get {
+                return _identifier != null;
+            }
+        }
+
         public string Identifier {
             get {
                 return _identifier ?? _name;
+            }
+            set {
+                _identifier = value;
             }
         }
 

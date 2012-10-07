@@ -29,6 +29,87 @@ namespace ScriptSharp.Compiler {
             _errorHandler = errorHandler;
         }
 
+        private void BuildAssembly(ParseNodeList compilationUnits) {
+            string scriptName = GetAssemblyScriptName(compilationUnits);
+            if (String.IsNullOrEmpty(scriptName)) {
+                _errorHandler.ReportError("You must declare a ScriptAssembly attribute.", String.Empty);
+            }
+            else if (Utility.IsValidScriptName(scriptName) == false) {
+                string errorMessage = "The ScriptAssembly attribute referenced an invalid name '{0}'. Script names must only contain letters, numbers, dots or underscores.";
+                _errorHandler.ReportError(String.Format(errorMessage, scriptName), String.Empty);
+            }
+
+            _symbols.ScriptName = scriptName;
+
+            List<AttributeNode> referenceAttributes = GetAttributes(compilationUnits, "ScriptReference");
+            foreach (AttributeNode attribNode in referenceAttributes) {
+                string name = null;
+                string identifier = null;
+                string path = null;
+                bool delayLoad = false;
+
+                Debug.Assert((attribNode.Arguments.Count != 0) && (attribNode.Arguments[0].NodeType == ParseNodeType.Literal));
+                Debug.Assert(((LiteralNode)attribNode.Arguments[0]).Value is string);
+                name = (string)((LiteralNode)attribNode.Arguments[0]).Value;
+
+                if (attribNode.Arguments.Count > 1) {
+                    for (int i = 1; i < attribNode.Arguments.Count; i++) {
+                        Debug.Assert(attribNode.Arguments[1] is BinaryExpressionNode);
+
+                        BinaryExpressionNode propExpression = (BinaryExpressionNode)attribNode.Arguments[1];
+                        Debug.Assert((propExpression.LeftChild.NodeType == ParseNodeType.Name));
+
+                        string propName = ((NameNode)propExpression.LeftChild).Name;
+                        if (String.CompareOrdinal(propName, "Identifier") == 0) {
+                            Debug.Assert(propExpression.RightChild.NodeType == ParseNodeType.Literal);
+                            Debug.Assert(((LiteralNode)propExpression.RightChild).Value is string);
+
+                            identifier = (string)((LiteralNode)propExpression.RightChild).Value;
+                        }
+                        if (String.CompareOrdinal(propName, "Path") == 0) {
+                            Debug.Assert(propExpression.RightChild.NodeType == ParseNodeType.Literal);
+                            Debug.Assert(((LiteralNode)propExpression.RightChild).Value is string);
+
+                            path = (string)((LiteralNode)propExpression.RightChild).Value;
+                        }
+                        else if (String.CompareOrdinal(propName, "DelayLoad") == 0) {
+                            Debug.Assert(propExpression.RightChild.NodeType == ParseNodeType.Literal);
+                            Debug.Assert(((LiteralNode)propExpression.RightChild).Value is bool);
+
+                            delayLoad = (bool)((LiteralNode)propExpression.RightChild).Value;
+                        }
+                    }
+                }
+
+                bool newReference;
+                ScriptReference reference = _symbols.GetDependency(name, out newReference);
+                reference.Path = path;
+                reference.DelayLoaded = delayLoad;
+                if (newReference) {
+                    reference.Identifier = identifier;
+                }
+            }
+
+            string template;
+            if (GetScriptTemplate(compilationUnits, out template)) {
+                _options.ScriptInfo.Template = template;
+            }
+
+            string description;
+            string copyright;
+            string version;
+            GetAssemblyMetadata(compilationUnits, out description, out copyright, out version);
+            if (description != null) {
+                _options.ScriptInfo.Description = description;
+            }
+            if (copyright != null) {
+                _options.ScriptInfo.Copyright = copyright;
+            }
+            if (version != null) {
+                _options.ScriptInfo.Version = version;
+            }
+        }
+
         private EnumerationFieldSymbol BuildEnumField(EnumerationFieldNode fieldNode, TypeSymbol typeSymbol) {
             Debug.Assert(typeSymbol is EnumerationSymbol);
             EnumerationSymbol enumSymbol = (EnumerationSymbol)typeSymbol;
@@ -329,36 +410,7 @@ namespace ScriptSharp.Compiler {
             _symbols = symbols;
             _symbolTable = symbols;
             _options = options;
-
-            string scriptName = GetAssemblyScriptName(compilationUnits);
-            if (String.IsNullOrEmpty(scriptName)) {
-                _errorHandler.ReportError("You must declare a ScriptAssembly attribute.", String.Empty);
-            }
-            else if (Utility.IsValidScriptName(scriptName) == false) {
-                string errorMessage = "The ScriptAssembly attribute referenced an invalid name '{0}'. Script names must only contain letters, numbers, dots or underscores.";
-                _errorHandler.ReportError(String.Format(errorMessage, scriptName), String.Empty);
-            }
-
-            symbols.ScriptName = scriptName;
-
-            string template;
-            if (GetScriptTemplate(compilationUnits, out template)) {
-                options.ScriptInfo.Template = template;
-            }
-
-            string description;
-            string copyright;
-            string version;
-            GetAssemblyMetadata(compilationUnits, out description, out copyright, out version);
-            if (description != null) {
-                options.ScriptInfo.Description = description;
-            }
-            if (copyright != null) {
-                options.ScriptInfo.Copyright = copyright;
-            }
-            if (version != null) {
-                options.ScriptInfo.Version = version;
-            }
+            BuildAssembly(compilationUnits);
 
             List<TypeSymbol> types = new List<TypeSymbol>();
 
@@ -933,6 +985,22 @@ namespace ScriptSharp.Compiler {
                 }
             }
             return null;
+        }
+
+        private List<AttributeNode> GetAttributes(ParseNodeList compilationUnits, string attributeName) {
+            List<AttributeNode> attributes = new List<AttributeNode>();
+
+            foreach (CompilationUnitNode compilationUnit in compilationUnits) {
+                foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
+                    foreach (AttributeNode attribNode in attribBlock.Attributes) {
+                        if (attribNode.TypeName.Equals(attributeName, StringComparison.Ordinal)) {
+                            attributes.Add(attribNode);
+                        }
+                    }
+                }
+            }
+
+            return attributes;
         }
 
         private string GetAttributeValue(ParseNodeList attributes, string attributeName) {

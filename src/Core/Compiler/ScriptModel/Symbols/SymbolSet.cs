@@ -97,7 +97,22 @@ namespace ScriptSharp.ScriptModel {
         }
 
         public void AddDependency(ScriptReference dependency) {
-            if (_dependencySet.ContainsKey(dependency.Name) == false) {
+            ScriptReference existingDependency;
+            if (_dependencySet.TryGetValue(dependency.Name, out existingDependency)) {
+                // The dependency already exists ... copy over identifier
+                // from the new one to the existing one.
+
+                // This is to support the scenario where a dependency got defined
+                // by virtue of the app using a [ScriptReference] to specify path/delayLoad
+                // semnatics, and we're finding the imported dependency later on
+                // such as when a type with a dependency is referred in the code.
+
+                if ((existingDependency.HasIdentifier == false) &&
+                    dependency.HasIdentifier) {
+                    existingDependency.Identifier = dependency.Identifier;
+                }
+            }
+            else {
                 _dependencies.Add(dependency);
                 _dependencySet[dependency.Name] = dependency;
             }
@@ -397,10 +412,13 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
-        public ScriptReference GetDependency(string name) {
+        public ScriptReference GetDependency(string name, out bool newReference) {
+            newReference = false;
+
             ScriptReference reference;
             if (_dependencySet.TryGetValue(name, out reference) == false) {
                 reference = new ScriptReference(name, null);
+                newReference = true;
                 AddDependency(reference);
             }
             return reference;
