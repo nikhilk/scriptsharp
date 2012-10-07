@@ -3602,6 +3602,15 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Sorts an array of DOM elements, in place, with the duplicates removed.
+        /// </summary>
+        /// <param name="elements">The original list of elements</param>
+        /// <returns>The unique list of elements.</returns>
+        public Element[] Unique(Element[] elements) {
+            return null;
+        }
+
+        /// <summary>
         /// Attaches a handler to the unload event on each of the matched set of elements.
         /// </summary>
         /// <param name="eventHandler">The event handler to be invoked.</param>

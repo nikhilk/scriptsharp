@@ -1,4 +1,4 @@
-// DependentObservable.cs
+// ComputedObservable.cs
 // Script#/Libraries/Knockout
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -10,14 +10,14 @@ using System.Runtime.CompilerServices;
 namespace KnockoutApi {
 
     /// <summary>
-    /// Represents an object containing a value dependent on other observable values.
+    /// Represents an object containing a computed value based on other observable values.
     /// </summary>
     /// <typeparam name="T">The type of the contained value.</typeparam>
     [ScriptImport]
     [ScriptIgnoreNamespace]
-    public sealed class DependentObservable<T> {
+    public sealed class ComputedObservable<T> {
 
-        private DependentObservable() {
+        private ComputedObservable() {
         }
 
         /// <summary>
@@ -36,14 +36,14 @@ namespace KnockoutApi {
         }
 
         /// <summary>
-        /// For dependent observables, we throttle *evaluations* so that, no matter how fast its dependencies
+        /// For computed observables, we throttle *evaluations* so that, no matter how fast its dependencies
         /// notify updates, the target doesn't re-evaluate (and hence doesn't notify) faster than a certain rate
         /// For writable targets (observables, or writable dependent observables), we throttle *writes*
         /// so the target cannot change value synchronously or faster than a certain rate
         /// </summary>
         /// <param name="options"></param>
-        /// <returns>Extend is Chainable</returns>
-        public DependentObservable<T> Extend(Dictionary options) {
+        /// <returns>The current instance.</returns>
+        public ComputedObservable<T> Extend(Dictionary options) {
             return null;
         }
 

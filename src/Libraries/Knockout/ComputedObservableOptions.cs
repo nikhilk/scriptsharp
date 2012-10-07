@@ -1,9 +1,10 @@
-// DependentObservableOptions.cs
+// ComputedObservableOptions.cs
 // Script#/Libraries/Knockout
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
 
 namespace KnockoutApi {
@@ -15,7 +16,13 @@ namespace KnockoutApi {
     [ScriptImport]
     [ScriptIgnoreNamespace]
     [ScriptName("Object")]
-    public sealed class DependentObservableOptions<T> {
+    public sealed class ComputedObservableOptions<T> {
+
+        public ComputedObservableOptions() {
+        }
+
+        public ComputedObservableOptions(params object[] nameValuePairs) {
+        }
 
         /// <summary>
         /// Gets or sets whether the evaluation should be deferred, i.e. not

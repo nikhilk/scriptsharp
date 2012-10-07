@@ -104,6 +104,25 @@ namespace KnockoutApi {
         }
 
         /// <summary>
+        /// Creates an observable with a value computed from one or more other values.
+        /// </summary>
+        /// <typeparam name="T">The type of the observable value.</typeparam>
+        /// <param name="function">A function to compute the value.</param>
+        /// <returns>A new computed observable instance.</returns>
+        public static ComputedObservable<T> Computed<T>(Func<T> function) {
+            return null;
+        }
+
+        /// <summary>
+        /// Creates an observable with a value computed from one or more other values.
+        /// </summary>
+        /// <typeparam name="T">The type of the observable value.</typeparam>
+        /// <param name="options">Options for the computed observable.</param>
+        public static ComputedObservable<T> Computed<T>(ComputedObservableOptions<T> options) {
+            return null;
+        }
+
+        /// <summary>
         /// Returns the entire binding context associated with the DOM element
         /// </summary>
         /// <param name="node"></param>
@@ -117,25 +136,6 @@ namespace KnockoutApi {
         /// <param name="node"></param>
         public static T DataFor<T>(Element node) {
             return default(T);
-        }
-
-        /// <summary>
-        /// Creates an observable with a value computed from one or more other values.
-        /// </summary>
-        /// <typeparam name="T">The type of the observable value.</typeparam>
-        /// <param name="function">A function to compute the value.</param>
-        /// <returns>A new dependent observable instance.</returns>
-        public static DependentObservable<T> DependentObservable<T>(Func<T> function) {
-            return null;
-        }
-
-        /// <summary>
-        /// Creates an observable with a value computed from one or more other values.
-        /// </summary>
-        /// <typeparam name="T">The type of the observable value.</typeparam>
-        /// <param name="options">Options for the dependent observable.</param>
-        public static DependentObservable<T> DependentObservable<T>(DependentObservableOptions<T> options) {
-            return null;
         }
 
         /// <summary>
