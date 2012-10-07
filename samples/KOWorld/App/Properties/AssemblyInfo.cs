@@ -17,6 +17,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: ScriptAssembly("app")]
+[assembly: ScriptReference("knockout", Path = "knockout-2.1.0")]
 
 // A script template allows customization of the generated script.
 [assembly: ScriptTemplate(@"
@@ -27,7 +28,7 @@ using System.Runtime.CompilerServices;
 
 ""use strict"";
 
-define('{name}', [{requires}], function({dependencies}) {
+require([{requires}], function({dependencies}) {
   var $global = this;
 
   {script}
