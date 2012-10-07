@@ -26,7 +26,8 @@ namespace ScriptSharp.ScriptModel {
 
         private MemberSymbol _entryPoint;
         private string _scriptName;
-        private List<string> _dependencies;
+        private List<ScriptReference> _dependencies;
+        private Dictionary<string, ScriptReference> _dependencySet;
 
         private Dictionary<string, Dictionary<string, ResXItem>> _resources;
 
@@ -45,11 +46,12 @@ namespace ScriptSharp.ScriptModel {
             _namespaces.Add(_systemNamespace);
             _namespaceMap["System"] = _systemNamespace;
 
-            _dependencies = new List<string>();
+            _dependencies = new List<ScriptReference>();
+            _dependencySet = new Dictionary<string, ScriptReference>(StringComparer.Ordinal);
             _resources = new Dictionary<string, Dictionary<string, ResXItem>>(StringComparer.OrdinalIgnoreCase);
         }
 
-        public IEnumerable<string> Dependencies {
+        public IEnumerable<ScriptReference> Dependencies {
             get {
                 return _dependencies;
             }
@@ -94,9 +96,10 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
-        public void AddDependency(string scriptName) {
-            if (_dependencies.Contains(scriptName) == false) {
-                _dependencies.Add(scriptName);
+        public void AddDependency(ScriptReference dependency) {
+            if (_dependencySet.ContainsKey(dependency.Name) == false) {
+                _dependencies.Add(dependency);
+                _dependencySet[dependency.Name] = dependency;
             }
         }
 
@@ -248,7 +251,7 @@ namespace ScriptSharp.ScriptModel {
                 ClassSymbol genericClass = (ClassSymbol)templateType;
                 ClassSymbol instanceClass = new ClassSymbol(genericClass.Name, (NamespaceSymbol)genericClass.Parent);
                 instanceClass.SetInheritance(genericClass.BaseClass, genericClass.Interfaces);
-                instanceClass.SetImported(genericClass.DependencyName);
+                instanceClass.SetImported(genericClass.Dependency);
                 if (genericClass.IgnoreNamespace) {
                     instanceClass.SetIgnoreNamespace();
                 }
@@ -274,7 +277,7 @@ namespace ScriptSharp.ScriptModel {
                 InterfaceSymbol genericInterface = (InterfaceSymbol)templateType;
                 InterfaceSymbol instanceInterface = new InterfaceSymbol(genericInterface.Name, (NamespaceSymbol)genericInterface.Parent);
 
-                instanceInterface.SetImported(genericInterface.DependencyName);
+                instanceInterface.SetImported(genericInterface.Dependency);
                 if (genericInterface.IgnoreNamespace) {
                     instanceInterface.SetIgnoreNamespace();
                 }
@@ -392,6 +395,15 @@ namespace ScriptSharp.ScriptModel {
                     _namespaceMap[namespaceName] = namespaceSymbol;
                 }
             }
+        }
+
+        public ScriptReference GetDependency(string name) {
+            ScriptReference reference;
+            if (_dependencySet.TryGetValue(name, out reference) == false) {
+                reference = new ScriptReference(name, null);
+                AddDependency(reference);
+            }
+            return reference;
         }
 
         public NamespaceSymbol GetNamespace(string namespaceName) {

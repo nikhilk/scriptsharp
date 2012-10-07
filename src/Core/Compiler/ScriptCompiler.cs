@@ -293,7 +293,11 @@ namespace ScriptSharp {
             StringBuilder depLookupBuilder = new StringBuilder();
 
             bool firstDependency = true;
-            foreach (string dependency in _symbols.Dependencies) {
+            foreach (ScriptReference dependency in _symbols.Dependencies) {
+                if (dependency.DelayLoaded) {
+                    continue;
+                }
+
                 if (firstDependency) {
                     depLookupBuilder.Append("var ");
                 }
@@ -303,21 +307,11 @@ namespace ScriptSharp {
                     depLookupBuilder.Append(", ");
                 }
 
-                requiresBuilder.Append("'" + dependency + "'");
+                requiresBuilder.Append("'" + dependency.Name + "'");
+                dependenciesBuilder.Append(dependency.Identifier);
 
-                if (String.Compare(dependency, "jquery", StringComparison.OrdinalIgnoreCase) == 0) {
-                    // TODO: This is a hack ... may want to generalize
-                    //       to allow module name and associated variable
-                    //       to differ.
-                    dependenciesBuilder.Append("$");
-                    depLookupBuilder.Append("$");
-                }
-                else {
-                    dependenciesBuilder.Append(dependency);
-                    depLookupBuilder.Append(dependency);
-                }
-
-                depLookupBuilder.Append(" = require('" + dependency + "')");
+                depLookupBuilder.Append(dependency.Identifier);
+                depLookupBuilder.Append(" = require('" + dependency.Name + "')");
 
                 firstDependency = false;
             }

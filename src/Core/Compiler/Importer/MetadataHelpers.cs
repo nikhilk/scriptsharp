@@ -38,19 +38,33 @@ namespace ScriptSharp.Importer {
             return null;
         }
 
-        public static string GetScriptAssemblyName(ICustomAttributeProvider attributeProvider) {
+        public static string GetScriptAssemblyName(ICustomAttributeProvider attributeProvider, out string assemblyIdentifier) {
+            assemblyIdentifier = null;
+
             CustomAttribute scriptAssemblyAttribute = GetAttribute(attributeProvider, "System.ScriptAssemblyAttribute");
             if (scriptAssemblyAttribute != null) {
-                return GetAttributeArgument(scriptAssemblyAttribute);
+                string name = GetAttributeArgument(scriptAssemblyAttribute);
+                if (scriptAssemblyAttribute.Properties.Count != 0) {
+                    assemblyIdentifier = (string)scriptAssemblyAttribute.Properties[0].Argument.Value;
+                }
+
+                return name;
             }
 
             return null;
         }
 
-        public static string GetScriptDependencyName(ICustomAttributeProvider attributeProvider) {
-            CustomAttribute scriptAssemblyAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptDependencyAttribute");
-            if (scriptAssemblyAttribute != null) {
-                return GetAttributeArgument(scriptAssemblyAttribute);
+        public static string GetScriptDependencyName(ICustomAttributeProvider attributeProvider, out string dependencyIdentifier) {
+            dependencyIdentifier = null;
+
+            CustomAttribute scriptDependencyAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptDependencyAttribute");
+            if (scriptDependencyAttribute != null) {
+                string name = GetAttributeArgument(scriptDependencyAttribute);
+                if (scriptDependencyAttribute.Properties.Count != 0) {
+                    dependencyIdentifier = (string)scriptDependencyAttribute.Properties[0].Argument.Value;
+                }
+
+                return name;
             }
 
             return null;

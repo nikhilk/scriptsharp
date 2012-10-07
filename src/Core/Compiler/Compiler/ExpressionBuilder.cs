@@ -653,8 +653,8 @@ namespace ScriptSharp.Compiler {
                 }
             }
 
-            string dependency = ((TypeSymbol)memberSymbol.Parent).DependencyName;
-            if (String.IsNullOrEmpty(dependency) == false) {
+            ScriptReference dependency = ((TypeSymbol)memberSymbol.Parent).Dependency;
+            if (dependency != null) {
                 _symbolSet.AddDependency(dependency);
             }
 
@@ -852,8 +852,8 @@ namespace ScriptSharp.Compiler {
                 }
             }
 
-            if (String.IsNullOrEmpty(type.DependencyName) == false) {
-                _symbolSet.AddDependency(type.DependencyName);
+            if (type.Dependency != null) {
+                _symbolSet.AddDependency(type.Dependency);
             }
 
             return newExpression;
@@ -1385,8 +1385,8 @@ namespace ScriptSharp.Compiler {
             TypeSymbol referencedType = _symbolSet.ResolveType(node.TypeReference, _symbolTable, _symbolContext);
             Debug.Assert(referencedType != null);
 
-            if (String.IsNullOrEmpty(referencedType.DependencyName) == false) {
-                _symbolSet.AddDependency(referencedType.DependencyName);
+            if (referencedType.Dependency != null) {
+                _symbolSet.AddDependency(referencedType.Dependency);
             }
 
             TypeSymbol typeSymbol = _symbolSet.ResolveIntrinsicType(IntrinsicType.Type);

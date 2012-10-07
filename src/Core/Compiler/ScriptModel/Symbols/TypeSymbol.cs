@@ -16,7 +16,7 @@ namespace ScriptSharp.ScriptModel {
 
         private ICollection<string> _imports;
         private IDictionary<string, string> _aliases;
-        private string _dependencyName;
+        private ScriptReference _dependency;
         private bool _applicationType;
         private bool _isPublic;
         private bool _isArray;
@@ -49,9 +49,9 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
-        public string DependencyName {
+        public ScriptReference Dependency {
             get {
-                return _dependencyName;
+                return _dependency;
             }
         }
 
@@ -259,11 +259,11 @@ namespace ScriptSharp.ScriptModel {
             _ignoreNamespace = true;
         }
 
-        public void SetImported(string dependencyName) {
+        public void SetImported(ScriptReference dependency) {
             Debug.Assert(_applicationType == true);
 
             _applicationType = false;
-            _dependencyName = dependencyName;
+            _dependency = dependency;
         }
 
         public void SetArray() {

@@ -775,14 +775,40 @@ namespace ScriptSharp.Compiler {
             ParseNodeList attributes = typeNode.Attributes;
 
             if (AttributeNode.FindAttribute(attributes, "ScriptImport") != null) {
-                string dependencyName = GetAttributeValue(attributes, "ScriptDependency");
-                typeSymbol.SetImported(dependencyName);
+                ScriptReference dependency = null;
 
-                if (AttributeNode.FindAttribute(attributes, "ScriptIgnoreNamespace") != null) {
+                AttributeNode dependencyAttribute = AttributeNode.FindAttribute(attributes, "ScriptDependency");
+                if (dependencyAttribute != null) {
+                    string dependencyIdentifier = null;
+
+                    Debug.Assert((dependencyAttribute.Arguments.Count != 0) && (dependencyAttribute.Arguments[0].NodeType == ParseNodeType.Literal));
+                    Debug.Assert(((LiteralNode)dependencyAttribute.Arguments[0]).Value is string);
+                    string dependencyName = (string)((LiteralNode)dependencyAttribute.Arguments[0]).Value;
+
+                    if (dependencyAttribute.Arguments.Count > 1) {
+                        Debug.Assert(dependencyAttribute.Arguments[1] is BinaryExpressionNode);
+
+                        BinaryExpressionNode propExpression = (BinaryExpressionNode)dependencyAttribute.Arguments[1];
+                        Debug.Assert((propExpression.LeftChild.NodeType == ParseNodeType.Name) &&
+                                     (String.CompareOrdinal(((NameNode)propExpression.LeftChild).Name, "Identifier") == 0));
+
+                        Debug.Assert(propExpression.RightChild.NodeType == ParseNodeType.Literal);
+                        Debug.Assert(((LiteralNode)propExpression.RightChild).Value is string);
+
+                        dependencyIdentifier = (string)((LiteralNode)propExpression.RightChild).Value;
+                    }
+
+                    dependency = new ScriptReference(dependencyName, dependencyIdentifier);
+                }
+
+                typeSymbol.SetImported(dependency);
+
+                if ((AttributeNode.FindAttribute(attributes, "ScriptIgnoreNamespace") != null) ||
+                    (dependency == null)) {
                     typeSymbol.SetIgnoreNamespace();
                 }
                 else {
-                    typeSymbol.ScriptNamespace = dependencyName;
+                    typeSymbol.ScriptNamespace = dependency.Identifier;
                 }
             }
 

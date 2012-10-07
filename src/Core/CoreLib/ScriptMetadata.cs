@@ -23,6 +23,7 @@ namespace System {
     public sealed class ScriptAssemblyAttribute : Attribute {
 
         private string _name;
+        private string _identifier;
 
         public ScriptAssemblyAttribute(string name) {
             _name = name;
@@ -31,6 +32,15 @@ namespace System {
         public string Name {
             get {
                 return _name;
+            }
+        }
+
+        public string Identifier {
+            get {
+                return _identifier;
+            }
+            set {
+                _identifier = value;
             }
         }
     }
@@ -188,6 +198,7 @@ namespace System.Runtime.CompilerServices {
     public sealed class ScriptDependencyAttribute : Attribute {
 
         private string _name;
+        private string _identifier;
 
         public ScriptDependencyAttribute(string name) {
             _name = name;
@@ -196,6 +207,15 @@ namespace System.Runtime.CompilerServices {
         public string Name {
             get {
                 return _name;
+            }
+        }
+
+        public string Identifier {
+            get {
+                return _identifier;
+            }
+            set {
+                _identifier = value;
             }
         }
     }

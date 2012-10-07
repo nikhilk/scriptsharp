@@ -9,4 +9,4 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("Script.jQuery")]
 [assembly: AssemblyDescription("Script# jQuery Core API")]
-[assembly: ScriptAssembly("jquery")]
+[assembly: ScriptAssembly("jquery", Identifier = "$")]
