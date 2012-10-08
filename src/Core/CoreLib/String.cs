@@ -289,7 +289,7 @@ namespace System {
             return null;
         }
 
-        [ScriptName("ss.replaceString")]
+        [ScriptAlias("ss.replaceString")]
         public string Replace(string oldText, string replaceText) {
             return null;
         }
