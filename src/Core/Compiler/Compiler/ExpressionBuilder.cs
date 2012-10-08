@@ -1078,8 +1078,11 @@ namespace ScriptSharp.Compiler {
                     else if (method.Name.Equals("IsNull", StringComparison.Ordinal)) {
                         Debug.Assert(args.Count == 1);
 
-                        return new BinaryExpression(Operator.EqualEqualEqual, args[0],
-                                                    new LiteralExpression(objectType, null));
+                        Expression expr = new BinaryExpression(Operator.EqualEqualEqual, args[0],
+                                                               new LiteralExpression(objectType, null));
+                        expr.AddParenthesisHint();
+
+                        return expr;
                     }
                     else if (method.Name.Equals("IsUndefined", StringComparison.Ordinal)) {
                         Debug.Assert(args.Count == 1);
@@ -1091,7 +1094,10 @@ namespace ScriptSharp.Compiler {
                             new MemberExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
                                                  undefinedMember);
 
-                        return new BinaryExpression(Operator.EqualEqualEqual, args[0], TransformMemberExpression(undefinedExpression));
+                        Expression expr = new BinaryExpression(Operator.EqualEqualEqual, args[0], TransformMemberExpression(undefinedExpression));
+                        expr.AddParenthesisHint();
+
+                        return expr;
                     }
                     else if (method.Name.Equals("IsNullOrUndefined", StringComparison.Ordinal)) {
                         Debug.Assert(args.Count == 1);
