@@ -92,9 +92,30 @@ define(['ss', 'oop'], function(ss, oop) {
   test('type names', function() {
     var g = new oop.Garfield();
     QUnit.equal(ss.typeOf(g).$name, 'Garfield', "Expected 'Garfield' for type name.");
+    QUnit.equal(ss.typeName(g), 'Garfield', "Expected 'Garfield' for type name.");
 
     var c = new oop.Comic();
     QUnit.equal(ss.typeOf(c).$name, 'Comic', "Expected 'Comic' for type name.");
+    QUnit.equal(ss.typeName(c), 'Comic', "Expected 'Comic' for type name.");
+
+    QUnit.equal(ss.typeName('aaa'), 'String');
+    QUnit.equal(ss.typeName(String), 'String');
+
+    QUnit.equal(ss.typeName(true), 'Boolean');
+    QUnit.equal(ss.typeName(false), 'Boolean');
+    QUnit.equal(ss.typeName(Boolean), 'Boolean');
+
+    QUnit.equal(ss.typeName(1), 'Number');
+    QUnit.equal(ss.typeName(Number), 'Number');
+
+    QUnit.equal(ss.typeName(new Date()), 'Date');
+    QUnit.equal(ss.typeName(Date), 'Date');
+
+    QUnit.equal(ss.typeName({}), 'Object');
+    QUnit.equal(ss.typeName(Object), 'Object');
+
+    QUnit.equal(ss.typeName([]), 'Array');
+    QUnit.equal(ss.typeName(Array), 'Array');
   });
 
   test('type parsing', function() {

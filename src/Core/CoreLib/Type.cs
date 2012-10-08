@@ -24,8 +24,6 @@ namespace System {
             }
         }
 
-        [ScriptName("$name")]
-        [ScriptProperty]
         public string Name {
             get {
                 return null;

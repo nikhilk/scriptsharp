@@ -85,6 +85,7 @@
       isInterface: isInterface,
       typeOf: typeOf,
       type: type,
+      typeName: typeName,
       canCast: canCast,
       safeCast: safeCast,
       canAssign: canAssign,

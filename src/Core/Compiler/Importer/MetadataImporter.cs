@@ -491,12 +491,22 @@ namespace ScriptSharp.Importer {
                 TypeSymbol objectType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Object", null, SymbolFilter.Types);
                 Debug.Assert(objectType != null);
 
+                TypeSymbol stringType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("String", null, SymbolFilter.Types);
+                Debug.Assert(stringType != null);
+
                 // Enumerate - IEnumerable.GetEnumerator gets mapped to this
 
                 MethodSymbol enumerateMethod = new MethodSymbol("Enumerate", classSymbol, objectType, MemberVisibility.Public | MemberVisibility.Static);
                 enumerateMethod.SetAlias("ss.enumerate");
                 enumerateMethod.AddParameter(new ParameterSymbol("obj", enumerateMethod, objectType, ParameterMode.In));
                 classSymbol.AddMember(enumerateMethod);
+
+                // TypeName - Type.Name gets mapped to this
+
+                MethodSymbol typeNameMethod = new MethodSymbol("GetTypeName", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
+                typeNameMethod.SetAlias("ss.typeName");
+                typeNameMethod.AddParameter(new ParameterSymbol("obj", typeNameMethod, objectType, ParameterMode.In));
+                classSymbol.AddMember(typeNameMethod);
 
                 return;
             }

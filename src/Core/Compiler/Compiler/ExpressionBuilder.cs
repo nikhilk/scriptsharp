@@ -582,6 +582,7 @@ namespace ScriptSharp.Compiler {
             TypeSymbol dictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Dictionary);
             TypeSymbol genericDictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.GenericDictionary);
             TypeSymbol nullableType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Nullable);
+            TypeSymbol typeType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
 
             if (memberSymbol.Type == SymbolType.Property) {
                 if ((memberSymbol.Parent == dictionaryType) ||
@@ -623,6 +624,21 @@ namespace ScriptSharp.Compiler {
                         MethodExpression methodExpression
                             = new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
                                                    isValueMethod);
+                        methodExpression.AddParameterValue(objectExpression);
+
+                        return methodExpression;
+                    }
+                }
+                else if (memberSymbol.Parent == typeType) {
+                    if (String.CompareOrdinal(memberSymbol.Name, "Name") == 0) {
+                        // type.Name becomes ss.typeName(type)
+
+                        TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
+                        MethodSymbol typeNameMethod = (MethodSymbol)scriptType.GetMember("GetTypeName");
+
+                        MethodExpression methodExpression
+                            = new MethodExpression(new TypeExpression(memberSymbol.AssociatedType, SymbolFilter.Public | SymbolFilter.StaticMembers),
+                                                   typeNameMethod);
                         methodExpression.AddParameterValue(objectExpression);
 
                         return methodExpression;

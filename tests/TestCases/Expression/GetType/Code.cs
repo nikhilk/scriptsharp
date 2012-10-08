@@ -26,6 +26,8 @@ namespace ExpressionTests {
             bool b6 = t.IsInstanceOfType(new App());
 
             bool b7 = Type.IsInterface(t) || Type.IsClass(t);
+
+            string n = t.Name;
         }
     }
 }

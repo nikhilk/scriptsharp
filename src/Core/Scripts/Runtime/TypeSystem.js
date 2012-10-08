@@ -54,7 +54,7 @@ function isInterface(fn) {
 }
 
 function typeOf(instance) {
-  var ctor = null;
+  var ctor;
 
   // NOTE: We have to catch exceptions because the constructor
   //       cannot be looked up on native COM objects
@@ -63,10 +63,7 @@ function typeOf(instance) {
   }
   catch (ex) {
   }
-  if (!ctor || !ctor.$type) {
-    ctor = Object;
-  }
-  return ctor;
+  return ctor || Object;
 }
 
 function type(s) {
@@ -75,6 +72,33 @@ function type(s) {
   var name = nsIndex > 0 ? s.substr(nsIndex + 1) : s;
 
   return ns ? ns[name] : null;
+}
+
+var _typeNames = [
+  Number, 'Number',
+  String, 'String',
+  Boolean, 'Boolean',
+  Array, 'Array',
+  Date, 'Date',
+  RegExp, 'RegExp',
+  Function, 'Function'
+];
+function typeName(type) {
+  if (!(type instanceof Function)) {
+    type = type.constructor;
+  }
+  if (type.$name) {
+    return type.$name;
+  }
+  if (type.name) {
+    return type.name;
+  }
+  for (var i = 0, len = _typeNames.length; i < len; i += 2) {
+    if (type == _typeNames[i]) {
+      return _typeNames[i + 1];
+    }
+  }
+  return 'Object';
 }
 
 function canAssign(type, otherType) {

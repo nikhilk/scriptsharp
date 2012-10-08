@@ -43,7 +43,7 @@ function format(cultureOrFormat) {
         return '';
       }
 
-      var formatter = _formatters[value.constructor.name];
+      var formatter = _formatters[typeName(value)];
       if (formatter) {
         var formatSpec = '';
         var formatIndex = match.indexOf(':');

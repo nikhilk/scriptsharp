@@ -1519,6 +1519,15 @@ Types:
                     Parameter: obj
                     AssociatedType: Object
                     Mode: In
+            Method: GetTypeName
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: ss.typeName
+                Abstract: False
+                Parameters:
+                    Parameter: obj
+                    AssociatedType: Object
+                    Mode: In
         
     Class: Single
         Application Type: False
@@ -1874,10 +1883,12 @@ Types:
                 AssociatedType: Type
                 Visibility: Public
                 Generated Name: $base
-            Field: Name
+            Property: Name
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: $name
+                Generated Name: name
+                ReadOnly: True
+                Abstract: False
             Field: Prototype
                 AssociatedType: Dictionary
                 Visibility: Public
