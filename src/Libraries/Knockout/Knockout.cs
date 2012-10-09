@@ -97,6 +97,13 @@ namespace KnockoutApi {
         }
 
         /// <summary>
+        /// Removes all bindings from an Html Element.
+        /// </summary>
+        /// <param name="rootElement">The root node to clear all bindings from.</param>
+        public static void CleanNode(Element rootElement) {
+        }
+
+        /// <summary>
         /// Returns the entire binding context associated with the DOM element
         /// </summary>
         /// <param name="node"></param>
@@ -105,7 +112,7 @@ namespace KnockoutApi {
         }
 
         /// <summary>
-        /// Returns the data item associated with a particular DOM element 
+        /// Returns the data item associated with a particular DOM element
         /// </summary>
         /// <param name="node"></param>
         public static T DataFor<T>(Element node) {
