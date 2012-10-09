@@ -15,6 +15,12 @@ namespace System {
     [ScriptName("Number")]
     public struct Int32 {
 
+        [ScriptName("MAX_VALUE")]
+        public const int MaxValue = 0;
+
+        [ScriptName("MIN_VALUE")]
+        public const int MinValue = 0;
+
         [ScriptAlias("parseInt")]
         public static int Parse(string s) {
             return 0;

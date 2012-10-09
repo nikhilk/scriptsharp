@@ -788,6 +788,26 @@ Types:
         Generated Name: Number
         Extension Methods: False
         Members:
+            Field: MaxValue
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: MAX_VALUE
+            Field: MinValue
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: MIN_VALUE
+            Field: NaN
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: NaN
+            Field: NegativeInfinity
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: NEGATIVE_INFINITY
+            Field: PositiveInfinity
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: POSITIVE_INFINITY
             Method: Parse
                 AssociatedType: Double
                 Visibility: Public, Static
@@ -1042,6 +1062,14 @@ Types:
         Generated Name: Number
         Extension Methods: False
         Members:
+            Field: MaxValue
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: MAX_VALUE
+            Field: MinValue
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: MIN_VALUE
             Method: ToString
                 AssociatedType: String
                 Visibility: Public
@@ -1054,6 +1082,14 @@ Types:
         Generated Name: Number
         Extension Methods: False
         Members:
+            Field: MaxValue
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: MAX_VALUE
+            Field: MinValue
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: MIN_VALUE
             Method: Parse
                 AssociatedType: Int32
                 Visibility: Public, Static
@@ -1071,6 +1107,14 @@ Types:
         Generated Name: Number
         Extension Methods: False
         Members:
+            Field: MaxValue
+                AssociatedType: Int64
+                Visibility: Public, Static
+                Generated Name: MAX_VALUE
+            Field: MinValue
+                AssociatedType: Int64
+                Visibility: Public, Static
+                Generated Name: MIN_VALUE
             Method: ToString
                 AssociatedType: String
                 Visibility: Public
@@ -1243,24 +1287,24 @@ Types:
         Extension Methods: False
         BaseClass: Object
         Members:
-            Field: MAX_VALUE
-                AssociatedType: Int32
+            Field: MaxValue
+                AssociatedType: Double
                 Visibility: Public, Static
                 Generated Name: MAX_VALUE
-            Field: MIN_VALUE
-                AssociatedType: Int32
+            Field: MinValue
+                AssociatedType: Double
                 Visibility: Public, Static
                 Generated Name: MIN_VALUE
             Field: NaN
-                AssociatedType: Int32
+                AssociatedType: Double
                 Visibility: Public, Static
                 Generated Name: NaN
-            Field: NEGATIVE_INFINITY
-                AssociatedType: Int32
+            Field: NegativeInfinity
+                AssociatedType: Double
                 Visibility: Public, Static
                 Generated Name: NEGATIVE_INFINITY
-            Field: POSITIVE_INFINITY
-                AssociatedType: Int32
+            Field: PositiveInfinity
+                AssociatedType: Double
                 Visibility: Public, Static
                 Generated Name: POSITIVE_INFINITY
             Method: IsFinite

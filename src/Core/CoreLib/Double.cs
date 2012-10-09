@@ -15,6 +15,21 @@ namespace System {
     [ScriptName("Number")]
     public struct Double {
 
+        [ScriptName("MAX_VALUE")]
+        public const double MaxValue = 0;
+
+        [ScriptName("MIN_VALUE")]
+        public const double MinValue = 0;
+
+        [ScriptName(PreserveCase = true)]
+        public const double NaN = 0;
+
+        [ScriptName("NEGATIVE_INFINITY")]
+        public const double NegativeInfinity = 0;
+
+        [ScriptName("POSITIVE_INFINITY")]
+        public const double PositiveInfinity = 0;
+
         [ScriptAlias("parseFloat")]
         public static double Parse(string s) {
             return 0;

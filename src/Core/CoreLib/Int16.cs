@@ -15,6 +15,12 @@ namespace System {
     [ScriptName("Number")]
     public struct Int16 {
 
+        [ScriptName("MAX_VALUE")]
+        public const int MaxValue = 0;
+
+        [ScriptName("MIN_VALUE")]
+        public const int MinValue = 0;
+
         /// <summary>
         /// Converts the value to its string representation.
         /// </summary>
