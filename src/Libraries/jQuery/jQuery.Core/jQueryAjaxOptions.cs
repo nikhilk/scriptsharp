@@ -33,6 +33,18 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Gets or sets the content type sent in the request header that tells the server what kind of response it will accept in return.
+        /// </summary>
+        [IntrinsicProperty]
+        public Dictionary Accepts {
+            get {
+                return false;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
         /// Gets or sets whether the request is async.
         /// </summary>
         [IntrinsicProperty]
@@ -82,6 +94,18 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Gets or sets a map of string/regular-expression pairs that determine how jQuery will parse the response, given its content type.
+        /// </summary>
+        [IntrinsicProperty]
+        public Dictionary Contents {
+            get {
+                return false;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the content type of the data sent to the server.
         /// </summary>
         [IntrinsicProperty]
@@ -100,6 +124,30 @@ namespace jQueryApi {
         public Element Context {
             get {
                 return null;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a map of dataType-to-dataType converters.
+        /// </summary>
+        [IntrinsicProperty]
+        public Dictionary Converters {
+            get {
+                return false;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets if you wish to force a crossDomain request (such as JSONP) on the same domain, set the value of crossDomain to true
+        /// </summary>
+        [IntrinsicProperty]
+        public bool CrossDomain {
+            get {
+                return false;
             }
             set {
             }
@@ -146,6 +194,18 @@ namespace jQueryApi {
         /// </summary>
         [IntrinsicProperty]
         public bool Global {
+            get {
+                return false;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets if a map of additional header key/value pairs to send along with the request.
+        /// </summary>
+        [IntrinsicProperty]
+        public Dictionary Headers {
             get {
                 return false;
             }
@@ -244,6 +304,18 @@ namespace jQueryApi {
         /// </summary>
         [IntrinsicProperty]
         public string ScriptCharset {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a map of numeric HTTP codes and functions to be called when the response has the corresponding code.
+        /// </summary>
+        [IntrinsicProperty]
+        public Dictionary StatusCode {
             get {
                 return null;
             }
