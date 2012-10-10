@@ -36,9 +36,9 @@ namespace jQueryApi {
         /// Gets or sets the content type sent in the request header that tells the server what kind of response it will accept in return.
         /// </summary>
         [IntrinsicProperty]
-        public Dictionary Accepts {
+        public Dictionary<string, string> Accepts {
             get {
-                return false;
+                return null;
             }
             set {
             }
@@ -97,9 +97,9 @@ namespace jQueryApi {
         /// Gets or sets a map of string/regular-expression pairs that determine how jQuery will parse the response, given its content type.
         /// </summary>
         [IntrinsicProperty]
-        public Dictionary Contents {
+        public Dictionary<string, RegularExpression> Contents {
             get {
-                return false;
+                return null;
             }
             set {
             }
@@ -133,9 +133,9 @@ namespace jQueryApi {
         /// Gets or sets a map of dataType-to-dataType converters.
         /// </summary>
         [IntrinsicProperty]
-        public Dictionary Converters {
+        public Dictionary<string, Func<string, object>> Converters {
             get {
-                return false;
+                return null;
             }
             set {
             }
@@ -205,9 +205,9 @@ namespace jQueryApi {
         /// Gets or sets if a map of additional header key/value pairs to send along with the request.
         /// </summary>
         [IntrinsicProperty]
-        public Dictionary Headers {
+        public Dictionary<string, string> Headers {
             get {
-                return false;
+                return null;
             }
             set {
             }
@@ -315,7 +315,7 @@ namespace jQueryApi {
         /// Gets or sets a map of numeric HTTP codes and functions to be called when the response has the corresponding code.
         /// </summary>
         [IntrinsicProperty]
-        public Dictionary StatusCode {
+        public Dictionary<int, Action> StatusCode {
             get {
                 return null;
             }
