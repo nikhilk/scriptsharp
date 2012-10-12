@@ -192,6 +192,16 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Gets the original DOM event which spawned this event.
+        /// </summary>
+        [ScriptProperty]
+        public ElementEvent OriginalEvent {
+            get{
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Gets the number of milliseconds since Jan 1, 1970, when the event
         /// was triggered.
         /// </summary>
