@@ -43,9 +43,7 @@ Copyright (C) 2012. Script# Project. All rights reserved.
       CopyReferencesPath="$(CopyReferencesPath)"
       CSharpAssembly="@(IntermediateAssembly)"
       Minimize="$(MinimizeScript)"
-      CrunchScript="$(CrunchScript)"
-      ScriptDocumentation="$(UseDocumentation)"
-      DocumentationFile="$(DocumentationFile)"
+      Crunch="$(CrunchScript)"
       ProjectPath="$(MSBuildProjectFullPath)">
       <Output TaskParameter="Scripts" ItemName="Scripts" />
     </ScriptCompilerTask>

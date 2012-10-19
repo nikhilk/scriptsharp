@@ -69,6 +69,7 @@ v0.8 (combines changes from 0.7.6 that weren't released as an actual build
       . Added support for a ScriptDocumentation property in your csproj to
         control whether doc-comments are added to generated scripts (replaces
         old SuppressDocumentation property)
+      . Removed generation of doc-comments into script
     - Misc metadata changes
       . Knockout - Rename DependentObservable<T> -> ComputedObservable<T> to
                    match Knockout API changes

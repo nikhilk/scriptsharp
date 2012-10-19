@@ -27,7 +27,6 @@ Usage:
       [/tests]
       [/minimize]
       [/D:<variable>]
-      [/doc:<file>]
       [/res:<resource file>]
       /ref:<assembly path>
       /out:<script file>
@@ -46,7 +45,6 @@ Usage:
 /ref        One or more references to C# assemblies to be used
             to import metadata corresponding to dependency script files.
             (Note you must include a reference to mscorlib.dll)
-/doc        XML Documentation to embed into the resulting script file.
 /res        The set of one or more resources to compile in. These should be
             .resx files. You should pass in both the language-neutral
             resources and the locale specific resources for the locale
@@ -64,7 +62,6 @@ Usage:
             bool includeTests = false;
             bool minimize = true;
             IStreamSource scriptFile = null;
-            IStreamSource docCommentFile = null;
 
             foreach (string fileName in commandLine.Arguments) {
                 // TODO: This is a hack... something in the .net 4 build system causes
@@ -127,10 +124,6 @@ Usage:
                 }
             }
 
-            if (commandLine.Options.Contains("doc")) {
-                docCommentFile = new FileInputStreamSource((string)commandLine.Options["doc"], "DocComment");
-            }
-
             debug = commandLine.Options.Contains("debug");
             if (debug && !defines.Contains("DEBUG")) {
                 defines.Add("DEBUG");
@@ -147,7 +140,6 @@ Usage:
             compilerOptions.Sources = sources;
             compilerOptions.Resources = resources;
             compilerOptions.ScriptFile = scriptFile;
-            compilerOptions.DocCommentFile = docCommentFile;
 
             compilerOptions.InternalTestMode = commandLine.Options.Contains("test");
             if (compilerOptions.InternalTestMode) {

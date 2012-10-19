@@ -25,7 +25,6 @@ namespace ScriptSharp.Tasks {
         private ITaskItem[] _references;
         private ITaskItem[] _sources;
         private ITaskItem[] _resources;
-        private ITaskItem _docCommentFile;
 
         private bool _minimize;
         private bool _tests;
@@ -46,15 +45,6 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _defines = value;
-            }
-        }
-
-        public ITaskItem DocumentationFile {
-            get {
-                return _docCommentFile;
-            }
-            set {
-                _docCommentFile = value;
             }
         }
 
@@ -154,9 +144,6 @@ namespace ScriptSharp.Tasks {
             options.References = GetReferences();
             options.Sources = GetSources(_sources);
             options.Resources = GetResources(_resources);
-            if (_docCommentFile != null) {
-                options.DocCommentFile = new TaskItemInputStreamSource(_docCommentFile, "DocComment");
-            }
 
             ITaskItem scriptTaskItem = new TaskItem(OutputPath);
             options.ScriptFile = new TaskItemOutputStreamSource(scriptTaskItem);

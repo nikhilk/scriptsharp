@@ -28,13 +28,11 @@ namespace ScriptSharp.Tasks {
         private ITaskItem[] _references;
         private ITaskItem[] _sources;
         private ITaskItem[] _resources;
-        private ITaskItem _docCommentFile;
         private ITaskItem _csharpAssembly;
         private string _defines;
-        private bool _scriptDocumentation;
 
         private bool _minimize;
-        private bool _crunchScript;
+        private bool _crunch;
         private bool _copyReferences;
         private string _referencesPath;
         private string _outputPath;
@@ -45,7 +43,7 @@ namespace ScriptSharp.Tasks {
 
         public ScriptCompilerTask() {
             _copyReferences = true;
-            _crunchScript = true;
+            _crunch = true;
         }
 
         public bool CopyReferences {
@@ -69,12 +67,12 @@ namespace ScriptSharp.Tasks {
             }
         }
 
-        public bool CrunchScript {
+        public bool Crunch {
             get {
-                return _crunchScript;
+                return _crunch;
             }
             set {
-                _crunchScript = value;
+                _crunch = value;
             }
         }
 
@@ -109,15 +107,6 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _deploymentPath = value;
-            }
-        }
-
-        public ITaskItem DocumentationFile {
-            get {
-                return _docCommentFile;
-            }
-            set {
-                _docCommentFile = value;
             }
         }
 
@@ -168,15 +157,6 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _resources = value;
-            }
-        }
-
-        public bool ScriptDocumentation {
-            get {
-                return _scriptDocumentation;
-            }
-            set {
-                _scriptDocumentation = value;
             }
         }
 
@@ -252,7 +232,7 @@ namespace ScriptSharp.Tasks {
                 ScriptCompiler minimizingCompiler = new ScriptCompiler(this);
                 minimizingCompiler.Compile(minimizeOptions);
                 if (_hasErrors == false) {
-                    if (CrunchScript) {
+                    if (Crunch) {
                         ExecuteCruncher(scriptTaskItem);
                     }
 
@@ -276,9 +256,6 @@ namespace ScriptSharp.Tasks {
             options.References = GetReferences();
             options.Sources = GetSources(sourceItems);
             options.Resources = GetResources(resourceItems, locale);
-            if ((minimize == false) && (_docCommentFile != null) && _scriptDocumentation) {
-                options.DocCommentFile = new TaskItemInputStreamSource(_docCommentFile, "DocComment");
-            }
 
             string scriptFilePath = GetScriptFilePath(locale, minimize, includeTests);
             outputScriptItem = new TaskItem(scriptFilePath);

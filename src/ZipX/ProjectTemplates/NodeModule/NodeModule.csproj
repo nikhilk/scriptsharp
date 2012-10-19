@@ -12,7 +12,6 @@
     <CodeAnalysisRuleSet>Properties\FxCop.ruleset</CodeAnalysisRuleSet>
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
-    <UseDocumentation>False</UseDocumentation>
     <MinimizeScript>False</MinimizeScript>
     <CrunchScript>False</CrunchScript>
     <CopyReferences>True</CopyReferences>
