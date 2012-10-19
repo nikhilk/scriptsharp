@@ -113,6 +113,16 @@ namespace jQueryApi {
             }
         }
 
+        /// <summary>
+        /// Gets the original DOM event which spawned this event.
+        /// </summary>
+        [ScriptProperty]
+        public ElementEvent OriginalEvent {
+            get{
+                return null;
+            }
+        }
+
         [ScriptProperty]
         public Element OriginalTarget {
             get {
