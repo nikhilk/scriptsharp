@@ -494,6 +494,12 @@ namespace ScriptSharp.Importer {
                 TypeSymbol stringType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("String", null, SymbolFilter.Types);
                 Debug.Assert(stringType != null);
 
+                TypeSymbol boolType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Boolean", null, SymbolFilter.Types);
+                Debug.Assert(boolType != null);
+
+                TypeSymbol dateType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Date", null, SymbolFilter.Types);
+                Debug.Assert(dateType != null);
+
                 // Enumerate - IEnumerable.GetEnumerator gets mapped to this
 
                 MethodSymbol enumerateMethod = new MethodSymbol("Enumerate", classSymbol, objectType, MemberVisibility.Public | MemberVisibility.Static);
@@ -507,6 +513,14 @@ namespace ScriptSharp.Importer {
                 typeNameMethod.SetAlias("ss.typeName");
                 typeNameMethod.AddParameter(new ParameterSymbol("obj", typeNameMethod, objectType, ParameterMode.In));
                 classSymbol.AddMember(typeNameMethod);
+
+                // CompareDates - Date equality checks get converted to call to compareDates
+
+                MethodSymbol compareDatesMethod = new MethodSymbol("CompareDates", classSymbol, boolType, MemberVisibility.Public | MemberVisibility.Static);
+                compareDatesMethod.SetAlias("ss.compareDates");
+                compareDatesMethod.AddParameter(new ParameterSymbol("d1", compareDatesMethod, dateType, ParameterMode.In));
+                compareDatesMethod.AddParameter(new ParameterSymbol("d2", compareDatesMethod, dateType, ParameterMode.In));
+                classSymbol.AddMember(compareDatesMethod);
 
                 return;
             }

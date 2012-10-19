@@ -33,7 +33,7 @@ namespace ExpressionTests {
             string s = String.Empty;
             int n = s.Length;
 
-            int n2 = Number.MAX_VALUE;
+            int n2 = Number.MaxValue;
             Mode m = Mode.A;
 
             n = XYZ;

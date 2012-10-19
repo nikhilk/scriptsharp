@@ -418,6 +418,29 @@ namespace ScriptSharp.Compiler {
                             }
                         }
                     }
+
+                    if ((leftExpression.EvaluatedType == rightExpression.EvaluatedType) &&
+                        (leftExpression.EvaluatedType == _symbolSet.ResolveIntrinsicType(IntrinsicType.Date))) {
+                        // Map equality comparison between Date objects to a call to
+                        // Script.CompareDates
+
+                        TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
+                        Debug.Assert(scriptType != null);
+
+                        MethodSymbol compareMethod = (MethodSymbol)scriptType.GetMember("CompareDates");
+                        Debug.Assert(compareMethod != null);
+
+                        MethodExpression compareExpression =
+                            new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
+                                                 compareMethod);
+                        compareExpression.AddParameterValue(leftExpression);
+                        compareExpression.AddParameterValue(rightExpression);
+
+                        if (operatorType == Operator.NotEqualEqual) {
+                            return new UnaryExpression(Operator.LogicalNot, compareExpression);
+                        }
+                        return compareExpression;
+                    }
                 }
 
                 if ((operatorType == Operator.ShiftRight) ||

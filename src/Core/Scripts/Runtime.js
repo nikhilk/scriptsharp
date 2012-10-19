@@ -58,6 +58,7 @@
       truncate: truncate,
       now: now,
       today: today,
+      compareDates: compareDates,
       error: error,
       string: string,
       emptyString: emptyString,

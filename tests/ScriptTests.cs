@@ -51,6 +51,11 @@ namespace ScriptSharp.Tests {
 
         #region BCL Tests
         [TestMethod]
+        public void TestDate() {
+            RunTest("/Date.htm");
+        }
+
+        [TestMethod]
         public void TestDelegates() {
             RunTest("/Delegates.htm");
         }

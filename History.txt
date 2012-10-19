@@ -74,6 +74,9 @@ v0.8 (combines changes from 0.7.6 that weren't released as an actual build
                    match Knockout API changes
       . jQuery - Added Unique
       . Rename RegularExpression to RegExp (to match shorter script name)
+    - Bug fixes
+      [git #223] Special case generation of date equality checks to make
+                 them work as expected
 
 
 v0.7.6

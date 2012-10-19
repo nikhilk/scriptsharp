@@ -1572,6 +1572,18 @@ Types:
                     Parameter: obj
                     AssociatedType: Object
                     Mode: In
+            Method: CompareDates
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: ss.compareDates
+                Abstract: False
+                Parameters:
+                    Parameter: d1
+                    AssociatedType: Date
+                    Mode: In
+                    Parameter: d2
+                    AssociatedType: Date
+                    Mode: In
         
     Class: Single
         Application Type: False

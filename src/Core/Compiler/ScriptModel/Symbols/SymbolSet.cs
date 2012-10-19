@@ -521,6 +521,9 @@ namespace ScriptSharp.ScriptModel {
                 case IntrinsicType.Single:
                     mappedTypeName = "Single";
                     break;
+                case IntrinsicType.Date:
+                    mappedTypeName = "Date";
+                    break;
                 case IntrinsicType.Decimal:
                     mappedTypeName = "Decimal";
                     break;

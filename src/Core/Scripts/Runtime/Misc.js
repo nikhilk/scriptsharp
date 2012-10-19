@@ -55,6 +55,10 @@ function today() {
   return new Date(d.getFullYear(), d.getMonth(), d.getDate());
 }
 
+function compareDates(d1, d2) {
+  return (d1 === d2) ? true : ((isValue(d1) && isValue(d2)) ? (d1.getTime() == d2.getTime()) : false);
+}
+
 function _popStackFrame(e) {
   if (!isValue(e.stack) ||
       !isValue(e.fileName) ||
