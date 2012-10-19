@@ -20,14 +20,14 @@ namespace System.Threading {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Exception Error {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public TaskStatus Status {
             get {
                 return TaskStatus.Pending;
@@ -78,7 +78,7 @@ namespace System.Threading {
         internal Task() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public T Result {
             get {
                 return default(T);

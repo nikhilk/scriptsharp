@@ -14,77 +14,77 @@ namespace Microsoft.Maps.VenueMaps {
         private VenueMap() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Address {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public MapViewOptions BestMapView {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public MapLocation Center {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string DefaultFloor {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string FloorHeader {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public VenueFloor[] Floors {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public VenueFootprint Footprint {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string ID {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string PhoneNumber {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public VenueType Type {
             get {
                 return VenueType.Mall;

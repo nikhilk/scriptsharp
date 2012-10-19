@@ -34,7 +34,7 @@ namespace System.Collections {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object this[string key] {
             get {
                 return null;

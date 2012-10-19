@@ -15,7 +15,7 @@ namespace System.Html {
         private Location() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Hash {
             get {
                 return null;
@@ -24,14 +24,14 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Hostname {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("host")]
         public string HostnameAndPort {
             get {
@@ -39,7 +39,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Href {
             get {
                 return null;
@@ -48,28 +48,28 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Pathname {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Port {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Protocol {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Search {
             get {
                 return null;

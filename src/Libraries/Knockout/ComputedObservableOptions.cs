@@ -28,7 +28,7 @@ namespace KnockoutApi {
         /// Gets or sets whether the evaluation should be deferred, i.e. not
         /// performed when the observable is first created.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool DeferEvaluation {
             get;
             set;
@@ -37,7 +37,7 @@ namespace KnockoutApi {
         /// <summary>
         /// Pass in a function that evaluates when the Dependency can be disposed
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public Func<bool> DisposeWhen {
             get;
             set;
@@ -47,7 +47,7 @@ namespace KnockoutApi {
         /// "disposeWhenNodeIsRemoved" option both proactively disposes as soon as the node is removed using ko.removeNode(),    
         /// plus adds a "disposeWhen" callback that, on each evaluation, disposes if the node was removed by some other means.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public object DisposeWhenNodeIsRemoved {
             get;
             set;
@@ -57,7 +57,7 @@ namespace KnockoutApi {
         /// Gets or sets the function to compute the value.
         /// </summary>
         [ScriptName("read")]
-        [ScriptProperty]
+        [ScriptField]
         public Func<T> GetValueFunction {
             get;
             set;
@@ -67,7 +67,7 @@ namespace KnockoutApi {
         /// Gets or sets the function to write the value.
         /// </summary>
         [ScriptName("write")]
-        [ScriptProperty]
+        [ScriptField]
         public Action<T> SetValueFunction {
             get;
             set;
@@ -77,7 +77,7 @@ namespace KnockoutApi {
         /// Gets or sets the function to write the value.
         /// </summary>
         [ScriptName("write")]
-        [ScriptProperty]
+        [ScriptField]
         public Action<T[]> SetArrayValueFunction {
             get;
             set;
@@ -87,7 +87,7 @@ namespace KnockoutApi {
         /// Gets the model instance which acts as 'this' in the get value function.
         /// </summary>
         [ScriptName("owner")]
-        [ScriptProperty]
+        [ScriptField]
         public object Model {
             get;
             set;

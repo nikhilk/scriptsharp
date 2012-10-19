@@ -15,7 +15,7 @@ namespace System.Html {
         internal CustomEvent() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object Data {
             get {
                 return null;

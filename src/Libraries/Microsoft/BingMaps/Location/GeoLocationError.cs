@@ -15,14 +15,14 @@ namespace Microsoft.Maps.Location {
         private GeoLocationError() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ErrorCode {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("internalError.code")]
         public int InternalCode {
             get {
@@ -30,7 +30,7 @@ namespace Microsoft.Maps.Location {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("internalError.message")]
         public string Message {
             get {

@@ -13,13 +13,13 @@ namespace TypeTests {
 
         private MyElement() { }
 
-        [ScriptProperty]
+        [ScriptField]
         public string myString {
             get { return null; }
             set { }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string this[string name] {
             get { return null; }
             set { }

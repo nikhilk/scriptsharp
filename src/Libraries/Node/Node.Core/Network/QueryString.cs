@@ -15,13 +15,13 @@ namespace NodeApi.Network {
     [ScriptName("querystring")]
     public static class QueryString {
 
-        [ScriptProperty]
+        [ScriptField]
         public static Func<string, string> Escape {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static Func<string, string> Unescape {
             get;
             set;

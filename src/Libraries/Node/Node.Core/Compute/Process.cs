@@ -17,7 +17,7 @@ namespace NodeApi.Compute {
         private Process() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("arch")]
         public string Architecture {
             get {
@@ -25,7 +25,7 @@ namespace NodeApi.Compute {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("argv")]
         public string[] Arguments {
             get {
@@ -33,7 +33,7 @@ namespace NodeApi.Compute {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("env")]
         public Dictionary<string, string> Environment {
             get {
@@ -41,21 +41,21 @@ namespace NodeApi.Compute {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string ExecPath {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Platform {
             get {
                 return String.Empty;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("pid")]
         public int ProcessID {
             get {
@@ -63,7 +63,7 @@ namespace NodeApi.Compute {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("stderr")]
         public WritableStream StandardError {
             get {
@@ -71,7 +71,7 @@ namespace NodeApi.Compute {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("stdin")]
         public ReadableStream StandardInput {
             get {
@@ -79,7 +79,7 @@ namespace NodeApi.Compute {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("stdout")]
         public WritableStream StandardOutput {
             get {
@@ -87,14 +87,14 @@ namespace NodeApi.Compute {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Title {
             get {
                 return String.Empty;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Version {
             get {
                 return null;

@@ -92,7 +92,7 @@ namespace System {
         /// <summary>
         /// Returns the current date and time.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         [ScriptAlias("ss.now()")]
         public static Date Now {
             get {
@@ -103,7 +103,7 @@ namespace System {
         /// <summary>
         /// Returns the current date with the time part set to 00:00:00.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         [ScriptAlias("ss.today()")]
         public static Date Today {
             get {

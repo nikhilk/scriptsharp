@@ -21,7 +21,7 @@ namespace System {
         public RegExp(string pattern, string flags) {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int LastIndex {
             get {
                 return 0;
@@ -30,35 +30,35 @@ namespace System {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Global {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool IgnoreCase {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Multiline {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Pattern {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Source {
             get {
                 return null;

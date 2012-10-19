@@ -31,7 +31,7 @@ v0.8 (combines changes from 0.7.6 that weren't released as an actual build
       . PreserveName is now a property on ScriptName
       . Imported is now ScriptImport
       . IgnoreNamespace is now ScriptIgnoreNamespace
-      . IntrinsicProperty in now ScriptProperty
+      . IntrinsicProperty in now ScriptField (was temporarily ScriptProperty)
       . Resources is now ScriptResources
       . NamedValues and NumericValues combined into ScriptConstants
       . GlobalMethods is gone, and Mixin replaced with ScriptExtension

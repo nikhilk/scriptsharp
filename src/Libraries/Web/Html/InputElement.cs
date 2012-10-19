@@ -15,21 +15,21 @@ namespace System.Html {
         protected internal InputElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string DefaultValue {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public FormElement Form {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
@@ -38,7 +38,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Type {
             get {
                 return null;
@@ -47,7 +47,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Value {
             get {
                 return null;

@@ -15,7 +15,7 @@ namespace NodeApi.IO {
         private WriteStream() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int BytesWritten {
             get;
             set;

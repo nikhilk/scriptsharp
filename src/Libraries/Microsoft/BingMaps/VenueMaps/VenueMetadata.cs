@@ -17,7 +17,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName(PreserveCase = true)]
-        [ScriptProperty]
+        [ScriptField]
         public string DefaultFloor {
             get {
                 return null;
@@ -25,7 +25,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName(PreserveCase = true)]
-        [ScriptProperty]
+        [ScriptField]
         public string FloorHeader {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName(PreserveCase = true)]
-        [ScriptProperty]
+        [ScriptField]
         public VenueFloor[] Floors {
             get {
                 return null;
@@ -41,7 +41,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName(PreserveCase = true)]
-        [ScriptProperty]
+        [ScriptField]
         public VenueFootprint Footprint {
             get {
                 return null;
@@ -49,7 +49,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("MapId")]
-        [ScriptProperty]
+        [ScriptField]
         public string ID {
             get {
                 return null;
@@ -57,7 +57,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("CenterLat")]
-        [ScriptProperty]
+        [ScriptField]
         public double Latitude {
             get {
                 return 0;
@@ -65,7 +65,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("CenterLong")]
-        [ScriptProperty]
+        [ScriptField]
         public double Longitude {
             get {
                 return 0;
@@ -73,7 +73,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName(PreserveCase = true)]
-        [ScriptProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
@@ -81,7 +81,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("MapType")]
-        [ScriptProperty]
+        [ScriptField]
         public VenueType Type {
             get {
                 return VenueType.Mall;

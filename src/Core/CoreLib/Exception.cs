@@ -19,21 +19,21 @@ namespace System {
         public Exception(string message) {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Exception InnerException {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Message {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("stack")]
         public string StackTrace {
             get {
@@ -41,7 +41,7 @@ namespace System {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object this[string key] {
             get {
                 return null;

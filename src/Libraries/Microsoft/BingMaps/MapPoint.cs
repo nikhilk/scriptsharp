@@ -15,14 +15,14 @@ namespace Microsoft.Maps {
         public MapPoint(double x, double y) {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double X {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Y {
             get {
                 return 0;

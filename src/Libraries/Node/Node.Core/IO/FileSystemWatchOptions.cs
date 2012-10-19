@@ -13,7 +13,7 @@ namespace NodeApi.IO {
     [ScriptName("Object")]
     public sealed class FileSystemWatchOptions {
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Persistent {
             get;
             set;

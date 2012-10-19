@@ -16,7 +16,7 @@ namespace System.Html {
         private CanvasElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Height {
             get {
                 return 0;
@@ -25,7 +25,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Width {
             get {
                 return 0;

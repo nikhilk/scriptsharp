@@ -12,13 +12,13 @@ namespace KnockoutApi {
     [ScriptIgnoreNamespace]
     public class CompareResult<T> {
 
-        [ScriptProperty]
+        [ScriptField]
         public CompareResultStatus Status {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public T Value {
             get;
             set;

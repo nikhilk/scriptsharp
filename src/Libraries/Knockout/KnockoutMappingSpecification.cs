@@ -13,7 +13,7 @@ namespace KnockoutApi {
     [ScriptName("Object")]
     public sealed class KnockoutMappingSpecification {
 
-        [ScriptProperty]
+        [ScriptField]
         public string[] Copy {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace KnockoutApi {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string[] Ignore {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace KnockoutApi {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string[] Include {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace KnockoutApi {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public KnockoutMappingPropertySpecification this[string propertyName] {
             get {
                 return null;

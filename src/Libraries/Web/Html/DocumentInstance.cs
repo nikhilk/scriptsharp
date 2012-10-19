@@ -16,21 +16,21 @@ namespace System.Html {
         private DocumentInstance() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element ActiveElement {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element Body {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Cookie {
             get {
                 return null;
@@ -39,7 +39,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string DesignMode {
             get {
                 return null;
@@ -48,21 +48,21 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Doctype {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element DocumentElement {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Domain {
             get {
                 return null;
@@ -71,42 +71,42 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public DocumentImplementation Implementation {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public WindowInstance ParentWindow {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string ReadyState {
             get {
                 return null;
             }
         }
         
-        [ScriptProperty]
+        [ScriptField]
         public string Referrer {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Selection Selection {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Title {
             get {
                 return null;
@@ -115,7 +115,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string URL {
             get {
                 return null;

@@ -15,14 +15,14 @@ namespace System.Html.Media.Filters {
         private VisualFilterCollection() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public VisualFilter this[int index] {
             get {
                 return null;

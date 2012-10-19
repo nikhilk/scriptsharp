@@ -32,7 +32,7 @@ namespace System {
         /// Gets whether the <see cref="StringBuilder"/> object has any content.
         /// </summary>
         /// <returns>true if the StringBuilder instance contains no text; otherwise, false.</returns>
-        [ScriptProperty]
+        [ScriptField]
         public bool IsEmpty {
             get {
                 return false;

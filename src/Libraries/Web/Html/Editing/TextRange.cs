@@ -16,56 +16,56 @@ namespace System.Html.Editing {
         private TextRange() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int BoundingHeight {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int BoundingLeft {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int BoundingTop {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int BoundingWidth {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string HTMLText {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int OffsetLeft {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int OffsetTop {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Text {
             get {
                 return null;

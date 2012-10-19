@@ -56,7 +56,7 @@ namespace KnockoutApi {
         /// For complex types a supplied function can be assigned to improve
         /// change (mutation) detection
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public Func<T, T, bool> EqualityComparer {
             get;
             set;

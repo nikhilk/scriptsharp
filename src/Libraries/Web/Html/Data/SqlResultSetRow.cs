@@ -16,7 +16,7 @@ namespace System.Html.Data {
         private SqlResultSetRow() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object this[string name] {
             get {
                 return null;

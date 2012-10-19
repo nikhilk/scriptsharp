@@ -15,7 +15,7 @@ namespace System.Html {
         private MapElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;

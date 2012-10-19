@@ -16,14 +16,14 @@ namespace Microsoft.Maps.VenueMaps {
         private Venue() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Distance {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public VenueMetadata Metadata {
             get {
                 return null;

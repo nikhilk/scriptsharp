@@ -16,7 +16,7 @@ namespace NodeApi.Network {
         private HttpServer() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int MaxHeaderCount {
             get;
             set;

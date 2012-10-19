@@ -23,7 +23,7 @@ namespace jQueryApi {
         /// This is equal to true if the page and browser are rendered according to the
         /// W3C CSS Box Model.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool BoxModel {
             get {
                 return false;
@@ -33,7 +33,7 @@ namespace jQueryApi {
         /// <summary>
         /// True if cssFloat is the name of the float CSS property. False if it is styleFloat.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool CssFloat {
             get {
                 return false;
@@ -43,7 +43,7 @@ namespace jQueryApi {
         /// <summary>
         /// True if the browser leaves URLs returned from getAttribute("href") intact.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool HrefNormalized {
             get {
                 return false;
@@ -53,7 +53,7 @@ namespace jQueryApi {
         /// <summary>
         /// True is the browser properly serializes link elements when innerHTML is used.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool HtmlSerialize {
             get {
                 return false;
@@ -63,7 +63,7 @@ namespace jQueryApi {
         /// <summary>
         /// True if the browser preserves leading whitespace when innerHTML is used.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool LeadingWhitespace {
             get {
                 return false;
@@ -73,7 +73,7 @@ namespace jQueryApi {
         /// <summary>
         /// True if the browser does not copy over the checked expando when elements are cloned.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool NoCloneChecked {
             get {
                 return false;
@@ -83,7 +83,7 @@ namespace jQueryApi {
         /// <summary>
         /// True if the browser does not clone event handlers when elements are cloned.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool NoCloneEvent {
             get {
                 return false;
@@ -93,7 +93,7 @@ namespace jQueryApi {
         /// <summary>
         /// True if doing getElementsByTagName('*') on an object element returns all descendant elements.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool ObjectAll {
             get {
                 return false;
@@ -103,7 +103,7 @@ namespace jQueryApi {
         /// <summary>
         /// True if a browser can properly interpret the opacity style property.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool Opacity {
             get {
                 return false;
@@ -113,7 +113,7 @@ namespace jQueryApi {
         /// <summary>
         /// True if using appendChild/createTextNode to inject inline scripts executes them.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool ScriptEval {
             get {
                 return false;
@@ -123,7 +123,7 @@ namespace jQueryApi {
         /// <summary>
         /// True if getAttribute("style") is able to return the inline style specified by an element.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool Style {
             get {
                 return false;
@@ -133,7 +133,7 @@ namespace jQueryApi {
         /// <summary>
         /// True if the browser allows table elements without tbody elements.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool Tbody {
             get {
                 return false;

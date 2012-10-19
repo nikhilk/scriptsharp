@@ -15,7 +15,7 @@ namespace System.Html {
         internal TextElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int MaxLength {
             get {
                 return 0;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool ReadOnly {
             get {
                 return false;

@@ -15,21 +15,21 @@ namespace System.Html.Media.Graphics {
         private ImageData() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public PixelArray Data {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Height {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Width {
             get {
                 return 0;

@@ -15,7 +15,7 @@ namespace System.Xml {
         internal XmlNamedNodeMap() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("length")]
         public int Count {
             get {
@@ -23,7 +23,7 @@ namespace System.Xml {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public XmlNode this[int index] {
             get {
                 return null;

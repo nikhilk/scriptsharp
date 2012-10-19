@@ -16,14 +16,14 @@ namespace System.Html.Editing {
         private ControlRange() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element this[int index] {
             get {
                 return null;

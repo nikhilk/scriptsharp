@@ -17,7 +17,7 @@ namespace NodeApi.Network {
         private HttpServerResponse() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int StatusCode {
             get;
             set;

@@ -14,7 +14,7 @@ namespace System.Threading {
         internal Deferred() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Task Task {
             get {
                 return null;
@@ -53,7 +53,7 @@ namespace System.Threading {
         private Deferred() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public new Task<T> Task {
             get {
                 return null;

@@ -26,7 +26,7 @@ namespace System.Collections.Generic {
         public List(params T[] items) {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("length")]
         public int Count {
             get {
@@ -34,7 +34,7 @@ namespace System.Collections.Generic {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public T this[int index] {
             get {
                 return default(T);

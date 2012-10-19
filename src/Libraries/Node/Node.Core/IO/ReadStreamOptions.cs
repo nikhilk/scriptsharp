@@ -13,32 +13,32 @@ namespace NodeApi.IO {
     [ScriptName("Object")]
     public sealed class ReadStreamOptions {
 
-        [ScriptProperty]
+        [ScriptField]
         public int BufferSize {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Encoding Encoding {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("fd")]
         public FileDescriptor FileDescriptor {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Flags {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Mode {
             get;
             set;

@@ -15,7 +15,7 @@ namespace System.Html.Media.Filters {
         internal VisualFilter() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Enabled {
             get {
                 return false;

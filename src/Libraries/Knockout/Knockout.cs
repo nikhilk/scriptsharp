@@ -22,7 +22,7 @@ namespace KnockoutApi {
         /// <summary>
         /// Provides access to the currently registered binding handlers.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public static Dictionary<string, BindingHandler> BindingHandlers {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace KnockoutApi {
         /// Gets the mapping plugin which allows converting models to plain
         /// objects and JSON and vice-versa.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public static KnockoutMapping Mapping {
             get {
                 return null;
@@ -45,7 +45,7 @@ namespace KnockoutApi {
         /// </summary>
         /// <returns>The object represented by 'this' within a handler.</returns>
         [ScriptAlias("this")]
-        [ScriptProperty]
+        [ScriptField]
         public static object Model {
             get {
                 return null;

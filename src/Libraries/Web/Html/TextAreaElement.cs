@@ -15,7 +15,7 @@ namespace System.Html {
         private TextAreaElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Cols {
             get {
                 return 0;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool ReadOnly {
             get {
                 return false;
@@ -33,7 +33,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Rows {
             get {
                 return 0;

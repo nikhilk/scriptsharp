@@ -22,7 +22,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the left coordinate.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int Left {
             get {
                 return 0;
@@ -32,7 +32,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the top coordinate.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int Top {
             get {
                 return 0;

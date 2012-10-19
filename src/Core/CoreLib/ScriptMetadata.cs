@@ -314,7 +314,7 @@ namespace System.Runtime.CompilerServices {
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
     [ScriptIgnore]
-    public sealed class ScriptPropertyAttribute : Attribute {
+    public sealed class ScriptFieldAttribute : Attribute {
     }
 
     [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]

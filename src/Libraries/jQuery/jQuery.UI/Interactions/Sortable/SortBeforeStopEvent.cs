@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Interactions {
     [ScriptName("Object")]
     public sealed class SortBeforeStopEvent {
 
-        [ScriptProperty]
+        [ScriptField]
         public jQueryObject Helper {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public jQueryObject Item {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object Offset {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object OriginalPosition {
             get {
                 return null;
@@ -49,7 +49,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object Position {
             get {
                 return null;
@@ -58,7 +58,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public jQueryObject Sender {
             get {
                 return null;

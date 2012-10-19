@@ -207,7 +207,7 @@ namespace ScriptSharp.Compiler {
                 IndexerSymbol indexer = new IndexerSymbol(typeSymbol, indexerType);
                 BuildMemberDetails(indexer, typeSymbol, indexerNode, indexerNode.Attributes);
 
-                if (AttributeNode.FindAttribute(indexerNode.Attributes, "ScriptProperty") != null) {
+                if (AttributeNode.FindAttribute(indexerNode.Attributes, "ScriptField") != null) {
                     indexer.SetScriptIndexer();
                 }
 
@@ -716,8 +716,8 @@ namespace ScriptSharp.Compiler {
         }
 
         private FieldSymbol BuildPropertyAsField(PropertyDeclarationNode propertyNode, TypeSymbol typeSymbol) {
-            AttributeNode scriptPropertyAttribute = AttributeNode.FindAttribute(propertyNode.Attributes, "ScriptProperty");
-            if (scriptPropertyAttribute == null) {
+            AttributeNode scriptFieldAttribute = AttributeNode.FindAttribute(propertyNode.Attributes, "ScriptField");
+            if (scriptFieldAttribute == null) {
                 return null;
             }
 

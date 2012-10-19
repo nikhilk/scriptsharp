@@ -420,7 +420,7 @@ namespace ScriptSharp.Importer {
                 }
 
                 string propertyName = property.Name;
-                bool scriptProperty = MetadataHelpers.ShouldTreatAsScriptProperty(property);
+                bool scriptField = MetadataHelpers.ShouldTreatAsScriptField(property);
 
                 // TODO: Why are we ignoring the other bits...
                 // bool dummyPreserveName;
@@ -437,7 +437,7 @@ namespace ScriptSharp.Importer {
                     IndexerSymbol indexerSymbol = new IndexerSymbol(typeSymbol, propertyType);
                     ImportMemberDetails(indexerSymbol, property.GetMethod, property);
 
-                    if (scriptProperty) {
+                    if (scriptField) {
                         indexerSymbol.SetScriptIndexer();
                     }
 
@@ -445,7 +445,7 @@ namespace ScriptSharp.Importer {
                     // propertySymbol.SetNameCasing(preserveCase);
                 }
                 else {
-                    if (scriptProperty) {
+                    if (scriptField) {
                         // Properties marked with this attribute are to be thought of as
                         // fields. If they are read-only, the C# compiler will enforce that,
                         // so we don't have to worry about making them read-write via a field

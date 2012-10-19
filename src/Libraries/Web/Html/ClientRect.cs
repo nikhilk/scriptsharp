@@ -16,28 +16,28 @@ namespace System.Html {
         private ClientRect() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Bottom {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Left {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Right {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Top {
             get {
                 return 0;

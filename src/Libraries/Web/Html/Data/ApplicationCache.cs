@@ -18,7 +18,7 @@ namespace System.Html.Data {
         /// <summary>
         /// Gets the current status of the application cache.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public ApplicationCacheStatus Status {
             get {
                 return ApplicationCacheStatus.Uncached;

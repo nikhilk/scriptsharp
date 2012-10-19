@@ -15,14 +15,14 @@ namespace System.Html {
         private OptionElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public FormElement Form {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Selected {
             get {
                 return false;
@@ -31,7 +31,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Text {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Value {
             get {
                 return null;

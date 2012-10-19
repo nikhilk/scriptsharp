@@ -14,7 +14,7 @@ namespace System {
         private Export() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;

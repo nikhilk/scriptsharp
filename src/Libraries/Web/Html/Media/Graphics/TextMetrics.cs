@@ -15,7 +15,7 @@ namespace System.Html.Media.Graphics {
         private TextMetrics() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Width {
             get {
                 return 0f;

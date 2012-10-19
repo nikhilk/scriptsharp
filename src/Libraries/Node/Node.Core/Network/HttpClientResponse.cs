@@ -17,28 +17,28 @@ namespace NodeApi.Network {
         private HttpClientResponse() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Dictionary<string, string> Headers {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string HttpVersion {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public HttpStatusCode StatusCode {
             get {
                 return HttpStatusCode.Unknown;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Dictionary<string, string> Trailers {
             get {
                 return null;

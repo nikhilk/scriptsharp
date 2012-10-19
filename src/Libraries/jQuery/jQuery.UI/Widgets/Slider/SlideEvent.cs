@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Widgets {
     [ScriptName("Object")]
     public sealed class SlideEvent {
 
-        [ScriptProperty]
+        [ScriptField]
         public jQueryObject Handle {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Value {
             get {
                 return 0;
@@ -31,7 +31,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Array Values {
             get {
                 return null;

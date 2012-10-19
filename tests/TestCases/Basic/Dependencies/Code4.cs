@@ -15,7 +15,7 @@ namespace BasicTests {
     [ScriptImport]
     public static class Templates {
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptAlias("dataTemplate")]
         public static string DataTemplate {
             get { return null; }

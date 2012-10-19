@@ -13,19 +13,19 @@ namespace NodeApi.IO {
     [ScriptName("Object")]
     public sealed class WriteStreamOptions {
 
-        [ScriptProperty]
+        [ScriptField]
         public Encoding Encoding {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Flags {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Mode {
             get;
             set;

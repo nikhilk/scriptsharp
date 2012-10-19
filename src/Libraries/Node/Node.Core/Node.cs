@@ -16,7 +16,7 @@ namespace NodeApi {
     [ScriptIgnoreNamespace]
     public static class Node {
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptAlias("process")]
         public static Process Process {
             get {

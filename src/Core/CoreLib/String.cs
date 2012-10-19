@@ -24,7 +24,7 @@ namespace System {
         /// <summary>
         /// The number of characters in the string.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
@@ -36,7 +36,7 @@ namespace System {
         /// </summary>
         /// <param name="index">The specified 0-based position.</param>
         /// <returns>The character within the string.</returns>
-        [ScriptProperty]
+        [ScriptField]
         public char this[int index] {
             get {
                 return '\0';

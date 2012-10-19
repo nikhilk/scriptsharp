@@ -170,8 +170,8 @@ namespace ScriptSharp.Importer {
             return GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptSkipAttribute") != null;
         }
 
-        public static bool ShouldTreatAsScriptProperty(PropertyDefinition property) {
-            return GetAttribute(property, "System.Runtime.CompilerServices.ScriptPropertyAttribute") != null;
+        public static bool ShouldTreatAsScriptField(PropertyDefinition property) {
+            return GetAttribute(property, "System.Runtime.CompilerServices.ScriptFieldAttribute") != null;
         }
 
         public static bool ShouldTreatAsConditionalMethod(MethodDefinition method, out ICollection<string> conditions) {

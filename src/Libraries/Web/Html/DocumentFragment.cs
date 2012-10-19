@@ -15,77 +15,77 @@ namespace System.Html {
         protected internal DocumentFragment() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementAttributeCollection Attributes {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementCollection ChildNodes {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element FirstChild {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element LastChild {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element NextSibling {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string NodeName {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int NodeType {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string NodeValue {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public DocumentInstance OwnerDocument {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element ParentNode {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element PreviousSibling {
             get {
                 return null;

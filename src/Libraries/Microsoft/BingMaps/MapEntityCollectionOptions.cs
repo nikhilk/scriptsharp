@@ -13,13 +13,13 @@ namespace Microsoft.Maps {
     [ScriptIgnoreNamespace]
     public sealed class MapEntityCollectionOptions {
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Visible {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ZIndex {
             get;
             set;

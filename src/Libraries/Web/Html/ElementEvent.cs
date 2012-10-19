@@ -15,21 +15,21 @@ namespace System.Html {
         internal ElementEvent() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool AltKey {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Button {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool CancelBubble {
             get {
                 return false;
@@ -38,70 +38,70 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool CtrlKey {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element CurrentTarget {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public DataTransfer DataTransfer {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Detail {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element FromElement {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int KeyCode {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool MetaKey {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int OffsetX {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int OffsetY {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool ReturnValue {
             get {
                 return false;
@@ -110,42 +110,42 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool ShiftKey {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element SrcElement {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element Target {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Date TimeStamp {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element ToElement {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Type {
             get {
                 return null;

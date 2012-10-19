@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Widgets {
     [ScriptName("Object")]
     public sealed class AccordionChangestartEvent {
 
-        [ScriptProperty]
+        [ScriptField]
         public object NewContent {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object NewHeader {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object OldContent {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object OldHeader {
             get {
                 return null;

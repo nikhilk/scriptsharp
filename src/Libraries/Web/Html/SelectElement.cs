@@ -15,7 +15,7 @@ namespace System.Html {
         private SelectElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Multiple {
             get {
                 return false;
@@ -24,14 +24,14 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementCollection Options {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int SelectedIndex {
             get {
                 return 0;
@@ -40,7 +40,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Size {
             get {
                 return 0;

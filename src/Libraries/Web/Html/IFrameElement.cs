@@ -15,14 +15,14 @@ namespace System.Html {
         private IFrameElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public WindowInstance ContentWindow {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string FrameBorder {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Scrolling {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Src {
             get {
                 return null;

@@ -18,28 +18,28 @@ namespace Microsoft.Maps {
         public MapLocation(double latitude, double longitude, double altitude, MapAltitudeMode altitudeMode) {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Altitude {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public MapAltitudeMode AltitudeMode {
             get {
                 return MapAltitudeMode.Ground;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Latitude {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Longitude {
             get {
                 return 0;

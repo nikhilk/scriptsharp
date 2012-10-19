@@ -13,13 +13,13 @@ namespace Microsoft.Maps {
     [ScriptIgnoreNamespace]
     public sealed class MapZoomRange {
 
-        [ScriptProperty]
+        [ScriptField]
         public int Min {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Max {
             get;
             set;

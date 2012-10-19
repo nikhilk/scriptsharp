@@ -20,75 +20,75 @@ namespace NodeApi.Network {
         public UrlData(params object[] nameValuePairs) {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Auth {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Hash {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Host {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string HostName {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Href {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Path {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("pathname")]
         public string PathName {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Port {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Protocol {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Dictionary<string, string> Query {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("query")]
         public string QueryString {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Search {
             get;
             set;

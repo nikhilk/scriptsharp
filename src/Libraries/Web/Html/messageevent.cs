@@ -15,21 +15,21 @@ namespace System.Html {
         internal MessageEvent() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Data {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Origin {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public WindowInstance Source {
             get {
                 return null;

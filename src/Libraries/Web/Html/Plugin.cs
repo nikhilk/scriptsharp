@@ -20,7 +20,7 @@ namespace System.Html {
         /// <summary>
         /// A human readable description of the plugin.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public string Description {
             get {
                 return null;
@@ -30,7 +30,7 @@ namespace System.Html {
         /// <summary>
         /// The filename of the plugin file.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("filename")]
         public string FileName {
             get {
@@ -41,7 +41,7 @@ namespace System.Html {
         /// <summary>
         /// The name of the plugin.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
@@ -51,7 +51,7 @@ namespace System.Html {
         /// <summary>
         /// The plugin's version number string.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public string Version {
             get {
                 return null;

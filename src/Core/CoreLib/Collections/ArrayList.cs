@@ -27,7 +27,7 @@ namespace System.Collections {
         public ArrayList(params object[] items) {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("length")]
         public int Count {
             get {
@@ -35,7 +35,7 @@ namespace System.Collections {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object this[int index] {
             get {
                 return null;

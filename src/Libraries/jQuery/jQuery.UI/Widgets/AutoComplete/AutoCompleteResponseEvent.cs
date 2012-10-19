@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Widgets {
     [ScriptName("Object")]
     public sealed class AutoCompleteResponseEvent {
 
-        [ScriptProperty]
+        [ScriptField]
         public object Content {
             get {
                 return null;

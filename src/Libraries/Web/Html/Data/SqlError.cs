@@ -17,14 +17,14 @@ namespace System.Html.Data {
         private SqlError() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Code {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Message {
             get {
                 return null;

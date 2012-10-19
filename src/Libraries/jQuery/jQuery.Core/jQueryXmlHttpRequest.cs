@@ -23,7 +23,7 @@ namespace jQueryApi {
         /// <summary>
         /// The ready state property of the XmlHttpRequest object.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public ReadyState ReadyState {
             get {
                 return ReadyState.Uninitialized;
@@ -33,7 +33,7 @@ namespace jQueryApi {
         /// <summary>
         /// The XML document for an XML response.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("responseXML")]
         public XmlDocument ResponseXml {
             get {
@@ -44,7 +44,7 @@ namespace jQueryApi {
         /// <summary>
         /// The text of the response.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public string ResponseText {
             get {
                 return null;
@@ -54,7 +54,7 @@ namespace jQueryApi {
         /// <summary>
         /// The status code associated with the response.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int Status {
             get {
                 return 0;
@@ -64,7 +64,7 @@ namespace jQueryApi {
         /// <summary>
         /// The status text of the response.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public string StatusText {
             get {
                 return null;

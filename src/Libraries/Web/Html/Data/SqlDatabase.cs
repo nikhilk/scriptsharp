@@ -17,7 +17,7 @@ namespace System.Html.Data {
         private SqlDatabase() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Version {
             get {
                 return null;

@@ -15,7 +15,7 @@ namespace System.Globalization {
         private CultureInfo() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("current")]
         public static CultureInfo CurrentCulture {
             get {
@@ -23,7 +23,7 @@ namespace System.Globalization {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("dtf")]
         public DateFormatInfo DateFormat {
             get {
@@ -31,7 +31,7 @@ namespace System.Globalization {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("neutral")]
         public static CultureInfo InvariantCulture {
             get {
@@ -39,14 +39,14 @@ namespace System.Globalization {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("nf")]
         public NumberFormatInfo NumberFormat {
             get {

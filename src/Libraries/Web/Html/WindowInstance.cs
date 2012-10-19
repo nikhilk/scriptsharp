@@ -19,14 +19,14 @@ namespace System.Html {
         private WindowInstance() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Closed {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string DefaultStatus {
             get { 
                 return null; 
@@ -35,91 +35,91 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public DocumentInstance Document {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public IFrameElement FrameElement {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int InnerHeight {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int InnerWidth {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Location Location {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public WindowInstance Parent {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public WindowInstance Opener {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static int OuterHeight {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static int OuterWidth {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int PageXOffset {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int PageYOffset {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public WindowInstance Self {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Status {
             get { 
                 return null; 
@@ -128,14 +128,14 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public WindowInstance Top {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public WindowInstance[] Frames {
             get {
                 return null;

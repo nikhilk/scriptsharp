@@ -15,14 +15,14 @@ namespace System.Html.Services {
         private GeolocationError() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public GeolocationErrorCode Code {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Message {
             get {
                 return null;

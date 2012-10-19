@@ -15,35 +15,35 @@ namespace System.Html {
         private TableElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementCollection Cells {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementCollection Rows {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementCollection tBodies {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element tFoot {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementCollection tHead {
             get {
                 return null;

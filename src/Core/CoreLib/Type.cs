@@ -17,7 +17,7 @@ namespace System {
     public sealed class Type {
 
         [ScriptName("$base")]
-        [ScriptProperty]
+        [ScriptField]
         public Type BaseType {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace System {
         /// <summary>
         /// Gets the prototype associated with the type.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public Dictionary Prototype {
             get {
                 return null;

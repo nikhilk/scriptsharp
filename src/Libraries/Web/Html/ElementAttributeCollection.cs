@@ -15,7 +15,7 @@ namespace System.Html {
         internal ElementAttributeCollection() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;

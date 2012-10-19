@@ -15,7 +15,7 @@ namespace System.Html {
         private ScriptElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Src {
             get {
                 return null;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Type {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string ReadyState {
             get {
                 return null;

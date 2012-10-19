@@ -17,92 +17,92 @@ namespace System.Html.Media.Graphics {
         }
 
         [ScriptName("globalAlpha")]
-        [ScriptProperty]
+        [ScriptField]
         public double Alpha {
             get;
             set;
         }
 
         [ScriptName("globalCompositeOperation")]
-        [ScriptProperty]
+        [ScriptField]
         public CompositeOperation CompositeOperation {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object FillStyle {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Font {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public LineCap LineCap {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public LineJoin LineJoin {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double LineWidth {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int MiterLimit {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double ShadowBlur {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string ShadowColor {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double ShadowOffsetX {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double ShadowOffsetY {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object StrokeStyle {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public TextAlign TextAlign {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public TextBaseline TextBaseline {
             get;
             set;

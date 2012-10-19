@@ -16,42 +16,42 @@ namespace NodeApi.Network {
         private HttpServerRequest() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Socket Connection {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object Headers {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string HttpVersion {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public HttpVerb Method {
             get {
                 return HttpVerb.GET;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object Trailers {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Url {
             get {
                 return null;

@@ -15,7 +15,7 @@ namespace System {
     [ScriptImport]
     public static class Script {
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptAlias("$global")]
         public static object Global {
             get {
@@ -23,7 +23,7 @@ namespace System {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptAlias("undefined")]
         public static object Undefined {
             get {

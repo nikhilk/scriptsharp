@@ -16,14 +16,14 @@ namespace Microsoft.Maps.Location {
         private GeoLocation() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public MapLocation Center {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("position.coords")]
         public GeoCoordinates Coordinates {
             get {
@@ -31,7 +31,7 @@ namespace Microsoft.Maps.Location {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("position.timestamp")]
         public string Timestamp {
             get {

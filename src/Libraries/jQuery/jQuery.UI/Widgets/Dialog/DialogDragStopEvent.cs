@@ -13,7 +13,7 @@ namespace jQueryApi.UI.Widgets {
     [ScriptName("Object")]
     public sealed class DialogDragStopEvent {
 
-        [ScriptProperty]
+        [ScriptField]
         public object Offset {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public object Position {
             get {
                 return null;

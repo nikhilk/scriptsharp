@@ -15,7 +15,7 @@ namespace System.Html {
         internal CheckBoxElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Checked {
             get {
                 return false;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool DefaultChecked {
             get {
                 return false;

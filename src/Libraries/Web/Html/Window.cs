@@ -21,7 +21,7 @@ namespace System.Html {
         private Window() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static ApplicationCache ApplicationCache {
             get {
                 return null;
@@ -31,21 +31,21 @@ namespace System.Html {
         /// <summary>
         /// IE only.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public static DataTransfer ClipboardData {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static bool Closed {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static string DefaultStatus {
             get { 
                 return null; 
@@ -54,14 +54,14 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static object DialogArguments {
             get { 
                 return null; 
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static DocumentInstance Document {
             get {
                 return null;
@@ -71,70 +71,70 @@ namespace System.Html {
         /// <summary>
         /// Provides information about the current event being handled.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public static ElementEvent Event {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static IFrameElement FrameElement {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static History History {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static int InnerHeight {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static int InnerWidth {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static Storage LocalStorage {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static Location Location {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static Navigator Navigator {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static WindowInstance Parent {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static ErrorHandler Onerror {
             get { 
                 return null; 
@@ -143,70 +143,70 @@ namespace System.Html {
             } 
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static WindowInstance Opener {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static Orientation Orientation {
             get {
                 return Orientation.Portrait;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static int OuterHeight {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static int OuterWidth {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static int PageXOffset {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static int PageYOffset {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static Screen Screen {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static WindowInstance Self {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static Storage SessionStorage {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static string Status {
             get { 
                 return null; 
@@ -215,14 +215,14 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static WindowInstance Top {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static WindowInstance[] Frames {
             get {
                 return null;

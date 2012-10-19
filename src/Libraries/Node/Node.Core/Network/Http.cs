@@ -14,7 +14,7 @@ namespace NodeApi.Network {
     [ScriptName("http")]
     public static class Http {
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("STATUS_CODES")]
         public static HttpStatus StatusCodes {
             get {

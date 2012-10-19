@@ -14,49 +14,49 @@ namespace System.Xml {
         internal XmlNode() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public XmlNamedNodeMap Attributes {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string BaseName {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public XmlNodeList ChildNodes {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public XmlNode FirstChild {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public XmlNode LastChild {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public XmlNode NextSibling {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("nodeName")]
         public virtual string Name {
             get {
@@ -64,14 +64,14 @@ namespace System.Xml {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public XmlNodeType NodeType {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("nodeValue")]
         public virtual string Value {
             get {
@@ -81,35 +81,35 @@ namespace System.Xml {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public XmlDocument OwnerDocument {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public XmlNode ParentNode {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Prefix {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public XmlNode PreviousSibling {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("text")]
         public string InnerText {
             get {
@@ -117,7 +117,7 @@ namespace System.Xml {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("xml")]
         public string OuterXml {
             get {

@@ -14,14 +14,14 @@ namespace System.Xml {
         internal XmlText() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Data {
             get {
                 return null;

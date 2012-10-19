@@ -29,7 +29,7 @@ namespace jQueryApi {
         /// Gets or sets the rate (in milliseconds) at which animations fire.
         /// </summary>
         [ScriptName("fx.interval")]
-        [ScriptProperty]
+        [ScriptField]
         public static int AnimationInterval {
             get {
                 return 0;
@@ -42,7 +42,7 @@ namespace jQueryApi {
         /// Gets or sets whether animations are disabled or not.
         /// </summary>
         [ScriptName("fx.off")]
-        [ScriptProperty]
+        [ScriptField]
         public static bool AnimationsDisabled {
             get {
                 return false;
@@ -54,7 +54,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets information about the current browser and its version.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public static jQueryBrowser Browser {
             get {
                 return null;
@@ -66,7 +66,7 @@ namespace jQueryApi {
         /// </summary>
         /// <returns>The jQueryObject represented by 'this' within a plugin.</returns>
         [ScriptAlias("this")]
-        [ScriptProperty]
+        [ScriptField]
         public static jQueryObject Current {
             get {
                 return null;
@@ -77,7 +77,7 @@ namespace jQueryApi {
         /// Gets the current document object wrapped into a jQuery object.
         /// </summary>
         [ScriptAlias("$(document)")]
-        [ScriptProperty]
+        [ScriptField]
         public static jQueryObject Document {
             get {
                 return null;
@@ -89,7 +89,7 @@ namespace jQueryApi {
         /// </summary>
         /// <returns>The element represented by 'this' in a callback.</returns>
         [ScriptAlias("this")]
-        [ScriptProperty]
+        [ScriptField]
         public static Element Element {
             get {
                 return null;
@@ -100,7 +100,7 @@ namespace jQueryApi {
         /// Gets the instance of the global jQuery object.
         /// </summary>
         [ScriptAlias("jQuery")]
-        [ScriptProperty]
+        [ScriptField]
         public static jQuery Instance {
             get {
                 return null;
@@ -110,7 +110,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets information about supported features and browser capabilities.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public static jQuerySupport Support {
             get {
                 return null;
@@ -123,7 +123,7 @@ namespace jQueryApi {
         /// </summary>
         /// <returns>The jQueryObject for the element represented by 'this' in a callback.</returns>
         [ScriptAlias("$(this)")]
-        [ScriptProperty]
+        [ScriptField]
         public static jQueryObject This {
             get {
                 return null;
@@ -134,7 +134,7 @@ namespace jQueryApi {
         /// Gets the current window object wrapped into a jQuery object.
         /// </summary>
         [ScriptAlias("$(window)")]
-        [ScriptProperty]
+        [ScriptField]
         public static jQueryObject Window {
             get {
                 return null;

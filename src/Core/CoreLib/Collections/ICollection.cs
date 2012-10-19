@@ -11,13 +11,13 @@ namespace System.Collections {
     [ScriptName("ICollection")]
     public interface ICollection : IEnumerable {
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("length")]
         int Count {
             get;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         object this[int index] {
             get;
             set;

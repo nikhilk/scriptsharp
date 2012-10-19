@@ -25,7 +25,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// This event is triggered when the value of the progressbar changes.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public jQueryUIEventHandler<jQueryObject> Change {
              get {
                 return null;
@@ -37,7 +37,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// This event is triggered when the value of the progressbar reaches the maximum value of 100.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public jQueryUIEventHandler<jQueryObject> Complete {
              get {
                 return null;
@@ -49,7 +49,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// This event is triggered when the progressbar is created.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public jQueryEventHandler Create {
              get {
                 return null;
@@ -61,7 +61,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// Disables the progressbar if set to true.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool Disabled {
             get {
                 return false;
@@ -73,7 +73,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// The value of the progressbar.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int Value {
             get {
                 return 0;

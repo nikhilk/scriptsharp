@@ -20,49 +20,49 @@ namespace jQueryApi {
         protected jQueryEvent() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool AltKey {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Bubbles {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Button {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Cancelable {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool CtrlKey {
             get {
                 return false;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ClientX {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ClientY {
             get {
                 return 0;
@@ -72,7 +72,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the current DOM element within the event bubbling phase.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public Element CurrentTarget {
             get {
                 return null;
@@ -82,7 +82,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the event data that was passed in into the Bind method.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public Dictionary Data {
             get {
                 return null;
@@ -92,21 +92,21 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the namespace specified when the event was triggered.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public string Namespace {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int OffsetX {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int OffsetY {
             get {
                 return 0;
@@ -116,14 +116,14 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the original DOM event which spawned this event.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public ElementEvent OriginalEvent {
             get{
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element OriginalTarget {
             get {
                 return null;
@@ -133,7 +133,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the mouse position relative to left edge of the document.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int PageX {
             get {
                 return 0;
@@ -143,21 +143,21 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the mouse position relative to top edge of the document.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int PageY {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ScreenX {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ScreenY {
             get {
                 return 0;
@@ -167,7 +167,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the other DOM element associated with the event if any.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public Element RelatedTarget {
             get {
                 return null;
@@ -177,14 +177,14 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the value returned by the last event handler if any.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public object Result {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool ShiftKey {
             get {
                 return false;
@@ -194,7 +194,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the DOM element that initiated the event.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public Element Target {
             get {
                 return null;
@@ -205,7 +205,7 @@ namespace jQueryApi {
         /// Gets the number of milliseconds since Jan 1, 1970, when the event
         /// was triggered.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public long TimeStamp {
             get {
                 return 0;
@@ -215,7 +215,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the type or name of the event.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public string Type {
             get {
                 return null;
@@ -225,7 +225,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the key or button that was pressed.
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int Which {
             get {
                 return 0;

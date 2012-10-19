@@ -15,21 +15,21 @@ namespace System.Html {
         internal TouchEvent() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public TouchInfo[] ChangedTouches {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public TouchInfo[] TargetTouches {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public TouchInfo[] Touches {
             get {
                 return null;

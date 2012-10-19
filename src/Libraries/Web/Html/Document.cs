@@ -14,21 +14,21 @@ namespace System.Html {
     [ScriptName("document")]
     public static class Document {
 
-        [ScriptProperty]
+        [ScriptField]
         public static Element ActiveElement {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static Element Body {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static string Cookie {
             get {
                 return null;
@@ -37,21 +37,21 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static string Doctype {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static Element DocumentElement {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static string DesignMode {
             get {
                 return null;
@@ -60,7 +60,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static string Domain {
             get {
                 return null;
@@ -69,42 +69,42 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static DocumentImplementation Implementation {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static WindowInstance ParentWindow {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static string ReadyState {
             get {
                 return null;
             }
         }
         
-        [ScriptProperty]
+        [ScriptField]
         public static string Referrer {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static Selection Selection {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static string Title {
             get {
                 return null;
@@ -113,7 +113,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public static string URL {
             get {
                 return null;

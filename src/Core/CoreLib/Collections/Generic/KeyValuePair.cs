@@ -15,14 +15,14 @@ namespace System.Collections.Generic {
         internal KeyValuePair() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public TKey Key {
             get {
                 return default(TKey);
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public TValue Value {
             get {
                 return default(TValue);

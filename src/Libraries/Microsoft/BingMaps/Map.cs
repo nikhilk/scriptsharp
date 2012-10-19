@@ -19,7 +19,7 @@ namespace Microsoft.Maps {
         public Map(Element element, MapOptions options) {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public MapEntityCollection Entities {
             get {
                 return null;

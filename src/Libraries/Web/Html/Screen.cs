@@ -15,35 +15,35 @@ namespace System.Html {
     [ScriptImport]
     public class Screen {
 
-        [ScriptProperty]
+        [ScriptField]
         public int AvailHeight {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int AvailWidth {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ColorDepth {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Height {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Width {
             get {
                 return 0;

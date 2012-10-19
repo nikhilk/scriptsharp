@@ -21,7 +21,7 @@ namespace System {
         /// </summary>
         /// <returns>The arguments list.</returns>
         [ScriptAlias("arguments")]
-        [ScriptProperty]
+        [ScriptField]
         public static object[] Current {
             get {
                 return null;
@@ -32,7 +32,7 @@ namespace System {
         /// Retrieves the number of actual arguments passed to the function.
         /// </summary>
         /// <returns>The count of arguments.</returns>
-        [ScriptProperty]
+        [ScriptField]
         public static int Length {
             get {
                 return 0;

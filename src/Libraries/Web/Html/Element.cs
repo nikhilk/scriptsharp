@@ -17,7 +17,7 @@ namespace System.Html {
         protected internal Element() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string AccessKey {
             get {
                 return null;
@@ -26,28 +26,28 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementAttributeCollection Attributes {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementCollection ChildNodes {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementCollection Children {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string ClassName {
             get {
                 return null;
@@ -56,49 +56,49 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public TokenList ClassList {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ClientHeight {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ClientLeft {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ClientTop {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ClientWidth {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Style CurrentStyle {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Dir {
             get {
                 return null;
@@ -108,7 +108,7 @@ namespace System.Html {
         }
 
         // TODO: Is this on Element or just some types of elements?
-        [ScriptProperty]
+        [ScriptField]
         public bool Disabled {
             get {
                 return false;
@@ -117,21 +117,21 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public VisualFilterCollection Filters {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element FirstChild {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string ID {
             get {
                 return null;
@@ -140,7 +140,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string InnerHTML {
             get {
                 return null;
@@ -149,7 +149,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string InnerText {
             get {
                 return null;
@@ -158,112 +158,112 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element LastChild {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element NextSibling {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string NodeName {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementType NodeType {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string NodeValue {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int OffsetHeight {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int OffsetLeft {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element OffsetParent {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int OffsetTop {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int OffsetWidth {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public DocumentInstance OwnerDocument {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element ParentNode {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Element PreviousSibling {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Style RuntimeStyle {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ScrollHeight {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ScrollLeft {
             get {
                 return 0;
@@ -272,7 +272,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ScrollTop {
             get {
                 return 0;
@@ -281,21 +281,21 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int ScrollWidth {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public Style Style {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int TabIndex {
             get {
                 return 0;
@@ -304,14 +304,14 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string TagName {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string TextContent {
             get {
                 return null;
@@ -320,7 +320,7 @@ namespace System.Html {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Title {
             get {
                 return null;

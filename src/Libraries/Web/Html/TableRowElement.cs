@@ -15,21 +15,21 @@ namespace System.Html {
         private TableRowElement() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public ElementCollection Cells {
             get {
                 return null;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int RowIndex {
             get {
                 return 0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int SectionRowIndex {
             get {
                 return 0;

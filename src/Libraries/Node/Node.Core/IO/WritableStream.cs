@@ -12,7 +12,7 @@ namespace NodeApi.IO {
     [ScriptIgnoreNamespace]
     public abstract class WritableStream : IEventEmitter {
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Writable {
             get {
                 return false;

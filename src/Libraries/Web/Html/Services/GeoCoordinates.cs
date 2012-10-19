@@ -15,49 +15,49 @@ namespace System.Html.Services {
         private GeoCoordinates() {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Accuracy {
             get {
                 return 0.0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Altitude {
             get {
                 return 0.0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double AltitudeAccuracy {
             get {
                 return 0.0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Heading {
             get {
                 return 0.0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Latitude {
             get {
                 return 0.0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Longitude {
             get {
                 return 0.0;
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public double Speed {
             get {
                 return 0.0;

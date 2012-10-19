@@ -19,7 +19,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require a certain file extension
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public string Accept {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require a creditcard number
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("creditcard")]
         public bool CreditCard {
             get {
@@ -44,7 +44,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require a date
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool Date {
             get {
                 return false;
@@ -56,7 +56,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require a ISO date
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("dateISO")]
         public bool DateISO {
             get {
@@ -69,7 +69,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require digits only
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool Digits {
             get {
                 return false;
@@ -81,7 +81,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require a valid email address
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool Email {
             get {
                 return false;
@@ -93,7 +93,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Requires the element to be the same as another one
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public string EqualTo {
             get {
                 return null;
@@ -105,7 +105,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require a given maximum
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int Max {
             get {
                 return 0;
@@ -117,7 +117,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require a given maximum length
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int MaxLength {
             get {
                 return 0;
@@ -129,7 +129,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require given minimum
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int Min {
             get {
                 return 0;
@@ -141,7 +141,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require a given minimum length
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int MinLength {
             get {
                 return 0;
@@ -153,7 +153,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require a decimal number
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool Number {
             get {
                 return false;
@@ -162,7 +162,7 @@ namespace jQueryApi.Validation {
             }
         }
 
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("phoneUS")]
         public bool PhoneUS {
             get {
@@ -175,7 +175,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the value require a given value range
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int[] Range {
             get {
                 return null;
@@ -187,7 +187,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require a given value range
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public int[] RangeLength {
             get {
                 return null;
@@ -199,7 +199,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Requests a resource to check the element for validity
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public object Remote {
             get {
                 return null;
@@ -211,7 +211,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element required, depending on the result of the given callback
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("required")]
         public Func<bool> RequiredCallback {
             get {
@@ -224,7 +224,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element required, depending on the result of the given expression
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         [ScriptName("required")]
         public string RequiredExpression {
             get {
@@ -237,7 +237,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element always required
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool Required {
             get {
                 return false;
@@ -249,7 +249,7 @@ namespace jQueryApi.Validation {
         /// <summary>
         /// Makes the element require a valid url
         /// </summary>
-        [ScriptProperty]
+        [ScriptField]
         public bool Url {
             get {
                 return false;
