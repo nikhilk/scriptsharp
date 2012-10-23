@@ -91,14 +91,14 @@ namespace ScriptSharp.Testing.WebServer {
             }
 
             if (success.HasValue) {
-                if (Log != null) {
-                    string log = new StreamReader(message.RequestStream).ReadToEnd();
+                string log = new StreamReader(message.RequestStream).ReadToEnd();
+                message.WriteStatus(HttpStatusCode.NoContent);
 
+                if (Log != null) {
                     WebTestLogEventArgs logEvent = new WebTestLogEventArgs(success.Value, log);
                     Log(this, logEvent);
                 }
 
-                message.WriteStatus(HttpStatusCode.NoContent);
                 return;
             }
 
