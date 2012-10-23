@@ -121,6 +121,15 @@ namespace jQueryApi.UI.Effects {
         public void Toggle(object speed) {
         }
 
+        /// <summary>
+        /// Display or hide the matched elements, using custom effects.
+        /// </summary>
+        /// <param name="effect">A string indicating which effect to use for the transition.</param>
+        /// <param name="options">Effect-specific settings and easing.</param>
+        /// <param name="duration">A string or number determining how long the animation will run.</param>
+        /// <param name="complete">A function to call once the animation is complete.</param>
+        public void Toggle(string effect, object options, object duration, Action complete) {
+        }
 
         /// <summary>
         /// 
