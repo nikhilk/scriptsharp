@@ -41,6 +41,12 @@ define('test', ['ss'], function(ss) {
       delete dictionary1[key];
       ss.clearKeys(dictionary1);
       var keys = ss.keys(dictionary1);
+    },
+    test4: function(arg) {
+      var d1 = {};
+      d1[1] = d1[arg] = 'aaa';
+      delete d1[1];
+      delete d1[arg];
     }
   };
 

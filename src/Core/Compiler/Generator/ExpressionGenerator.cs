@@ -563,9 +563,7 @@ namespace ScriptSharp.Generator {
             string name = null;
 
             LiteralExpression literalNameExpression = expression.NameExpression as LiteralExpression;
-            if (literalNameExpression != null) {
-                Debug.Assert(literalNameExpression.Value is string);
-
+            if ((literalNameExpression != null) && (literalNameExpression.Value is string)) {
                 name = (string)literalNameExpression.Value;
                 Debug.Assert(String.IsNullOrEmpty(name) == false);
             }
