@@ -353,6 +353,7 @@
     <Compile Include="ScriptModel\Expressions\BinaryExpression.cs" />
     <Compile Include="ScriptModel\Expressions\ConditionalExpression.cs" />
     <Compile Include="ScriptModel\Expressions\NewExpression.cs" />
+    <Compile Include="ScriptModel\Expressions\NewDelegateExpression.cs" />
     <Compile Include="ScriptModel\Expressions\UnaryExpression.cs" />
     <Compile Include="ScriptModel\Expressions\ThisExpression.cs" />
     <Compile Include="ScriptModel\Expressions\TypeExpression.cs" />

@@ -410,6 +410,9 @@ namespace ScriptSharp.Generator {
                 case ExpressionType.InlineScript:
                     GenerateInlineScriptExpression(generator, symbol, (InlineScriptExpression)expression);
                     break;
+                case ExpressionType.NewDelegate:
+                    GenerateExpression(generator, symbol, ((NewDelegateExpression)expression).TypeExpression);
+                    break;
                 default:
                     Debug.Fail("Unexpected expression type: " + expression.Type);
                     break;
