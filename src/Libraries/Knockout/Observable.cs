@@ -53,11 +53,7 @@ namespace KnockoutApi {
 
         /// <summary>
         /// For Primitive Types ko will handle Equality internally
-<<<<<<< HEAD
-        /// For complex types a supplied function can be assigned to improve 
-=======
         /// For complex types a supplied function can be assigned to improve
->>>>>>> upstream/master
         /// change (mutation) detection
         /// </summary>
         [IntrinsicProperty]
