@@ -32,7 +32,7 @@ namespace jQueryApi.UI.Widgets {
         }
 
         [ScriptName("accordion")]
-        public object Accordion(AccordionMethod method, params object[] options) {
+		public AccordionObject Accordion(AccordionMethod method, params object[] options) {
             return null;
         }
 
