@@ -32,7 +32,7 @@ namespace jQueryApi.UI.Widgets {
         }
 
         [ScriptName("buttonset")]
-        public object ButtonSet(ButtonSetMethod method, params object[] options) {
+		public ButtonSetObject ButtonSet(ButtonSetMethod method, params object[] options) {
             return null;
         }
 
