@@ -32,7 +32,7 @@ namespace jQueryApi.UI.Widgets {
         }
 
         [ScriptName("tabs")]
-        public object Tabs(TabsMethod method, params object[] options) {
+        public TabsObject Tabs(TabsMethod method, params object[] options) {
             return null;
         }
 
