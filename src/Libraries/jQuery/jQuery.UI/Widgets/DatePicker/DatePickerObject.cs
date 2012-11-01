@@ -32,7 +32,7 @@ namespace jQueryApi.UI.Widgets {
         }
 
         [ScriptName("datepicker")]
-        public object DatePicker(DatePickerMethod method, params object[] options) {
+		public DatePickerObject DatePicker(DatePickerMethod method, params object[] options) {
             return null;
         }
 
