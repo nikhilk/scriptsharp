@@ -32,7 +32,7 @@ namespace jQueryApi.UI.Widgets {
         }
 
         [ScriptName("autocomplete")]
-        public object AutoComplete(AutoCompleteMethod method, params object[] options) {
+		public AutoCompleteObject AutoComplete(AutoCompleteMethod method, params object[] options) {
             return null;
         }
 
