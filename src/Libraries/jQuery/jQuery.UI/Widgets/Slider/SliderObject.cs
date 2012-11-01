@@ -32,7 +32,7 @@ namespace jQueryApi.UI.Widgets {
         }
 
         [ScriptName("slider")]
-        public object Slider(SliderMethod method, params object[] options) {
+		public SliderObject Slider(SliderMethod method, params object[] options) {
             return null;
         }
 
