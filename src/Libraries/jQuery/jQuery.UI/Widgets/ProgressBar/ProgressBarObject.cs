@@ -32,7 +32,7 @@ namespace jQueryApi.UI.Widgets {
         }
 
         [ScriptName("progressbar")]
-        public object ProgressBar(ProgressBarMethod method, params object[] options) {
+		public ProgressBarObject ProgressBar(ProgressBarMethod method, params object[] options) {
             return null;
         }
 
