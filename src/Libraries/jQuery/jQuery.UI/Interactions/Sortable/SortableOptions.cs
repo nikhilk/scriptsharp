@@ -386,7 +386,7 @@ namespace jQueryApi.UI.Interactions {
         /// Defines the opacity of the helper while sorting. From 0.01 to 1
         /// </summary>
         [IntrinsicProperty]
-        public int Opacity {
+        public decimal Opacity {
             get {
                 return 0;
             }
