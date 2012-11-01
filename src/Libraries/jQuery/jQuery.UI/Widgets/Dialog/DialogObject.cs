@@ -32,7 +32,7 @@ namespace jQueryApi.UI.Widgets {
         }
 
         [ScriptName("dialog")]
-        public object Dialog(DialogMethod method, params object[] options) {
+		public DialogObject Dialog(DialogMethod method, params object[] options) {
             return null;
         }
 
