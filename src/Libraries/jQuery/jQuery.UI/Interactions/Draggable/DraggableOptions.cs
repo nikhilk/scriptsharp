@@ -254,7 +254,7 @@ namespace jQueryApi.UI.Interactions {
         /// Opacity for the helper while being dragged.
         /// </summary>
         [IntrinsicProperty]
-        public int Opacity {
+        public double Opacity {
             get {
                 return 0;
             }
