@@ -5,9 +5,12 @@
 
 using System;
 using System.Collections;
+using System.Html;
 using System.Runtime.CompilerServices;
 
 namespace jQueryApi.Validation {
+
+	public delegate void HighlightElementCallback(Element element, string errorClass, string validClass);
 
     [Imported]
     [IgnoreNamespace]
@@ -86,6 +89,15 @@ namespace jQueryApi.Validation {
             }
         }
 
+		[IntrinsicProperty]
+		public HighlightElementCallback Highlight {
+			get {
+				return null;
+			}
+			set {
+			}
+		}
+
         [IntrinsicProperty]
         [ScriptName("ignore")]
         public string IgnoreSelector {
@@ -95,6 +107,15 @@ namespace jQueryApi.Validation {
             set {
             }
         }
+
+		[IntrinsicProperty]
+		public string IgnoreTitle {
+			get {
+				return null;
+			}
+			set {
+			}
+		}
 
         [IntrinsicProperty]
         public Action<jQueryEvent, jQueryValidator> InvalidHandler {
@@ -140,6 +161,15 @@ namespace jQueryApi.Validation {
             set {
             }
         }
+
+		[IntrinsicProperty]
+		public HighlightElementCallback Unhighlight {
+			get {
+				return null;
+			}
+			set {
+			}
+		}
 
         [IntrinsicProperty]
         [ScriptName("onclick")]
