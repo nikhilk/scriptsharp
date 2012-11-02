@@ -4,7 +4,7 @@
 //
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Html;
 using System.Runtime.CompilerServices;
 
@@ -413,7 +413,7 @@ namespace jQueryApi {
         /// object.
         /// </summary>
         [IntrinsicProperty]
-        public Dictionary XhrFields {
+        public Dictionary<string, object> XhrFields {
             get {
                 return null;
             }
