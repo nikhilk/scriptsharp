@@ -43,6 +43,19 @@ namespace KnockoutApi {
             return default(TModel);
         }
 
+		/// <summary>
+		/// Creates a model array from the specified JSON string and a
+		/// custom mapping.
+		/// </summary>
+		/// <typeparam name="TModel">The type of the model.</typeparam>
+		/// <param name="jsonData">The JSON data.</param>
+		/// <param name="mapping">The mapping rules to apply.</param>
+		/// <returns>A new instance of the model.</returns>
+		[ScriptName("fromJSON")]
+		public ObservableArray<TModel> ModelFromJson<TModel>(string jsonData, KnockoutMappingArraySpecification mapping) {
+			return null;
+		}
+
         /// <summary>
         /// Creates a model instance from the specified script object.
         /// </summary>
@@ -80,6 +93,33 @@ namespace KnockoutApi {
         public TModel ModelFromObject<TModel>(object data, KnockoutMappingSpecification mapping, TModel target) {
             return default(TModel);
         }
+
+		/// <summary>
+		/// Creates a model array from the specified script object and a
+		/// custom mapping.
+		/// </summary>
+		/// <typeparam name="TModel">The type of the model.</typeparam>
+		/// <param name="data">The vanilla script object.</param>
+		/// <param name="mapping">The mapping rules to apply.</param>
+		/// <returns>A new instance of the model.</returns>
+		[ScriptName("fromJS")]
+		public Observable<TModel> ModelFromObject<TModel>(object data, KnockoutMappingArraySpecification<TModel> mapping) {
+			return null;
+		}
+
+		/// <summary>
+		/// Creates a model array from the specified script object and a
+		/// custom mapping.
+		/// </summary>
+		/// <typeparam name="TModel">The type of the model.</typeparam>
+		/// <param name="data">The vanilla script object.</param>
+		/// <param name="mapping">The mapping rules to apply.</param>
+		/// <param name="target">The mapping rules to apply.</param>
+		/// <returns>A new instance of the model.</returns>
+		[ScriptName("fromJS")]
+		public Observable<TModel> ModelFromObject<TModel>(object data, KnockoutMappingArraySpecification<TModel> mapping, ObservableArray<TModel> target) {
+			return null;
+		}
 
         /// <summary>
         /// Unwraps the given view model
