@@ -4,7 +4,7 @@
 //
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Html;
 using System.Runtime.CompilerServices;
 
@@ -30,6 +30,18 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="nameValuePairs">An alternating set of string names and object values.</param>
         public jQueryAjaxOptions(params object[] nameValuePairs) {
+        }
+
+        /// <summary>
+        /// Gets or sets the content type sent in the request header that tells the server what kind of response it will accept in return.
+        /// </summary>
+        [IntrinsicProperty]
+        public Dictionary<string, string> Accepts {
+            get {
+                return null;
+            }
+            set {
+            }
         }
 
         /// <summary>
@@ -82,6 +94,18 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Gets or sets a map of string/regular-expression pairs that determine how jQuery will parse the response, given its content type.
+        /// </summary>
+        [IntrinsicProperty]
+        public Dictionary<string, RegularExpression> Contents {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the content type of the data sent to the server.
         /// </summary>
         [ScriptField]
@@ -100,6 +124,30 @@ namespace jQueryApi {
         public Element Context {
             get {
                 return null;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a map of dataType-to-dataType converters.
+        /// </summary>
+        [IntrinsicProperty]
+        public Dictionary<string, Func<string, object>> Converters {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets if you wish to force a crossDomain request (such as JSONP) on the same domain, set the value of crossDomain to true
+        /// </summary>
+        [IntrinsicProperty]
+        public bool CrossDomain {
+            get {
+                return false;
             }
             set {
             }
@@ -148,6 +196,18 @@ namespace jQueryApi {
         public bool Global {
             get {
                 return false;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets if a map of additional header key/value pairs to send along with the request.
+        /// </summary>
+        [IntrinsicProperty]
+        public Dictionary<string, string> Headers {
+            get {
+                return null;
             }
             set {
             }
@@ -252,6 +312,18 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// Gets or sets a map of numeric HTTP codes and functions to be called when the response has the corresponding code.
+        /// </summary>
+        [IntrinsicProperty]
+        public Dictionary<int, Action> StatusCode {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the function to invoke upon successful completion of the request.
         /// </summary>
         [ScriptField]
@@ -341,7 +413,7 @@ namespace jQueryApi {
         /// object.
         /// </summary>
         [ScriptField]
-        public Dictionary XhrFields {
+        public Dictionary<string, object> XhrFields {
             get {
                 return null;
             }
