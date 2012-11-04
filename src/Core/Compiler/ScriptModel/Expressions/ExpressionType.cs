@@ -53,6 +53,8 @@ namespace ScriptSharp.ScriptModel {
 
         LateBound = 21,
 
-        InlineScript = 22
+        InlineScript = 22,
+
+        NewDelegate = 23,
     }
 }
