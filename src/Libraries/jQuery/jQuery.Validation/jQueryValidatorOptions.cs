@@ -87,8 +87,26 @@ namespace jQueryApi.Validation {
         }
 
         [IntrinsicProperty]
+        public jQueryValidationHighlight Highlight {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        [IntrinsicProperty]
         [ScriptName("ignore")]
         public string IgnoreSelector {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        [IntrinsicProperty]
+        public string IgnoreTitle {
             get {
                 return null;
             }
@@ -134,6 +152,15 @@ namespace jQueryApi.Validation {
 
         [IntrinsicProperty]
         public Action<jQueryObject> SubmitHandler {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        [IntrinsicProperty]
+        public jQueryValidationHighlight Unhighlight {
             get {
                 return null;
             }
