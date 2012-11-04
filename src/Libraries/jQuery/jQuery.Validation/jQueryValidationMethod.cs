@@ -8,5 +8,5 @@ using System.Html;
 
 namespace jQueryApi.Validation {
 
-	public delegate bool jQueryValidationMethod(string value, Element element, object[] parameters);
+    public delegate bool jQueryValidationMethod(string value, Element element, object[] parameters);
 }

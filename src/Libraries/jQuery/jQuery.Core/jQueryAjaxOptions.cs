@@ -118,10 +118,10 @@ namespace jQueryApi {
         }
 
         /// <summary>
-        /// Gets or sets the element that will be the context for the request.
+        /// Gets or sets the object that will be the context for the request.
         /// </summary>
         [IntrinsicProperty]
-        public Element Context {
+        public object Context {
             get {
                 return null;
             }
