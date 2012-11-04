@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="BindingContext.cs" />
     <Compile Include="CompareResult.cs" />
+    <Compile Include="KnockoutMappingArrayCreateOptions.cs" />
+    <Compile Include="KnockoutMappingArraySpecification.cs" />
     <Compile Include="KnockoutMappingCreateOptions.cs" />
     <Compile Include="KnockoutMappingUpdateOptions.cs" />
     <Compile Include="DependentObservableOptions.cs" />
