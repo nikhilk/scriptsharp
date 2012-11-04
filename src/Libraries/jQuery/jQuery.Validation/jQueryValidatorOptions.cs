@@ -87,8 +87,26 @@ namespace jQueryApi.Validation {
         }
 
         [ScriptField]
+        public jQueryValidationHighlight Highlight {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        [ScriptField]
         [ScriptName("ignore")]
         public string IgnoreSelector {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        [ScriptField]
+        public string IgnoreTitle {
             get {
                 return null;
             }
@@ -134,6 +152,15 @@ namespace jQueryApi.Validation {
 
         [ScriptField]
         public Action<jQueryObject> SubmitHandler {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        [ScriptField]
+        public jQueryValidationHighlight Unhighlight {
             get {
                 return null;
             }

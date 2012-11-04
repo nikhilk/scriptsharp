@@ -35,7 +35,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the content type sent in the request header that tells the server what kind of response it will accept in return.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Dictionary<string, string> Accepts {
             get {
                 return null;
@@ -96,8 +96,8 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets a map of string/regular-expression pairs that determine how jQuery will parse the response, given its content type.
         /// </summary>
-        [IntrinsicProperty]
-        public Dictionary<string, RegularExpression> Contents {
+        [ScriptField]
+        public Dictionary<string, RegExp> Contents {
             get {
                 return null;
             }
@@ -118,10 +118,10 @@ namespace jQueryApi {
         }
 
         /// <summary>
-        /// Gets or sets the element that will be the context for the request.
+        /// Gets or sets the object that will be the context for the request.
         /// </summary>
         [ScriptField]
-        public Element Context {
+        public object Context {
             get {
                 return null;
             }
@@ -132,7 +132,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets a map of dataType-to-dataType converters.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Dictionary<string, Func<string, object>> Converters {
             get {
                 return null;
@@ -144,7 +144,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets if you wish to force a crossDomain request (such as JSONP) on the same domain, set the value of crossDomain to true
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool CrossDomain {
             get {
                 return false;
@@ -204,7 +204,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets if a map of additional header key/value pairs to send along with the request.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Dictionary<string, string> Headers {
             get {
                 return null;
@@ -314,7 +314,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets a map of numeric HTTP codes and functions to be called when the response has the corresponding code.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Dictionary<int, Action> StatusCode {
             get {
                 return null;
