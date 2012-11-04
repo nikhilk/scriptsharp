@@ -61,6 +61,27 @@ define('test', ['ss'], function(ss) {
           var numbers = [ $this._n * 2 ];
         });
       });
+      var j = 0;
+      (function() {
+        $this._n++;
+      })();
+      (function() {
+        j++;
+      })();
+      (function(i, s, b) {
+        i++;
+        b = ss.emptyString(s);
+      })(j, 'foo', false);
+      (function(i, s, b) {
+        i++;
+        b = ss.emptyString(s);
+      })(j, 'foo', false);
+      j = (function(k) {
+        return k + 1;
+      })(3);
+      j = (function(k) {
+        return k + 1;
+      })(3);
     },
     BBB: function(o) {
       var s = new ExpressionTests$SomeClass(function() {

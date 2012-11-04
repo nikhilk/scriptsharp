@@ -846,7 +846,23 @@ namespace ScriptSharp.Compiler {
                 Debug.Assert(node.Arguments is ExpressionListNode);
                 Debug.Assert(((ExpressionListNode)node.Arguments).Expressions.Count == 1);
 
-                return BuildExpression(((ExpressionListNode)node.Arguments).Expressions[0]);
+                Expression subExpression = BuildExpression(((ExpressionListNode)node.Arguments).Expressions[0]);
+
+                // We need parenthesis if we are declaring an inline function, ie
+                // Callback c = new Callback(delegate {}); --> var c = (function () {});
+                // But not for:
+                // Callback c = new Callback(this.callback); --> var c = this._callback;
+                bool needsParenthesis = subExpression.Type == ExpressionType.Delegate;
+
+                if (subExpression is MemberExpression) {
+                    subExpression = TransformMemberExpression((MemberExpression)subExpression);
+                }
+
+                NewDelegateExpression expr = new NewDelegateExpression(subExpression, type);
+                if (needsParenthesis) {
+                    expr.AddParenthesisHint();
+                }
+                return expr;
             }
 
             NewExpression newExpression = new NewExpression(type);
@@ -934,7 +950,7 @@ namespace ScriptSharp.Compiler {
             bool isDelegateInvoke = false;
             Expression leftExpression = BuildExpression(node.LeftChild);
 
-            if (leftExpression is LocalExpression) {
+            if (leftExpression is LocalExpression || leftExpression is NewDelegateExpression) {
                 Debug.Assert(leftExpression.EvaluatedType.Type == SymbolType.Delegate);
 
                 // Handle the implicit delegate invoke scenario by turning the expression

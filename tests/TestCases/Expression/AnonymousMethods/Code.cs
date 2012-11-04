@@ -7,6 +7,8 @@ namespace ExpressionTests {
 
     public delegate void Foo(int i, string s, bool b);
 
+    public delegate int Bar(int i);
+
     public delegate void Callback();
 
     public class SomeClass {
@@ -58,6 +60,33 @@ namespace ExpressionTests {
                     int[] numbers = new int[] { _n * 2 };
                 });
             });
+
+            int j = 0;
+            new Callback(delegate {
+                this._n++;
+            }).Invoke();
+
+            new Callback(delegate {
+                j++;
+            })();
+
+            new Foo(delegate(int i, string s, bool b) {
+                i++;
+                b = string.IsNullOrEmpty(s);
+            }).Invoke(j, "foo", false);
+
+            new Foo(delegate(int i, string s, bool b) {
+                i++;
+                b = string.IsNullOrEmpty(s);
+            })(j, "foo", false);
+
+            j = new Bar(delegate (int k) { 
+                return k + 1; 
+            }).Invoke(3);
+
+            j = new Bar(delegate(int k) {
+                return k + 1;
+            })(3);
         }
 
         public void BBB(object o) {
