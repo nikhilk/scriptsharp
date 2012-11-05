@@ -1,7 +1,7 @@
 <VSTemplate Version="2.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
     <Name>Node.js Module</Name>
-    <Description>A reusable node.js module script file.</Description>
+    <Description>A reusable node.js library packaged as a CommonJS-style module.</Description>
     <Icon Package="{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}" ID="4547" />
     <ProjectType>CSharp</ProjectType>
     <SortOrder>35</SortOrder>
@@ -10,7 +10,7 @@
     <ProvideDefaultName>true</ProvideDefaultName>
   </TemplateData>
   <TemplateContent>
-    <Project File="NodeModule.csproj" ReplaceParameters="true">
+    <Project File="Module.csproj" ReplaceParameters="true">
       <ProjectItem TargetFileName="Properties\FxCop.ruleset">FxCop.ruleset</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Class1.cs</ProjectItem>

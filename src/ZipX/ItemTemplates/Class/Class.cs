@@ -4,9 +4,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace $rootnamespace$
-{
-    public class $safeitemrootname$
-    {
+namespace $rootnamespace$ {
+
+    public class $safeitemrootname$ {
     }
 }

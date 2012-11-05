@@ -20,20 +20,15 @@ using System.Reflection;
 
 [assembly: ScriptAssembly("$safeprojectname$")]
 
-// A script template allows customization of the generated script.
+// A script template providing a CommonJS module structure around
+// the generated script.
 [assembly: ScriptTemplate(@"
 // {name}.js {version}
 // {description}
-// {copyright}
-
-""use strict"";
 
 {dependenciesLookup}
-function module($global) {
-  {script}
-}
+var $global = this;
 
-ss.extend(exports, module(this));
-
-// Generated with Script# {compiler}
+{script}
+ss.extend(exports, $exports);
 ")]

@@ -3,6 +3,7 @@
 
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -20,12 +21,18 @@ using System.Reflection;
 
 [assembly: ScriptAssembly("$safeprojectname$")]
 
-// A script template allows customization of the generated script.
+// A script template using an AMD pattern for declaring dependencies consumed
+// by the generated script.
 [assembly: ScriptTemplate(@"
-// {name}.js {version}
+/*! {name}.js {version}
+ * {description}
+ */
 
-{dependenciesLookup}
-var $global = this;
+""use strict"";
 
-{script}
+require([{requires}], function({dependencies}) {
+  var $global = this;
+
+  {script}
+});
 ")]

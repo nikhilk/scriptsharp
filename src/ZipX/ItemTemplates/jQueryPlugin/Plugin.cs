@@ -1,4 +1,4 @@
-// $safeitemrootname$.cs
+// $safeitemname$Plugin.cs
 //
 
 using System;
@@ -8,16 +8,16 @@ using System.Runtime.CompilerServices;
 using jQueryApi;
 
 [ScriptExtension("$.fn")]
-public static class $safeitemrootname$Plugin
-{
-    public static jQueryObject $safeitemrootname$($safeitemrootname$Options customOptions)
-    {
-        $safeitemrootname$Options defaultOptions =
-            new $safeitemrootname$Options("myOption", 0
+internal static class $safeitemname$Plugin {
+
+    public static jQueryObject $safeitemname$($safeitemname$Options customOptions) {
+
+        $safeitemname$Options defaultOptions =
+            new $safeitemname$Options("myOption", 0
                                           /* name/value pairs corresponding to default options */);
                                           
-        $safeitemrootname$Options options =
-            jQuery.ExtendObject<$safeitemrootname$Options>(new $safeitemrootname$Options(), defaultOptions, customOptions);
+        $safeitemname$Options options =
+            jQuery.ExtendObject<$safeitemname$Options>(new $safeitemname$Options(), defaultOptions, customOptions);
 
         return jQuery.Current.Each(delegate (int i, Element element) {
             // TODO: Consume the matched elements
@@ -27,27 +27,31 @@ public static class $safeitemrootname$Plugin
 
 [ScriptImport]
 [ScriptName("Object")]
-public sealed class $safeitemrootname$Options
-{
+public sealed class $safeitemname$Options {
+
     // TODO: Replace with fields corresponding to options for the plugin
     public int myOption;
 
-    public $safeitemrootname$Options() {
+    public $safeitemname$Options() {
     }
 
-    public $safeitemrootname$Options(params object[] nameValuePairs) {
+    public $safeitemname$Options(params object[] nameValuePairs) {
     }
 }
 
 #region Script# Support
+// This class allows calling into the plugin from an application or another plugin.
 [ScriptImport]
-public sealed class $safeitemrootname$Object : jQueryObject
-{
-    public jQueryObject $safeitemrootname$() {
+public sealed class $safeitemname$Object : jQueryObject {
+
+    private $safeitemname$Object() {
+    }
+
+    public jQueryObject $safeitemname$() {
         return null;
     }
 
-    public jQueryObject $safeitemrootname$($safeitemrootname$Options options) {
+    public jQueryObject $safeitemname$($safeitemname$Options options) {
         return null;
     }
 }

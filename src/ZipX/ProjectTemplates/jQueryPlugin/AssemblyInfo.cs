@@ -25,7 +25,6 @@ using System.Runtime.CompilerServices;
 [assembly: ScriptTemplate(@"
 /*! {name}.js {version}
  * {description}
- * {copyright}
  */
 
 ""use strict"";
@@ -35,6 +34,4 @@ define('{name}', [{requires}], function({dependencies}) {
 
   {script}
 });
-
-// Generated with Script# {compiler}
 ")]

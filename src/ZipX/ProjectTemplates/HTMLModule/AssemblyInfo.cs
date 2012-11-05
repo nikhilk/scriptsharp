@@ -21,11 +21,11 @@ using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("$safeprojectname$")]
 
-// A script template allows customization of the generated script.
+// A script template providing an AMD pattern-based structure around
+// the generated script.
 [assembly: ScriptTemplate(@"
 /*! {name}.js {version}
  * {description}
- * {copyright}
  */
 
 ""use strict"";
@@ -34,7 +34,6 @@ define('{name}', [{requires}], function({dependencies}) {
   var $global = this;
 
   {script}
+  return $exports;
 });
-
-// Generated with Script# {compiler}
 ")]

@@ -1,19 +1,19 @@
 <VSTemplate Version="2.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name>Script Library</Name>
-    <Description>A script file.</Description>
+    <Name>HTML5 Application</Name>
+    <Description>An HTML5 script application based on the AMD pattern.</Description>
     <Icon Package="{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}" ID="4547" />
     <ProjectType>CSharp</ProjectType>
     <SortOrder>10</SortOrder>
     <CreateNewFolder>true</CreateNewFolder>
-    <DefaultName>ScriptLibrary</DefaultName>
+    <DefaultName>Application</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
   </TemplateData>
   <TemplateContent>
-    <Project File="ClassLibrary.csproj" ReplaceParameters="true">
+    <Project File="Application.csproj" ReplaceParameters="true">
       <ProjectItem TargetFileName="Properties\FxCop.ruleset">FxCop.ruleset</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
-      <ProjectItem ReplaceParameters="true" OpenInEditor="true">Class1.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true">Page.cs</ProjectItem>
     </Project>
   </TemplateContent>
   <WizardExtension>

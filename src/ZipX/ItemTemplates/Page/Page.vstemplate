@@ -1,7 +1,7 @@
 <VSTemplate Version="2.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
     <Name>Page Script</Name>
-    <Description>A new script within a web application project associated with a specific page.</Description>
+    <Description>Script within an application project that runs as the script loads within a page.</Description>
     <Icon Package="{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}" ID="4515" />
     <ProjectType>CSharp</ProjectType>
     <SortOrder>20</SortOrder>
