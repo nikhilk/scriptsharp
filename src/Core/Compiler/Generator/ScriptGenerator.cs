@@ -110,7 +110,17 @@ namespace ScriptSharp.Generator {
             publicTypes.Sort(typeComparer);
             internalTypes.Sort(typeComparer);
 
-            bool initialIndent = (String.IsNullOrEmpty(_options.ScriptInfo.Template) == false);
+            bool initialIndent = false;
+            if (String.IsNullOrEmpty(_options.ScriptInfo.Template) == false) {
+                int scriptIndex = _options.ScriptInfo.Template.IndexOf("{script}");
+                if ((scriptIndex > 0) && (_options.ScriptInfo.Template[scriptIndex - 1] == ' ')) {
+                    // Heuristic to turn on initial indent:
+                    // The script template has a space prior to {script}, i.e. {script} is not the
+                    // first thing on a line within the template.
+
+                    initialIndent = true;
+                }
+            }
             if (initialIndent) {
                 _writer.Indent++;
             }
@@ -199,11 +209,6 @@ namespace ScriptSharp.Generator {
                         TestGenerator.GenerateScript(this, classSymbol);
                     }
                 }
-            }
-
-            if (generateModule) {
-                _writer.WriteLine();
-                _writer.WriteLine("return $exports;");
             }
 
             if (initialIndent) {

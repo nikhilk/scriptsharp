@@ -7,4 +7,6 @@ define('test', ['ss'], function(ss) {
   window.addEventListener('load', function(e) {
     alert('Loaded');
   }, false);
+
+  return $exports;
 });

@@ -3801,7 +3801,7 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.Util
 
-  $global._showHelp = function() {
+  $global.showHelp = function() {
   }
 
 

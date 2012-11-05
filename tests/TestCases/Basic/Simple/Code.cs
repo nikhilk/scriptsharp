@@ -23,6 +23,7 @@ define('{name}', [{requires}], function({dependencies}) {
   var $global = this;
 
   {script}
+  return $exports;
 });
 
 // Generated with Script# {compiler}
@@ -39,6 +40,7 @@ define('{name}', [{requires}], function({dependencies}) {
   {dependenciesLookup}
 
   {script}
+  return $exports;
 })(this);
 ")]
 #endif

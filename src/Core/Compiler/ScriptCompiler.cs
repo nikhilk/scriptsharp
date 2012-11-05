@@ -304,7 +304,7 @@ namespace ScriptSharp {
                 else {
                     requiresBuilder.Append(", ");
                     dependenciesBuilder.Append(", ");
-                    depLookupBuilder.Append(", ");
+                    depLookupBuilder.Append(",\r\n    ");
                 }
 
                 requiresBuilder.Append("'" + dependency.Path + "'");

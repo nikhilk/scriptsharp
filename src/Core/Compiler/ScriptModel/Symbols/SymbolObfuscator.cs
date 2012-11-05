@@ -107,6 +107,13 @@ namespace ScriptSharp.ScriptModel {
                     transformChildren = false;
                 }
 
+                if ((symbol.Type == SymbolType.Class) &&
+                    ((ClassSymbol)symbol).IsExtenderClass) {
+                    // Unlikely that classes adding members to another object contain
+                    // members that should be renamed.
+                    transformChildren = false;
+                }
+
                 return null;
             }
             else if (symbol is MemberSymbol) {

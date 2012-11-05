@@ -76,7 +76,6 @@ define('basic', ['ss'], function(ss) {
   Basic$EventArgs.Empty = new Basic$EventArgs();
 
   return $exports;
-
 });
 
 // Generated with Script# 0.8.0.0

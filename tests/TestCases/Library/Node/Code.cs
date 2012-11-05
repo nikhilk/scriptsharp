@@ -9,11 +9,10 @@ using NodeApi.Network;
 // {name}.js
 //
 
-!function($global) {
-  {dependenciesLookup}
+{dependenciesLookup}
+var $global = this;
 
-  {script}
-}(this);
+{script}
 ")]
 
 [ScriptModule]

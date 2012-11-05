@@ -15,7 +15,9 @@ namespace ScriptSharp {
 define('{name}', [{requires}], function({dependencies}) {
   var $global = this;
 
-  {script}});
+  {script}
+  return $exports;
+});
 ";
 
         public ScriptInfo() {
