@@ -24,10 +24,10 @@ define('test', ['ss'], function(ss) {
   }
   var ExpressionTests$Bar$ = {
     sum: function() {
-      return ExpressionTests$Foo$.sum.call(this, 1) + 1;
+      return ss.base(this, 'sum').call(this, 1) + 1;
     },
     toString: function() {
-      return ExpressionTests$Foo$.toString.call(this) + ' -> Bar';
+      return ss.base(this, 'toString').call(this) + ' -> Bar';
     }
   };
 

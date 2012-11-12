@@ -112,7 +112,7 @@ define('test', ['ss'], function(ss) {
       var e1 = document.getElementById(this.bar);
       var e2 = document.getElementById(this.name);
       var e3 = document.getElementById(this.bar);
-      var s = this.testMethod() + TypeTests$MergedMembersClass$.testMethod.call(this);
+      var s = this.testMethod() + ss.base(this, 'testMethod').call(this);
     },
     get_item: function(s) {
       return s;

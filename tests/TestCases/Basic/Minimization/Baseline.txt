@@ -173,7 +173,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
     },
     $0: function() {
       this.$2();
-      BasicTests$Bar2$.$0.call(this);
+      ss.base(this, '$0').call(this);
       var d = BasicTests$MyData('a', 'b');
       d.$0 = d.$1;
     },
@@ -273,7 +273,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
     },
     dispose: function() {
       this.c$0 = 0;
-      lib.Behavior.prototype.dispose.call(this);
+      ss.base(this, 'dispose').call(this);
     },
     c$6: function() {
     },

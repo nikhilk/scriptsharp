@@ -91,6 +91,7 @@
       safeCast: safeCast,
       canAssign: canAssign,
       instanceOf: instanceOf,
+      base: base,
 
       culture: {
         neutral: neutralCulture,
