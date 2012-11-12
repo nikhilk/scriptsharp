@@ -176,10 +176,9 @@ namespace ScriptSharp.Importer {
                 }
 
                 string fieldName = field.Name;
-                int fieldValue = (int)field.Constant;
 
                 EnumerationFieldSymbol fieldSymbol =
-                    new EnumerationFieldSymbol(fieldName, enumTypeSymbol, fieldValue, fieldType);
+                    new EnumerationFieldSymbol(fieldName, enumTypeSymbol, field.Constant, fieldType);
                 ImportMemberDetails(fieldSymbol, null, field);
 
                 enumTypeSymbol.AddMember(fieldSymbol);
