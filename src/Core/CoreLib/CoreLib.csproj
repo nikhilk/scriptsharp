@@ -76,7 +76,6 @@
     <Compile Include="ComponentModel\ObserverManager.cs" />
     <Compile Include="ComponentModel\IObserver.cs" />
     <Compile Include="ComponentModel\Observable.cs" />
-    <Compile Include="Keys.cs" />
     <Compile Include="Export.cs" />
     <Compile Include="Diagnostics\SyntaxValidationAttribute.cs" />
     <Compile Include="Threading\Deferred.cs" />

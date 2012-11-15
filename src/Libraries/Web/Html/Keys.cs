@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System
 {
-
+    [ScriptConstants]
     public enum Keys
     {
         // Summary:
@@ -64,7 +64,7 @@ namespace System
         //
         // Summary:
         //     The RETURN key.
-        Ret = 13,
+        ReturnKey = 13,
         //
         // Summary:
         //     The SHIFT key.
@@ -212,7 +212,7 @@ namespace System
         //
         // Summary:
         //     The DEL key.
-        Del = 46,
+        DeleteKey = 46,
         //
         // Summary:
         //     The HELP key.
