@@ -30,6 +30,7 @@ define('test', ['ss'], function(ss) {
       addition = 2 + 3;
       var g = $global;
       var u = undefined;
+      var coreModule = ss.modules['ss'];
     }
   };
 

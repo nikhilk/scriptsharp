@@ -81,6 +81,7 @@
       deferred: deferred,
 
       module: module,
+      modules: _modules,
 
       isClass: isClass,
       isInterface: isInterface,

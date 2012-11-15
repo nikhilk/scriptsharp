@@ -1450,6 +1450,10 @@ Types:
                 AssociatedType: Object
                 Visibility: Public, Static
                 Generated Name: $global
+            Field: Modules
+                AssociatedType: Dictionary`2
+                Visibility: Public, Static
+                Generated Name: ss.modules
             Field: Undefined
                 AssociatedType: Object
                 Visibility: Public, Static

@@ -3,6 +3,7 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace System {
@@ -18,6 +19,14 @@ namespace System {
         [ScriptField]
         [ScriptAlias("$global")]
         public static object Global {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        [ScriptAlias("ss.modules")]
+        public static Dictionary<string, object> Modules {
             get {
                 return null;
             }

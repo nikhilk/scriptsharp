@@ -22,6 +22,14 @@
 <script type="text/script">
 define(['ss', 'oop'], function(ss, oop) {
   module('OOP');
+
+  test('modules', function() {
+    var modules = ss.modules;
+    QUnit.equal(ss.keyCount(modules), 2, 'Expected two modules: ss, and oop');
+    QUnit.equal(modules['ss'].$name, 'ss');
+    QUnit.equal(modules['oop'].$name, 'oop');
+  });
+
   test('isClass', function() {
     QUnit.equal(ss.isClass(oop.Cat), true, 'Expected Cat to be a class');
     QUnit.equal(ss.isClass(oop.IPet), false, 'Did not expect IPet to be a class');

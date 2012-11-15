@@ -158,7 +158,7 @@ function base(instance, method) {
 }
 
 function module(name, implementation, exports) {
-  var registry = _modules[name] = {};
+  var registry = _modules[name] = { $name: name };
 
   if (implementation) {
     for (var typeName in implementation) {
