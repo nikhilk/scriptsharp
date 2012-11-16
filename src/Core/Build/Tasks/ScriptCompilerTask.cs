@@ -34,6 +34,7 @@ namespace ScriptSharp.Tasks {
         private bool _minimize;
         private bool _crunch;
         private bool _copyReferences;
+        private bool _localeSubfolders;
         private string _referencesPath;
         private string _outputPath;
         private string _deploymentPath;
@@ -107,6 +108,15 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _deploymentPath = value;
+            }
+        }
+
+        public bool LocaleSubfolders {
+            get {
+                return _localeSubfolders;
+            }
+            set {
+                _localeSubfolders = value;
             }
         }
 
@@ -399,7 +409,12 @@ namespace ScriptSharp.Tasks {
 
                 string extension = includeTests ? "test.js" : (minimize ? "min.js" : "js");
                 if (String.IsNullOrEmpty(locale) == false) {
-                    extension = locale + "." + extension;
+                    if (LocaleSubfolders) {
+                        outputPath = Path.Combine(outputPath, locale);
+                    }
+                    else {
+                        extension = locale + "." + extension;
+                    }
                 }
 
                 if (Directory.Exists(outputPath) == false) {
