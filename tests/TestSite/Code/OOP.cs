@@ -38,6 +38,10 @@ namespace Test {
         public virtual string Live(int i) {
             return "[" + i + "] ...";
         }
+
+        public virtual string Die() {
+            return "...";
+        }
     }
 
     public class Cat : Animal, IMammal {
@@ -47,6 +51,10 @@ namespace Test {
 
         public virtual string Speak() {
             return "meow";
+        }
+
+        public override string Die() {
+            return base.Die();
         }
     }
 }

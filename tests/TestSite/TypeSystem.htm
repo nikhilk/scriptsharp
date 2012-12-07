@@ -88,6 +88,8 @@ define(['ss', 'oop'], function(ss, oop) {
     var g = new oop.Garfield();
     QUnit.equal(g.speak(), 'meow\r\nTranslation: I am fat, lazy, and cynical, but still, a favorite cat...', 'Garfield meows and says something cute');
     QUnit.equal(g.live(0), '[0] ... zzz');
+
+    QUnit.equal(g.die(), '...');
   });
 
   test('typeOf', function() {
