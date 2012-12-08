@@ -22,6 +22,12 @@ namespace System.Html {
             }
         }
 
+        public ElementAttribute this[int index] {
+            get {
+                return null;
+            }
+        }
+
         public ElementAttribute GetNamedItem(string name) {
             return null;
         }
