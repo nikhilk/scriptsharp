@@ -219,5 +219,21 @@ namespace System.Collections.Generic {
         public static explicit operator Array(List<T> list) {
             return null;
         }
+
+        public static explicit operator object[](List<T> list) {
+            return null;
+        }
+
+        public static implicit operator T[](List<T> list) {
+            return null;
+        }
+
+        public static explicit operator ArrayList(List<T> list) {
+            return null;
+        }
+
+        public static explicit operator List<T>(T[] array) {
+            return null;
+        }
     }
 }
