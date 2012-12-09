@@ -383,7 +383,7 @@ namespace System {
             return null;
         }
 
-        [ScriptAlias("trimEnd")]
+        [ScriptAlias("ss.trimEnd")]
         public string TrimEnd() {
             return null;
         }

@@ -1816,7 +1816,7 @@ Types:
             Method: TrimEnd
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: trimEnd
+                Generated Name: ss.trimEnd
                 Abstract: False
             Method: TrimStart
                 AssociatedType: String
