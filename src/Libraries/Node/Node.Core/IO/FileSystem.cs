@@ -20,16 +20,16 @@ namespace NodeApi.IO {
         public static void AppendFile(string fileName, string data, Encoding encoding) {
         }
 
-        public static void AppendFile(string fileName, string data, Action<Exception> callback) {
+        public static void AppendFile(string fileName, string data, AsyncCallback callback) {
         }
 
-        public static void AppendFile(string fileName, string data, Encoding encoding, Action<Exception> callback) {
+        public static void AppendFile(string fileName, string data, Encoding encoding, AsyncCallback callback) {
         }
 
         public static void AppendFile(string fileName, Buffer data) {
         }
 
-        public static void AppendFile(string fileName, Buffer data, Action<Exception> callback) {
+        public static void AppendFile(string fileName, Buffer data, AsyncCallback callback) {
         }
 
         public static void AppendFileSync(string fileName, string data) {
@@ -44,7 +44,7 @@ namespace NodeApi.IO {
         public static void Close(FileDescriptor fd) {
         }
 
-        public static void Close(FileDescriptor fd, Action<Exception> callback) {
+        public static void Close(FileDescriptor fd, AsyncCallback callback) {
         }
 
         public static void CloseSync(FileDescriptor fd) {
@@ -78,17 +78,17 @@ namespace NodeApi.IO {
         }
 
         [ScriptName("mkdir")]
-        public static void MakeDirectory(string path, Action<Exception> callback) {
+        public static void MakeDirectory(string path, AsyncCallback callback) {
         }
 
         [ScriptName("mkdirSync")]
         public static void MakeDirectorySync(string path) {
         }
 
-        public static void Open(string path, FileAccess flags, Action<FileDescriptor> callback) {
+        public static void Open(string path, FileAccess flags, AsyncResultCallback<FileDescriptor> callback) {
         }
 
-        public static void Open(string path, FileAccess flags, int mode, Action<FileDescriptor> callback) {
+        public static void Open(string path, FileAccess flags, int mode, AsyncResultCallback<FileDescriptor> callback) {
         }
 
         public static FileDescriptor OpenSync(string path, string flags) {
@@ -99,7 +99,7 @@ namespace NodeApi.IO {
             return null;
         }
 
-        public static void Read(FileDescriptor fd, Buffer buffer, int offset, int length, object position, Action<Exception, int, Buffer> callback) {
+        public static void Read(FileDescriptor fd, Buffer buffer, int offset, int length, object position, AsyncResultCallback<int, Buffer> callback) {
         }
 
         public static int ReadSync(FileDescriptor fd, Buffer buffer, int offset, int length, object position) {
@@ -107,7 +107,7 @@ namespace NodeApi.IO {
         }
 
         [ScriptName("readdir")]
-        public static void ReadDirectory(string path, Action<Exception, string[]> callback) {
+        public static void ReadDirectory(string path, AsyncResultCallback<string[]> callback) {
         }
 
         [ScriptName("readdirSync")]
@@ -115,15 +115,15 @@ namespace NodeApi.IO {
             return null;
         }
 
-        public static void ReadFile(string fileName, Action<Exception, Buffer> callback) {
+        public static void ReadFile(string fileName, AsyncResultCallback<Buffer> callback) {
         }
 
         [ScriptName("readFile")]
-        public static void ReadFileText(string fileName, Action<Exception, string> callback) {
+        public static void ReadFileText(string fileName, AsyncResultCallback<string> callback) {
         }
 
         [ScriptName("readFile")]
-        public static void ReadFileText(string fileName, Encoding encoding, Action<Exception, string> callback) {
+        public static void ReadFileText(string fileName, Encoding encoding, AsyncResultCallback<string> callback) {
         }
 
         public static Buffer ReadFileSync(string fileName) {
@@ -145,7 +145,7 @@ namespace NodeApi.IO {
         }
 
         [ScriptName("rmdir")]
-        public static void RemoveDirectory(string path, Action<Exception> callback) {
+        public static void RemoveDirectory(string path, AsyncCallback callback) {
         }
 
         [ScriptName("rmdirSync")]
@@ -155,13 +155,13 @@ namespace NodeApi.IO {
         public static void Rename(string oldPath, string newPath) {
         }
 
-        public static void Rename(string oldPath, string newPath, Action<Exception> callback) {
+        public static void Rename(string oldPath, string newPath, AsyncCallback callback) {
         }
 
         public static void RenameSync(string oldPath, string newPath) {
         }
 
-        public static void Stat(string path, Action<Exception, FileStats> callback) {
+        public static void Stat(string path, AsyncResultCallback<FileStats> callback) {
         }
 
         public static FileStats StatSync(string path) {
@@ -171,7 +171,7 @@ namespace NodeApi.IO {
         public static void Truncate(FileDescriptor fd, int length) {
         }
 
-        public static void Truncate(FileDescriptor fd, int length, Action<Exception> callback) {
+        public static void Truncate(FileDescriptor fd, int length, AsyncCallback callback) {
         }
 
         public static void TruncateSync(FileDescriptor fd, int length) {
@@ -181,7 +181,7 @@ namespace NodeApi.IO {
             return null;
         }
 
-        public static FileSystemWatcher UnwatchFile(string fileName, Action<FileSystemChange, string> listener) {
+        public static FileSystemWatcher UnwatchFile(string fileName, FileSystemListener listener) {
             return null;
         }
 
@@ -189,18 +189,18 @@ namespace NodeApi.IO {
             return null;
         }
 
-        public static FileSystemWatcher Watch(string fileName, Action<FileSystemChange, string> listener) {
+        public static FileSystemWatcher Watch(string fileName, FileSystemListener listener) {
             return null;
         }
 
-        public static FileSystemWatcher Watch(string fileName, FileSystemWatchOptions options, Action<FileSystemChange, string> listener) {
+        public static FileSystemWatcher Watch(string fileName, FileSystemWatchOptions options, FileSystemListener listener) {
             return null;
         }
 
         public static void Write(FileDescriptor fd, Buffer buffer, int offset, int length, object position) {
         }
 
-        public static void Write(FileDescriptor fd, Buffer buffer, int offset, int length, object position, Action<Exception, int, Buffer> callback) {
+        public static void Write(FileDescriptor fd, Buffer buffer, int offset, int length, object position, AsyncResultCallback<int, Buffer> callback) {
         }
 
         public static int WriteSync(FileDescriptor fd, Buffer buffer, int offset, int length, object position) {
@@ -213,16 +213,16 @@ namespace NodeApi.IO {
         public static void WriteFile(string fileName, string data, Encoding encoding) {
         }
 
-        public static void WriteFile(string fileName, string data, Action<Exception> callback) {
+        public static void WriteFile(string fileName, string data, AsyncCallback callback) {
         }
 
-        public static void WriteFile(string fileName, string data, Encoding encoding, Action<Exception> callback) {
+        public static void WriteFile(string fileName, string data, Encoding encoding, AsyncCallback callback) {
         }
 
         public static void WriteFile(string fileName, Buffer data) {
         }
 
-        public static void WriteFile(string fileName, Buffer data, Action<Exception> callback) {
+        public static void WriteFile(string fileName, Buffer data, AsyncCallback callback) {
         }
 
         public static void WriteFileSync(string fileName, string data) {

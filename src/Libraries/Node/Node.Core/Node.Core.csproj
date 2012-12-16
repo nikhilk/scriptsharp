@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Compute\ChildProcess.cs" />
     <Compile Include="Compute\OS.cs" />
+    <Compile Include="AsyncCallback.cs" />
     <Compile Include="IO\Buffer.cs" />
+    <Compile Include="IO\FileSystemListener.cs" />
     <Compile Include="IO\FileAccess.cs" />
     <Compile Include="IO\WriteStreamOptions.cs" />
     <Compile Include="IO\ReadStream.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="IO\WritableStream.cs" />
     <Compile Include="IO\ReadableStream.cs" />
     <Compile Include="IEventEmitter.cs" />
+    <Compile Include="Network\HttpListener.cs" />
     <Compile Include="Network\HttpStatusCode.cs" />
     <Compile Include="Network\UrlData.cs" />
     <Compile Include="Network\HttpClientOptions.cs" />

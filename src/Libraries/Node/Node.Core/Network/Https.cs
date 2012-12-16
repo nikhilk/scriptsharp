@@ -18,7 +18,7 @@ namespace NodeApi.Network {
             return null;
         }
 
-        public static HttpServer CreateServer(Action<HttpServerRequest, HttpServerResponse> requestListener) {
+        public static HttpServer CreateServer(HttpListener listener) {
             return null;
         }
 
