@@ -8,7 +8,7 @@
     <ProjectGuid>{4A9F7CE9-5B45-4B28-AD01-05528709B6E4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NodeApi.Express</RootNamespace>
+    <RootNamespace>NodeApi.ExpressJS</RootNamespace>
     <AssemblyName>Script.Node.Express</AssemblyName>
     <NoStdLib>True</NoStdLib>
     <SignAssembly>true</SignAssembly>

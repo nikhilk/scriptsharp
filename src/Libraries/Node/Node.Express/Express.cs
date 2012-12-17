@@ -13,6 +13,11 @@ namespace NodeApi.ExpressJS {
     [ScriptName("express")]
     public static class Express {
 
+        [ScriptAlias("express")]
+        public static ExpressApplication Application() {
+            return null;
+        }
+
         public static ExpressMiddleware BasicAuth(string userName, string password) {
             return null;
         }

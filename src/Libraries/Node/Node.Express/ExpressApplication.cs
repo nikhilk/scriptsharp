@@ -60,11 +60,6 @@ namespace NodeApi.ExpressJS {
             return null;
         }
 
-        [ScriptSkip]
-        public static ExpressApplication Create() {
-            return null;
-        }
-
         public ExpressApplication Delete(string path, ExpressHandler handler) {
             return null;
         }
