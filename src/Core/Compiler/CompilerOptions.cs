@@ -36,7 +36,7 @@ namespace ScriptSharp {
 
         public CompilerOptions() {
             _scriptInfo = new ScriptInfo();
-            _testsSubnamespace = ".Tests";
+            _testsSubnamespace = "Tests";
         }
 
         public ICollection<string> Defines {

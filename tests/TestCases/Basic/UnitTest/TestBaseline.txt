@@ -31,11 +31,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  // BasicTests.Tests.Foo
+  // BasicTests.Tests.Helpers.Foo
 
-  function BasicTests$Tests$Foo() {
+  function BasicTests$Tests$Helpers$Foo() {
   }
-  var BasicTests$Tests$Foo$ = {
+  var BasicTests$Tests$Helpers$Foo$ = {
 
   };
 
@@ -83,7 +83,7 @@ define('test', ['ss'], function(ss) {
   var $exports = ss.module('test',
     {
       InternalClass: [ BasicTests$InternalClass, BasicTests$InternalClass$, null ],
-      Foo: [ BasicTests$Tests$Foo, BasicTests$Tests$Foo$, null ],
+      Foo: [ BasicTests$Tests$Helpers$Foo, BasicTests$Tests$Helpers$Foo$, null ],
       PublicTests: [ BasicTests$Tests$PublicTests, BasicTests$Tests$PublicTests$, null ],
       InternalTests: [ BasicTests$Tests$InternalTests, BasicTests$Tests$InternalTests$, null ]
     },

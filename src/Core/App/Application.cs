@@ -167,7 +167,7 @@ Usage:
                 // HACK: Our tests are currently in the Tests subnamespace, which is now
                 //       used as a pattern for writing unit tests. This hack allows postponing
                 //       modifying all tests and baselines.
-                compilerOptions.TestsSubnamespace = ".UnitTests";
+                compilerOptions.TestsSubnamespace = "UnitTests";
             }
 #endif // DEBUG
 
