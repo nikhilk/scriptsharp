@@ -26,8 +26,6 @@ namespace ScriptSharp {
         private bool _minimize;
         private ScriptInfo _scriptInfo;
 
-        private string _testsSubnamespace;
-
         private bool _hasTestTypes;
 
         // TODO: Get rid of internal test mode/type...
@@ -36,7 +34,6 @@ namespace ScriptSharp {
 
         public CompilerOptions() {
             _scriptInfo = new ScriptInfo();
-            _testsSubnamespace = "Tests";
         }
 
         public ICollection<string> Defines {
@@ -147,15 +144,6 @@ namespace ScriptSharp {
             }
             set {
                 _sources = value;
-            }
-        }
-
-        public string TestsSubnamespace {
-            get {
-                return _testsSubnamespace;
-            }
-            set {
-                _testsSubnamespace = value;
             }
         }
 
