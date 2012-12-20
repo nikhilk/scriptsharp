@@ -30,6 +30,7 @@ Usage:
       [/res:<resource file>]
       /ref:<assembly path>
       /out:<script file>
+      [/inc:<include base path>]
       <C# source files>
 
 /nologo     Hides the about information.
@@ -50,6 +51,7 @@ Usage:
             resources and the locale specific resources for the locale
             associated with the output script.
 /out        The resulting script file. Typically this is a .js file.
+/inc        The base path against which includes are resolved.
 ";
 
         private static CompilerOptions CreateCompilerOptions(CommandLine commandLine) {
@@ -62,6 +64,7 @@ Usage:
             bool includeTests = false;
             bool minimize = true;
             IStreamSource scriptFile = null;
+            IStreamSourceResolver includeResolver = null;
 
             foreach (string fileName in commandLine.Arguments) {
                 // TODO: This is a hack... something in the .net 4 build system causes
@@ -132,6 +135,11 @@ Usage:
             includeTests = commandLine.Options.Contains("tests");
             minimize = commandLine.Options.Contains("minimize");
 
+            if (commandLine.Options.Contains("inc")) {
+                string basePath = (string)commandLine.Options["inc"];
+                includeResolver = new IncludeResolver(basePath);
+            }
+
             CompilerOptions compilerOptions = new CompilerOptions();
             compilerOptions.IncludeTests = includeTests;
             compilerOptions.Defines = defines;
@@ -140,6 +148,7 @@ Usage:
             compilerOptions.Sources = sources;
             compilerOptions.Resources = resources;
             compilerOptions.ScriptFile = scriptFile;
+            compilerOptions.IncludeResolver = includeResolver;
 
             compilerOptions.InternalTestMode = commandLine.Options.Contains("test");
             if (compilerOptions.InternalTestMode) {
@@ -206,6 +215,25 @@ Usage:
                 Console.WriteLine(message);
             }
             Console.WriteLine(UsageText);
+        }
+
+
+        private sealed class IncludeResolver : IStreamSourceResolver {
+
+            private string _basePath;
+
+            public IncludeResolver(string basePath) {
+                _basePath = basePath;
+            }
+
+            public IStreamSource Resolve(string name) {
+                string path = Path.Combine(_basePath, name);
+                if (File.Exists(path)) {
+                    return new FileInputStreamSource(path, name);
+                }
+
+                return null;
+            }
         }
     }
 }

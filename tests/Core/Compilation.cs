@@ -11,7 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ScriptSharp.Tests.Core {
 
-    public sealed class Compilation : IErrorHandler {
+    public sealed class Compilation : IErrorHandler, IStreamSourceResolver {
 
         private CompilationTest _test;
 
@@ -20,6 +20,7 @@ namespace ScriptSharp.Tests.Core {
         private List<CompilationInput> _resources;
         private CompilationInput _comments;
         private CompilationOutput _output;
+        private IStreamSourceResolver _includeResolver;
 
         private List<string> _errors;
 
@@ -84,6 +85,10 @@ namespace ScriptSharp.Tests.Core {
             return this;
         }
 
+        public void AddIncludeResolver() {
+            _includeResolver = this;
+        }
+
         public Compilation AddReference(string name) {
             string assemblyPath = _test.GetAssemblyFilePath(name);
             if (File.Exists(assemblyPath)) {
@@ -125,6 +130,7 @@ namespace ScriptSharp.Tests.Core {
             _options.Resources = _resources.Cast<IStreamSource>().ToList();
             _options.DocCommentFile = _comments;
             _options.ScriptFile = _output;
+            _options.IncludeResolver = _includeResolver;
 
             ScriptCompiler compiler = new ScriptCompiler(this);
             return compiler.Compile(_options);
@@ -141,6 +147,15 @@ namespace ScriptSharp.Tests.Core {
 
             _errors.Add(error);
             _test.TestContext.WriteLine(error);
+        }
+
+        #endregion
+
+        #region Implementation of IStreamSourceResolver
+
+        IStreamSource IStreamSourceResolver.Resolve(string name) {
+            string path = _test.GetTestFilePath(name);
+            return new CompilationInput(path, name);
         }
 
         #endregion

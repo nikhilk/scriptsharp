@@ -22,7 +22,7 @@ namespace ScriptSharp.Tasks {
     /// <summary>
     /// The Script# MSBuild task.
     /// </summary>
-    public sealed class ScriptCompilerTask : Task, IErrorHandler {
+    public sealed class ScriptCompilerTask : Task, IErrorHandler, IStreamSourceResolver {
 
         private string _projectPath;
         private ITaskItem[] _references;
@@ -266,6 +266,7 @@ namespace ScriptSharp.Tasks {
             options.References = GetReferences();
             options.Sources = GetSources(sourceItems);
             options.Resources = GetResources(resourceItems, locale);
+            options.IncludeResolver = this;
 
             string scriptFilePath = GetScriptFilePath(locale, minimize, includeTests);
             outputScriptItem = new TaskItem(scriptFilePath);
@@ -577,6 +578,19 @@ namespace ScriptSharp.Tasks {
 
             Log.LogError(String.Empty, String.Empty, String.Empty, location, line, column, 0, 0, errorMessage);
         }
+        #endregion
+
+        #region Implementation of IStreamSourceResolver
+
+        IStreamSource IStreamSourceResolver.Resolve(string name) {
+            string path = Path.Combine(Path.GetDirectoryName(_projectPath), name);
+            if (File.Exists(path)) {
+                return new FileInputStreamSource(path, name);
+            }
+
+            return null;
+        }
+
         #endregion
 
 

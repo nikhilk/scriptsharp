@@ -79,20 +79,21 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
-        public void TestSimple() {
+        public void TestIncludes() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
-            }, "DefaultBaseline.txt");
+            }, "ZeroIncBaseline.txt");
 
             RunTest((c) => {
-                c.AddSource("Code.cs");
-                c.Options.Defines = new string[] { "SIMPLE_TEMPLATE" };
-            }, "SimpleBaseline.txt");
+                c.AddSource("Code.cs").
+                  AddIncludeResolver();
+            }, "SingleIncBaseline.txt");
 
             RunTest((c) => {
-                c.AddSource("Code.cs");
-                c.Options.Defines = new string[] { "AMD_TEMPLATE" };
-            }, "AMDBaseline.txt");
+                c.AddSource("Code.cs").
+                  AddIncludeResolver();
+                c.Options.Defines = new string[] { "MULTIPLE_INCLUDE" };
+            }, "MultipleIncBaseline.txt");
         }
 
         [TestMethod]
@@ -143,6 +144,23 @@ namespace ScriptSharp.Tests {
                   AddResource("Strings2.resx");
                 c.Options.Defines = new string[] { "DEBUG" };
             });
+        }
+
+        [TestMethod]
+        public void TestSimple() {
+            RunTest((c) => {
+                c.AddSource("Code.cs");
+            }, "DefaultBaseline.txt");
+
+            RunTest((c) => {
+                c.AddSource("Code.cs");
+                c.Options.Defines = new string[] { "SIMPLE_TEMPLATE" };
+            }, "SimpleBaseline.txt");
+
+            RunTest((c) => {
+                c.AddSource("Code.cs");
+                c.Options.Defines = new string[] { "AMD_TEMPLATE" };
+            }, "AMDBaseline.txt");
         }
 
         [TestMethod]

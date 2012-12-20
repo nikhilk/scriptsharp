@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using ScriptSharp.CodeModel;
 using ScriptSharp.Compiler;
 using ScriptSharp.Generator;
@@ -288,6 +289,8 @@ namespace ScriptSharp {
                 return script;
             }
 
+            template = PreprocessTemplate(template);
+
             StringBuilder requiresBuilder = new StringBuilder();
             StringBuilder dependenciesBuilder = new StringBuilder();
             StringBuilder depLookupBuilder = new StringBuilder();
@@ -335,6 +338,32 @@ namespace ScriptSharp {
             MetadataImporter mdImporter = new MetadataImporter(_options, this);
 
             _importedSymbols = mdImporter.ImportMetadata(_options.References, _symbols);
+        }
+
+        private string PreprocessTemplate(string template) {
+            if (_options.IncludeResolver == null) {
+                return template;
+            }
+
+            Regex includePattern = new Regex("\\{include:([^\\}]+)\\}", RegexOptions.Multiline | RegexOptions.CultureInvariant);
+            return includePattern.Replace(template, delegate(Match include) {
+                string includedScript = String.Empty;
+
+                if (include.Groups.Count == 2) {
+                    string includePath = include.Groups[1].Value;
+
+                    IStreamSource includeSource = _options.IncludeResolver.Resolve(includePath);
+                    if (includeSource != null) {
+                        Stream includeStream = includeSource.GetStream();
+                        StreamReader reader = new StreamReader(includeStream);
+
+                        includedScript = reader.ReadToEnd();
+                        includeSource.CloseStream(includeStream);
+                    }
+                }
+
+                return includedScript;
+            });
         }
 
         #region Implementation of IErrorHandler

@@ -22,6 +22,7 @@ namespace ScriptSharp {
         private ICollection<IStreamSource> _resources;
         private IStreamSource _scriptFile;
         private IStreamSource _docCommentFile;
+        private IStreamSourceResolver _includeResolver;
         private bool _includeTests;
         private bool _minimize;
         private ScriptInfo _scriptInfo;
@@ -66,6 +67,15 @@ namespace ScriptSharp {
             }
             set {
                 _hasTestTypes = value;
+            }
+        }
+
+        public IStreamSourceResolver IncludeResolver {
+            get {
+                return _includeResolver;
+            }
+            set {
+                _includeResolver = value;
             }
         }
 
