@@ -6,7 +6,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     [ScriptImport]
     [ScriptIgnoreNamespace]

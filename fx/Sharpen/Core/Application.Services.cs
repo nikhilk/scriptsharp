@@ -8,9 +8,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Html;
-using Sharpen.Html.Utility;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     public sealed partial class Application {
 

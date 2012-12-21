@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     /// <summary>
     /// Represents the base class for all expressions. Expressions represent

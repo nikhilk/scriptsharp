@@ -179,5 +179,5 @@
     return new Function('_d', 'index', 'ctx', _code.join('\n'));
   }
 
-  Sharpen$Html$Application.current.registerTemplateEngine('sharpen', sharpenTemplate);
+  Sharpen$Application.current.registerTemplateEngine('sharpen', sharpenTemplate);
 })();

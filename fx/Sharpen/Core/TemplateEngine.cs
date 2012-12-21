@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Html;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     /// <summary>
     /// Creates an instance of a template from the specified content.

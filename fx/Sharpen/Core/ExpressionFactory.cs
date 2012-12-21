@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     /// <summary>
     /// Creates an expression given a model object and a string representation of the

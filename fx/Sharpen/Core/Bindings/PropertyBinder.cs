@@ -6,7 +6,7 @@
 using System;
 using System.Html;
 
-namespace Sharpen.Html.Bindings {
+namespace Sharpen.Bindings {
 
     /// <summary>
     /// This binds the property of an object to the value of an expression, and

@@ -9,9 +9,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Html;
 using System.Runtime.CompilerServices;
-using Sharpen.Html.Utility;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     /// <summary>
     /// A page-level singleton representing the current application. It provides core

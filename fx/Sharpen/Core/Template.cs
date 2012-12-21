@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     /// <summary>
     /// Creates an instance of the markup represented by this template.

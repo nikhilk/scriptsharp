@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     /// <summary>
     /// A binder is an object that performs the work of binding an expression value

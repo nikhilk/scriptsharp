@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.Html;
 using System.Serialization;
 
-namespace Sharpen.Html.Utility {
+namespace Sharpen {
 
     internal static class OptionsParser {
 

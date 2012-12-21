@@ -6,7 +6,7 @@
 using System;
 using System.Html;
 
-namespace Sharpen.Html.Bindings {
+namespace Sharpen.Bindings {
 
     /// <summary>
     /// Binds the content (textContent/innerHTML) of element to an expression.

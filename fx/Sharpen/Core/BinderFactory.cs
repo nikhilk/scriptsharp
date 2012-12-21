@@ -6,7 +6,7 @@
 using System;
 using System.Html;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     /// <summary>
     /// Creates an expression binder given an element, the bound property and

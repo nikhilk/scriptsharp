@@ -7,9 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Html;
-using Sharpen.Html.Bindings;
+using Sharpen.Bindings;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     public sealed partial class Application {
 

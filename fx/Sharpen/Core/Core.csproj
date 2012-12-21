@@ -66,7 +66,7 @@
     <Compile Include="Bindings\PropertyBinder.cs" />
     <Compile Include="Bindings\ValueBinder.cs" />
     <Compile Include="Bindings\VisibilityBinder.cs" />
-    <Compile Include="Utility\OptionsParser.cs" />
+    <Compile Include="OptionsParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Script.Web">

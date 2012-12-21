@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Html;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     /// <summary>
     /// Represents a script objects that can be attached to an Element to

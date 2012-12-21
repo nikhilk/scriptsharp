@@ -6,7 +6,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Sharpen.Html.Bindings {
+namespace Sharpen.Bindings {
 
     /// <summary>
     /// Implementation of an expression that binds to a value off the model and

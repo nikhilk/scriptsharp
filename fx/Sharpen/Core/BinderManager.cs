@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Html;
 
-namespace Sharpen.Html {
+namespace Sharpen {
 
     internal sealed class BinderManager : Behavior {
 

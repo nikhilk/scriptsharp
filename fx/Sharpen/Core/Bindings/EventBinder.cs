@@ -6,7 +6,7 @@
 using System;
 using System.Html;
 
-namespace Sharpen.Html.Bindings {
+namespace Sharpen.Bindings {
 
     /// <summary>
     /// Binds an event of an element to the value of an expression.
