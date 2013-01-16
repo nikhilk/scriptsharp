@@ -410,6 +410,14 @@ namespace System.Html {
             return null;
         }
 
+        [ScriptField]
+        public static IDBFactory IndexedDB {
+            get {
+                return null;
+            }
+        }
+
+
         public static void PostMessage(string message, string targetOrigin) {
         }
 
