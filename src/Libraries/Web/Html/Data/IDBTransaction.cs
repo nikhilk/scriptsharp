@@ -43,6 +43,8 @@ namespace System.Html.Data {
 
     }
 
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate void IDBTransactionDelegate(IDBEvent<IDBTransaction> e);
 
 }
