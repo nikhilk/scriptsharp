@@ -42,6 +42,8 @@ namespace System.Html.Data {
         public IDBRequestDelegate OnError;
     }
 
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate void IDBRequestDelegate(IDBEvent<IDBRequest> e);
 
 }

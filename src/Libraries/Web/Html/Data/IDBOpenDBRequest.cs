@@ -17,7 +17,11 @@ namespace System.Html.Data {
         public IDBOpenDBRequestVersionChangeDelegate OnUpgradeNeeded;
     }
 
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate void IDBOpenDBRequestDelegate(IDBEvent<IDBOpenDBRequest> e);
 
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate void IDBOpenDBRequestVersionChangeDelegate(IDBVersionChangeEvent<IDBOpenDBRequest> e);
 }

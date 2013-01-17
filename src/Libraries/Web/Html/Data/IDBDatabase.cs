@@ -57,7 +57,12 @@ namespace System.Html.Data {
         public IDBDatabaseVersionChangeDelegate OnVersionChange;
     }
 
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate void IDBDatabaseDelegate(IDBEvent<IDBDatabase> e);
 
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate void IDBDatabaseVersionChangeDelegate(IDBVersionChangeEvent<IDBDatabase> e);
+
 }
