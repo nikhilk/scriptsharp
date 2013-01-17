@@ -21,7 +21,8 @@ namespace System.Html.Data {
         }
 
         [ScriptField]
-        public object Error {
+        [ScriptName("error")]
+        public object ErrorObject {
             get { return null; }
         }
 
@@ -29,22 +30,37 @@ namespace System.Html.Data {
             return null;
         }
 
-        public void Abort() {
+        [ScriptName("abort")]
+        public void AbortTransaction() {
         }
 
-        [ScriptName("onabort")]
-        public IDBTransactionDelegate OnAbort;
+        [ScriptEvent("addEventListener", "removeEventListener")]
+        public event IDBTransactionCallback Abort{
+            add {
+            }
+            remove {
+            }
+        }
 
-        [ScriptName("oncomplete")]
-        public IDBTransactionDelegate OnComplete;
+        [ScriptEvent("addEventListener", "removeEventListener")]
+        public event IDBTransactionCallback Complete {
+            add {
+            }
+            remove {
+            }
+        }
 
-        [ScriptName("onerror")]
-        public IDBTransactionDelegate OnError;
-
+        [ScriptEvent("addEventListener", "removeEventListener")]
+        public event IDBTransactionCallback Error {
+            add {
+            }
+            remove {
+            }
+        }
     }
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBTransactionDelegate(IDBEvent<IDBTransaction> e);
+    public delegate void IDBTransactionCallback(IDBEvent<IDBTransaction> e);
 
 }
