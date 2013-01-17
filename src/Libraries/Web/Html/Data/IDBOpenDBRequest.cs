@@ -10,9 +10,11 @@ namespace System.Html.Data {
         protected IDBOpenDBRequest() {
         }
 
-        public IDBOpenDBRequestDelegate Onblocked;
+        [ScriptName("onblocked")]
+        public IDBOpenDBRequestDelegate OnBlocked;
 
-        public IDBOpenDBRequestVersionChangeDelegate Onupgradeneeded;
+        [ScriptName("onupgradeneeded")]
+        public IDBOpenDBRequestVersionChangeDelegate OnUpgradeNeeded;
     }
 
     public delegate void IDBOpenDBRequestDelegate(IDBEvent<IDBOpenDBRequest> e);

@@ -47,11 +47,14 @@ namespace System.Html.Data {
         public void Close() {
         }
 
-        public IDBDatabaseDelegate Onabort;
+        [ScriptName("onabort")]
+        public IDBDatabaseDelegate OnAbort;
 
-        public IDBDatabaseDelegate Onerror;
+        [ScriptName("onerror")]
+        public IDBDatabaseDelegate OnError;
 
-        public IDBDatabaseVersionChangeDelegate Onversionchange;
+        [ScriptName("onversionchange")]
+        public IDBDatabaseVersionChangeDelegate OnVersionChange;
     }
 
     public delegate void IDBDatabaseDelegate(IDBEvent<IDBDatabase> e);

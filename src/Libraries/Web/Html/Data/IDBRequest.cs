@@ -35,9 +35,11 @@ namespace System.Html.Data {
             get { return null; }
         }
 
-        public IDBRequestDelegate Onsuccess;
+        [ScriptName("onsuccess")]
+        public IDBRequestDelegate OnSuccess;
 
-        public IDBRequestDelegate Onerror;
+        [ScriptName("onerror")]
+        public IDBRequestDelegate OnError;
     }
 
     public delegate void IDBRequestDelegate(IDBEvent<IDBRequest> e);

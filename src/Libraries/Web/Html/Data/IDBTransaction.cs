@@ -32,11 +32,14 @@ namespace System.Html.Data {
         public void Abort() {
         }
 
-        public IDBTransactionDelegate Onabort;
+        [ScriptName("onabort")]
+        public IDBTransactionDelegate OnAbort;
 
-        public IDBTransactionDelegate Oncomplete;
+        [ScriptName("oncomplete")]
+        public IDBTransactionDelegate OnComplete;
 
-        public IDBTransactionDelegate Onerror;
+        [ScriptName("onerror")]
+        public IDBTransactionDelegate OnError;
 
     }
 
