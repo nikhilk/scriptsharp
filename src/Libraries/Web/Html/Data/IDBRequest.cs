@@ -16,8 +16,7 @@ namespace System.Html.Data {
         }
 
         [ScriptField]
-        [ScriptName("error")]
-        public object ErrorObject {
+        public object Error {
             get { return null; }
         }
 
@@ -36,25 +35,15 @@ namespace System.Html.Data {
             get { return null; }
         }
 
-        [ScriptEvent("addEventListener", "removeEventListener")]
-        public event IDBRequestCallback Success {
-            add {
-            }
-            remove {
-            }
-        }
+        [ScriptName("onsuccess")]
+        public IDBRequestDelegate OnSuccess;
 
-        [ScriptEvent("addEventListener", "removeEventListener")]
-        public event IDBRequestCallback Error {
-            add {
-            }
-            remove {
-            }
-        }
+        [ScriptName("onerror")]
+        public IDBRequestDelegate OnError;
     }
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBRequestCallback(IDBEvent<IDBRequest> e);
+    public delegate void IDBRequestDelegate(IDBEvent<IDBRequest> e);
 
 }

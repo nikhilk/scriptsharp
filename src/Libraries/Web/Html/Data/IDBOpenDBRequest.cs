@@ -10,29 +10,18 @@ namespace System.Html.Data {
         protected IDBOpenDBRequest() {
         }
 
-        [ScriptEvent("addEventListener", "removeEventListener")]
-        public event IDBOpenDBRequestCallback Blocked {
-            add {
-            }
-            remove {
-            }
-        }
+        [ScriptName("onblocked")]
+        public IDBOpenDBRequestDelegate OnBlocked;
 
-        [ScriptEvent("addEventListener", "removeEventListener")]
-        [ScriptName("upgradeneeded")]
-        public event IDBOpenDBRequestVersionChangeCallback UpgradeNeeded {
-            add {
-            }
-            remove {
-            }
-        }
+        [ScriptName("onupgradeneeded")]
+        public IDBOpenDBRequestVersionChangeDelegate OnUpgradeNeeded;
     }
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBOpenDBRequestCallback(IDBEvent<IDBOpenDBRequest> e);
+    public delegate void IDBOpenDBRequestDelegate(IDBEvent<IDBOpenDBRequest> e);
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBOpenDBRequestVersionChangeCallback(IDBVersionChangeEvent<IDBOpenDBRequest> e);
+    public delegate void IDBOpenDBRequestVersionChangeDelegate(IDBVersionChangeEvent<IDBOpenDBRequest> e);
 }

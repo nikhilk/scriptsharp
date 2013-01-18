@@ -35,7 +35,7 @@ namespace System.Html.Data {
 
         public void DeleteObjectStore(string name) {
         }
-
+        
         public IDBTransaction Transaction(string[] storenames) {
             return default(IDBTransaction);
         }
@@ -47,38 +47,22 @@ namespace System.Html.Data {
         public void Close() {
         }
 
-        [ScriptEvent("addEventListener", "removeEventListener")]
-        public event IDBDatabaseCallback Abort {
-            add {
-            }
-            remove {
-            }
-        }
+        [ScriptName("onabort")]
+        public IDBDatabaseDelegate OnAbort;
 
-        [ScriptEvent("addEventListener", "removeEventListener")]
-        public event IDBDatabaseCallback Error {
-            add {
-            }
-            remove {
-            }
-        }
+        [ScriptName("onerror")]
+        public IDBDatabaseDelegate OnError;
 
-        [ScriptEvent("addEventListener", "removeEventListener")]
-        [ScriptName("versionchange")]
-        public event IDBDatabaseVersionChangeCallback VersionChange {
-            add {
-            }
-            remove {
-            }
-        }
+        [ScriptName("onversionchange")]
+        public IDBDatabaseVersionChangeDelegate OnVersionChange;
     }
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBDatabaseCallback(IDBEvent<IDBDatabase> e);
+    public delegate void IDBDatabaseDelegate(IDBEvent<IDBDatabase> e);
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBDatabaseVersionChangeCallback(IDBVersionChangeEvent<IDBDatabase> e);
+    public delegate void IDBDatabaseVersionChangeDelegate(IDBVersionChangeEvent<IDBDatabase> e);
 
 }
