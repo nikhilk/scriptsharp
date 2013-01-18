@@ -5,7 +5,7 @@ namespace System.Html.Data {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public class IDBRequest {
+    public class IDBRequest : IDBEventTarget {
 
         protected IDBRequest() {
         }
@@ -36,14 +36,14 @@ namespace System.Html.Data {
         }
 
         [ScriptName("onsuccess")]
-        public IDBRequestDelegate OnSuccess;
+        public IDBRequestCallback OnSuccess;
 
         [ScriptName("onerror")]
-        public IDBRequestDelegate OnError;
+        public IDBRequestCallback OnError;
     }
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBRequestDelegate(IDBEvent<IDBRequest> e);
+    public delegate void IDBRequestCallback(IDBEvent<IDBRequest> e);
 
 }

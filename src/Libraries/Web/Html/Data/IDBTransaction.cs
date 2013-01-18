@@ -5,7 +5,7 @@ namespace System.Html.Data {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class IDBTransaction {
+    public sealed class IDBTransaction : IDBEventTarget {
 
         private IDBTransaction() {
         }
@@ -33,18 +33,18 @@ namespace System.Html.Data {
         }
 
         [ScriptName("onabort")]
-        public IDBTransactionDelegate OnAbort;
+        public IDBTransactionCallback OnAbort;
 
         [ScriptName("oncomplete")]
-        public IDBTransactionDelegate OnComplete;
+        public IDBTransactionCallback OnComplete;
 
         [ScriptName("onerror")]
-        public IDBTransactionDelegate OnError;
+        public IDBTransactionCallback OnError;
 
     }
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBTransactionDelegate(IDBEvent<IDBTransaction> e);
+    public delegate void IDBTransactionCallback(IDBEvent<IDBTransaction> e);
 
 }

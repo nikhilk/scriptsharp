@@ -52,6 +52,7 @@
     <Compile Include="Html\Data\IDBCursorWithValue.cs" />
     <Compile Include="Html\Data\IDBDatabase.cs" />
     <Compile Include="Html\Data\IDBEvent.cs" />
+    <Compile Include="Html\Data\IDBEventTarget.cs" />
     <Compile Include="Html\Data\IDBIndex.cs" />
     <Compile Include="Html\Data\IDBIndexParameters.cs" />
     <Compile Include="Html\Data\IDBObjectStore.cs" />

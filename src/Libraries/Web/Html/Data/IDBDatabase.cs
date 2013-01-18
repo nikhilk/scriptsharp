@@ -5,7 +5,7 @@ namespace System.Html.Data {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class IDBDatabase {
+    public sealed class IDBDatabase : IDBEventTarget {
 
         private IDBDatabase() {
         }
@@ -48,21 +48,21 @@ namespace System.Html.Data {
         }
 
         [ScriptName("onabort")]
-        public IDBDatabaseDelegate OnAbort;
+        public IDBDatabaseCallback OnAbort;
 
         [ScriptName("onerror")]
-        public IDBDatabaseDelegate OnError;
+        public IDBDatabaseCallback OnError;
 
         [ScriptName("onversionchange")]
-        public IDBDatabaseVersionChangeDelegate OnVersionChange;
+        public IDBDatabaseVersionChangeCallback OnVersionChange;
     }
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBDatabaseDelegate(IDBEvent<IDBDatabase> e);
+    public delegate void IDBDatabaseCallback(IDBEvent<IDBDatabase> e);
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBDatabaseVersionChangeDelegate(IDBVersionChangeEvent<IDBDatabase> e);
+    public delegate void IDBDatabaseVersionChangeCallback(IDBVersionChangeEvent<IDBDatabase> e);
 
 }
