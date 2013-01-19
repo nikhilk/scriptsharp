@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
+namespace System.Html.Data.IndexedDB {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public class IDBCursorWithValue : IDBCursor {
+    public class DBCursorWithValue : DBCursor {
 
-        private IDBCursorWithValue() {
+        private DBCursorWithValue() {
         }
 
         [ScriptField]

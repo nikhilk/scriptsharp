@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
+namespace System.Html.Data.IndexedDB {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public class IDBEventTarget {
+    public class DBEventTarget {
 
         public void AddEventListener<T>(string type, Action<T> listener) {
         }
@@ -19,7 +19,7 @@ namespace System.Html.Data {
         public void RemoveEventListener<T>(string type, Action<T> listener, bool useCapture) {
         }
 
-        public bool DispatchEvent<T>(IDBEvent<T> e) {
+        public bool DispatchEvent<T>(DBEvent<T> e) {
             return false;
         }
     }

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
+namespace System.Html.Data.IndexedDB {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("Object")]
-    public sealed class IDBIndexParameters {
+    public sealed class DBIndexParameters {
 
         [ScriptField]
         public bool Unique {

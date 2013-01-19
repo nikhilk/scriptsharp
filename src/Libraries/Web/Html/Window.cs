@@ -5,6 +5,7 @@
 
 using System;
 using System.Html.Data;
+using System.Html.Data.IndexedDB;
 using System.Runtime.CompilerServices;
 
 namespace System.Html {
@@ -411,7 +412,7 @@ namespace System.Html {
         }
 
         [ScriptField]
-        public static IDBFactory IndexedDB {
+        public static DBFactory IndexedDB {
             get {
                 return null;
             }

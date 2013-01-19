@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
+namespace System.Html.Data.IndexedDB {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public class IDBEvent<T> {
+    public class DBEvent<T> {
 
         [ScriptField]
         public string Type {
@@ -20,7 +20,7 @@ namespace System.Html.Data {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public class IDBVersionChangeEvent<T> : IDBEvent<T> {
+    public class DBVersionChangeEvent<T> : DBEvent<T> {
 
         [ScriptField]
         public long OldVersion {

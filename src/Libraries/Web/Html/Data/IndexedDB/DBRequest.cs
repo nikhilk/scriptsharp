@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
+namespace System.Html.Data.IndexedDB {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public class IDBRequest : IDBEventTarget {
+    public class DBRequest : DBEventTarget {
 
-        protected IDBRequest() {
+        protected DBRequest() {
         }
 
         [ScriptField]
@@ -26,7 +26,7 @@ namespace System.Html.Data {
         }
 
         [ScriptField]
-        public IDBTransaction Transaction {
+        public DBTransaction Transaction {
             get { return null; }
         }
 
@@ -36,14 +36,14 @@ namespace System.Html.Data {
         }
 
         [ScriptName("onsuccess")]
-        public IDBRequestCallback OnSuccess;
+        public DBRequestCallback OnSuccess;
 
         [ScriptName("onerror")]
-        public IDBRequestCallback OnError;
+        public DBRequestCallback OnError;
     }
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBRequestCallback(IDBEvent<IDBRequest> e);
+    public delegate void DBRequestCallback(DBEvent<DBRequest> e);
 
 }

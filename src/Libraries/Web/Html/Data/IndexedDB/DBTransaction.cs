@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
+namespace System.Html.Data.IndexedDB {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class IDBTransaction : IDBEventTarget {
+    public sealed class DBTransaction : DBEventTarget {
 
-        private IDBTransaction() {
+        private DBTransaction() {
         }
 
         [ScriptField]
@@ -16,7 +16,7 @@ namespace System.Html.Data {
         }
 
         [ScriptField]
-        public IDBDatabase Db {
+        public DBDatabase Db {
             get { return null; }
         }
 
@@ -25,7 +25,7 @@ namespace System.Html.Data {
             get { return null; }
         }
 
-        public IDBObjectStore ObjectStore(string name) {
+        public DBObjectStore ObjectStore(string name) {
             return null;
         }
 
@@ -33,18 +33,18 @@ namespace System.Html.Data {
         }
 
         [ScriptName("onabort")]
-        public IDBTransactionCallback OnAbort;
+        public DBTransactionCallback OnAbort;
 
         [ScriptName("oncomplete")]
-        public IDBTransactionCallback OnComplete;
+        public DBTransactionCallback OnComplete;
 
         [ScriptName("onerror")]
-        public IDBTransactionCallback OnError;
+        public DBTransactionCallback OnError;
 
     }
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public delegate void IDBTransactionCallback(IDBEvent<IDBTransaction> e);
+    public delegate void DBTransactionCallback(DBEvent<DBTransaction> e);
 
 }

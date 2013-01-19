@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
+namespace System.Html.Data.IndexedDB {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class IDBObjectStore {
+    public sealed class DBObjectStore {
 
-        private IDBObjectStore() {
+        private DBObjectStore() {
         }
 
         [ScriptField]
@@ -26,8 +26,8 @@ namespace System.Html.Data {
         }
 
         [ScriptField]
-        public IDBTransaction Transaction {
-            get { return default(IDBTransaction); }
+        public DBTransaction Transaction {
+            get { return default(DBTransaction); }
         }
 
         [ScriptField]
@@ -35,66 +35,66 @@ namespace System.Html.Data {
             get { return default(bool); }
         }
 
-        public IDBRequest Put(object value) {
+        public DBRequest Put(object value) {
             return null;
         }
 
-        public IDBRequest Put(object value, object key) {
+        public DBRequest Put(object value, object key) {
             return null;
         }
 
-        public IDBRequest Add(object value) {
+        public DBRequest Add(object value) {
             return null;
         }
 
-        public IDBRequest Add(object value, object key) {
+        public DBRequest Add(object value, object key) {
             return null;
         }
 
-        public IDBRequest Delete(object key) {
+        public DBRequest Delete(object key) {
             return null;
         }
 
-        public IDBRequest Get(object key) {
+        public DBRequest Get(object key) {
             return null;
         }
 
-        public IDBRequest Clear() {
+        public DBRequest Clear() {
             return null;
         }
 
-        public IDBRequest OpenCursor() {
+        public DBRequest OpenCursor() {
             return null;
         }
 
-        public IDBRequest OpenCursor(object range) {
+        public DBRequest OpenCursor(object range) {
             return null;
         }
 
-        public IDBRequest OpenCursor(object range, string direction) {
+        public DBRequest OpenCursor(object range, string direction) {
             return null;
         }
 
-        public IDBIndex CreateIndex(string name, object keyPath) {
-            return default(IDBIndex);
+        public DBIndex CreateIndex(string name, object keyPath) {
+            return default(DBIndex);
         }
 
-        public IDBIndex CreateIndex(string name, object keyPath, IDBIndexParameters optionalParameters) {
-            return default(IDBIndex);
+        public DBIndex CreateIndex(string name, object keyPath, DBIndexParameters optionalParameters) {
+            return default(DBIndex);
         }
 
-        public IDBIndex Index(string name) {
-            return default(IDBIndex);
+        public DBIndex Index(string name) {
+            return default(DBIndex);
         }
 
         public void DeleteIndex(string indexName) {
         }
 
-        public IDBRequest Count() {
+        public DBRequest Count() {
             return null;
         }
 
-        public IDBRequest Count(object key) {
+        public DBRequest Count(object key) {
             return null;
         }
     }

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
+namespace System.Html.Data.IndexedDB {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class IDBIndex {
+    public sealed class DBIndex {
 
-        private IDBIndex() {
+        private DBIndex() {
         }
 
         [ScriptField]
@@ -16,8 +16,8 @@ namespace System.Html.Data {
         }
 
         [ScriptField]
-        public IDBObjectStore ObjectStore {
-            get { return default(IDBObjectStore); }
+        public DBObjectStore ObjectStore {
+            get { return default(DBObjectStore); }
         }
 
         [ScriptField]
@@ -35,43 +35,43 @@ namespace System.Html.Data {
             get { return default(bool); }
         }
 
-        public IDBRequest OpenCursor() {
+        public DBRequest OpenCursor() {
             return null;
         }
 
-        public IDBRequest OpenCursor(object range) {
+        public DBRequest OpenCursor(object range) {
             return null;
         }
 
-        public IDBRequest OpenCursor(object range, string direction) {
+        public DBRequest OpenCursor(object range, string direction) {
             return null;
         }
 
-        public IDBRequest OpenKeyCursor() {
+        public DBRequest OpenKeyCursor() {
             return null;
         }
 
-        public IDBRequest OpenKeyCursor(object range) {
+        public DBRequest OpenKeyCursor(object range) {
             return null;
         }
 
-        public IDBRequest OpenKeyCursor(object range, string direction) {
+        public DBRequest OpenKeyCursor(object range, string direction) {
             return null;
         }
 
-        public IDBRequest Get(object key) {
+        public DBRequest Get(object key) {
             return null;
         }
 
-        public IDBRequest GetKey(object key) {
+        public DBRequest GetKey(object key) {
             return null;
         }
 
-        public IDBRequest Count() {
+        public DBRequest Count() {
             return null;
         }
 
-        public IDBRequest Count(object key) {
+        public DBRequest Count(object key) {
             return null;
         }
     }

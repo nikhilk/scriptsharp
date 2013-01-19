@@ -1,24 +1,24 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
+namespace System.Html.Data.IndexedDB {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class IDBFactory {
+    public sealed class DBFactory {
 
-        private IDBFactory() {
+        private DBFactory() {
         }
 
-        public IDBOpenDBRequest Open(string name) {
+        public DBOpenDBRequest Open(string name) {
             return null;
         }
 
-        public IDBOpenDBRequest Open(string name, long version) {
+        public DBOpenDBRequest Open(string name, long version) {
             return null;
         }
 
-        public IDBOpenDBRequest DeleteDatabase(string name) {
+        public DBOpenDBRequest DeleteDatabase(string name) {
             return null;
         }
 

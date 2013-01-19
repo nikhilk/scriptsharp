@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
+namespace System.Html.Data.IndexedDB {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public class IDBCursor {
+    public class DBCursor {
 
-        protected IDBCursor() {
+        protected DBCursor() {
         }
 
         [ScriptField]
@@ -30,7 +30,7 @@ namespace System.Html.Data {
             get { return null; }
         }
 
-        public IDBRequest Update(object value) {
+        public DBRequest Update(object value) {
             return null;
         }
 
@@ -43,7 +43,7 @@ namespace System.Html.Data {
         public void Continue(object key) {
         }
 
-        public IDBRequest Delete(object value) {
+        public DBRequest Delete(object value) {
             return null;
         }
     }
