@@ -183,7 +183,7 @@ namespace System {
             return 0;
         }
 
-        [ScriptName("parseDate")]
+        [ScriptAlias("ss.date")]
         public static Date Parse(string value) {
             return null;
         }
