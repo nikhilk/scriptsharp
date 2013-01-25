@@ -25,6 +25,8 @@ define('test', ['ss'], function(ss) {
       b = (i === null);
       b = (i === undefined);
       b = ss.isValue(i);
+      b = isNaN(0);
+      b = isFinite(3);
       var addition = eval('2 + 2');
       addition = 2 + 2;
       addition = 2 + 3;

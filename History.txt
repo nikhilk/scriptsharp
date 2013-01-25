@@ -21,6 +21,7 @@ v0.8 (combines changes from 0.7.6 that weren't released as an actual build
       build also produces Foo.js and corresponding minimized Foo.min.js.
     - Leverage AjaxMin tool to perform minimization (better minimization
       as a result)
+    - HTML5 IndexedDB APIs added
     - NodeJS support
     - Removed metadata attributes
       . ScriptNamespaceAttribute
@@ -61,7 +62,7 @@ v0.8 (combines changes from 0.7.6 that weren't released as an actual build
         String.LocaleFormat -> use overload that takes in CultureInfo
 
         Added:
-        Script.Global, Undefined
+        Script.Global, Undefined, IsNaN, IsFinite
         Script.Require
     - MSBuild changes:
       . Added support for a CrunchScripts property in your csproj to control

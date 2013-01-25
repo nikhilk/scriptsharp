@@ -131,6 +131,16 @@ namespace System {
             return default(T);
         }
 
+        [ScriptAlias("isFinite")]
+        public static bool IsFinite(object o) {
+            return false;
+        }
+
+        [ScriptAlias("isNaN")]
+        public static bool IsNaN(object o) {
+            return false;
+        }
+
         /// <summary>
         /// Checks if the specified object is null.
         /// </summary>
