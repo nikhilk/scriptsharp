@@ -1,4 +1,9 @@
-﻿using System;
+﻿// DBIndexParameters.cs
+// Script#/Libraries/Web
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//
+
+using System;
 using System.Runtime.CompilerServices;
 
 namespace System.Html.Data.IndexedDB {
@@ -9,7 +14,7 @@ namespace System.Html.Data.IndexedDB {
     public sealed class DBIndexParameters {
 
         [ScriptField]
-        public bool Unique {
+        public bool MultiEntry {
             get {
                 return false;
             }
@@ -18,7 +23,7 @@ namespace System.Html.Data.IndexedDB {
         }
 
         [ScriptField]
-        public bool MultiEntry {
+        public bool Unique {
             get {
                 return false;
             }

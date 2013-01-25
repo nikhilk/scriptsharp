@@ -1,20 +1,39 @@
-﻿using System;
+﻿// DBOpenDBRequest.cs
+// Script#/Libraries/Web
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//
+
+using System;
 using System.Runtime.CompilerServices;
 
 namespace System.Html.Data.IndexedDB {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public class DBOpenDBRequest : DBRequest {
+    public sealed class DBOpenDBRequest : DBRequest {
 
-        protected DBOpenDBRequest() {
+        private DBOpenDBRequest() {
         }
 
         [ScriptName("onblocked")]
-        public DBOpenDBRequestCallback OnBlocked;
+        [ScriptField]
+        public DBOpenDBRequestCallback OnBlocked {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
 
         [ScriptName("onupgradeneeded")]
-        public DBOpenDBRequestVersionChangeCallback OnUpgradeNeeded;
+        [ScriptField]
+        public DBOpenDBRequestVersionChangeCallback OnUpgradeNeeded {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
     }
 
     [ScriptIgnoreNamespace]

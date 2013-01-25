@@ -1,4 +1,9 @@
-﻿using System;
+﻿// DBObjectStoreParameters.cs
+// Script#/Libraries/Web
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//
+
+using System;
 using System.Runtime.CompilerServices;
 
 namespace System.Html.Data.IndexedDB {
@@ -9,18 +14,18 @@ namespace System.Html.Data.IndexedDB {
     public sealed class DBObjectStoreParameters {
 
         [ScriptField]
-        public string KeyPath {
+        public bool AutoIncrement {
             get {
-                return null;
+                return false;
             }
             set {
             }
         }
 
         [ScriptField]
-        public bool AutoIncrement {
+        public string KeyPath {
             get {
-                return false;
+                return null;
             }
             set {
             }

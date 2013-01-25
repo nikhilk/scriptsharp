@@ -1,4 +1,9 @@
-﻿using System;
+﻿// DBRequest.cs
+// Script#/Libraries/Web
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//
+
+using System;
 using System.Runtime.CompilerServices;
 
 namespace System.Html.Data.IndexedDB {
@@ -7,43 +12,66 @@ namespace System.Html.Data.IndexedDB {
     [ScriptImport]
     public class DBRequest : DBEventTarget {
 
-        protected DBRequest() {
-        }
-
-        [ScriptField]
-        public object Result {
-            get { return null; }
+        internal DBRequest() {
         }
 
         [ScriptField]
         public object Error {
-            get { return null; }
+            get {
+                return null;
+            }
         }
 
+        [ScriptName("onerror")]
         [ScriptField]
-        public object Source {
-            get { return null; }
+        public DBRequestCallback OnError {
+            get {
+                return null;
+            }
+            set {
+            }
         }
 
+        [ScriptName("onsuccess")]
         [ScriptField]
-        public DBTransaction Transaction {
-            get { return null; }
+        public DBRequestCallback OnSuccess {
+            get {
+                return null;
+            }
+            set {
+            }
         }
 
         [ScriptField]
         public string ReadyState {
-            get { return null; }
+            get {
+                return null;
+            }
         }
 
-        [ScriptName("onsuccess")]
-        public DBRequestCallback OnSuccess;
+        [ScriptField]
+        public object Result {
+            get {
+                return null;
+            }
+        }
 
-        [ScriptName("onerror")]
-        public DBRequestCallback OnError;
+        [ScriptField]
+        public object Source {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public DBTransaction Transaction {
+            get {
+                return null;
+            }
+        }
     }
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
     public delegate void DBRequestCallback(DBEvent<DBRequest> e);
-
 }

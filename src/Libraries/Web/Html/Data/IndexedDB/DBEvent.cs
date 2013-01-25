@@ -1,4 +1,9 @@
-﻿using System;
+﻿// DBEvent.cs
+// Script#/Libraries/Web
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//
+
+using System;
 using System.Runtime.CompilerServices;
 
 namespace System.Html.Data.IndexedDB {
@@ -7,30 +12,21 @@ namespace System.Html.Data.IndexedDB {
     [ScriptImport]
     public class DBEvent<T> {
 
-        [ScriptField]
-        public string Type {
-            get { return null; }
+        internal DBEvent() {
         }
 
         [ScriptField]
         public T Target {
-            get { return default(T); }
-        }
-    }
-
-    [ScriptIgnoreNamespace]
-    [ScriptImport]
-    public class DBVersionChangeEvent<T> : DBEvent<T> {
-
-        [ScriptField]
-        public long OldVersion {
-            get { return default(long); }
+            get {
+                return default(T);
+            }
         }
 
         [ScriptField]
-        public long NewVersion {
-            get { return default(long); }
+        public string Type {
+            get {
+                return null;
+            }
         }
     }
-
 }

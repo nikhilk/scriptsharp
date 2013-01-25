@@ -1,4 +1,9 @@
-﻿using System;
+﻿// DBCursor.cs
+// Script#/Libraries/Web
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//
+
+using System;
 using System.Runtime.CompilerServices;
 
 namespace System.Html.Data.IndexedDB {
@@ -7,31 +12,35 @@ namespace System.Html.Data.IndexedDB {
     [ScriptImport]
     public class DBCursor {
 
-        protected DBCursor() {
-        }
-
-        [ScriptField]
-        public object Source {
-            get { return null; }
+        internal DBCursor() {
         }
 
         [ScriptField]
         public string Direction {
-            get { return null; }
+            get {
+                return null;
+            }
         }
 
         [ScriptField]
         public object Key {
-            get { return null; }
+            get {
+                return null;
+            }
         }
 
         [ScriptField]
         public object PrimaryKey {
-            get { return null; }
+            get {
+                return null;
+            }
         }
 
-        public DBRequest Update(object value) {
-            return null;
+        [ScriptField]
+        public object Source {
+            get {
+                return null;
+            }
         }
 
         public void Advance(long count) {
@@ -44,6 +53,10 @@ namespace System.Html.Data.IndexedDB {
         }
 
         public DBRequest Delete(object value) {
+            return null;
+        }
+
+        public DBRequest Update(object value) {
             return null;
         }
     }

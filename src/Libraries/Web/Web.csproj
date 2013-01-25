@@ -48,6 +48,7 @@
     <Compile Include="Html\CheckBoxElement.cs" />
     <Compile Include="Html\CanvasElement.cs" />
     <Compile Include="Html\ClientRectList.cs" />
+    <Compile Include="Html\Data\IndexedDB\DBVersionChangeEvent.cs" />
     <Compile Include="Html\Data\IndexedDB\DBCursor.cs" />
     <Compile Include="Html\Data\IndexedDB\DBCursorWithValue.cs" />
     <Compile Include="Html\Data\IndexedDB\DBDatabase.cs" />
