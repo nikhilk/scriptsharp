@@ -55,6 +55,7 @@
       boolean: parseBoolean,
       regexp: parseRegExp,
       number: parseNumber,
+      date: parseDate,
       truncate: truncate,
       now: now,
       today: today,
