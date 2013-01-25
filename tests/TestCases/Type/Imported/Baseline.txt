@@ -14,7 +14,7 @@ define('test', ['ss'], function(ss) {
     var n = ss.truncate(5.5);
     var parser = new DOMParser();
     var doc = parser.parseFromString('<markup></markup>', 'text/xml');
-    var d = Date.parseDate('1/1/2010');
+    var d = ss.date('1/1/2010');
     var eventHandler = function() {
     };
     elem.addEventListener('click', eventHandler);
