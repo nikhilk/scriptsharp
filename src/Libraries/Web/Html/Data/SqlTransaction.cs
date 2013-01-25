@@ -6,13 +6,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
-
-    public delegate bool SqlTransactionCallback(SqlTransaction transaction);
-
-    public delegate bool SqlStatementCallback(SqlTransaction transaction, SqlResultSet resultSet);
-
-    public delegate bool SqlStatementErrorCallback(SqlTransaction transaction, SqlError error);
+namespace System.Html.Data.Sql {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
@@ -24,4 +18,10 @@ namespace System.Html.Data {
         public void ExecuteSql(string sql, object[] arguments, SqlStatementCallback callback, SqlStatementErrorCallback errorCallback) {
         }
     }
+
+    public delegate bool SqlTransactionCallback(SqlTransaction transaction);
+
+    public delegate bool SqlStatementCallback(SqlTransaction transaction, SqlResultSet resultSet);
+
+    public delegate bool SqlStatementErrorCallback(SqlTransaction transaction, SqlError error);
 }

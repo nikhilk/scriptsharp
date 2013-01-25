@@ -7,7 +7,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Collections;
 
-namespace System.Html.Data {
+namespace System.Html.Data.Sql {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]

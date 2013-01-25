@@ -6,9 +6,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
-
-    public delegate bool SqlErrorCallback(SqlError error);
+namespace System.Html.Data.Sql {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
@@ -31,4 +29,6 @@ namespace System.Html.Data {
             }
         }
     }
+
+    public delegate bool SqlErrorCallback(SqlError error);
 }

@@ -6,6 +6,7 @@
 using System;
 using System.Html.Data;
 using System.Html.Data.IndexedDB;
+using System.Html.Data.Sql;
 using System.Runtime.CompilerServices;
 
 namespace System.Html {

@@ -6,9 +6,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data {
-
-    public delegate bool SqlDatabaseCallback(SqlDatabase db);
+namespace System.Html.Data.Sql {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
@@ -33,4 +31,6 @@ namespace System.Html.Data {
         public void Transaction(SqlTransactionCallback callback, SqlErrorCallback errorCallback, Action successCallback) {
         }
     }
+
+    public delegate bool SqlDatabaseCallback(SqlDatabase db);
 }
