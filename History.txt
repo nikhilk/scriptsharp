@@ -64,6 +64,7 @@ v0.8 (combines changes from 0.7.6 that weren't released as an actual build
         Added:
         Script.Global, Undefined, IsNaN, IsFinite
         Script.Require
+        DataContract/DataMember attributes to help in shared code scenarios
     - MSBuild changes:
       . Added support for a CrunchScripts property in your csproj to control
         whether crunching happens for the .min.js script is produced.

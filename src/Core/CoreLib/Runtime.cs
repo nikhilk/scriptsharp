@@ -544,9 +544,66 @@ namespace System.Runtime.CompilerServices {
 
 namespace System.Runtime.InteropServices {
 
+    [AttributeUsageAttribute(AttributeTargets.Parameter, Inherited = false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ScriptIgnore]
-    public class OutAttribute {
+    public sealed class OutAttribute : Attribute {
+    }
+}
+
+namespace System.Runtime.Serialization {
+
+    [AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum, Inherited = false, AllowMultiple = false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [ScriptIgnore]
+    public sealed class DataContractAttribute : Attribute {
+
+        public bool IsReference {
+            get;
+            set;
+        }
+
+        public string Name {
+            get;
+            set;
+        }
+
+        public string Namespace {
+            get;
+            set;
+        }
+    }
+
+    [AttributeUsageAttribute(AttributeTargets.Property | AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [ScriptIgnore]
+    public sealed class DataMemberAttribute : Attribute {
+
+        public bool EmitDefaultValue {
+            get;
+            set;
+        }
+
+        public bool IsReference {
+            get;
+            set;
+        }
+
+        public string Name {
+            get;
+            set;
+        }
+
+        public int Order {
+            get;
+            set;
+        }
+    }
+
+    [AttributeUsageAttribute(AttributeTargets.Property | AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [ScriptIgnore]
+    public sealed class IgnoreDataMemberAttribute : Attribute {
     }
 }
 
