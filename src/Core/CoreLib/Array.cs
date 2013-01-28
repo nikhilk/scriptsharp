@@ -4,6 +4,7 @@
 //
 
 using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace System {
@@ -186,6 +187,14 @@ namespace System {
         }
 
         public void Unshift(params object[] items) {
+        }
+
+        public static explicit operator ArrayList(Array array) {
+            return null;
+        }
+
+        public static explicit operator List<object>(Array array) {
+            return null;
         }
     }
 }

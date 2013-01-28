@@ -55,6 +55,7 @@
       boolean: parseBoolean,
       regexp: parseRegExp,
       number: parseNumber,
+      date: parseDate,
       truncate: truncate,
       now: now,
       today: today,
@@ -81,6 +82,7 @@
       deferred: deferred,
 
       module: module,
+      modules: _modules,
 
       isClass: isClass,
       isInterface: isInterface,
@@ -91,6 +93,7 @@
       safeCast: safeCast,
       canAssign: canAssign,
       instanceOf: instanceOf,
+      base: base,
 
       culture: {
         neutral: neutralCulture,

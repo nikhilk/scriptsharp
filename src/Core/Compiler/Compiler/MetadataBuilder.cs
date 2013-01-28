@@ -812,7 +812,8 @@ namespace ScriptSharp.Compiler {
 
                 BuildType(typeSymbol, typeNode);
 
-                if (namespaceSymbol.Name.EndsWith(_options.TestsSubnamespace, StringComparison.Ordinal)) {
+                if (namespaceSymbol.Name.EndsWith(".Tests", StringComparison.Ordinal) ||
+                    (namespaceSymbol.Name.IndexOf(".Tests.", StringComparison.Ordinal) > 0)) {
                     typeSymbol.SetTestType();
                 }
             }

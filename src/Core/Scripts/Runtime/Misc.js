@@ -36,10 +36,15 @@ function parseNumber(s) {
     return 0;
   }
   if ((s.indexOf('.') >= 0) || (s.indexOf('e') >= 0) ||
-    s.endsWith('f') || s.endsWith('F')) {
+      endsWith(s, 'f') || endsWith(s, 'F')) {
     return parseFloat(s);
   }
   return parseInt(s, 10);
+}
+
+function parseDate(s) {
+  var t = Date.parse(s);
+  return isNaN(t) ? t : new Date(t);
 }
 
 function truncate(n) {

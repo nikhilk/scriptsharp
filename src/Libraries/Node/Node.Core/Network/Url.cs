@@ -11,7 +11,7 @@ namespace NodeApi.Network {
     [ScriptImport]
     [ScriptIgnoreNamespace]
     [ScriptDependency("url")]
-    [ScriptName("URL")]
+    [ScriptName("url")]
     public static class Url {
 
         public static string Format(UrlData urlData) {

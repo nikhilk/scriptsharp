@@ -6,6 +6,8 @@
 using System;
 using System.Html.Data;
 using System.Html.FileAccess;
+using System.Html.Data.IndexedDB;
+using System.Html.Data.Sql;
 using System.Runtime.CompilerServices;
 
 namespace System.Html {
@@ -438,6 +440,14 @@ namespace System.Html {
         public static SqlDatabase OpenDatabase(string name, string version, string displayName, int estimatedSize, SqlDatabaseCallback creationCallback) {
             return null;
         }
+
+        [ScriptField]
+        public static DBFactory IndexedDB {
+            get {
+                return null;
+            }
+        }
+
 
         public static void PostMessage(string message, string targetOrigin) {
         }

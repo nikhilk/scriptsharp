@@ -22,11 +22,10 @@ namespace ScriptSharp {
         private ICollection<IStreamSource> _resources;
         private IStreamSource _scriptFile;
         private IStreamSource _docCommentFile;
+        private IStreamSourceResolver _includeResolver;
         private bool _includeTests;
         private bool _minimize;
         private ScriptInfo _scriptInfo;
-
-        private string _testsSubnamespace;
 
         private bool _hasTestTypes;
 
@@ -36,7 +35,6 @@ namespace ScriptSharp {
 
         public CompilerOptions() {
             _scriptInfo = new ScriptInfo();
-            _testsSubnamespace = ".Tests";
         }
 
         public ICollection<string> Defines {
@@ -69,6 +67,15 @@ namespace ScriptSharp {
             }
             set {
                 _hasTestTypes = value;
+            }
+        }
+
+        public IStreamSourceResolver IncludeResolver {
+            get {
+                return _includeResolver;
+            }
+            set {
+                _includeResolver = value;
             }
         }
 
@@ -147,15 +154,6 @@ namespace ScriptSharp {
             }
             set {
                 _sources = value;
-            }
-        }
-
-        public string TestsSubnamespace {
-            get {
-                return _testsSubnamespace;
-            }
-            set {
-                _testsSubnamespace = value;
             }
         }
 

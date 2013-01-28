@@ -133,15 +133,15 @@ define('test', ['ss'], function(ss) {
     MemberTests$VirtualIndexer.call(this);
     var i = this.get_item('name');
     this.set_item('name', i + 1);
-    var j = MemberTests$VirtualIndexer$.get_item.call(this, 'name');
-    MemberTests$VirtualIndexer$.set_item.call(this, 'name', 43);
+    var j = ss.base(this, 'get_item').call(this, 'name');
+    ss.base(this, 'set_item').call(this, 'name', 43);
   }
   var MemberTests$OverriddenIndexer$ = {
     get_item: function(name) {
-      return MemberTests$VirtualIndexer$.get_item.call(this, name) + 1;
+      return ss.base(this, 'get_item').call(this, name) + 1;
     },
     set_item: function(name, value) {
-      MemberTests$VirtualIndexer$.set_item.call(this, name, value - 1);
+      ss.base(this, 'set_item').call(this, name, value - 1);
       return value;
     }
   };

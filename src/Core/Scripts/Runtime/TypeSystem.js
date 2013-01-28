@@ -153,8 +153,14 @@ function safeCast(instance, type) {
   return instanceOf(type, instance) ? instance : null;
 }
 
+function base(instanceOrType, method) {
+  var baseType = instanceOrType.constructor.$base || instanceOrType.$base;
+  var m = baseType.prototype[method];
+  return m !== instanceOrType[method] ? m : base(baseType, method);
+}
+
 function module(name, implementation, exports) {
-  var registry = _modules[name] = {};
+  var registry = _modules[name] = { $name: name };
 
   if (implementation) {
     for (var typeName in implementation) {

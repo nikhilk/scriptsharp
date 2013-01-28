@@ -1,0 +1,24 @@
+// basic.js
+"use strict";
+
+(function($global) {
+  // pre script
+
+  // Basic.App
+
+  function Basic$App() {
+  }
+  var Basic$App$ = {
+
+  };
+
+
+  var $exports = ss.module('basic', null,
+    {
+      App: [ Basic$App, Basic$App$, null ]
+    });
+
+
+  // post script
+
+})(this);

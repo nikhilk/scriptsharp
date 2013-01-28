@@ -22,7 +22,7 @@ namespace ScriptSharp.Tasks {
     /// <summary>
     /// The Script# MSBuild task.
     /// </summary>
-    public sealed class ScriptCompilerTask : Task, IErrorHandler {
+    public sealed class ScriptCompilerTask : Task, IErrorHandler, IStreamSourceResolver {
 
         private string _projectPath;
         private ITaskItem[] _references;
@@ -34,6 +34,7 @@ namespace ScriptSharp.Tasks {
         private bool _minimize;
         private bool _crunch;
         private bool _copyReferences;
+        private bool _localeSubfolders;
         private string _referencesPath;
         private string _outputPath;
         private string _deploymentPath;
@@ -107,6 +108,15 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _deploymentPath = value;
+            }
+        }
+
+        public bool LocaleSubfolders {
+            get {
+                return _localeSubfolders;
+            }
+            set {
+                _localeSubfolders = value;
             }
         }
 
@@ -256,6 +266,7 @@ namespace ScriptSharp.Tasks {
             options.References = GetReferences();
             options.Sources = GetSources(sourceItems);
             options.Resources = GetResources(resourceItems, locale);
+            options.IncludeResolver = this;
 
             string scriptFilePath = GetScriptFilePath(locale, minimize, includeTests);
             outputScriptItem = new TaskItem(scriptFilePath);
@@ -399,7 +410,12 @@ namespace ScriptSharp.Tasks {
 
                 string extension = includeTests ? "test.js" : (minimize ? "min.js" : "js");
                 if (String.IsNullOrEmpty(locale) == false) {
-                    extension = locale + "." + extension;
+                    if (LocaleSubfolders) {
+                        outputPath = Path.Combine(outputPath, locale);
+                    }
+                    else {
+                        extension = locale + "." + extension;
+                    }
                 }
 
                 if (Directory.Exists(outputPath) == false) {
@@ -562,6 +578,19 @@ namespace ScriptSharp.Tasks {
 
             Log.LogError(String.Empty, String.Empty, String.Empty, location, line, column, 0, 0, errorMessage);
         }
+        #endregion
+
+        #region Implementation of IStreamSourceResolver
+
+        IStreamSource IStreamSourceResolver.Resolve(string name) {
+            string path = Path.Combine(Path.GetDirectoryName(_projectPath), name);
+            if (File.Exists(path)) {
+                return new FileInputStreamSource(path, name);
+            }
+
+            return null;
+        }
+
         #endregion
 
 

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Test;
 
@@ -33,6 +34,14 @@ namespace Test {
                 return _species;
             }
         }
+
+        public virtual string Live(int i) {
+            return "[" + i + "] ...";
+        }
+
+        public virtual string Die() {
+            return "...";
+        }
     }
 
     public class Cat : Animal, IMammal {
@@ -42,6 +51,10 @@ namespace Test {
 
         public virtual string Speak() {
             return "meow";
+        }
+
+        public override string Die() {
+            return base.Die();
         }
     }
 }
@@ -69,6 +82,10 @@ namespace Test.More {
             return base.Speak() + "\r\n" +
                    "Translation: " +
                    "I am fat, lazy, and cynical, but still, a favorite cat...";
+        }
+
+        public override string Live(int i) {
+            return base.Live(i) + " zzz";
         }
     }
 

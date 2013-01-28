@@ -22,9 +22,6 @@ namespace BasicTests {
 
 namespace BasicTests.Tests {
 
-    internal sealed class Foo {
-    }
-
     internal sealed class PublicTests : TestClass {
 
         public void TestFormat() {
@@ -64,5 +61,11 @@ namespace BasicTests.Tests {
         public override void Cleanup() {
             _endTime = Date.Now;
         }
+    }
+}
+
+namespace BasicTests.Tests.Helpers {
+
+    internal sealed class Foo {
     }
 }

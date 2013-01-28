@@ -70,7 +70,7 @@ define('test', ['ss'], function(ss) {
       n = ExpressionTests$App$.get_XYZ.call(this);
       this.set_XYZ(n);
       this.set_XYZ(n);
-      ExpressionTests$App$.set_XYZ.call(this, n);
+      ss.base(this, 'set_XYZ').call(this, n);
       this._value2 = n;
       this._value2 = n;
       this._value2 = n;

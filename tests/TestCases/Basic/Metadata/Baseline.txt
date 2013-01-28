@@ -609,7 +609,7 @@ Types:
             Method: Parse
                 AssociatedType: Date
                 Visibility: Public, Static
-                Generated Name: parseDate
+                Generated Name: ss.date
                 Abstract: False
             Method: SetDate
                 AssociatedType: Void
@@ -1450,6 +1450,10 @@ Types:
                 AssociatedType: Object
                 Visibility: Public, Static
                 Generated Name: $global
+            Field: Modules
+                AssociatedType: Dictionary`2
+                Visibility: Public, Static
+                Generated Name: ss.modules
             Field: Undefined
                 AssociatedType: Object
                 Visibility: Public, Static
@@ -1508,6 +1512,16 @@ Types:
                 AssociatedType: Object
                 Visibility: Public, Static
                 Generated Name: invokeMethod
+                Abstract: False
+            Method: IsFinite
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isFinite
+                Abstract: False
+            Method: IsNaN
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isNaN
                 Abstract: False
             Method: IsNull
                 AssociatedType: Boolean
@@ -1812,7 +1826,7 @@ Types:
             Method: TrimEnd
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: trimEnd
+                Generated Name: ss.trimEnd
                 Abstract: False
             Method: TrimStart
                 AssociatedType: String

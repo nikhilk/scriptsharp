@@ -31,6 +31,17 @@ namespace jQueryApi {
         }
 
         /// <summary>
+        /// True if the browser supports cross origin requests.
+        /// </summary>
+        [ScriptField]
+        [ScriptName("cors")]
+        public bool CORS {
+            get {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// True if cssFloat is the name of the float CSS property. False if it is styleFloat.
         /// </summary>
         [ScriptField]

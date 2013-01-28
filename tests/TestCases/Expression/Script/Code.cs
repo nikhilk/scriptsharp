@@ -27,6 +27,8 @@ namespace ExpressionTests {
             b = Script.IsNull(i);
             b = Script.IsUndefined(i);
             b = Script.IsValue(i);
+            b = Script.IsNaN(0);
+            b = Script.IsFinite(3);
 
             int addition = (int)Script.Eval("2 + 2");
 
@@ -35,6 +37,8 @@ namespace ExpressionTests {
 
             object g = Script.Global;
             object u = Script.Undefined;
+
+            object coreModule = Script.Modules["ss"];
         }
     }
 }
