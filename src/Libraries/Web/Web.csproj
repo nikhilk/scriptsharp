@@ -63,10 +63,10 @@
     <Compile Include="Html\Data\IndexedDB\DBFactory.cs" />
     <Compile Include="Html\Data\IndexedDB\DBTransaction.cs" />
     <Compile Include="Html\ElementEventListener.cs" />
-    <Compile Include="Html\FileAccess\Blob.cs" />
-    <Compile Include="Html\FileAccess\File.cs" />
-    <Compile Include="Html\FileAccess\FileList.cs" />
-    <Compile Include="Html\FileAccess\FileReader.cs" />
+    <Compile Include="Html\Data\FileAccess\Blob.cs" />
+    <Compile Include="Html\Data\FileAccess\File.cs" />
+    <Compile Include="Html\Data\FileAccess\FileList.cs" />
+    <Compile Include="Html\Data\FileAccess\FileReader.cs" />
     <Compile Include="Html\GestureEvent.cs" />
     <Compile Include="Html\CustomEvent.cs" />
     <Compile Include="Html\Media\Graphics\Rendering.cs" />

@@ -4,12 +4,16 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System.Html.FileAccess {
+namespace System.Html.Data.FileAccess {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class FileReader {
 
+        [ScriptName(PreserveCase = true)]
+        [CLSCompliant(false)]
+        public const ushort DONE = 2;
+        
         [ScriptName(PreserveCase = true)] 
         [CLSCompliant(false)] 
         public const ushort EMPTY = 0;
@@ -17,11 +21,7 @@ namespace System.Html.FileAccess {
         [ScriptName(PreserveCase = true)] 
         [CLSCompliant(false)] 
         public const ushort LOADING = 1;
-
-        [ScriptName(PreserveCase = true)] 
-        [CLSCompliant(false)] 
-        public const ushort DONE = 2;
-
+        
         [ScriptField]
         public DOMError Error {
             get {

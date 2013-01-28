@@ -5,7 +5,7 @@
 
 using System;
 using System.Html.Data;
-using System.Html.FileAccess;
+using System.Html.Data.FileAccess;
 using System.Html.Data.IndexedDB;
 using System.Html.Data.Sql;
 using System.Runtime.CompilerServices;
@@ -96,14 +96,14 @@ namespace System.Html {
         }
 
         [ScriptField]
-        public static FileReader FileReader {
+        public static FileList FileList {
             get {
                 return null;
             }
         }
 
         [ScriptField]
-        public static FileList FileList {
+        public static FileReader FileReader {
             get {
                 return null;
             }

@@ -4,14 +4,11 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System.Html.FileAccess {
+namespace System.Html.Data.FileAccess {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class File : Blob {
-
-        private File() {
-        }
 
         [ScriptField]
         public Date LastModifiedDate {
@@ -25,6 +22,9 @@ namespace System.Html.FileAccess {
             get {
                 return String.Empty;
             }
+        }
+
+        private File() {
         }
     }
 }

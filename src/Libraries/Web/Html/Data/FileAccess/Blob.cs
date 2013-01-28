@@ -4,7 +4,7 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System.Html.FileAccess {
+namespace System.Html.Data.FileAccess {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
@@ -17,6 +17,17 @@ namespace System.Html.FileAccess {
         }
 
         public Blob(object blobParts, BlobPropertyBag options) {
+        }
+        
+        [CLSCompliant(false)]
+        [ScriptField]
+        public ulong Size {
+            get { return 0; }
+        }
+
+        [ScriptField]
+        public string Type {
+            get { return String.Empty; }
         }
 
         public Blob Slice() {
@@ -33,17 +44,6 @@ namespace System.Html.FileAccess {
 
         public Blob Slice(long start, long end, string contentType) {
             return null;
-        }
-
-        [CLSCompliant(false)]
-        [ScriptField]
-        public ulong Size {
-            get { return 0; }
-        }
-
-        [ScriptField]
-        public string Type {
-            get { return String.Empty; }
         }
 
 
