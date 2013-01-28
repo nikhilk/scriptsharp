@@ -67,6 +67,7 @@
     <Compile Include="Html\Data\FileAccess\File.cs" />
     <Compile Include="Html\Data\FileAccess\FileList.cs" />
     <Compile Include="Html\Data\FileAccess\FileReader.cs" />
+    <Compile Include="Html\FileInputElement.cs" />
     <Compile Include="Html\GestureEvent.cs" />
     <Compile Include="Html\CustomEvent.cs" />
     <Compile Include="Html\Media\Graphics\Rendering.cs" />
