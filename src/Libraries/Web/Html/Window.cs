@@ -5,6 +5,7 @@
 
 using System;
 using System.Html.Data;
+using System.Html.FileAccess;
 using System.Runtime.CompilerServices;
 
 namespace System.Html {
@@ -23,6 +24,13 @@ namespace System.Html {
 
         [ScriptField]
         public static ApplicationCache ApplicationCache {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public static Blob Blob {
             get {
                 return null;
             }
@@ -73,6 +81,27 @@ namespace System.Html {
         /// </summary>
         [ScriptField]
         public static ElementEvent Event {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public static File File {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public static FileReader FileReader {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public static FileList FileList {
             get {
                 return null;
             }

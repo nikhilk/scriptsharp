@@ -49,6 +49,10 @@
     <Compile Include="Html\CanvasElement.cs" />
     <Compile Include="Html\ClientRectList.cs" />
     <Compile Include="Html\ElementEventListener.cs" />
+    <Compile Include="Html\FileAccess\Blob.cs" />
+    <Compile Include="Html\FileAccess\File.cs" />
+    <Compile Include="Html\FileAccess\FileList.cs" />
+    <Compile Include="Html\FileAccess\FileReader.cs" />
     <Compile Include="Html\GestureEvent.cs" />
     <Compile Include="Html\CustomEvent.cs" />
     <Compile Include="Html\Media\Graphics\Rendering.cs" />
