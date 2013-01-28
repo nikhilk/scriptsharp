@@ -39,6 +39,7 @@ namespace NodeApi.Network {
         }
 
         [ScriptField]
+        [ScriptName("hostname")]
         public string HostName {
             get;
             set;

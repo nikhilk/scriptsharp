@@ -119,10 +119,6 @@ namespace NodeApi.IO {
         }
 
         [ScriptName("readFile")]
-        public static void ReadFileText(string fileName, AsyncResultCallback<string> callback) {
-        }
-
-        [ScriptName("readFile")]
         public static void ReadFileText(string fileName, Encoding encoding, AsyncResultCallback<string> callback) {
         }
 
@@ -130,12 +126,7 @@ namespace NodeApi.IO {
             return null;
         }
 
-        [ScriptName("readFile")]
-        public static string ReadFileTextSync(string fileName) {
-            return null;
-        }
-
-        [ScriptName("readFile")]
+        [ScriptName("readFileSync")]
         public static string ReadFileTextSync(string fileName, Encoding encoding) {
             return null;
         }

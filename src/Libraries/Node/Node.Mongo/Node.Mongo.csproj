@@ -40,6 +40,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MongoConnector.cs" />
     <Compile Include="MongoCursor.cs" />
     <Compile Include="MongoCollection.cs" />
     <Compile Include="MongoDatabase.cs" />

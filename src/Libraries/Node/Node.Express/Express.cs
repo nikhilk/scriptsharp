@@ -85,6 +85,10 @@ namespace NodeApi.ExpressJS {
             return null;
         }
 
+        public static ExpressMiddleware Static(string path, object options) {
+            return null;
+        }
+
         [ScriptName("urlencoded")]
         public static ExpressMiddleware UrlEncoded() {
             return null;
