@@ -20,5 +20,8 @@ namespace System.Html.Data.FileAccess {
         public File Item(long index) {
             return null;
         }
+
+        private FileList() {
+        }
     }
 }
