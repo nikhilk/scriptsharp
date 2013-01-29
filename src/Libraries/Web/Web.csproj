@@ -48,6 +48,7 @@
     <Compile Include="Html\CheckBoxElement.cs" />
     <Compile Include="Html\CanvasElement.cs" />
     <Compile Include="Html\ClientRectList.cs" />
+    <Compile Include="Html\Data\Files\FileReadyState.cs" />
     <Compile Include="Html\Data\IndexedDB\DBVersionChangeEvent.cs" />
     <Compile Include="Html\Data\IndexedDB\DBCursor.cs" />
     <Compile Include="Html\Data\IndexedDB\DBCursorWithValue.cs" />
@@ -63,6 +64,11 @@
     <Compile Include="Html\Data\IndexedDB\DBFactory.cs" />
     <Compile Include="Html\Data\IndexedDB\DBTransaction.cs" />
     <Compile Include="Html\ElementEventListener.cs" />
+    <Compile Include="Html\Data\Files\Blob.cs" />
+    <Compile Include="Html\Data\Files\File.cs" />
+    <Compile Include="Html\Data\Files\FileList.cs" />
+    <Compile Include="Html\Data\Files\FileReader.cs" />
+    <Compile Include="Html\FileInputElement.cs" />
     <Compile Include="Html\GestureEvent.cs" />
     <Compile Include="Html\CustomEvent.cs" />
     <Compile Include="Html\Media\Graphics\Rendering.cs" />
