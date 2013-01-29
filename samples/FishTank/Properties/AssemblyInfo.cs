@@ -24,7 +24,7 @@ using System.Runtime.CompilerServices;
 // {name}.js
 //
 
-'use script';
+'use strict';
 (function($global) {
   {script}
 })(this);
