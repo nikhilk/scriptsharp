@@ -48,6 +48,9 @@
     <Compile Include="Html\CheckBoxElement.cs" />
     <Compile Include="Html\CanvasElement.cs" />
     <Compile Include="Html\ClientRectList.cs" />
+    <Compile Include="Html\Data\Files\FileReaderSync.cs" />
+    <Compile Include="Html\Data\Files\FileProgressEvent.cs" />
+    <Compile Include="Html\Data\Files\FileError.cs" />
     <Compile Include="Html\Data\Files\FileReadyState.cs" />
     <Compile Include="Html\Data\IndexedDB\DBVersionChangeEvent.cs" />
     <Compile Include="Html\Data\IndexedDB\DBCursor.cs" />

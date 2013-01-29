@@ -1,6 +1,7 @@
 // FileReader.cs
-// Script#/Libraries/Web/
+// Script#/Libraries/Web
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//
 
 using System.Runtime.CompilerServices;
 
@@ -23,7 +24,7 @@ namespace System.Html.Data.Files {
         [ScriptField]
         public int ReadyState {
             get {
-                return (int)FileReadyState.EMPTY;
+                return (int)FileReadyState.Empty;
             }
         }
 
@@ -36,22 +37,58 @@ namespace System.Html.Data.Files {
         }
 
         [ScriptName("onabort")]
-        public Action<FileProgressEvent> OnAbort;
+        public Action<FileProgressEvent> OnAbort {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
 
         [ScriptName("onerror")]
-        public Action<FileProgressEvent> OnError;
+        public Action<FileProgressEvent> OnError {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
 
         [ScriptName("onload")]
-        public Action<FileProgressEvent> OnLoad;
+        public Action<FileProgressEvent> OnLoad {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
 
         [ScriptName("onloadend")]
-        public Action<FileProgressEvent> OnLoadEnd;
+        public Action<FileProgressEvent> OnLoadEnd {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
 
         [ScriptName("onloadstart")]
-        public Action<FileProgressEvent> OnLoadStart;
+        public Action<FileProgressEvent> OnLoadStart {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
 
         [ScriptName("onprogress")]
-        public Action<FileProgressEvent> OnProgress;
+        public Action<FileProgressEvent> OnProgress {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
 
         public void Abort() {
         }
@@ -80,7 +117,7 @@ namespace System.Html.Data.Files {
         
         public void ReadAsArrayBuffer(Blob blob) {
         }
-        
+
         public void ReadAsBinaryString(Blob blob) {
         }
 
@@ -90,7 +127,7 @@ namespace System.Html.Data.Files {
         public void ReadAsText(Blob blob) {
         }
 
-        public void ReadAsText(Blob blob, String encoding) {
+        public void ReadAsText(Blob blob, string encoding) {
         }
 
         /// <summary>
@@ -110,35 +147,5 @@ namespace System.Html.Data.Files {
         /// <param name="useCapture">Whether the handler wants to initiate capturing the event.</param>
         public void RemoveEventListener(string eventName, IElementEventHandler handler, bool useCapture) {
         }
-    }
-
-
-    [ScriptIgnoreNamespace]
-    [ScriptImport]
-    public sealed class FileError {
-
-        [ScriptField]
-        public string Name {
-            get {
-                return String.Empty;
-            }
-        }
-    }
-
-
-    [ScriptIgnoreNamespace]
-    [ScriptImport]
-    public sealed class FileProgressEvent : ElementEvent {
-
-        public bool Bubbles;
-        public bool Cancelable;
-        public bool DefaultPrevented;
-        public bool LengthComputable;
-
-        public int EventPhase;
-        public int Loaded;
-        public int Total;
-
-        public object ClipboardData;
     }
 }

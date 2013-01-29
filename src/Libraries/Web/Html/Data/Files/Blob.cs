@@ -1,6 +1,7 @@
 // Blob.cs
-// Script#/Libraries/Web/
+// Script#/Libraries/Web
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//
 
 using System.Runtime.CompilerServices;
 
@@ -22,12 +23,16 @@ namespace System.Html.Data.Files {
         [CLSCompliant(false)]
         [ScriptField]
         public ulong Size {
-            get { return 0; }
+            get {
+                return 0;
+            }
         }
 
         [ScriptField]
         public string Type {
-            get { return String.Empty; }
+            get {
+                return String.Empty;
+            }
         }
 
         public Blob Slice() {

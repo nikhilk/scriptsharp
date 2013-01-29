@@ -1,4 +1,4 @@
-// FileList.cs
+// FileError.cs
 // Script#/Libraries/Web
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -9,22 +9,15 @@ namespace System.Html.Data.Files {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class FileList {
+    public sealed class FileError {
 
-        private FileList() {
+        private FileError() {
         }
 
         [ScriptField]
-        public long Length {
+        public string Name {
             get {
-                return 0;
-            }
-        }
-
-        [ScriptField]
-        public File this[int index] {
-            get {
-                return null;
+                return String.Empty;
             }
         }
     }

@@ -1,6 +1,7 @@
 // File.cs
-// Script#/Libraries/Web/
+// Script#/Libraries/Web
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//
 
 using System.Runtime.CompilerServices;
 
@@ -9,6 +10,9 @@ namespace System.Html.Data.Files {
     [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class File : Blob {
+
+        private File() {
+        }
 
         [ScriptField]
         public Date LastModifiedDate {
@@ -22,9 +26,6 @@ namespace System.Html.Data.Files {
             get {
                 return String.Empty;
             }
-        }
-
-        private File() {
         }
     }
 }
