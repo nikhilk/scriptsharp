@@ -4,26 +4,14 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data.FileAccess {
+namespace System.Html.Data.Files {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class FileReader {
 
-        [ScriptName(PreserveCase = true)]
-        [CLSCompliant(false)]
-        public const ushort DONE = 2;
-        
-        [ScriptName(PreserveCase = true)] 
-        [CLSCompliant(false)] 
-        public const ushort EMPTY = 0;
-
-        [ScriptName(PreserveCase = true)] 
-        [CLSCompliant(false)] 
-        public const ushort LOADING = 1;
-        
         [ScriptField]
-        public DOMError Error {
+        public FileError Error {
             get {
                 return null;
             }
@@ -32,11 +20,10 @@ namespace System.Html.Data.FileAccess {
         /// <summary>
         /// Indicates the state of the FileReader. This will be one of the State constants. Read only.
         /// </summary>
-        [CLSCompliant(false)]
         [ScriptField]
-        public ushort ReadyState {
+        public int ReadyState {
             get {
-                return EMPTY;
+                return (int)FileReadyState.EMPTY;
             }
         }
 
@@ -49,22 +36,22 @@ namespace System.Html.Data.FileAccess {
         }
 
         [ScriptName("onabort")]
-        public Action<ProgressEvent> OnAbort;
+        public Action<FileProgressEvent> OnAbort;
 
         [ScriptName("onerror")]
-        public Action<ProgressEvent> OnError;
+        public Action<FileProgressEvent> OnError;
 
         [ScriptName("onload")]
-        public Action<ProgressEvent> OnLoad;
+        public Action<FileProgressEvent> OnLoad;
 
         [ScriptName("onloadend")]
-        public Action<ProgressEvent> OnLoadEnd;
+        public Action<FileProgressEvent> OnLoadEnd;
 
         [ScriptName("onloadstart")]
-        public Action<ProgressEvent> OnLoadStart;
+        public Action<FileProgressEvent> OnLoadStart;
 
         [ScriptName("onprogress")]
-        public Action<ProgressEvent> OnProgress;
+        public Action<FileProgressEvent> OnProgress;
 
         public void Abort() {
         }
@@ -128,7 +115,7 @@ namespace System.Html.Data.FileAccess {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public class DOMError {
+    public sealed class FileError {
 
         [ScriptField]
         public string Name {
@@ -141,25 +128,17 @@ namespace System.Html.Data.FileAccess {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class ProgressEvent {
+    public sealed class FileProgressEvent : ElementEvent {
 
         public bool Bubbles;
-        public bool CancelBubble;
         public bool Cancelable;
         public bool DefaultPrevented;
         public bool LengthComputable;
-        public bool ReturnValue;
 
         public int EventPhase;
         public int Loaded;
-        public int TimeStamp;
         public int Total;
 
         public object ClipboardData;
-        public object CurrentTarget;
-        public object SrcElement;
-        public object Target;
-
-        public string Type;
     }
 }

@@ -4,7 +4,7 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data.FileAccess {
+namespace System.Html.Data.Files {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
@@ -17,8 +17,11 @@ namespace System.Html.Data.FileAccess {
             }
         }
 
-        public File Item(long index) {
-            return null;
+        [ScriptField]
+        public File this[long index] {
+            get {
+                return null;
+            }
         }
 
         private FileList() {

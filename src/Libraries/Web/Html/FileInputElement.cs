@@ -2,17 +2,16 @@
 // Script#/Libraries/Web
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 
-using System.Html.Data.FileAccess;
+using System.Html.Data.Files;
 using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    [ScriptName("InputElement")]
-    public class FileInputElement : InputElement {
+    public sealed class FileInputElement : InputElement {
 
-        protected internal FileInputElement() {
+        private FileInputElement() {
         }
    
         [ScriptField]

@@ -4,7 +4,7 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System.Html.Data.FileAccess {
+namespace System.Html.Data.Files {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
