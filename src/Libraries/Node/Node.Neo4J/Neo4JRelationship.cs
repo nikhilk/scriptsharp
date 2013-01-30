@@ -11,7 +11,7 @@ namespace NodeApi.Neo4J {
     /// <summary>
     /// The class corresponding to a Neo4j relationship.
     /// </summary>
-    //[ScriptIgnoreNamespace]
+    [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("Relationship")]
     public sealed class Neo4JRelationship : Neo4JPropertyContainer {

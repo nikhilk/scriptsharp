@@ -12,7 +12,6 @@ namespace NodeApi.Neo4J {
     /// <summary>
     /// The class corresponding to a Neo4j graph database. Start here.
     /// </summary>
-    //[ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("GraphDatabase")]
     public class Neo4JGraph {
