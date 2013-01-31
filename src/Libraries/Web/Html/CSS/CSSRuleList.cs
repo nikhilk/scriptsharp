@@ -7,25 +7,25 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.CSS {
 
-	[ScriptIgnoreNamespace]
-	[ScriptImport]
-	public sealed class CSSRuleList {
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    public sealed class CSSRuleList {
 
-		private CSSRuleList() {
-		}
+        private CSSRuleList() {
+        }
 
-		[ScriptField]
-		public long Length {
-			get {
-				return 0;
-			}
-		}
+        [ScriptField]
+        public long Length {
+            get {
+                return 0;
+            }
+        }
 
-		[ScriptField]
-		public CSSRule this[int index] {
-			get {
-				return null;
-			}
-		}
-	}
+        [ScriptField]
+        public CSSRule this[int index] {
+            get {
+                return null;
+            }
+        }
+    }
 }

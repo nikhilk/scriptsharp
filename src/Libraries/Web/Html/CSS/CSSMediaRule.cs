@@ -8,33 +8,33 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.CSS {
 
-	[ScriptIgnoreNamespace]
-	[ScriptImport]
-	public sealed class CSSMediaRule : CSSRule {
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    public sealed class CSSMediaRule : CSSRule {
 
-		private CSSMediaRule() {
-		}
+        private CSSMediaRule() {
+        }
 
-		[ScriptField]
-		[ScriptName("cssRules")]
-		public CSSRuleList CSSRules {
-			get {
-				return null;
-			}
-		}
+        [ScriptField]
+        [ScriptName("cssRules")]
+        public CSSRuleList CSSRules {
+            get {
+                return null;
+            }
+        }
 
-		[ScriptField]
-		public MediaList Media {
-			get {
-				return null;
-			}
-		}
+        [ScriptField]
+        public MediaList Media {
+            get {
+                return null;
+            }
+        }
 
-		public int InsertRule(string rule, int index) {
-			return 0;
-		}
+        public int InsertRule(string rule, int index) {
+            return 0;
+        }
 
-		public void DeleteRule(int index) {
-		}
-	}
+        public void DeleteRule(int index) {
+        }
+    }
 }

@@ -8,20 +8,20 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.CSS {
 
-	[ScriptIgnoreNamespace]
-	[ScriptImport]
-	public sealed class CSSCharsetRule : CSSRule {
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    public sealed class CSSCharsetRule : CSSRule {
 
-		private CSSCharsetRule() {
-		}
+        private CSSCharsetRule() {
+        }
 
-		[ScriptField]
-		public string Encoding {
-			get {
-				return null;
-			}
-			set {
-			}
-		}
-	}
+        [ScriptField]
+        public string Encoding {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+    }
 }

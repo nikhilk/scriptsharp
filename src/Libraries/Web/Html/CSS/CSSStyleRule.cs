@@ -8,27 +8,27 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.CSS {
 
-	[ScriptIgnoreNamespace]
-	[ScriptImport]
-	public sealed class CSSStyleRule : CSSRule {
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    public sealed class CSSStyleRule : CSSRule {
 
-		private CSSStyleRule() {
-		}
+        private CSSStyleRule() {
+        }
 
-		[ScriptField]
-		public string SelectorText {
-			get {
-				return null;
-			}
-			set {
-			}
-		}
+        [ScriptField]
+        public string SelectorText {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
 
-		[ScriptField]
-		public Style Style {
-			get {
-				return null;
-			}
-		}
-	}
+        [ScriptField]
+        public Style Style {
+            get {
+                return null;
+            }
+        }
+    }
 }

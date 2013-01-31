@@ -8,95 +8,95 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.CSS {
 
-	[ScriptIgnoreNamespace]
-	[ScriptImport]
-	public sealed class StyleSheet {
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    public sealed class StyleSheet {
 
-		private StyleSheet() {
-		}
+        private StyleSheet() {
+        }
 
-		[ScriptField]
-		[ScriptName("cssRules")]
-		public CSSRuleList CSSRules {
-			get {
-				return null;
-			}
-		}
+        [ScriptField]
+        [ScriptName("cssRules")]
+        public CSSRuleList CSSRules {
+            get {
+                return null;
+            }
+        }
 
-		[ScriptField]
-		public bool Disabled {
-			get {
-				return false;
-			}
-			set {
-			}
-		}
+        [ScriptField]
+        public bool Disabled {
+            get {
+                return false;
+            }
+            set {
+            }
+        }
 
-		[ScriptField]
-		public string Href {
-			get {
-				return null;
-			}
-			set {
-			}
-		}
+        [ScriptField]
+        public string Href {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
 
-		[ScriptField]
-		public string Id {
-			get {
-				return null;
-			}
-			set {
-			}
-		}
+        [ScriptField]
+        public string Id {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
 
-		[ScriptField]
-		public MediaList Media {
-			get {
-				return null;
-			}
-		}
+        [ScriptField]
+        public MediaList Media {
+            get {
+                return null;
+            }
+        }
 
-		[ScriptField]
-		public Element OwnerNode {
-			get {
-				return null;
-			}
-		}
+        [ScriptField]
+        public Element OwnerNode {
+            get {
+                return null;
+            }
+        }
 
-		[ScriptField]
-		public CSSRule OwnerRule {
-			get {
-				return null;
-			}
-		}
+        [ScriptField]
+        public CSSRule OwnerRule {
+            get {
+                return null;
+            }
+        }
 
-		[ScriptField]
-		public StyleSheet ParentStyleSheet {
-			get {
-				return null;
-			}
-		}
+        [ScriptField]
+        public StyleSheet ParentStyleSheet {
+            get {
+                return null;
+            }
+        }
 
-		[ScriptField]
-		public string Title {
-			get {
-				return null;
-			}
-		}
+        [ScriptField]
+        public string Title {
+            get {
+                return null;
+            }
+        }
 
-		[ScriptField]
-		public string Type {
-			get {
-				return null;
-			}
-		}
+        [ScriptField]
+        public string Type {
+            get {
+                return null;
+            }
+        }
 
-		public int InsertRule(string rule, int index) {
-			return 0;
-		}
+        public int InsertRule(string rule, int index) {
+            return 0;
+        }
 
-		public void DeleteRule(int index) {
-		}
-	}
+        public void DeleteRule(int index) {
+        }
+    }
 }

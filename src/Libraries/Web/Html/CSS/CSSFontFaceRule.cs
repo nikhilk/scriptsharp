@@ -8,18 +8,18 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.CSS {
 
-	[ScriptIgnoreNamespace]
-	[ScriptImport]
-	public sealed class CSSFontFaceRule : CSSRule {
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    public sealed class CSSFontFaceRule : CSSRule {
 
-		private CSSFontFaceRule() {
-		}
+        private CSSFontFaceRule() {
+        }
 
-		[ScriptField]
-		public Style Style {
-			get {
-				return null;
-			}
-		}
-	}
+        [ScriptField]
+        public Style Style {
+            get {
+                return null;
+            }
+        }
+    }
 }

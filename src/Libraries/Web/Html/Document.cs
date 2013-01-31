@@ -90,7 +90,7 @@ namespace System.Html {
                 return null;
             }
         }
-        
+
         [ScriptField]
         public static string Referrer {
             get {

@@ -7,40 +7,40 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.CSS {
 
-	[ScriptIgnoreNamespace]
-	[ScriptImport]
-	public sealed class MediaList {
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    public sealed class MediaList {
 
-		private MediaList() {
-		}
+        private MediaList() {
+        }
 
-		[ScriptField]
-		public long Length {
-			get {
-				return 0;
-			}
-		}
+        [ScriptField]
+        public long Length {
+            get {
+                return 0;
+            }
+        }
 
-		[ScriptField]
-		public string this[int index] {
-			get {
-				return null;
-			}
-		}
+        [ScriptField]
+        public string this[int index] {
+            get {
+                return null;
+            }
+        }
 
-		[ScriptField]
-		public string MediaText {
-			get {
-				return null;
-			}
-			set {
-			}
-		}
+        [ScriptField]
+        public string MediaText {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
 
-		public void AppendMedium(string newMedium) {
-		}
+        public void AppendMedium(string newMedium) {
+        }
 
-		public void DeleteMedium(string oldMedium) {
-		}
-	}
+        public void DeleteMedium(string oldMedium) {
+        }
+    }
 }
