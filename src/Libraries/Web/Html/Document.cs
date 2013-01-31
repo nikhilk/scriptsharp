@@ -5,6 +5,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using System.Html.StyleSheets;
 using System.Html.Editing;
 
 namespace System.Html {
@@ -89,7 +90,7 @@ namespace System.Html {
                 return null;
             }
         }
-        
+
         [ScriptField]
         public static string Referrer {
             get {
@@ -99,6 +100,13 @@ namespace System.Html {
 
         [ScriptField]
         public static Selection Selection {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public static StyleSheetList StyleSheets {
             get {
                 return null;
             }
