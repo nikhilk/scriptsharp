@@ -48,6 +48,17 @@
     <Compile Include="Html\CheckBoxElement.cs" />
     <Compile Include="Html\CanvasElement.cs" />
     <Compile Include="Html\ClientRectList.cs" />
+    <Compile Include="Html\StyleSheets\StyleRuleType.cs" />
+    <Compile Include="Html\StyleSheets\StylePageRule.cs" />
+    <Compile Include="Html\StyleSheets\StyleCharsetRule.cs" />
+    <Compile Include="Html\StyleSheets\StyleFontFaceRule.cs" />
+    <Compile Include="Html\StyleSheets\StyleMediaRule.cs" />
+    <Compile Include="Html\StyleSheets\StyleImportRule.cs" />
+    <Compile Include="Html\StyleSheets\StyleMediaList.cs" />
+    <Compile Include="Html\StyleSheets\StyleCSSRule.cs" />
+    <Compile Include="Html\StyleSheets\StyleRule.cs" />
+    <Compile Include="Html\StyleSheets\StyleRuleList.cs" />
+    <Compile Include="Html\StyleSheets\StyleSheetList.cs" />
     <Compile Include="Html\Data\Files\FileReaderSync.cs" />
     <Compile Include="Html\Data\Files\FileProgressEvent.cs" />
     <Compile Include="Html\Data\Files\FileError.cs" />
@@ -79,6 +90,7 @@
     <Compile Include="Html\ClientRect.cs" />
     <Compile Include="Html\Plugin.cs" />
     <Compile Include="Html\PluginArray.cs" />
+    <Compile Include="Html\StyleSheets\StyleSheet.cs" />
     <Compile Include="Html\TokenList.cs" />
     <Compile Include="Html\TouchInfo.cs" />
     <Compile Include="Html\TouchEvent.cs" />
