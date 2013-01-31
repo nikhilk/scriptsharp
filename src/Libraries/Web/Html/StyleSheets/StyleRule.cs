@@ -1,4 +1,4 @@
-﻿// StyleSheet.cs
+﻿// StyleRule.cs
 // Script#/Libraries/Web
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -6,11 +6,11 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.CSS {
+namespace System.Html.StyleSheets {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public abstract class CSSRule {
+    public abstract class StyleRule {
 
         public const ushort UNKNOWN_RULE = 0;
         public const ushort STYLE_RULE = 1;
@@ -20,7 +20,7 @@ namespace System.Html.CSS {
         public const ushort FONT_FACE_RULE = 5;
         public const ushort PAGE_RULE = 6;
 
-        protected CSSRule() {
+        protected StyleRule() {
         }
 
         [ScriptField]
@@ -41,16 +41,16 @@ namespace System.Html.CSS {
         }
 
         [ScriptField]
-        public CSSRule ParentRule {
+        public StyleRule ParentRule {
             get {
                 return null;
             }
         }
 
         [ScriptField]
-        public ushort Type {
+        public StyleRuleType Type {
             get {
-                return 0;
+                return StyleRuleType.Unknown;
             }
         }
     }

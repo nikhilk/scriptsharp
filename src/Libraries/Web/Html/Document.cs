@@ -5,7 +5,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using System.Html.CSS;
+using System.Html.StyleSheets;
 using System.Html.Editing;
 
 namespace System.Html {

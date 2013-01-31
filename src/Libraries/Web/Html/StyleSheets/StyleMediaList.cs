@@ -1,17 +1,17 @@
-﻿// MediaList.cs
+﻿// StyleMediaList.cs
 // Script#/Libraries/Web
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using System.Runtime.CompilerServices;
 
-namespace System.Html.CSS {
+namespace System.Html.StyleSheets {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class MediaList {
+    public sealed class StyleMediaList {
 
-        private MediaList() {
+        private StyleMediaList() {
         }
 
         [ScriptField]

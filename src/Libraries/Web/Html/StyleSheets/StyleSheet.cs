@@ -6,7 +6,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.CSS {
+namespace System.Html.StyleSheets {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
@@ -17,7 +17,7 @@ namespace System.Html.CSS {
 
         [ScriptField]
         [ScriptName("cssRules")]
-        public CSSRuleList CSSRules {
+        public StyleRuleList StyleRules {
             get {
                 return null;
             }
@@ -51,7 +51,7 @@ namespace System.Html.CSS {
         }
 
         [ScriptField]
-        public MediaList Media {
+        public StyleMediaList Media {
             get {
                 return null;
             }
@@ -65,7 +65,7 @@ namespace System.Html.CSS {
         }
 
         [ScriptField]
-        public CSSRule OwnerRule {
+        public StyleRule OwnerRule {
             get {
                 return null;
             }

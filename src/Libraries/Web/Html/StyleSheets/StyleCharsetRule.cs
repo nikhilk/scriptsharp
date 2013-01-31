@@ -1,30 +1,26 @@
-﻿// CSSRuleList.cs
+﻿// StyleCharsetRule.cs
 // Script#/Libraries/Web
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
+using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.CSS {
+namespace System.Html.StyleSheets {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class CSSRuleList {
+    public sealed class StyleCharsetRule : StyleRule {
 
-        private CSSRuleList() {
+        private StyleCharsetRule() {
         }
 
         [ScriptField]
-        public long Length {
-            get {
-                return 0;
-            }
-        }
-
-        [ScriptField]
-        public CSSRule this[int index] {
+        public string Encoding {
             get {
                 return null;
+            }
+            set {
             }
         }
     }

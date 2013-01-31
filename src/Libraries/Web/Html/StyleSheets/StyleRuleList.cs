@@ -1,36 +1,28 @@
-﻿// CSSImportRule.cs
+﻿// StyleRuleList.cs
 // Script#/Libraries/Web
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
-using System;
 using System.Runtime.CompilerServices;
 
-namespace System.Html.CSS {
+namespace System.Html.StyleSheets {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class CSSImportRule : CSSRule {
+    public sealed class StyleRuleList {
 
-        private CSSImportRule() {
+        private StyleRuleList() {
         }
 
         [ScriptField]
-        public string Href {
+        public long Length {
             get {
-                return null;
+                return 0;
             }
         }
 
         [ScriptField]
-        public MediaList Media {
-            get {
-                return null;
-            }
-        }
-
-        [ScriptField]
-        public StyleSheet StyleSheet {
+        public StyleRule this[int index] {
             get {
                 return null;
             }
