@@ -3,13 +3,14 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
+using System.Collections;
 using System.Runtime.CompilerServices;
 
 namespace System.Html.StyleSheets {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class StyleSheetList {
+    public sealed class StyleSheetList : IEnumerable {
 
         private StyleSheetList() {
         }
@@ -26,6 +27,14 @@ namespace System.Html.StyleSheets {
             get {
                 return null;
             }
+        }
+
+        public static implicit operator StyleSheet[](StyleSheetList list) {
+            return null;
+        }
+
+        public IEnumerator GetEnumerator() {
+            return null;
         }
     }
 }

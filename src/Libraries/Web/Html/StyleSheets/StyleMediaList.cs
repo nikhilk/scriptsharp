@@ -3,13 +3,14 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
+using System.Collections;
 using System.Runtime.CompilerServices;
 
 namespace System.Html.StyleSheets {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class StyleMediaList {
+    public sealed class StyleMediaList : IEnumerable {
 
         private StyleMediaList() {
         }
@@ -41,6 +42,14 @@ namespace System.Html.StyleSheets {
         }
 
         public void DeleteMedium(string oldMedium) {
+        }
+
+        public static implicit operator string[](StyleMediaList list) {
+            return null;
+        }
+
+        public IEnumerator GetEnumerator() {
+            return null;
         }
     }
 }
