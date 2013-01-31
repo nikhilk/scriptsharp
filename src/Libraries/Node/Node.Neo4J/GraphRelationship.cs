@@ -1,4 +1,4 @@
-// Neo4JRelationship.cs
+// GraphRelationship.cs
 // Script#/Libraries/Node/Neo4J
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -14,16 +14,16 @@ namespace NodeApi.Neo4J {
     [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("Relationship")]
-    public sealed class Neo4JRelationship : Neo4JPropertyContainer {
+    public sealed class GraphRelationship : GraphPropertyContainer {
 
-        private Neo4JRelationship() {
+        private GraphRelationship() {
         }
 
         /// <summary>
         /// The node this relationship goes to.
         /// </summary>
         [ScriptField]
-        public Neo4JNode End {
+        public GraphNode End {
             get {
                 return null;
             }
@@ -33,7 +33,7 @@ namespace NodeApi.Neo4J {
         /// The node this relationship goes from.
         /// </summary>
         [ScriptField]
-        public Neo4JNode Start {
+        public GraphNode Start {
             get {
                 return null;
             }
@@ -56,14 +56,14 @@ namespace NodeApi.Neo4J {
         /// <param name="key">The property key to index under, e.g. 'created'.</param>
         /// <param name="value">The property value to index under, e.g. 1346713658393.</param>
         /// <param name="callback"></param>
-        public void Index(string index, string key, object value, Action<object, Neo4JNode> callback) {
+        public void Index(string index, string key, object value, AsyncResultCallback<GraphNode> callback) {
         }
 
         /// <summary>
         /// Persist or update this relationship in the database. "Returns" (via callback) this same instance after the save.
         /// </summary>
         /// <param name="callback">Returns a Relationship</param>
-        public void Save(Action<object, Neo4JRelationship> callback) {
+        public void Save(AsyncResultCallback<GraphRelationship> callback) {
         }
     }
 }

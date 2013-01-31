@@ -34,17 +34,20 @@
     <Compile Include="..\..\..\ScriptSharp.cs">
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
-    <Compile Include="Neo4JPath.cs" />
-    <Compile Include="Neo4JPropertyContainer.cs" />
-    <Compile Include="Neo4JRelationship.cs" />
-    <Compile Include="Neo4JGraph.cs" />
-    <Compile Include="Neo4JNode.cs" />
+    <Compile Include="GraphPath.cs" />
+    <Compile Include="GraphPropertyContainer.cs" />
+    <Compile Include="GraphRelationship.cs" />
+    <Compile Include="GraphDatabase.cs" />
+    <Compile Include="GraphNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Script.Node">
-      <HintPath>..\..\..\packages\ScriptSharp.Lib.Node.0.8\lib\Script.Node.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Node.Core\Node.Core.csproj">
+      <Project>{4a9f7ce9-5a45-4b28-ad01-05528709b6e4}</Project>
+      <Name>Node.Core</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">

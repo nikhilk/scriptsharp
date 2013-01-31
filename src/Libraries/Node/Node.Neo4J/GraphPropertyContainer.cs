@@ -1,4 +1,4 @@
-// Neo4JPropertyContainer.cs
+// GraphPropertyContainer.cs
 // Script#/Libraries/Node/Neo4J
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -15,7 +15,10 @@ namespace NodeApi.Neo4J {
     [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("PropertyContainer")]
-    public abstract class Neo4JPropertyContainer {
+    public abstract class GraphPropertyContainer {
+
+        internal GraphPropertyContainer() {
+        }
 
         /// <summary>
         /// Whether this property container exists in (has been persisted to) the Neo4j database.
@@ -67,7 +70,7 @@ namespace NodeApi.Neo4J {
         /// Delete this property container from the database.
         /// </summary>
         /// <param name="callback">Callback function to execute when the delete operation is complete</param>
-        public void Delete(Action callback) {
+        public void Delete(AsyncResultCallback<object> callback) {
         }
 
         /// <summary>

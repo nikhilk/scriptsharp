@@ -8,4 +8,4 @@ using System.Reflection;
 
 [assembly: AssemblyTitle("Script.Node.Neo4J")]
 [assembly: AssemblyDescription("Script# NodeJS Neo4J Client Library API")]
-[assembly: ScriptAssembly("Neo4J")]
+[assembly: ScriptAssembly("neo4j")]

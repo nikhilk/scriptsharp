@@ -1,4 +1,4 @@
-// Neo4JGraph.cs
+// GraphDatabase.cs
 // Script#/Libraries/Node/Neo4J
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -6,22 +6,24 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using NodeApi;
 
 namespace NodeApi.Neo4J {
 
     /// <summary>
     /// The class corresponding to a Neo4j graph database. Start here.
     /// </summary>
+    [ScriptIgnoreNamespace]
     [ScriptImport]
-    [ScriptName("GraphDatabase")]
-    public class Neo4JGraph {
+    [ScriptName("neo4j.GraphDatabase")]
+    public class GraphDatabase {
 
         /// <summary>
         /// Construct a new client for the Neo4j graph database available at the given (root) URL.
         /// </summary>
         /// <param name="url">The root URL where the Neo4j graph database is available, e.g. 'http://localhost:7474/'. This URL should include HTTP Basic Authentication info if needed, e.g. 'http://user:password@example.com/'.</param>
-        /// <example><code>Neo4JGraph db = new Neo4JGraph("http://localhost:7474");</code></example>
-        public Neo4JGraph(string url) {
+        /// <example><code>Graph db = new Graph("http://localhost:7474");</code></example>
+        public GraphDatabase(string url) {
         }
 
         /// <summary>
@@ -31,8 +33,8 @@ namespace NodeApi.Neo4J {
         /// <para>url</para>: The root URL where the Neo4j graph database is available, e.g. 'http://localhost:7474/'. This URL should include HTTP Basic Authentication info if needed, e.g. 'http://user:password@example.com/'.
         /// <para>proxy</para>: An optional proxy URL for all requests.
         /// </param>
-        /// <example><code>Neo4JGraph db = new Neo4JGraph(new Dictionary("url", "http://localhost:7474"));</code></example>
-        public Neo4JGraph(Dictionary<string, object> opts) {
+        /// <example><code>Graph db = new Graph(new Dictionary("url", "http://localhost:7474"));</code></example>
+        public GraphDatabase(Dictionary<string, object> opts) {
         }
 
         /// <summary>
@@ -41,14 +43,14 @@ namespace NodeApi.Neo4J {
         /// </summary>
         /// <param name="data">The properties this new node should have.</param>
         /// <returns>Node</returns>
-        public Neo4JNode CreateNode(Dictionary<string, object> data) {
+        public GraphNode CreateNode(Dictionary<string, object> data) {
             return null;
         }
 
         /// <summary>
         /// Execute and "return" (via callback) the results of the given Gremlin script, optionally passing along the given script parameters 
         /// (recommended to avoid Gremlin injection security vulnerabilities). Any values in the returned results that represent nodes, relationships 
-        /// or paths are returned as <see cref="Neo4JNode"/>, <see cref="Neo4JRelationship"/> or <see cref="Neo4JPath"/> instances.
+        /// or paths are returned as <see cref="GraphNode"/>, <see cref="GraphRelationship"/> or <see cref="GraphPath"/> instances.
         /// </summary>
         /// <param name="script">The Gremlin script. Can be multi-line.</param>
         /// <param name="parameters">A map of parameters for the Gremlin script.</param>
@@ -69,7 +71,7 @@ namespace NodeApi.Neo4J {
         ///     });
         /// </code>
         /// </example>
-        public void Execute(string script, Dictionary<string, object> parameters, Action<object, List<object>> callback) {
+        public void Execute(string script, Dictionary<string, object> parameters, AsyncResultCallback<List<object>> callback) {
         }
         
         /// <summary>
@@ -80,7 +82,7 @@ namespace NodeApi.Neo4J {
         /// <param name="property">The name of the property, e.g. 'username'.</param>
         /// <param name="value">The value of the property, e.g. 'aseemk'.</param>
         /// <param name="callback">Returns Node</param>
-        public void GetIndexedNode(string index, string property, object value, Action<object, Neo4JNode> callback) {
+        public void GetIndexedNode(string index, string property, object value, AsyncResultCallback<GraphNode> callback) {
         }
 
         /// <summary>
@@ -91,7 +93,7 @@ namespace NodeApi.Neo4J {
         /// <param name="property">The name of the property, e.g. 'platform'.</param>
         /// <param name="value">The value of the property, e.g. 'xbox'.</param>
         /// <param name="callback">Returns List&lt;Node&gt;</param>
-        public void GetIndexedNodes(string index, string property, object value, Action<object, List<Neo4JNode>> callback) {
+        public void GetIndexedNodes(string index, string property, object value, AsyncResultCallback<List<GraphNode>> callback) {
         }
 
         /// <summary>
@@ -102,7 +104,7 @@ namespace NodeApi.Neo4J {
         /// <param name="property">The name of the property, e.g. 'created'.</param>
         /// <param name="value">The value of the property, e.g. 1346713658393.</param>
         /// <param name="callback">Returns Relationship</param>
-        public void GetIndexedRelationship(string index, string property, object value, Action<object, Neo4JRelationship> callback) {
+        public void GetIndexedRelationship(string index, string property, object value, AsyncResultCallback<GraphRelationship> callback) {
         }
 
         /// <summary>
@@ -114,7 +116,7 @@ namespace NodeApi.Neo4J {
         /// <param name="property">The name of the property, e.g. 'favorite'.</param>
         /// <param name="value">The value of the property, e.g. true.</param>
         /// <param name="callback">Returns List&lt;Relationship&gt;</param>
-        public void GetIndexedRelationships(string index, string property, object value, Action<object, List<Neo4JRelationship>> callback) {
+        public void GetIndexedRelationships(string index, string property, object value, AsyncResultCallback<List<GraphRelationship>> callback) {
         }
 
         /// <summary>
@@ -123,7 +125,7 @@ namespace NodeApi.Neo4J {
         /// <param name="id">The integer ID of the node: <example>1234</example></param>
         /// <param name="callback">Returns Node</param>
         /// <exception>If no node exists with this ID.</exception>
-        public void GetNodeById(int id, Action<object, Neo4JNode> callback) {
+        public void GetNodeById(int id, AsyncResultCallback<GraphNode> callback) {
         }
 
         /// <summary>
@@ -131,21 +133,21 @@ namespace NodeApi.Neo4J {
         /// </summary>
         /// <param name="id">The integer ID of the relationship, e.g. 1234.</param>
         /// <param name="callback">Returns Relationship</param>
-        public void GetRelationshipById(int id, Action<object, Neo4JRelationship> callback) {
+        public void GetRelationshipById(int id, AsyncResultCallback<GraphRelationship> callback) {
         }
 
         /// <summary>
         /// Fetch and "return" (via callback) the Neo4j version as a float.
         /// </summary>
         /// <param name="callback">Returns Number</param>
-        public void GetVersion(Action<object, long> callback) {
+        public void GetVersion(AsyncResultCallback<long> callback) {
         }
 
         /// <summary>
         /// Fetch and "return" (via callback) the results of the given Cypher query, optionally passing along the given query parameters 
         /// (recommended to avoid Cypher injection security vulnerabilities). The returned results are an array of "rows" (matches), 
         /// where each row is a map from key name (as given in the query) to value. Any values that represent nodes, relationships or 
-        /// paths are returned as <see cref="Neo4JNode"/>, <see cref="Neo4JRelationship"/> or <see cref="Neo4JPath"/> instances.
+        /// paths are returned as <see cref="GraphNode"/>, <see cref="GraphRelationship"/> or <see cref="GraphPath"/> instances.
         /// </summary>
         /// <param name="query">The Cypher query. Can be multi-line.</param>
         /// <param name="parameters">A map of parameters for the Cypher query.</param>
@@ -171,7 +173,7 @@ namespace NodeApi.Neo4J {
         ///     });
         /// </code>
         /// </example>
-        public void Query(string query, Dictionary<string, object> parameters, Action<object, object> callback) {
+        public void Query(string query, Dictionary<string, object> parameters, AsyncResultCallback<object> callback) {
         }
 
         /// <summary>
@@ -180,7 +182,7 @@ namespace NodeApi.Neo4J {
         /// <param name="index">The name of the index, e.g. node_auto_index.</param>
         /// <param name="query">The Lucene query, e.g. foo:bar AND hello:world.</param>
         /// <param name="callback">Returns List&lt;Node&gt;</param>
-        public void QueryNodeIndex(string index, string query, Action<object, List<Neo4JNode>> callback) {
+        public void QueryNodeIndex(string index, string query, AsyncResultCallback<List<GraphNode>> callback) {
         }
     }
 }

@@ -1,4 +1,4 @@
-// Neo4JPath.cs
+// GraphPath.cs
 // Script#/Libraries/Node/Neo4J
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -15,16 +15,16 @@ namespace NodeApi.Neo4J {
     [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("Path")]
-    public sealed class Neo4JPath {
+    public sealed class GraphPath {
 
-        private Neo4JPath() {
+        private GraphPath() {
         }
 
         /// <summary>
         /// The node that this path ends at.
         /// </summary>
         [ScriptField]
-        public Neo4JNode End {
+        public GraphNode End {
             get {
                 return null;
             }
@@ -44,7 +44,7 @@ namespace NodeApi.Neo4J {
         /// The nodes that make up this path.
         /// </summary>
         [ScriptField]
-        public List<Neo4JNode> Nodes {
+        public List<GraphNode> Nodes {
             get {
                 return null;
             }
@@ -54,7 +54,7 @@ namespace NodeApi.Neo4J {
         /// The relationships that make up this path.
         /// </summary>
         [ScriptField]
-        public List<Neo4JRelationship> Relationships {
+        public List<GraphRelationship> Relationships {
             get {
                 return null;
             }
@@ -64,7 +64,7 @@ namespace NodeApi.Neo4J {
         /// The node that this path starts at.
         /// </summary>
         [ScriptField]
-        public Neo4JNode Start {
+        public GraphNode Start {
             get {
                 return null;
             }
