@@ -5,6 +5,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using System.Html.CSS;
 using System.Html.Editing;
 
 namespace System.Html {
@@ -99,6 +100,13 @@ namespace System.Html {
 
         [ScriptField]
         public static Selection Selection {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public static StyleSheetList StyleSheets {
             get {
                 return null;
             }
