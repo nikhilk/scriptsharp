@@ -21,7 +21,7 @@ v0.8 (combines changes from 0.7.6 that weren't released as an actual build
       build also produces Foo.js and corresponding minimized Foo.min.js.
     - Leverage AjaxMin tool to perform minimization (better minimization
       as a result)
-    - HTML5 IndexedDB APIs added
+    - HTML5 IndexedDB, Files, and StyleSheet APIs added
     - NodeJS support
     - Removed metadata attributes
       . ScriptNamespaceAttribute

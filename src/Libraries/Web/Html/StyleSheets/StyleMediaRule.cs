@@ -16,6 +16,13 @@ namespace System.Html.StyleSheets {
         }
 
         [ScriptField]
+        public StyleMediaList Media {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
         [ScriptName("cssRules")]
         public StyleRuleList StyleRules {
             get {
@@ -23,18 +30,11 @@ namespace System.Html.StyleSheets {
             }
         }
 
-        [ScriptField]
-        public StyleMediaList Media {
-            get {
-                return null;
-            }
+        public void DeleteRule(int index) {
         }
 
         public int InsertRule(string rule, int index) {
             return 0;
-        }
-
-        public void DeleteRule(int index) {
         }
     }
 }

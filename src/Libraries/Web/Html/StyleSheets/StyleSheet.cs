@@ -92,11 +92,11 @@ namespace System.Html.StyleSheets {
             }
         }
 
-        public int InsertRule(string rule, int index) {
-            return 0;
+        public void DeleteRule(int index) {
         }
 
-        public void DeleteRule(int index) {
+        public int InsertRule(string rule, int index) {
+            return 0;
         }
     }
 }

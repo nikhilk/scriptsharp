@@ -16,7 +16,7 @@ namespace System.Html.StyleSheets {
         }
 
         [ScriptField]
-        public long Length {
+        public int Length {
             get {
                 return 0;
             }
@@ -33,7 +33,7 @@ namespace System.Html.StyleSheets {
             return null;
         }
 
-        public IEnumerator GetEnumerator() {
+        IEnumerator IEnumerable.GetEnumerator() {
             return null;
         }
     }

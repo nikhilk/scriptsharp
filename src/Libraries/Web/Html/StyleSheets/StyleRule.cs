@@ -12,15 +12,7 @@ namespace System.Html.StyleSheets {
     [ScriptImport]
     public abstract class StyleRule {
 
-        public const ushort UNKNOWN_RULE = 0;
-        public const ushort STYLE_RULE = 1;
-        public const ushort CHARSET_RULE = 2;
-        public const ushort IMPORT_RULE = 3;
-        public const ushort MEDIA_RULE = 4;
-        public const ushort FONT_FACE_RULE = 5;
-        public const ushort PAGE_RULE = 6;
-
-        protected StyleRule() {
+        internal StyleRule() {
         }
 
         [ScriptField]
@@ -34,14 +26,14 @@ namespace System.Html.StyleSheets {
         }
 
         [ScriptField]
-        public StyleSheet ParentStyleSheet {
+        public StyleRule ParentRule {
             get {
                 return null;
             }
         }
 
         [ScriptField]
-        public StyleRule ParentRule {
+        public StyleSheet ParentStyleSheet {
             get {
                 return null;
             }
