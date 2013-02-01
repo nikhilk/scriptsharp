@@ -936,6 +936,11 @@ namespace ScriptSharp.Compiler {
                     TypeSymbol baseTypeSymbol = (TypeSymbol)_symbolTable.FindSymbol(node.Name, classSymbol, SymbolFilter.Types);
                     Debug.Assert(baseTypeSymbol != null);
 
+                    //see Issue #323, could be used for future [ScriptIgnore]
+                    //if (!baseTypeSymbol.IsApplicationType) {
+                    //    continue;
+                    //}
+
                     if (baseTypeSymbol.Type == SymbolType.Class) {
                         Debug.Assert(baseClass == null);
                         baseClass = (ClassSymbol)baseTypeSymbol;
