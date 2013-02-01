@@ -44,7 +44,7 @@ function parseNumber(s) {
 
 function parseDate(s) {
   var t = Date.parse(s);
-  return isNaN(t) ? t : new Date(t);
+  return isNaN(t) ? undefined : new Date(t);
 }
 
 function truncate(n) {
