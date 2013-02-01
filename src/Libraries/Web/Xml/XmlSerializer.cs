@@ -11,9 +11,10 @@ namespace System.Xml {
     [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("XMLSerializer")]
-    public sealed class XMLSerializer {
+    public sealed class XmlSerializer {
 
-        public string SerializeToString(XmlDocument xml) {
+        [ScriptName("serializeToString")]
+        public string Serialize(XmlDocument xml) {
             return null;
         }
     }
