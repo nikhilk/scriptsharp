@@ -41,9 +41,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Compute\ChildProcess.cs" />
+    <Compile Include="Compute\ScriptInstance.cs" />
+    <Compile Include="Compute\ScriptContext.cs" />
+    <Compile Include="Compute\ScriptEngine.cs" />
     <Compile Include="Compute\OS.cs" />
     <Compile Include="AsyncCallback.cs" />
     <Compile Include="IO\Buffer.cs" />
+    <Compile Include="IO\REPLEvaluator.cs" />
+    <Compile Include="IO\REPLOptions.cs" />
+    <Compile Include="IO\REPL.cs" />
+    <Compile Include="IO\LineReaderOptions.cs" />
+    <Compile Include="IO\LineReader.cs" />
+    <Compile Include="IO\Path.cs" />
     <Compile Include="IO\FileSystemListener.cs" />
     <Compile Include="IO\FileAccess.cs" />
     <Compile Include="IO\WriteStreamOptions.cs" />

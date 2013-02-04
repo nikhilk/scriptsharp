@@ -110,6 +110,14 @@ namespace NodeApi.Compute {
         }
 
         [ScriptEvent("on", "removeListener")]
+        public event Action Message {
+            add {
+            }
+            remove {
+            }
+        }
+
+        [ScriptEvent("on", "removeListener")]
         public event Action<Exception> UncaughtException {
             add {
             }
@@ -122,6 +130,9 @@ namespace NodeApi.Compute {
         }
 
         public void Abort() {
+        }
+
+        public void Disconnect() {
         }
 
         [ScriptName("exit")]
