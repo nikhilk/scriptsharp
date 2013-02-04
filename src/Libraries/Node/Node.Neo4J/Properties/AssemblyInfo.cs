@@ -7,5 +7,5 @@ using System;
 using System.Reflection;
 
 [assembly: AssemblyTitle("Script.Node.Neo4J")]
-[assembly: AssemblyDescription("Script# NodeJS Neo4J Client Library API")]
+[assembly: AssemblyDescription("Script# NodeJS Neo4j Client Library API")]
 [assembly: ScriptAssembly("neo4j")]

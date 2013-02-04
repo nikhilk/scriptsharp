@@ -6,7 +6,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace NodeApi.Neo4J {
+namespace NodeApi.Neo4j {
 
     /// <summary>
     /// The class corresponding to a Neo4j relationship.

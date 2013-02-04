@@ -8,14 +8,12 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using NodeApi;
 
-namespace NodeApi.Neo4J {
+namespace NodeApi.Neo4j {
 
     /// <summary>
     /// The class corresponding to a Neo4j graph database. Start here.
     /// </summary>
-    [ScriptIgnoreNamespace]
     [ScriptImport]
-    [ScriptName("neo4j.GraphDatabase")]
     public class GraphDatabase {
 
         /// <summary>

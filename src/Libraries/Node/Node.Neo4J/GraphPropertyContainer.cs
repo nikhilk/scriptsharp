@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace NodeApi.Neo4J {
+namespace NodeApi.Neo4j {
 
     /// <summary>
     /// The abstract class corresponding to a Neo4j property container.
@@ -61,15 +61,10 @@ namespace NodeApi.Neo4J {
         }
         
         /// <summary>
-        /// A convenience alias for <seealso cref="Delete"/> since delete is a reserved keyword in JavaScript.
-        /// </summary>
-        public void Del() {
-        }
-        
-        /// <summary>
         /// Delete this property container from the database.
         /// </summary>
         /// <param name="callback">Callback function to execute when the delete operation is complete</param>
+        [ScriptName("del")]
         public void Delete(AsyncResultCallback<object> callback) {
         }
 

@@ -65,7 +65,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Node.Express", "Libraries\N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Node.Mongo", "Libraries\Node\Node.Mongo\Node.Mongo.csproj", "{4A9F7CE9-5B45-4B28-AD01-05529709B6E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Node.Neo4J", "Libraries\Node\Node.Neo4J\Node.Neo4J.csproj", "{232445FF-22AA-46F7-BA12-4590C670F2B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Node.Neo4j", "Libraries\Node\Node.Neo4j\Node.Neo4j.csproj", "{232445FF-22AA-46F7-BA12-4590C670F2B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
