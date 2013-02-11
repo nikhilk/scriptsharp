@@ -301,7 +301,7 @@ namespace ScriptSharp.Generator {
             writer.Write("}");
 
             if (instanceMember == false) {
-                writer.WriteLine();
+                writer.WriteLine(";");
             }
         }
 
@@ -339,7 +339,7 @@ namespace ScriptSharp.Generator {
             writer.Write("}");
 
             if (instanceMember == false) {
-                writer.WriteLine();
+                writer.WriteLine(";");
             }
 
             if (propertySymbol.IsReadOnly == false) {
@@ -378,7 +378,7 @@ namespace ScriptSharp.Generator {
                 writer.Write("}");
 
                 if (instanceMember == false) {
-                    writer.WriteLine();
+                    writer.WriteLine(";");
                 }
             }
         }
