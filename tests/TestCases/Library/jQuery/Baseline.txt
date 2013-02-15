@@ -15,7 +15,7 @@ define('test', ['ss', 'jquery'], function(ss, $) {
     }, error: function(xhr, textData, e) {
       console.log(xhr.status);
     } });
-  }
+  };
   MyApp.postData = function(url, data, succesCallback, errorCallback, returnType, requestType) {
     returnType = returnType || 'text';
     requestType = requestType || 'POST';
@@ -31,7 +31,7 @@ define('test', ['ss', 'jquery'], function(ss, $) {
         succesCallback(dataSuccess, textStatus, request);
       }
     }, type: requestType, url: url });
-  }
+  };
   var MyApp$ = {
 
   };

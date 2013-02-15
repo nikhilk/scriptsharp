@@ -49,7 +49,7 @@ define('test', ['ss'], function(ss) {
   function ExpressionTests$Test2() {
   }
   ExpressionTests$Test2.onGlobalEvent = function(sender, e) {
-  }
+  };
   var ExpressionTests$Test2$ = {
 
   };

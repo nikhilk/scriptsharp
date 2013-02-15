@@ -3816,7 +3816,7 @@ define('test', ['ss'], function(ss) {
   // BasicTests.Util
 
   $global.showHelp = function() {
-  }
+  };
 
 
   var $exports = ss.module('test',

@@ -9,10 +9,10 @@ define('test', ['ss'], function(ss) {
   }
   ExpressionTests$Button.add_test = function(value) {
     ExpressionTests$Button.__test = ss.bindAdd(ExpressionTests$Button.__test, value);
-  }
+  };
   ExpressionTests$Button.remove_test = function(value) {
     ExpressionTests$Button.__test = ss.bindSub(ExpressionTests$Button.__test, value);
-  }
+  };
   var ExpressionTests$Button$ = {
     add_click: function(value) {
       this.__click = ss.bindAdd(this.__click, value);
@@ -68,7 +68,7 @@ define('test', ['ss'], function(ss) {
     this._btn.remove_aaa(ss.bind('_onAAAButton', this));
   }
   ExpressionTests$App._onTestButton = function(sender, e) {
-  }
+  };
   var ExpressionTests$App$ = {
     _onAAAButton: function(sender, e) {
     },
