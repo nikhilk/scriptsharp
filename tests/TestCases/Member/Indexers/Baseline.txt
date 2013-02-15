@@ -180,7 +180,7 @@ define('test', ['ss'], function(ss) {
     c.set_item('a', c.get_item('b'));
     var a = c;
     a.set_item('b', a.get_item('c'));
-  }
+  };
   var MemberTests$C$ = {
     get_item: function(name) {
       return name;
