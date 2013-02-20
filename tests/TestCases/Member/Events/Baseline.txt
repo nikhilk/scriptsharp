@@ -18,10 +18,10 @@ define('test', ['ss'], function(ss) {
   }
   MemberTests$Button.add_test = function(value) {
     MemberTests$Button.__test = ss.bindAdd(MemberTests$Button.__test, value);
-  }
+  };
   MemberTests$Button.remove_test = function(value) {
     MemberTests$Button.__test = ss.bindSub(MemberTests$Button.__test, value);
-  }
+  };
   var MemberTests$Button$ = {
     add_click: function(value) {
       this.__click = ss.bindAdd(this.__click, value);

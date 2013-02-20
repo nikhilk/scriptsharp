@@ -59,7 +59,7 @@ define('test', ['ss'], function(ss) {
     var f1 = new Function("alert('hello');");
     var f2 = new Function('s', 'alert(s);');
     var f3 = new Function('greeting', 'name', "alert(greeting + ' ' + name + '!');");
-  }
+  };
   var ExpressionTests$Test$ = {
 
   };

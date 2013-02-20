@@ -64,7 +64,7 @@ define('test', ['ss'], function(ss) {
     var m = 1;
     m = 1 | 4;
     var c = 0;
-  }
+  };
   var TypeTests$App$ = {
 
   };
