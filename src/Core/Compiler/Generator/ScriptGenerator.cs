@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using ScriptSharp;
 using ScriptSharp.ScriptModel;
 
@@ -106,9 +107,9 @@ namespace ScriptSharp.Generator {
             // Sort the types, so similar types of types are grouped, and parent classes
             // come before derived classes.
             IComparer<TypeSymbol> typeComparer = new TypeComparer();
-            types.Sort(typeComparer);
-            publicTypes.Sort(typeComparer);
-            internalTypes.Sort(typeComparer);
+            types = types.OrderBy(t => t, typeComparer).ToList();
+            publicTypes = publicTypes.OrderBy(t => t, typeComparer).ToList();
+            internalTypes = internalTypes.OrderBy(t => t, typeComparer).ToList();
 
             bool initialIndent = false;
             if (String.IsNullOrEmpty(_options.ScriptInfo.Template) == false) {

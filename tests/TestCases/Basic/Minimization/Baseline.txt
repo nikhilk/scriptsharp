@@ -70,6 +70,47 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   }
 
 
+  // BasicTests.App
+
+  function BasicTests$App() {
+    var helper = new BasicTests$AppHelper();
+    helper.$0();
+  }
+  var BasicTests$App$ = {
+    run: function() {
+    },
+    $0: function() {
+    },
+    $1: function() {
+    }
+  };
+
+
+  // BasicTests.AppHelper
+
+  function BasicTests$AppHelper() {
+  }
+  var BasicTests$AppHelper$ = {
+    $0: function() {
+    }
+  };
+
+
+  // BasicTests.Bar
+
+  function BasicTests$Bar() {
+  }
+  var BasicTests$Bar$ = {
+    $0: function() {
+    },
+    toString: function() {
+      return null;
+    },
+    $1: function(handler) {
+    }
+  };
+
+
   // BasicTests.BaseBaseClass
 
   function BasicTests$BaseBaseClass() {
@@ -90,58 +131,6 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   };
 
 
-  // BasicTests.Bar
-
-  function BasicTests$Bar() {
-  }
-  var BasicTests$Bar$ = {
-    $0: function() {
-    },
-    toString: function() {
-      return null;
-    },
-    $1: function(handler) {
-    }
-  };
-
-
-  // BasicTests.AppHelper
-
-  function BasicTests$AppHelper() {
-  }
-  var BasicTests$AppHelper$ = {
-    $0: function() {
-    }
-  };
-
-
-  // BasicTests.App
-
-  function BasicTests$App() {
-    var helper = new BasicTests$AppHelper();
-    helper.$0();
-  }
-  var BasicTests$App$ = {
-    run: function() {
-    },
-    $0: function() {
-    },
-    $1: function() {
-    }
-  };
-
-
-  // BasicTests.BaseClass
-
-  function BasicTests$BaseClass() {
-    BasicTests$BaseBaseClass.call(this);
-  }
-  var BasicTests$BaseClass$ = {
-    $1: function() {
-    }
-  };
-
-
   // BasicTests.Bar2
 
   function BasicTests$Bar2() {
@@ -159,6 +148,17 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   }
   var BasicTests$BarCustom$ = {
 
+  };
+
+
+  // BasicTests.BaseClass
+
+  function BasicTests$BaseClass() {
+    BasicTests$BaseBaseClass.call(this);
+  }
+  var BasicTests$BaseClass$ = {
+    $1: function() {
+    }
   };
 
 
