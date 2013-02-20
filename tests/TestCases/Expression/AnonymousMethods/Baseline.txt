@@ -23,12 +23,12 @@ define('test', ['ss'], function(ss) {
     ExpressionTests$Test.doStuffStatic(o, function(i, s, b) {
       name = s;
     });
-  }
+  };
   ExpressionTests$Test.doStuffStatic = function(o, callback) {
     var s = new ExpressionTests$SomeClass(function() {
       var temp = o;
     });
-  }
+  };
   var ExpressionTests$Test$ = {
     AAA: function() {
       var $this = this;

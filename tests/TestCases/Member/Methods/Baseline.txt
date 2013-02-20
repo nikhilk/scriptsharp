@@ -35,15 +35,15 @@ define('test', ['ss'], function(ss) {
   // MemberTests.Foo
 
   $global.doStuff = function() {
-  }
+  };
 
 
   // MemberTests.Bar
 
   window.m1 = function() {
-  }
+  };
   window.m2 = function() {
-  }
+  };
 
 
   // MemberTests.X
@@ -61,7 +61,7 @@ define('test', ['ss'], function(ss) {
   $.fn.extend = function(x, i) {
     x.update(i);
     return x;
-  }
+  };
 
 
   var $exports = ss.module('test', null,

@@ -8,7 +8,7 @@ define('test', ['ss'], function(ss) {
   function MemberTests$Test(name) {
   }
   MemberTests$Test.doSomething = function(o) {
-  }
+  };
   var MemberTests$Test$ = {
     invoke: function(successCallback, errorCallback, context) {
     }

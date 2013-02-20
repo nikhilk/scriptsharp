@@ -14,10 +14,10 @@ define('test', ['ss'], function(ss) {
   }
   MemberTests$Test.get_staticProp = function() {
     return 2006;
-  }
+  };
   MemberTests$Test.set_staticProp = function(value) {
     return value;
-  }
+  };
   var MemberTests$Test$ = {
     get_XYZ: function() {
       return 0;

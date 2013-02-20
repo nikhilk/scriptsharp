@@ -19,7 +19,7 @@ define('test', ['ss'], function(ss) {
   // ExpressionTests.Util
 
   $global.foo = function() {
-  }
+  };
 
 
   var $exports = ss.module('test', null,

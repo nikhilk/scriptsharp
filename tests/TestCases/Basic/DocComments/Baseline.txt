@@ -64,7 +64,7 @@ define('test', ['ss'], function(ss) {
     /// </summary>
     /// <value type="Number" integer="true"></value>
     return 0;
-  }
+  };
   BasicTests$BaseClass.staticMethod = function(length) {
     /// <summary>
     /// A static method.
@@ -72,7 +72,7 @@ define('test', ['ss'], function(ss) {
     /// <param name="length" type="Number" integer="true">
     /// The length.
     /// </param>
-  }
+  };
   var BasicTests$BaseClass$ = {
     get_name: function() {
       /// <summary>
@@ -220,7 +220,7 @@ define('test', ['ss'], function(ss) {
     /// <summary>
     /// Runs.
     /// </summary>
-  }
+  };
 
 
   // BasicTests.DerivedClass
