@@ -31,6 +31,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // TypeTests.StaticClass
+
+  function TypeTests$StaticClass() {
+  }
+
+
   // TypeTests.MyClass2
 
   function TypeTests$MyClass2() {
@@ -56,6 +62,7 @@ define('test', ['ss'], function(ss) {
       FooBarBaz: [ TypeTests$FooBarBaz, TypeTests$FooBarBaz$, null ],
       MyClass: [ TypeTests$MyClass, TypeTests$MyClass$, null ],
       MyClass3: [ TypeTests$MyClass3, TypeTests$MyClass3$, null, ss.IDisposable ],
+      StaticClass: [ TypeTests$StaticClass, null, null ],
       MyClass2: [ TypeTests$MyClass2, TypeTests$MyClass2$, TypeTests$MyClass ],
       MyClass4: [ TypeTests$MyClass4, TypeTests$MyClass4$, TypeTests$MyClass, ss.IDisposable ]
     });

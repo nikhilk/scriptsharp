@@ -890,6 +890,10 @@ namespace ScriptSharp.Compiler {
                 if (moduleAttribute != null) {
                     ((ClassSymbol)typeSymbol).SetModuleClass();
                 }
+
+                if ((typeNode.Modifiers & Modifiers.Static) != 0) {
+                    ((ClassSymbol)typeSymbol).SetStaticClass();
+                }
             }
 
             if (typeNode.Type == TokenType.Enum) {

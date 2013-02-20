@@ -21,4 +21,7 @@ namespace TypeTests {
 
     public class MyClass4 : MyClass, IDisposable {
     }
+
+    public static class StaticClass {
+    }
 }

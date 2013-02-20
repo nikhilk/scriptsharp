@@ -69,44 +69,46 @@ namespace ScriptSharp.Generator {
                 }
             }
 
-            writer.Write("var ");
-            writer.Write(name);
-            writer.WriteLine("$ = {");
-            writer.Indent++;
+            if (classSymbol.IsStaticClass == false) {
+                writer.Write("var ");
+                writer.Write(name);
+                writer.WriteLine("$ = {");
+                writer.Indent++;
 
-            bool firstMember = true;
-            foreach (MemberSymbol memberSymbol in classSymbol.Members) {
-                if ((memberSymbol.Visibility & MemberVisibility.Static) == 0) {
-                    if (memberSymbol.Type == SymbolType.Field) {
-                        continue;
+                bool firstMember = true;
+                foreach (MemberSymbol memberSymbol in classSymbol.Members) {
+                    if ((memberSymbol.Visibility & MemberVisibility.Static) == 0) {
+                        if (memberSymbol.Type == SymbolType.Field) {
+                            continue;
+                        }
+
+                        if ((memberSymbol is CodeMemberSymbol) &&
+                            ((CodeMemberSymbol)memberSymbol).IsAbstract) {
+                            continue;
+                        }
+
+                        if (firstMember == false) {
+                            writer.WriteLine(",");
+                        }
+
+                        MemberGenerator.GenerateScript(generator, memberSymbol);
+                        firstMember = false;
                     }
+                }
 
-                    if ((memberSymbol is CodeMemberSymbol) &&
-                        ((CodeMemberSymbol)memberSymbol).IsAbstract) {
-                        continue;
-                    }
-
+                if (classSymbol.Indexer != null) {
                     if (firstMember == false) {
                         writer.WriteLine(",");
                     }
 
-                    MemberGenerator.GenerateScript(generator, memberSymbol);
-                    firstMember = false;
-                }
-            }
-
-            if (classSymbol.Indexer != null) {
-                if (firstMember == false) {
-                    writer.WriteLine(",");
+                    MemberGenerator.GenerateScript(generator, classSymbol.Indexer);
                 }
 
-                MemberGenerator.GenerateScript(generator, classSymbol.Indexer);
+                writer.Indent--;
+                writer.WriteLine();
+                writer.Write("};");
+                writer.WriteLine();
             }
-
-            writer.Indent--;
-            writer.WriteLine();
-            writer.Write("};");
-            writer.WriteLine();
         }
 
         private static void GenerateEnumeration(ScriptGenerator generator, EnumerationSymbol enumSymbol) {
@@ -260,8 +262,13 @@ namespace ScriptSharp.Generator {
                     writer.Write("[ ");
                     writer.Write(typeSymbol.FullGeneratedName);
                     writer.Write(", ");
-                    writer.Write(typeSymbol.FullGeneratedName);
-                    writer.Write("$, ");
+                    if (((ClassSymbol)typeSymbol).IsStaticClass == false) {
+                        writer.Write(typeSymbol.FullGeneratedName);
+                        writer.Write("$, ");
+                    }
+                    else {
+                        writer.Write("null, ");
+                    }
                     if ((classSymbol.BaseClass == null) || classSymbol.IsTestClass) {
                         // TODO: We need to introduce the notion of a base class that only exists in the metadata
                         //       and not at runtime. At that point this check of IsTestClass can be generalized.

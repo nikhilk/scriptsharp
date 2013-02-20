@@ -8,13 +8,10 @@ define('test', ['ss'], function(ss) {
   function BasicTests$MyDebug() {
   }
   BasicTests$MyDebug.showInfo = function() {
-  }
+  };
   BasicTests$MyDebug.traceInfo = function() {
-  }
+  };
   BasicTests$MyDebug.logInfo = function() {
-  }
-  var BasicTests$MyDebug$ = {
-
   };
 
 
@@ -37,7 +34,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      MyDebug: [ BasicTests$MyDebug, BasicTests$MyDebug$, null ],
+      MyDebug: [ BasicTests$MyDebug, null, null ],
       App: [ BasicTests$App, BasicTests$App$, null ]
     });
 

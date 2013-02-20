@@ -26,6 +26,7 @@ namespace ScriptSharp.ScriptModel {
         private string _extendee;
         private bool _testClass;
         private bool _moduleClass;
+        private bool _staticClass;
 
         private ClassSymbol _primaryPartialClass;
 
@@ -121,6 +122,15 @@ namespace ScriptSharp.ScriptModel {
         public bool IsModuleClass {
             get {
                 return _moduleClass;
+            }
+        }
+
+        public bool IsStaticClass {
+            get {
+                if (_primaryPartialClass != null) {
+                    return _primaryPartialClass.IsStaticClass;
+                }
+                return _staticClass;
             }
         }
 
@@ -301,6 +311,15 @@ namespace ScriptSharp.ScriptModel {
             Debug.Assert(primaryPartialClass != null);
 
             _primaryPartialClass = primaryPartialClass;
+        }
+
+        public void SetStaticClass() {
+            if (_primaryPartialClass != null) {
+                _primaryPartialClass.SetStaticClass();
+                return;
+            }
+
+            _staticClass = true;
         }
 
         public void SetTestClass() {
