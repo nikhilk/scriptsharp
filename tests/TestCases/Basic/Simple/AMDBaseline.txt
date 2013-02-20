@@ -53,7 +53,7 @@ define('basic', ['ss'], function(ss) {
     var theApp = new Basic$App();
     theApp._btn1.performClick();
     theApp._btn2.performClick();
-  }
+  };
   var Basic$App$ = {
     _echo: function(s) {
     },

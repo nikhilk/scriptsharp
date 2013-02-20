@@ -79,7 +79,7 @@ namespace ScriptSharp.Generator {
             writer.Write("}");
 
             if (instanceMember == false) {
-                writer.WriteLine();
+                writer.WriteLine(";");
             }
 
             if (instanceMember) {
@@ -121,7 +121,7 @@ namespace ScriptSharp.Generator {
             writer.Write("}");
 
             if (instanceMember == false) {
-                writer.WriteLine();
+                writer.WriteLine(";");
             }
         }
 
@@ -154,25 +154,13 @@ namespace ScriptSharp.Generator {
                 return;
             }
 
-            ScriptTextWriter writer = generator.Writer;
+            Debug.Assert((indexerSymbol.Visibility & MemberVisibility.Static) == 0);
 
-            bool instanceMember = true;
-            if ((indexerSymbol.Visibility & MemberVisibility.Static) != 0) {
-                instanceMember = false;
-                writer.Write(typeName);
-                writer.Write(".");
-            }
+            ScriptTextWriter writer = generator.Writer;
 
             writer.Write("get_");
             writer.Write(indexerSymbol.GeneratedName);
-            if (instanceMember) {
-                writer.Write(": ");
-            }
-            else {
-                writer.Write(" = ");
-            }
-
-            writer.Write("function(");
+            writer.Write(": function(");
 
             for (int i = 0; i < indexerSymbol.Parameters.Count - 1; i++) {
                 ParameterSymbol parameterSymbol = indexerSymbol.Parameters[i];
@@ -193,28 +181,12 @@ namespace ScriptSharp.Generator {
             writer.Indent--;
             writer.Write("}");
 
-            if (instanceMember == false) {
-                writer.WriteLine();
-            }
-
             if (indexerSymbol.IsReadOnly == false) {
-                if (instanceMember) {
-                    writer.WriteLine(",");
-                }
-                else {
-                    writer.Write(typeName);
-                    writer.Write(".");
-                }
+                writer.WriteLine(",");
 
                 writer.Write("set_");
                 writer.Write(indexerSymbol.GeneratedName);
-                if (instanceMember) {
-                    writer.Write(": ");
-                }
-                else {
-                    writer.Write(" = ");
-                }
-                writer.Write("function(");
+                writer.Write(": function(");
                 for (int i = 0; i < indexerSymbol.Parameters.Count; i++) {
                     ParameterSymbol parameterSymbol = indexerSymbol.Parameters[i];
                     if (i > 0) {
@@ -235,10 +207,6 @@ namespace ScriptSharp.Generator {
                 writer.WriteLine(";");
                 writer.Indent--;
                 writer.Write("}");
-
-                if (instanceMember == false) {
-                    writer.WriteLine();
-                }
             }
         }
 
