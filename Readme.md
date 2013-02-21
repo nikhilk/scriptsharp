@@ -23,7 +23,7 @@ The [Script# Wiki](https://github.com/nikhilk/scriptsharp/wiki/Wiki) contains th
 
 * [Repository Contents](https://github.com/nikhilk/scriptsharp/wiki/Repository)
 * [Status](https://github.com/nikhilk/scriptsharp/wiki/Status), including roadmap and some thoughts about areas of contribution
-* [Building and testing](https://github.com/nikhilk/scriptsharp/wiki/Building-and-Testing) the sources, and information on using private as well as incremental pre-release builds
+* [Building, installing and testing](https://github.com/nikhilk/scriptsharp/wiki/Building,-Installing-and-Testing) the sources, and information on using private as well as incremental pre-release builds
 * [Coding guidelines](https://github.com/nikhilk/scriptsharp/wiki/Coding-Guidelines)
 * [Release notes](https://github.com/nikhilk/scriptsharp/wiki/Release-Notes) for a changelog and any version to version migration details.
 
