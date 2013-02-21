@@ -48,6 +48,7 @@
     <Compile Include="Html\CheckBoxElement.cs" />
     <Compile Include="Html\CanvasElement.cs" />
     <Compile Include="Html\ClientRectList.cs" />
+    <Compile Include="Html\LinkElement.cs" />
     <Compile Include="Html\StyleSheets\StyleRuleType.cs" />
     <Compile Include="Html\StyleSheets\StylePageRule.cs" />
     <Compile Include="Html\StyleSheets\StyleCharsetRule.cs" />

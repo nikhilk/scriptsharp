@@ -11,12 +11,12 @@ namespace System.Html {
     [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class LinkElement : Element {
-        
+
         private LinkElement() {
         }
-        
+
         [ScriptField]
-        public string Rel {
+        public string Href {
             get {
                 return null;
             }
@@ -32,9 +32,9 @@ namespace System.Html {
             set {
             }
         }
-            
+
         [ScriptField]
-        public string Href {
+        public string Rel {
             get {
                 return null;
             }
