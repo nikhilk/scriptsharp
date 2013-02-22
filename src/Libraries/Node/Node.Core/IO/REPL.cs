@@ -11,6 +11,7 @@ namespace NodeApi.IO {
     [ScriptImport]
     [ScriptIgnoreNamespace]
     [ScriptDependency("repl")]
+    [ScriptName("repl")]
     public sealed class REPL {
 
         private REPL() {
@@ -24,7 +25,7 @@ namespace NodeApi.IO {
             }
         }
 
-        public REPL Start(object options) {
+        public static REPL Start(object options) {
             return null;
         }
     }

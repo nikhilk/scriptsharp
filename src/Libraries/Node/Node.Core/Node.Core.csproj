@@ -47,6 +47,7 @@
     <Compile Include="Compute\OS.cs" />
     <Compile Include="AsyncCallback.cs" />
     <Compile Include="IO\Buffer.cs" />
+    <Compile Include="IO\Console.cs" />
     <Compile Include="IO\REPLEvaluator.cs" />
     <Compile Include="IO\REPLOptions.cs" />
     <Compile Include="IO\REPL.cs" />
