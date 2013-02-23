@@ -16,6 +16,9 @@ namespace NodeApi.IO {
         [ScriptName("ascii")]
         Ascii,
 
+        [ScriptName("base64")]
+        Base64,
+
         [ScriptName("hex")]
         Hex,
 
