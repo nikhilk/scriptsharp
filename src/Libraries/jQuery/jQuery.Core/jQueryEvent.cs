@@ -89,7 +89,6 @@ namespace jQueryApi {
             }
         }
 
-
         [ScriptField]
         public bool MetaKey {
             get {
