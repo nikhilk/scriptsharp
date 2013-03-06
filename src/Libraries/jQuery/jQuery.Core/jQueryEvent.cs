@@ -89,6 +89,13 @@ namespace jQueryApi {
             }
         }
 
+        [ScriptField]
+        public bool MetaKey {
+            get {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Gets the namespace specified when the event was triggered.
         /// </summary>
