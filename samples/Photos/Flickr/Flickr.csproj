@@ -15,7 +15,6 @@
     <GenerateResources>True</GenerateResources>
     <RestoreNugetPackages>true</RestoreNugetPackages>
     <MinimizeScript>True</MinimizeScript>
-    <CrunchScript>True</CrunchScript>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>

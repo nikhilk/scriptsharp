@@ -15,8 +15,6 @@
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
     <MinimizeScript>True</MinimizeScript>
-    <CrunchScript>True</CrunchScript>
-    <DeploymentPath>..\TodoWeb\Scripts</DeploymentPath>
     <RestoreNugetPackages>true</RestoreNugetPackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

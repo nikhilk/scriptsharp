@@ -15,9 +15,7 @@
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
     <RestoreNugetPackages>true</RestoreNugetPackages>
-    <DeploymentPath>..\AroundMeWeb\Scripts</DeploymentPath>
     <MinimizeScript>True</MinimizeScript>
-    <CrunchScript>True</CrunchScript>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>

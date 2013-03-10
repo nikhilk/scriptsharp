@@ -18,6 +18,9 @@ namespace NodeApi.MongoDB {
         public MongoDatabase(string name, MongoServer server, object options) {
         }
 
+        public void Authenticate(string userName, string password, AsyncResultCallback<bool> successCallback) {
+        }
+
         public void Close() {
         }
 

@@ -30,44 +30,44 @@ namespace TwitterApi {
         public TweetBoxOptions(params object[] nameValuePairs) {
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public bool Counter {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public TweetBoxData Data {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string DefaultContent {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Height {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public string Label {
             get;
             set;
         }
 
         [ScriptName("onTweet")]
-        [ScriptProperty]
+        [ScriptField]
         public TweetCallback Callback {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Width {
             get;
             set;
@@ -86,14 +86,14 @@ namespace TwitterApi {
         }
 
         [ScriptName("lat")]
-        [ScriptProperty]
+        [ScriptField]
         public double Latitude {
             get;
             set;
         }
 
         [ScriptName("lon")]
-        [ScriptProperty]
+        [ScriptField]
         public double Longitude {
             get;
             set;

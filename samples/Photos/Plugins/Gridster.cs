@@ -26,27 +26,27 @@ namespace jQueryApi.Gridster {
     public sealed class GridsterCoordinates {
 
         [ScriptName("col")]
-        [ScriptProperty]
+        [ScriptField]
         public int Column {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public int Row {
             get;
             set;
         }
 
         [ScriptName("size_x")]
-        [ScriptProperty]
+        [ScriptField]
         public int SizeX {
             get;
             set;
         }
 
         [ScriptName("size_y")]
-        [ScriptProperty]
+        [ScriptField]
         public int SizeY {
             get;
             set;
@@ -69,96 +69,96 @@ namespace jQueryApi.Gridster {
         }
 
         [ScriptName("autogenerate_stylesheet")]
-        [ScriptProperty]
+        [ScriptField]
         public bool AutoGenerateStyleSheet {
             get;
             set;
         }
 
         [ScriptName("avoid_overlapped_widgets")]
-        [ScriptProperty]
+        [ScriptField]
         public bool AvoidOverlapping {
             get;
             set;
         }
 
         [ScriptName("widget_base_dimensions")]
-        [ScriptProperty]
+        [ScriptField]
         public int[] BaseDimensions {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public GridsterCollision Collision {
             get;
             set;
         }
 
-        [ScriptProperty]
+        [ScriptField]
         public GridsterDraggable Draggable {
             get;
             set;
         }
 
         [ScriptName("extra_cols")]
-        [ScriptProperty]
+        [ScriptField]
         public int ExtraColumns {
             get;
             set;
         }
 
         [ScriptName("extra_rows")]
-        [ScriptProperty]
+        [ScriptField]
         public int ExtraRows {
             get;
             set;
         }
 
         [ScriptName("widget_margins")]
-        [ScriptProperty]
+        [ScriptField]
         public int[] Margins {
             get;
             set;
         }
 
         [ScriptName("max_size_x")]
-        [ScriptProperty]
+        [ScriptField]
         public int MaximumColumnSpan {
             get;
             set;
         }
 
         [ScriptName("max_size_y")]
-        [ScriptProperty]
+        [ScriptField]
         public int MaximumRowSpan {
             get;
             set;
         }
 
         [ScriptName("min_cols")]
-        [ScriptProperty]
+        [ScriptField]
         public int MinimumColumns {
             get;
             set;
         }
 
         [ScriptName("min_rows")]
-        [ScriptProperty]
+        [ScriptField]
         public int MinimumRows {
             get;
             set;
         }
 
         [ScriptName("widget_selector")]
-        [ScriptProperty]
+        [ScriptField]
         public string Selector {
             get;
             set;
         }
 
         [ScriptName("serialize_params")]
-        [ScriptProperty]
+        [ScriptField]
         public GridsterSerializationCallback SerializationCallback {
             get;
             set;

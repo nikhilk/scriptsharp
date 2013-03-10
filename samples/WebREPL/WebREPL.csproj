@@ -9,12 +9,12 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebREPL</RootNamespace>
-    <AssemblyName>webrepl</AssemblyName>
+    <AssemblyName>WebREPL</AssemblyName>
+    <ScriptName>webrepl</ScriptName>
     <CodeAnalysisRuleSet>Properties\FxCop.ruleset</CodeAnalysisRuleSet>
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
     <MinimizeScript>False</MinimizeScript>
-    <CrunchScript>False</CrunchScript>
     <CopyReferences>True</CopyReferences>
     <CopyReferencesPath>node_modules</CopyReferencesPath>
     <RestoreNugetPackages>True</RestoreNugetPackages>
@@ -25,7 +25,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0028, 1591, 1684</NoWarn>
-    <DocumentationFile>bin\Debug\webrepl.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -33,7 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0028, 1591, 1684</NoWarn>
-    <DocumentationFile>bin\Release\webrepl.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <None Include="packages.config" />

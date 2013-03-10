@@ -63,7 +63,12 @@
     <Content Include="Scripts\ssloader.min.js" />
     <Content Include="Scripts\text.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\App\App.csproj">
+      <Project>{6bfe535a-668c-447e-baf9-ac84b120f9bf}</Project>
+      <Name>App</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -93,6 +98,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\ScriptSharp.Runtime.0.8\tools\ScriptSharpWeb.targets" Condition="Exists('..\packages\ScriptSharp.Runtime.0.8\tools\ScriptSharpWeb.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

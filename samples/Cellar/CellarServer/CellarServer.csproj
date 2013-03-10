@@ -9,15 +9,16 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cellar</RootNamespace>
-    <AssemblyName>cellar.server</AssemblyName>
+    <AssemblyName>Cellar.Server</AssemblyName>
+    <ScriptName>cellar</ScriptName>
     <CodeAnalysisRuleSet>Properties\FxCop.ruleset</CodeAnalysisRuleSet>
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
     <MinimizeScript>False</MinimizeScript>
-    <CrunchScript>False</CrunchScript>
     <CopyReferences>True</CopyReferences>
     <CopyReferencesPath>node_modules</CopyReferencesPath>
     <RestoreNugetPackages>true</RestoreNugetPackages>
+    <ScriptsPath>Content\Scripts</ScriptsPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -25,7 +26,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0028, 1591, 1684</NoWarn>
-    <DocumentationFile>bin\Debug\cellar.server.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -33,16 +33,29 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0028, 1591, 1684</NoWarn>
-    <DocumentationFile>bin\Release\cellar.server.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Common\Wine.cs">
-      <Link>DataModels\Wine.cs</Link>
-    </Compile>
     <Compile Include="CellarApplication.cs" />
     <Compile Include="Controllers\WinesController.cs" />
+    <Compile Include="DataModels\Wine.cs" />
     <Compile Include="Services\IWineRepository.cs" />
     <Compile Include="Services\MongoLab\MongoWineRepository.cs" />
+    <Content Include="..\CellarClient\bin\$(Configuration)\cellar.js">
+      <Link>Content\scripts\cellar.js</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\CellarClient\bin\$(Configuration)\cellar.min.js">
+      <Link>Content\scripts\cellar.min.js</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\CellarClient\bin\$(Configuration)\ss.js">
+      <Link>Content\scripts\ss.js</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\CellarClient\bin\$(Configuration)\ss.min.js">
+      <Link>Content\scripts\ss.min.js</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\cellar.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -58,12 +71,6 @@
     <Content Include="Content\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\scripts\cellar.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\scripts\cellar.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\scripts\jquery-1.4.4.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -74,12 +81,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\scripts\require.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\scripts\ss.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\scripts\ss.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\site.css">
@@ -184,4 +185,5 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\ScriptSharp.0.8\tools\ScriptSharp.targets" Condition="Exists('..\packages\ScriptSharp.0.8\tools\ScriptSharp.targets')" />
   <Import Project="..\packages\nuget.targets" />
+  <Import Project="..\packages\ScriptSharp.Runtime.0.8\tools\ScriptSharpWeb.targets" Condition="Exists('..\packages\ScriptSharp.Runtime.0.8\tools\ScriptSharpWeb.targets')" />
 </Project>

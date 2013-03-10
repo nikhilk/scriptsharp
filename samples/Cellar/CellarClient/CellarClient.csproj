@@ -14,9 +14,7 @@
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
     <MinimizeScript>True</MinimizeScript>
-    <CrunchScript>True</CrunchScript>
     <CopyReferences>True</CopyReferences>
-    <DeploymentPath>..\CellarServer\Content\scripts</DeploymentPath>
     <RestoreNugetPackages>true</RestoreNugetPackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -38,10 +36,8 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\FxCop.ruleset" />
-    <Compile Include="..\Common\Wine.cs">
-      <Link>DataModels\Wine.cs</Link>
-    </Compile>
     <Compile Include="CellarApplication.cs" />
+    <Compile Include="DataModels\Wine.cs" />
     <Compile Include="DataModels\WineResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Page.cs" />

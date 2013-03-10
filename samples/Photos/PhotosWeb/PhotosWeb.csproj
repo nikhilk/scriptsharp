@@ -70,11 +70,27 @@
     <Content Include="Scripts\jquery.isotope.min.js" />
     <Content Include="Scripts\jquery.lightbox-0.5.js" />
     <Content Include="Scripts\jquery.tmpl.js" />
+    <Content Include="Scripts\ss.js" />
+    <Content Include="Scripts\ss.min.js" />
     <Content Include="Scripts\ssloader.js" />
     <Content Include="Scripts\ssloader.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoGrid\PhotoGrid.csproj">
+      <Project>{2f542546-7b1d-4c43-af1f-092aee556fc2}</Project>
+      <Name>PhotoGrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoList\PhotoList.csproj">
+      <Project>{d4df1cc1-c044-4c90-ab09-9744e9acfcc9}</Project>
+      <Name>PhotoList</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoTiles\PhotoTiles.csproj">
+      <Project>{2f542547-7b1d-4c43-af1f-092aee556fc2}</Project>
+      <Name>PhotoTiles</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -102,6 +118,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\ScriptSharp.Runtime.0.8\tools\ScriptSharpWeb.targets" Condition="Exists('..\packages\ScriptSharp.Runtime.0.8\tools\ScriptSharpWeb.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
