@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BE1E0A21-F6C0-4698-B405-66FC2BB289F4}</ProjectGuid>
+    <ProjectGuid>{9D59077D-1A05-4D6C-A1A4-FB748D200578}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ScriptSharp</RootNamespace>
-    <AssemblyName>ScriptSharp.Build</AssemblyName>
+    <AssemblyName>ScriptSharp.Deployment</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\ScriptSharp.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -34,47 +33,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.XML" />
+    <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities" />
-    <Reference Include="AjaxMin">
-      <HintPath>..\..\..\tools\ext\AjaxMin.dll</HintPath>
-    </Reference>
-    <ProjectReference Include="..\Compiler\Compiler.csproj">
-      <Project>{9f14036f-673f-418e-b817-7e2289d7f3f6}</Project>
-      <Name>Compiler</Name>
-    </ProjectReference>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\ScriptSharp.cs">
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
-    <Compile Include="..\FileInputStreamSource.cs">
-      <Link>FileInputStreamSource.cs</Link>
-    </Compile>
-    <Compile Include="..\FileOutputStreamSource.cs">
-      <Link>FileOutputStreamSource.cs</Link>
-    </Compile>
-    <Compile Include="..\ResourceFile.cs">
-      <Link>ResourceFile.cs</Link>
-    </Compile>
-    <Compile Include="..\ResXItem.cs">
-      <Link>ResXItem.cs</Link>
-    </Compile>
-    <Compile Include="..\ResXParser.cs">
-      <Link>ResXParser.cs</Link>
-    </Compile>
-    <Compile Include="Generators\ResXCodeBuilder.cs" />
-    <Compile Include="Tasks\ResXCodeGeneratorTask.cs" />
-    <Compile Include="Tasks\ScriptCompilerExecTask.cs" />
-    <Compile Include="Tasks\ScriptCompilerTask.cs" />
+    <Compile Include="ScriptDeployTask.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ScriptSharp.targets">
+    <Content Include="ScriptSharpWeb.targets">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

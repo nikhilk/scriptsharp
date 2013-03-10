@@ -3,15 +3,15 @@
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>ScriptSharp.Runtime</id>
     <version>0.8</version>
-    <title>Script# Runtime Scripts</title>
+    <title>Script# Runtime and Script Deployment Support</title>
     <authors>Nikhil Kothari</authors>
     <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
     <projectUrl>http://scriptsharp.com</projectUrl>
     <iconUrl>http://scriptsharp.com/nuget/Package.png</iconUrl>
     <licenseUrl>http://scriptsharp.com/nuget/License.txt</licenseUrl>
-    <summary>Provides the core javascript runtime for Script#-based scripts for use in Web projects.</summary>
+    <summary>Provides the core javascript runtime (ss.js) for Script#-based scripts and script deployment functionality into Web application projects.</summary>
     <description>
-      This package contains scripts like mscorlib.js which provides the runtime script implementations of a type system and core APIs available to scripts generated using Script# for deployment within web applications (such as asp.net mvc projects).
+      This package contains ss.js and related scripts used by script# generated scripts at runtime. It also adds script deployment functionality, to copy generated scripts from referenced script# projects into Web applications.
     </description>
     <tags>script scriptsharp javascript html aspnet mvc thescriptsharp</tags>
     <language>en-US</language>
@@ -22,5 +22,10 @@
     <file src="..\..\..\bin\Release\ss.min.js" target="content\Scripts" />
     <file src="..\..\..\bin\Release\ssloader.js" target="content\Scripts" />
     <file src="..\..\..\bin\Release\ssloader.min.js" target="content\Scripts" />
+    <file src="..\..\..\bin\Release\ScriptSharp.Deployment.dll" target="tools" />
+    <file src="..\..\..\bin\Release\ScriptSharpWeb.targets" target="tools" />
+    <file src="Runtime\Install.ps1" target="tools" />
+    <file src="Runtime\Uninstall.ps1" target="tools" />
+    <file src="Runtime\Reset.psm1" target="tools" />
   </files>
 </package>

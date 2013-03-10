@@ -13,7 +13,6 @@
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
     <MinimizeScript>False</MinimizeScript>
-    <CrunchScript>False</CrunchScript>
     <CopyReferences>True</CopyReferences>
     <CopyReferencesPath>node_modules</CopyReferencesPath>
    </PropertyGroup>

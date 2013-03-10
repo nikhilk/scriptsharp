@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Microsoft.Build;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
@@ -28,23 +29,30 @@ namespace ScriptSharp.Tasks {
         private ITaskItem[] _references;
         private ITaskItem[] _sources;
         private ITaskItem[] _resources;
-        private ITaskItem _csharpAssembly;
+        private ITaskItem _assembly;
         private string _defines;
 
         private bool _minimize;
-        private bool _crunch;
         private bool _copyReferences;
-        private bool _localeSubfolders;
-        private string _referencesPath;
+        private string _copyReferencesPath;
         private string _outputPath;
-        private string _deploymentPath;
+        private string _scriptName;
         private List<ITaskItem> _scripts;
 
         private bool _hasErrors;
 
         public ScriptCompilerTask() {
             _copyReferences = true;
-            _crunch = true;
+        }
+
+        [Required]
+        public ITaskItem Assembly {
+            get {
+                return _assembly;
+            }
+            set {
+                _assembly = value;
+            }
         }
 
         public bool CopyReferences {
@@ -58,32 +66,13 @@ namespace ScriptSharp.Tasks {
 
         public string CopyReferencesPath {
             get {
-                if (_referencesPath == null) {
+                if (_copyReferencesPath == null) {
                     return String.Empty;
                 }
-                return _referencesPath;
+                return _copyReferencesPath;
             }
             set {
-                _referencesPath = value;
-            }
-        }
-
-        public bool Crunch {
-            get {
-                return _crunch;
-            }
-            set {
-                _crunch = value;
-            }
-        }
-
-        [Required]
-        public ITaskItem CSharpAssembly {
-            get {
-                return _csharpAssembly;
-            }
-            set {
-                _csharpAssembly = value;
+                _copyReferencesPath = value;
             }
         }
 
@@ -96,27 +85,6 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _defines = value;
-            }
-        }
-
-        public string DeploymentPath {
-            get {
-                if (_deploymentPath == null) {
-                    return String.Empty;
-                }
-                return _deploymentPath;
-            }
-            set {
-                _deploymentPath = value;
-            }
-        }
-
-        public bool LocaleSubfolders {
-            get {
-                return _localeSubfolders;
-            }
-            set {
-                _localeSubfolders = value;
             }
         }
 
@@ -142,6 +110,7 @@ namespace ScriptSharp.Tasks {
             }
         }
 
+        [Required]
         public string ProjectPath {
             get {
                 return _projectPath;
@@ -167,6 +136,15 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _resources = value;
+            }
+        }
+
+        public string ScriptName {
+            get {
+                return _scriptName;
+            }
+            set {
+                _scriptName = value;
             }
         }
 
@@ -237,15 +215,12 @@ namespace ScriptSharp.Tasks {
             if (_minimize) {
                 CompilerOptions minimizeOptions =
                     CreateOptions(sourceItems, resourceItems, locale,
-                                  /* includeTests */ false, /* minimize */ true,
-                                  out scriptTaskItem);
+                    /* includeTests */ false, /* minimize */ true,
+                                    out scriptTaskItem);
                 ScriptCompiler minimizingCompiler = new ScriptCompiler(this);
                 minimizingCompiler.Compile(minimizeOptions);
                 if (_hasErrors == false) {
-                    if (Crunch) {
-                        ExecuteCruncher(scriptTaskItem);
-                    }
-
+                    ExecuteCruncher(scriptTaskItem);
                     OnScriptFileGenerated(scriptTaskItem, minimizeOptions, /* copyReferences */ false);
                 }
                 else {
@@ -303,6 +278,7 @@ namespace ScriptSharp.Tasks {
                     }
                 }
 
+                GenerateDeploymentFile();
                 return true;
             }
 
@@ -325,6 +301,24 @@ namespace ScriptSharp.Tasks {
             string crunchedScript = cruncher.MinifyJavaScript(script, cruncherSettings);
 
             File.WriteAllText(scriptItem.ItemSpec, crunchedScript);
+        }
+
+        private void GenerateDeploymentFile() {
+            try {
+                string assemblyFile = Path.GetFileName(_assembly.ItemSpec);
+                string scriptsFilePath = Path.Combine(OutputPath, Path.ChangeExtension(assemblyFile, "scripts"));
+
+                Uri scriptsUri = new Uri(Path.GetFullPath(scriptsFilePath), UriKind.Absolute);
+                IEnumerable<string> scripts =
+                    _scripts.Select(s => {
+                        Uri fileUri = new Uri(s.ItemSpec, UriKind.Absolute);
+                        return Uri.UnescapeDataString(scriptsUri.MakeRelativeUri(fileUri).ToString());
+                    });
+                File.WriteAllLines(scriptsFilePath, scripts);
+            }
+            catch (Exception e) {
+                Log.LogError(e.ToString());
+            }
         }
 
         private ICollection<string> GetDefines() {
@@ -396,36 +390,21 @@ namespace ScriptSharp.Tasks {
         }
 
         private string GetScriptFilePath(string locale, bool minimize, bool includeTests) {
-            if ((_csharpAssembly != null) && (OutputPath.Length != 0)) {
-                string assemblyPath = _csharpAssembly.ItemSpec;
-                string assemblyFile = Path.GetFileName(assemblyPath);
-                string outputPath = OutputPath;
-
-                if ((assemblyFile.Length > 7) && assemblyFile.StartsWith("Script.", StringComparison.OrdinalIgnoreCase)) {
-                    // Resulting script files don't need a "Script." prefix, since that
-                    // is mostly a naming convention used to separate out script# managed binaries.
-
-                    assemblyFile = assemblyFile.Substring(7);
-                }
-
-                string extension = includeTests ? "test.js" : (minimize ? "min.js" : "js");
-                if (String.IsNullOrEmpty(locale) == false) {
-                    if (LocaleSubfolders) {
-                        outputPath = Path.Combine(outputPath, locale);
-                    }
-                    else {
-                        extension = locale + "." + extension;
-                    }
-                }
-
-                if (Directory.Exists(outputPath) == false) {
-                    Directory.CreateDirectory(outputPath);
-                }
-
-                return Path.Combine(outputPath, Path.ChangeExtension(assemblyFile, extension));
+            string scriptName = ScriptName;
+            if (String.IsNullOrEmpty(scriptName)) {
+                scriptName = Path.GetFileName(_assembly.ItemSpec);
             }
 
-            return null;
+            string extension = includeTests ? "test.js" : (minimize ? "min.js" : "js");
+            if (String.IsNullOrEmpty(locale) == false) {
+                extension = locale + "." + extension;
+            }
+
+            if (Directory.Exists(OutputPath) == false) {
+                Directory.CreateDirectory(OutputPath);
+            }
+
+            return Path.GetFullPath(Path.Combine(OutputPath, Path.ChangeExtension(scriptName, extension)));
         }
 
         private ICollection<IStreamSource> GetSources(IEnumerable<ITaskItem> sourceItems) {
@@ -450,8 +429,6 @@ namespace ScriptSharp.Tasks {
         }
 
         private void OnScriptFileGenerated(ITaskItem scriptItem, CompilerOptions options, bool copyReferences) {
-            _scripts.Add(scriptItem);
-
             Func<string, bool, string> getScriptFile = delegate(string reference, bool minimized) {
                 string scriptFile = Path.ChangeExtension(reference, minimized ? ".min.js" : ".js");
 
@@ -496,6 +473,8 @@ namespace ScriptSharp.Tasks {
                     // Copy the file, and then make sure it is not read-only (for example, if the
                     // source file for a referenced script is read-only).
                     File.SetAttributes(targetFilePath, FileAttributes.Normal);
+
+                    _scripts.Add(new TaskItem(targetFilePath));
                 }
                 catch (Exception e) {
                     Log.LogError("Unable to copy referenced script '" + sourceFilePath + "' as '" + targetFilePath + "' (" + e.Message + ")");
@@ -503,7 +482,7 @@ namespace ScriptSharp.Tasks {
                 }
             };
 
-            string projectName = (_projectPath != null) ? Path.GetFileNameWithoutExtension(_projectPath) : String.Empty;
+            string projectName = Path.GetFileNameWithoutExtension(_projectPath);
             string scriptFileName = Path.GetFileName(scriptItem.ItemSpec);
             string scriptPath = Path.GetFullPath(scriptItem.ItemSpec);
             string scriptFolder = Path.GetDirectoryName(scriptItem.ItemSpec);
@@ -518,39 +497,15 @@ namespace ScriptSharp.Tasks {
                         safeCopyFile(scriptFile, path);
                     }
 
-                    if (_minimize) {
-                        string minScriptFile = getScriptFile(reference, /* minimized */ true);
-                        if (minScriptFile != null) {
-                            string path = Path.Combine(scriptFolder, CopyReferencesPath, Path.GetFileName(minScriptFile));
-                            safeCopyFile(minScriptFile, path);
-                        }
+                    string minScriptFile = getScriptFile(reference, /* minimized */ true);
+                    if (minScriptFile != null) {
+                        string path = Path.Combine(scriptFolder, CopyReferencesPath, Path.GetFileName(minScriptFile));
+                        safeCopyFile(minScriptFile, path);
                     }
                 }
             }
 
-            string deploymentPath = DeploymentPath;
-            if (DeploymentPath.Length != 0) {
-                string deployedScriptPath = Path.Combine(deploymentPath, scriptFileName);
-                safeCopyFile(scriptPath, deployedScriptPath);
-
-                if (copyReferences) {
-                    foreach (string reference in options.References) {
-                        string scriptFile = getScriptFile(reference, /* minimized */ false);
-                        if (scriptFile != null) {
-                            string path = Path.Combine(deploymentPath, CopyReferencesPath, Path.GetFileName(scriptFile));
-                            safeCopyFile(scriptFile, path);
-                        }
-
-                        if (_minimize) {
-                            string minScriptFile = getScriptFile(reference, /* minimized */ true);
-                            if (minScriptFile != null) {
-                                string path = Path.Combine(deploymentPath, CopyReferencesPath, Path.GetFileName(minScriptFile));
-                                safeCopyFile(minScriptFile, path);
-                            }
-                        }
-                    }
-                }
-            }
+            _scripts.Add(scriptItem);
         }
 
         #region Implementation of IErrorHandler

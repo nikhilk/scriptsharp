@@ -3,7 +3,7 @@
 ScriptSharp.targets
 Defines the steps in the standard build process specific for Script# projects.
 
-Copyright (C) 2012. Script# Project. All rights reserved.
+Copyright (c) 2013. Script# Project. All rights reserved.
 *******************************************************************************
 -->
 
@@ -12,6 +12,7 @@ Copyright (C) 2012. Script# Project. All rights reserved.
   <UsingTask TaskName="ResXCodeGeneratorTask" AssemblyFile="ScriptSharp.Build.dll" />
 
   <PropertyGroup>
+    <ScriptSharp>true</ScriptSharp>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
@@ -31,19 +32,18 @@ Copyright (C) 2012. Script# Project. All rights reserved.
     <GeneratedResourceCode Include="$(IntermediateOutputPath)Resources.g.cs" />
   </ItemGroup>
 
-  <Target Name="BuildScript">
+  <Target Name="BuildScript" Returns="@(Scripts)">
     <ScriptCompilerTask
       Sources="@(Compile)"
       Resources="@(EmbeddedResource)"
       References="@(ReferencePath);@(ReferenceDependencyPaths)"
       Defines="$(DefineConstants)"
-      OutputPath="$(OutputPath)"
-      DeploymentPath="$(DeploymentPath)"
+      Minimize="$(MinimizeScript)"
       CopyReferences="$(CopyReferences)"
       CopyReferencesPath="$(CopyReferencesPath)"
-      CSharpAssembly="@(IntermediateAssembly)"
-      Minimize="$(MinimizeScript)"
-      Crunch="$(CrunchScript)"
+      OutputPath="$(OutputPath)"
+      Assembly="@(IntermediateAssembly)"
+      ScriptName="$(ScriptName)"
       ProjectPath="$(MSBuildProjectFullPath)">
       <Output TaskParameter="Scripts" ItemName="Scripts" />
     </ScriptCompilerTask>

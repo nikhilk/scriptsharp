@@ -13,7 +13,6 @@
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
     <MinimizeScript>True</MinimizeScript>
-    <CrunchScript>True</CrunchScript>
     <CopyReferences>True</CopyReferences>
    </PropertyGroup>
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
