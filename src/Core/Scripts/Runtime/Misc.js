@@ -112,7 +112,7 @@ function error(message, errorInfo, innerException) {
 
 function fail(message) {
   console.assert(false, message);
-  if (global.navigator && (global.navigator.userAgent.indexOf('MSIE') > 0)) {
+  if (global.navigator) {
     eval('debugger;');
   }
 }
