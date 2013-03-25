@@ -14,9 +14,13 @@ namespace jQueryApi {
     /// </summary>
     [ScriptImport]
     [ScriptIgnoreNamespace]
+    [ScriptName("Object")]
     public sealed class jQueryPosition {
 
-        private jQueryPosition() {
+        public jQueryPosition() {
+        }
+
+        public jQueryPosition(params object[] nameValuePairs) {
         }
 
         /// <summary>
@@ -27,6 +31,8 @@ namespace jQueryApi {
             get {
                 return 0;
             }
+            set {
+            }
         }
 
         /// <summary>
@@ -36,6 +42,8 @@ namespace jQueryApi {
         public int Top {
             get {
                 return 0;
+            }
+            set {
             }
         }
 
