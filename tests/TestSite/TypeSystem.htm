@@ -92,6 +92,29 @@ define(['ss', 'oop'], function(ss, oop) {
     QUnit.equal(g.die(), '...');
   });
 
+test('overrideable base method', function() {
+    var a = new oop.Animal("Mammal");
+    QUnit.equal(a.live(0), '[0] ...', 'Animal lived');
+    QUnit.equal(a.grow(), 'Mammal has grown up', 'Animal grew up');
+    QUnit.equal(a.die(), '...', 'Animal died');
+    QUnit.equal(a.liveThenDie(), '[0] ... ...', 'Animal lived and died');
+
+    var c = new oop.Cat();
+    QUnit.equal(c.live(1), '[1] ...', 'Cat lived like a Animal does');
+    QUnit.equal(c.grow(), 'Cat has grown up [1] ...', 'Cat grew up like a Cat does (overridden)'); //causing trouble
+    QUnit.equal(c.die(), '...', 'Cat died like a Cat does');
+    QUnit.equal(c.liveThenDie(), '[0] ... ...', 'Cat lived and died like a Animal does (not overidden)');
+    QUnit.equal(c.liveThenSpeak(), '[1] ... meow', 'Cat lived and spoke like a Cat does (overidden)'); //causing trouble
+    
+    var g = new oop.Garfield();
+    QUnit.equal(g.live(2), '[2] ... zzz', 'Garfield lived like a Garfield does (overidden)');
+    QUnit.equal(g.grow(), 'Cat has grown up [1] ...', 'Garfield grew up like a Cat does (not overridden)'); //not causing trouble
+    QUnit.equal(g.die(), '...', 'Garfield died like a Cat does (not overridden)');
+    QUnit.equal(g.liveThenDie(), '[0] ... zzz ...', 'Garfield lived and died like a Animal does (not overridden)');
+    QUnit.equal(g.liveThenSpeak(), '[2] ... meow', 'Garfield lived and spoke like a Cat does (overridden)'); //not causing trouble
+    QUnit.equal(g.liveThenSpeakThis(), '[2] ... zzz meow\r\nTranslation: I am fat, lazy, and cynical, but still, a favorite cat...', 'Garfield lived and spoke like only a Garfield does');
+  });
+
   test('typeOf', function() {
     var g = new oop.Garfield();
     QUnit.equal(ss.typeOf(g), oop.Garfield, "Expected Garfield instance.");

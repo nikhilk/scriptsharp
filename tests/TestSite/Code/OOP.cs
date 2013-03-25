@@ -42,6 +42,15 @@ namespace Test {
         public virtual string Die() {
             return "...";
         }
+
+        public virtual string Grow()
+        {
+            return this.Species + " has grown up";
+        }
+
+        public virtual string LiveThenDie(int i) {
+            return this.Live(0) + " " + this.Die();
+        }
     }
 
     public class Cat : Animal, IMammal {
@@ -55,6 +64,14 @@ namespace Test {
 
         public override string Die() {
             return base.Die();
+        }
+
+        public override string Grow() {
+            return base.Grow() + " " + base.Live(1);
+        }
+
+        public virtual string LiveThenSpeak() {
+            return base.Live(1) + " " + this.Speak();
         }
     }
 }
@@ -86,6 +103,15 @@ namespace Test.More {
 
         public override string Live(int i) {
             return base.Live(i) + " zzz";
+        }
+
+        public override string LiveThenSpeak()
+        {
+            return base.Live(2) + " " + base.Speak();
+        }
+
+        public string LiveThenSpeakThis() {
+            return this.Live(2) + " " + this.Speak();
         }
     }
 
