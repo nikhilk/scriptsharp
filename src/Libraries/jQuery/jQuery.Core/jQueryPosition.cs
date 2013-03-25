@@ -47,7 +47,7 @@ namespace jQueryApi {
             }
         }
 
-        public static implicit operator jQueryPosition(Dictionary position) {
+        public static implicit operator Dictionary(jQueryPosition position) {
             return null;
         }
     }
