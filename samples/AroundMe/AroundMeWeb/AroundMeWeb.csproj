@@ -93,7 +93,6 @@
     <Content Include="Scripts\ss.min.js" />
     <Content Include="Scripts\ssloader.js" />
     <Content Include="Scripts\ssloader.min.js" />
-    <Content Include="Scripts\VE.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
