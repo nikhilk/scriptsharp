@@ -49,7 +49,17 @@ namespace ScriptSharp.Testing {
 
             RegistryKey chromeKey = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe\");
             if (chromeKey != null) {
-                path = Path.Combine((string)chromeKey.GetValue("Path"), "chrome.exe");
+                path = (string)chromeKey.GetValue("Path");
+            }
+            else {
+                chromeKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\Google Chrome\");
+                if (chromeKey != null) {
+                    path = (string)chromeKey.GetValue("InstallLocation");
+                }
+            }
+
+            if (path != null) {
+                path = Path.Combine(path, "chrome.exe");
                 if (!File.Exists(path)) {
                     path = null;
                 }
