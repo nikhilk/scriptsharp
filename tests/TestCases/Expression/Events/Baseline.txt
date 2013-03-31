@@ -5,15 +5,15 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Button
 
-  function ExpressionTests$Button() {
+  function Button() {
   }
-  ExpressionTests$Button.add_test = function(value) {
-    ExpressionTests$Button.__test = ss.bindAdd(ExpressionTests$Button.__test, value);
+  Button.add_test = function(value) {
+    Button.__test = ss.bindAdd(Button.__test, value);
   };
-  ExpressionTests$Button.remove_test = function(value) {
-    ExpressionTests$Button.__test = ss.bindSub(ExpressionTests$Button.__test, value);
+  Button.remove_test = function(value) {
+    Button.__test = ss.bindSub(Button.__test, value);
   };
-  var ExpressionTests$Button$ = {
+  var Button$ = {
     add_click: function(value) {
       this.__click = ss.bindAdd(this.__click, value);
     },
@@ -47,19 +47,19 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.App
 
-  function ExpressionTests$App() {
+  function App() {
     this._btn.add_click(ss.bind('_onClickButton', this));
     this._btn.add_click(ss.bind('_onClickButton', this));
     this._btn.add_click(ss.bind('_onClickButton', this));
     this._btn.remove_click(ss.bind('_onClickButton', this));
     this._btn.remove_click(ss.bind('_onClickButton', this));
     this._btn.remove_click(ss.bind('_onClickButton', this));
-    ExpressionTests$Button.add_test(ExpressionTests$App._onTestButton);
-    ExpressionTests$Button.add_test(ExpressionTests$App._onTestButton);
-    ExpressionTests$Button.add_test(ExpressionTests$App._onTestButton);
-    ExpressionTests$Button.remove_test(ExpressionTests$App._onTestButton);
-    ExpressionTests$Button.remove_test(ExpressionTests$App._onTestButton);
-    ExpressionTests$Button.remove_test(ExpressionTests$App._onTestButton);
+    Button.add_test(App._onTestButton);
+    Button.add_test(App._onTestButton);
+    Button.add_test(App._onTestButton);
+    Button.remove_test(App._onTestButton);
+    Button.remove_test(App._onTestButton);
+    Button.remove_test(App._onTestButton);
     this._btn.add_aaa(ss.bind('_onAAAButton', this));
     this._btn.add_aaa(ss.bind('_onAAAButton', this));
     this._btn.add_aaa(ss.bind('_onAAAButton', this));
@@ -67,9 +67,9 @@ define('test', ['ss'], function(ss) {
     this._btn.remove_aaa(ss.bind('_onAAAButton', this));
     this._btn.remove_aaa(ss.bind('_onAAAButton', this));
   }
-  ExpressionTests$App._onTestButton = function(sender, e) {
+  App._onTestButton = function(sender, e) {
   };
-  var ExpressionTests$App$ = {
+  var App$ = {
     _onAAAButton: function(sender, e) {
     },
     _onClickButton: function(sender, e) {
@@ -79,19 +79,19 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.FooEventArgs
 
-  function ExpressionTests$FooEventArgs() {
+  function FooEventArgs() {
     ss.EventArgs.call(this);
   }
-  var ExpressionTests$FooEventArgs$ = {
+  var FooEventArgs$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      Button: [ ExpressionTests$Button, ExpressionTests$Button$, null ],
-      App: [ ExpressionTests$App, ExpressionTests$App$, null ],
-      FooEventArgs: [ ExpressionTests$FooEventArgs, ExpressionTests$FooEventArgs$, ss.EventArgs ]
+      Button: [ Button, Button$, null ],
+      App: [ App, App$, null ],
+      FooEventArgs: [ FooEventArgs, FooEventArgs$, ss.EventArgs ]
     });
 
 

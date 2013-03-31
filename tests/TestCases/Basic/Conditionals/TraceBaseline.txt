@@ -5,19 +5,19 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.MyDebug
 
-  function BasicTests$MyDebug() {
+  function MyDebug() {
   }
-  BasicTests$MyDebug.showInfo = function() {
+  MyDebug.showInfo = function() {
   };
-  BasicTests$MyDebug.traceInfo = function() {
+  MyDebug.traceInfo = function() {
   };
-  BasicTests$MyDebug.logInfo = function() {
+  MyDebug.logInfo = function() {
   };
 
 
   // BasicTests.App
 
-  function BasicTests$App(i) {
+  function App(i) {
     while (true) {
     }
     switch (i) {
@@ -25,17 +25,17 @@ define('test', ['ss'], function(ss) {
         break;
     }
     i++;
-    BasicTests$MyDebug.traceInfo();
+    MyDebug.traceInfo();
   }
-  var BasicTests$App$ = {
+  var App$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      MyDebug: [ BasicTests$MyDebug, null, null ],
-      App: [ BasicTests$App, BasicTests$App$, null ]
+      MyDebug: [ MyDebug, null, null ],
+      App: [ App, App$, null ]
     });
 
 

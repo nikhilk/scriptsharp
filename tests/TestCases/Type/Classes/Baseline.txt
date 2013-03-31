@@ -5,66 +5,66 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.Foo
 
-  function TypeTests$FooBarBaz() {
+  function FooBarBaz() {
   }
-  var TypeTests$FooBarBaz$ = {
+  var FooBarBaz$ = {
 
   };
 
 
   // TypeTests.MyClass
 
-  function TypeTests$MyClass() {
-    var f = new TypeTests$FooBarBaz();
+  function MyClass() {
+    var f = new FooBarBaz();
   }
-  var TypeTests$MyClass$ = {
+  var MyClass$ = {
 
   };
 
 
   // TypeTests.MyClass3
 
-  function TypeTests$MyClass3() {
+  function MyClass3() {
   }
-  var TypeTests$MyClass3$ = {
+  var MyClass3$ = {
 
   };
 
 
   // TypeTests.StaticClass
 
-  function TypeTests$StaticClass() {
+  function StaticClass() {
   }
 
 
   // TypeTests.MyClass2
 
-  function TypeTests$MyClass2() {
-    TypeTests$MyClass.call(this);
+  function MyClass2() {
+    MyClass.call(this);
   }
-  var TypeTests$MyClass2$ = {
+  var MyClass2$ = {
 
   };
 
 
   // TypeTests.MyClass4
 
-  function TypeTests$MyClass4() {
-    TypeTests$MyClass.call(this);
+  function MyClass4() {
+    MyClass.call(this);
   }
-  var TypeTests$MyClass4$ = {
+  var MyClass4$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      FooBarBaz: [ TypeTests$FooBarBaz, TypeTests$FooBarBaz$, null ],
-      MyClass: [ TypeTests$MyClass, TypeTests$MyClass$, null ],
-      MyClass3: [ TypeTests$MyClass3, TypeTests$MyClass3$, null, ss.IDisposable ],
-      StaticClass: [ TypeTests$StaticClass, null, null ],
-      MyClass2: [ TypeTests$MyClass2, TypeTests$MyClass2$, TypeTests$MyClass ],
-      MyClass4: [ TypeTests$MyClass4, TypeTests$MyClass4$, TypeTests$MyClass, ss.IDisposable ]
+      FooBarBaz: [ FooBarBaz, FooBarBaz$, null ],
+      MyClass: [ MyClass, MyClass$, null ],
+      MyClass3: [ MyClass3, MyClass3$, null, ss.IDisposable ],
+      StaticClass: [ StaticClass, null, null ],
+      MyClass2: [ MyClass2, MyClass2$, MyClass ],
+      MyClass4: [ MyClass4, MyClass4$, MyClass, ss.IDisposable ]
     });
 
 

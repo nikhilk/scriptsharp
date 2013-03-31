@@ -5,26 +5,26 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.IFoo
 
-  function ExpressionTests$IFoo() { }
+  function IFoo() { }
 
 
   // ExpressionTests.BApp
 
-  function ExpressionTests$BApp() {
+  function BApp() {
   }
-  var ExpressionTests$BApp$ = {
+  var BApp$ = {
 
   };
 
 
   // ExpressionTests.App
 
-  function ExpressionTests$App() {
+  function App() {
     this._value$1 = 0;
     this._value2 = 0;
-    ExpressionTests$BApp.call(this);
+    BApp.call(this);
   }
-  var ExpressionTests$App$ = {
+  var App$ = {
     get_XYZ: function() {
       return 1;
     },
@@ -47,8 +47,8 @@ define('test', ['ss'], function(ss) {
       n = this._value$1;
       this._value$1 = n;
       this._value$1 = n;
-      n = ExpressionTests$App._myDefault$1;
-      n = ExpressionTests$App._myDefault$1;
+      n = App._myDefault$1;
+      n = App._myDefault$1;
       n = 3;
       n = 3;
       n = 3;
@@ -60,22 +60,22 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.DApp
 
-  function ExpressionTests$DApp() {
-    ExpressionTests$App.call(this);
+  function DApp() {
+    App.call(this);
   }
-  var ExpressionTests$DApp$ = {
+  var DApp$ = {
     test2: function() {
       var n = this.get_XYZ();
       n = this.get_XYZ();
-      n = ExpressionTests$App$.get_XYZ.call(this);
+      n = App$.get_XYZ.call(this);
       this.set_XYZ(n);
       this.set_XYZ(n);
       ss.base(this, 'set_XYZ').call(this, n);
       this._value2 = n;
       this._value2 = n;
       this._value2 = n;
-      n = ExpressionTests$App.myDefault2;
-      n = ExpressionTests$App.myDefault2;
+      n = App.myDefault2;
+      n = App.myDefault2;
       n = 3;
       n = 3;
       n = 3;
@@ -97,16 +97,16 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IFoo: [ ExpressionTests$IFoo ],
-      BApp: [ ExpressionTests$BApp, ExpressionTests$BApp$, null ],
-      App: [ ExpressionTests$App, ExpressionTests$App$, ExpressionTests$BApp ],
-      DApp: [ ExpressionTests$DApp, ExpressionTests$DApp$, ExpressionTests$App ]
+      IFoo: [ IFoo ],
+      BApp: [ BApp, BApp$, null ],
+      App: [ App, App$, BApp ],
+      DApp: [ DApp, DApp$, App ]
     });
 
-  ExpressionTests$BApp.myConstant = 3;
-  ExpressionTests$App.myConstant2 = 3;
-  ExpressionTests$App._myDefault$1 = 1;
-  ExpressionTests$App.myDefault2 = 2;
+  BApp.myConstant = 3;
+  App.myConstant2 = 3;
+  App._myDefault$1 = 1;
+  App.myDefault2 = 2;
 
   return $exports;
 });

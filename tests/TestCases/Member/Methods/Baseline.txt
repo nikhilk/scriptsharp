@@ -5,9 +5,9 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.Test
 
-  function MemberTests$Test() {
+  function Test() {
   }
-  var MemberTests$Test$ = {
+  var Test$ = {
     do1: function() {
     },
     do2: function() {
@@ -25,7 +25,7 @@ define('test', ['ss'], function(ss) {
     },
     toString: function() {
       window.m1();
-      var x = new MemberTests$X();
+      var x = new X();
       $.fn.extend(x, 10);
       return null;
     }
@@ -48,9 +48,9 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.X
 
-  function MemberTests$X() {
+  function X() {
   }
-  var MemberTests$X$ = {
+  var X$ = {
     update: function(i) {
     }
   };
@@ -66,8 +66,8 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Test: [ MemberTests$Test, MemberTests$Test$, null ],
-      X: [ MemberTests$X, MemberTests$X$, null ]
+      Test: [ Test, Test$, null ],
+      X: [ X, X$, null ]
     });
 
 

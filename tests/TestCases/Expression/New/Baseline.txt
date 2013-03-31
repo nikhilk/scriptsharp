@@ -5,7 +5,7 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Point
 
-  function ExpressionTests$Point(x, y) {
+  function Point(x, y) {
     var $o = {};
     $o._x = x;
     $o._y = y;
@@ -15,30 +15,30 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Foo
 
-  function ExpressionTests$Foo(i, j) {
+  function Foo(i, j) {
   }
-  var ExpressionTests$Foo$ = {
+  var Foo$ = {
 
   };
 
 
   // ExpressionTests.Bar
 
-  function ExpressionTests$Bar(i, j, f) {
+  function Bar(i, j, f) {
   }
-  var ExpressionTests$Bar$ = {
+  var Bar$ = {
 
   };
 
 
   // ExpressionTests.Test
 
-  function ExpressionTests$Test() {
+  function Test() {
   }
-  ExpressionTests$Test.main = function() {
-    var f = new ExpressionTests$Foo(0, 1);
-    var b = new ExpressionTests$Bar(0, 1, new ExpressionTests$Foo(0, 1));
-    var t = new ExpressionTests$Test();
+  Test.main = function() {
+    var f = new Foo(0, 1);
+    var b = new Bar(0, 1, new Foo(0, 1));
+    var t = new Test();
     var d = new Date('3/9/1976');
     var items = [];
     var items2 = [ 1, 2 ];
@@ -49,28 +49,28 @@ define('test', ['ss'], function(ss) {
     var list3 = ['abc', 'def', 'ghi'];
     var list4 = [1, 2, 3];
     var dates = [ new Date('1/1/2006'), new Date('1/1/2005') ];
-    var p = ExpressionTests$Point(0, 0);
+    var p = Point(0, 0);
     var cd = {};
     var cd2 = { abc: 123, def: true };
-    var o1 = new ExpressionTests$Test();
-    var type1 = ExpressionTests$Foo;
+    var o1 = new Test();
+    var type1 = Foo;
     var o2 = new type1(1, 2);
-    var o3 = new ExpressionTests$Bar(1, 2, o2);
+    var o3 = new Bar(1, 2, o2);
     var f1 = new Function("alert('hello');");
     var f2 = new Function('s', 'alert(s);');
     var f3 = new Function('greeting', 'name', "alert(greeting + ' ' + name + '!');");
   };
-  var ExpressionTests$Test$ = {
+  var Test$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      Point: ExpressionTests$Point,
-      Foo: [ ExpressionTests$Foo, ExpressionTests$Foo$, null ],
-      Bar: [ ExpressionTests$Bar, ExpressionTests$Bar$, null ],
-      Test: [ ExpressionTests$Test, ExpressionTests$Test$, null ]
+      Point: Point,
+      Foo: [ Foo, Foo$, null ],
+      Bar: [ Bar, Bar$, null ],
+      Test: [ Test, Test$, null ]
     });
 
 

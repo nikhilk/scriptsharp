@@ -5,9 +5,9 @@ define('test', ['ss'], function(ss) {
 
   // StatementTests.Set
 
-  function StatementTests$Set() {
+  function Set() {
   }
-  var StatementTests$Set$ = {
+  var Set$ = {
     getEnumerator: function() {
       return ss.enumerate(this._items);
     }
@@ -16,9 +16,9 @@ define('test', ['ss'], function(ss) {
 
   // StatementTests.App
 
-  function StatementTests$App() {
+  function App() {
   }
-  var StatementTests$App$ = {
+  var App$ = {
     test: function(arg) {
       var items = [ 1, 2, 3 ];
       var sum = 0;
@@ -32,7 +32,7 @@ define('test', ['ss'], function(ss) {
         var entry = { key: $key2, value: d[$key2] };
         var s = entry.key + ' = ' + entry.value;
       }
-      var s = new StatementTests$Set();
+      var s = new Set();
       var $enum3 = ss.enumerate(s);
       while ($enum3.moveNext()) {
         var o = $enum3.current;
@@ -57,8 +57,8 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Set: [ StatementTests$Set, StatementTests$Set$, null, ss.IEnumerable ],
-      App: [ StatementTests$App, StatementTests$App$, null ]
+      Set: [ Set, Set$, null, ss.IEnumerable ],
+      App: [ App, App$, null ]
     });
 
 

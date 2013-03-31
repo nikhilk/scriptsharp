@@ -5,10 +5,10 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Data
 
-  function ExpressionTests$Data() {
+  function Data() {
     this._value = 0;
   }
-  var ExpressionTests$Data$ = {
+  var Data$ = {
     get_value: function() {
       return this._value;
     },
@@ -27,9 +27,9 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.App
 
-  function ExpressionTests$App() {
+  function App() {
   }
-  var ExpressionTests$App$ = {
+  var App$ = {
     get__foo: function() {
       return 0;
     },
@@ -43,7 +43,7 @@ define('test', ['ss'], function(ss) {
       return value;
     },
     get_data: function() {
-      return new ExpressionTests$Data();
+      return new Data();
     },
     set_data: function(value) {
       return value;
@@ -52,7 +52,7 @@ define('test', ['ss'], function(ss) {
       return this.get_data().get_flag();
     },
     get_flag2: function() {
-      return ExpressionTests$Data.staticFlag;
+      return Data.staticFlag;
     },
     test: function(arg1, arg2) {
       var sum = arg1 + arg2;
@@ -82,7 +82,7 @@ define('test', ['ss'], function(ss) {
       abc = xyz >>> 2;
       abc <<= 1;
       xyz >>>= 1;
-      var d = new ExpressionTests$Data();
+      var d = new Data();
       d.set_value(d.get_value() + 5);
       d.set_flag((d.get_flag() | true) === 1);
       var o1 = null || {};
@@ -100,7 +100,7 @@ define('test', ['ss'], function(ss) {
       b = (b | true) === 1;
       c = (c ^ true) === 1;
       a = (a | (a || a)) === 1;
-      var d = new ExpressionTests$Data();
+      var d = new Data();
       d.set_flag((d.get_flag() & true) === 1);
       d.set_flag((d.get_flag() | true) === 1);
       d.set_flag((d.get_flag() ^ true) === 1);
@@ -110,11 +110,11 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Data: [ ExpressionTests$Data, ExpressionTests$Data$, null ],
-      App: [ ExpressionTests$App, ExpressionTests$App$, null ]
+      Data: [ Data, Data$, null ],
+      App: [ App, App$, null ]
     });
 
-  ExpressionTests$Data.staticFlag = false;
+  Data.staticFlag = false;
 
   return $exports;
 });

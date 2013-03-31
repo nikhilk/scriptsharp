@@ -5,9 +5,9 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.App
 
-  function ExpressionTests$App() {
+  function App() {
   }
-  var ExpressionTests$App$ = {
+  var App$ = {
     test: function(arg) {
       var items = [];
       items.push(1);
@@ -44,7 +44,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      App: [ ExpressionTests$App, ExpressionTests$App$, null ]
+      App: [ App, App$, null ]
     });
 
 

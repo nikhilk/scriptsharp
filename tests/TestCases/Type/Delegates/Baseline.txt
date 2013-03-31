@@ -5,16 +5,16 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.EventArgs
 
-  function TypeTests$EventArgs() {
+  function EventArgs() {
   }
-  var TypeTests$EventArgs$ = {
+  var EventArgs$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      EventArgs: [ TypeTests$EventArgs, TypeTests$EventArgs$, null ]
+      EventArgs: [ EventArgs, EventArgs$, null ]
     });
 
 

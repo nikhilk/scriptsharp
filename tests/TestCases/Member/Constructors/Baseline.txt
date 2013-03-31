@@ -5,53 +5,53 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.MyClass
 
-  function MemberTests$MyClass() {
+  function MyClass() {
     this._value = 0;
     this._value = 1;
   }
-  var MemberTests$MyClass$ = {
+  var MyClass$ = {
 
   };
 
 
   // MemberTests.MyClass2
 
-  function MemberTests$MyClass2() {
+  function MyClass2() {
   }
-  var MemberTests$MyClass2$ = {
+  var MyClass2$ = {
 
   };
 
 
   // MemberTests.MyClass3
 
-  function MemberTests$MyClass3(arg, arg2) {
+  function MyClass3(arg, arg2) {
   }
-  var MemberTests$MyClass3$ = {
+  var MyClass3$ = {
 
   };
 
 
   // MemberTests.MyClass4
 
-  function MemberTests$MyClass4(arg, arg2, arg3) {
-    MemberTests$MyClass3.call(this, arg, arg2);
+  function MyClass4(arg, arg2, arg3) {
+    MyClass3.call(this, arg, arg2);
   }
-  var MemberTests$MyClass4$ = {
+  var MyClass4$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      MyClass: [ MemberTests$MyClass, MemberTests$MyClass$, null ],
-      MyClass2: [ MemberTests$MyClass2, MemberTests$MyClass2$, null ],
-      MyClass3: [ MemberTests$MyClass3, MemberTests$MyClass3$, null ],
-      MyClass4: [ MemberTests$MyClass4, MemberTests$MyClass4$, MemberTests$MyClass3 ]
+      MyClass: [ MyClass, MyClass$, null ],
+      MyClass2: [ MyClass2, MyClass2$, null ],
+      MyClass3: [ MyClass3, MyClass3$, null ],
+      MyClass4: [ MyClass4, MyClass4$, MyClass3 ]
     });
 
-  MemberTests$MyClass2._x = 'Hello';
-  MemberTests$MyClass3.c = new MemberTests$MyClass();
+  MyClass2._x = 'Hello';
+  MyClass3.c = new MyClass();
 
   return $exports;
 });

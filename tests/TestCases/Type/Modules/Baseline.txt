@@ -5,16 +5,16 @@ define('test', ['ss'], function(ss) {
 
   // App.Dummy
 
-  function App$Dummy() {
+  function Dummy() {
   }
-  var App$Dummy$ = {
+  var Dummy$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      Dummy: [ App$Dummy, App$Dummy$, null ]
+      Dummy: [ Dummy, Dummy$, null ]
     });
 
   alert('Hello Startup');

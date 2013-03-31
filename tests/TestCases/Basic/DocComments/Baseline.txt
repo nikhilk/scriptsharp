@@ -5,7 +5,7 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.Suit
 
-  var BasicTests$Suit = {
+  var Suit = {
     heart: 0, 
     spade: 1, 
     club: 2, 
@@ -15,12 +15,12 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.IInterface
 
-  function BasicTests$IInterface() { }
+  function IInterface() { }
 
 
   // BasicTests.RecordClass
 
-  function BasicTests$RecordClass(count) {
+  function RecordClass(count) {
     var $o = {};
     return $o;
   }
@@ -28,7 +28,7 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.BaseClass
 
-  function BasicTests$BaseClass(domElement, name, count) {
+  function BaseClass(domElement, name, count) {
     /// <summary>
     /// Represents a base class.
     /// </summary>
@@ -58,14 +58,14 @@ define('test', ['ss'], function(ss) {
     this.instanceField = 0;
     this._domElement = domElement;
   }
-  BasicTests$BaseClass.get_totalCount = function() {
+  BaseClass.get_totalCount = function() {
     /// <summary>
     /// Gets the total count.
     /// </summary>
     /// <value type="Number" integer="true"></value>
     return 0;
   };
-  BasicTests$BaseClass.staticMethod = function(length) {
+  BaseClass.staticMethod = function(length) {
     /// <summary>
     /// A static method.
     /// </summary>
@@ -73,7 +73,7 @@ define('test', ['ss'], function(ss) {
     /// The length.
     /// </param>
   };
-  var BasicTests$BaseClass$ = {
+  var BaseClass$ = {
     get_name: function() {
       /// <summary>
       /// Gets or sets the name.
@@ -195,21 +195,21 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.InternalClass
 
-  function BasicTests$InternalClass() {
+  function InternalClass() {
     /// <summary>
     /// An internal class.
     /// </summary>
   }
-  var BasicTests$InternalClass$ = {
+  var InternalClass$ = {
 
   };
 
 
   // BasicTests.InternalClassWithNoComments
 
-  function BasicTests$InternalClassWithNoComments() {
+  function InternalClassWithNoComments() {
   }
-  var BasicTests$InternalClassWithNoComments$ = {
+  var InternalClassWithNoComments$ = {
 
   };
 
@@ -225,13 +225,13 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.DerivedClass
 
-  function BasicTests$DerivedClass() {
+  function DerivedClass() {
     /// <summary>
     /// Represents a derived class.
     /// </summary>
-    BasicTests$BaseClass.call(this, null, null, 0);
+    BaseClass.call(this, null, null, 0);
   }
-  var BasicTests$DerivedClass$ = {
+  var DerivedClass$ = {
     method3: function(first, last) {
       /// <summary>
       /// Overriden method with params.
@@ -248,18 +248,18 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      InternalClass: [ BasicTests$InternalClass, BasicTests$InternalClass$, null ],
-      InternalClassWithNoComments: [ BasicTests$InternalClassWithNoComments, BasicTests$InternalClassWithNoComments$, null ]
+      InternalClass: [ InternalClass, InternalClass$, null ],
+      InternalClassWithNoComments: [ InternalClassWithNoComments, InternalClassWithNoComments$, null ]
     },
     {
-      Suit: BasicTests$Suit,
-      IInterface: [ BasicTests$IInterface ],
-      RecordClass: BasicTests$RecordClass,
-      BaseClass: [ BasicTests$BaseClass, BasicTests$BaseClass$, null ],
-      DerivedClass: [ BasicTests$DerivedClass, BasicTests$DerivedClass$, BasicTests$BaseClass ]
+      Suit: Suit,
+      IInterface: [ IInterface ],
+      RecordClass: RecordClass,
+      BaseClass: [ BaseClass, BaseClass$, null ],
+      DerivedClass: [ DerivedClass, DerivedClass$, BaseClass ]
     });
 
-  BasicTests$BaseClass.constantField = 3;
+  BaseClass.constantField = 3;
 
   return $exports;
 });

@@ -5,7 +5,7 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.Colors
 
-  var TypeTests$Colors = {
+  var Colors = {
     red: 0, 
     green: 1, 
     blue: 2
@@ -14,7 +14,7 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.Sequence
 
-  var TypeTests$Sequence = {
+  var Sequence = {
     item1: 1, 
     item2: 2, 
     item3: 3, 
@@ -24,7 +24,7 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.Mode
 
-  var TypeTests$Mode = {
+  var Mode = {
     Public: 1, 
     Protected: 2, 
     Private: 4
@@ -33,7 +33,7 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.UInt32Mask
 
-  var TypeTests$UInt32Mask = {
+  var UInt32Mask = {
     v: 4026531840, 
     a: 4278190080
   };
@@ -41,7 +41,7 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.ShortMask
 
-  var TypeTests$ShortMask = {
+  var ShortMask = {
     v: 1, 
     a: 4096
   };
@@ -49,7 +49,7 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.Errors
 
-  var TypeTests$Errors = {
+  var Errors = {
     S_OK: 0, 
     S_FALSE: 1, 
     E_FAIL: -1
@@ -58,23 +58,23 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.App
 
-  function TypeTests$App() {
+  function App() {
   }
-  TypeTests$App.main = function() {
+  App.main = function() {
     var m = 1;
     m = 1 | 4;
     var c = 0;
   };
-  var TypeTests$App$ = {
+  var App$ = {
 
   };
 
 
   // TypeTests.App2
 
-  function TypeTests$App2() {
+  function App2() {
   }
-  var TypeTests$App2$ = {
+  var App2$ = {
     run: function() {
       var method = 'POST';
       this.run1('GET');
@@ -95,14 +95,14 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Colors: TypeTests$Colors,
-      Sequence: TypeTests$Sequence,
-      Mode: TypeTests$Mode,
-      UInt32Mask: TypeTests$UInt32Mask,
-      ShortMask: TypeTests$ShortMask,
-      Errors: TypeTests$Errors,
-      App: [ TypeTests$App, TypeTests$App$, null ],
-      App2: [ TypeTests$App2, TypeTests$App2$, null ]
+      Colors: Colors,
+      Sequence: Sequence,
+      Mode: Mode,
+      UInt32Mask: UInt32Mask,
+      ShortMask: ShortMask,
+      Errors: Errors,
+      App: [ App, App$, null ],
+      App2: [ App2, App2$, null ]
     });
 
 

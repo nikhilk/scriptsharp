@@ -5,7 +5,7 @@ define('test', ['ss', 'jquery'], function(ss, $) {
 
   // ExpressionTests.Foo
 
-  function ExpressionTests$Foo() {
+  function Foo() {
     this._numbers = [];
     var s = this._numbers[10].toString(10);
     var s2 = ss.enumerate(this._numbers).current.toString(10);
@@ -30,7 +30,7 @@ define('test', ['ss', 'jquery'], function(ss, $) {
     var f = JSON.parse(json).setup().run().cleanup();
     var name = document.getElementById('nameTB').value;
   }
-  var ExpressionTests$Foo$ = {
+  var Foo$ = {
     cleanup: function() {
       return this;
     },
@@ -45,7 +45,7 @@ define('test', ['ss', 'jquery'], function(ss, $) {
 
   var $exports = ss.module('test', null,
     {
-      Foo: [ ExpressionTests$Foo, ExpressionTests$Foo$, null ]
+      Foo: [ Foo, Foo$, null ]
     });
 
 

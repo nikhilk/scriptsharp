@@ -5,9 +5,9 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.App
 
-  function ExpressionTests$App() {
+  function App() {
   }
-  var ExpressionTests$App$ = {
+  var App$ = {
     getData: function() {
       return null;
     },
@@ -16,7 +16,7 @@ define('test', ['ss'], function(ss) {
     },
     test: function(arg) {
       var dictionary1 = {};
-      var dictionary2 = { xyz: 1, abc: new ExpressionTests$App(), 'delete': 2, 'test.': 3, '\t': 4 };
+      var dictionary2 = { xyz: 1, abc: new App(), 'delete': 2, 'test.': 3, '\t': 4 };
     },
     test2: function(arg) {
       var dictionary1 = { aaa: 123, xyz: true };
@@ -53,7 +53,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      App: [ ExpressionTests$App, ExpressionTests$App$, null ]
+      App: [ App, App$, null ]
     });
 
 

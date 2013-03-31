@@ -5,31 +5,31 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.SomeClass
 
-  function ExpressionTests$SomeClass(cb) {
+  function SomeClass(cb) {
   }
-  var ExpressionTests$SomeClass$ = {
+  var SomeClass$ = {
 
   };
 
 
   // ExpressionTests.Test
 
-  function ExpressionTests$Test() {
+  function Test() {
     this._n = 0;
   }
-  ExpressionTests$Test.main = function(args) {
+  Test.main = function(args) {
     var o = {};
     var name;
-    ExpressionTests$Test.doStuffStatic(o, function(i, s, b) {
+    Test.doStuffStatic(o, function(i, s, b) {
       name = s;
     });
   };
-  ExpressionTests$Test.doStuffStatic = function(o, callback) {
-    var s = new ExpressionTests$SomeClass(function() {
+  Test.doStuffStatic = function(o, callback) {
+    var s = new SomeClass(function() {
       var temp = o;
     });
   };
-  var ExpressionTests$Test$ = {
+  var Test$ = {
     AAA: function() {
       var $this = this;
 
@@ -37,7 +37,7 @@ define('test', ['ss'], function(ss) {
       this.doStuff(o, function(i, s, b) {
         $this._n = i;
       });
-      var s = new ExpressionTests$SomeClass(function() {
+      var s = new SomeClass(function() {
       });
       for (var i = 0; i < 10; i++) {
         var foo;
@@ -47,17 +47,17 @@ define('test', ['ss'], function(ss) {
         this.doStuff(o, function(i, s, b) {
           $this._n += i;
         });
-        ExpressionTests$Test.doStuffStatic(o, function() {
+        Test.doStuffStatic(o, function() {
         });
-        ExpressionTests$Test.doStuffStatic(o, function() {
+        Test.doStuffStatic(o, function() {
           $this._n++;
         });
       }
-      var s2 = new ExpressionTests$SomeClass(function() {
+      var s2 = new SomeClass(function() {
         var numbers = [ $this._n ];
       });
-      var s3 = new ExpressionTests$SomeClass(function() {
-        var s4 = new ExpressionTests$SomeClass(function() {
+      var s3 = new SomeClass(function() {
+        var s4 = new SomeClass(function() {
           var numbers = [ $this._n * 2 ];
         });
       });
@@ -84,15 +84,15 @@ define('test', ['ss'], function(ss) {
       })(3);
     },
     BBB: function(o) {
-      var s = new ExpressionTests$SomeClass(function() {
+      var s = new SomeClass(function() {
         var temp = o;
       });
     },
     CCC: function(o) {
       var $this = this;
 
-      var s = new ExpressionTests$SomeClass(function() {
-        var s = new ExpressionTests$SomeClass(function() {
+      var s = new SomeClass(function() {
+        var s = new SomeClass(function() {
           var numbers = [ $this._n * 2 ];
         });
       });
@@ -104,8 +104,8 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      SomeClass: [ ExpressionTests$SomeClass, ExpressionTests$SomeClass$, null ],
-      Test: [ ExpressionTests$Test, ExpressionTests$Test$, null ]
+      SomeClass: [ SomeClass, SomeClass$, null ],
+      Test: [ Test, Test$, null ]
     });
 
 

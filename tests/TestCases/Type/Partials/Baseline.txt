@@ -5,23 +5,23 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.IMyInterface
 
-  function TypeTests$IMyInterface() { }
+  function IMyInterface() { }
 
 
   // TypeTests.EmptyClass
 
-  function TypeTests$EmptyClass() {
+  function EmptyClass() {
   }
-  var TypeTests$EmptyClass$ = {
+  var EmptyClass$ = {
 
   };
 
 
   // TypeTests.SingleMemberClass
 
-  function TypeTests$SingleMemberClass() {
+  function SingleMemberClass() {
   }
-  var TypeTests$SingleMemberClass$ = {
+  var SingleMemberClass$ = {
     run: function() {
     }
   };
@@ -29,10 +29,10 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.MergedMembersClass
 
-  function TypeTests$MergedMembersClass() {
+  function MergedMembersClass() {
     this.foo = false;
   }
-  var TypeTests$MergedMembersClass$ = {
+  var MergedMembersClass$ = {
     testMethod: function() {
       return null;
     }
@@ -41,9 +41,9 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.MyClass
 
-  function TypeTests$MyClass() {
+  function MyClass() {
   }
-  var TypeTests$MyClass$ = {
+  var MyClass$ = {
     start: function() {
     },
     Stop: function() {
@@ -55,9 +55,9 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.SomeClass
 
-  function TypeTests$SomeClass() {
+  function SomeClass() {
   }
-  var TypeTests$SomeClass$ = {
+  var SomeClass$ = {
     close: function() {
     },
     _cancel: function() {
@@ -69,7 +69,7 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.App
 
-  function TypeTests$App() {
+  function App() {
     var s;
     s.run();
     var d;
@@ -80,28 +80,28 @@ define('test', ['ss'], function(ss) {
     mc.Stop();
     mc.resume();
   }
-  var TypeTests$App$ = {
+  var App$ = {
 
   };
 
 
   // TypeTests.DerivedMemberClass
 
-  function TypeTests$DerivedMemberClass() {
-    TypeTests$SingleMemberClass.call(this);
+  function DerivedMemberClass() {
+    SingleMemberClass.call(this);
   }
-  var TypeTests$DerivedMemberClass$ = {
+  var DerivedMemberClass$ = {
 
   };
 
 
   // TypeTests.DerivedMergedMembersClass
 
-  function TypeTests$DerivedMergedMembersClass() {
-    TypeTests$MergedMembersClass.call(this);
+  function DerivedMergedMembersClass() {
+    MergedMembersClass.call(this);
     this.name = this.bar + this.bar + 'Name';
   }
-  var TypeTests$DerivedMergedMembersClass$ = {
+  var DerivedMergedMembersClass$ = {
     testMethod: function() {
       return null;
     },
@@ -122,17 +122,17 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      SingleMemberClass: [ TypeTests$SingleMemberClass, TypeTests$SingleMemberClass$, null ],
-      SomeClass: [ TypeTests$SomeClass, TypeTests$SomeClass$, null ]
+      SingleMemberClass: [ SingleMemberClass, SingleMemberClass$, null ],
+      SomeClass: [ SomeClass, SomeClass$, null ]
     },
     {
-      IMyInterface: [ TypeTests$IMyInterface ],
-      EmptyClass: [ TypeTests$EmptyClass, TypeTests$EmptyClass$, null ],
-      MergedMembersClass: [ TypeTests$MergedMembersClass, TypeTests$MergedMembersClass$, null ],
-      MyClass: [ TypeTests$MyClass, TypeTests$MyClass$, null, TypeTests$IMyInterface ],
-      App: [ TypeTests$App, TypeTests$App$, null ],
-      DerivedMemberClass: [ TypeTests$DerivedMemberClass, TypeTests$DerivedMemberClass$, TypeTests$SingleMemberClass ],
-      DerivedMergedMembersClass: [ TypeTests$DerivedMergedMembersClass, TypeTests$DerivedMergedMembersClass$, TypeTests$MergedMembersClass ]
+      IMyInterface: [ IMyInterface ],
+      EmptyClass: [ EmptyClass, EmptyClass$, null ],
+      MergedMembersClass: [ MergedMembersClass, MergedMembersClass$, null ],
+      MyClass: [ MyClass, MyClass$, null, IMyInterface ],
+      App: [ App, App$, null ],
+      DerivedMemberClass: [ DerivedMemberClass, DerivedMemberClass$, SingleMemberClass ],
+      DerivedMergedMembersClass: [ DerivedMergedMembersClass, DerivedMergedMembersClass$, MergedMembersClass ]
     });
 
 

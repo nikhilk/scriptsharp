@@ -5,7 +5,7 @@ define('test', ['ss'], function(ss) {
 
   // StatementTests.Mode
 
-  var StatementTests$Mode = {
+  var Mode = {
     foo: 0, 
     bar: 1
   };
@@ -13,9 +13,9 @@ define('test', ['ss'], function(ss) {
 
   // StatementTests.App
 
-  function StatementTests$App() {
+  function App() {
   }
-  var StatementTests$App$ = {
+  var App$ = {
     test: function(arg, m) {
       var i;
       switch (i) {
@@ -56,8 +56,8 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Mode: StatementTests$Mode,
-      App: [ StatementTests$App, StatementTests$App$, null ]
+      Mode: Mode,
+      App: [ App, App$, null ]
     });
 
 

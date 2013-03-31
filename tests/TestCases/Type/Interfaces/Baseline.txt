@@ -5,24 +5,24 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.IMarker
 
-  function TypeTests$IMarker() { }
+  function IMarker() { }
 
 
   // TypeTests.ISerializable
 
-  function TypeTests$ISerializable() { }
+  function ISerializable() { }
 
 
   // TypeTests.IRunnable
 
-  function TypeTests$IRunnable() { }
+  function IRunnable() { }
 
 
   // TypeTests.MyObject
 
-  function TypeTests$MyObject() {
+  function MyObject() {
   }
-  var TypeTests$MyObject$ = {
+  var MyObject$ = {
     dispose: function() {
     }
   };
@@ -30,9 +30,9 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.Foo
 
-  function TypeTests$Foo() {
+  function Foo() {
   }
-  var TypeTests$Foo$ = {
+  var Foo$ = {
     get_canRun: function() {
       return true;
     },
@@ -46,10 +46,10 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.MyObject2
 
-  function TypeTests$MyObject2() {
-    TypeTests$MyObject.call(this);
+  function MyObject2() {
+    MyObject.call(this);
   }
-  var TypeTests$MyObject2$ = {
+  var MyObject2$ = {
     get_canRun: function() {
       return true;
     },
@@ -60,12 +60,12 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IMarker: [ TypeTests$IMarker ],
-      ISerializable: [ TypeTests$ISerializable ],
-      IRunnable: [ TypeTests$IRunnable ],
-      MyObject: [ TypeTests$MyObject, TypeTests$MyObject$, null, ss.IDisposable ],
-      Foo: [ TypeTests$Foo, TypeTests$Foo$, null, TypeTests$IMarker, TypeTests$ISerializable, TypeTests$IRunnable ],
-      MyObject2: [ TypeTests$MyObject2, TypeTests$MyObject2$, TypeTests$MyObject, TypeTests$IRunnable ]
+      IMarker: [ IMarker ],
+      ISerializable: [ ISerializable ],
+      IRunnable: [ IRunnable ],
+      MyObject: [ MyObject, MyObject$, null, ss.IDisposable ],
+      Foo: [ Foo, Foo$, null, IMarker, ISerializable, IRunnable ],
+      MyObject2: [ MyObject2, MyObject2$, MyObject, IRunnable ]
     });
 
 

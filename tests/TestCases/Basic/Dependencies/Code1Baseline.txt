@@ -5,18 +5,18 @@ define('test', ['ss', 'lib1'], function(ss, lib1) {
 
   // BasicTests.App
 
-  function BasicTests$App() {
+  function App() {
     var c1 = new lib1.Component1();
     var c2 = new Component2();
   }
-  var BasicTests$App$ = {
+  var App$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      App: [ BasicTests$App, BasicTests$App$, null ]
+      App: [ App, App$, null ]
     });
 
 

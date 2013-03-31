@@ -5,20 +5,20 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.Sub1.Sub2.MyClass
 
-  function TypeTests$Sub1$Sub2$MyClass() {
-    var yc = new TypeTests$Sub1$YourClass();
+  function MyClass() {
+    var yc = new YourClass();
     yc.run();
   }
-  var TypeTests$Sub1$Sub2$MyClass$ = {
+  var MyClass$ = {
 
   };
 
 
   // TypeTests.Sub1.YourClass
 
-  function TypeTests$Sub1$YourClass() {
+  function YourClass() {
   }
-  var TypeTests$Sub1$YourClass$ = {
+  var YourClass$ = {
     run: function() {
     }
   };
@@ -26,37 +26,37 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.YourClass1
 
-  function TypeTests$YourClass1() {
+  function YourClass1() {
   }
-  var TypeTests$YourClass1$ = {
+  var YourClass1$ = {
 
   };
 
 
   // MyApp.Foo.MyClassF
 
-  function MyApp$Foo$MyClassF() {
+  function MyClassF() {
   }
-  var MyApp$Foo$MyClassF$ = {
+  var MyClassF$ = {
 
   };
 
 
   // MyApp.Test
 
-  function MyApp$Test() {
-    var c = new TypeTests$Sub1$Sub2$MyClass();
+  function Test() {
+    var c = new MyClass();
   }
-  var MyApp$Test$ = {
+  var Test$ = {
 
   };
 
 
   // MyCompany.Utility
 
-  function MyCompany$Utility() {
+  function Utility() {
   }
-  var MyCompany$Utility$ = {
+  var Utility$ = {
     run: function() {
     }
   };
@@ -64,34 +64,34 @@ define('test', ['ss'], function(ss) {
 
   // MyCompany.MyProduct.UtilityP
 
-  function MyCompany$MyProduct$UtilityP() {
+  function UtilityP() {
   }
-  var MyCompany$MyProduct$UtilityP$ = {
+  var UtilityP$ = {
 
   };
 
 
   // MyCompany.MyProduct.MyComponent.Component
 
-  function MyCompany$MyProduct$MyComponent$Component() {
-    var u = new MyCompany$Utility();
+  function Component() {
+    var u = new Utility();
     u.run();
   }
-  var MyCompany$MyProduct$MyComponent$Component$ = {
+  var Component$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      MyClass: [ TypeTests$Sub1$Sub2$MyClass, TypeTests$Sub1$Sub2$MyClass$, null ],
-      YourClass: [ TypeTests$Sub1$YourClass, TypeTests$Sub1$YourClass$, null ],
-      YourClass1: [ TypeTests$YourClass1, TypeTests$YourClass1$, null ],
-      MyClassF: [ MyApp$Foo$MyClassF, MyApp$Foo$MyClassF$, null ],
-      Test: [ MyApp$Test, MyApp$Test$, null ],
-      Utility: [ MyCompany$Utility, MyCompany$Utility$, null ],
-      UtilityP: [ MyCompany$MyProduct$UtilityP, MyCompany$MyProduct$UtilityP$, null ],
-      Component: [ MyCompany$MyProduct$MyComponent$Component, MyCompany$MyProduct$MyComponent$Component$, null ]
+      MyClass: [ MyClass, MyClass$, null ],
+      YourClass: [ YourClass, YourClass$, null ],
+      YourClass1: [ YourClass1, YourClass1$, null ],
+      MyClassF: [ MyClassF, MyClassF$, null ],
+      Test: [ Test, Test$, null ],
+      Utility: [ Utility, Utility$, null ],
+      UtilityP: [ UtilityP, UtilityP$, null ],
+      Component: [ Component, Component$, null ]
     });
 
 
