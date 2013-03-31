@@ -391,7 +391,7 @@
   if (document.addEventListener) {
     var rs = document.readyState;
     rs == 'complete' || rs == 'interactive' ?
-      _startup() :
+      setTimeout(_startup, 0) :
       document.addEventListener('DOMContentLoaded', _startup, false);
   }
   else if (global.attachEvent) {
