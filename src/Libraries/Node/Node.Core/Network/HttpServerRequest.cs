@@ -11,9 +11,9 @@ namespace NodeApi.Network {
 
     [ScriptImport]
     [ScriptIgnoreNamespace]
-    public sealed class HttpServerRequest : ReadableStream, IEventEmitter {
+    public class HttpServerRequest : ReadableStream, IEventEmitter {
 
-        private HttpServerRequest() {
+        protected HttpServerRequest() {
         }
 
         [ScriptField]
