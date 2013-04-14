@@ -32,7 +32,7 @@ namespace NodeApi.Restify {
         /// <summary>
         /// You can optionally pass in a bunyan (https://github.com/trentm/node-bunyan) instance; not required
         /// </summary>
-        public BunyanLogger Log;
+        public object Log;
 
         /// <summary>
         /// By default, this will be set in the Server response header, default is restify
@@ -59,7 +59,7 @@ namespace NodeApi.Restify {
         ///         }
         ///     });
         /// </example>
-        public string ResponseTimeFormatter;
+        public Func<int, int> ResponseTimeFormatter;
 
         /// <summary>
         /// By default, this will be X-Response-Time

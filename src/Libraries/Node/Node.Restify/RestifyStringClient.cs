@@ -3,7 +3,6 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
-using System.Collections;
 using System.Runtime.CompilerServices;
 
 namespace NodeApi.Restify {
@@ -21,7 +20,7 @@ namespace NodeApi.Restify {
          /// <summary>
         /// del doesn't take content, since you know, it should't:
         /// </summary>
-        public void Del(string path, Dictionary content, RestifyCallback callback) {
+        public void Del(string path, object content, RestifyCallback callback) {
         }
         
         /// <summary>
@@ -46,13 +45,13 @@ namespace NodeApi.Restify {
         /// <param name="path"></param>
         /// <param name="content"></param>
         /// <param name="callback"></param>
-        public void Post(string path, Dictionary content, RestifyCallback callback) {
+        public void Post(string path, object content, RestifyCallback callback) {
         }
 
         /// <summary>
         /// Just like post:
         /// </summary>
-        public void Put(string path, Dictionary content, RestifyCallback callback) {
+        public void Put(string path, object content, RestifyCallback callback) {
         }
     }
 }

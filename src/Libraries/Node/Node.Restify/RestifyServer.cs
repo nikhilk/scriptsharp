@@ -31,7 +31,7 @@ namespace NodeApi.Restify {
         /// bunyan instance
         /// </summary>
         [ScriptField]
-        public BunyanLogger Log {
+        public RestifyLogger Log {
             get {
                 return null;
             }
@@ -67,6 +67,13 @@ namespace NodeApi.Restify {
             }
         }
 
+        /// <summary>
+        /// Emitted after a route has finished all the handlers you registered.
+        /// You can use this to write audit logs, etc. The route parameter will be the Route object that ran.
+        /// Note that when you are using the default 404/405/BadVersion handlers, this event will still be fired,
+        /// but route will be null. If you have registered your own listeners for those, this event will not be fired
+        /// unless you invoke the cb argument that is provided with them.
+        /// </summary>
         [ScriptEvent("on", "removeListener")]
         public event Action After {
             add {
@@ -75,6 +82,11 @@ namespace NodeApi.Restify {
             }
         }
 
+        /// <summary>
+        /// When a client request is sent for a URL that does exist, but you have not registered a route for that HTTP verb,
+        /// restify will emit this event. Note that restify checks for listeners on this event, and if there are none,
+        /// responds with a default 405 handler. It is expected that if you listen for this event, you respond to the client.
+        /// </summary>
         [ScriptEvent("on", "removeListener")]
         [ScriptName("MethodNotAllowed")]
         public event Action MethodNotAllowed {
@@ -84,6 +96,11 @@ namespace NodeApi.Restify {
             }
         }
 
+        /// <summary>
+        /// When a client request is sent for a URL that does not exist, restify will emit this event.
+        /// Note that restify checks for listeners on this event, and if there are none, responds with a default 404 handler.
+        /// It is expected that if you listen for this event, you respond to the client.
+        /// </summary>
         [ScriptEvent("on", "removeListener")]
         [ScriptName("NotFound")]
         public event Action NotFound {
@@ -93,6 +110,11 @@ namespace NodeApi.Restify {
             }
         }
 
+        /// <summary>
+        /// Emitted when some handler throws an uncaughtException somewhere in the chain.
+        /// The default behavior is to just call res.send(error), and let the built-ins in restify handle transforming,
+        /// but you can override to whatever you want here.
+        /// </summary>
         [ScriptEvent("on", "removeListener")]
         public event Action UncaughtException {
             add {
@@ -101,6 +123,11 @@ namespace NodeApi.Restify {
             }
         }
 
+        /// <summary>
+        /// When a client request is sent for a route that exist, but has a content-type mismatch, restify will emit this event.
+        /// Note that restify checks for listeners on this event, and if there are none, responds with a default 415 handler.
+        /// It is expected that if you listen for this event, you respond to the client.
+        /// </summary>
         [ScriptEvent("on", "removeListener")]
         [ScriptName("UnsupportedMediaType")]
         public event Action UnsupportedMediaType {
@@ -110,6 +137,11 @@ namespace NodeApi.Restify {
             }
         }
 
+        /// <summary>
+        /// When a client request is sent for a route that exists, but does not match the version(s) on those routes,
+        /// restify will emit this event. Note that restify checks for listeners on this event, and if there are none,
+        /// responds with a default 400 handler. It is expected that if you listen for this event, you respond to the client.
+        /// </summary>
         [ScriptEvent("on", "removeListener")]
         [ScriptName("VersionNotAllowed")]
         public event Action VersionNotAllowed {
@@ -123,11 +155,11 @@ namespace NodeApi.Restify {
             return null;
         }
 
-        public Dictionary Address() {
+        public Dictionary<string, object> Address() {
             return null;
         }
 
-        public RestifyChainedHandler[] AuditLogger(Dictionary options) {
+        public RestifyChainedHandler[] AuditLogger(object options) {
             return null;
         }
 
@@ -150,7 +182,7 @@ namespace NodeApi.Restify {
             return null;
         }
 
-        public RestifyServer CreateServer(Dictionary options) {
+        public RestifyServer CreateServer(object options) {
             return null;
         }
 
@@ -196,10 +228,10 @@ namespace NodeApi.Restify {
         public void Get(RegExp pathPattern, RestifyChainedHandler[] handlers) {
         }
 
-        public void Get(Dictionary options, RestifyChainedHandler handler) {
+        public void Get(object options, RestifyChainedHandler handler) {
         }
 
-        public void Get(Dictionary options, RestifyChainedHandler[] handlers) {
+        public void Get(object options, RestifyChainedHandler[] handlers) {
         }
 
         public RestifyChainedHandler[] GzipResponse() {
@@ -253,11 +285,11 @@ namespace NodeApi.Restify {
             return null;
         }
 
-        public RestifyChainedHandler[] RequestLogger(Dictionary options) {
+        public RestifyChainedHandler[] RequestLogger(object options) {
             return null;
         }
 
-        public RestifyChainedHandler[] ServeStatic(Dictionary options) {
+        public RestifyChainedHandler[] ServeStatic(object options) {
             return null;
         }
 

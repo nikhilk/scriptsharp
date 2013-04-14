@@ -10,5 +10,8 @@ namespace NodeApi.Restify {
     [ScriptIgnoreNamespace]
     [ScriptImport]
     public sealed class RestifyError {
+
+        internal RestifyError() {
+        }
     }
 }

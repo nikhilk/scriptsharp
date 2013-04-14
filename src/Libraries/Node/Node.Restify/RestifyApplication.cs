@@ -11,7 +11,7 @@ namespace NodeApi.Restify {
     [ScriptImport]
     [ScriptIgnoreNamespace]
     [ScriptName("restify")]
-    public sealed class Restify {
+    public static class RestifyApplication {
 
         public static RestifyChainedHandler[] AcceptParser(string[] serverAcceptable) {
             return null;

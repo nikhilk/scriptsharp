@@ -4,7 +4,7 @@
 //
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using NodeApi.Network;
 
@@ -85,13 +85,10 @@ namespace NodeApi.Restify {
         /// </summary>
         /// <param name="code">Status code</param>
         /// <param name="body">content</param>
-        public void Json(HttpStatusCode code, Dictionary body) {
+        public void Json(HttpStatusCode code, object body) {
         }
 
-        public void Send(string message) {
-        }
-
-        public void Send(Dictionary message) {
+        public void Send(object message) {
         }
 
         public void Send(int errorCode, RestifyError message) {
@@ -102,7 +99,7 @@ namespace NodeApi.Restify {
         /// </summary>
         /// <param name="type">type defaults to _public_</param>
         /// <param name="options">options currently only takes maxAge.</param>
-        public void SetCache(string type, Dictionary options) {
+        public void SetCache(string type, Dictionary<string, object> options) {
         }
 
         /// <summary>

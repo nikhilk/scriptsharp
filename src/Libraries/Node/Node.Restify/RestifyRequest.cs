@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using NodeApi.Network;
 
 namespace NodeApi.Restify {
 
@@ -61,7 +60,7 @@ namespace NodeApi.Restify {
         /// bunyan logger you can piggyback on
         /// </summary>
         [ScriptField]
-        public BunyanLogger Log {
+        public RestifyLogger Log {
             get {
                 return null;
             }
@@ -110,20 +109,30 @@ namespace NodeApi.Restify {
         /// </summary>
         [ScriptField]
         [ScriptName("time")]
-        public int TimeInMs {
+        public int TimeInMilliseconds {
             get {
                 return 0;
             }
         }
 
+        /// <summary>
+        /// Check if the Accept header is present, and includes the given type.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         [ScriptName("accepts")]
-        public string AcceptsContentType(string type) {
-            return null;
+        public bool AcceptsContentType(string type) {
+            return true;
         }
 
+        /// <summary>
+        /// Check if the Accept header is present, and includes the given types.
+        /// </summary>
+        /// <param name="types"></param>
+        /// <returns></returns>
         [ScriptName("accepts")]
-        public string AcceptsContentType(string[] types) {
-            return null;
+        public bool AcceptsContentType(string[] types) {
+            return true;
         }
 
         [ScriptName("header")]
@@ -136,13 +145,23 @@ namespace NodeApi.Restify {
             return String.Empty;
         }
 
-        public BunyanLogger GetLogger(string name) {
+        /// <summary>
+        /// Shorthand to grab a new bunyan instance that is a child component of the one restify has:
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public RestifyLogger GetLogger(string name) {
             return null;
         }
 
+        /// <summary>
+        /// Check if the incoming request contains the Content-Type header field, and it contains the give mime type.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         [ScriptName("is")]
-        public string IsContentType(string type) {
-            return null;
+        public bool IsContentType(string type) {
+            return true;
         }
     }
 }

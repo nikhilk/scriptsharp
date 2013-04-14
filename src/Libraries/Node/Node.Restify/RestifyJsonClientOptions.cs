@@ -25,7 +25,8 @@ namespace NodeApi.Restify {
         /// <summary>
         /// node-dtrace-provider handle
         /// </summary>
-        public object Dtrace;
+        [ScriptName("dtrace")]
+        public object DTrace;
 
         /// <summary>
         /// Will compress data when sent using content-encoding: gzip
@@ -40,7 +41,7 @@ namespace NodeApi.Restify {
         /// <summary>
         /// bunyan instance
         /// </summary>
-        public BunyanLogger Log;
+        public object Log;
         
         /// <summary>
         /// options to provide to node-retry; defaults to 3 retries

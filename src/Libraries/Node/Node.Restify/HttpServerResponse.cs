@@ -1,5 +1,5 @@
 // HttpServerResponse.cs
-// Script#/Libraries/Node/Core
+// Script#/Libraries/Node/Restify
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
@@ -7,14 +7,15 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using NodeApi.IO;
+using NodeApi.Network;
 
-namespace NodeApi.Network {
+namespace NodeApi.Restify {
 
     [ScriptImport]
     [ScriptIgnoreNamespace]
-    public sealed class HttpServerResponse : WritableStream, IEventEmitter {
+    public class HttpServerResponse : WritableStream, IEventEmitter {
 
-        private HttpServerResponse() {
+        protected HttpServerResponse() {
         }
 
         [ScriptField]
