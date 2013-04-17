@@ -6,14 +6,22 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using NodeApi.Network;
 
 namespace NodeApi.Restify {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    public sealed class RestifyRequest : HttpServerRequest {
+    public sealed class RestifyRequest {
 
         private RestifyRequest() {
+        }
+
+        [ScriptField]
+        public Socket Connection {
+            get {
+                return null;
+            }
         }
 
         /// <summary>
@@ -36,6 +44,13 @@ namespace NodeApi.Restify {
             }
         }
 
+        [ScriptField]
+        public object Headers {
+            get {
+                return null;
+            }
+        }
+        
         /// <summary>
         /// url.parse(req.url) href
         /// </summary>
@@ -43,6 +58,13 @@ namespace NodeApi.Restify {
         public string Href {
             get {
                 return String.Empty;
+            }
+        }
+
+        [ScriptField]
+        public string HttpVersion {
+            get {
+                return null;
             }
         }
 
@@ -66,6 +88,13 @@ namespace NodeApi.Restify {
             }
         }
 
+        [ScriptField]
+        public HttpVerb Method {
+            get {
+                return HttpVerb.GET;
+            }
+        }
+        
         [ScriptField]
         [ScriptName("params")]
         public Dictionary<string, string> Parameters {
@@ -103,7 +132,7 @@ namespace NodeApi.Restify {
                 return true;
             }
         }
-
+        
         /// <summary>
         /// the time when this request arrived (ms since epoch)
         /// </summary>
@@ -112,6 +141,20 @@ namespace NodeApi.Restify {
         public int TimeInMilliseconds {
             get {
                 return 0;
+            }
+        }
+
+        [ScriptField]
+        public object Trailers {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public string Url {
+            get {
+                return null;
             }
         }
 

@@ -10,7 +10,14 @@ namespace NodeApi.Restify {
 
     [ScriptImport]
     [ScriptIgnoreNamespace]
+    [ScriptName("Object")]
     public sealed class RestifyJsonClientOptions {
+
+        public RestifyJsonClientOptions() {
+        }
+
+        public RestifyJsonClientOptions(params object[] nameValuePairs) {
+        }
 
         /// <summary>
         /// Accept header to send

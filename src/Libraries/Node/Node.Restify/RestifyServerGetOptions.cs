@@ -13,6 +13,12 @@ namespace NodeApi.Restify {
     [ScriptName("Object")]
     public sealed class RestifyServerGetOptions {
 
+        public RestifyServerGetOptions() {
+        }
+
+        public RestifyServerGetOptions(params object[] nameValuePairs) {
+        }
+
         public string Path;
         
         public string Version;

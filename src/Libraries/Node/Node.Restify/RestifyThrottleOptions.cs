@@ -13,6 +13,12 @@ namespace NodeApi.Restify {
     [ScriptName("Object")]
     public sealed class RestifyThrottleOptions {
 
+        public RestifyThrottleOptions() {
+        }
+
+        public RestifyThrottleOptions(params object[] nameValuePairs) {
+        }
+
         /// <summary>
         /// If available, the amount of requests to burst to
         /// </summary>

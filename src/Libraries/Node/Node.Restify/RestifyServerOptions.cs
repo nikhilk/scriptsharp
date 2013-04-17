@@ -12,7 +12,12 @@ namespace NodeApi.Restify {
     [ScriptImport]
     [ScriptName("Object")]
     public sealed class RestifyServerOptions {
-        public string Test;
+
+        public RestifyServerOptions() {
+        }
+
+        public RestifyServerOptions(params object[] nameValuePairs) {
+        }
 
         /// <summary>
         /// If you want to create an HTTPS server, pass in the PEM-encoded certificate and key
@@ -59,7 +64,7 @@ namespace NodeApi.Restify {
         ///         }
         ///     });
         /// </example>
-        public Func<int, int> ResponseTimeFormatter;
+        public Func<int, string> ResponseTimeFormatter;
 
         /// <summary>
         /// By default, this will be X-Response-Time
