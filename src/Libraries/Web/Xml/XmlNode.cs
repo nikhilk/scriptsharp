@@ -161,6 +161,14 @@ namespace System.Xml {
             return null;
         }
 
+        public XmlNode QuerySelector(string selector) {
+            return null;
+        }
+
+        public XmlNodeList QuerySelectorAll(string selector) {
+            return null;
+        }
+
         public string TransformNode(XmlDocument stylesheet) {
             return null;
         }
