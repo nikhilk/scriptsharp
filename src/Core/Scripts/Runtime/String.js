@@ -58,10 +58,35 @@ function format(cultureOrFormat) {
     });
 }
 
-function trimStart(s) {
+function trim(s, trimChars) {
+  if (trimChars != null || typeof String.prototype.trim !== 'function') {
+    if (trimChars.constructor != Array) {
+      trimChars = Array.prototype.slice.call(arguments, 1);
+    }
+    return ss.trimEnd(ss.trimStart(s, trimChars), trimChars);
+  }
+  return s.trim();
+}
+function trimStart(s, trimChars) {
+  if (trimChars != null) {
+    var values = Array.prototype.slice.call(arguments, 1);
+    if (values[0].constructor != String) {
+      values = values[0];
+    }
+    var pattern = '^[' + values.join('') + ']*';
+    return s.replace(new RegExp(pattern, ''), '');
+  }
   return s.replace(/^\s*/, '');
 }
-function trimEnd(s) {
+function trimEnd(s, trimChars) {
+  if (trimChars != null) {
+    var values = Array.prototype.slice.call(arguments, 1);
+    if (values[0].constructor != String) {
+      values = values[0];
+    }
+    var pattern = '[' + values.join('') + ']*$';
+    return s.replace(new RegExp(pattern, ''), '');
+  }
   return s.replace(/\s*$/, '');
 }
 function startsWith(s, prefix) {
