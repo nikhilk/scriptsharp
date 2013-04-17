@@ -69,17 +69,13 @@ namespace ScriptSharp.ScriptModel {
 
         public string FullGeneratedName {
             get {
-                if (_ignoreNamespace == false) {
+                if ((IsApplicationType == false) && (_ignoreNamespace == false)) {
                     string namespaceName = GeneratedNamespace;
                     if (namespaceName.Length != 0) {
-                        if (IsApplicationType) {
-                            return namespaceName + "$" + GeneratedName;
-                        }
-                        else {
-                            return namespaceName + "." + GeneratedName;
-                        }
+                        return namespaceName + "." + GeneratedName;
                     }
                 }
+
                 return GeneratedName;
             }
         }

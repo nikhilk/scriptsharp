@@ -5,9 +5,9 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.App
 
-  function TypeTests$App() {
+  function App() {
   }
-  var TypeTests$App$ = {
+  var App$ = {
     method: function() {
       var i = 10;
       var b = true;
@@ -32,7 +32,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      App: [ TypeTests$App, TypeTests$App$, null ]
+      App: [ App, App$, null ]
     });
 
 

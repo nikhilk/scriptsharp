@@ -5,7 +5,7 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.App
 
-  function TypeTests$App() {
+  function App() {
     var elem = document.getElementById('foo');
     var s = elem.myString;
     elem.do('foo');
@@ -20,14 +20,14 @@ define('test', ['ss'], function(ss) {
     elem.addEventListener('click', eventHandler);
     elem.removeEventListener('click', eventHandler);
   }
-  var TypeTests$App$ = {
+  var App$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      App: [ TypeTests$App, TypeTests$App$, null ]
+      App: [ App, App$, null ]
     });
 
 

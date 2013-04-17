@@ -5,7 +5,7 @@ define('test', ['ss', 'lib1', '/lib/comp3', 'text!data.html'], function(ss, lib1
 
   // BasicTests.App
 
-  function BasicTests$App() {
+  function App() {
     var c1 = new lib1.Component1();
     var c2 = new Component2();
     var c3 = new comp3.Component3();
@@ -14,14 +14,14 @@ define('test', ['ss', 'lib1', '/lib/comp3', 'text!data.html'], function(ss, lib1
     });
     alert(dataTemplate);
   }
-  var BasicTests$App$ = {
+  var App$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      App: [ BasicTests$App, BasicTests$App$, null ]
+      App: [ App, App$, null ]
     });
 
 

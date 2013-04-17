@@ -6,16 +6,16 @@
 
   // Basic.App
 
-  function Basic$App() {
+  function App() {
   }
-  var Basic$App$ = {
+  var App$ = {
 
   };
 
 
   var $exports = ss.module('basic', null,
     {
-      App: [ Basic$App, Basic$App$, null ]
+      App: [ App, App$, null ]
     });
 
 

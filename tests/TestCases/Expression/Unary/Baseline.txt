@@ -5,10 +5,10 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Data
 
-  function ExpressionTests$Data() {
+  function Data() {
     this._value = 0;
   }
-  var ExpressionTests$Data$ = {
+  var Data$ = {
     get_value: function() {
       return this._value;
     },
@@ -21,9 +21,9 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.App
 
-  function ExpressionTests$App() {
+  function App() {
   }
-  var ExpressionTests$App$ = {
+  var App$ = {
     test: function(arg) {
       var xyz = ~arg;
       var f = (!arg);
@@ -40,7 +40,7 @@ define('test', ['ss'], function(ss) {
       var s = (!f).toString();
       var num = 1.01;
       s = (~num).toExponential();
-      var d = new ExpressionTests$Data();
+      var d = new Data();
       d.set_value(d.get_value() + 1) - 1;
       d.set_value(d.get_value() + 1);
     }
@@ -49,8 +49,8 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Data: [ ExpressionTests$Data, ExpressionTests$Data$, null ],
-      App: [ ExpressionTests$App, ExpressionTests$App$, null ]
+      Data: [ Data, Data$, null ],
+      App: [ App, App$, null ]
     });
 
 

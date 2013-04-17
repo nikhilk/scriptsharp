@@ -43,7 +43,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.AppFlags
 
-  var BasicTests$AppFlags = {
+  var AppFlags = {
     AAA: 0, 
     BBB: 1
   };
@@ -51,12 +51,12 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.IApp
 
-  function BasicTests$IApp() { }
+  function IApp() { }
 
 
   // BasicTests.MyData
 
-  function BasicTests$MyData(a, b) {
+  function MyData(a, b) {
     var $o = {};
     $o.$0 = a;
     $o.$1 = b;
@@ -72,11 +72,11 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.App
 
-  function BasicTests$App() {
-    var helper = new BasicTests$AppHelper();
+  function App() {
+    var helper = new AppHelper();
     helper.$0();
   }
-  var BasicTests$App$ = {
+  var App$ = {
     run: function() {
     },
     $0: function() {
@@ -88,9 +88,9 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.AppHelper
 
-  function BasicTests$AppHelper() {
+  function AppHelper() {
   }
-  var BasicTests$AppHelper$ = {
+  var AppHelper$ = {
     $0: function() {
     }
   };
@@ -98,9 +98,9 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.Bar
 
-  function BasicTests$Bar() {
+  function Bar() {
   }
-  var BasicTests$Bar$ = {
+  var Bar$ = {
     $0: function() {
     },
     toString: function() {
@@ -113,9 +113,9 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.BaseBaseClass
 
-  function BasicTests$BaseBaseClass() {
+  function BaseBaseClass() {
   }
-  var BasicTests$BaseBaseClass$ = {
+  var BaseBaseClass$ = {
     $0: function() {
     }
   };
@@ -123,40 +123,40 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.ABC
 
-  function BasicTests$ABC() {
+  function ABC() {
     var d = { };
   }
-  var BasicTests$ABC$ = {
+  var ABC$ = {
 
   };
 
 
   // BasicTests.Bar2
 
-  function BasicTests$Bar2() {
-    BasicTests$Bar.call(this);
+  function Bar2() {
+    Bar.call(this);
   }
-  var BasicTests$Bar2$ = {
+  var Bar2$ = {
 
   };
 
 
   // BasicTests.BarCustom
 
-  function BasicTests$BarCustom() {
-    BasicTests$Bar.call(this);
+  function BarCustom() {
+    Bar.call(this);
   }
-  var BasicTests$BarCustom$ = {
+  var BarCustom$ = {
 
   };
 
 
   // BasicTests.BaseClass
 
-  function BasicTests$BaseClass() {
-    BasicTests$BaseBaseClass.call(this);
+  function BaseClass() {
+    BaseBaseClass.call(this);
   }
-  var BasicTests$BaseClass$ = {
+  var BaseClass$ = {
     $1: function() {
     }
   };
@@ -164,17 +164,17 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.BarEx
 
-  function BasicTests$BarEx() {
-    BasicTests$Bar2.call(this);
+  function BarEx() {
+    Bar2.call(this);
   }
-  var BasicTests$BarEx$ = {
+  var BarEx$ = {
     $2: function() {
       var mode = 1;
     },
     $0: function() {
       this.$2();
       ss.base(this, '$0').call(this);
-      var d = BasicTests$MyData('a', 'b');
+      var d = MyData('a', 'b');
       d.$0 = d.$1;
     },
     $3: function(blah) {
@@ -238,10 +238,10 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.BarCustom2
 
-  function BasicTests$BarCustom2() {
-    BasicTests$BarCustom.call(this);
+  function BarCustom2() {
+    BarCustom.call(this);
   }
-  var BasicTests$BarCustom2$ = {
+  var BarCustom2$ = {
     $2: function() {
       return 0;
     },
@@ -255,7 +255,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.FooBehavior
 
-  function BasicTests$FooBehavior(e, i) {
+  function FooBehavior(e, i) {
     this.c$0 = 0;
     this.c$1 = 0;
     this.c$2 = 0;
@@ -264,7 +264,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
     this.c$1 = i * 2;
     this.c$2 = i * 4;
   }
-  var BasicTests$FooBehavior$ = {
+  var FooBehavior$ = {
     add_c$4: function(value) {
       this.c$5 = ss.bindAdd(this.c$5, value);
     },
@@ -288,10 +288,10 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.DerivedClass
 
-  function BasicTests$DerivedClass() {
-    BasicTests$BaseClass.call(this);
+  function DerivedClass() {
+    BaseClass.call(this);
   }
-  var BasicTests$DerivedClass$ = {
+  var DerivedClass$ = {
     $2: function() {
     }
   };
@@ -299,10 +299,10 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   // BasicTests.MaskTextBox
 
-  function BasicTests$MaskTextBox(e) {
+  function MaskTextBox(e) {
     lib.TextBox.call(this, e);
   }
-  var BasicTests$MaskTextBox$ = {
+  var MaskTextBox$ = {
     e$0: function() {
     },
     e$1: function() {
@@ -312,24 +312,24 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   var $exports = ss.module('test',
     {
-      IApp: [ BasicTests$IApp ],
-      MyData: BasicTests$MyData,
-      AppHelper: [ BasicTests$AppHelper, BasicTests$AppHelper$, null ],
-      Bar: [ BasicTests$Bar, BasicTests$Bar$, null ],
-      BaseBaseClass: [ BasicTests$BaseBaseClass, BasicTests$BaseBaseClass$, null ],
-      ABC: [ BasicTests$ABC, BasicTests$ABC$, null ],
-      Bar2: [ BasicTests$Bar2, BasicTests$Bar2$, BasicTests$Bar ],
-      BarCustom: [ BasicTests$BarCustom, BasicTests$BarCustom$, BasicTests$Bar ],
-      BaseClass: [ BasicTests$BaseClass, BasicTests$BaseClass$, BasicTests$BaseBaseClass ],
-      BarEx: [ BasicTests$BarEx, BasicTests$BarEx$, BasicTests$Bar2 ],
-      BarCustom2: [ BasicTests$BarCustom2, BasicTests$BarCustom2$, BasicTests$BarCustom ],
-      DerivedClass: [ BasicTests$DerivedClass, BasicTests$DerivedClass$, BasicTests$BaseClass ],
-      MaskTextBox: [ BasicTests$MaskTextBox, BasicTests$MaskTextBox$, lib.TextBox ]
+      IApp: [ IApp ],
+      MyData: MyData,
+      AppHelper: [ AppHelper, AppHelper$, null ],
+      Bar: [ Bar, Bar$, null ],
+      BaseBaseClass: [ BaseBaseClass, BaseBaseClass$, null ],
+      ABC: [ ABC, ABC$, null ],
+      Bar2: [ Bar2, Bar2$, Bar ],
+      BarCustom: [ BarCustom, BarCustom$, Bar ],
+      BaseClass: [ BaseClass, BaseClass$, BaseBaseClass ],
+      BarEx: [ BarEx, BarEx$, Bar2 ],
+      BarCustom2: [ BarCustom2, BarCustom2$, BarCustom ],
+      DerivedClass: [ DerivedClass, DerivedClass$, BaseClass ],
+      MaskTextBox: [ MaskTextBox, MaskTextBox$, lib.TextBox ]
     },
     {
-      AppFlags: BasicTests$AppFlags,
-      App: [ BasicTests$App, BasicTests$App$, null ],
-      FooBehavior: [ BasicTests$FooBehavior, BasicTests$FooBehavior$, lib.Behavior ]
+      AppFlags: AppFlags,
+      App: [ App, App$, null ],
+      FooBehavior: [ FooBehavior, FooBehavior$, lib.Behavior ]
     });
 
 

@@ -5,11 +5,11 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.Test
 
-  function MemberTests$Test(name) {
+  function Test(name) {
   }
-  MemberTests$Test.doSomething = function(o) {
+  Test.doSomething = function(o) {
   };
-  var MemberTests$Test$ = {
+  var Test$ = {
     invoke: function(successCallback, errorCallback, context) {
     }
   };
@@ -17,26 +17,26 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.App
 
-  function MemberTests$App() {
-    MemberTests$Test.doSomething();
-    MemberTests$Test.doSomething(null);
-    var t1 = new MemberTests$Test();
-    var t2 = new MemberTests$Test('test');
+  function App() {
+    Test.doSomething();
+    Test.doSomething(null);
+    var t1 = new Test();
+    var t2 = new Test('test');
     var cb1 = null;
     var cb2 = null;
     t1.invoke(cb1);
     t1.invoke(cb1, cb2);
     t2.invoke(cb1, cb2, t1);
   }
-  var MemberTests$App$ = {
+  var App$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      Test: [ MemberTests$Test, MemberTests$Test$, null ],
-      App: [ MemberTests$App, MemberTests$App$, null ]
+      Test: [ Test, Test$, null ],
+      App: [ App, App$, null ]
     });
 
 

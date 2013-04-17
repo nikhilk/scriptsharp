@@ -5,7 +5,7 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.Point
 
-  function TypeTests$Point(x, y) {
+  function Point(x, y) {
     var $o = {};
     $o.x = x;
     $o.y = y;
@@ -15,13 +15,13 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.Pair
 
-  function TypeTests$Pair() { return {}; }
+  function Pair() { return {}; }
 
 
   var $exports = ss.module('test', null,
     {
-      Point: TypeTests$Point,
-      Pair: TypeTests$Pair
+      Point: Point,
+      Pair: Pair
     });
 
 

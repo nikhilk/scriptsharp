@@ -5,20 +5,20 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Test
 
-  function ExpressionTests$Test() {
+  function Test() {
     var deferredObject = ss.deferred();
     var deferredNumber = ss.deferred();
     var availabledNumber = ss.deferred(10);
     deferredNumber.reject();
   }
-  var ExpressionTests$Test$ = {
+  var Test$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      Test: [ ExpressionTests$Test, ExpressionTests$Test$, null ]
+      Test: [ Test, Test$, null ]
     });
 
 

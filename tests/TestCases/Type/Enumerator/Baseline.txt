@@ -5,9 +5,9 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.App1
 
-  function TypeTests$App1() {
+  function App1() {
   }
-  var TypeTests$App1$ = {
+  var App1$ = {
     getEnumerator: function() {
       return null;
     }
@@ -16,9 +16,9 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.App
 
-  function TypeTests$App() {
+  function App() {
   }
-  var TypeTests$App$ = {
+  var App$ = {
     test1: function(arg) {
     },
     test: function(arg) {
@@ -45,8 +45,8 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      App1: [ TypeTests$App1, TypeTests$App1$, null, ss.IEnumerable ],
-      App: [ TypeTests$App, TypeTests$App$, null ]
+      App1: [ App1, App1$, null, ss.IEnumerable ],
+      App: [ App, App$, null ]
     });
 
 

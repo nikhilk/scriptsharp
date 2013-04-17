@@ -5,7 +5,7 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.Mode
 
-  var MemberTests$Mode = {
+  var Mode = {
     a: 0, 
     b: 1
   };
@@ -13,7 +13,7 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.Point
 
-  function MemberTests$Point(x, y) {
+  function Point(x, y) {
     var $o = {};
     $o.x = x;
     $o.y = y;
@@ -23,7 +23,7 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.Test
 
-  function MemberTests$Test() {
+  function Test() {
     this._value = 0;
     this._uintValue = 0;
     this._dblValue = 0;
@@ -34,24 +34,24 @@ define('test', ['ss'], function(ss) {
     this.s = 'bbb';
     this.s = 'aaa';
   }
-  var MemberTests$Test$ = {
+  var Test$ = {
 
   };
 
 
   // MemberTests.App
 
-  function MemberTests$App() {
-    this._t = new MemberTests$Test();
+  function App() {
+    this._t = new Test();
     this._i = 5;
   }
-  var MemberTests$App$ = {
+  var App$ = {
     doTest: function() {
-      var t = new MemberTests$Test();
+      var t = new Test();
       t.s = 'World';
       var i = 1;
-      MemberTests$Test.done = true;
-      var p = MemberTests$Point(1, 10);
+      Test.done = true;
+      var p = Point(1, 10);
       p.x = p.y;
     }
   };
@@ -59,20 +59,20 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      Point: MemberTests$Point
+      Point: Point
     },
     {
-      Mode: MemberTests$Mode,
-      Test: [ MemberTests$Test, MemberTests$Test$, null ],
-      App: [ MemberTests$App, MemberTests$App$, null ]
+      Mode: Mode,
+      Test: [ Test, Test$, null ],
+      App: [ App, App$, null ]
     });
 
-  MemberTests$Test.greeting = 'Hello!';
-  MemberTests$Test.myNumber = 1;
-  MemberTests$Test.defaultValue = 'aaa';
-  MemberTests$Test.done = false;
-  MemberTests$Test.XYZ = 1;
-  MemberTests$Test._key = {};
+  Test.greeting = 'Hello!';
+  Test.myNumber = 1;
+  Test.defaultValue = 'aaa';
+  Test.done = false;
+  Test.XYZ = 1;
+  Test._key = {};
 
   return $exports;
 });

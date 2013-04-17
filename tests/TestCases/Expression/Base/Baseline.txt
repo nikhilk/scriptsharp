@@ -5,9 +5,9 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Foo
 
-  function ExpressionTests$Foo(i, j) {
+  function Foo(i, j) {
   }
-  var ExpressionTests$Foo$ = {
+  var Foo$ = {
     toString: function() {
       return 'Foo';
     },
@@ -19,10 +19,10 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Bar
 
-  function ExpressionTests$Bar(i, j, f) {
-    ExpressionTests$Foo.call(this, i, j);
+  function Bar(i, j, f) {
+    Foo.call(this, i, j);
   }
-  var ExpressionTests$Bar$ = {
+  var Bar$ = {
     sum: function() {
       return ss.base(this, 'sum').call(this, 1) + 1;
     },
@@ -34,8 +34,8 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Foo: [ ExpressionTests$Foo, ExpressionTests$Foo$, null ],
-      Bar: [ ExpressionTests$Bar, ExpressionTests$Bar$, ExpressionTests$Foo ]
+      Foo: [ Foo, Foo$, null ],
+      Bar: [ Bar, Bar$, Foo ]
     });
 
 

@@ -39,9 +39,9 @@ define('test', ['ss'], function(ss) {
 
   // Foo.MyClassF
 
-  function Foo$MyClassF() {
+  function MyClassF() {
   }
-  var Foo$MyClassF$ = {
+  var MyClassF$ = {
 
   };
 
@@ -77,7 +77,7 @@ define('test', ['ss'], function(ss) {
       MyRecord: MyRecord,
       MyClass: [ MyClass, MyClass$, null ],
       MyClass3: [ MyClass3, MyClass3$, null, ss.IDisposable ],
-      MyClassF: [ Foo$MyClassF, Foo$MyClassF$, null ],
+      MyClassF: [ MyClassF, MyClassF$, null ],
       MyClass2: [ MyClass2, MyClass2$, MyClass ],
       MyClass4: [ MyClass4, MyClass4$, MyClass, ss.IDisposable ]
     });

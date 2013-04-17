@@ -5,19 +5,19 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.MyClass
 
-  function TypeTests$MyClass() {
+  function MyClass() {
     var body = document.body;
     var head = document.getElementsByTagName('head')[0];
     head.appendChild(body);
   }
-  var TypeTests$MyClass$ = {
+  var MyClass$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      MyClass: [ TypeTests$MyClass, TypeTests$MyClass$, null ]
+      MyClass: [ MyClass, MyClass$, null ]
     });
 
 

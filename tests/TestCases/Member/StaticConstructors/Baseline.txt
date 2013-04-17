@@ -5,70 +5,70 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.Behavior
 
-  function MemberTests$Behavior(e, name) {
+  function Behavior(e, name) {
   }
-  var MemberTests$Behavior$ = {
+  var Behavior$ = {
 
   };
 
 
   // MemberTests.MyClass
 
-  function MemberTests$MyClass(d) {
+  function MyClass(d) {
   }
-  var MemberTests$MyClass$ = {
+  var MyClass$ = {
 
   };
 
 
   // MemberTests.MyClassEmpty
 
-  function MemberTests$MyClassEmpty() {
+  function MyClassEmpty() {
   }
-  var MemberTests$MyClassEmpty$ = {
+  var MyClassEmpty$ = {
 
   };
 
 
   // MemberTests.MyClassSimple
 
-  function MemberTests$MyClassSimple() {
+  function MyClassSimple() {
   }
-  var MemberTests$MyClassSimple$ = {
+  var MyClassSimple$ = {
 
   };
 
 
   // MemberTests.MyClassSimpleMulti
 
-  function MemberTests$MyClassSimpleMulti() {
+  function MyClassSimpleMulti() {
   }
-  var MemberTests$MyClassSimpleMulti$ = {
+  var MyClassSimpleMulti$ = {
 
   };
 
 
   // MemberTests.MyBehavior
 
-  function MemberTests$MyBehavior(element) {
-    MemberTests$Behavior.call(this, element, 'myBehavior');
+  function MyBehavior(element) {
+    Behavior.call(this, element, 'myBehavior');
   }
-  var MemberTests$MyBehavior$ = {
+  var MyBehavior$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      Behavior: [ MemberTests$Behavior, MemberTests$Behavior$, null ],
-      MyClass: [ MemberTests$MyClass, MemberTests$MyClass$, null ],
-      MyClassEmpty: [ MemberTests$MyClassEmpty, MemberTests$MyClassEmpty$, null ],
-      MyClassSimple: [ MemberTests$MyClassSimple, MemberTests$MyClassSimple$, null ],
-      MyClassSimpleMulti: [ MemberTests$MyClassSimpleMulti, MemberTests$MyClassSimpleMulti$, null ],
-      MyBehavior: [ MemberTests$MyBehavior, MemberTests$MyBehavior$, MemberTests$Behavior ]
+      Behavior: [ Behavior, Behavior$, null ],
+      MyClass: [ MyClass, MyClass$, null ],
+      MyClassEmpty: [ MyClassEmpty, MyClassEmpty$, null ],
+      MyClassSimple: [ MyClassSimple, MyClassSimple$, null ],
+      MyClassSimpleMulti: [ MyClassSimpleMulti, MyClassSimpleMulti$, null ],
+      MyBehavior: [ MyBehavior, MyBehavior$, Behavior ]
     });
 
-  MemberTests$MyClass.instance = new MemberTests$MyClass(ss.now());
+  MyClass.instance = new MyClass(ss.now());
   alert('simple static ctor');
   alert('simple static ctor with multiple statements');
   document.getElementById('foo').innerHTML = '...';
@@ -78,7 +78,7 @@ define('test', ['ss'], function(ss) {
     if (!b) {
       return;
     }
-    new MemberTests$MyBehavior(e);
+    new MyBehavior(e);
   })();
 
   return $exports;

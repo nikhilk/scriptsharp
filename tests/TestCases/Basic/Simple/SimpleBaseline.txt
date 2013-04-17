@@ -7,19 +7,19 @@
 
   // Basic.EventArgs
 
-  function Basic$EventArgs() {
+  function EventArgs() {
   }
-  var Basic$EventArgs$ = {
+  var EventArgs$ = {
 
   };
 
 
   // Basic.Button
 
-  function Basic$Button(text) {
+  function Button(text) {
     this._text = text;
   }
-  var Basic$Button$ = {
+  var Button$ = {
     add_click: function(value) {
       this.__click = ss.bindAdd(this.__click, value);
     },
@@ -31,7 +31,7 @@
     },
     performClick: function() {
       if (this.__click != null) {
-        this.__click(this, Basic$EventArgs.Empty);
+        this.__click(this, EventArgs.Empty);
       }
     }
   };
@@ -39,19 +39,19 @@
 
   // Basic.App
 
-  function Basic$App() {
-    this._btn1 = new Basic$Button('OK');
+  function App() {
+    this._btn1 = new Button('OK');
     this._btn1.add_click(ss.bind('_onClickButton', this));
     this._btn1.add_click(ss.bind('_onClickButtonDup', this));
-    this._btn2 = new Basic$Button('Cancel');
+    this._btn2 = new Button('Cancel');
     this._btn2.add_click(ss.bind('_onClickButton', this));
   }
-  Basic$App.main = function(args) {
-    var theApp = new Basic$App();
+  App.main = function(args) {
+    var theApp = new App();
     theApp._btn1.performClick();
     theApp._btn2.performClick();
   };
-  var Basic$App$ = {
+  var App$ = {
     _echo: function(s) {
     },
     _onClickButton: function(sender, e) {
@@ -65,12 +65,12 @@
 
   var $exports = ss.module('basic', null,
     {
-      EventArgs: [ Basic$EventArgs, Basic$EventArgs$, null ],
-      Button: [ Basic$Button, Basic$Button$, null ],
-      App: [ Basic$App, Basic$App$, null ]
+      EventArgs: [ EventArgs, EventArgs$, null ],
+      Button: [ Button, Button$, null ],
+      App: [ App, App$, null ]
     });
 
-  Basic$EventArgs.Empty = new Basic$EventArgs();
+  EventArgs.Empty = new EventArgs();
 
   return $exports;
 })(this);

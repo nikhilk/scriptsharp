@@ -5,7 +5,7 @@ define('test', ['ss'], function(ss) {
 
   // Resources.Strings1
 
-  var Resources$Strings1 = {
+  var Strings1 = {
     string1: 'neutral: aaa',
     string2: 'fr: bbb',
     string3: 'fr-FR: ccc'
@@ -14,7 +14,7 @@ define('test', ['ss'], function(ss) {
 
   // Resources.Strings2
 
-  var Resources$Strings2 = {
+  var Strings2 = {
     string1: 's2',
     string2: '1234'
   };
@@ -22,21 +22,21 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.App
 
-  function BasicTests$App() {
-    var s1 = Resources$Strings1.string1;
+  function App() {
+    var s1 = Strings1.string1;
   }
-  var BasicTests$App$ = {
+  var App$ = {
 
   };
 
 
   var $exports = ss.module('test',
     {
-      Strings1: Resources$Strings1
+      Strings1: Strings1
     },
     {
-      Strings2: Resources$Strings2,
-      App: [ BasicTests$App, BasicTests$App$, null ]
+      Strings2: Strings2,
+      App: [ App, App$, null ]
     });
 
 

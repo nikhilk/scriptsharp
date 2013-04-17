@@ -3735,7 +3735,7 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.AppFlags
 
-  var BasicTests$AppFlags = {
+  var AppFlags = {
     AAA: 1, 
     BBB: 2
   };
@@ -3743,7 +3743,7 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.Mode
 
-  var BasicTests$Mode = {
+  var Mode = {
     mode1: 0, 
     mode2: 1
   };
@@ -3751,17 +3751,17 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.IFoo
 
-  function BasicTests$IFoo() { }
+  function IFoo() { }
 
 
   // BasicTests.IApp
 
-  function BasicTests$IApp() { }
+  function IApp() { }
 
 
   // BasicTests.Point
 
-  function BasicTests$Point(x, y) {
+  function Point(x, y) {
     var $o = {};
     $o.x = x;
     $o.y = y;
@@ -3771,9 +3771,9 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.App
 
-  function BasicTests$App() {
+  function App() {
   }
-  var BasicTests$App$ = {
+  var App$ = {
     add_event1: function(value) {
       this.__event1 = ss.bindAdd(this.__event1, value);
     },
@@ -3793,9 +3793,9 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.AppHelper
 
-  function BasicTests$AppHelper() {
+  function AppHelper() {
   }
-  var BasicTests$AppHelper$ = {
+  var AppHelper$ = {
     get_prop1: function() {
       return 0;
     },
@@ -3821,15 +3821,15 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      IFoo: [ BasicTests$IFoo ],
-      Point: BasicTests$Point,
-      AppHelper: [ BasicTests$AppHelper, BasicTests$AppHelper$, null ]
+      IFoo: [ IFoo ],
+      Point: Point,
+      AppHelper: [ AppHelper, AppHelper$, null ]
     },
     {
-      AppFlags: BasicTests$AppFlags,
-      Mode: BasicTests$Mode,
-      IApp: [ BasicTests$IApp ],
-      App: [ BasicTests$App, BasicTests$App$, null, BasicTests$IApp ]
+      AppFlags: AppFlags,
+      Mode: Mode,
+      IApp: [ IApp ],
+      App: [ App, App$, null, IApp ]
     });
 
 

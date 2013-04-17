@@ -5,20 +5,20 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.Test
 
-  function MemberTests$Test() {
+  function Test() {
     this.set_XYZ(1);
     this.set_XYZ(this.get_name().length);
     this.set_XYZ(this.get_name().length);
-    var v = MemberTests$Test.get_staticProp();
-    v = MemberTests$Test.get_staticProp();
+    var v = Test.get_staticProp();
+    v = Test.get_staticProp();
   }
-  MemberTests$Test.get_staticProp = function() {
+  Test.get_staticProp = function() {
     return 2006;
   };
-  MemberTests$Test.set_staticProp = function(value) {
+  Test.set_staticProp = function(value) {
     return value;
   };
-  var MemberTests$Test$ = {
+  var Test$ = {
     get_XYZ: function() {
       return 0;
     },
@@ -39,24 +39,24 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.Test2
 
-  function MemberTests$Test2() {
-    MemberTests$Test.call(this);
-    var n = MemberTests$Test$.get_XYZ.call(this);
+  function Test2() {
+    Test.call(this);
+    var n = Test$.get_XYZ.call(this);
     if (n === this.get_XYZ()) {
     }
     if (this.get_XYZ() === n) {
     }
-    n = MemberTests$Test.get_staticProp();
+    n = Test.get_staticProp();
   }
-  var MemberTests$Test2$ = {
+  var Test2$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      Test: [ MemberTests$Test, MemberTests$Test$, null ],
-      Test2: [ MemberTests$Test2, MemberTests$Test2$, MemberTests$Test ]
+      Test: [ Test, Test$, null ],
+      Test2: [ Test2, Test2$, Test ]
     });
 
 

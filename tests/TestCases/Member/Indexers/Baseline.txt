@@ -5,17 +5,17 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.IIndexable
 
-  function MemberTests$IIndexable() { }
+  function IIndexable() { }
 
 
   // MemberTests.Normal
 
-  function MemberTests$Normal() {
+  function Normal() {
     this._n = 0;
     var i = this.get_item('name');
     this.set_item('name', i + 1);
   }
-  var MemberTests$Normal$ = {
+  var Normal$ = {
     get_item: function(name) {
       return this._n;
     },
@@ -28,11 +28,11 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.GetterOnly
 
-  function MemberTests$GetterOnly() {
+  function GetterOnly() {
     this._n = 0;
     var i = this.get_item('name');
   }
-  var MemberTests$GetterOnly$ = {
+  var GetterOnly$ = {
     get_item: function(name) {
       return this._n;
     }
@@ -41,12 +41,12 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.VirtualIndexer
 
-  function MemberTests$VirtualIndexer() {
+  function VirtualIndexer() {
     this._n = 0;
     var i = this.get_item('name');
     this.set_item('name', i + 1);
   }
-  var MemberTests$VirtualIndexer$ = {
+  var VirtualIndexer$ = {
     get_item: function(name) {
       return this._n;
     },
@@ -59,24 +59,24 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.AbstractIndexer
 
-  function MemberTests$AbstractIndexer() {
+  function AbstractIndexer() {
     this._n = 0;
     var i = this.get_item('name');
     this.set_item('name', i + 1);
   }
-  var MemberTests$AbstractIndexer$ = {
+  var AbstractIndexer$ = {
 
   };
 
 
   // MemberTests.MultipleArgs
 
-  function MemberTests$MultipleArgs() {
+  function MultipleArgs() {
     this._n = 0;
     var i = this.get_item('name', 'name2', 'name3');
     this.set_item('name', 'name2', 'name3', i + 1);
   }
-  var MemberTests$MultipleArgs$ = {
+  var MultipleArgs$ = {
     get_item: function(first, middle, last) {
       var value = first + middle + last;
       return value.length;
@@ -90,9 +90,9 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.ImplementedIndexer2
 
-  function MemberTests$ImplementedIndexer2() {
+  function ImplementedIndexer2() {
   }
-  var MemberTests$ImplementedIndexer2$ = {
+  var ImplementedIndexer2$ = {
     get_item: function(index) {
       return 0;
     }
@@ -101,26 +101,26 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.Test
 
-  function MemberTests$Test() {
-    var ma = new MemberTests$MultipleArgs();
+  function Test() {
+    var ma = new MultipleArgs();
     ma.set_item('1', '2', '3', ma.get_item('3', '2', '1'));
-    var ii = new MemberTests$ImplementedIndexer();
+    var ii = new ImplementedIndexer();
     ii.set_item('big', ii.get_item('small'));
     var ai = ii;
     ai.set_item('small', ai.get_item('big'));
-    var indexable = new MemberTests$ImplementedIndexer2();
+    var indexable = new ImplementedIndexer2();
     var o = indexable.get_item(0);
   }
-  var MemberTests$Test$ = {
+  var Test$ = {
 
   };
 
 
   // MemberTests.A
 
-  function MemberTests$A() {
+  function A() {
   }
-  var MemberTests$A$ = {
+  var A$ = {
     get_item: function(name) {
       return name;
     }
@@ -129,14 +129,14 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.OverriddenIndexer
 
-  function MemberTests$OverriddenIndexer() {
-    MemberTests$VirtualIndexer.call(this);
+  function OverriddenIndexer() {
+    VirtualIndexer.call(this);
     var i = this.get_item('name');
     this.set_item('name', i + 1);
     var j = ss.base(this, 'get_item').call(this, 'name');
     ss.base(this, 'set_item').call(this, 'name', 43);
   }
-  var MemberTests$OverriddenIndexer$ = {
+  var OverriddenIndexer$ = {
     get_item: function(name) {
       return ss.base(this, 'get_item').call(this, name) + 1;
     },
@@ -149,39 +149,39 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.ImplementedIndexer
 
-  function MemberTests$ImplementedIndexer() {
+  function ImplementedIndexer() {
     this._n$1 = 0;
-    MemberTests$AbstractIndexer.call(this);
+    AbstractIndexer.call(this);
     var i = this.get_item('name');
     this.set_item('name', i + 1);
   }
-  var MemberTests$ImplementedIndexer$ = {
+  var ImplementedIndexer$ = {
 
   };
 
 
   // MemberTests.B
 
-  function MemberTests$B() {
-    MemberTests$A.call(this);
+  function B() {
+    A.call(this);
   }
-  var MemberTests$B$ = {
+  var B$ = {
 
   };
 
 
   // MemberTests.C
 
-  function MemberTests$C() {
-    MemberTests$B.call(this);
+  function C() {
+    B.call(this);
   }
-  MemberTests$C.main = function() {
-    var c = new MemberTests$C();
+  C.main = function() {
+    var c = new C();
     c.set_item('a', c.get_item('b'));
     var a = c;
     a.set_item('b', a.get_item('c'));
   };
-  var MemberTests$C$ = {
+  var C$ = {
     get_item: function(name) {
       return name;
     }
@@ -190,19 +190,19 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IIndexable: [ MemberTests$IIndexable ],
-      Normal: [ MemberTests$Normal, MemberTests$Normal$, null ],
-      GetterOnly: [ MemberTests$GetterOnly, MemberTests$GetterOnly$, null ],
-      VirtualIndexer: [ MemberTests$VirtualIndexer, MemberTests$VirtualIndexer$, null ],
-      AbstractIndexer: [ MemberTests$AbstractIndexer, MemberTests$AbstractIndexer$, null ],
-      MultipleArgs: [ MemberTests$MultipleArgs, MemberTests$MultipleArgs$, null ],
-      ImplementedIndexer2: [ MemberTests$ImplementedIndexer2, MemberTests$ImplementedIndexer2$, null, MemberTests$IIndexable ],
-      Test: [ MemberTests$Test, MemberTests$Test$, null ],
-      A: [ MemberTests$A, MemberTests$A$, null ],
-      OverriddenIndexer: [ MemberTests$OverriddenIndexer, MemberTests$OverriddenIndexer$, MemberTests$VirtualIndexer ],
-      ImplementedIndexer: [ MemberTests$ImplementedIndexer, MemberTests$ImplementedIndexer$, MemberTests$AbstractIndexer ],
-      B: [ MemberTests$B, MemberTests$B$, MemberTests$A ],
-      C: [ MemberTests$C, MemberTests$C$, MemberTests$B ]
+      IIndexable: [ IIndexable ],
+      Normal: [ Normal, Normal$, null ],
+      GetterOnly: [ GetterOnly, GetterOnly$, null ],
+      VirtualIndexer: [ VirtualIndexer, VirtualIndexer$, null ],
+      AbstractIndexer: [ AbstractIndexer, AbstractIndexer$, null ],
+      MultipleArgs: [ MultipleArgs, MultipleArgs$, null ],
+      ImplementedIndexer2: [ ImplementedIndexer2, ImplementedIndexer2$, null, IIndexable ],
+      Test: [ Test, Test$, null ],
+      A: [ A, A$, null ],
+      OverriddenIndexer: [ OverriddenIndexer, OverriddenIndexer$, VirtualIndexer ],
+      ImplementedIndexer: [ ImplementedIndexer, ImplementedIndexer$, AbstractIndexer ],
+      B: [ B, B$, A ],
+      C: [ C, C$, B ]
     });
 
 

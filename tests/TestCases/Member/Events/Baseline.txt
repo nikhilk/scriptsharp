@@ -5,24 +5,24 @@ define('test', ['ss'], function(ss) {
 
   // MemberTests.EventArgs
 
-  function MemberTests$EventArgs() {
+  function EventArgs() {
   }
-  var MemberTests$EventArgs$ = {
+  var EventArgs$ = {
 
   };
 
 
   // MemberTests.Button
 
-  function MemberTests$Button() {
+  function Button() {
   }
-  MemberTests$Button.add_test = function(value) {
-    MemberTests$Button.__test = ss.bindAdd(MemberTests$Button.__test, value);
+  Button.add_test = function(value) {
+    Button.__test = ss.bindAdd(Button.__test, value);
   };
-  MemberTests$Button.remove_test = function(value) {
-    MemberTests$Button.__test = ss.bindSub(MemberTests$Button.__test, value);
+  Button.remove_test = function(value) {
+    Button.__test = ss.bindSub(Button.__test, value);
   };
-  var MemberTests$Button$ = {
+  var Button$ = {
     add_click: function(value) {
       this.__click = ss.bindAdd(this.__click, value);
     },
@@ -42,7 +42,7 @@ define('test', ['ss'], function(ss) {
     },
     performClick: function() {
       if (this.__click != null) {
-        this.__click(this, new MemberTests$EventArgs());
+        this.__click(this, new EventArgs());
       }
     }
   };
@@ -50,8 +50,8 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      EventArgs: [ MemberTests$EventArgs, MemberTests$EventArgs$, null ],
-      Button: [ MemberTests$Button, MemberTests$Button$, null ]
+      EventArgs: [ EventArgs, EventArgs$, null ],
+      Button: [ Button, Button$, null ]
     });
 
 

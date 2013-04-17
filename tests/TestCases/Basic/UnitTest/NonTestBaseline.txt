@@ -5,9 +5,9 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.PublicClass
 
-  function BasicTests$PublicClass() {
+  function PublicClass() {
   }
-  var BasicTests$PublicClass$ = {
+  var PublicClass$ = {
     format: function(i) {
       return '0';
     },
@@ -19,9 +19,9 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.InternalClass
 
-  function BasicTests$InternalClass() {
+  function InternalClass() {
   }
-  var BasicTests$InternalClass$ = {
+  var InternalClass$ = {
     format: function(i) {
       return null;
     },
@@ -33,10 +33,10 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      InternalClass: [ BasicTests$InternalClass, BasicTests$InternalClass$, null ]
+      InternalClass: [ InternalClass, InternalClass$, null ]
     },
     {
-      PublicClass: [ BasicTests$PublicClass, BasicTests$PublicClass$, null ]
+      PublicClass: [ PublicClass, PublicClass$, null ]
     });
 
 

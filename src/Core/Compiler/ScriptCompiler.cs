@@ -108,6 +108,10 @@ namespace ScriptSharp {
                     continue;
                 }
 
+                // TODO: We could allow conflicting types as long as both aren't public
+                //       since they won't be on the exported types list. Internal types that
+                //       conflict could be generated using full name.
+
                 string name = appType.GeneratedName;
                 if (types.ContainsKey(name)) {
                     string error = "The type '" + appType.FullName + "' conflicts with with '" + types[name].FullName + "' as they have the same name.";

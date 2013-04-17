@@ -5,21 +5,21 @@ define('test', ['ss'], function(ss) {
 
   // BasicTests.MyDebug
 
-  function BasicTests$MyDebug() {
+  function MyDebug() {
   }
-  BasicTests$MyDebug.showInfo = function() {
+  MyDebug.showInfo = function() {
   };
-  BasicTests$MyDebug.traceInfo = function() {
+  MyDebug.traceInfo = function() {
   };
-  BasicTests$MyDebug.logInfo = function() {
+  MyDebug.logInfo = function() {
   };
 
 
   // BasicTests.App
 
-  function BasicTests$App(i) {
+  function App(i) {
     console.assert(false);
-    BasicTests$MyDebug.showInfo();
+    MyDebug.showInfo();
     while (true) {
       console.assert(false);
     }
@@ -41,15 +41,15 @@ define('test', ['ss'], function(ss) {
       console.log('.');
     }
   }
-  var BasicTests$App$ = {
+  var App$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      MyDebug: [ BasicTests$MyDebug, null, null ],
-      App: [ BasicTests$App, BasicTests$App$, null ]
+      MyDebug: [ MyDebug, null, null ],
+      App: [ App, App$, null ]
     });
 
 

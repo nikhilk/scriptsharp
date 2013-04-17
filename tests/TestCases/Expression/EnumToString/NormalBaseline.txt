@@ -5,7 +5,7 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Color
 
-  var ExpressionTests$Color = {
+  var Color = {
     red: 1, 
     green: 2, 
     blue: 3
@@ -14,7 +14,7 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Types
 
-  var ExpressionTests$Types = {
+  var Types = {
     none: 0, 
     type1: 1, 
     type2: 2, 
@@ -24,9 +24,9 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.App
 
-  function ExpressionTests$App() {
+  function App() {
   }
-  var ExpressionTests$App$ = {
+  var App$ = {
     test: function(arg) {
       var s1 = (0).toString();
       var s2 = (2).toString();
@@ -44,9 +44,9 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Color: ExpressionTests$Color,
-      Types: ExpressionTests$Types,
-      App: [ ExpressionTests$App, ExpressionTests$App$, null ]
+      Color: Color,
+      Types: Types,
+      App: [ App, App$, null ]
     });
 
 

@@ -5,35 +5,35 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.EventArgs
 
-  function ExpressionTests$EventArgs() {
+  function EventArgs() {
   }
-  var ExpressionTests$EventArgs$ = {
+  var EventArgs$ = {
 
   };
 
 
   // ExpressionTests.SomeClass
 
-  function ExpressionTests$SomeClass(handler) {
+  function SomeClass(handler) {
   }
-  var ExpressionTests$SomeClass$ = {
+  var SomeClass$ = {
 
   };
 
 
   // ExpressionTests.Test
 
-  function ExpressionTests$Test() {
+  function Test() {
     this._handler = ss.bind('onEvent', this);
     this._handler = ss.bind('onEvent', this);
     this._handler = ss.bind('onEvent', this);
-    this._handler = ExpressionTests$Test2.onGlobalEvent;
-    var s1 = new ExpressionTests$SomeClass(ss.bind('onEvent', this));
-    var s2 = new ExpressionTests$SomeClass(this._handler);
+    this._handler = Test2.onGlobalEvent;
+    var s1 = new SomeClass(ss.bind('onEvent', this));
+    var s2 = new SomeClass(this._handler);
     var e = ss.bindExport(this._handler);
     e.dispose();
   }
-  var ExpressionTests$Test$ = {
+  var Test$ = {
     doStuff: function() {
       if (this._handler != null) {
         this._handler(this, null);
@@ -46,21 +46,21 @@ define('test', ['ss'], function(ss) {
 
   // ExpressionTests.Test2
 
-  function ExpressionTests$Test2() {
+  function Test2() {
   }
-  ExpressionTests$Test2.onGlobalEvent = function(sender, e) {
+  Test2.onGlobalEvent = function(sender, e) {
   };
-  var ExpressionTests$Test2$ = {
+  var Test2$ = {
 
   };
 
 
   var $exports = ss.module('test', null,
     {
-      EventArgs: [ ExpressionTests$EventArgs, ExpressionTests$EventArgs$, null ],
-      SomeClass: [ ExpressionTests$SomeClass, ExpressionTests$SomeClass$, null ],
-      Test: [ ExpressionTests$Test, ExpressionTests$Test$, null ],
-      Test2: [ ExpressionTests$Test2, ExpressionTests$Test2$, null ]
+      EventArgs: [ EventArgs, EventArgs$, null ],
+      SomeClass: [ SomeClass, SomeClass$, null ],
+      Test: [ Test, Test$, null ],
+      Test2: [ Test2, Test2$, null ]
     });
 
 

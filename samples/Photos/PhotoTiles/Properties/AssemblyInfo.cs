@@ -20,3 +20,19 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: ScriptAssembly("photoTiles")]
+
+// A script template using an AMD pattern for declaring dependencies consumed
+// by the generated script.
+[assembly: ScriptTemplate(@"
+/*! {name}.js {version}
+ * {description}
+ */
+
+""use strict"";
+
+require([{requires}], function({dependencies}) {
+  var $global = this;
+
+  {script}
+});
+")]
