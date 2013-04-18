@@ -525,7 +525,7 @@ namespace ScriptSharp.Generator {
                     }
                 }
 
-                script = String.Format(script, parameterScripts);
+                script = String.Format(CultureInfo.InvariantCulture, script, parameterScripts);
             }
 
             writer.Write(script);

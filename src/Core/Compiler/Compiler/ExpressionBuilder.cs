@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using ScriptSharp;
 using ScriptSharp.CodeModel;
@@ -1098,6 +1099,19 @@ namespace ScriptSharp.Compiler {
                             _errorHandler.ReportError("The argument to Script.Literal must be a constant string.",
                                                       argToken.Location);
                             return new InlineScriptExpression("", objectType);
+                        }
+
+                        if (args.Count > 1) {
+                            // Check whether the script is a valid string format string
+                            try {
+                                object[] argValues = new object[args.Count - 1];
+                                String.Format(CultureInfo.InvariantCulture, script, argValues);
+                            }
+                            catch {
+                                _errorHandler.ReportError("The argument to Script.Literal must be a valid String.Format string.",
+                                                          argNodes.Expressions[0].Token.Location);
+                                return new InlineScriptExpression("", objectType);
+                            }
                         }
 
                         InlineScriptExpression scriptExpression = new InlineScriptExpression(script, objectType);

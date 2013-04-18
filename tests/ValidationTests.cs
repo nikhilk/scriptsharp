@@ -114,7 +114,8 @@ namespace ScriptSharp.Tests {
         [TestMethod]
         public void TestInlineScript() {
             string expectedErrors =
-                "The argument to Script.Literal must be a constant string. Code.cs(15, 28)";
+                "The argument to Script.Literal must be a constant string. Code.cs(15, 28)" + Environment.NewLine +
+                "The argument to Script.Literal must be a valid String.Format string. Code.cs(16, 28)";
 
             Compilation compilation = CreateCompilation();
             compilation.AddSource("Code.cs");

@@ -13,6 +13,7 @@ namespace ValidationTests {
             string scriptTemplate = "alert({0} + {1})";
             
             Script.Literal(scriptTemplate, a, a);
+            Script.Literal("alert({name:{0}})", "aaa");
         }
     }
 }
