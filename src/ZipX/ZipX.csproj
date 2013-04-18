@@ -28,8 +28,10 @@
     <None Include="Packages\Lib.Knockout.nuspec" />
     <None Include="Packages\Lib.Node.nuspec" />
     <None Include="Packages\Lib.Node.Express.nuspec" />
+    <None Include="Packages\Lib.Node.Restify.nuspec" />
     <None Include="Packages\Lib.Node.Mongo.nuspec" />
     <None Include="Packages\Lib.Node.Neo4j.nuspec" />
+    <None Include="Packages\Lib.Node.Azure.nuspec" />
     <None Include="Packages\Testing.nuspec" />
     <None Include="Packages\Runtime.nuspec" />
   </ItemGroup>
@@ -81,8 +83,10 @@
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.BingMaps.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.Express.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.Restify.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.Mongo.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.Neo4j.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.Azure.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Runtime.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
 
     <Zip ZipLevel="9" Files="@(ItemClass)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Class.zip" WorkingDirectory="ItemTemplates\Class" />
