@@ -1,4 +1,4 @@
-Node Express Module
+Node Restify Module
 ===============================================================================
 
 This assembly provides access to Restify Module APIs for NodeJS applications.

@@ -43,8 +43,9 @@
     <Compile Include="..\..\..\ScriptSharp.cs">
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
-    <Compile Include="RestifyLogger.cs" />
+    <ScriptInfo Include="Properties\ScriptInfo.txt" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestifyLogger.cs" />
     <Compile Include="RestifyApplication.cs" />
     <Compile Include="RestifyCallback.cs" />
     <Compile Include="RestifyChain.cs" />
