@@ -12,9 +12,9 @@ namespace NodeApi.Network {
 
     [ScriptImport]
     [ScriptIgnoreNamespace]
-    public class HttpServerResponse : WritableStream, IEventEmitter {
+    public sealed class HttpServerResponse : WritableStream, IEventEmitter {
 
-        protected HttpServerResponse() {
+        private HttpServerResponse() {
         }
 
         [ScriptField]
