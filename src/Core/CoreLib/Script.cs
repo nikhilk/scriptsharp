@@ -131,6 +131,16 @@ namespace System {
             return default(T);
         }
 
+        /// <summary>
+        /// Checks if the specified object has a falsey value, i.e. it is null or
+        /// undefined or empty string or false or zero.
+        /// </summary>
+        /// <param name="o">The object to test.</param>
+        /// <returns>true if the object represents a falsey value; false otherwise.</returns>
+        public static bool IsFalsey(object o) {
+            return false;
+        }
+
         [ScriptAlias("isFinite")]
         public static bool IsFinite(object o) {
             return false;
@@ -187,6 +197,16 @@ namespace System {
         }
 
         /// <summary>
+        /// Checks if the specified object has a truthy value, i.e. it is not
+        /// null or undefined or empty string or false or zero.
+        /// </summary>
+        /// <param name="o">The object to test.</param>
+        /// <returns>true if the object represents a truthy value; false otherwise.</returns>
+        public static bool IsTruthy(object o) {
+            return false;
+        }
+
+        /// <summary>
         /// Enables you to generate an arbitrary (literal) script expression.
         /// The script can contain simple String.Format style tokens (such as
         /// {0}, {1}, ...) to be replaced with the specified arguments.
@@ -196,6 +216,18 @@ namespace System {
         /// <returns>The result of the script expression.</returns>
         public static object Literal(string script, params object[] args) {
             return null;
+        }
+
+        /// <summary>
+        /// Gets the first truthy (true, non-null, non-undefined, non-empty, non-zero) value.
+        /// </summary>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="value">The value to check for validity.</param>
+        /// <param name="alternateValue">The alternate value to use if the first is invalid.</param>
+        /// <param name="alternateValues">Additional alternative values to use if the first is invalid.</param>
+        /// <returns>The first valid value.</returns>
+        public static TValue Or<TValue>(TValue value, TValue alternateValue, params TValue[] alternateValues) {
+            return default(TValue);
         }
 
         public static void SetField(object instance, string name, object value) {
@@ -252,18 +284,6 @@ namespace System {
         [ScriptAlias("setTimeout")]
         public static int SetTimeout(Delegate d, int milliseconds, params object[] args) {
             return 0;
-        }
-
-        /// <summary>
-        /// Gets the first valid (non-null, non-undefined, non-empty) value.
-        /// </summary>
-        /// <typeparam name="TValue">The type of the value.</typeparam>
-        /// <param name="value">The value to check for validity.</param>
-        /// <param name="alternateValue">The alternate value to use if the first is invalid.</param>
-        /// <param name="alternateValues">Additional alternative values to use if the first is invalid.</param>
-        /// <returns>The first valid value.</returns>
-        public static TValue Value<TValue>(TValue value, TValue alternateValue, params TValue[] alternateValues) {
-            return default(TValue);
         }
     }
 }

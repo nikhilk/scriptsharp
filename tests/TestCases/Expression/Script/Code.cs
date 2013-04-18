@@ -8,9 +8,9 @@ namespace ExpressionTests {
     public class App {
 
         public void Test(int arg) {
-            arg = Script.Value(arg, 10);
-            arg = Script.Value(arg, 10, 100);
-            string s = Script.Value(arg, 10).ToString(10);
+            arg = Script.Or(arg, 10);
+            arg = Script.Or(arg, 10, 100);
+            string s = Script.Or(arg, 10).ToString(10);
             bool b = Script.Boolean(arg);
 
             StringBuilder sb = (StringBuilder)Script.CreateInstance(typeof(StringBuilder));
@@ -29,6 +29,11 @@ namespace ExpressionTests {
             b = Script.IsValue(i);
             b = Script.IsNaN(0);
             b = Script.IsFinite(3);
+            b = Script.IsTruthy(0);
+            b = Script.IsTruthy(b);
+            b = Script.IsTruthy(b && b);
+            b = Script.IsFalsey(1);
+            b = Script.IsFalsey(b && b);
 
             int addition = (int)Script.Eval("2 + 2");
 

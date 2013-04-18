@@ -23,6 +23,6 @@ internal static class App {
             response.WriteHead(HttpStatusCode.OK,
                                new Dictionary<string, string>("Content-Type", "text/html"));
             response.End("Hello Node World, from Script#!");
-        }).Listen(Script.Value(Node.Process.Environment["port"], 8888));
+        }).Listen(Script.Or(Node.Process.Environment["port"], 8888));
     }
 }

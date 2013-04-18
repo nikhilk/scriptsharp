@@ -540,12 +540,7 @@ namespace ScriptSharp.Compiler {
             }
 
             if (objectExpression is LiteralExpression) {
-                object literalValue = ((LiteralExpression)objectExpression).Value;
-                if (!((literalValue is Boolean) || (literalValue is String))) {
-                    // Numeric literals need to be paranthesized in script when followed by a
-                    // dot member access.
-                    objectExpression.AddParenthesisHint();
-                }
+                objectExpression.AddParenthesisHint();
             }
 
             Debug.Assert(objectExpression.EvaluatedType is ISymbolTable);
@@ -1115,9 +1110,22 @@ namespace ScriptSharp.Compiler {
                     else if (method.Name.Equals("Boolean", StringComparison.Ordinal)) {
                         Debug.Assert(args.Count == 1);
 
+                        args[0].AddParenthesisHint();
                         return new UnaryExpression(Operator.LogicalNot, new UnaryExpression(Operator.LogicalNot, args[0]));
                     }
-                    else if (method.Name.Equals("Value", StringComparison.Ordinal)) {
+                    else if (method.Name.Equals("IsTruthy", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        args[0].AddParenthesisHint();
+                        return new UnaryExpression(Operator.LogicalNot, new UnaryExpression(Operator.LogicalNot, args[0]));
+                    }
+                    else if (method.Name.Equals("IsFalsey", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        args[0].AddParenthesisHint();
+                        return new UnaryExpression(Operator.LogicalNot, args[0]);
+                    }
+                    else if (method.Name.Equals("Or", StringComparison.Ordinal)) {
                         Debug.Assert(args.Count >= 2);
 
                         Expression expr = args[0];
