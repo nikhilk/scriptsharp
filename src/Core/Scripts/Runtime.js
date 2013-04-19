@@ -73,6 +73,7 @@
       padRight: padRight,
       trimStart: trimStart,
       trimEnd: trimEnd,
+      trim: trim,
       insertString: insertString,
       removeString: removeString,
       replaceString: replaceString,

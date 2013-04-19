@@ -379,17 +379,18 @@ namespace System {
             return null;
         }
 
-        public string Trim() {
+        [ScriptAlias("ss.trim")]
+        public string Trim(params char[] trimChars) {
             return null;
         }
 
         [ScriptAlias("ss.trimEnd")]
-        public string TrimEnd() {
+        public string TrimEnd(params char[] trimChars) {
             return null;
         }
 
         [ScriptAlias("ss.trimStart")]
-        public string TrimStart() {
+        public string TrimStart(params char[] trimChars) {
             return null;
         }
 
