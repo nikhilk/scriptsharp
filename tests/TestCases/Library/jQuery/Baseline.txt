@@ -17,8 +17,8 @@ define('test', ['ss', 'jquery'], function(ss, $) {
     } });
   };
   MyApp.postData = function(url, data, succesCallback, errorCallback, returnType, requestType) {
-    returnType = returnType || 'text';
-    requestType = requestType || 'POST';
+    returnType = (returnType || 'text');
+    requestType = (requestType || 'POST');
     $.ajax({ cache: false, data: data, dataType: returnType, error: function(req, textStatus, error) {
       if (ss.isValue(errorCallback)) {
         errorCallback(req, textStatus, error);

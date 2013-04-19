@@ -85,7 +85,7 @@ define('test', ['ss'], function(ss) {
       var d = new Data();
       d.set_value(d.get_value() + 5);
       d.set_flag((d.get_flag() | true) === 1);
-      var o1 = null || {};
+      var o1 = ss.value(null, {});
       var s2 = (10).toString();
       s2 = (100).toString();
       s2 = true.toString();

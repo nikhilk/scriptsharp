@@ -318,11 +318,25 @@ namespace ScriptSharp.Compiler {
 
             if (leftExpression.Type == ExpressionType.Member) {
                 leftExpression = TransformMemberExpression((MemberExpression)leftExpression,
-                    /* getOrAdd */ (node.Operator != TokenType.Equal));
+                                                           /* getOrAdd */ (node.Operator != TokenType.Equal));
             }
 
             if (rightExpression.Type == ExpressionType.Member) {
                 rightExpression = TransformMemberExpression((MemberExpression)rightExpression);
+            }
+
+            if (node.Operator == TokenType.Coalesce) {
+                TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
+                MethodSymbol valueMethod = (MethodSymbol)scriptType.GetMember("Value");
+
+                TypeExpression scriptExpression = new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers);
+                MethodExpression valueExpression = new MethodExpression(scriptExpression, valueMethod);
+
+                valueExpression.AddParameterValue(leftExpression);
+                valueExpression.AddParameterValue(rightExpression);
+                valueExpression.Reevaluate(rightExpression.EvaluatedType);
+
+                return valueExpression;
             }
 
             TypeSymbol resultType = null;

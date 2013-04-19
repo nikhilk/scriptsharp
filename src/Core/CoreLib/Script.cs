@@ -285,5 +285,18 @@ namespace System {
         public static int SetTimeout(Delegate d, int milliseconds, params object[] args) {
             return 0;
         }
+
+        /// <summary>
+        /// Gets the first non-null and non-undefined value.
+        /// </summary>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="value">The value to check for validity.</param>
+        /// <param name="alternateValue">The alternate value to use if the first is invalid.</param>
+        /// <param name="alternateValues">Additional alternative values to use if the first is invalid.</param>
+        /// <returns>The first valid value.</returns>
+        [ScriptAlias("ss.value")]
+        public static TValue Value<TValue>(TValue value, TValue alternateValue, params TValue[] alternateValues) {
+            return default(TValue);
+        }
     }
 }

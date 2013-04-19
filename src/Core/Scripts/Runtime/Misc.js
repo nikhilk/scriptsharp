@@ -7,6 +7,18 @@ function isValue(o) {
   return (o !== null) && (o !== undefined);
 }
 
+function _value(args) {
+  for (var i = 2, l = args.length; i < l; i++) {
+    if (isValue(args[i])) {
+      return args[i];
+    }
+  }
+  return null;
+}
+function value(a, b) {
+  return isValue(a) ? a : isValue(b) ? b : _value(arguments);
+}
+
 function extend(o, items) {
   for (var n in items) {
     o[n] = items[n];

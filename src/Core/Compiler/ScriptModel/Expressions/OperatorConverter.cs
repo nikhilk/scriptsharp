@@ -48,7 +48,6 @@ namespace ScriptSharp.ScriptModel {
                 case TokenType.LogAnd:
                     return Operator.LogicalAnd;
                 case TokenType.LogOr:
-                case TokenType.Coalesce:
                     return Operator.LogicalOr;
                 case TokenType.EqualEqual:
                     return Operator.EqualEqualEqual;

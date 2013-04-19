@@ -1578,6 +1578,11 @@ Types:
                 Visibility: Public, Static
                 Generated Name: setTimeout
                 Abstract: False
+            Method: Value
+                AssociatedType: TValue
+                Visibility: Public, Static
+                Generated Name: ss.value
+                Abstract: False
             Method: Enumerate
                 AssociatedType: Object
                 Visibility: Public, Static

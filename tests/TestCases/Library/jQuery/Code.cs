@@ -43,8 +43,8 @@ public sealed class MyApp {
     }
 
     public static void PostData(string url, object data, AjaxRequestCallback succesCallback, AjaxErrorCallback errorCallback, string returnType, string requestType) {
-        returnType = returnType ?? "text";
-        requestType = requestType ?? "POST";
+        returnType = Script.Or(returnType, "text");
+        requestType = Script.Or(requestType, "POST");
 
         jQuery.Ajax(new jQueryAjaxOptions(
             "cache", false,
