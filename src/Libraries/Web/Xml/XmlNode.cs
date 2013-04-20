@@ -137,6 +137,10 @@ namespace System.Xml {
             return null;
         }
 
+        public bool HasAttributes() {
+            return false;
+        }
+
         public bool HasChildNodes() {
             return false;
         }
@@ -145,23 +149,19 @@ namespace System.Xml {
             return null;
         }
 
+        public XmlNode QuerySelector(string selector) {
+            return null;
+        }
+
+        public XmlNodeList QuerySelectorAll(string selector) {
+            return null;
+        }
+
         public XmlNode RemoveChild(XmlNode child) {
             return null;
         }
 
         public XmlNode ReplaceChild(XmlNode child, XmlNode oldChild) {
-            return null;
-        }
-
-        public XmlNodeList SelectNodes(string xpath) {
-            return null;
-        }
-
-        public XmlNode SelectSingleNode(string xpath) {
-            return null;
-        }
-
-        public string TransformNode(XmlDocument stylesheet) {
             return null;
         }
     }
