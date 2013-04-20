@@ -14,7 +14,7 @@ define('test', ['ss', 'jquery'], function(ss, $) {
     }, 0).toString(10);
     var s4 = encodeURIComponent(this._func(10));
     var f2 = this._func;
-    f2(11).trim();
+    ss.trim(f2(11));
     var d = {};
     var s5 = $.extend(d, d)['abc'].toString(10);
     var keys = ss.keyCount(d);

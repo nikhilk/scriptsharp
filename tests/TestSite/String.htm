@@ -22,11 +22,32 @@ define(['ss'], function(ss) {
   test('trim', function() {
     QUnit.equal(ss.trimStart('Hello'), 'Hello');
     QUnit.equal(ss.trimStart('  Hello'), 'Hello');
-    QUnit.equal(ss.trimEnd('  Hello'), '  Hello');
+    QUnit.equal(ss.trimStart(' Hello  '), 'Hello  ');
+
+    QUnit.equal(ss.trimEnd('Hello'), 'Hello');
     QUnit.equal(ss.trimEnd('Hello  '), 'Hello');
-    QUnit.equal(ss.trimStart('Hello'), 'Hello');
+    QUnit.equal(ss.trimEnd(' Hello  '), ' Hello');
+
     QUnit.equal(ss.trimEnd(ss.trimStart('  Hello  ')), 'Hello');
     QUnit.equal(ss.trimEnd(ss.trimStart('\tHello  ')), 'Hello');
+ 
+    QUnit.equal(ss.trim('Hello'), 'Hello');
+    QUnit.equal(ss.trim('  Hello  '), 'Hello');
+    QUnit.equal(ss.trim('\tHello  '), 'Hello');
+    QUnit.equal(ss.trim('\t Hello  World '), 'Hello  World');
+
+    QUnit.equal(ss.trimStart('00word00', ['0']), 'word00');
+    QUnit.equal(ss.trimStart('10word01', ['0', '1']), 'word01');
+    QUnit.equal(ss.trimStart('10 0word0 01', ['0', '1']), ' 0word0 01');
+
+    QUnit.equal(ss.trimEnd('00word00', ['0']), '00word');
+    QUnit.equal(ss.trimEnd('10word01', ['0', '1']), '10word');
+    QUnit.equal(ss.trimEnd('10 0word0 01', ['0', '1']), '10 0word0 ');
+
+    QUnit.equal(ss.trim('00word00', ['0']), 'word');
+    QUnit.equal(ss.trim('10word01', ['0', '1']), 'word');
+    QUnit.equal(ss.trim('10 0word0 01', ['0', '1']), ' 0word0 ');
+    QUnit.equal(ss.trim(' word ', []), 'word');
   });
 
   test('padLeft', function() {

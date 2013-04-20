@@ -71,6 +71,7 @@
       endsWith: endsWith,
       padLeft: padLeft,
       padRight: padRight,
+      trim: trim,
       trimStart: trimStart,
       trimEnd: trimEnd,
       insertString: insertString,

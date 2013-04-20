@@ -58,11 +58,21 @@ function format(cultureOrFormat) {
     });
 }
 
-function trimStart(s) {
-  return s.replace(/^\s*/, '');
+function trim(s, tc) {
+  if (tc || !String.prototype.trim) {
+    tc = tc ? tc.join('') : null;
+    var r = tc ? new RegExp('^[' + tc + ']+|[' + tc + ']+$', 'g') : /^\s+|\s+$/g;
+    return s.replace(r, '');
+  }
+  return s.trim();
 }
-function trimEnd(s) {
-  return s.replace(/\s*$/, '');
+function trimStart(s, tc) {
+  var r = tc ? new RegExp('^[' + tc.join('') + ']+') : /^\s+/;
+  return s.replace(r, '');
+}
+function trimEnd(s, tc) {
+  var r = tc ? new RegExp('[' + tc.join('') + ']+$') : /\s+$/;
+  return s.replace(r, '');
 }
 function startsWith(s, prefix) {
   if (emptyString(prefix)) {
