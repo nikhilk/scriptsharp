@@ -324,6 +324,28 @@ namespace System.Html {
         public static void AttachEvent(string eventName, ElementEventHandler handler) {
         }
 
+        /// <summary>
+        /// Decodes a string of data which has been encoded using base-64 encoding.
+        /// For use with Unicode or UTF-8 strings.
+        /// </summary>
+        /// <param name="base64EncodedData">Base64 encoded string</param>
+        /// <returns>String of Binary data</returns>
+        [ScriptName("atob")]
+        public static string Base64ToBinary(string base64EncodedData) {
+            return null;
+        }
+
+        /// <summary>
+        /// Creates a base-64 encoded ASCII string from a "string" of binary data.
+        /// Please note that this is not suitable for raw Unicode strings!
+        /// </summary>
+        /// <param name="stringToEncode">String of binary data</param>
+        /// <returns>Base64 string</returns>
+        [ScriptName("btoa")]
+        public static string BinaryToBase64(string stringToEncode) {
+            return null;
+        }
+
         public static void Close() {
         }
 
