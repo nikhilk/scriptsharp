@@ -18,7 +18,7 @@ Copyright (c) 2013. Script# Project. All rights reserved.
       <Output TaskParameter="Scripts" ItemName="DeployedScripts" />
     </ScriptDeployTask>
     <ItemGroup>
-      <Content Include="@(DeployedScripts)" KeepDuplicates="False" />
+      <Content Include="@(DeployedScripts)" />
     </ItemGroup>
   </Target>
 

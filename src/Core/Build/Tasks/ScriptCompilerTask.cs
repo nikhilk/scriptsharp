@@ -244,8 +244,13 @@ namespace ScriptSharp.Tasks {
             options.IncludeResolver = this;
 
             string scriptFilePath = GetScriptFilePath(locale, minimize, includeTests);
+            string symbolFilePath = GetSymbolFilePath(locale, minimize, includeTests);
+
             outputScriptItem = new TaskItem(scriptFilePath);
+            TaskItem outputSymbolItem = new TaskItem(symbolFilePath);
+
             options.ScriptFile = new TaskItemOutputStreamSource(outputScriptItem);
+            options.SymbolFile = new TaskItemOutputStreamSource(outputSymbolItem);
 
             return options;
         }
@@ -405,6 +410,10 @@ namespace ScriptSharp.Tasks {
             }
 
             return Path.GetFullPath(Path.Combine(OutputPath, Path.ChangeExtension(scriptName, extension)));
+        }
+
+        private string GetSymbolFilePath(string locale, bool minimize, bool includeTests) {
+            return GetScriptFilePath(locale, minimize, includeTests) + ".symbol";
         }
 
         private ICollection<IStreamSource> GetSources(IEnumerable<ITaskItem> sourceItems) {

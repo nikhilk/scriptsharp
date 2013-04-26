@@ -17,6 +17,7 @@ using ScriptSharp.Importer;
 using ScriptSharp.ResourceModel;
 using ScriptSharp.ScriptModel;
 using ScriptSharp.Validator;
+using ScriptSharp.SymbolFile;
 
 namespace ScriptSharp {
 
@@ -223,7 +224,45 @@ namespace ScriptSharp {
                 return false;
             }
 
+            GenerateSymbol();
+            if (_hasErrors) {
+                return false;
+            }
+
             return true;
+        }
+
+        private void GenerateSymbol() {
+
+            Stream outputStream = null;
+            TextWriter outputWriter = null;
+
+            try {
+                outputStream = _options.SymbolFile.GetStream();
+                if (outputStream == null) {
+                    ((IErrorHandler)this).ReportError("Unable to write to file " + _options.SymbolFile.FullName,
+                                                      _options.SymbolFile.FullName);
+                    return;
+                }
+
+                outputWriter = new StreamWriter(outputStream);
+
+                var sfg = new SymbolFileGenerator(outputWriter);
+                sfg.Generate(_symbols);
+
+            } catch (Exception e) {
+                Debug.Fail(e.ToString());
+            } finally {
+                if (outputWriter != null) {
+                    outputWriter.Flush();
+                }
+                if (outputStream != null) {
+                    _options.SymbolFile.CloseStream(outputStream);
+                }
+            }
+
+
+
         }
 
         private void GenerateScript() {
@@ -243,9 +282,11 @@ namespace ScriptSharp {
 #if DEBUG
                 if (_options.InternalTestMode) {
                     if (_testOutput != null) {
+                        outputWriter.WriteLine("/**");
                         outputWriter.Write(_testOutput);
                         outputWriter.WriteLine("Script");
                         outputWriter.WriteLine("================================================================");
+                        outputWriter.Write("**/");
                         outputWriter.WriteLine();
                         outputWriter.WriteLine();
                     }

@@ -266,9 +266,11 @@ namespace ScriptSharp.Generator {
                 }
             }
             else {
-                writer.Write("ss.bind('");
+                writer.Write("ss.bind(");
+                ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
+                writer.Write(".");
                 writer.Write(expression.Method.GeneratedName);
-                writer.Write("', ");
+                writer.Write(", ");
                 ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
                 writer.Write(")");
             }

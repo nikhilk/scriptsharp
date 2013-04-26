@@ -50,6 +50,7 @@
     <Compile Include="..\ResXParser.cs">
       <Link>ResXParser.cs</Link>
     </Compile>
+    <Compile Include="SymbolFile\SymbolFileGenerator.cs" />
     <Compile Include="IStreamSourceResolver.cs" />
     <Compile Include="ScriptReference.cs" />
     <Compile Include="ScriptInfo.cs" />
