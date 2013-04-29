@@ -11,6 +11,7 @@ namespace NodeApi.IO {
     [ScriptImport]
     [ScriptIgnoreNamespace]
     [ScriptDependency("path")]
+    [ScriptName("path")]
     public static class Path {
 
         [ScriptName("sep")]
