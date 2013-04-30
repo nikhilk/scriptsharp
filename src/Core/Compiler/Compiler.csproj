@@ -50,6 +50,8 @@
     <Compile Include="..\ResXParser.cs">
       <Link>ResXParser.cs</Link>
     </Compile>
+    <Compile Include="SymbolFile\AjaxMinRenameFileGenerator.cs" />
+    <Compile Include="SymbolFile\SymbolFile.cs" />
     <Compile Include="SymbolFile\SymbolFileGenerator.cs" />
     <Compile Include="IStreamSourceResolver.cs" />
     <Compile Include="ScriptReference.cs" />
@@ -179,6 +181,7 @@
     <Compile Include="IStreamSource.cs" />
     <Compile Include="ScriptModel\Symbols\IntrinsicType.cs" />
     <Compile Include="ScriptModel\Symbols\GenericParameterSymbol.cs" />
+    <Compile Include="SymbolFile\SymbolFileMerger.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="CompilerOptions.cs" />
     <Compile Include="IErrorHandler.cs" />

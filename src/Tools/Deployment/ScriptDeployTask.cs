@@ -10,6 +10,8 @@ using System.Linq;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+using System.Diagnostics;
+using ScriptSharp.SymbolFile;
 
 namespace ScriptSharp.Tasks {
 
@@ -106,6 +108,64 @@ namespace ScriptSharp.Tasks {
             }
         }
 
+        private void DeploySymbols(string projectName, string scriptsFile, string projectPath, string targetPath) {
+
+            string sourceDirectory = Path.GetDirectoryName(scriptsFile);
+            string[] symbols = File.ReadAllLines(scriptsFile);
+            string mergedfile = Path.ChangeExtension(projectName, "merged.symbol");
+            string mergedpath = Path.Combine(sourceDirectory, mergedfile);
+
+            symbols = symbols
+                .Where(s => Path.GetExtension(s) == ".symbol")
+                .Select(s => Path.Combine(sourceDirectory, s)).ToArray();
+
+            Log.LogMessage("Merging symbol file from {0} project:", projectName);
+
+            var sfm = new SymbolFileMerger();
+            string error;
+            bool success = sfm.Merge(symbols, mergedpath, out error);
+            if (!success) {
+                Log.LogError("Error merging symbol from project {0}.\r\n{1}", projectName, error);
+            }
+
+            Uri baseUri = new Uri(projectPath, UriKind.Absolute);
+            Uri targetUri = new Uri(mergedpath, UriKind.Absolute);
+            string relativePath = Uri.UnescapeDataString(baseUri.MakeRelativeUri(targetUri).ToString()).Replace("/", "\\");
+
+            string targetmergepath = Path.Combine(targetPath, mergedfile);
+            CopyFile(mergedpath, targetmergepath);
+
+            Log.LogMessage("-> " + relativePath);
+            _scripts.Add(new TaskItem(relativePath));
+
+        }
+
+        private void DeployAjaxMinRenameFile(string projectName, string scriptsFile, string projectPath, string targetPath) {
+
+            string sourceDirectory = Path.GetDirectoryName(scriptsFile);
+            string[] symbols = File.ReadAllLines(scriptsFile);
+            string mergedfile = Path.ChangeExtension(projectName, "merged.symbol");
+            string renamefile = Path.ChangeExtension(projectName, "rename.xml");
+            string mergedpath = Path.Combine(sourceDirectory, mergedfile);
+            string renamepath = Path.Combine(sourceDirectory, renamefile);
+            
+            Log.LogMessage("Creating AjaxMin rename file from {0} project:", projectName);
+
+            var amfg = new AjaxMinRenameFileGenerator();
+            amfg.Generate(mergedpath, renamepath);
+
+            Uri baseUri = new Uri(projectPath, UriKind.Absolute);
+            Uri targetUri = new Uri(renamepath, UriKind.Absolute);
+            string relativePath = Uri.UnescapeDataString(baseUri.MakeRelativeUri(targetUri).ToString()).Replace("/", "\\");
+
+            string targetrenamepath = Path.Combine(targetPath, renamefile);
+            CopyFile(renamepath, targetrenamepath);
+
+            Log.LogMessage("-> " + relativePath);
+            _scripts.Add(new TaskItem(relativePath));
+
+        }
+
         public override bool Execute() {
             _scriptSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             _scripts = new List<ITaskItem>();
@@ -143,6 +203,24 @@ namespace ScriptSharp.Tasks {
                     Log.LogError("Error deploying scripts from project {0}.\r\n{1}", referenceName, e.ToString());
                     return false;
                 }
+                
+                try {
+                    DeploySymbols(referenceName, scriptsFile, _projectPath, scriptsDirectory);
+                } 
+                catch (Exception e) {
+                    Log.LogError("Error deploying symbols from project {0}.\r\n{1}", referenceName, e.ToString());
+                    return false;
+                }
+
+                try {
+                    DeployAjaxMinRenameFile(referenceName, scriptsFile, _projectPath, scriptsDirectory);
+                } 
+                catch (Exception e) {
+                    Log.LogError("Error creating AjaxMin rename file from project {0}.\r\n{1}", referenceName, e.ToString());
+                    return false;
+                }
+
+                
             }
 
             return true;
@@ -158,6 +236,19 @@ namespace ScriptSharp.Tasks {
             }
 
             return scriptsFilePath;
+        }
+
+
+        private string GetSymbolFile(Project project, string projectPath) {
+            string outputPath = project.GetProperty("OutputPath").EvaluatedValue;
+            string assemblyName = project.GetProperty("AssemblyName").EvaluatedValue;
+
+            string symbolFilePath = Path.Combine(Path.GetDirectoryName(projectPath), outputPath, assemblyName + ".symbol");
+            if (File.Exists(symbolFilePath) == false) {
+                return null;
+            }
+
+            return symbolFilePath;
         }
 
         private Project GetReferencedProject(string projectPath) {

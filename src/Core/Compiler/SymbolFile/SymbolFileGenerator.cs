@@ -10,32 +10,19 @@ using System.Collections;
 using System.Xml;
 
 namespace ScriptSharp.SymbolFile {
-    public class SymbolFileGenerator {
 
-        const string RootElement = "Root";
-        const string SymbolElement = "Symbol";
-        const string GeneratedNameAttribute = "GeneratedName";
-        const string NameAttribute = "Name";
-        const string TypeAttribute = "Type";
-        const string HasApplicationTypesAttribute = "HasApplicationTypes";
-        const string IsExtenderClassAttribute = "IsExtenderClass";
-        const string BaseClassAttribute = "BaseClass";
-        const string FlagAttribute = "Flag";
-        const string ReadOnlyAttribute = "ReadOnly";
-        const string AssociatedTypeAttribute = "AssociatedType";
-        const string VisibilityAttribute = "Visibility";
-        const string ConditionsAttribute = "Conditions";
-        const string ValueTypeAttribute = "ValueType";
-        const string ModeAttribute = "Mode";
-        const string IsPublicAttribute = "IsPublic";
-        const string AbstractAttribute = "Abstract";
-        const string InterfaceMemberAttribute = "InterfaceMember";
+    /// <summary>
+    /// Generates symbol files from extracted symbol informations.
+    /// </summary>
+    internal class SymbolFileGenerator {
+
 
         private readonly XmlTextWriter _writer;
 
 
         internal SymbolFileGenerator(TextWriter writer) {
             Debug.Assert(writer != null);
+
             _writer = new XmlTextWriter(writer);
 
         }
@@ -43,7 +30,7 @@ namespace ScriptSharp.SymbolFile {
         internal void Generate(SymbolSet symbols) {
 
             _writer.WriteStartDocument();
-            _writer.WriteStartElement(RootElement);
+            _writer.WriteStartElement(SymbolFile.RootElement);
 
             DumpSymbols(symbols);
 
@@ -64,7 +51,6 @@ namespace ScriptSharp.SymbolFile {
             foreach (NamespaceSymbol ns in namespaces) {
                 DumpSymbol(ns);
 
-                _writer.WriteWhitespace("\n");
             }
         }
 
@@ -72,7 +58,6 @@ namespace ScriptSharp.SymbolFile {
         private void WriteElement(Symbol s) {
 
             _writer.WriteEndElement();
-            _writer.WriteWhitespace("\n");
 
         }
 
@@ -80,13 +65,13 @@ namespace ScriptSharp.SymbolFile {
         private void DumpClass(ClassSymbol classSymbol) {
 
             if (classSymbol.BaseClass != null) {
-                _writer.WriteAttributeString(BaseClassAttribute, classSymbol.BaseClass.Name);
+                _writer.WriteAttributeString(SymbolFile.BaseClassAttribute, classSymbol.BaseClass.Name);
             }
             if (classSymbol.Interfaces != null) {
                 foreach (InterfaceSymbol interfaceSymbol in classSymbol.Interfaces) {
-                    _writer.WriteStartElement(SymbolElement);
-                    _writer.WriteAttributeString(TypeAttribute, interfaceSymbol.Type.ToString());
-                    _writer.WriteAttributeString(NameAttribute, interfaceSymbol.Name);
+                    _writer.WriteStartElement(SymbolFile.SymbolElement);
+                    _writer.WriteAttributeString(SymbolFile.TypeAttribute, interfaceSymbol.Type.ToString());
+                    _writer.WriteAttributeString(SymbolFile.NameAttribute, interfaceSymbol.Name);
                     _writer.WriteEndElement();
                 }
             }
@@ -114,21 +99,48 @@ namespace ScriptSharp.SymbolFile {
         }
 
         private void DumpEnumeration(EnumerationSymbol enumSymbol) {
-            _writer.WriteAttributeString(FlagAttribute, enumSymbol.Flags.ToString());
+            _writer.WriteAttributeString(SymbolFile.FlagAttribute, enumSymbol.Flags.ToString());
         }
 
         private void DumpEnumerationField(EnumerationFieldSymbol enumFieldSymbol) {
         }
 
         private void DumpEvent(EventSymbol eventSymbol) {
+
+            _writer.WriteStartElement(SymbolFile.SymbolElement);
+            _writer.WriteAttributeString(SymbolFile.TypeAttribute, SymbolFile.GetterTypeName);
+            _writer.WriteAttributeString(SymbolFile.NameAttribute, eventSymbol.Name);
+            _writer.WriteAttributeString(SymbolFile.GeneratedNameAttribute, "add_" + eventSymbol.GeneratedName);
+            _writer.WriteEndElement();
+
+            _writer.WriteStartElement(SymbolFile.SymbolElement);
+            _writer.WriteAttributeString(SymbolFile.TypeAttribute, SymbolFile.SetterTypeName);
+            _writer.WriteAttributeString(SymbolFile.NameAttribute, eventSymbol.Name);
+            _writer.WriteAttributeString(SymbolFile.GeneratedNameAttribute, "remove_" + eventSymbol.GeneratedName);
+            _writer.WriteEndElement();
         }
 
         private void DumpField(FieldSymbol fieldSymbol) {
+            _writer.WriteAttributeString(SymbolFile.AliasedAttribute, fieldSymbol.IsGlobalField.ToString());
         }
 
         private void DumpIndexer(IndexerSymbol indexerSymbol) {
-            _writer.WriteAttributeString(ReadOnlyAttribute, indexerSymbol.IsReadOnly.ToString());
-            _writer.WriteAttributeString(AbstractAttribute, indexerSymbol.IsAbstract.ToString());
+            _writer.WriteAttributeString(SymbolFile.ReadOnlyAttribute, indexerSymbol.IsReadOnly.ToString());
+            _writer.WriteAttributeString(SymbolFile.AbstractAttribute, indexerSymbol.IsAbstract.ToString());
+
+
+            _writer.WriteStartElement(SymbolFile.SymbolElement);
+            _writer.WriteAttributeString(SymbolFile.TypeAttribute, SymbolFile.GetterTypeName);
+            _writer.WriteAttributeString(SymbolFile.NameAttribute, indexerSymbol.Name);
+            _writer.WriteAttributeString(SymbolFile.GeneratedNameAttribute, "get_" + indexerSymbol.GeneratedName);
+            _writer.WriteEndElement();
+
+            _writer.WriteStartElement(SymbolFile.SymbolElement);
+            _writer.WriteAttributeString(SymbolFile.TypeAttribute, SymbolFile.SetterTypeName);
+            _writer.WriteAttributeString(SymbolFile.NameAttribute, indexerSymbol.Name);
+            _writer.WriteAttributeString(SymbolFile.GeneratedNameAttribute, "set_" + indexerSymbol.GeneratedName);
+            _writer.WriteEndElement();
+
         }
 
         private void DumpInterface(InterfaceSymbol interfaceSymbol) {
@@ -136,12 +148,12 @@ namespace ScriptSharp.SymbolFile {
 
         private void DumpMember(MemberSymbol memberSymbol) {
 
-            _writer.WriteAttributeString(AssociatedTypeAttribute, memberSymbol.AssociatedType.Name.ToString());
-            _writer.WriteAttributeString(VisibilityAttribute, memberSymbol.Visibility.ToString());
-            _writer.WriteAttributeString(GeneratedNameAttribute, memberSymbol.GeneratedName);
+            _writer.WriteAttributeString(SymbolFile.AssociatedTypeAttribute, memberSymbol.AssociatedType.Name.ToString());
+            _writer.WriteAttributeString(SymbolFile.VisibilityAttribute, memberSymbol.Visibility.ToString());
+            _writer.WriteAttributeString(SymbolFile.GeneratedNameAttribute, memberSymbol.GeneratedName);
 
             if (memberSymbol.InterfaceMember != null) {
-                _writer.WriteAttributeString(InterfaceMemberAttribute, string.Format(
+                _writer.WriteAttributeString(SymbolFile.InterfaceMemberAttribute, string.Format(
                     "{0}.{1}", memberSymbol.InterfaceMember.Parent.Name, memberSymbol.InterfaceMember.Name));
             }
 
@@ -174,8 +186,9 @@ namespace ScriptSharp.SymbolFile {
         private void DumpMethod(MethodSymbol methodSymbol) {
 
 
-            _writer.WriteAttributeString(AbstractAttribute, methodSymbol.IsAbstract.ToString());
-
+            _writer.WriteAttributeString(SymbolFile.AbstractAttribute, methodSymbol.IsAbstract.ToString());
+            _writer.WriteAttributeString(SymbolFile.AliasedAttribute, methodSymbol.IsAliased.ToString());
+            
             if (methodSymbol.Conditions != null) {
 
                 StringBuilder sb = new StringBuilder();
@@ -183,7 +196,7 @@ namespace ScriptSharp.SymbolFile {
                     sb.Append(condition);
                     sb.Append(",");
                 }
-                _writer.WriteAttributeString(ConditionsAttribute, sb.ToString());
+                _writer.WriteAttributeString(SymbolFile.ConditionsAttribute, sb.ToString());
             }
 
             if (methodSymbol.Parameters != null) {
@@ -197,7 +210,7 @@ namespace ScriptSharp.SymbolFile {
 
         private void DumpNamespace(NamespaceSymbol namespaceSymbol) {
 
-            _writer.WriteAttributeString(HasApplicationTypesAttribute, namespaceSymbol.HasApplicationTypes.ToString());
+            _writer.WriteAttributeString(SymbolFile.HasApplicationTypesAttribute, namespaceSymbol.HasApplicationTypes.ToString());
 
             ArrayList types = new ArrayList(namespaceSymbol.Types.Count);
             foreach (TypeSymbol type in namespaceSymbol.Types) {
@@ -211,20 +224,33 @@ namespace ScriptSharp.SymbolFile {
         }
 
         private void DumpParameter(ParameterSymbol parameterSymbol) {
-            _writer.WriteAttributeString(ValueTypeAttribute, parameterSymbol.ValueType.Name);
-            _writer.WriteAttributeString(ModeAttribute, parameterSymbol.Mode.ToString());
+            _writer.WriteAttributeString(SymbolFile.ValueTypeAttribute, parameterSymbol.ValueType.Name);
+            _writer.WriteAttributeString(SymbolFile.ModeAttribute, parameterSymbol.Mode.ToString());
         }
 
         private void DumpProperty(PropertySymbol propertySymbol) {
-            _writer.WriteAttributeString(ReadOnlyAttribute, propertySymbol.IsReadOnly.ToString());
-            _writer.WriteAttributeString(AbstractAttribute, propertySymbol.IsAbstract.ToString());
+            _writer.WriteAttributeString(SymbolFile.ReadOnlyAttribute, propertySymbol.IsReadOnly.ToString());
+            _writer.WriteAttributeString(SymbolFile.AbstractAttribute, propertySymbol.IsAbstract.ToString());
+
+            _writer.WriteStartElement(SymbolFile.SymbolElement);
+            _writer.WriteAttributeString(SymbolFile.TypeAttribute, SymbolFile.GetterTypeName);
+            _writer.WriteAttributeString(SymbolFile.NameAttribute, propertySymbol.Name);
+            _writer.WriteAttributeString(SymbolFile.GeneratedNameAttribute, "get_" + propertySymbol.GeneratedName);
+            _writer.WriteEndElement();
+
+            _writer.WriteStartElement(SymbolFile.SymbolElement);
+            _writer.WriteAttributeString(SymbolFile.TypeAttribute, SymbolFile.SetterTypeName);
+            _writer.WriteAttributeString(SymbolFile.NameAttribute, propertySymbol.Name);
+            _writer.WriteAttributeString(SymbolFile.GeneratedNameAttribute, "set_" + propertySymbol.GeneratedName);
+            _writer.WriteEndElement();
+
         }
 
         private void DumpSymbol(Symbol symbol) {
 
-            _writer.WriteStartElement(SymbolElement);
-            _writer.WriteAttributeString(TypeAttribute, symbol.Type.ToString());
-            _writer.WriteAttributeString(NameAttribute, symbol.Name);
+            _writer.WriteStartElement(SymbolFile.SymbolElement);
+            _writer.WriteAttributeString(SymbolFile.TypeAttribute, symbol.Type.ToString());
+            _writer.WriteAttributeString(SymbolFile.NameAttribute, symbol.Name);
 
             switch (symbol.Type) {
                 case SymbolType.Namespace:
@@ -257,9 +283,11 @@ namespace ScriptSharp.SymbolFile {
 
         private void DumpType(TypeSymbol typeSymbol) {
 
-            _writer.WriteAttributeString(IsExtenderClassAttribute, typeSymbol.IsApplicationType.ToString());
-            _writer.WriteAttributeString(IsPublicAttribute, typeSymbol.IsPublic.ToString());
-            _writer.WriteAttributeString(GeneratedNameAttribute, typeSymbol.GeneratedName);
+            _writer.WriteAttributeString(SymbolFile.IsExtenderClassAttribute, typeSymbol.IsApplicationType.ToString());
+            _writer.WriteAttributeString(SymbolFile.IsPublicAttribute, typeSymbol.IsPublic.ToString());
+            _writer.WriteAttributeString(SymbolFile.IsScriptImportedAttribute, typeSymbol.IsScriptImported.ToString());
+
+            _writer.WriteAttributeString(SymbolFile.GeneratedNameAttribute, typeSymbol.GeneratedName);
 
             switch (typeSymbol.Type) {
                 case SymbolType.Class:
@@ -280,7 +308,6 @@ namespace ScriptSharp.SymbolFile {
             foreach (MemberSymbol member in typeSymbol.Members) {
                 DumpSymbol(member);
             }
-            _writer.WriteWhitespace(Environment.NewLine);
 
         }
         private sealed class SymbolComparer : IComparer {
@@ -289,6 +316,7 @@ namespace ScriptSharp.SymbolFile {
                 return String.Compare(((Symbol)x).Name, ((Symbol)y).Name);
             }
         }
+
 
 
     }
