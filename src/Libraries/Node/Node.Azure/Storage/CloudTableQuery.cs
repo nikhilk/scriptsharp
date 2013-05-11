@@ -11,10 +11,8 @@ namespace NodeApi.WindowsAzure.Storage {
 
     [ScriptImport]
     [ScriptIgnoreNamespace]
+    [ScriptName("azure.TableQuery")]
     public sealed class CloudTableQuery {
-
-        private CloudTableQuery() {
-        }
 
         public CloudTableQuery And(string filter, object[] values) {
             return null;

@@ -26,14 +26,6 @@ namespace NodeApi.WindowsAzure {
             }
         }
 
-        [ScriptField]
-        [ScriptName(PreserveCase = true)]
-        public static CloudTableQuery TableQuery {
-            get {
-                return null;
-            }
-        }
-
         public static CloudBlobService CreateBlobService() {
             return null;
         }
