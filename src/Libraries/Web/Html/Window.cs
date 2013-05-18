@@ -124,6 +124,13 @@ namespace System.Html {
         }
 
         [ScriptField]
+        public static DBFactory IndexedDB {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
         public static int InnerHeight {
             get {
                 return 0;
@@ -172,6 +179,16 @@ namespace System.Html {
             }
             set { 
             } 
+        }
+
+        [ScriptField]
+        [ScriptName("onpopstate")]
+        public static Action<object> OnPopState {
+            get {
+                return null;
+            }
+            set {
+            }
         }
 
         [ScriptField]
@@ -462,14 +479,6 @@ namespace System.Html {
         public static SqlDatabase OpenDatabase(string name, string version, string displayName, int estimatedSize, SqlDatabaseCallback creationCallback) {
             return null;
         }
-
-        [ScriptField]
-        public static DBFactory IndexedDB {
-            get {
-                return null;
-            }
-        }
-
 
         public static void PostMessage(string message, string targetOrigin) {
         }
