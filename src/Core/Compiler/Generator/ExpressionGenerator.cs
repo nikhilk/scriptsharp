@@ -176,8 +176,10 @@ namespace ScriptSharp.Generator {
                         }
                     }
                     else if ((literalExpression.Value is int) && (((int)literalExpression.Value) == 0)) {
-                        optimizable = true;
-                        checkForFalse = (expression.Operator == Operator.EqualEqualEqual);
+                        if (expression.LeftOperand.EvaluatedType.Type != SymbolType.Enumeration) {
+                            optimizable = true;
+                            checkForFalse = (expression.Operator == Operator.EqualEqualEqual);
+                        }
                     }
                     else if ((literalExpression.Value is string) && ((string)literalExpression.Value == String.Empty)) {
                         optimizable = true;
