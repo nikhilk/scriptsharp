@@ -4,6 +4,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace NodeApi.WindowsAzure.Storage {
@@ -22,7 +23,7 @@ namespace NodeApi.WindowsAzure.Storage {
             }
         }
 
-        public void GetNextPage(AsyncResultCallback<CloudTable[], CloudTableListContinuation> callback) {
+        public void GetNextPage(AsyncResultCallback<List<CloudTable>, CloudTableListContinuation> callback) {
         }
 
         public bool HasNextPage() {

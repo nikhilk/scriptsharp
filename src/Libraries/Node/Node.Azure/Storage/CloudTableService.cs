@@ -4,6 +4,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace NodeApi.WindowsAzure.Storage {
@@ -33,44 +34,44 @@ namespace NodeApi.WindowsAzure.Storage {
         public void CreateTable(string tableName, object options, AsyncCallback callback) {
         }
 
-        public void CreateTableIfNotExists(string tableName, AsyncCallback callback) {
+        public void CreateTableIfNotExists(string tableName, AsyncResultCallback<bool> callback) {
         }
 
-        public void CreateTableIfNotExists(string tableName, object options, AsyncCallback callback) {
+        public void CreateTableIfNotExists(string tableName, object options, AsyncResultCallback<bool> callback) {
         }
 
-        public void DeleteEntity(string tableName, CloudTableEntity entity, AsyncCallback callback) {
+        public void DeleteEntity(string tableName, CloudTableEntity entity, AsyncResultCallback<bool> callback) {
         }
 
-        public void DeleteEntity(string tableName, CloudTableEntity entity, object options, AsyncCallback callback) {
+        public void DeleteEntity(string tableName, CloudTableEntity entity, object options, AsyncResultCallback<bool> callback) {
         }
 
-        public void DeleteTable(string tableName, AsyncCallback callback) {
+        public void DeleteTable(string tableName, AsyncResultCallback<bool> callback) {
         }
 
-        public void DeleteTable(string tableName, object options, AsyncCallback callback) {
+        public void DeleteTable(string tableName, object options, AsyncResultCallback<bool> callback) {
         }
 
         public bool HasOperations() {
             return false;
         }
 
-        public void InsertEntity(string tableName, CloudTableEntity entity, AsyncCallback callback) {
+        public void InsertEntity(string tableName, CloudTableEntity entity, AsyncResultCallback<CloudTableEntity> callback) {
         }
 
-        public void InsertEntity(string tableName, CloudTableEntity entity, object options, AsyncCallback callback) {
+        public void InsertEntity(string tableName, CloudTableEntity entity, object options, AsyncResultCallback<CloudTableEntity> callback) {
         }
 
-        public void InsertOrMergeEntity(string tableName, CloudTableEntity entity, AsyncCallback callback) {
+        public void InsertOrMergeEntity(string tableName, CloudTableEntity entity, AsyncResultCallback<CloudTableEntity> callback) {
         }
 
-        public void InsertOrMergeEntity(string tableName, CloudTableEntity entity, object options, AsyncCallback callback) {
+        public void InsertOrMergeEntity(string tableName, CloudTableEntity entity, object options, AsyncResultCallback<CloudTableEntity> callback) {
         }
 
-        public void InsertOrReplaceEntity(string tableName, CloudTableEntity entity, AsyncCallback callback) {
+        public void InsertOrReplaceEntity(string tableName, CloudTableEntity entity, AsyncResultCallback<CloudTableEntity> callback) {
         }
 
-        public void InsertOrReplaceEntity(string tableName, CloudTableEntity entity, object options, AsyncCallback callback) {
+        public void InsertOrReplaceEntity(string tableName, CloudTableEntity entity, object options, AsyncResultCallback<CloudTableEntity> callback) {
         }
 
         public bool IsInBatch() {
@@ -78,37 +79,37 @@ namespace NodeApi.WindowsAzure.Storage {
         }
 
         [ScriptName("queryTables")]
-        public void ListTables(AsyncResultCallback<CloudTable[]> callback) {
+        public void ListTables(AsyncResultCallback<List<CloudTable>> callback) {
         }
 
         [ScriptName("queryTables")]
-        public void ListTables(AsyncResultCallback<CloudTable[], CloudTableListContinuation> callback) {
+        public void ListTables(AsyncResultCallback<List<CloudTable>, CloudTableListContinuation> callback) {
         }
 
         [ScriptName("queryTables")]
-        public void ListTables(object options, AsyncResultCallback<CloudTable[]> callback) {
+        public void ListTables(object options, AsyncResultCallback<List<CloudTable>> callback) {
         }
 
         [ScriptName("queryTables")]
-        public void ListTables(object options, AsyncResultCallback<CloudTable[], CloudTableListContinuation> callback) {
+        public void ListTables(object options, AsyncResultCallback<List<CloudTable>, CloudTableListContinuation> callback) {
         }
 
-        public void MergeEntity(string tableName, CloudTableEntity entity, AsyncCallback callback) {
+        public void MergeEntity(string tableName, CloudTableEntity entity, AsyncResultCallback<CloudTableEntity> callback) {
         }
 
-        public void MergeEntity(string tableName, CloudTableEntity entity, object options, AsyncCallback callback) {
+        public void MergeEntity(string tableName, CloudTableEntity entity, object options, AsyncResultCallback<CloudTableEntity> callback) {
         }
 
-        public void QueryEntities(CloudTableQuery query, AsyncResultCallback<CloudTableEntity[]> callback) {
+        public void QueryEntities(CloudTableQuery query, AsyncResultCallback<List<CloudTableEntity>> callback) {
         }
 
-        public void QueryEntities(CloudTableQuery query, object options, AsyncResultCallback<CloudTableEntity[]> callback) {
+        public void QueryEntities(CloudTableQuery query, object options, AsyncResultCallback<List<CloudTableEntity>> callback) {
         }
 
-        public void QueryEntities(CloudTableQuery query, AsyncResultCallback<CloudTableEntity[], CloudTableQueryContinuation> callback) {
+        public void QueryEntities(CloudTableQuery query, AsyncResultCallback<List<CloudTableEntity>, CloudTableQueryContinuation> callback) {
         }
 
-        public void QueryEntities(CloudTableQuery query, object options, AsyncResultCallback<CloudTableEntity[], CloudTableQueryContinuation> callback) {
+        public void QueryEntities(CloudTableQuery query, object options, AsyncResultCallback<List<CloudTableEntity>, CloudTableQueryContinuation> callback) {
         }
 
         public void QueryEntity(string tableName, string partitionKey, string rowKey, AsyncResultCallback<CloudTableEntity> callback) {
@@ -120,10 +121,10 @@ namespace NodeApi.WindowsAzure.Storage {
         public void Rollback() {
         }
 
-        public void UpdateEntity(string tableName, CloudTableEntity entity, AsyncCallback callback) {
+        public void UpdateEntity(string tableName, CloudTableEntity entity, AsyncResultCallback<CloudTableEntity> callback) {
         }
 
-        public void UpdateEntity(string tableName, CloudTableEntity entity, object options, AsyncCallback callback) {
+        public void UpdateEntity(string tableName, CloudTableEntity entity, object options, AsyncResultCallback<CloudTableEntity> callback) {
         }
     }
 }

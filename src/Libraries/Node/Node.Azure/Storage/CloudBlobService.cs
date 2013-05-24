@@ -4,6 +4,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using NodeApi.IO;
 
@@ -105,28 +106,28 @@ namespace NodeApi.WindowsAzure.Storage {
         public void GetBlobToText(string containerName, string blobName, string text, object options, AsyncResultCallback<string, CloudBlockBlob> callback) {
         }
 
-        public void ListBlobs(string containerName, AsyncResultCallback<CloudBlob[]> callback) {
+        public void ListBlobs(string containerName, AsyncResultCallback<List<CloudBlob>> callback) {
         }
 
-        public void ListBlobs(string containerName, AsyncResultCallback<CloudBlob[], CloudBlobListContinuation> callback) {
+        public void ListBlobs(string containerName, AsyncResultCallback<List<CloudBlob>, CloudBlobListContinuation> callback) {
         }
 
-        public void ListBlobs(string containerName, object options, AsyncResultCallback<CloudBlob[]> callback) {
+        public void ListBlobs(string containerName, object options, AsyncResultCallback<List<CloudBlob>> callback) {
         }
 
-        public void ListBlobs(string containerName, object options, AsyncResultCallback<CloudBlob[], CloudBlobListContinuation> callback) {
+        public void ListBlobs(string containerName, object options, AsyncResultCallback<List<CloudBlob>, CloudBlobListContinuation> callback) {
         }
 
-        public void ListContainers(AsyncResultCallback<CloudBlobContainer[]> callback) {
+        public void ListContainers(AsyncResultCallback<List<CloudBlobContainer>> callback) {
         }
 
-        public void ListContainers(AsyncResultCallback<CloudBlobContainer[], CloudBlobContainerListContinuation> callback) {
+        public void ListContainers(AsyncResultCallback<List<CloudBlobContainer>, CloudBlobContainerListContinuation> callback) {
         }
 
-        public void ListContainers(object options, AsyncResultCallback<CloudBlobContainer[]> callback) {
+        public void ListContainers(object options, AsyncResultCallback<List<CloudBlobContainer>> callback) {
         }
 
-        public void ListContainers(object options, AsyncResultCallback<CloudBlobContainer[], CloudBlobContainerListContinuation> callback) {
+        public void ListContainers(object options, AsyncResultCallback<List<CloudBlobContainer>, CloudBlobContainerListContinuation> callback) {
         }
 
         public void ReleaseLease(string containerName, string blobName, string leaseID, AsyncResultCallback<CloudBlobLease> callback) {

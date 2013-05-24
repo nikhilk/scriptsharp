@@ -4,6 +4,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace NodeApi.WindowsAzure.Storage {
@@ -54,22 +55,22 @@ namespace NodeApi.WindowsAzure.Storage {
         public void DeleteQueue(string queueName, object options, AsyncCallback callback) {
         }
 
-        public void GetMessages(string queueName, AsyncResultCallback<CloudQueueMessage[]> callback) {
+        public void GetMessages(string queueName, AsyncResultCallback<List<CloudQueueMessage>> callback) {
         }
 
-        public void GetMessages(string queueName, object options, AsyncResultCallback<CloudQueueMessage[]> callback) {
+        public void GetMessages(string queueName, object options, AsyncResultCallback<List<CloudQueueMessage>> callback) {
         }
 
-        public void ListQueues(AsyncResultCallback<CloudQueue[]> callback) {
+        public void ListQueues(AsyncResultCallback<List<CloudQueue>> callback) {
         }
 
-        public void ListQueues(object options, AsyncResultCallback<CloudQueue[]> callback) {
+        public void ListQueues(object options, AsyncResultCallback<List<CloudQueue>> callback) {
         }
 
-        public void PeekMessages(string queueName, AsyncResultCallback<CloudQueueMessage[]> callback) {
+        public void PeekMessages(string queueName, AsyncResultCallback<List<CloudQueueMessage>> callback) {
         }
 
-        public void PeekMessages(string queueName, object options, AsyncResultCallback<CloudQueueMessage[]> callback) {
+        public void PeekMessages(string queueName, object options, AsyncResultCallback<List<CloudQueueMessage>> callback) {
         }
 
         public void UpdateMessage(string queueName, string messageID, string popReceipt, int visibilityTimeout, AsyncResultCallback<CloudQueueMessage> callback) {
