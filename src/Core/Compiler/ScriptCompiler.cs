@@ -314,11 +314,20 @@ namespace ScriptSharp {
                     depLookupBuilder.Append(",\r\n    ");
                 }
 
+                string name = dependency.Name;
+                if (name == "ss") {
+                    // TODO: This is a hack... to make generated node.js scripts
+                    //       be able to reference the 'scriptsharp' node module.
+                    //       Fix this in a better/1st class manner by allowing
+                    //       script assemblies to declare such things.
+                    name = "scriptsharp";
+                }
+
                 requiresBuilder.Append("'" + dependency.Path + "'");
                 dependenciesBuilder.Append(dependency.Identifier);
 
                 depLookupBuilder.Append(dependency.Identifier);
-                depLookupBuilder.Append(" = require('" + dependency.Name + "')");
+                depLookupBuilder.Append(" = require('" + name + "')");
 
                 firstDependency = false;
             }

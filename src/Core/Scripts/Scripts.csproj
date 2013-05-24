@@ -32,11 +32,17 @@
     <Content Include="Runtime\Task.js" />
     <Content Include="Runtime\TypeSystem.js" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageContent Include="Package\package.json" />
+    <PackageContent Include="Package\readme.md" />
+  </ItemGroup>
   <Target Name="Build">
     <Exec Command="$(ToolsPath)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Runtime.js /output:$(OutputPath)\ss.js" />
     <Exec Command="$(ToolsPath)\ajaxmin.exe -hc -clobber:true $(OutputPath)\ss.js -out $(OutputPath)\ss.min.js" />
     <Exec Command="$(ToolsPath)\sspp.exe /nologo /debug /d:DEBUG /crlf /input:$(ProjectDir)Loader.js /output:$(OutputPath)\ssloader.js" />
     <Exec Command="$(ToolsPath)\ajaxmin.exe -hc -clobber:true $(OutputPath)\ssloader.js -out $(OutputPath)\ssloader.min.js" />
+    <Copy SourceFiles="@(PackageContent)" DestinationFolder="$(OutputPath)\npm" />
+    <Copy SourceFiles="$(OutputPath)\ss.js" DestinationFolder="$(OutputPath)\npm" />
   </Target>
   <Target Name="Clean">
   </Target>
