@@ -23,6 +23,8 @@ namespace NodeApi.Network {
 
         HEAD,
 
-        OPTIONS
+        OPTIONS,
+
+        PATCH
     }
 }
