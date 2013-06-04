@@ -1,7 +1,7 @@
 // app.js
 //
 
-var ss = require('ss'),
+var ss = require('scriptsharp'),
     http = require('http');
 var $global = this;
 
