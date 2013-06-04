@@ -3669,6 +3669,11 @@ Types:
                 Visibility: Public, Static
                 Generated Name: any
                 Abstract: False
+            Method: ChangeWith
+                AssociatedType: Task`1
+                Visibility: Public
+                Generated Name: changeWith
+                Abstract: False
             Method: ContinueWith
                 AssociatedType: Task
                 Visibility: Public
@@ -3706,6 +3711,11 @@ Types:
                 AssociatedType: T
                 Visibility: Public
                 Generated Name: result
+            Method: ChangeWith
+                AssociatedType: Task`1
+                Visibility: Public
+                Generated Name: changeWith
+                Abstract: False
             Method: ContinueWith
                 AssociatedType: Task`1
                 Visibility: Public

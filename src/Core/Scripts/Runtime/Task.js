@@ -1,7 +1,7 @@
 // Task
 
 function Task(result) {
-  this._continuations = isValue(result) ?
+  this._continuations = result !== undefined ?
                           (this.status = 'done', null) :
                           (this.status = 'pending', []);
   this.result = result;
@@ -10,6 +10,23 @@ function Task(result) {
 var Task$ = {
   get_completed: function() {
     return this.status != 'pending';
+  },
+  changeWith: function(continuation) {
+    var task = new Task();
+    this.continueWith(function(t) {
+      var error = t.error;
+      var result;
+      if (!error) {
+        try {
+          result = continuation(t);
+        }
+        catch (e) {
+          error = e;
+        }
+      }
+      _updateTask(task, result, error);
+    });
+    return task;
   },
   continueWith: function(continuation) {
     if (this._continuations) {

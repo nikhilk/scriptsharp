@@ -50,6 +50,10 @@ namespace System.Threading {
             return null;
         }
 
+        public Task<TResult> ChangeWith<TResult>(Func<Task, TResult> continuation) {
+            return null;
+        }
+
         public Task ContinueWith(Action<Task> continuation) {
             return null;
         }
@@ -83,6 +87,10 @@ namespace System.Threading {
             get {
                 return default(T);
             }
+        }
+
+        public Task<TResult> ChangeWith<TResult>(Func<Task<T>, TResult> continuation) {
+            return null;
         }
 
         public Task<T> ContinueWith(Action<Task<T>> continuation) {
