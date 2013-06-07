@@ -76,6 +76,15 @@ function compareDates(d1, d2) {
   return (d1 === d2) ? true : ((isValue(d1) && isValue(d2)) ? (d1.getTime() == d2.getTime()) : false);
 }
 
+function enumgetname( t, v ) {
+    for ( var prop in t ) {
+        if ( t[prop] === v ) {
+            return prop;
+        }
+    }
+    return v;
+}
+
 function _popStackFrame(e) {
   if (!isValue(e.stack) ||
       !isValue(e.fileName) ||
