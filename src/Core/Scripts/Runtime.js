@@ -82,6 +82,7 @@
       bindSub: bindSub,
       bindExport: bindExport,
       deferred: deferred,
+      enumgetname: enumgetname,
 
       module: module,
       modules: _modules,
