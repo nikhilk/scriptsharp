@@ -12,6 +12,7 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using System.Diagnostics;
 using ScriptSharp.SymbolFile;
+using ScriptSharp.Tasks.Obfuscator;
 
 namespace ScriptSharp.Tasks {
 
@@ -19,6 +20,7 @@ namespace ScriptSharp.Tasks {
 
         private string _projectPath;
         private string _scriptsPath;
+        private string _obfuscationStyle;
         private ITaskItem[] _references;
 
         private HashSet<string> _scriptSet;
@@ -63,6 +65,17 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _scriptsPath = value;
+            }
+        }
+
+        public string ObfuscationStyle {
+            get {
+                return String.IsNullOrEmpty(_obfuscationStyle) 
+                    ? "None"
+                    : _obfuscationStyle;
+            }
+            set {
+                _obfuscationStyle = value;
             }
         }
 
@@ -166,6 +179,40 @@ namespace ScriptSharp.Tasks {
 
         }
 
+        private void Obfuscate(string projectName, string scriptsFile, string projectPath, string targetPath) {
+
+            string sourceDirectory = Path.GetDirectoryName(scriptsFile);
+            IEnumerable<string> scripts = from f in File.ReadAllLines(scriptsFile)
+                                          where f.EndsWith(".js") 
+                                            && string.Compare(f, "ss.js", ignoreCase: true) != 0
+                                            && string.Compare(f, "ss.min.js", ignoreCase: true) != 0
+                                          select Path.Combine(sourceDirectory, f);
+            
+            string renamefile = Path.ChangeExtension(projectName, "rename.xml");
+            string obfuscatedfile = Path.ChangeExtension(projectName, "obfusacted.js");
+
+            string renamepath = Path.Combine(sourceDirectory, renamefile);
+            string obfuscatedpath = Path.Combine(sourceDirectory, obfuscatedfile);
+
+            Log.LogMessage("Obfuscating files from {0} project:", projectName);
+
+            var amo = new AjaxMinObfuscator(ObfuscationStyle);
+            amo.Obfuscate(scripts, renamepath, obfuscatedpath);
+
+            Uri baseUri = new Uri(projectPath, UriKind.Absolute);
+            Uri targetUri = new Uri(obfuscatedpath, UriKind.Absolute);
+            string relativePath = Uri.UnescapeDataString(baseUri.MakeRelativeUri(targetUri).ToString()).Replace("/", "\\");
+
+            string targetrenamepath = Path.Combine(targetPath, obfuscatedfile);
+            CopyFile(obfuscatedpath, targetrenamepath);
+
+            Log.LogMessage("-> " + relativePath);
+            _scripts.Add(new TaskItem(relativePath));
+
+        }
+
+       
+
         public override bool Execute() {
             _scriptSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             _scripts = new List<ITaskItem>();
@@ -220,7 +267,13 @@ namespace ScriptSharp.Tasks {
                     return false;
                 }
 
-                
+                try {
+                    Obfuscate(referenceName, scriptsFile, _projectPath, scriptsDirectory);
+                } 
+                catch (Exception e) {
+                    Log.LogError("Error obfuscating project {0}.\r\n{1}", referenceName, e.ToString());
+                    return false;
+                }
             }
 
             return true;
