@@ -90,6 +90,10 @@ function _joinTasks(tasks, any) {
     tasks = tasks.slice(1);
     count--;
   }
+  if (Array.isArray(tasks[0])) {
+    tasks = tasks[0];
+    count = tasks.length;
+  }
 
   var joinTask = new Task();
   var seen = 0;
