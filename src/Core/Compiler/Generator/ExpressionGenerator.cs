@@ -43,11 +43,10 @@ namespace ScriptSharp.Generator {
                     Debug.Assert(propExpression.Type == ExpressionType.PropertySet);
 
                     if (propExpression.ObjectReference is BaseExpression) {
-                        writer.Write("ss.base(");
-                        writer.Write(generator.CurrentImplementation.ThisIdentifier);
-                        writer.Write(", 'set_");
+                        writer.Write(((BaseExpression)propExpression.ObjectReference).EvaluatedType.FullGeneratedName);
+                        writer.Write(".prototype.set_");
                         writer.Write(propExpression.Property.GeneratedName);
-                        writer.Write("').call(");
+                        writer.Write(".call(");
                         writer.Write(generator.CurrentImplementation.ThisIdentifier);
                         writer.Write(", ");
                         GenerateExpression(generator, symbol, expression.RightOperand);
@@ -71,11 +70,10 @@ namespace ScriptSharp.Generator {
                     Debug.Assert(indexExpression.Type == ExpressionType.Indexer);
 
                     if (indexExpression.ObjectReference is BaseExpression) {
-                        writer.Write("ss.base(");
-                        writer.Write(generator.CurrentImplementation.ThisIdentifier);
-                        writer.Write(", 'set_");
+                        writer.Write(((BaseExpression)indexExpression.ObjectReference).EvaluatedType.FullGeneratedName);
+                        writer.Write(".prototype.set_");
                         writer.Write(indexExpression.Indexer.GeneratedName);
-                        writer.Write("').call(");
+                        writer.Write(".call(");
                         writer.Write(generator.CurrentImplementation.ThisIdentifier);
                         writer.Write(", ");
                         GenerateExpressionList(generator, symbol, indexExpression.Indices);
@@ -478,11 +476,10 @@ namespace ScriptSharp.Generator {
                 writer.Write("]");
             }
             else if (expression.ObjectReference is BaseExpression) {
-                writer.Write("ss.base(");
-                writer.Write(generator.CurrentImplementation.ThisIdentifier);
-                writer.Write(", 'get_");
+                writer.Write(((BaseExpression)expression.ObjectReference).EvaluatedType.FullGeneratedName);
+                writer.Write(".prototype.get_");
                 writer.Write(expression.Indexer.GeneratedName);
-                writer.Write("').call(");
+                writer.Write(".call(");
                 writer.Write(generator.CurrentImplementation.ThisIdentifier);
                 writer.Write(", ");
                 GenerateExpressionList(generator, symbol, expression.Indices);
@@ -707,11 +704,10 @@ namespace ScriptSharp.Generator {
             if (expression.ObjectReference is BaseExpression) {
                 Debug.Assert(expression.Method.IsExtension == false);
 
-                writer.Write("ss.base(");
-                writer.Write(generator.CurrentImplementation.ThisIdentifier);
-                writer.Write(", '");
+                writer.Write(((BaseExpression)expression.ObjectReference).EvaluatedType.FullGeneratedName);
+                writer.Write(".prototype.");
                 writer.Write(expression.Method.GeneratedName);
-                writer.Write("').call(");
+                writer.Write(".call(");
                 writer.Write(generator.CurrentImplementation.ThisIdentifier);
                 if ((expression.Parameters != null) && (expression.Parameters.Count != 0)) {
                     writer.Write(", ");
