@@ -59,5 +59,9 @@ namespace System.Xml {
         public XmlText CreateTextNode(string text) {
             return null;
         }
+
+        public XmlNode ImportNode(XmlNode externalNode, bool deep) {
+            return null;
+        }
     }
 }
