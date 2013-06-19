@@ -67,7 +67,7 @@ define('test', ['ss'], function(ss) {
     test2: function() {
       var n = this.get_XYZ();
       n = this.get_XYZ();
-      n = App$.get_XYZ.call(this);
+      n = App.prototype.get_XYZ.call(this);
       this.set_XYZ(n);
       this.set_XYZ(n);
       ss.base(this, 'set_XYZ').call(this, n);

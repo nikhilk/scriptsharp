@@ -41,7 +41,7 @@ define('test', ['ss'], function(ss) {
 
   function Test2() {
     Test.call(this);
-    var n = Test$.get_XYZ.call(this);
+    var n = Test.prototype.get_XYZ.call(this);
     if (n === this.get_XYZ()) {
     }
     if (this.get_XYZ() === n) {

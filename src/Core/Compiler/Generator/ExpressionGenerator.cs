@@ -860,13 +860,7 @@ namespace ScriptSharp.Generator {
                 Debug.Assert(baseClass != null);
 
                 writer.Write(baseClass.FullGeneratedName);
-                if (baseClass.IsApplicationType) {
-                    writer.Write("$.");
-                }
-                else {
-                    writer.Write(".prototype.");
-                }
-                writer.Write("get_");
+                writer.Write(".prototype.get_");
                 writer.Write(expression.Property.GeneratedName);
                 writer.Write(".call(");
                 writer.Write(generator.CurrentImplementation.ThisIdentifier);
