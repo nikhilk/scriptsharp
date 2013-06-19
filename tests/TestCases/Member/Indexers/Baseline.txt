@@ -133,15 +133,15 @@ define('test', ['ss'], function(ss) {
     VirtualIndexer.call(this);
     var i = this.get_item('name');
     this.set_item('name', i + 1);
-    var j = ss.base(this, 'get_item').call(this, 'name');
-    ss.base(this, 'set_item').call(this, 'name', 43);
+    var j = VirtualIndexer.prototype.get_item.call(this, 'name');
+    VirtualIndexer.prototype.set_item.call(this, 'name', 43);
   }
   var OverriddenIndexer$ = {
     get_item: function(name) {
-      return ss.base(this, 'get_item').call(this, name) + 1;
+      return VirtualIndexer.prototype.get_item.call(this, name) + 1;
     },
     set_item: function(name, value) {
-      ss.base(this, 'set_item').call(this, name, value - 1);
+      VirtualIndexer.prototype.set_item.call(this, name, value - 1);
       return value;
     }
   };
