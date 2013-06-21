@@ -9,22 +9,22 @@ namespace Test {
 
     public interface IMammal {
     }
-
+    
     public interface IPet {
-
+    
         string Name {
             get;
         }
-
+        
         string Owner {
             get;
         }
     }
-
+    
     public class Animal {
-
+    
         private string _species;
-
+        
         public Animal(string species) {
             _species = species;
         }
@@ -104,7 +104,7 @@ namespace Test.More {
                 return _name;
             }
         }
-
+        
         public ICharacter Star {
             get {
                 return _star;
