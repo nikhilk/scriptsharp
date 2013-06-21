@@ -22,6 +22,11 @@ namespace ScriptSharp.Tests {
             RunTest("/TypeSystem.htm");
         }
 
+        [TestMethod]
+        public void TestBases() {
+            RunTest("/Bases.htm");
+        }
+
         #region Loader Tests
         [TestMethod]
         public void TestLoader() {
