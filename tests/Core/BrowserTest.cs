@@ -49,15 +49,15 @@ namespace ScriptSharp.Tests.Core {
 
                 SimpleCompilation compilation = new SimpleCompilation(Path.Combine(scriptsDirectory, script));
                 bool result = compilation.AddReference(mscorlibPath)
-                           .AddSource(Path.Combine(codeDirectory, codeFile))
-                           .Execute();
+                                         .AddSource(Path.Combine(codeDirectory, codeFile))
+                                         .Execute();
 
-                if (!result) {
+                if (result == false) {
                     codeFailures.Add(codeFile);
                 }
             }
 
-            _compilationFailures = (codeFailures.Count == 0) ? null : string.Join(", ", codeFailures);
+            _compilationFailures = (codeFailures.Count == 0) ? null : String.Join(", ", codeFailures);
 
             _webTest = new WebTest();
             _webTest.StartWebServer(_port, webRoot);
