@@ -22,6 +22,7 @@ namespace ScriptSharp.Tests.Core {
         private static readonly string[] _codeFiles = new string[] {
             "OOP.cs"
         };
+        private static string _compilationFailures;
 
         private const int _port = 3976;
 
@@ -40,15 +41,23 @@ namespace ScriptSharp.Tests.Core {
                 File.Copy(Path.Combine(binDirectory, script), Path.Combine(scriptsDirectory, script), overwrite: true);
             }
 
+            List<string> codeFailures = new List<string>();
+
             string mscorlibPath = Path.Combine(binDirectory, "mscorlib.dll");
             foreach (string codeFile in _codeFiles) {
                 string script = Path.GetFileNameWithoutExtension(codeFile) + Path.ChangeExtension(".cs", ".js");
 
                 SimpleCompilation compilation = new SimpleCompilation(Path.Combine(scriptsDirectory, script));
-                compilation.AddReference(mscorlibPath)
+                bool result = compilation.AddReference(mscorlibPath)
                            .AddSource(Path.Combine(codeDirectory, codeFile))
                            .Execute();
+
+                if (!result) {
+                    codeFailures.Add(codeFile);
+                }
             }
+
+            _compilationFailures = (codeFailures.Count == 0) ? null : string.Join(", ", codeFailures);
 
             _webTest = new WebTest();
             _webTest.StartWebServer(_port, webRoot);
@@ -64,6 +73,11 @@ namespace ScriptSharp.Tests.Core {
         }
 
         protected void RunTest(string url) {
+            if (_compilationFailures != null) {
+                Assert.Fail("Could not run test due to compilation failure of " + _compilationFailures + ".");
+                return;
+            }
+
             Uri testUri = _webTest.GetTestUri(url);
 
             WebTestResult result = _webTest.RunTest(testUri, WebBrowser.Chrome);
