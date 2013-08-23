@@ -24,6 +24,7 @@ namespace NodeApi.IO {
         public Buffer(string data, Encoding encoding) {
         }
 
+        [ScriptField]
         public int Length {
             get {
                 return 0;
