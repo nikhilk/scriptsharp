@@ -8,7 +8,7 @@ function _commaFormatNumber(number, groups, decimal, comma) {
     number = number.substr(0, decimalIndex);
   }
 
-  var negative = number.startsWith('-');
+  var negative = ss.startsWith(number, '-');
   if (negative) {
     number = number.substr(1);
   }
@@ -16,6 +16,9 @@ function _commaFormatNumber(number, groups, decimal, comma) {
   var groupIndex = 0;
   var groupSize = groups[groupIndex];
   if (number.length < groupSize) {
+    if (negative) {
+      number = '-' + number;
+    }
     return decimalPart ? number + decimalPart : number;
   }
 
@@ -92,6 +95,10 @@ _formatters['Number'] = function(number, format, culture) {
       else {
         s = number.toExponential(precision);
       }
+      if (nf.ds != '.') {
+        var index = s.indexOf('.');
+        s = s.substr(0, index) + nf.ds + s.substr(index + 1);
+      }
       if (fs == 'E') {
         s = s.toUpperCase();
       }
@@ -121,10 +128,10 @@ _formatters['Number'] = function(number, format, culture) {
       }
       s = _commaFormatNumber(s, nf.curGW, nf.curDS, nf.curGS);
       if (number < 0) {
-        s = String.format(culture, nf.curNP, s);
+        s = ss.format(culture, nf.curNP, s);
       }
       else {
-        s = String.format(culture, nf.curPP, s);
+        s = ss.format(culture, nf.curPP, s);
       }
       break;
     case 'p': case 'P':
@@ -138,10 +145,10 @@ _formatters['Number'] = function(number, format, culture) {
       }
       s = _commaFormatNumber(s, nf.perGW, nf.perDS, nf.perGS);
       if (number < 0) {
-        s = String.format(culture, nf.perNP, s);
+        s = ss.format(culture, nf.perNP, s);
       }
       else {
-        s = String.format(culture, nf.perPP, s);
+        s = ss.format(culture, nf.perPP, s);
       }
       break;
   }
