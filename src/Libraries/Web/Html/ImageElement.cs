@@ -39,6 +39,16 @@ namespace System.Html {
         }
 
         [ScriptField]
+        public string CrossOrigin
+        {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        [ScriptField]
         public string Src {
             get {
                 return null;

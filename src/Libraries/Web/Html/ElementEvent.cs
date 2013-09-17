@@ -39,6 +39,20 @@ namespace System.Html {
         }
 
         [ScriptField]
+        public int ClientX {
+            get {
+                return 0;
+            }
+        }
+
+        [ScriptField]
+        public int ClientY {
+            get {
+                return 0;
+            }
+        }
+
+        [ScriptField]
         public bool CtrlKey {
             get {
                 return false;
@@ -102,11 +116,39 @@ namespace System.Html {
         }
 
         [ScriptField]
+        public int PageX {
+            get {
+                return 0;
+            }
+        }
+
+        [ScriptField]
+        public int PageY {
+            get {
+                return 0;
+            }
+        }
+
+        [ScriptField]
         public bool ReturnValue {
             get {
                 return false;
             }
             set {
+            }
+        }
+
+        [ScriptField]
+        public int ScreenX {
+            get {
+                return 0;
+            }
+        }
+
+        [ScriptField]
+        public int ScreenY {
+            get {
+                return 0;
             }
         }
 
@@ -149,6 +191,14 @@ namespace System.Html {
         public string Type {
             get {
                 return null;
+            }
+        }
+
+        [ScriptField]
+        public int WheelDelta
+        {
+            get {
+                return 0;
             }
         }
 
