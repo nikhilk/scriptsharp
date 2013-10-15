@@ -3,6 +3,9 @@
 function StringBuilder(s) {
   this._parts = isValue(s) && s !== '' ? [s] : [];
   this.isEmpty = this._parts.length == 0;
+  if (this.toString === Object.prototype.toString) {
+    this.toString = function(s) { return this._parts.join(s || ''); };
+  }
 }
 var StringBuilder$ = {
   append: function(s) {
