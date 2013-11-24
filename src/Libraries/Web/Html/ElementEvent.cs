@@ -194,6 +194,14 @@ namespace System.Html {
             }
         }
 
+        [ScriptField]
+        public int WheelDelta
+        {
+            get {
+                return 0;
+            }
+        }
+
         public void PreventDefault() {
         }
 

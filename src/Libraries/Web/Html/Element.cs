@@ -411,6 +411,10 @@ namespace System.Html {
             return null;
         }
 
+        public ClientRect GetBoundingClientRect() {
+            return null;
+        }
+
         public ClientRectList GetClientRects() {
             return null;
         }
