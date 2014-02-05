@@ -86,6 +86,7 @@
     <Compile Include="Html\FileInputElement.cs" />
     <Compile Include="Html\GestureEvent.cs" />
     <Compile Include="Html\CustomEvent.cs" />
+    <Compile Include="Html\Keys.cs" />
     <Compile Include="Html\Media\Graphics\Rendering.cs" />
     <Compile Include="Html\MutableEvent.cs" />
     <Compile Include="Html\ClientRect.cs" />
