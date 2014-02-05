@@ -43,6 +43,13 @@ namespace System.Xml {
         }
 
         [ScriptField]
+        public XmlNode FirstElementChild {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
         public XmlNode LastChild {
             get {
                 return null;
@@ -50,7 +57,21 @@ namespace System.Xml {
         }
 
         [ScriptField]
+        public XmlNode LastElementChild {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
         public XmlNode NextSibling {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public XmlNode NextElementSibling {
             get {
                 return null;
             }
@@ -110,6 +131,13 @@ namespace System.Xml {
         }
 
         [ScriptField]
+        public XmlNode PreviousElementSibling {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
         [ScriptName("text")]
         public string InnerText {
             get {
@@ -145,6 +173,10 @@ namespace System.Xml {
             return false;
         }
 
+        public int ChildElementCount() {
+            return 0;
+        }
+
         public XmlNode InsertBefore(XmlNode child, XmlNode refChild) {
             return null;
         }
@@ -163,6 +195,16 @@ namespace System.Xml {
 
         public XmlNode ReplaceChild(XmlNode child, XmlNode oldChild) {
             return null;
+        }
+
+        public string GetAttribute(string attributename) {
+            return null;
+        }
+
+        public void SetAttribute(string attributename, string attributevalue) {
+        }
+
+        public void RemoveAttribute(string attributename) {
         }
     }
 }
