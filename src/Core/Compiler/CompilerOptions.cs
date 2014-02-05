@@ -21,6 +21,7 @@ namespace ScriptSharp {
         private ICollection<IStreamSource> _sources;
         private ICollection<IStreamSource> _resources;
         private IStreamSource _scriptFile;
+        private IStreamSource _symbolFile;
         private IStreamSource _docCommentFile;
         private IStreamSourceResolver _includeResolver;
         private bool _includeTests;
@@ -145,6 +146,15 @@ namespace ScriptSharp {
             }
             set {
                 _scriptFile = value;
+            }
+        }
+
+        public IStreamSource SymbolFile {
+            get {
+                return _symbolFile;
+            }
+            set {
+                _symbolFile = value;
             }
         }
 

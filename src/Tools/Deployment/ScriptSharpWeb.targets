@@ -14,11 +14,12 @@ Copyright (c) 2013. Script# Project. All rights reserved.
     <ScriptDeployTask
       References="@(ProjectReference)"
       ScriptsPath="$(ScriptsPath)"
+      ObfuscationStyle="$(ObfuscationStyle)"
       ProjectPath="$(MSBuildProjectFullPath)">
       <Output TaskParameter="Scripts" ItemName="DeployedScripts" />
     </ScriptDeployTask>
     <ItemGroup>
-      <Content Include="@(DeployedScripts)" KeepDuplicates="False" />
+      <Content Include="@(DeployedScripts)" />
     </ItemGroup>
   </Target>
 

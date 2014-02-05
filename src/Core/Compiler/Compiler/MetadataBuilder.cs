@@ -829,6 +829,7 @@ namespace ScriptSharp.Compiler {
 
             if (AttributeNode.FindAttribute(attributes, "ScriptImport") != null) {
                 ScriptReference dependency = null;
+                typeSymbol.SetScriptImported();
 
                 AttributeNode dependencyAttribute = AttributeNode.FindAttribute(attributes, "ScriptDependency");
                 if (dependencyAttribute != null) {

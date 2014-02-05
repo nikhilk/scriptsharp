@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jQuery.Core", "Libraries\jQuery\jQuery.Core\jQuery.Core.csproj", "{4A9F7CE0-5A45-4B28-AD01-05528709B6E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Libraries\Web\Web.csproj", "{3681A9A8-FC40-4125-B842-7775713C8DCE}"

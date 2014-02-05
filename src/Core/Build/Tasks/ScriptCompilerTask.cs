@@ -244,8 +244,13 @@ namespace ScriptSharp.Tasks {
             options.IncludeResolver = this;
 
             string scriptFilePath = GetScriptFilePath(locale, minimize, includeTests);
+            string symbolFilePath = GetSymbolFilePath();
+
             outputScriptItem = new TaskItem(scriptFilePath);
+            TaskItem outputSymbolItem = new TaskItem(symbolFilePath);
+
             options.ScriptFile = new TaskItemOutputStreamSource(outputScriptItem);
+            options.SymbolFile = new TaskItemOutputStreamSource(outputSymbolItem);
 
             return options;
         }
@@ -307,6 +312,7 @@ namespace ScriptSharp.Tasks {
             try {
                 string assemblyFile = Path.GetFileName(_assembly.ItemSpec);
                 string scriptsFilePath = Path.Combine(OutputPath, Path.ChangeExtension(assemblyFile, "scripts"));
+                string symbolFilePath = Path.Combine(OutputPath, Path.ChangeExtension(assemblyFile, "symbol"));
 
                 Uri scriptsUri = new Uri(Path.GetFullPath(scriptsFilePath), UriKind.Absolute);
                 IEnumerable<string> scripts =
@@ -407,6 +413,16 @@ namespace ScriptSharp.Tasks {
             return Path.GetFullPath(Path.Combine(OutputPath, Path.ChangeExtension(scriptName, extension)));
         }
 
+        private string GetSymbolFilePath() {
+            
+            string scriptName = Path.GetFileName(_assembly.ItemSpec);
+            if (Directory.Exists(OutputPath) == false) {
+                Directory.CreateDirectory(OutputPath);
+            }
+            string extension = "symbol";
+            return Path.GetFullPath(Path.Combine(OutputPath, Path.ChangeExtension(scriptName, extension)));
+        }
+
         private ICollection<IStreamSource> GetSources(IEnumerable<ITaskItem> sourceItems) {
             if (sourceItems == null) {
                 return new TaskItemInputStreamSource[0];
@@ -428,13 +444,37 @@ namespace ScriptSharp.Tasks {
             return sources;
         }
 
+        public enum FileTypeEnum {
+            Normal,
+            Minimized,
+            Symbol
+        }
+
+        public string GetExtension(FileTypeEnum fileType) {
+            switch (fileType) {
+                case FileTypeEnum.Minimized:
+                    return ".min.js";
+
+                case FileTypeEnum.Symbol:
+                    return ".symbol";
+
+                case FileTypeEnum.Normal:
+                default:
+                    return ".js";
+            }
+        }
+
+
         private void OnScriptFileGenerated(ITaskItem scriptItem, CompilerOptions options, bool copyReferences) {
-            Func<string, bool, string> getScriptFile = delegate(string reference, bool minimized) {
-                string scriptFile = Path.ChangeExtension(reference, minimized ? ".min.js" : ".js");
+
+            Func<string, FileTypeEnum, string> getScriptFile = delegate(string reference, FileTypeEnum fileType)
+            {
+                var extension = GetExtension(fileType);
+                string scriptFile = Path.ChangeExtension(reference, extension);
 
                 string fileName = Path.GetFileNameWithoutExtension(scriptFile);
                 if (fileName.StartsWith("mscorlib", StringComparison.OrdinalIgnoreCase)) {
-                    fileName = (minimized ? "ss.min" : "ss") + Path.GetExtension(scriptFile);
+                    fileName = (fileType == FileTypeEnum.Minimized ? "ss.min" : "ss") + Path.GetExtension(scriptFile);
                     scriptFile = Path.Combine(Path.GetDirectoryName(scriptFile), fileName);
                 }
 
@@ -491,16 +531,22 @@ namespace ScriptSharp.Tasks {
 
             if (copyReferences) {
                 foreach (string reference in options.References) {
-                    string scriptFile = getScriptFile(reference, /* minimized */ false);
+                    string scriptFile = getScriptFile(reference, FileTypeEnum.Normal);
                     if (scriptFile != null) {
                         string path = Path.Combine(scriptFolder, CopyReferencesPath, Path.GetFileName(scriptFile));
                         safeCopyFile(scriptFile, path);
                     }
 
-                    string minScriptFile = getScriptFile(reference, /* minimized */ true);
+                    string minScriptFile = getScriptFile(reference, FileTypeEnum.Minimized);
                     if (minScriptFile != null) {
                         string path = Path.Combine(scriptFolder, CopyReferencesPath, Path.GetFileName(minScriptFile));
                         safeCopyFile(minScriptFile, path);
+                    }
+
+                    string symbolFile = getScriptFile(reference, FileTypeEnum.Symbol);
+                    if (symbolFile != null) {
+                        string path = Path.Combine(scriptFolder, CopyReferencesPath, Path.GetFileName(symbolFile));
+                        safeCopyFile(symbolFile, path);
                     }
                 }
             }
@@ -570,5 +616,7 @@ namespace ScriptSharp.Tasks {
                 : base(taskItem.ItemSpec, name) {
             }
         }
+
+        
     }
 }

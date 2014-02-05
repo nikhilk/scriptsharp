@@ -33,6 +33,7 @@ namespace ScriptSharp.ScriptModel {
         private bool _ignoreNamespace;
         private string _scriptNamespace;
         private bool _testType;
+        private bool _scriptImported;
 
         protected TypeSymbol(SymbolType type, string name, NamespaceSymbol parent)
             : base(type, name, parent) {
@@ -195,6 +196,12 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public bool IsScriptImported {
+            get {
+                return _scriptImported;
+            }
+        }
+
         public virtual void AddMember(MemberSymbol memberSymbol) {
             Debug.Assert(memberSymbol != null);
             Debug.Assert(String.IsNullOrEmpty(memberSymbol.Name) == false);
@@ -294,6 +301,10 @@ namespace ScriptSharp.ScriptModel {
             _testType = true;
         }
 
+        internal void SetScriptImported() {
+            _scriptImported = true;
+        }
+
         #region ISymbolTable Members
         ICollection ISymbolTable.Symbols {
             get {
@@ -337,5 +348,6 @@ namespace ScriptSharp.ScriptModel {
             return symbol;
         }
         #endregion
+
     }
 }
