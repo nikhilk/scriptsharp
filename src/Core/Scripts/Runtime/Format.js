@@ -108,7 +108,7 @@ _formatters['Number'] = function(number, format, culture) {
       if (precision == -1) {
         precision = nf.dd;
       }
-      s = (+(Math.round(+(number + 'e' + precision)) + 'e' + -precision)).toFixed(precision)
+      s = (+(Math.round(+(number + 'e' + precision)) + 'e' + -precision)).toFixed(precision);
       if (precision && (nf.ds != '.')) {
         var index = s.indexOf('.');
         s = s.substr(0, index) + nf.ds + s.substr(index + 1);
