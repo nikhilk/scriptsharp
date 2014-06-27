@@ -75,7 +75,7 @@ _formatters['Number'] = function(number, format, culture) {
       if (precision != -1) {
         s = padLeft(s, precision, '0');
       }
-      if (number < 0) {
+      if (number < 0 && s != 0) {
         s = '-' + s;
       }
       break;
