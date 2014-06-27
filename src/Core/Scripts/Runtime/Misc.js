@@ -47,6 +47,12 @@ function parseNumber(s) {
   if (!s || !s.length) {
     return 0;
   }
+
+  if (ss.culture.current.nf.gs.length)
+    s = s.replace(new RegExp('\\' + ss.culture.current.nf.gs, 'g'), '');
+  if (ss.culture.current.nf.ds.length)
+    s = s.replace(new RegExp('\\' + ss.culture.current.nf.ds), '.');
+
   if ((s.indexOf('.') >= 0) || (s.indexOf('e') >= 0) ||
       endsWith(s, 'f') || endsWith(s, 'F')) {
     return parseFloat(s);
