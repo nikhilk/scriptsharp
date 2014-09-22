@@ -265,47 +265,16 @@ namespace ScriptSharp.Compiler {
                 memberSymbol.SetVisibility(GetVisibility(memberNode, typeSymbol));
             }
 
-            AttributeNode nameAttribute = AttributeNode.FindAttribute(attributes, "ScriptName");
-            if ((nameAttribute != null) && (nameAttribute.Arguments != null) &&
-                (nameAttribute.Arguments.Count != 0)) {
-                string name = null;
-                bool preserveCase = false;
-                bool preserveName = false;
+            bool preserveCase;
+            bool preserveName;
+            string name = GetScriptName(attributes, typeSymbol.MemberCasePreservation, out preserveName, out preserveCase);            
 
-                foreach (ParseNode argNode in nameAttribute.Arguments) {
-                    Debug.Assert((argNode.NodeType == ParseNodeType.Literal) ||
-                                 (argNode.NodeType == ParseNodeType.BinaryExpression));
-
-                    if (argNode.NodeType == ParseNodeType.Literal) {
-                        Debug.Assert(((LiteralNode)argNode).Value is string);
-                        name = (string)((LiteralNode)argNode).Value;
-                        preserveName = preserveCase = true;
-                        break;
-                    }
-                    else {
-                        BinaryExpressionNode propSetNode = (BinaryExpressionNode)argNode;
-
-                        if (String.CompareOrdinal(((NameNode)propSetNode.LeftChild).Name, "PreserveName") == 0) {
-                            preserveName = (bool)((LiteralNode)propSetNode.RightChild).Value;
-                        }
-                        else {
-                            preserveCase = (bool)((LiteralNode)propSetNode.RightChild).Value;
-                            if (preserveCase) {
-                                preserveName = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                if (String.IsNullOrEmpty(name) == false) {
-                    memberSymbol.SetTransformedName(name);
-                }
-                else {
-                    memberSymbol.SetNameCasing(preserveCase);
-                    if (preserveName) {
-                        memberSymbol.DisableNameTransformation();
-                    }
+            if (String.IsNullOrEmpty(name) == false) {
+                memberSymbol.SetTransformedName(name);
+            } else {
+                memberSymbol.SetNameCasing(preserveCase);
+                if (preserveName) {
+                    memberSymbol.DisableNameTransformation();
                 }
             }
         }
@@ -412,6 +381,8 @@ namespace ScriptSharp.Compiler {
             _options = options;
             BuildAssembly(compilationUnits);
 
+            bool defaultMemberCasePreservation = GetDefaultMemberCasePreservation(compilationUnits);
+
             List<TypeSymbol> types = new List<TypeSymbol>();
 
             // Build all the types first.
@@ -495,11 +466,11 @@ namespace ScriptSharp.Compiler {
 
                                 // Merge interesting bits of information onto the primary type symbol as well
                                 // representing this partial class
-                                BuildType(partialTypeSymbol, userTypeNode);
+                                BuildType(partialTypeSymbol, userTypeNode, defaultMemberCasePreservation);
                             }
                         }
 
-                        TypeSymbol typeSymbol = BuildType(userTypeNode, namespaceSymbol);
+                        TypeSymbol typeSymbol = BuildType(userTypeNode, namespaceSymbol, defaultMemberCasePreservation);
                         if (typeSymbol != null) {
                             typeSymbol.SetParseContext(userTypeNode);
                             typeSymbol.SetParentSymbolTable(symbols);
@@ -754,7 +725,7 @@ namespace ScriptSharp.Compiler {
             }
         }
 
-        private TypeSymbol BuildType(UserTypeNode typeNode, NamespaceSymbol namespaceSymbol) {
+        private TypeSymbol BuildType(UserTypeNode typeNode, NamespaceSymbol namespaceSymbol, bool defaultMemberCasePreservation) {
             Debug.Assert(typeNode != null);
             Debug.Assert(namespaceSymbol != null);
 
@@ -810,7 +781,7 @@ namespace ScriptSharp.Compiler {
                     typeSymbol.SetPublic();
                 }
 
-                BuildType(typeSymbol, typeNode);
+                BuildType(typeSymbol, typeNode, defaultMemberCasePreservation);
 
                 if (namespaceSymbol.Name.EndsWith(".Tests", StringComparison.Ordinal) ||
                     (namespaceSymbol.Name.IndexOf(".Tests.", StringComparison.Ordinal) > 0)) {
@@ -821,7 +792,7 @@ namespace ScriptSharp.Compiler {
             return typeSymbol;
         }
 
-        private void BuildType(TypeSymbol typeSymbol, UserTypeNode typeNode) {
+        private void BuildType(TypeSymbol typeSymbol, UserTypeNode typeNode, bool defaultMemberCasePreservation) {
             Debug.Assert(typeSymbol != null);
             Debug.Assert(typeNode != null);
 
@@ -869,10 +840,15 @@ namespace ScriptSharp.Compiler {
                 typeSymbol.DisableNameTransformation();
             }
 
-            string scriptName = GetAttributeValue(attributes, "ScriptName");
+            bool preserveCase;
+            bool dummy;
+            string scriptName = GetScriptName(attributes, defaultMemberCasePreservation, out dummy, out preserveCase);
+
             if (scriptName != null) {
                 typeSymbol.SetTransformedName(scriptName);
             }
+
+            typeSymbol.MemberCasePreservation = preserveCase;
 
             if (typeNode.Type == TokenType.Class) {
                 AttributeNode extensionAttribute = AttributeNode.FindAttribute(attributes, "ScriptExtension");
@@ -992,6 +968,45 @@ namespace ScriptSharp.Compiler {
             return null;
         }
 
+        private string GetScriptName(ParseNodeList attributes, bool defaultMemberCasePreservation, out bool preserveName, out bool preserveCase) { 
+            
+            string name = null;
+            preserveCase = defaultMemberCasePreservation;
+            preserveName = false;
+
+            AttributeNode nameAttribute = AttributeNode.FindAttribute(attributes, "ScriptName");
+
+            if ((nameAttribute != null) && (nameAttribute.Arguments != null) &&
+                (nameAttribute.Arguments.Count != 0)) {
+
+                foreach (ParseNode argNode in nameAttribute.Arguments) {
+                    Debug.Assert((argNode.NodeType == ParseNodeType.Literal) ||
+                                 (argNode.NodeType == ParseNodeType.BinaryExpression));
+
+                    if (argNode.NodeType == ParseNodeType.Literal) {
+                        Debug.Assert(((LiteralNode)argNode).Value is string);
+                        name = (string)((LiteralNode)argNode).Value;
+                        preserveName = preserveCase = true;
+                        break;
+                    } else {
+                        BinaryExpressionNode propSetNode = (BinaryExpressionNode)argNode;
+
+                        if (String.CompareOrdinal(((NameNode)propSetNode.LeftChild).Name, "PreserveName") == 0) {
+                            preserveName = (bool)((LiteralNode)propSetNode.RightChild).Value;
+                        } else {
+                            preserveCase = (bool)((LiteralNode)propSetNode.RightChild).Value;
+                            if (preserveCase) {
+                                preserveName = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }        
+
+            return name;
+        }
+
         private List<AttributeNode> GetAttributes(ParseNodeList compilationUnits, string attributeName) {
             List<AttributeNode> attributes = new List<AttributeNode>();
 
@@ -1020,6 +1035,18 @@ namespace ScriptSharp.Compiler {
             return null;
         }
 
+        private bool? GetBoolAttributeValue(ParseNodeList attributes, string attributeName) {
+            AttributeNode node = AttributeNode.FindAttribute(attributes, attributeName);
+
+            if ((node != null) &&
+                (node.Arguments.Count != 0) && (node.Arguments[0].NodeType == ParseNodeType.Literal)) {
+                Debug.Assert(((LiteralNode)node.Arguments[0]).Value is bool);
+
+                return (bool)((LiteralNode)node.Arguments[0]).Value;
+            }
+            return null;
+        }
+
         private bool GetScriptTemplate(ParseNodeList compilationUnits, out string template) {
             template = null;
 
@@ -1032,6 +1059,18 @@ namespace ScriptSharp.Compiler {
                 }
             }
 
+            return false;
+        }
+
+        private bool GetDefaultMemberCasePreservation(ParseNodeList compilationUnits) {
+            foreach (CompilationUnitNode compilationUnit in compilationUnits) {
+                foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
+                    bool? preserveMemberCase = GetBoolAttributeValue(attribBlock.Attributes, "ScriptDefaultMemberCasePreservation");
+                    if (preserveMemberCase != null) {
+                        return (bool)preserveMemberCase;
+                    }
+                }
+            }
             return false;
         }
 

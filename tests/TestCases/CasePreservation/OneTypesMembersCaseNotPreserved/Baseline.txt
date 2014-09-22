@@ -1,0 +1,43 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+
+  // CasePreservationTests.Foo
+
+  function Foo(i, j) {
+  }
+  var Foo$ = {
+    toString: function() {
+      return 'Foo';
+    },
+    sum: function(i) {
+      return 0;
+    }
+  };
+
+
+  // CasePreservationTests.Bar
+
+  function Bar(i, j, f) {
+    Foo.call(this, i, j);
+  }
+  var Bar$ = {
+    Sum: function() {
+      return Foo.prototype.sum.call(this, 1) + 1;
+    },
+    ToString: function() {
+      return Foo.prototype.toString.call(this) + ' -> Bar';
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      Foo: [ Foo, Foo$, null ],
+      Bar: [ Bar, Bar$, Foo ]
+    });
+
+
+  return $exports;
+});

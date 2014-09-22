@@ -359,4 +359,23 @@ namespace System.Runtime.CompilerServices {
             }
         }
     }
+
+    [AttributeUsage(AttributeTargets.Assembly)]
+    [ScriptIgnore]
+    public sealed class ScriptDefaultMemberCasePreservation : Attribute {
+        private bool _preserveMemberCase;
+
+        public ScriptDefaultMemberCasePreservation(bool preserveMemberCase) {
+            _preserveMemberCase = preserveMemberCase;
+        }
+
+        public bool PerserveMemberCase {
+            get {
+                return _preserveMemberCase;
+            }
+            set {
+                _preserveMemberCase = value;
+            }
+        }
+    }
 }
