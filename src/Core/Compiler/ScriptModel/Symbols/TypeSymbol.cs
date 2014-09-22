@@ -33,6 +33,7 @@ namespace ScriptSharp.ScriptModel {
         private bool _ignoreNamespace;
         private string _scriptNamespace;
         private bool _testType;
+        private bool _memberCasePreservation;
 
         protected TypeSymbol(SymbolType type, string name, NamespaceSymbol parent)
             : base(type, name, parent) {
@@ -192,6 +193,20 @@ namespace ScriptSharp.ScriptModel {
             }
             set {
                 _scriptNamespace = value;
+            }
+        }
+
+        /// <summary>
+        /// The casing of this type's members names is preserved
+        /// according to this value unless overriden through a 
+        /// ScriptName attribute on the member.
+        /// </summary>
+        public bool MemberCasePreservation {
+            get {
+                return _memberCasePreservation;
+            }
+            set {
+                _memberCasePreservation = value;
             }
         }
 

@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicTests.cs" />
+    <Compile Include="CasePreservationTests.cs" />
     <Compile Include="Core\BrowserTest.cs" />
     <Compile Include="Core\SimpleCompilation.cs" />
     <Compile Include="ExpressionTests.cs" />

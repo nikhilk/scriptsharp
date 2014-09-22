@@ -29,6 +29,10 @@ namespace ScriptSharp.Importer {
             return attribute.ConstructorArguments[0].Value as string;
         }
 
+        private static bool GetBoolAttributeArgument(CustomAttribute attribute) {
+            return (bool)attribute.ConstructorArguments[0].Value;
+        }
+
         public static string GetScriptAlias(ICustomAttributeProvider attributeProvider) {
             CustomAttribute scriptAliasAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptAliasAttribute");
             if (scriptAliasAttribute != null) {
@@ -52,6 +56,14 @@ namespace ScriptSharp.Importer {
             }
 
             return null;
+        }
+
+        public static bool GetScriptDefaultMemberCasePreservation(ICustomAttributeProvider attributeProvider) {
+            CustomAttribute memberCasePreservationAttribute = GetAttribute(attributeProvider, "System.ScriptDefaultMemberCasePreservation");
+            if (memberCasePreservationAttribute != null) {
+                return GetBoolAttributeArgument(memberCasePreservationAttribute);
+            }
+            return false;
         }
 
         public static string GetScriptDependencyName(ICustomAttributeProvider attributeProvider, out string dependencyIdentifier) {
@@ -94,9 +106,9 @@ namespace ScriptSharp.Importer {
             return null;
         }
 
-        public static string GetScriptName(ICustomAttributeProvider attributeProvider, out bool preserveName, out bool preserveCase) {
+        public static string GetScriptName(ICustomAttributeProvider attributeProvider, bool defaultPreserveCaseValue, out bool preserveName, out bool preserveCase) {
             string name = null;
-            preserveName = false;
+            preserveName = defaultPreserveCaseValue;
             preserveCase = false;
 
             CustomAttribute nameAttribute = GetAttribute(attributeProvider, "System.ScriptNameAttribute");
