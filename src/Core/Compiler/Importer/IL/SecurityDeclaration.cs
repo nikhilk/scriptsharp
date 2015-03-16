@@ -141,7 +141,7 @@ namespace ScriptSharp.Importer.IL {
 			if (!HasImage || signature == 0)
 				throw new NotSupportedException ();
 
-			return module.Read (this, (declaration, reader) => reader.ReadSecurityDeclarationBlob (declaration.signature)); ;
+			return module.Read (this, (declaration, reader) => reader.ReadSecurityDeclarationBlob (declaration.signature));
 		}
 
 		void Resolve ()
