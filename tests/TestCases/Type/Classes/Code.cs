@@ -2,7 +2,6 @@ using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace TypeTests {
 
@@ -11,7 +10,7 @@ namespace TypeTests {
     }
 
     public class MyClass {
-        public MyClass() { Foo = new Foo(); }
+        public MyClass() { Foo f = new Foo(); }
     }
 
     public class MyClass2 : MyClass {
@@ -21,5 +20,8 @@ namespace TypeTests {
     }
 
     public class MyClass4 : MyClass, IDisposable {
+    }
+
+    public static class StaticClass {
     }
 }

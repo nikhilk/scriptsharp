@@ -115,9 +115,12 @@ namespace ScriptSharp.Compiler {
 
         private void BuildCode(FieldSymbol fieldSymbol) {
             ImplementationBuilder implBuilder = new ImplementationBuilder(_options, _errorHandler);
-            fieldSymbol.AddImplementation(implBuilder.BuildField(fieldSymbol));
+            SymbolImplementation implementation = implBuilder.BuildField(fieldSymbol);
 
-            _implementations.Add(fieldSymbol.Implementation);
+            if (implementation != null) {
+                fieldSymbol.AddImplementation(implementation);
+                _implementations.Add(fieldSymbol.Implementation);
+            }
         }
 
         private void BuildCode(IndexerSymbol indexerSymbol) {

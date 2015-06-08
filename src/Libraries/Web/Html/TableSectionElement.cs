@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class TableSectionElement : Element {
 
         private TableSectionElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public ElementCollection Rows {
             get {
                 return null;

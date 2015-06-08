@@ -11,8 +11,8 @@ namespace jQueryApi.UI.Widgets {
     /// <summary>
     /// Options used to initialize or customize ButtonSet.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class ButtonSetOptions {
 
@@ -25,7 +25,7 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// This event is triggered when the button is created.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryEventHandler Create {
              get {
                 return null;
@@ -34,7 +34,7 @@ namespace jQueryApi.UI.Widgets {
              }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Items {
             get {
                 return null;

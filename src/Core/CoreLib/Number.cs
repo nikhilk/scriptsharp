@@ -10,28 +10,24 @@ namespace System {
     /// <summary>
     /// Equivalent to the Number type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class Number {
 
-        [PreserveCase]
-        public const int MAX_VALUE = 0;
+        [ScriptName("MAX_VALUE")]
+        public const double MaxValue = 0;
 
-        [PreserveCase]
-        public const int MIN_VALUE = 0;
+        [ScriptName("MIN_VALUE")]
+        public const double MinValue = 0;
 
-        [PreserveCase]
-        public const int NaN = 0;
+        [ScriptName(PreserveCase = true)]
+        public const double NaN = 0;
 
-        [PreserveCase]
-        public const int NEGATIVE_INFINITY = 0;
+        [ScriptName("NEGATIVE_INFINITY")]
+        public const double NegativeInfinity = 0;
 
-        [PreserveCase]
-        public const int POSITIVE_INFINITY = 0;
-
-        public string Format(string format) {
-            return null;
-        }
+        [ScriptName("POSITIVE_INFINITY")]
+        public const double PositiveInfinity = 0;
 
         [ScriptAlias("isFinite")]
         public static bool IsFinite(Number n) {
@@ -43,10 +39,7 @@ namespace System {
             return false;
         }
 
-        public string LocaleFormat(string format) {
-            return null;
-        }
-
+        [ScriptAlias("ss.number")]
         public static Number Parse(string s) {
             return null;
         }

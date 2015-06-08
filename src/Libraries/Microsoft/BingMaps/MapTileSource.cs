@@ -10,7 +10,7 @@ namespace Microsoft.Maps {
 
     // TODO: Other members
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("TileSource")]
     public class MapTileSource {
 

@@ -11,6 +11,9 @@ namespace ScriptSharp.ScriptModel {
     
     internal sealed class EventSymbol : CodeMemberSymbol {
 
+        private string _addAccessor;
+        private string _removeAccessor;
+
         private SymbolImplementation _adderImplementation;
         private SymbolImplementation _removerImplementation;
 
@@ -18,6 +21,12 @@ namespace ScriptSharp.ScriptModel {
             : base(SymbolType.Event, name, parent, handlerType) {
             ParameterSymbol valueParameter = new ParameterSymbol("value", this, handlerType, ParameterMode.In);
             AddParameter(valueParameter);
+        }
+
+        public string AddAccessor {
+            get {
+                return _addAccessor;
+            }
         }
 
         public SymbolImplementation AdderImplementation {
@@ -49,6 +58,18 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public bool HasCustomAccessors {
+            get {
+                return (_addAccessor != null) && (_removeAccessor != null);
+            }
+        }
+
+        public string RemoveAccessor {
+            get {
+                return _removeAccessor;
+            }
+        }
+
         public SymbolImplementation RemoverImplementation {
             get {
                 Debug.Assert(_removerImplementation != null);
@@ -67,6 +88,15 @@ namespace ScriptSharp.ScriptModel {
                 Debug.Assert(_removerImplementation == null);
                 _removerImplementation = implementation;
             }
+        }
+
+        public void SetAccessors(string addAccessor, string removeAccessor) {
+            Debug.Assert((_addAccessor == null) && (_removeAccessor == null));
+            Debug.Assert(String.IsNullOrEmpty(addAccessor) == false);
+            Debug.Assert(String.IsNullOrEmpty(removeAccessor) == false);
+
+            _addAccessor = addAccessor;
+            _removeAccessor = removeAccessor;
         }
     }
 }

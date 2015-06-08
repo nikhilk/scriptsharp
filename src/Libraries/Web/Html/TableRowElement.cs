@@ -8,28 +8,28 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class TableRowElement : Element {
 
         private TableRowElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public ElementCollection Cells {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int RowIndex {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int SectionRowIndex {
             get {
                 return 0;

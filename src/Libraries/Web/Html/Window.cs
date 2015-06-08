@@ -5,6 +5,9 @@
 
 using System;
 using System.Html.Data;
+using System.Html.Data.Files;
+using System.Html.Data.IndexedDB;
+using System.Html.Data.Sql;
 using System.Runtime.CompilerServices;
 
 namespace System.Html {
@@ -13,16 +16,23 @@ namespace System.Html {
     /// The window object represents the current browser window, and is the top-level
     /// scripting object.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("window")]
     public sealed class Window {
 
         private Window() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static ApplicationCache ApplicationCache {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public static Blob Blob {
             get {
                 return null;
             }
@@ -31,21 +41,21 @@ namespace System.Html {
         /// <summary>
         /// IE only.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public static DataTransfer ClipboardData {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static bool Closed {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static string DefaultStatus {
             get { 
                 return null; 
@@ -54,14 +64,14 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static object DialogArguments {
             get { 
                 return null; 
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static DocumentInstance Document {
             get {
                 return null;
@@ -71,70 +81,91 @@ namespace System.Html {
         /// <summary>
         /// Provides information about the current event being handled.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public static ElementEvent Event {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
+        public static File File {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public static FileList FileList {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
+        public static FileReader FileReader {
+            get {
+                return null;
+            }
+        }
+
+        [ScriptField]
         public static IFrameElement FrameElement {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static History History {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static int InnerHeight {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static int InnerWidth {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static Storage LocalStorage {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static Location Location {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static Navigator Navigator {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static WindowInstance Parent {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static ErrorHandler Onerror {
             get { 
                 return null; 
@@ -143,70 +174,70 @@ namespace System.Html {
             } 
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static WindowInstance Opener {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static Orientation Orientation {
             get {
                 return Orientation.Portrait;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static int OuterHeight {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static int OuterWidth {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static int PageXOffset {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static int PageYOffset {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static Screen Screen {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static WindowInstance Self {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static Storage SessionStorage {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static string Status {
             get { 
                 return null; 
@@ -215,14 +246,14 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static WindowInstance Top {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public static WindowInstance[] Frames {
             get {
                 return null;
@@ -291,6 +322,28 @@ namespace System.Html {
         }
 
         public static void AttachEvent(string eventName, ElementEventHandler handler) {
+        }
+
+        /// <summary>
+        /// Decodes a string of data which has been encoded using base-64 encoding.
+        /// For use with Unicode or UTF-8 strings.
+        /// </summary>
+        /// <param name="base64EncodedData">Base64 encoded string</param>
+        /// <returns>String of Binary data</returns>
+        [ScriptName("atob")]
+        public static string Base64ToBinary(string base64EncodedData) {
+            return null;
+        }
+
+        /// <summary>
+        /// Creates a base-64 encoded ASCII string from a "string" of binary data.
+        /// Please note that this is not suitable for raw Unicode strings!
+        /// </summary>
+        /// <param name="stringToEncode">String of binary data</param>
+        /// <returns>Base64 string</returns>
+        [ScriptName("btoa")]
+        public static string BinaryToBase64(string stringToEncode) {
+            return null;
         }
 
         public static void Close() {
@@ -373,6 +426,18 @@ namespace System.Html {
         public static void RemoveEventListener(string eventName, ElementEventListener listener, bool useCapture) {
         }
 
+        [ScriptAlias("require")]
+        public static void Require(string[] names, Action callback) {
+        }
+
+        [ScriptAlias("require")]
+        public static void Require<T>(string name, Action<T> callback) {
+        }
+
+        [ScriptAlias("require")]
+        public static void Require(string name, Action callback) {
+        }
+
         public static void Scroll(int x, int y) {
         }
 
@@ -397,6 +462,14 @@ namespace System.Html {
         public static SqlDatabase OpenDatabase(string name, string version, string displayName, int estimatedSize, SqlDatabaseCallback creationCallback) {
             return null;
         }
+
+        [ScriptField]
+        public static DBFactory IndexedDB {
+            get {
+                return null;
+            }
+        }
+
 
         public static void PostMessage(string message, string targetOrigin) {
         }

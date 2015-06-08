@@ -11,9 +11,9 @@ namespace jQueryApi.UI.Widgets {
     /// <summary>
     /// Options for use with Slider.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum SliderOption {
 
         /// <summary>

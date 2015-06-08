@@ -11,9 +11,9 @@ namespace jQueryApi.UI.Effects {
     /// <summary>
     /// Operations supported by Effect.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum EffectMethod {
 
         AddClass,

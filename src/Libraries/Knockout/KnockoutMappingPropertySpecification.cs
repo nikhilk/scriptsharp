@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace KnockoutApi {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Object")]
     public abstract class KnockoutMappingPropertySpecification {
 
@@ -17,12 +17,12 @@ namespace KnockoutApi {
         }
     }
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class KnockoutMappingPropertySpecification<TModel> : KnockoutMappingPropertySpecification {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Func<KnockoutMappingCreateOptions, TModel> Create {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace KnockoutApi {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Func<KnockoutMappingUpdateOptions, TModel> Update {
             get {
                 return null;

@@ -15,7 +15,7 @@ namespace jQueryApi {
     /// <param name="index">The index of the element.</param>
     /// <param name="element">The element.</param>
     /// <returns>The object that the element is mapped to.</returns>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate object ElementMapCallback(int index, Element element);
 }

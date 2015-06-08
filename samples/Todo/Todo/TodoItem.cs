@@ -6,8 +6,8 @@ using System.Runtime.CompilerServices;
 
 namespace Todo {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     internal sealed class TodoItem {
 

@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class AnchorElement : Element {
 
         private AnchorElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Href {
             get {
                 return null;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Rel {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Target {
             get {
                 return null;
@@ -42,7 +42,7 @@ namespace System.Html {
             }
         }
         
-        [IntrinsicProperty]
+        [ScriptField]
         public string Download {
             get {
                 return null;

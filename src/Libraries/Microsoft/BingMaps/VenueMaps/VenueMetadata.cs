@@ -8,40 +8,40 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.VenueMaps {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class VenueMetadata {
 
         private VenueMetadata() {
         }
 
-        [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptName(PreserveCase = true)]
+        [ScriptField]
         public string DefaultFloor {
             get {
                 return null;
             }
         }
 
-        [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptName(PreserveCase = true)]
+        [ScriptField]
         public string FloorHeader {
             get {
                 return null;
             }
         }
 
-        [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptName(PreserveCase = true)]
+        [ScriptField]
         public VenueFloor[] Floors {
             get {
                 return null;
             }
         }
 
-        [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptName(PreserveCase = true)]
+        [ScriptField]
         public VenueFootprint Footprint {
             get {
                 return null;
@@ -49,7 +49,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("MapId")]
-        [IntrinsicProperty]
+        [ScriptField]
         public string ID {
             get {
                 return null;
@@ -57,7 +57,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("CenterLat")]
-        [IntrinsicProperty]
+        [ScriptField]
         public double Latitude {
             get {
                 return 0;
@@ -65,15 +65,15 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("CenterLong")]
-        [IntrinsicProperty]
+        [ScriptField]
         public double Longitude {
             get {
                 return 0;
             }
         }
 
-        [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptName(PreserveCase = true)]
+        [ScriptField]
         public string Name {
             get {
                 return null;
@@ -81,7 +81,7 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("MapType")]
-        [IntrinsicProperty]
+        [ScriptField]
         public VenueType Type {
             get {
                 return VenueType.Mall;

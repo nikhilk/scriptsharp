@@ -3,7 +3,6 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace TypeTests {
 
@@ -29,8 +28,8 @@ namespace TypeTests {
                 string s1 = str;
             }
             
-           App1 app1;
-           foreach (string str in app1) {
+            App1 app1;
+            foreach (string str in app1) {
                 string s1 = str;
             }
         }

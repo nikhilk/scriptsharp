@@ -14,8 +14,8 @@ namespace jQueryApi {
     /// <summary>
     /// Represents a jQuery result that wraps a set of elements.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public class jQueryObject {
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace jQueryApi {
         /// Gets the Document or DOM element used as the context to match
         /// this set of elements.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public object Context {
             get {
                 return null;
@@ -38,7 +38,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the number of elements in this <see cref="jQueryObject" />.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
@@ -48,7 +48,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the selector used to match this set of elements.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Selector {
             get {
                 return null;
@@ -60,7 +60,7 @@ namespace jQueryApi {
         /// </summary>
         /// <param name="index">The index to lookup.</param>
         /// <returns>The DOM element at the specified index.</returns>
-        [IntrinsicProperty]
+        [ScriptField]
         public Element this[int index] {
             get {
                 return null;
@@ -3598,6 +3598,15 @@ namespace jQueryApi {
         /// <param name="eventHandler">The event handler to be invoked.</param>
         /// <returns>The current jQueryObject.</returns>
         public jQueryObject Undelegate([SyntaxValidation("cssSelector")] string selector, string eventName, jQueryEventHandler eventHandler) {
+            return null;
+        }
+
+        /// <summary>
+        /// Sorts an array of DOM elements, in place, with the duplicates removed.
+        /// </summary>
+        /// <param name="elements">The original list of elements</param>
+        /// <returns>The unique list of elements.</returns>
+        public Element[] Unique(Element[] elements) {
             return null;
         }
 

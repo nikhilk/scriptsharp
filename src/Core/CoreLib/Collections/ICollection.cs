@@ -7,18 +7,17 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     [ScriptName("ICollection")]
     public interface ICollection : IEnumerable {
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("length")]
         int Count {
             get;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         object this[int index] {
             get;
             set;

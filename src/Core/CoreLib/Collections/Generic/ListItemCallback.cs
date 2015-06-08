@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate void ListItemCallback<T>(T value);
 }

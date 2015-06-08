@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enumerator</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+<script type="text/javascript" src="Scripts/ssloader.js"></script>
+<script type="text/script" data-name="ss" data-src="Scripts/ss.js"></script>
+
+<script type="text/script">
+define(['ss'], function(ss) {
+  function enumCountHelper(e, count) {
+    var c = 0;
+    while (e.moveNext()) {
+      c++;
+    }
+    QUnit.equal(c, count, 'Expected matching count and enumerated items');
+  }
+
+  function enumItemHelper(e, count, items) {
+    var c = 0;
+    var i = '';
+
+    while (e.moveNext()) {
+      c++;
+      i = i + e.current;
+    }
+
+    QUnit.equal(c, count, 'Expected matching count and enumerated items');
+    QUnit.equal(i, items, 'Expected matching items and enumerated items');
+  }
+
+  function enumItemKVHelper(e, count, items) {
+    var c = 0;
+    var i = '';
+
+    while (e.moveNext()) {
+      c++;
+      i = i + e.current.value;
+    }
+
+    QUnit.equal(c, count, 'Expected matching count and enumerated items');
+    QUnit.equal(i, items, 'Expected matching items and enumerated items');
+  }
+
+
+  function CustomType() {
+    this._items = [ 'a', 'b', 'c', 1, 2, 3 ];
+    this._index = -1;
+    this.current = null;
+  }
+  CustomType.prototype.getEnumerator = function() {
+    return this;
+  }
+  CustomType.prototype.moveNext = function() {
+    this._index++;
+    this.current = this._items[this._index];
+    return this._index < this._items.length;
+  }
+
+  module('Enumerator');
+  test('null', function() {
+    QUnit.expect(2);
+
+    var e1 = ss.enumerate(null);
+    enumCountHelper(e1, 0);
+
+    var e2 = ss.enumerate();
+    enumCountHelper(e2, 0);
+  });
+
+  test('empty', function() {
+    QUnit.expect(2);
+
+    var e1 = ss.enumerate({});
+    enumCountHelper(e1, 0);
+
+    var e2 = ss.enumerate([]);
+    enumCountHelper(e2, 0);
+  });
+
+  test('nonEmpty', function() {
+    QUnit.expect(4);
+
+    var e1 = ss.enumerate({ a: 'a', b: 'b' });
+    enumItemKVHelper(e1, 2, 'ab');
+
+    var e2 = ss.enumerate([ 1, 2, 3 ]);
+    enumItemHelper(e2, 3, '123');
+  });
+
+  test('custom enumerable', function() {
+    QUnit.expect(2);
+
+    var e = ss.enumerate(new CustomType());
+    enumItemHelper(e, 6, 'abc123');
+  });
+});
+</script>
+</html>

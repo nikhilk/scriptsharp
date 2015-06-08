@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
-    [Imported]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptConstants(UseNames = true)]
     public enum VenueType {
 
         Mall

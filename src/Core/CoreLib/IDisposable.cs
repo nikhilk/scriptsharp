@@ -8,8 +8,7 @@ using System.Runtime.CompilerServices;
 namespace System {
 
     // Script Equivalent: IDisposable
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     public interface IDisposable {
 
         void Dispose();

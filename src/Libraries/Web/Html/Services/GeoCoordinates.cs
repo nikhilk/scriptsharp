@@ -8,56 +8,56 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Services {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class GeoCoordinates {
 
         private GeoCoordinates() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Accuracy {
             get {
                 return 0.0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Altitude {
             get {
                 return 0.0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double AltitudeAccuracy {
             get {
                 return 0.0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Heading {
             get {
                 return 0.0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Latitude {
             get {
                 return 0.0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Longitude {
             get {
                 return 0.0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Speed {
             get {
                 return 0.0;

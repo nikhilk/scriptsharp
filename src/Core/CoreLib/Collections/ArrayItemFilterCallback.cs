@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate bool ArrayItemFilterCallback(object value);
 }

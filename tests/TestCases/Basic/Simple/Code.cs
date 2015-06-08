@@ -6,12 +6,51 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("basic")]
+[assembly: AssemblyDescription("Simple code generation test.")]
+[assembly: AssemblyCopyright("Copyright (c) Script# Project, 2012")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
+
+#if AMD_TEMPLATE
+[assembly: ScriptTemplate(@"
+// {name}.js {version}
+// {description}
+// {copyright}
+//
+
+""use strict"";
+
+define('{name}', [{requires}], function({dependencies}) {
+  var $global = this;
+
+  {script}
+  return $exports;
+});
+
+// Generated with Script# {compiler}
+")]
+#endif
+
+#if SIMPLE_TEMPLATE
+[assembly: ScriptTemplate(@"
+// {name}.js
+// Sample script...
+""use strict"";
+
+(function($global) {
+  {dependenciesLookup}
+
+  {script}
+  return $exports;
+})(this);
+")]
+#endif
+
 
 namespace Basic {
 
     public class EventArgs {
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static readonly EventArgs Empty = new EventArgs();
     }
 

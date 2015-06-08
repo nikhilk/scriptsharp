@@ -7,28 +7,28 @@ using System.Runtime.CompilerServices;
 
 namespace System.Xml {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class XmlAttribute : XmlNode {
 
         internal XmlAttribute() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public override string Name {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Specified {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public override string Value {
             get {
                 return null;

@@ -11,9 +11,9 @@ namespace jQueryApi.UI.Interactions {
     /// <summary>
     /// Events raised by Draggable.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum DraggableEvents {
 
         /// <summary>

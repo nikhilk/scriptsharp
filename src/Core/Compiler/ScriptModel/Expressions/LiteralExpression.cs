@@ -23,6 +23,9 @@ namespace ScriptSharp.ScriptModel {
 
         protected override bool IsParenthesisRedundant {
             get {
+                // Numeric literals need to be paranthesized in script when followed by a
+                // dot member access, so it is not redundant for numbers.
+
                 if ((_value is String) || (_value is Boolean)) {
                     return true;
                 }

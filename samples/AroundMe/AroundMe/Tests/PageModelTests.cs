@@ -22,7 +22,7 @@ namespace AroundMe.Tests {
             pageModel.SearchLocation("xyz", 0, 0);
             Assert.IsTrue(pageModel.Searching, "Expected model to report true for Searching.");
 
-            Window.SetTimeout(delegate() {
+            Script.SetTimeout(delegate() {
                 PhotoResult[] dummyResults = new PhotoResult[0];
 
                 flickrService.InvokeCallback(dummyResults);

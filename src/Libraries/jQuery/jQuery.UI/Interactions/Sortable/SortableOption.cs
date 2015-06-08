@@ -11,9 +11,9 @@ namespace jQueryApi.UI.Interactions {
     /// <summary>
     /// Options for use with Sortable.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum SortableOption {
 
         /// <summary>

@@ -9,28 +9,28 @@ using System.Html.Editing;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class DocumentInstance {
 
         private DocumentInstance() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Element ActiveElement {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Element Body {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Cookie {
             get {
                 return null;
@@ -39,7 +39,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string DesignMode {
             get {
                 return null;
@@ -48,21 +48,21 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Doctype {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Element DocumentElement {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Domain {
             get {
                 return null;
@@ -71,42 +71,42 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public DocumentImplementation Implementation {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public WindowInstance ParentWindow {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string ReadyState {
             get {
                 return null;
             }
         }
         
-        [IntrinsicProperty]
+        [ScriptField]
         public string Referrer {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Selection Selection {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Title {
             get {
                 return null;
@@ -115,7 +115,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string URL {
             get {
                 return null;

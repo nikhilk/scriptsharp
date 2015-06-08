@@ -13,8 +13,8 @@ namespace jQueryApi {
     /// <summary>
     /// Represents Ajax request settings or options.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class jQueryAjaxOptions {
 
@@ -35,7 +35,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the content type sent in the request header that tells the server what kind of response it will accept in return.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Dictionary<string, string> Accepts {
             get {
                 return null;
@@ -47,7 +47,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets whether the request is async.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Async {
             get {
                 return false;
@@ -59,7 +59,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the callback to invoke before the request is sent.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public AjaxSendingCallback BeforeSend {
             get {
                 return null;
@@ -71,7 +71,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets whether the request can be cached.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Cache {
             get {
                 return false;
@@ -84,7 +84,7 @@ namespace jQueryApi {
         /// Gets or sets the callback invoked after the request is completed
         /// and success or error callbacks have been invoked.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public AjaxCompletedCallback Complete {
             get {
                 return null;
@@ -96,8 +96,8 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets a map of string/regular-expression pairs that determine how jQuery will parse the response, given its content type.
         /// </summary>
-        [IntrinsicProperty]
-        public Dictionary<string, RegularExpression> Contents {
+        [ScriptField]
+        public Dictionary<string, RegExp> Contents {
             get {
                 return null;
             }
@@ -108,7 +108,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the content type of the data sent to the server.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string ContentType {
             get {
                 return null;
@@ -120,7 +120,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the object that will be the context for the request.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public object Context {
             get {
                 return null;
@@ -132,7 +132,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets a map of dataType-to-dataType converters.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Dictionary<string, Func<string, object>> Converters {
             get {
                 return null;
@@ -144,7 +144,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets if you wish to force a crossDomain request (such as JSONP) on the same domain, set the value of crossDomain to true
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool CrossDomain {
             get {
                 return false;
@@ -156,7 +156,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the data to be sent to the server.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public object Data {
             get {
                 return null;
@@ -168,7 +168,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the data type expected in response from the server.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string DataType {
             get {
                 return null;
@@ -180,7 +180,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the callback to be invoked if the request fails.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public AjaxErrorCallback Error {
             get {
                 return null;
@@ -192,7 +192,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets whether to trigger global event handlers for this Ajax request.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Global {
             get {
                 return false;
@@ -204,7 +204,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets if a map of additional header key/value pairs to send along with the request.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Dictionary<string, string> Headers {
             get {
                 return null;
@@ -217,7 +217,7 @@ namespace jQueryApi {
         /// Gets or sets whether the request is successful only if its been modified since
         /// the last request.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool IfModified {
             get {
                 return false;
@@ -230,7 +230,7 @@ namespace jQueryApi {
         /// Gets or sets whether the current environment should be treated as a local
         /// environment (eg. when the page is loaded using file:///).
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool IsLocal {
             get {
                 return false;
@@ -242,7 +242,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the callback parameter name to use for JSONP requests.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Jsonp {
             get {
                 return null;
@@ -254,7 +254,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the callback name to use for JSONP requests.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string JsonpCallback {
             get {
                 return null;
@@ -266,7 +266,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the mime type of the request.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string MimeType {
             get {
                 return null;
@@ -278,7 +278,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the password to be used for an HTTP authentication request.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Password {
             get {
                 return null;
@@ -290,7 +290,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets whether the data passed in will be processed.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool ProcessData {
             get {
                 return false;
@@ -302,7 +302,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets how to handle character sets for script and JSONP requests.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string ScriptCharset {
             get {
                 return null;
@@ -314,7 +314,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets a map of numeric HTTP codes and functions to be called when the response has the corresponding code.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Dictionary<int, Action> StatusCode {
             get {
                 return null;
@@ -326,7 +326,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the function to invoke upon successful completion of the request.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public AjaxRequestCallback Success {
             get {
                 return null;
@@ -338,7 +338,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the timeout in milliseconds for the request.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Timeout {
             get {
                 return 0;
@@ -350,7 +350,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets if you want to use traditional parameter serialization.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Traditional {
             get {
                 return false;
@@ -362,7 +362,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the type or HTTP verb associated with the request.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Type {
             get {
                 return null;
@@ -374,7 +374,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the URL to be requested.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Url {
             get {
                 return null;
@@ -386,7 +386,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the name of the user to use in a HTTP authentication request.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Username {
             get {
                 return null;
@@ -398,7 +398,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets or sets the function creating the XmlHttpRequest instance.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("xhr")]
         public XmlHttpRequestCreator XmlHttpRequestCreator {
             get {
@@ -412,7 +412,7 @@ namespace jQueryApi {
         /// Gets or sets a set of additional name/value pairs set of the XmlHttpRequest
         /// object.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Dictionary<string, object> XhrFields {
             get {
                 return null;

@@ -7,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Html;
 using System.Testing;
 using jQueryApi;
-using Photos.FlickrClient;
+using Flickr.FlickrClient;
 using Gallery;
 
 namespace Gallery.Tests {

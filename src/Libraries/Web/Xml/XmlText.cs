@@ -7,21 +7,21 @@ using System.Runtime.CompilerServices;
 
 namespace System.Xml {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class XmlText : XmlNode {
 
         internal XmlText() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Data {
             get {
                 return null;

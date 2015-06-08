@@ -8,17 +8,17 @@ using System.Runtime.CompilerServices;
 
 namespace KnockoutApi {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public class CompareResult<T> {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public CompareResultStatus Status {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public T Value {
             get;
             set;

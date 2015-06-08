@@ -8,12 +8,12 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Widgets {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class TabsDisableEvent {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Panel {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Tab {
             get {
                 return null;

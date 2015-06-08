@@ -11,9 +11,9 @@ namespace jQueryApi.UI.Effects {
     /// <summary>
     /// Options for use with Puff.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum PuffOption {
 
         /// <summary>

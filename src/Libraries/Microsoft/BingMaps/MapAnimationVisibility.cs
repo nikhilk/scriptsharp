@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("AnimationVisibility")]
     public enum MapAnimationVisibility {
 

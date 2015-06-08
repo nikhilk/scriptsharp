@@ -11,9 +11,9 @@ namespace jQueryApi.UI.Effects {
     /// <summary>
     /// Options for use with Size.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum SizeOption {
 
         /// <summary>

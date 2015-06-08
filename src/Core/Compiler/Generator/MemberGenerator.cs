@@ -17,12 +17,6 @@ namespace ScriptSharp.Generator {
             ScriptTextWriter writer = generator.Writer;
 
             ParameterSymbol valueParameter = eventSymbol.Parameters[0];
-            if (generator.Options.Minimize) {
-                bool obfuscateParams = !eventSymbol.IsPublic;
-                if (obfuscateParams) {
-                    valueParameter.SetTransformedName("$p0");
-                }
-            }
 
             string eventName = eventSymbol.GeneratedName;
             string fieldName = eventName;
@@ -56,23 +50,14 @@ namespace ScriptSharp.Generator {
             writer.Write("add_");
             writer.Write(eventName);
             if (instanceMember) {
-                writer.WriteTrimmed(": ");
+                writer.Write(": ");
             }
             else {
-                writer.WriteTrimmed(" = ");
+                writer.Write(" = ");
             }
-            writer.Write("function");
-            if (generator.Options.DebugFlavor) {
-                writer.Write(" ");
-                writer.Write(typeName.Replace(".", "_"));
-                writer.Write("$add_");
-                writer.Write(eventName);
-            }
-            writer.Write("(");
+            writer.Write("function(");
             writer.Write(valueParameter.GeneratedName);
-            writer.Write(")");
-            writer.WriteTrimmed(" {");
-            writer.WriteNewLine();
+            writer.WriteLine(") {");
             writer.Indent++;
 
             if (generator.Options.EnableDocComments) {
@@ -81,13 +66,11 @@ namespace ScriptSharp.Generator {
 
             if (eventSymbol.DefaultImplementation) {
                 writer.Write(fieldReference);
-                writer.WriteTrimmed(" = ");
-                writer.Write("ss.Delegate.combine(");
+                writer.Write(" = ss.bindAdd(");
                 writer.Write(fieldReference);
-                writer.WriteTrimmed(", ");
+                writer.Write(", ");
                 writer.Write(valueParameter.GeneratedName);
-                writer.Write(");");
-                writer.WriteNewLine();
+                writer.WriteLine(");");
             }
             else {
                 CodeGenerator.GenerateScript(generator, eventSymbol, /* add */ true);
@@ -96,12 +79,11 @@ namespace ScriptSharp.Generator {
             writer.Write("}");
 
             if (instanceMember == false) {
-                writer.WriteSignificantNewLine();
+                writer.WriteLine(";");
             }
 
             if (instanceMember) {
-                writer.Write(",");
-                writer.WriteNewLine();
+                writer.WriteLine(",");
             }
             else {
                 writer.Write(typeName);
@@ -110,23 +92,14 @@ namespace ScriptSharp.Generator {
             writer.Write("remove_");
             writer.Write(eventName);
             if (instanceMember) {
-                writer.WriteTrimmed(": ");
+                writer.Write(": ");
             }
             else {
-                writer.WriteTrimmed(" = ");
+                writer.Write(" = ");
             }
-            writer.Write("function");
-            if (generator.Options.DebugFlavor) {
-                writer.Write(" ");
-                writer.Write(typeName.Replace(".", "_"));
-                writer.Write("$remove_");
-                writer.Write(eventName);
-            }
-            writer.Write("(");
+            writer.Write("function(");
             writer.Write(valueParameter.GeneratedName);
-            writer.Write(")");
-            writer.WriteTrimmed(" {");
-            writer.WriteNewLine();
+            writer.WriteLine(") {");
             writer.Indent++;
 
             if (generator.Options.EnableDocComments) {
@@ -135,13 +108,11 @@ namespace ScriptSharp.Generator {
 
             if (eventSymbol.DefaultImplementation) {
                 writer.Write(fieldReference);
-                writer.WriteTrimmed(" = ");
-                writer.Write("ss.Delegate.remove(");
+                writer.Write(" = ss.bindSub(");
                 writer.Write(fieldReference);
-                writer.WriteTrimmed(", ");
+                writer.Write(", ");
                 writer.Write(valueParameter.GeneratedName);
-                writer.Write(");");
-                writer.WriteNewLine();
+                writer.WriteLine(");");
             }
             else {
                 CodeGenerator.GenerateScript(generator, eventSymbol, /* add */ false);
@@ -150,7 +121,7 @@ namespace ScriptSharp.Generator {
             writer.Write("}");
 
             if (instanceMember == false) {
-                writer.WriteSignificantNewLine();
+                writer.WriteLine(";");
             }
         }
 
@@ -166,16 +137,15 @@ namespace ScriptSharp.Generator {
 
             writer.Write(fieldSymbol.GeneratedName);
             if (instanceMember) {
-                writer.WriteTrimmed(": ");
+                writer.Write(": ");
             }
             else {
-                writer.WriteTrimmed(" = ");
+                writer.Write(" = ");
             }
             CodeGenerator.GenerateScript(generator, fieldSymbol);
 
             if (instanceMember == false) {
-                writer.Write(";");
-                writer.WriteNewLine();
+                writer.WriteLine(";");
             }
         }
 
@@ -184,53 +154,23 @@ namespace ScriptSharp.Generator {
                 return;
             }
 
+            Debug.Assert((indexerSymbol.Visibility & MemberVisibility.Static) == 0);
+
             ScriptTextWriter writer = generator.Writer;
-
-            bool instanceMember = true;
-            if ((indexerSymbol.Visibility & MemberVisibility.Static) != 0) {
-                instanceMember = false;
-                writer.Write(typeName);
-                writer.Write(".");
-            }
-
-            bool obfuscateParams = !indexerSymbol.IsPublic;
-            if (obfuscateParams && generator.Options.Minimize) {
-                for (int i = 0; i < indexerSymbol.Parameters.Count; i++) {
-                    ParameterSymbol parameterSymbol = indexerSymbol.Parameters[i];
-                    parameterSymbol.SetTransformedName("$p" + i);
-                }
-            }
 
             writer.Write("get_");
             writer.Write(indexerSymbol.GeneratedName);
-            if (instanceMember) {
-                writer.WriteTrimmed(": ");
-            }
-            else {
-                writer.WriteTrimmed(" = ");
-            }
-
-            writer.Write("function");
-            if (generator.Options.DebugFlavor) {
-                writer.Write(" ");
-                writer.Write(typeName.Replace(".", "_"));
-                writer.Write("$get_");
-                writer.Write(indexerSymbol.GeneratedName);
-            }
-
-            writer.Write("(");
+            writer.Write(": function(");
 
             for (int i = 0; i < indexerSymbol.Parameters.Count - 1; i++) {
                 ParameterSymbol parameterSymbol = indexerSymbol.Parameters[i];
                 if (i > 0) {
-                    writer.WriteTrimmed(", ");
+                    writer.Write(", ");
                 }
                 writer.Write(parameterSymbol.GeneratedName);
             }
 
-            writer.Write(")");
-            writer.WriteTrimmed(" {");
-            writer.WriteNewLine();
+            writer.WriteLine(") {");
             writer.Indent++;
 
             if (generator.Options.EnableDocComments) {
@@ -241,46 +181,20 @@ namespace ScriptSharp.Generator {
             writer.Indent--;
             writer.Write("}");
 
-            if (instanceMember == false) {
-                writer.WriteSignificantNewLine();
-            }
-
             if (indexerSymbol.IsReadOnly == false) {
-                if (instanceMember) {
-                    writer.Write(",");
-                    writer.WriteNewLine();
-                }
-                else {
-                    writer.Write(typeName);
-                    writer.Write(".");
-                }
+                writer.WriteLine(",");
 
                 writer.Write("set_");
                 writer.Write(indexerSymbol.GeneratedName);
-                if (instanceMember) {
-                    writer.WriteTrimmed(": ");
-                }
-                else {
-                    writer.WriteTrimmed(" = ");
-                }
-                writer.Write("function");
-                if (generator.Options.DebugFlavor) {
-                    writer.Write(" ");
-                    writer.Write(typeName.Replace(".", "_"));
-                    writer.Write("$set_");
-                    writer.Write(indexerSymbol.GeneratedName);
-                }
-                writer.Write("(");
+                writer.Write(": function(");
                 for (int i = 0; i < indexerSymbol.Parameters.Count; i++) {
                     ParameterSymbol parameterSymbol = indexerSymbol.Parameters[i];
                     if (i > 0) {
-                        writer.WriteTrimmed(", ");
+                        writer.Write(", ");
                     }
                     writer.Write(parameterSymbol.GeneratedName);
                 }
-                writer.Write(")");
-                writer.WriteTrimmed(" {");
-                writer.WriteNewLine();
+                writer.WriteLine(") {");
                 writer.Indent++;
 
                 if (generator.Options.EnableDocComments) {
@@ -290,14 +204,9 @@ namespace ScriptSharp.Generator {
                 CodeGenerator.GenerateScript(generator, (IndexerSymbol)indexerSymbol, /* getter */ false);
                 writer.Write("return ");
                 writer.Write(indexerSymbol.Parameters[indexerSymbol.Parameters.Count - 1].GeneratedName);
-                writer.Write(";");
-                writer.WriteNewLine();
+                writer.WriteLine(";");
                 writer.Indent--;
                 writer.Write("}");
-
-                if (instanceMember == false) {
-                    writer.WriteSignificantNewLine();
-                }
             }
         }
 
@@ -310,16 +219,16 @@ namespace ScriptSharp.Generator {
 
             bool instanceMember = ((methodSymbol.Visibility & MemberVisibility.Static) == 0);
             if (instanceMember == false) {
-                if (methodSymbol.IsGlobalMethod) {
-                    string mixinRoot = null;
+                if (methodSymbol.IsExtension) {
+                    string extendee = null;
                     if (methodSymbol.Parent.Type == SymbolType.Class) {
-                        mixinRoot = ((ClassSymbol)methodSymbol.Parent).MixinRoot;
+                        extendee = ((ClassSymbol)methodSymbol.Parent).Extendee;
                     }
-                    if (String.IsNullOrEmpty(mixinRoot)) {
-                        mixinRoot = "window";
+                    if (String.IsNullOrEmpty(extendee)) {
+                        extendee = "this";
                     }
 
-                    writer.Write(mixinRoot);
+                    writer.Write(extendee);
                 }
                 else {
                     writer.Write(typeName);
@@ -330,42 +239,25 @@ namespace ScriptSharp.Generator {
 
             writer.Write(methodSymbol.GeneratedName);
             if (instanceMember) {
-                writer.WriteTrimmed(": ");
+                writer.Write(": ");
             }
             else {
-                writer.WriteTrimmed(" = ");
+                writer.Write(" = ");
             }
 
-            writer.Write("function");
-            if (generator.Options.DebugFlavor) {
-                writer.Write(" ");
-                writer.Write(typeName.Replace(".", "_"));
-                writer.Write("$");
-                writer.Write(methodSymbol.GeneratedName);
-            }
-            writer.Write("(");
+            writer.Write("function(");
             if (methodSymbol.Parameters != null) {
-                bool obfuscateParams = false;
-                if (generator.Options.Minimize) {
-                    obfuscateParams = !methodSymbol.IsPublic;
-                }
-
                 int paramIndex = 0;
                 foreach (ParameterSymbol parameterSymbol in methodSymbol.Parameters) {
                     if (paramIndex > 0) {
-                        writer.WriteTrimmed(", ");
-                    }
-                    if (obfuscateParams) {
-                        parameterSymbol.SetTransformedName("$p" + paramIndex);
+                        writer.Write(", ");
                     }
                     writer.Write(parameterSymbol.GeneratedName);
 
                     paramIndex++;
                 }
             }
-            writer.WriteTrimmed(") ");
-            writer.Write("{");
-            writer.WriteNewLine();
+            writer.WriteLine(") {");
             writer.Indent++;
 
             if (generator.Options.EnableDocComments) {
@@ -377,7 +269,7 @@ namespace ScriptSharp.Generator {
             writer.Write("}");
 
             if (instanceMember == false) {
-                writer.WriteSignificantNewLine();
+                writer.WriteLine(";");
             }
         }
 
@@ -398,21 +290,12 @@ namespace ScriptSharp.Generator {
             writer.Write("get_");
             writer.Write(propertySymbol.GeneratedName);
             if (instanceMember) {
-                writer.WriteTrimmed(": ");
+                writer.Write(": ");
             }
             else {
-                writer.WriteTrimmed(" = ");
+                writer.Write(" = ");
             }
-            writer.Write("function");
-            if (generator.Options.DebugFlavor) {
-                writer.Write(" ");
-                writer.Write(typeName.Replace(".", "_"));
-                writer.Write("$get_");
-                writer.Write(propertySymbol.GeneratedName);
-            }
-            writer.Write("()");
-            writer.WriteTrimmed(" {");
-            writer.WriteNewLine();
+            writer.WriteLine("function() {");
             writer.Indent++;
 
             if (generator.Options.EnableDocComments) {
@@ -424,21 +307,13 @@ namespace ScriptSharp.Generator {
             writer.Write("}");
 
             if (instanceMember == false) {
-                writer.WriteSignificantNewLine();
+                writer.WriteLine(";");
             }
 
             if (propertySymbol.IsReadOnly == false) {
                 ParameterSymbol valueParameter = propertySymbol.Parameters[0];
-                if (generator.Options.Minimize) {
-                    bool obfuscateParams = !propertySymbol.IsPublic;
-                    if (obfuscateParams) {
-                        valueParameter.SetTransformedName("$p0");
-                    }
-                }
-
                 if (instanceMember) {
-                    writer.Write(",");
-                    writer.WriteNewLine();
+                    writer.WriteLine(",");
                 }
                 else {
                     writer.Write(typeName);
@@ -448,23 +323,14 @@ namespace ScriptSharp.Generator {
                 writer.Write("set_");
                 writer.Write(propertySymbol.GeneratedName);
                 if (instanceMember) {
-                    writer.WriteTrimmed(": ");
+                    writer.Write(": ");
                 }
                 else {
-                    writer.WriteTrimmed(" = ");
+                    writer.Write(" = ");
                 }
-                writer.Write("function");
-                if (generator.Options.DebugFlavor) {
-                    writer.Write(" ");
-                    writer.Write(typeName.Replace(".", "_"));
-                    writer.Write("$set_");
-                    writer.Write(propertySymbol.GeneratedName);
-                }
-                writer.Write("(");
+                writer.Write("function(");
                 writer.Write(valueParameter.GeneratedName);
-                writer.Write(")");
-                writer.WriteTrimmed(" {");
-                writer.WriteNewLine();
+                writer.WriteLine(") {");
                 writer.Indent++;
 
                 if (generator.Options.EnableDocComments) {
@@ -475,12 +341,12 @@ namespace ScriptSharp.Generator {
                 writer.Write("return ");
                 writer.Write(valueParameter.GeneratedName);
                 writer.Write(";");
-                writer.WriteNewLine();
+                writer.WriteLine();
                 writer.Indent--;
                 writer.Write("}");
 
                 if (instanceMember == false) {
-                    writer.WriteSignificantNewLine();
+                    writer.WriteLine(";");
                 }
             }
         }

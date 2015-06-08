@@ -1,55 +1,59 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.EventArgs
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.EventArgs = function() {
-}
+  // MemberTests.EventArgs
+
+  function EventArgs() {
+  }
+  var EventArgs$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Button
+  // MemberTests.Button
 
-test.Button = function() {
-}
-test.Button.add_test = function(value) {
-    test.Button.__test = ss.Delegate.combine(test.Button.__test, value);
-}
-test.Button.remove_test = function(value) {
-    test.Button.__test = ss.Delegate.remove(test.Button.__test, value);
-}
-test.Button.prototype = {
-    _aaa: null,
-    
+  function Button() {
+  }
+  Button.add_test = function(value) {
+    Button.__test = ss.bindAdd(Button.__test, value);
+  };
+  Button.remove_test = function(value) {
+    Button.__test = ss.bindSub(Button.__test, value);
+  };
+  var Button$ = {
     add_click: function(value) {
-        this.__click = ss.Delegate.combine(this.__click, value);
+      this.__click = ss.bindAdd(this.__click, value);
     },
     remove_click: function(value) {
-        this.__click = ss.Delegate.remove(this.__click, value);
+      this.__click = ss.bindSub(this.__click, value);
     },
-    
-    __click: null,
-    
     add_aaa: function(value) {
-        if (this._aaa == null) {
-            this._aaa = value;
-        }
-        else {
-            this._aaa = ss.Delegate.combine(this._aaa, value);
-        }
+      if (this._aaa == null) {
+        this._aaa = value;
+      }
+      else {
+        this._aaa = ss.bindAdd(this._aaa, value);
+      }
     },
     remove_aaa: function(value) {
-        this._aaa = ss.Delegate.remove(this._aaa, value);
+      this._aaa = ss.bindSub(this._aaa, value);
     },
-    
     performClick: function() {
-        if (this.__click != null) {
-            this.__click(this, new test.EventArgs());
-        }
+      if (this.__click != null) {
+        this.__click(this, new EventArgs());
+      }
     }
-}
+  };
 
 
-test.EventArgs.registerClass('test.EventArgs');
-test.Button.registerClass('test.Button');
-test.Button.__test = null;
+  var $exports = ss.module('test', null,
+    {
+      EventArgs: [ EventArgs, EventArgs$, null ],
+      Button: [ Button, Button$, null ]
+    });
+
+
+  return $exports;
+});

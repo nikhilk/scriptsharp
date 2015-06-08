@@ -9,4 +9,4 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("Script.jQuery.History")]
 [assembly: AssemblyDescription("Script# jQuery BBQ/History Plugin")]
-[assembly: ScriptAssembly("jQueryBBQ")]
+[assembly: ScriptAssembly("jqueryBBQ")]

@@ -9,9 +9,9 @@ using System.Xml;
 
 namespace System.Net {
 
-    [IgnoreNamespace]
-    [Imported]
-    [NamedValues]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    [ScriptConstants(UseNames = true)]
     public enum HttpVerb {
 
         [ScriptName("GET")]

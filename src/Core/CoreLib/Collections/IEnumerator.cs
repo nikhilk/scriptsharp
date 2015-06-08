@@ -7,11 +7,10 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     public interface IEnumerator {
 
-        [IntrinsicProperty]
+        [ScriptField]
         object Current {
             get;
         }

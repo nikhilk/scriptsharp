@@ -22,14 +22,6 @@ namespace ScriptSharp.Validator {
             }
 
             if ((methodNode.Modifiers & Modifiers.Extern) != 0) {
-                AttributeNode altSigAttribute
-                    = AttributeNode.FindAttribute(methodNode.Attributes, "AlternateSignature");
-                if (altSigAttribute == null) {
-                    errorHandler.ReportError("Extern methods should only be used to declare alternate signatures and marked with [AlternateSignature].",
-                                             methodNode.Token.Location);
-                    return false;
-                }
-
                 CustomTypeNode typeNode = (CustomTypeNode)methodNode.Parent;
                 MethodDeclarationNode implMethodNode = null;
 

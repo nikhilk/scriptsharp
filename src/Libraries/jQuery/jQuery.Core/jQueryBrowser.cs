@@ -11,8 +11,8 @@ namespace jQueryApi {
     /// <summary>
     /// Provides information about the current browser.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class jQueryBrowser {
 
         private jQueryBrowser() {
@@ -21,7 +21,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets whether the current browser is Opera.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Opera {
             get {
                 return true;
@@ -31,7 +31,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets whether the current browser is a Mozilla-based browser.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Mozilla {
             get {
                 return true;
@@ -41,7 +41,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets whether the current browser is Microsoft Internet Explorer.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("msie")]
         public bool MSIE {
             get {
@@ -52,7 +52,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets whether the current browser is Safari.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Safari {
             get {
                 return true;
@@ -62,7 +62,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the browser version information.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Version {
             get {
                 return String.Empty;
@@ -72,7 +72,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets whether the current browser is WebKit-based.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("webkit")]
         public bool WebKit {
             get {

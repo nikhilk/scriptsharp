@@ -8,21 +8,21 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class OptionElement : Element {
 
         private OptionElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public FormElement Form {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Selected {
             get {
                 return false;
@@ -31,7 +31,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Text {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Value {
             get {
                 return null;

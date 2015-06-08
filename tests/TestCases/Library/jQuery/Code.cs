@@ -6,8 +6,8 @@ using jQueryApi;
 
 [assembly: ScriptAssembly("test")]
 
-[Imported]
-[IgnoreNamespace]
+[ScriptImport]
+[ScriptIgnoreNamespace]
 public class FooObject : jQueryObject {
     
     public FooObject Foo() {
@@ -43,15 +43,15 @@ public sealed class MyApp {
     }
 
     public static void PostData(string url, object data, AjaxRequestCallback succesCallback, AjaxErrorCallback errorCallback, string returnType, string requestType) {
-        returnType = returnType ?? "text";
-        requestType = requestType ?? "POST";
+        returnType = Script.Or(returnType, "text");
+        requestType = Script.Or(requestType, "POST");
 
         jQuery.Ajax(new jQueryAjaxOptions(
             "cache", false,
             "data", data,
             "dataType", returnType,
             "error", (AjaxErrorCallback)delegate(jQueryXmlHttpRequest req, string textStatus, Exception error) {
-                if (!Script.IsNullOrUndefined(errorCallback))
+                if (Script.IsValue(errorCallback))
                     errorCallback(req, textStatus, error);
             },
             "success", (AjaxRequestCallback)delegate(object dataSuccess, string textStatus, jQueryXmlHttpRequest request) {

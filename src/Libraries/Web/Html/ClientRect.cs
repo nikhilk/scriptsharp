@@ -9,35 +9,35 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class ClientRect {
 
         private ClientRect() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Bottom {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Left {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Right {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Top {
             get {
                 return 0;

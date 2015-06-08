@@ -1,64 +1,72 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.App
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.App = function() {
-}
-test.App.prototype = {
-    
+  // ExpressionTests.App
+
+  function App() {
+  }
+  var App$ = {
     test: function(arg) {
-        var i;
-        var j;
-        var f;
-        var o;
-        var s;
-        if (!i) {
-        }
-        if (!!i) {
-        }
-        if (i === 1) {
-        }
-        if (i === j) {
-        }
-        if (!!s.length) {
-        }
-        if (!s) {
-        }
-        if (!!s) {
-        }
-        if (!s) {
-        }
-        if (!!s) {
-        }
-        if (!!f) {
-        }
-        if (!f) {
-        }
-        if (!f) {
-        }
-        if (!!f) {
-        }
-        if (f === f) {
-        }
-        if (o == null) {
-        }
-        if (o != null) {
-        }
-        if ((s + s) != null) {
-        }
-        if ((s + s) == null) {
-        }
-        if (!!(i % 2)) {
-        }
-        if (!(i % 2)) {
-        }
-        if (!(i % 2)) {
-        }
-        if (!i++) {
-        }
+      var i;
+      var j;
+      var f;
+      var o;
+      var s;
+      if (!i) {
+      }
+      if (!!i) {
+      }
+      if (i === 1) {
+      }
+      if (i === j) {
+      }
+      if (!!s.length) {
+      }
+      if (!s) {
+      }
+      if (!!s) {
+      }
+      if (!s) {
+      }
+      if (!!s) {
+      }
+      if (!!f) {
+      }
+      if (!f) {
+      }
+      if (!f) {
+      }
+      if (!!f) {
+      }
+      if (f === f) {
+      }
+      if (o == null) {
+      }
+      if (o != null) {
+      }
+      if ((s + s) != null) {
+      }
+      if ((s + s) == null) {
+      }
+      if (!!(i % 2)) {
+      }
+      if (!(i % 2)) {
+      }
+      if (!(i % 2)) {
+      }
+      if (!i++) {
+      }
     }
-}
+  };
 
 
-test.App.registerClass('test.App');
+  var $exports = ss.module('test', null,
+    {
+      App: [ App, App$, null ]
+    });
+
+
+  return $exports;
+});

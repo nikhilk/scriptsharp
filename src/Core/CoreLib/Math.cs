@@ -10,32 +10,32 @@ namespace System {
     /// <summary>
     /// Equivalent to the Math object in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public static class Math {
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double E;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double LN2;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double LN10;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double LOG2E;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double LOG10E;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double PI;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double SQRT1_2;
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static double SQRT2;
 
         public static Number Abs(Number n) {
@@ -110,17 +110,17 @@ namespace System {
             return 0;
         }
 
-        [ScriptAlias("parseInt")]
+        [ScriptAlias("ss.truncate")]
         public static int Truncate(Number n) {
             return 0;
         }
 
-        [ScriptAlias("parseInt")]
+        [ScriptAlias("ss.truncate")]
         public static int Truncate(double n) {
             return 0;
         }
 
-        [ScriptAlias("parseInt")]
+        [ScriptAlias("ss.truncate")]
         public static int Truncate(float n) {
             return 0;
         }

@@ -8,16 +8,10 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    /// <summary>
-    /// The Queue data type which is mapped to the Array type in Javascript.
-    /// </summary>
-    [IgnoreNamespace]
-    [Imported]
-    [ScriptName("Array")]
+    [ScriptImport]
     public sealed class Queue {
 
-        [IntrinsicProperty]
-        [ScriptName("length")]
+        [ScriptField]
         public int Count {
             get {
                 return 0;

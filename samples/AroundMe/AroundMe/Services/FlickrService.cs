@@ -8,21 +8,21 @@ using System.Runtime.CompilerServices;
 
 namespace AroundMe.Services {
 
-    [Imported]
+    [ScriptImport]
     public sealed class SearchResponse {
 
         [ScriptName("photos")]
         public PhotosSearchResponse PhotoResponse;
     }
 
-    [Imported]
+    [ScriptImport]
     public sealed class PhotosSearchResponse {
 
         [ScriptName("photo")]
         public List<PhotoResult> PhotoList;
     }
 
-    [Imported]
+    [ScriptImport]
     public sealed class PhotoResult {
 
         public string ID;
@@ -73,7 +73,7 @@ namespace AroundMe.Services {
                     photos.ForEach(delegate(PhotoResult photo) {
                         string[] tagsArray = photo.tags.Split(' ');
                         if (tagsArray.Length > 10) {
-                            tagsArray = (string[])tagsArray.Extract(0, 10);
+                            tagsArray = (string[])tagsArray.GetRange(0, 10);
                         }
 
                         photo.tags = tagsArray.Join(",");
@@ -83,8 +83,8 @@ namespace AroundMe.Services {
                     searchCallback(photos);
                 };
 
-            string jsonCallbackName = Delegate.CreateExport(jsonCallback);
-            string scriptSource = url + "&jsoncallback=" + jsonCallbackName;
+            Export jsonpCallback = Delegate.Export(jsonCallback);
+            string scriptSource = url + "&jsoncallback=" + jsonpCallback.Name;
 
             ScriptElement scriptElement = Document.CreateElement("script").As<ScriptElement>();
             scriptElement.Type = "text/javascript";

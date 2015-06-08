@@ -29,6 +29,87 @@ namespace ScriptSharp.Compiler {
             _errorHandler = errorHandler;
         }
 
+        private void BuildAssembly(ParseNodeList compilationUnits) {
+            string scriptName = GetAssemblyScriptName(compilationUnits);
+            if (String.IsNullOrEmpty(scriptName)) {
+                _errorHandler.ReportError("You must declare a ScriptAssembly attribute.", String.Empty);
+            }
+            else if (Utility.IsValidScriptName(scriptName) == false) {
+                string errorMessage = "The ScriptAssembly attribute referenced an invalid name '{0}'. Script names must only contain letters, numbers, dots or underscores.";
+                _errorHandler.ReportError(String.Format(errorMessage, scriptName), String.Empty);
+            }
+
+            _symbols.ScriptName = scriptName;
+
+            List<AttributeNode> referenceAttributes = GetAttributes(compilationUnits, "ScriptReference");
+            foreach (AttributeNode attribNode in referenceAttributes) {
+                string name = null;
+                string identifier = null;
+                string path = null;
+                bool delayLoad = false;
+
+                Debug.Assert((attribNode.Arguments.Count != 0) && (attribNode.Arguments[0].NodeType == ParseNodeType.Literal));
+                Debug.Assert(((LiteralNode)attribNode.Arguments[0]).Value is string);
+                name = (string)((LiteralNode)attribNode.Arguments[0]).Value;
+
+                if (attribNode.Arguments.Count > 1) {
+                    for (int i = 1; i < attribNode.Arguments.Count; i++) {
+                        Debug.Assert(attribNode.Arguments[1] is BinaryExpressionNode);
+
+                        BinaryExpressionNode propExpression = (BinaryExpressionNode)attribNode.Arguments[1];
+                        Debug.Assert((propExpression.LeftChild.NodeType == ParseNodeType.Name));
+
+                        string propName = ((NameNode)propExpression.LeftChild).Name;
+                        if (String.CompareOrdinal(propName, "Identifier") == 0) {
+                            Debug.Assert(propExpression.RightChild.NodeType == ParseNodeType.Literal);
+                            Debug.Assert(((LiteralNode)propExpression.RightChild).Value is string);
+
+                            identifier = (string)((LiteralNode)propExpression.RightChild).Value;
+                        }
+                        if (String.CompareOrdinal(propName, "Path") == 0) {
+                            Debug.Assert(propExpression.RightChild.NodeType == ParseNodeType.Literal);
+                            Debug.Assert(((LiteralNode)propExpression.RightChild).Value is string);
+
+                            path = (string)((LiteralNode)propExpression.RightChild).Value;
+                        }
+                        else if (String.CompareOrdinal(propName, "DelayLoad") == 0) {
+                            Debug.Assert(propExpression.RightChild.NodeType == ParseNodeType.Literal);
+                            Debug.Assert(((LiteralNode)propExpression.RightChild).Value is bool);
+
+                            delayLoad = (bool)((LiteralNode)propExpression.RightChild).Value;
+                        }
+                    }
+                }
+
+                bool newReference;
+                ScriptReference reference = _symbols.GetDependency(name, out newReference);
+                reference.Path = path;
+                reference.DelayLoaded = delayLoad;
+                if (newReference) {
+                    reference.Identifier = identifier;
+                }
+            }
+
+            string template;
+            if (GetScriptTemplate(compilationUnits, out template)) {
+                _options.ScriptInfo.Template = template;
+            }
+
+            string description;
+            string copyright;
+            string version;
+            GetAssemblyMetadata(compilationUnits, out description, out copyright, out version);
+            if (description != null) {
+                _options.ScriptInfo.Description = description;
+            }
+            if (copyright != null) {
+                _options.ScriptInfo.Copyright = copyright;
+            }
+            if (version != null) {
+                _options.ScriptInfo.Version = version;
+            }
+        }
+
         private EnumerationFieldSymbol BuildEnumField(EnumerationFieldNode fieldNode, TypeSymbol typeSymbol) {
             Debug.Assert(typeSymbol is EnumerationSymbol);
             EnumerationSymbol enumSymbol = (EnumerationSymbol)typeSymbol;
@@ -67,6 +148,16 @@ namespace ScriptSharp.Compiler {
                     }
                 }
 
+                if (typeSymbol.IsApplicationType == false) {
+                    AttributeNode eventAttribute = AttributeNode.FindAttribute(eventNode.Attributes, "ScriptEvent");
+                    if ((eventAttribute != null) && (eventAttribute.Arguments != null) && (eventAttribute.Arguments.Count == 2)) {
+                        string addAccessor = (string)((LiteralNode)eventAttribute.Arguments[0]).Value;
+                        string removeAccessor = (string)((LiteralNode)eventAttribute.Arguments[1]).Value;
+
+                        eventSymbol.SetAccessors(addAccessor, removeAccessor);
+                    }
+                }
+
                 return eventSymbol;
             }
 
@@ -84,7 +175,7 @@ namespace ScriptSharp.Compiler {
                 if (fieldNode.Initializers.Count != 0) {
                     VariableInitializerNode initializer = (VariableInitializerNode)fieldNode.Initializers[0];
 
-                    if ((initializer.Value != null) && (initializer.Value.NodeType != ParseNodeType.Literal)) {
+                    if (initializer.Value != null) {
                         symbol.SetImplementationState(/* hasInitializer */ true);
                     }
                 }
@@ -116,8 +207,8 @@ namespace ScriptSharp.Compiler {
                 IndexerSymbol indexer = new IndexerSymbol(typeSymbol, indexerType);
                 BuildMemberDetails(indexer, typeSymbol, indexerNode, indexerNode.Attributes);
 
-                if (AttributeNode.FindAttribute(indexerNode.Attributes, "IntrinsicProperty") != null) {
-                    indexer.SetIntrinsic();
+                if (AttributeNode.FindAttribute(indexerNode.Attributes, "ScriptField") != null) {
+                    indexer.SetScriptIndexer();
                 }
 
                 SymbolImplementationFlags implFlags = SymbolImplementationFlags.Regular;
@@ -174,15 +265,48 @@ namespace ScriptSharp.Compiler {
                 memberSymbol.SetVisibility(GetVisibility(memberNode, typeSymbol));
             }
 
-            bool preserveCase = (AttributeNode.FindAttribute(attributes, "PreserveCase") != null);
-            memberSymbol.SetNameCasing(preserveCase);
+            AttributeNode nameAttribute = AttributeNode.FindAttribute(attributes, "ScriptName");
+            if ((nameAttribute != null) && (nameAttribute.Arguments != null) &&
+                (nameAttribute.Arguments.Count != 0)) {
+                string name = null;
+                bool preserveCase = false;
+                bool preserveName = false;
 
-            string scriptName = GetAttributeValue(attributes, "ScriptName");
-            if (scriptName != null) {
-                memberSymbol.SetTransformedName(scriptName);
-            }
-            else if (AttributeNode.FindAttribute(attributes, "PreserveName") != null) {
-                memberSymbol.DisableNameTransformation();
+                foreach (ParseNode argNode in nameAttribute.Arguments) {
+                    Debug.Assert((argNode.NodeType == ParseNodeType.Literal) ||
+                                 (argNode.NodeType == ParseNodeType.BinaryExpression));
+
+                    if (argNode.NodeType == ParseNodeType.Literal) {
+                        Debug.Assert(((LiteralNode)argNode).Value is string);
+                        name = (string)((LiteralNode)argNode).Value;
+                        preserveName = preserveCase = true;
+                        break;
+                    }
+                    else {
+                        BinaryExpressionNode propSetNode = (BinaryExpressionNode)argNode;
+
+                        if (String.CompareOrdinal(((NameNode)propSetNode.LeftChild).Name, "PreserveName") == 0) {
+                            preserveName = (bool)((LiteralNode)propSetNode.RightChild).Value;
+                        }
+                        else {
+                            preserveCase = (bool)((LiteralNode)propSetNode.RightChild).Value;
+                            if (preserveCase) {
+                                preserveName = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (String.IsNullOrEmpty(name) == false) {
+                    memberSymbol.SetTransformedName(name);
+                }
+                else {
+                    memberSymbol.SetNameCasing(preserveCase);
+                    if (preserveName) {
+                        memberSymbol.DisableNameTransformation();
+                    }
+                }
             }
         }
 
@@ -286,30 +410,8 @@ namespace ScriptSharp.Compiler {
             _symbols = symbols;
             _symbolTable = symbols;
             _options = options;
+            BuildAssembly(compilationUnits);
 
-            string scriptName = GetAssemblyScriptName(compilationUnits);
-            if (String.IsNullOrEmpty(scriptName)) {
-                _errorHandler.ReportError("You must declare a ScriptAssembly attribute.", String.Empty);
-            }
-            else if (Utility.IsValidScriptName(scriptName) == false) {
-                string errorMessage = "The ScriptAssembly attribute referenced an invalid name '{0}'. Script names must only contain letters, numbers, dots or underscores.";
-                _errorHandler.ReportError(String.Format(errorMessage, scriptName), String.Empty);
-            }
-            symbols.ScriptName = scriptName;
-
-            string scriptPrefix = GetAssemblyScriptPrefix(compilationUnits);
-            if (String.IsNullOrEmpty(scriptPrefix) == false) {
-                if (Utility.IsValidIdentifier(scriptPrefix) == false) {
-                    string errorMessage = "The ScriptQualifier attribute referenced an invalid prefix '{0}'. Script prefix must be valid identifiers.";
-                    _errorHandler.ReportError(String.Format(errorMessage, scriptPrefix), String.Empty);
-                }
-            }
-            else {
-                scriptPrefix = scriptName.Replace(".", String.Empty);
-            }
-            symbols.ScriptPrefix = scriptPrefix;
-
-            string assemblyScriptNamespace = GetAssemblyScriptNamespace(compilationUnits);
             List<TypeSymbol> types = new List<TypeSymbol>();
 
             // Build all the types first.
@@ -376,12 +478,6 @@ namespace ScriptSharp.Compiler {
                             continue;
                         }
 
-                        // Check if we have overriding script namespace for this type.
-                        string typeScriptNamespace = GetScriptNamespace(userTypeNode.Attributes);
-                        if (String.IsNullOrEmpty(typeScriptNamespace)) {
-                            typeScriptNamespace = assemblyScriptNamespace;
-                        }
-                        
                         ClassSymbol partialTypeSymbol = null;
                         bool isPartial = false;
 
@@ -400,10 +496,6 @@ namespace ScriptSharp.Compiler {
                                 // Merge interesting bits of information onto the primary type symbol as well
                                 // representing this partial class
                                 BuildType(partialTypeSymbol, userTypeNode);
-
-                                if (String.IsNullOrEmpty(typeScriptNamespace) == false) {
-                                    partialTypeSymbol.ScriptNamespace = typeScriptNamespace;
-                                }
                             }
                         }
 
@@ -416,10 +508,6 @@ namespace ScriptSharp.Compiler {
                             }
                             if (aliases != null) {
                                 typeSymbol.SetAliases(aliases);
-                            }
-
-                            if (String.IsNullOrEmpty(typeScriptNamespace) == false) {
-                                typeSymbol.ScriptNamespace = typeScriptNamespace;
                             }
 
                             if (isPartial == false) {
@@ -525,6 +613,18 @@ namespace ScriptSharp.Compiler {
                     if (conditions != null) {
                         method.SetConditions(conditions);
                     }
+
+                    if (typeSymbol.IsApplicationType == false) {
+                        foreach (AttributeNode attrNode in methodNode.Attributes) {
+                            if (attrNode.TypeName.Equals("ScriptMethod", StringComparison.Ordinal)) {
+                                Debug.Assert(attrNode.Arguments[0] is LiteralNode);
+                                Debug.Assert(((LiteralNode)attrNode.Arguments[0]).Value is string);
+
+                                method.SetSelector((string)((LiteralNode)attrNode.Arguments[0]).Value);
+                                break;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -546,11 +646,9 @@ namespace ScriptSharp.Compiler {
                     }
                 }
 
-                if ((method.Visibility & MemberVisibility.Static) != 0) {
-                    string scriptAlias = GetAttributeValue(methodNode.Attributes, "ScriptAlias");
-                    if (scriptAlias != null) {
-                        method.SetAlias(scriptAlias);
-                    }
+                string scriptAlias = GetAttributeValue(methodNode.Attributes, "ScriptAlias");
+                if (scriptAlias != null) {
+                    method.SetAlias(scriptAlias);
                 }
             }
 
@@ -618,8 +716,8 @@ namespace ScriptSharp.Compiler {
         }
 
         private FieldSymbol BuildPropertyAsField(PropertyDeclarationNode propertyNode, TypeSymbol typeSymbol) {
-            AttributeNode intrinsicPropertyAttribute = AttributeNode.FindAttribute(propertyNode.Attributes, "IntrinsicProperty");
-            if (intrinsicPropertyAttribute == null) {
+            AttributeNode scriptFieldAttribute = AttributeNode.FindAttribute(propertyNode.Attributes, "ScriptField");
+            if (scriptFieldAttribute == null) {
                 return null;
             }
 
@@ -667,26 +765,23 @@ namespace ScriptSharp.Compiler {
                 CustomTypeNode customTypeNode = (CustomTypeNode)typeNode;
                 Debug.Assert(customTypeNode != null);
 
-                NameNode baseTypeNameNode = null;
-                if (customTypeNode.BaseTypes.Count != 0) {
-                    baseTypeNameNode = customTypeNode.BaseTypes[0] as NameNode;
-                }
-
-                if ((baseTypeNameNode != null) && (String.CompareOrdinal(baseTypeNameNode.Name, "Record") == 0)) {
+                if (AttributeNode.FindAttribute(attributes, "ScriptObject") != null) {
                     typeSymbol = new RecordSymbol(typeNode.Name, namespaceSymbol);
                 }
+                else if (AttributeNode.FindAttribute(attributes, "ScriptResources") != null) {
+                    typeSymbol = new ResourcesSymbol(typeNode.Name, namespaceSymbol);
+                }
                 else {
-                    AttributeNode resourcesAttribute = AttributeNode.FindAttribute(attributes, "Resources");
-                    if (resourcesAttribute != null) {
-                        typeSymbol = new ResourcesSymbol(typeNode.Name, namespaceSymbol);
-                    }
-                    else {
-                        typeSymbol = new ClassSymbol(typeNode.Name, namespaceSymbol);
+                    typeSymbol = new ClassSymbol(typeNode.Name, namespaceSymbol);
 
-                        if ((baseTypeNameNode != null) &&
-                            (String.CompareOrdinal(baseTypeNameNode.Name, "TestClass") == 0)) {
-                            ((ClassSymbol)typeSymbol).SetTestClass();
-                        }
+                    NameNode baseTypeNameNode = null;
+                    if (customTypeNode.BaseTypes.Count != 0) {
+                        baseTypeNameNode = customTypeNode.BaseTypes[0] as NameNode;
+                    }
+
+                    if ((baseTypeNameNode != null) &&
+                        (String.CompareOrdinal(baseTypeNameNode.Name, "TestClass") == 0)) {
+                        ((ClassSymbol)typeSymbol).SetTestClass();
                     }
                 }
             }
@@ -717,7 +812,8 @@ namespace ScriptSharp.Compiler {
 
                 BuildType(typeSymbol, typeNode);
 
-                if (namespaceSymbol.Name.EndsWith(_options.TestsSubnamespace, StringComparison.Ordinal)) {
+                if (namespaceSymbol.Name.EndsWith(".Tests", StringComparison.Ordinal) ||
+                    (namespaceSymbol.Name.IndexOf(".Tests.", StringComparison.Ordinal) > 0)) {
                     typeSymbol.SetTestType();
                 }
             }
@@ -731,12 +827,42 @@ namespace ScriptSharp.Compiler {
 
             ParseNodeList attributes = typeNode.Attributes;
 
-            if (AttributeNode.FindAttribute(attributes, "Imported") != null) {
-                typeSymbol.SetImported(/* dependencyName */ null);
-            }
+            if (AttributeNode.FindAttribute(attributes, "ScriptImport") != null) {
+                ScriptReference dependency = null;
 
-            if (AttributeNode.FindAttribute(attributes, "IgnoreNamespace") != null) {
-                typeSymbol.SetIgnoreNamespace();
+                AttributeNode dependencyAttribute = AttributeNode.FindAttribute(attributes, "ScriptDependency");
+                if (dependencyAttribute != null) {
+                    string dependencyIdentifier = null;
+
+                    Debug.Assert((dependencyAttribute.Arguments.Count != 0) && (dependencyAttribute.Arguments[0].NodeType == ParseNodeType.Literal));
+                    Debug.Assert(((LiteralNode)dependencyAttribute.Arguments[0]).Value is string);
+                    string dependencyName = (string)((LiteralNode)dependencyAttribute.Arguments[0]).Value;
+
+                    if (dependencyAttribute.Arguments.Count > 1) {
+                        Debug.Assert(dependencyAttribute.Arguments[1] is BinaryExpressionNode);
+
+                        BinaryExpressionNode propExpression = (BinaryExpressionNode)dependencyAttribute.Arguments[1];
+                        Debug.Assert((propExpression.LeftChild.NodeType == ParseNodeType.Name) &&
+                                     (String.CompareOrdinal(((NameNode)propExpression.LeftChild).Name, "Identifier") == 0));
+
+                        Debug.Assert(propExpression.RightChild.NodeType == ParseNodeType.Literal);
+                        Debug.Assert(((LiteralNode)propExpression.RightChild).Value is string);
+
+                        dependencyIdentifier = (string)((LiteralNode)propExpression.RightChild).Value;
+                    }
+
+                    dependency = new ScriptReference(dependencyName, dependencyIdentifier);
+                }
+
+                typeSymbol.SetImported(dependency);
+
+                if ((AttributeNode.FindAttribute(attributes, "ScriptIgnoreNamespace") != null) ||
+                    (dependency == null)) {
+                    typeSymbol.SetIgnoreNamespace();
+                }
+                else {
+                    typeSymbol.ScriptNamespace = dependency.Identifier;
+                }
             }
 
             if (AttributeNode.FindAttribute(attributes, "PreserveName") != null) {
@@ -749,35 +875,51 @@ namespace ScriptSharp.Compiler {
             }
 
             if (typeNode.Type == TokenType.Class) {
-                bool globalizeMembers = false;
-                string mixinRoot = null;
+                AttributeNode extensionAttribute = AttributeNode.FindAttribute(attributes, "ScriptExtension");
+                if (extensionAttribute != null) {
+                    Debug.Assert(extensionAttribute.Arguments[0] is LiteralNode);
+                    Debug.Assert(((LiteralNode)extensionAttribute.Arguments[0]).Value is string);
 
-                AttributeNode globalMethodsAttribute = AttributeNode.FindAttribute(attributes, "GlobalMethods");
-                if (globalMethodsAttribute != null) {
-                    globalizeMembers = true;
-                }
-                else {
-                    AttributeNode mixinAttribute = AttributeNode.FindAttribute(attributes, "Mixin");
-                    if (mixinAttribute != null) {
-                        Debug.Assert(mixinAttribute.Arguments[0] is LiteralNode);
-                        Debug.Assert(((LiteralNode)mixinAttribute.Arguments[0]).Value is string);
+                    string extendee = (string)((LiteralNode)extensionAttribute.Arguments[0]).Value;
+                    Debug.Assert(String.IsNullOrEmpty(extendee) == false);
 
-                        mixinRoot = (string)((LiteralNode)mixinAttribute.Arguments[0]).Value;
-                        globalizeMembers = true;
-                    }
+                    ((ClassSymbol)typeSymbol).SetExtenderClass(extendee);
                 }
 
-                if (globalizeMembers) {
-                    ((ClassSymbol)typeSymbol).SetGlobalMethods(mixinRoot);
+                AttributeNode moduleAttribute = AttributeNode.FindAttribute(attributes, "ScriptModule");
+                if (moduleAttribute != null) {
+                    ((ClassSymbol)typeSymbol).SetModuleClass();
+                }
+
+                if ((typeNode.Modifiers & Modifiers.Static) != 0) {
+                    ((ClassSymbol)typeSymbol).SetStaticClass();
                 }
             }
 
             if (typeNode.Type == TokenType.Enum) {
-                if (AttributeNode.FindAttribute(attributes, "NamedValues") != null) {
-                    ((EnumerationSymbol)typeSymbol).SetNamedValues();
-                }
-                else if (AttributeNode.FindAttribute(attributes, "NumericValues") != null) {
-                    ((EnumerationSymbol)typeSymbol).SetNumericValues();
+                AttributeNode constantsAttribute = AttributeNode.FindAttribute(attributes, "ScriptConstants");
+                if (constantsAttribute != null) {
+                    bool useNames = false;
+
+                    if ((constantsAttribute.Arguments != null) && (constantsAttribute.Arguments.Count != 0)) {
+                        Debug.Assert(constantsAttribute.Arguments[0] is BinaryExpressionNode);
+
+                        BinaryExpressionNode propExpression = (BinaryExpressionNode)constantsAttribute.Arguments[0];
+                        Debug.Assert((propExpression.LeftChild.NodeType == ParseNodeType.Name) &&
+                                     (String.CompareOrdinal(((NameNode)propExpression.LeftChild).Name, "UseNames") == 0));
+
+                        Debug.Assert(propExpression.RightChild.NodeType == ParseNodeType.Literal);
+                        Debug.Assert(((LiteralNode)propExpression.RightChild).Value is bool);
+
+                        useNames = (bool)((LiteralNode)propExpression.RightChild).Value;
+                    }
+
+                    if (useNames) {
+                        ((EnumerationSymbol)typeSymbol).SetNamedValues();
+                    }
+                    else {
+                        ((EnumerationSymbol)typeSymbol).SetNumericValues();
+                    }
                 }
             }
         }
@@ -818,6 +960,26 @@ namespace ScriptSharp.Compiler {
             }
         }
 
+        private void GetAssemblyMetadata(ParseNodeList compilationUnits, out string description, out string copyright, out string version) {
+            description = null;
+            copyright = null;
+            version = null;
+
+            foreach (CompilationUnitNode compilationUnit in compilationUnits) {
+                foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
+                    if (description == null) {
+                        description = GetAttributeValue(attribBlock.Attributes, "AssemblyDescription");
+                    }
+                    if (copyright == null) {
+                        copyright = GetAttributeValue(attribBlock.Attributes, "AssemblyCopyright");
+                    }
+                    if (version == null) {
+                        version = GetAttributeValue(attribBlock.Attributes, "AssemblyFileVersion");
+                    }
+                }
+            }
+        }
+
         private string GetAssemblyScriptName(ParseNodeList compilationUnits) {
             foreach (CompilationUnitNode compilationUnit in compilationUnits) {
                 foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
@@ -830,35 +992,27 @@ namespace ScriptSharp.Compiler {
             return null;
         }
 
-        private string GetAssemblyScriptNamespace(ParseNodeList compilationUnits) {
-            foreach (CompilationUnitNode compilationUnit in compilationUnits) {
-                foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
-                    string scriptNamespace = GetScriptNamespace(attribBlock.Attributes);
-                    if (scriptNamespace != null) {
-                        return scriptNamespace;
-                    }
-                }
-            }
-            return null;
-        }
+        private List<AttributeNode> GetAttributes(ParseNodeList compilationUnits, string attributeName) {
+            List<AttributeNode> attributes = new List<AttributeNode>();
 
-        private string GetAssemblyScriptPrefix(ParseNodeList compilationUnits) {
             foreach (CompilationUnitNode compilationUnit in compilationUnits) {
                 foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
-                    string scriptPrefix = GetAttributeValue(attribBlock.Attributes, "ScriptQualifier");
-                    if (scriptPrefix != null) {
-                        return scriptPrefix;
+                    foreach (AttributeNode attribNode in attribBlock.Attributes) {
+                        if (attribNode.TypeName.Equals(attributeName, StringComparison.Ordinal)) {
+                            attributes.Add(attribNode);
+                        }
                     }
                 }
             }
-            return null;
+
+            return attributes;
         }
 
         private string GetAttributeValue(ParseNodeList attributes, string attributeName) {
             AttributeNode node = AttributeNode.FindAttribute(attributes, attributeName);
 
-            if (node != null) {
-                Debug.Assert(node.Arguments[0] is LiteralNode);
+            if ((node != null) &&
+                (node.Arguments.Count != 0) && (node.Arguments[0].NodeType == ParseNodeType.Literal)) {
                 Debug.Assert(((LiteralNode)node.Arguments[0]).Value is string);
 
                 return (string)((LiteralNode)node.Arguments[0]).Value;
@@ -866,8 +1020,19 @@ namespace ScriptSharp.Compiler {
             return null;
         }
 
-        private string GetScriptNamespace(ParseNodeList attributes) {
-            return GetAttributeValue(attributes, "ScriptNamespace");
+        private bool GetScriptTemplate(ParseNodeList compilationUnits, out string template) {
+            template = null;
+
+            foreach (CompilationUnitNode compilationUnit in compilationUnits) {
+                foreach (AttributeBlockNode attribBlock in compilationUnit.Attributes) {
+                    template = GetAttributeValue(attribBlock.Attributes, "ScriptTemplate");
+                    if (template != null) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private MemberVisibility GetVisibility(MemberNode node, TypeSymbol typeSymbol) {

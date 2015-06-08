@@ -10,8 +10,7 @@ namespace System {
     /// <summary>
     /// Provides an optimized mechanism to concatenate strings.
     /// </summary>
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     public sealed class StringBuilder {
 
         /// <summary>
@@ -33,7 +32,7 @@ namespace System {
         /// Gets whether the <see cref="StringBuilder"/> object has any content.
         /// </summary>
         /// <returns>true if the StringBuilder instance contains no text; otherwise, false.</returns>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool IsEmpty {
             get {
                 return false;

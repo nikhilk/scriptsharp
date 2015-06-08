@@ -1,19 +1,29 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Point
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.$create_Point = function test_Point(x, y) {
-    var $o = { };
+  // TypeTests.Point
+
+  function Point(x, y) {
+    var $o = {};
     $o.x = x;
     $o.y = y;
     return $o;
-}
+  }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Pair
+  // TypeTests.Pair
 
-test.$create_Pair = function test_Pair() { return {}; }
+  function Pair() { return {}; }
 
 
+  var $exports = ss.module('test', null,
+    {
+      Point: Point,
+      Pair: Pair
+    });
+
+
+  return $exports;
+});

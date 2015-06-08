@@ -9,9 +9,9 @@ using System.Xml;
 
 namespace System.Net {
 
-    [IgnoreNamespace]
-    [Imported]
-    [NumericValues]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    [ScriptConstants]
     public enum ReadyState {
 
         Uninitialized = 0,

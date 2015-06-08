@@ -20,3 +20,17 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: ScriptAssembly("Todo")]
+[assembly: ScriptTemplate(@"
+/*! {name}.js
+ *  Todo Sample Application
+ */
+
+'use strict';
+define('{name}', [{requires}], function({dependencies}) {
+  var $global = this;
+
+  {script}
+});
+
+/*! Generated with Script# */
+")]

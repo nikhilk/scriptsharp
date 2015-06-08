@@ -7,22 +7,22 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class KeyValuePair<TKey, TValue> {
 
         internal KeyValuePair() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public TKey Key {
             get {
                 return default(TKey);
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public TValue Value {
             get {
                 return default(TValue);

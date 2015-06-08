@@ -13,8 +13,9 @@ namespace ScriptSharp.ScriptModel {
 
     internal class MethodSymbol : CodeMemberSymbol {
 
+        private string _alias;
         private ICollection<string> _conditions;
-        private bool _aliased;
+        private string _selector;
         private bool _skipGeneration;
         private ICollection<GenericParameterSymbol> _genericArguments;
 
@@ -31,6 +32,12 @@ namespace ScriptSharp.ScriptModel {
 
         protected MethodSymbol(SymbolType type, string name, TypeSymbol parent, TypeSymbol returnType)
             : base(type, name, parent, returnType) {
+        }
+
+        public string Alias {
+            get {
+                return _alias;
+            }
         }
 
         public ICollection<string> Conditions {
@@ -75,10 +82,31 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public bool HasSelector {
+            get {
+                return (_selector != null);
+            }
+        }
+
         public SymbolImplementation Implementation {
             get {
                 Debug.Assert(_implementation != null);
                 return _implementation;
+            }
+        }
+
+        public bool IsAliased {
+            get {
+                return String.IsNullOrEmpty(_alias) == false;
+            }
+        }
+
+        public bool IsExtension {
+            get {
+                if (Parent.Type == SymbolType.Class) {
+                    return ((ClassSymbol)Parent).IsExtenderClass;
+                }
+                return false;
             }
         }
 
@@ -89,16 +117,10 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
-        public bool IsGlobalMethod {
+        public string Selector {
             get {
-                if (_aliased) {
-                    // Methods with a script alias are considered global methods.
-                    return true;
-                }
-                if (Parent.Type == SymbolType.Class) {
-                    return ((ClassSymbol)Parent).HasGlobalMethods;
-                }
-                return false;
+                Debug.Assert(_selector != null);
+                return _selector;
             }
         }
 
@@ -137,10 +159,11 @@ namespace ScriptSharp.ScriptModel {
         }
 
         public void SetAlias(string alias) {
-            Debug.Assert((Visibility & MemberVisibility.Static) != 0);
+            Debug.Assert(_alias == null);
+            Debug.Assert(String.IsNullOrEmpty(alias) == false);
 
+            _alias = alias;
             SetTransformedName(alias);
-            _aliased = true;
         }
 
         public void SetConditions(ICollection<string> conditions) {
@@ -148,6 +171,13 @@ namespace ScriptSharp.ScriptModel {
             Debug.Assert(conditions != null);
 
             _conditions = conditions;
+        }
+
+        public void SetSelector(string selector) {
+            Debug.Assert(_selector == null);
+            Debug.Assert(String.IsNullOrEmpty(selector) == false);
+
+            _selector = selector;
         }
 
         public void SetSkipGeneration() {

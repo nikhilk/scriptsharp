@@ -1,56 +1,66 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Set
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.Set = function() {
-}
-test.Set.prototype = {
-    _items: null,
-    
+  // StatementTests.Set
+
+  function Set() {
+  }
+  var Set$ = {
     getEnumerator: function() {
-        return this._items.getEnumerator();
+      return ss.enumerate(this._items);
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.App
+  // StatementTests.App
 
-test.App = function() {
-}
-test.App.prototype = {
-    
+  function App() {
+  }
+  var App$ = {
     test: function(arg) {
-        var items = [ 1, 2, 3 ];
-        var sum = 0;
-        var $enum1 = ss.IEnumerator.getEnumerator(items);
-        while ($enum1.moveNext()) {
-            var i = $enum1.current;
-            sum += i;
-        }
-        var d = {};
-        var $dict2 = d;
-        for (var $key3 in $dict2) {
-            var entry = { key: $key3, value: $dict2[$key3] };
-            var s = entry.key + ' = ' + entry.value;
-        }
-        var s = new test.Set();
-        var $enum4 = ss.IEnumerator.getEnumerator(s);
-        while ($enum4.moveNext()) {
-            var o = $enum4.current;
-            this.doStuff(o);
-        }
+      var items = [ 1, 2, 3 ];
+      var sum = 0;
+      var $enum1 = ss.enumerate(items);
+      while ($enum1.moveNext()) {
+        var i = $enum1.current;
+        sum += i;
+      }
+      var d = {};
+      for (var $key2 in d) {
+        var entry = { key: $key2, value: d[$key2] };
+        var s = entry.key + ' = ' + entry.value;
+      }
+      var s = new Set();
+      var $enum3 = ss.enumerate(s);
+      while ($enum3.moveNext()) {
+        var o = $enum3.current;
+        this._doStuff(o);
+      }
+      var $dict4 = this._getDictionary();
+      for (var $key5 in $dict4) {
+        var entry = { key: $key5, value: $dict4[$key5] };
+        var s = entry.key + ' = ' + entry.value;
+      }
     },
-    
-    doStuff: function(o) {
-        var $dict1 = o;
-        for (var $key2 in $dict1) {
-            var entry = { key: $key2, value: $dict1[$key2] };
-        }
+    _doStuff: function(o) {
+      for (var $key1 in o) {
+        var entry = { key: $key1, value: o[$key1] };
+      }
+    },
+    _getDictionary: function() {
+      return null;
     }
-}
+  };
 
 
-test.Set.registerClass('test.Set', null, ss.IEnumerable);
-test.App.registerClass('test.App');
+  var $exports = ss.module('test', null,
+    {
+      Set: [ Set, Set$, null, ss.IEnumerable ],
+      App: [ App, App$, null ]
+    });
+
+
+  return $exports;
+});

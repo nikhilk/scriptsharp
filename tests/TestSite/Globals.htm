@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Global</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+<script type="text/javascript" src="Scripts/ss.js"></script>
+<script type="text/javascript">
+module('Global');
+
+test('trim methods', function() {
+  QUnit.equal(ss.trimStart('Hello'), 'Hello');
+  QUnit.equal(ss.trimStart('  Hello'), 'Hello');
+  QUnit.equal(ss.trimEnd('  Hello'), '  Hello');
+  QUnit.equal(ss.trimEnd('Hello  '), 'Hello');
+  QUnit.equal(ss.trimStart('Hello'), 'Hello');
+  QUnit.equal(ss.trimEnd(ss.trimStart('  Hello  ')), 'Hello');
+  QUnit.equal(ss.trimEnd(ss.trimStart('\tHello  ')), 'Hello');
+});
+
+test('StringBuilder', function() {
+  var sb1 = new ss.StringBuilder();
+  QUnit.equal(sb1.isEmpty, true);
+  QUnit.equal(sb1.toString(), '');
+    
+  var sb2 = new ss.StringBuilder('aaa');
+  QUnit.equal(sb2.isEmpty, false);
+  QUnit.equal(sb2.toString(), 'aaa');
+});
+</script>
+</html>

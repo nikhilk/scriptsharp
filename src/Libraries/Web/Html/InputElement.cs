@@ -8,28 +8,28 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public class InputElement : Element {
 
         protected internal InputElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string DefaultValue {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public FormElement Form {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
@@ -38,7 +38,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Type {
             get {
                 return null;
@@ -47,7 +47,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Value {
             get {
                 return null;

@@ -4,6 +4,6 @@ obj/
 *.user
 *.cache
 *.trx
-Scripts/
 packages/
+Tests/*/Scripts
 TestResults/

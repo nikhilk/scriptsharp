@@ -4,11 +4,10 @@ using System.Runtime.CompilerServices;
 using ScriptFX;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace BasicTests {
 
-    [GlobalMethods]
+    [ScriptExtension("$global")]
     public static class GlobalMethodsClass {
 
         public static void Run() {
@@ -130,7 +129,7 @@ namespace BasicTests {
         }
     }
 
-    [PreserveName]
+    [ScriptName(PreserveName = true)]
     internal class BarCustom : Bar {
     }
 
@@ -138,10 +137,10 @@ namespace BasicTests {
 
         public int Foo() { return 0; }
 
-        [PreserveName]
+        [ScriptName(PreserveName = true)]
         public int Baz() { return 0; }
 
-        [PreserveName]
+        [ScriptName(PreserveName = true)]
         private void Xyz() { }
     }
 
@@ -210,7 +209,8 @@ namespace BasicTests {
         }
     }
 
-    internal sealed class MyData : Record {
+    [ScriptObject]
+    internal sealed class MyData {
 
         public string string1;
         public string string2;
@@ -221,6 +221,17 @@ namespace BasicTests {
         }
     }
 
+    [ScriptObject]
+    internal sealed class DataHolder {
+
+        public string s1;
+        public string s2;
+    }
+
     internal class ABC {
+
+        public ABC() {
+            DataHolder d = new DataHolder();
+        }
     }
 }

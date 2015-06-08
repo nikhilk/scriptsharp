@@ -9,4 +9,4 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("mscorlib")]
 [assembly: AssemblyDescription("Script# Core Assembly")]
-[assembly: ScriptAssembly("core")]
+[assembly: ScriptAssembly("ss")]

@@ -14,8 +14,8 @@ namespace jQueryApi.History {
     /// <summary>
     /// Provides access to jQuery history and back button management APIs.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public static class jQueryHistory {
 
         /// <summary>

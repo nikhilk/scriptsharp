@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ScriptSharp.Testing">
-      <HintPath>..\packages\ScriptSharp.Testing.0.7.5.0\lib\ScriptSharp.Testing.dll</HintPath>
+      <HintPath>..\packages\ScriptSharp.Testing.0.8\lib\ScriptSharp.Testing.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Web\DefaultTests.htm" />
     <Content Include="Web\QUnit.css" />
     <Content Include="Web\QUnit.js" />
     <Content Include="Web\QUnitExt.js" />

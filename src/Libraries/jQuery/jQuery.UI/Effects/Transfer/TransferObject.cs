@@ -14,8 +14,8 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// Very useful when trying to visualize interaction between two elements.<para>The transfer element iself has the class name "ui-effects-transfer", and needs to be styled by you, for example by adding a background or border.</para>
     /// </remarks>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class TransferObject : EffectObject {
 
         private TransferObject() {

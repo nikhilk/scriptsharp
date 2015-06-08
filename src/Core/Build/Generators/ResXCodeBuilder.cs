@@ -61,7 +61,7 @@ namespace {0} {{
             _codeBuilder.AppendLine();
             _codeBuilder.AppendFormat("    /// <summary>{0} resources class</summary>", className);
             _codeBuilder.AppendLine();
-            _codeBuilder.AppendLine("    [Resources]");
+            _codeBuilder.AppendLine("    [ScriptResources]");
             _codeBuilder.AppendFormat("    [GeneratedCodeAttribute(\"{0}\", \"{1}\")]",
                                      this.GetType().Name,
                                      typeof(ResXCodeBuilder).Assembly.GetName().Version.ToString());

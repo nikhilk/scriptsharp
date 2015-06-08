@@ -9,12 +9,12 @@ using System.Xml;
 
 namespace System.Net {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("XMLHttpRequest")]
     public sealed class XmlHttpRequest {
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("onreadystatechange")]
         public Action OnReadyStateChange {
             get {
@@ -24,14 +24,14 @@ namespace System.Net {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public ReadyState ReadyState {
             get {
                 return ReadyState.Uninitialized;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("responseXML")]
         public XmlDocument ResponseXml {
             get {
@@ -39,21 +39,21 @@ namespace System.Net {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string ResponseText {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Status {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string StatusText {
             get {
                 return null;

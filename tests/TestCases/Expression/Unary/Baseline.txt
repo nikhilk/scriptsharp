@@ -1,52 +1,58 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Data
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.Data = function() {
-}
-test.Data.prototype = {
-    _value: 0,
-    
+  // ExpressionTests.Data
+
+  function Data() {
+    this._value = 0;
+  }
+  var Data$ = {
     get_value: function() {
-        return this._value;
+      return this._value;
     },
     set_value: function(value) {
-        this._value = value;
-        return value;
+      this._value = value;
+      return value;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.App
+  // ExpressionTests.App
 
-test.App = function() {
-}
-test.App.prototype = {
-    
+  function App() {
+  }
+  var App$ = {
     test: function(arg) {
-        var xyz = ~arg;
-        var f = (!arg);
-        f = !f;
-        var m = arg;
-        m++;
-        var n = ++m;
-        m--;
-        n = --m;
-        n = -m;
-        n = m;
-        n = 1;
-        n = 1 + (2);
-        var s = (!f).toString();
-        var num = 1.01;
-        s = (~num).toExponential();
-        var d = new test.Data();
-        d.set_value(d.get_value() + 1) - 1;
-        d.set_value(d.get_value() + 1);
+      var xyz = ~arg;
+      var f = (!arg);
+      f = !f;
+      var m = arg;
+      m++;
+      var n = ++m;
+      m--;
+      n = --m;
+      n = -m;
+      n = m;
+      n = 1;
+      n = 1 + (2);
+      var s = (!f).toString();
+      var num = 1.01;
+      s = (~num).toExponential();
+      var d = new Data();
+      d.set_value(d.get_value() + 1) - 1;
+      d.set_value(d.get_value() + 1);
     }
-}
+  };
 
 
-test.Data.registerClass('test.Data');
-test.App.registerClass('test.App');
+  var $exports = ss.module('test', null,
+    {
+      Data: [ Data, Data$, null ],
+      App: [ App, App$, null ]
+    });
+
+
+  return $exports;
+});

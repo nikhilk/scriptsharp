@@ -1,22 +1,29 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.App
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.App = function() {
-}
-test.App.prototype = {
-    
+  // BasicTests.App
+
+  function App() {
+  }
+  var App$ = {
     method1: function(i) {
-        var j = i;
-        var x = j++;
+      var j = i;
+      var x = j++;
     },
-    
     method2: function(i) {
-        var j = 10;
-        var x = j++;
+      var j = 10;
+      var x = j++;
     }
-}
+  };
 
 
-test.App.registerClass('test.App');
+  var $exports = ss.module('test', null,
+    {
+      App: [ App, App$, null ]
+    });
+
+
+  return $exports;
+});

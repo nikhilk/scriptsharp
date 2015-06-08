@@ -13,8 +13,8 @@ namespace jQueryApi {
     /// <summary>
     /// Represents an XMLHttpRequest object as a deferred object.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class jQueryDataHttpRequest<TData> : IDeferred<TData> {
 
         private jQueryDataHttpRequest() {
@@ -23,7 +23,7 @@ namespace jQueryApi {
         /// <summary>
         /// The ready state property of the XmlHttpRequest object.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public ReadyState ReadyState {
             get {
                 return ReadyState.Uninitialized;
@@ -33,7 +33,7 @@ namespace jQueryApi {
         /// <summary>
         /// The XML document for an XML response.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("responseXML")]
         public XmlDocument ResponseXml {
             get {
@@ -44,7 +44,7 @@ namespace jQueryApi {
         /// <summary>
         /// The text of the response.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string ResponseText {
             get {
                 return null;
@@ -54,7 +54,7 @@ namespace jQueryApi {
         /// <summary>
         /// The status code associated with the response.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Status {
             get {
                 return 0;
@@ -64,7 +64,7 @@ namespace jQueryApi {
         /// <summary>
         /// The status text of the response.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string StatusText {
             get {
                 return null;

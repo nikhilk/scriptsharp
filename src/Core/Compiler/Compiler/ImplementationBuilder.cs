@@ -81,7 +81,12 @@ namespace ScriptSharp.Compiler {
                 }
             }
 
-            return new SymbolImplementation(statements, _rootScope);
+            string thisIdentifier = "this";
+            if (symbolContext.Type == SymbolType.AnonymousMethod) {
+                thisIdentifier = "$this";
+            }
+
+            return new SymbolImplementation(statements, _rootScope, thisIdentifier);
         }
 
         public SymbolImplementation BuildEventAdd(EventSymbol eventSymbol) {
@@ -104,7 +109,7 @@ namespace ScriptSharp.Compiler {
             _rootScope = new SymbolScope((ISymbolTable)fieldSymbol.Parent);
             _currentScope = _rootScope;
 
-            Expression initializerExpression;
+            Expression initializerExpression = null;
 
             FieldDeclarationNode fieldDeclarationNode = (FieldDeclarationNode)fieldSymbol.ParseContext;
             Debug.Assert(fieldDeclarationNode != null);
@@ -150,15 +155,22 @@ namespace ScriptSharp.Compiler {
                     defaultValue = false;
                 }
 
-                initializerExpression =
-                    new LiteralExpression(symbolSet.ResolveIntrinsicType(IntrinsicType.Object),
-                                          defaultValue);
+                if (defaultValue != null) {
+                    initializerExpression =
+                        new LiteralExpression(symbolSet.ResolveIntrinsicType(IntrinsicType.Object),
+                                              defaultValue);
+                    fieldSymbol.SetImplementationState(/* hasInitializer */ true);
+                }
             }
 
-            List<Statement> statements = new List<Statement>();
-            statements.Add(new ExpressionStatement(initializerExpression, /* isFragment */ true));
+            if (initializerExpression != null) {
+                List<Statement> statements = new List<Statement>();
+                statements.Add(new ExpressionStatement(initializerExpression, /* isFragment */ true));
 
-            return new SymbolImplementation(statements, null);
+                return new SymbolImplementation(statements, null, "this");
+            }
+
+            return null;
         }
 
         public SymbolImplementation BuildMethod(MethodSymbol methodSymbol) {

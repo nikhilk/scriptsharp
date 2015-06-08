@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace System.Threading {
 
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum TaskStatus {
 
         Pending,

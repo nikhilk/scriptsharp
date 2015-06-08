@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
-    [Imported]
-    [NamedValues]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptConstants(UseNames = true)]
+    [ScriptIgnoreNamespace]
     public enum MapModule {
 
         [ScriptName("Microsoft.Maps.Directions")]

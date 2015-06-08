@@ -10,14 +10,9 @@ namespace System {
     /// <summary>
     /// Equivalent to the Date type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class Date {
-
-        /// <summary>
-        /// Represents a null date.
-        /// </summary>
-        public static readonly Date Empty;
 
         /// <summary>
         /// Creates a new instance of Date initialized from the current time.
@@ -97,6 +92,8 @@ namespace System {
         /// <summary>
         /// Returns the current date and time.
         /// </summary>
+        [ScriptField]
+        [ScriptAlias("ss.now()")]
         public static Date Now {
             get {
                 return null;
@@ -106,14 +103,12 @@ namespace System {
         /// <summary>
         /// Returns the current date with the time part set to 00:00:00.
         /// </summary>
+        [ScriptField]
+        [ScriptAlias("ss.today()")]
         public static Date Today {
             get {
                 return null;
             }
-        }
-
-        public string Format(string format) {
-            return null;
         }
 
         public int GetDate() {
@@ -188,15 +183,7 @@ namespace System {
             return 0;
         }
 
-        public static bool IsEmpty(Date d) {
-            return false;
-        }
-
-        public string LocaleFormat(string format) {
-            return null;
-        }
-
-        [ScriptName("parseDate")]
+        [ScriptAlias("ss.date")]
         public static Date Parse(string value) {
             return null;
         }
@@ -279,27 +266,27 @@ namespace System {
             return null;
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static int UTC(int year, int month, int day) {
             return 0;
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static int UTC(int year, int month, int day, int hours) {
             return 0;
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static int UTC(int year, int month, int day, int hours, int minutes) {
             return 0;
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static int UTC(int year, int month, int day, int hours, int minutes, int seconds) {
             return 0;
         }
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         public static int UTC(int year, int month, int day, int hours, int minutes, int seconds, int milliseconds) {
             return 0;
         }

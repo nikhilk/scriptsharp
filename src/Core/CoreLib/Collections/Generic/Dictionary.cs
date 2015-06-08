@@ -10,8 +10,8 @@ namespace System.Collections.Generic {
     /// <summary>
     /// The Dictionary data type which is mapped to the Object type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class Dictionary<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>> {
 
@@ -37,7 +37,7 @@ namespace System.Collections.Generic {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public TValue this[TKey key] {
             get {
                 return default(TValue);
@@ -50,9 +50,11 @@ namespace System.Collections.Generic {
         public void Add(TKey key, TValue value) {
         }
 
+        [ScriptAlias("ss.clearKeys")]
         public void Clear() {
         }
 
+        [ScriptAlias("ss.keyExists")]
         public bool ContainsKey(TKey key) {
             return false;
         }

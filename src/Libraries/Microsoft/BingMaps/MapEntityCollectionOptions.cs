@@ -8,18 +8,18 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class MapEntityCollectionOptions {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Visible {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int ZIndex {
             get;
             set;

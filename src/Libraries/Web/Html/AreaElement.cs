@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class AreaElement : Element {
 
         private AreaElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Shape {
             get {
                 return null;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Coords {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
@@ -42,7 +42,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Alt {
             get {
                 return null;
@@ -51,7 +51,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Href {
             get {
                 return null;
@@ -60,7 +60,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string NoHref {
             get {
                 return null;

@@ -1,94 +1,75 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Test
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.Test = function() {
-}
-test.Test.prototype = {
-    
+  // MemberTests.Test
+
+  function Test() {
+  }
+  var Test$ = {
     do1: function() {
     },
-    
     do2: function() {
-        return 0;
+      return 0;
     },
-    
     do3: function(i, j) {
-        return i;
+      return i;
     },
-    
     run: function() {
-        this.do1();
-        var v = this.do2();
-        var s = String.fromCharCode(0);
-        s = String.fromCharCode(32, 65, 66);
-        var i = s.indexOf('A');
-        i = s.indexOf('A', 1);
+      this.do1();
+      var v = this.do2();
+      var s = ss.string('A', 3);
+      var i = s.indexOf('A');
+      i = s.indexOf('A', 1);
     },
-    
     toString: function() {
-        window.m1();
-        var x = new test.X();
-        $.fn.extend(x, 10);
-        return null;
+      window.m1();
+      var x = new X();
+      $.fn.extend(x, 10);
+      return null;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Foo
+  // MemberTests.Foo
 
-window.doStuff = function() {
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// test.Bar
-
-window.m1 = function() {
-}
-window.m2 = function() {
-}
+  $global.doStuff = function() {
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.FooBar
+  // MemberTests.Bar
 
-window.doStuff2 = function() {
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// test.FooBar2
+  window.m1 = function() {
+  };
+  window.m2 = function() {
+  };
 
 
+  // MemberTests.X
 
-////////////////////////////////////////////////////////////////////////////////
-// test.X
-
-test.X = function() {
-}
-test.X.prototype = {
-    
+  function X() {
+  }
+  var X$ = {
     update: function(i) {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Plugin
+  // MemberTests.Plugin
 
-$.fn.extend = function(x, i) {
+  $.fn.extend = function(x, i) {
     x.update(i);
     return x;
-}
+  };
 
 
-test.Test.registerClass('test.Test');
-test.X.registerClass('test.X');
-alert('Startup code in FooBar');
-(function () {
-    var timeStamp = new Date().getMilliseconds();
-    alert('Startup code in FooBar: ' + timeStamp);
-})();
+  var $exports = ss.module('test', null,
+    {
+      Test: [ Test, Test$, null ],
+      X: [ X, X$, null ]
+    });
+
+
+  return $exports;
+});

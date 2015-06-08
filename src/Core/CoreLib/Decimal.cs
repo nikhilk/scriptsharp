@@ -12,8 +12,8 @@ namespace System {
     /// <summary>
     /// The decimal data type which is mapped to the Number type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Number")]
     public struct Decimal {
 

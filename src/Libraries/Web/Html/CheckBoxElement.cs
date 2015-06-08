@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public class CheckBoxElement : InputElement {
 
         internal CheckBoxElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Checked {
             get {
                 return false;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool DefaultChecked {
             get {
                 return false;

@@ -35,38 +35,6 @@ namespace ScriptSharp.Importer {
             _errorHandler = errorHandler;
         }
 
-#if STATIC_ARRAY_EXTENSIONS
-        private void ConvertInstanceMembersToStaticMembers() {
-            // Mark the following members on Array, ArrayList, Queue and Stack
-            // as generated static, as they aren't implemented as instance/prototype
-            // members at runtime.
-
-            string[] members = new string[] {
-                "Add", "AddRange", "Aggregate", "Clear", "Clone", "Contains",
-                "Dequeue", "Enqueue", "Every", "Extract", "Filter", "ForEach",
-                "GetEnumerator", "GroupBy", "Index", "IndexOf", "Insert", "InsertRange",
-                "Map", "Peek", "Remove", "RemoveAt", "RemoveRange", "Some"
-            };
-
-            foreach (TypeSymbol typeSymbol in _importedTypes) {
-                if ((typeSymbol.Type == SymbolType.Class) &&
-                    (typeSymbol.Name.Equals("Array", StringComparison.Ordinal) ||
-                     typeSymbol.Name.Equals("ArrayList", StringComparison.Ordinal) ||
-                     typeSymbol.Name.Equals("ArrayGrouping", StringComparison.Ordinal) ||
-                     typeSymbol.Name.Equals("Queue", StringComparison.Ordinal) ||
-                     typeSymbol.Name.Equals("Stack", StringComparison.Ordinal))) {
-
-                    foreach (string memberName in members) {
-                        MethodSymbol methodSymbol = typeSymbol.GetMember(memberName) as MethodSymbol;
-                        if ((methodSymbol != null) && ((methodSymbol.Visibility & MemberVisibility.Static) == 0)) {
-                            methodSymbol.GenerateAsStaticMethod();
-                        }
-                    }
-                }
-            }
-        }
-#endif // STATIC_ARRAY_EXTENSIONS
-
         private ICollection<TypeSymbol> ImportAssemblies(MetadataSource mdSource) {
             _importedTypes = new List<TypeSymbol>();
 
@@ -112,9 +80,6 @@ namespace ScriptSharp.Importer {
 
                         ImportPseudoMembers(PseudoClassMembers.Object, (ClassSymbol)typeSymbol);
                     }
-                    else if (typeSymbol.Name.Equals("Type", StringComparison.Ordinal)) {
-                        ImportPseudoMembers(PseudoClassMembers.Type, (ClassSymbol)typeSymbol);
-                    }
                     else if (typeSymbol.Name.Equals("Dictionary", StringComparison.Ordinal)) {
                         // The Dictionary class contains static methods at runtime, rather
                         // than instance methods.
@@ -125,11 +90,6 @@ namespace ScriptSharp.Importer {
                         // We need to add a static indexer, which isn't allowed in C#
 
                         ImportPseudoMembers(PseudoClassMembers.Arguments, (ClassSymbol)typeSymbol);
-                    }
-                    else if (typeSymbol.Name.Equals("String", StringComparison.Ordinal)) {
-                        // We need to change generated names on Replace methods
-
-                        ImportPseudoMembers(PseudoClassMembers.String, (ClassSymbol)typeSymbol);
                     }
                 }
             }
@@ -216,10 +176,9 @@ namespace ScriptSharp.Importer {
                 }
 
                 string fieldName = field.Name;
-                int fieldValue = (int)field.Constant;
 
                 EnumerationFieldSymbol fieldSymbol =
-                    new EnumerationFieldSymbol(fieldName, enumTypeSymbol, fieldValue, fieldType);
+                    new EnumerationFieldSymbol(fieldName, enumTypeSymbol, field.Constant, fieldType);
                 ImportMemberDetails(fieldSymbol, null, field);
 
                 enumTypeSymbol.AddMember(fieldSymbol);
@@ -249,6 +208,12 @@ namespace ScriptSharp.Importer {
 
                 EventSymbol eventSymbol = new EventSymbol(eventName, typeSymbol, eventHandlerType);
                 ImportMemberDetails(eventSymbol, eventDef.AddMethod, eventDef);
+
+                string addAccessor;
+                string removeAccessor;
+                if (MetadataHelpers.GetScriptEventAccessors(eventDef, out addAccessor, out removeAccessor)) {
+                    eventSymbol.SetAccessors(addAccessor, removeAccessor);
+                }
 
                 typeSymbol.AddMember(eventSymbol);
             }
@@ -308,12 +273,16 @@ namespace ScriptSharp.Importer {
                 memberSymbol.SetVisibility(visibility);
             }
 
-            memberSymbol.SetNameCasing(MetadataHelpers.ShouldPreserveCase(attributeProvider));
+            bool preserveName;
+            bool preserveCase;
+            string scriptName = MetadataHelpers.GetScriptName(attributeProvider, out preserveName, out preserveCase);
 
-            string scriptName = MetadataHelpers.GetScriptName(attributeProvider);
+            memberSymbol.SetNameCasing(preserveCase);
             if (scriptName != null) {
                 memberSymbol.SetTransformedName(scriptName);
             }
+
+            // PreserveName is ignored - it only is used for internal members, which are not imported.
         }
 
         private void ImportMembers(TypeSymbol typeSymbol) {
@@ -357,11 +326,6 @@ namespace ScriptSharp.Importer {
             if (_resolveError) {
                 return null;
             }
-
-#if STATIC_ARRAY_EXTENSIONS
-                // Update instance members that need to be generated as static methods
-                ConvertInstanceMembersToStaticMembers();
-#endif // STATIC_ARRAY_EXTENSIONS
 
             return importedTypes;
         }
@@ -421,11 +385,14 @@ namespace ScriptSharp.Importer {
                     methodSymbol.SetSkipGeneration();
                 }
 
-                if ((methodSymbol.Visibility & MemberVisibility.Static) != 0) {
-                    string alias = MetadataHelpers.GetScriptAlias(method);
-                    if (String.IsNullOrEmpty(alias) == false) {
-                        methodSymbol.SetAlias(alias);
-                    }
+                string alias = MetadataHelpers.GetScriptAlias(method);
+                if (String.IsNullOrEmpty(alias) == false) {
+                    methodSymbol.SetAlias(alias);
+                }
+
+                string selector = MetadataHelpers.GetScriptMethodSelector(method);
+                if (String.IsNullOrEmpty(selector) == false) {
+                    methodSymbol.SetSelector(selector);
                 }
 
                 ICollection<string> conditions;
@@ -452,8 +419,12 @@ namespace ScriptSharp.Importer {
                 }
 
                 string propertyName = property.Name;
-                bool preserveCase = MetadataHelpers.ShouldPreserveCase(property);
-                bool intrinsicProperty = MetadataHelpers.ShouldTreatAsIntrinsicProperty(property);
+                bool scriptField = MetadataHelpers.ShouldTreatAsScriptField(property);
+
+                // TODO: Why are we ignoring the other bits...
+                // bool dummyPreserveName;
+                // bool preserveCase;
+                // string dummyName = MetadataHelpers.GetScriptName(property, out dummyPreserveName, out preserveCase);
 
                 TypeSymbol propertyType = ResolveType(property.PropertyType);
                 if (propertyType == null) {
@@ -465,15 +436,15 @@ namespace ScriptSharp.Importer {
                     IndexerSymbol indexerSymbol = new IndexerSymbol(typeSymbol, propertyType);
                     ImportMemberDetails(indexerSymbol, property.GetMethod, property);
 
-                    if (intrinsicProperty) {
-                        indexerSymbol.SetIntrinsic();
+                    if (scriptField) {
+                        indexerSymbol.SetScriptIndexer();
                     }
 
                     propertySymbol = indexerSymbol;
-                    propertySymbol.SetNameCasing(preserveCase);
+                    // propertySymbol.SetNameCasing(preserveCase);
                 }
                 else {
-                    if (intrinsicProperty) {
+                    if (scriptField) {
                         // Properties marked with this attribute are to be thought of as
                         // fields. If they are read-only, the C# compiler will enforce that,
                         // so we don't have to worry about making them read-write via a field
@@ -516,40 +487,39 @@ namespace ScriptSharp.Importer {
             // and aren't meant to be referenced directly in C# code.
 
             if (memberSet == PseudoClassMembers.Script) {
-                TypeSymbol boolType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Boolean", null, SymbolFilter.Types);
-                Debug.Assert(boolType != null);
-
-                TypeSymbol intType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Int32", null, SymbolFilter.Types);
-                Debug.Assert(intType != null);
-
-                TypeSymbol floatType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Single", null, SymbolFilter.Types);
-                Debug.Assert(floatType != null);
+                TypeSymbol objectType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Object", null, SymbolFilter.Types);
+                Debug.Assert(objectType != null);
 
                 TypeSymbol stringType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("String", null, SymbolFilter.Types);
                 Debug.Assert(stringType != null);
 
-                // Define the Escape, Unescape, encodeURI, decodeURI, encodeURIComponent, decodeURIComponent methods
-                MethodSymbol escapeMethod = new MethodSymbol("Escape", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                classSymbol.AddMember(escapeMethod);
+                TypeSymbol boolType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Boolean", null, SymbolFilter.Types);
+                Debug.Assert(boolType != null);
 
-                MethodSymbol unescapeMethod = new MethodSymbol("Unescape", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                classSymbol.AddMember(unescapeMethod);
+                TypeSymbol dateType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Date", null, SymbolFilter.Types);
+                Debug.Assert(dateType != null);
 
-                MethodSymbol encodeURIMethod = new MethodSymbol("EncodeUri", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                encodeURIMethod.SetTransformedName("encodeURI");
-                classSymbol.AddMember(encodeURIMethod);
+                // Enumerate - IEnumerable.GetEnumerator gets mapped to this
 
-                MethodSymbol decodeURIMethod = new MethodSymbol("DecodeUri", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                decodeURIMethod.SetTransformedName("decodeURI");
-                classSymbol.AddMember(decodeURIMethod);
+                MethodSymbol enumerateMethod = new MethodSymbol("Enumerate", classSymbol, objectType, MemberVisibility.Public | MemberVisibility.Static);
+                enumerateMethod.SetAlias("ss.enumerate");
+                enumerateMethod.AddParameter(new ParameterSymbol("obj", enumerateMethod, objectType, ParameterMode.In));
+                classSymbol.AddMember(enumerateMethod);
 
-                MethodSymbol encodeURIComponentMethod = new MethodSymbol("EncodeUriComponent", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                encodeURIComponentMethod.SetTransformedName("encodeURIComponent");
-                classSymbol.AddMember(encodeURIComponentMethod);
+                // TypeName - Type.Name gets mapped to this
 
-                MethodSymbol decodeURIComponentMethod = new MethodSymbol("DecodeUriComponent", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
-                decodeURIComponentMethod.SetTransformedName("decodeURIComponent");
-                classSymbol.AddMember(decodeURIComponentMethod);
+                MethodSymbol typeNameMethod = new MethodSymbol("GetTypeName", classSymbol, stringType, MemberVisibility.Public | MemberVisibility.Static);
+                typeNameMethod.SetAlias("ss.typeName");
+                typeNameMethod.AddParameter(new ParameterSymbol("obj", typeNameMethod, objectType, ParameterMode.In));
+                classSymbol.AddMember(typeNameMethod);
+
+                // CompareDates - Date equality checks get converted to call to compareDates
+
+                MethodSymbol compareDatesMethod = new MethodSymbol("CompareDates", classSymbol, boolType, MemberVisibility.Public | MemberVisibility.Static);
+                compareDatesMethod.SetAlias("ss.compareDates");
+                compareDatesMethod.AddParameter(new ParameterSymbol("d1", compareDatesMethod, dateType, ParameterMode.In));
+                compareDatesMethod.AddParameter(new ParameterSymbol("d2", compareDatesMethod, dateType, ParameterMode.In));
+                classSymbol.AddMember(compareDatesMethod);
 
                 return;
             }
@@ -559,28 +529,8 @@ namespace ScriptSharp.Importer {
                 Debug.Assert(objectType != null);
 
                 IndexerSymbol indexer = new IndexerSymbol(classSymbol, objectType, MemberVisibility.Public | MemberVisibility.Static);
-                indexer.SetIntrinsic();
+                indexer.SetScriptIndexer();
                 classSymbol.AddMember(indexer);
-
-                return;
-            }
-
-            if (memberSet == PseudoClassMembers.Type) {
-                // Define the Type.GetInstanceType static method which provides the functionality of
-                // Object.GetType instance method. We don't extend Object.prototype in script to add
-                // GetType, since we want to keep Object's protoype clean of any extensions.
-                //
-                // We create this symbol here, so that later the ExpressionBuilder can transform
-                // calls to Object.GetType to this.
-                TypeSymbol objectType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Object", null, SymbolFilter.Types);
-                Debug.Assert(objectType != null);
-
-                TypeSymbol typeType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Type", null, SymbolFilter.Types);
-                Debug.Assert(objectType != null);
-
-                MethodSymbol getTypeMethod = new MethodSymbol("GetInstanceType", classSymbol, typeType, MemberVisibility.Public | MemberVisibility.Static);
-                getTypeMethod.AddParameter(new ParameterSymbol("instance", getTypeMethod, objectType, ParameterMode.In));
-                classSymbol.AddMember(getTypeMethod);
 
                 return;
             }
@@ -589,65 +539,26 @@ namespace ScriptSharp.Importer {
                 TypeSymbol intType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Int32", null, SymbolFilter.Types);
                 Debug.Assert(intType != null);
 
-                TypeSymbol boolType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Boolean", null, SymbolFilter.Types);
-                Debug.Assert(boolType != null);
-
-                TypeSymbol voidType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("Void", null, SymbolFilter.Types);
-                Debug.Assert(boolType != null);
-
                 TypeSymbol stringType = (TypeSymbol)((ISymbolTable)_symbols.SystemNamespace).FindSymbol("String", null, SymbolFilter.Types);
-                Debug.Assert(boolType != null);
+                Debug.Assert(stringType != null);
 
                 // Define Dictionary.Keys
                 MethodSymbol getKeysMethod = new MethodSymbol("GetKeys", classSymbol, _symbols.CreateArrayTypeSymbol(stringType), MemberVisibility.Public | MemberVisibility.Static);
-                getKeysMethod.SetTransformedName("keys");
+                getKeysMethod.SetAlias("ss.keys");
                 classSymbol.AddMember(getKeysMethod);
 
                 // Define Dictionary.GetCount
                 MethodSymbol countMethod = new MethodSymbol("GetKeyCount", classSymbol, intType, MemberVisibility.Public | MemberVisibility.Static);
+                countMethod.SetAlias("ss.keyCount");
                 classSymbol.AddMember(countMethod);
 
-                // Define Dictionary.ClearKeys
-                MethodSymbol clearMethod = new MethodSymbol("ClearKeys", classSymbol, voidType, MemberVisibility.Public | MemberVisibility.Static);
-                classSymbol.AddMember(clearMethod);
-
-                // Define Dictionary.DeleteKey
-                MethodSymbol deleteMethod = new MethodSymbol("DeleteKey", classSymbol, voidType, MemberVisibility.Public | MemberVisibility.Static);
-                classSymbol.AddMember(deleteMethod);
-
-                // Define Dictionary.KeyExists
-                MethodSymbol existsMethod = new MethodSymbol("KeyExists", classSymbol, boolType, MemberVisibility.Public | MemberVisibility.Static);
-                classSymbol.AddMember(existsMethod);
-
                 return;
-            }
-
-            if (memberSet == PseudoClassMembers.String) {
-                // In script, String.replace replaces only the first occurrence of a string
-                // whereas in C# all occurrences are replaced.
-                // Replace becomes replaceAll (a method we add) in generated script
-                // ReplaceFirst becomes replace in generated script.
-                // ReplaceRegex also becomes replace in generated script. (We added ReplaceRegex so
-                //   it could be mapped to the native replace method, rather than out replaceAll
-                //   extension)
-
-                MethodSymbol replaceFirstMethod = (MethodSymbol)classSymbol.GetMember("ReplaceFirst");
-                Debug.Assert(replaceFirstMethod != null);
-                replaceFirstMethod.SetTransformedName("replace");
-
-                MethodSymbol replaceMethod = (MethodSymbol)classSymbol.GetMember("Replace");
-                Debug.Assert(replaceMethod != null);
-                replaceMethod.SetTransformedName("replaceAll");
-
-                MethodSymbol replaceRegexMethod = (MethodSymbol)classSymbol.GetMember("ReplaceRegex");
-                Debug.Assert(replaceRegexMethod != null);
-                replaceRegexMethod.SetTransformedName("replace");
             }
         }
 
         private void ImportScriptAssembly(MetadataSource mdSource, string assemblyPath, bool coreAssembly) {
-            string scriptNamespace = null;
             string scriptName = null;
+            string scriptIdentifier = null;
 
             AssemblyDefinition assembly;
             if (coreAssembly) {
@@ -655,19 +566,15 @@ namespace ScriptSharp.Importer {
             }
             else {
                 assembly = mdSource.GetMetadata(assemblyPath);
-                scriptNamespace = MetadataHelpers.GetScriptNamespace(assembly);
             }
 
-            scriptName = MetadataHelpers.GetScriptAssemblyName(assembly);
+            string scriptNamespace = null;
+            scriptName = MetadataHelpers.GetScriptAssemblyName(assembly, out scriptIdentifier);
             if (String.IsNullOrEmpty(scriptName) == false) {
-                _options.AddReferencedDependency(scriptName);
-            }
+                ScriptReference dependency = new ScriptReference(scriptName, scriptIdentifier);
 
-            if (coreAssembly) {
-                // Always add an execution reference to the core assembly, since
-                // it contains things like the type system, and other APIs assumed by the compiler
-                Debug.Assert(String.IsNullOrEmpty(scriptName) == false);
-                _options.AddExecutionDependency(scriptName);
+                _symbols.AddDependency(dependency);
+                scriptNamespace = dependency.Identifier;
             }
 
             foreach (TypeDefinition type in assembly.MainModule.Types) {
@@ -676,7 +583,7 @@ namespace ScriptSharp.Importer {
                         continue;
                     }
 
-                    ImportType(mdSource, type, coreAssembly, scriptNamespace, scriptName);
+                    ImportType(mdSource, type, coreAssembly, scriptNamespace);
                 }
                 catch (Exception e) {
                     Debug.Fail(e.ToString());
@@ -684,7 +591,7 @@ namespace ScriptSharp.Importer {
             }
         }
 
-        private void ImportType(MetadataSource mdSource, TypeDefinition type, bool inScriptCoreAssembly, string assemblyScriptNamespace, string assemblyScriptName) {
+        private void ImportType(MetadataSource mdSource, TypeDefinition type, bool inScriptCoreAssembly, string scriptNamespace) {
             if (type.IsPublic == false) {
                 return;
             }
@@ -694,12 +601,9 @@ namespace ScriptSharp.Importer {
 
             string name = type.Name;
             string namespaceName = type.Namespace;
-            string scriptNamespace = MetadataHelpers.GetScriptNamespace(type);
-            string scriptName = MetadataHelpers.GetScriptName(type);
 
-            if (String.IsNullOrEmpty(scriptNamespace) && (String.IsNullOrEmpty(assemblyScriptNamespace) == false)) {
-                scriptNamespace = assemblyScriptNamespace;
-            }
+            bool dummy;
+            string scriptName = MetadataHelpers.GetScriptName(type, out dummy, out dummy);
 
             NamespaceSymbol namespaceSymbol = _symbols.GetNamespace(namespaceName);
             TypeSymbol typeSymbol = null;
@@ -725,13 +629,18 @@ namespace ScriptSharp.Importer {
             else {
                 if (MetadataHelpers.ShouldTreatAsRecordType(type)) {
                     typeSymbol = new RecordSymbol(name, namespaceSymbol);
+                    typeSymbol.SetTransformedName("Object");
                 }
                 else {
                     typeSymbol = new ClassSymbol(name, namespaceSymbol);
 
-                    string mixinRoot;
-                    if (MetadataHelpers.ShouldGlobalizeMembers(type, out mixinRoot)) {
-                        ((ClassSymbol)typeSymbol).SetGlobalMethods(mixinRoot);
+                    string extendee;
+                    if (MetadataHelpers.IsScriptExtension(type, out extendee)) {
+                        ((ClassSymbol)typeSymbol).SetExtenderClass(extendee);
+                    }
+
+                    if (String.CompareOrdinal(scriptName, "Array") == 0) {
+                        typeSymbol.SetArray();
                     }
                 }
             }
@@ -750,18 +659,25 @@ namespace ScriptSharp.Importer {
                     typeSymbol.AddGenericParameters(genericArguments);
                 }
 
-                typeSymbol.SetImported(assemblyScriptName);
+                ScriptReference dependency = null;
+                string dependencyIdentifier;
+                string dependencyName = MetadataHelpers.GetScriptDependencyName(type, out dependencyIdentifier);
+                if (dependencyName != null) {
+                    dependency = new ScriptReference(dependencyName, dependencyIdentifier);
+                    scriptNamespace = dependency.Identifier;
+                }
+
+                typeSymbol.SetImported(dependency);
                 typeSymbol.SetMetadataToken(type, inScriptCoreAssembly);
 
                 bool ignoreNamespace = MetadataHelpers.ShouldIgnoreNamespace(type);
-                if (ignoreNamespace) {
+                if (ignoreNamespace || String.IsNullOrEmpty(scriptNamespace)) {
                     typeSymbol.SetIgnoreNamespace();
                 }
-                typeSymbol.SetPublic();
-
-                if (String.IsNullOrEmpty(scriptNamespace) == false) {
-                    typeSymbol.ScriptNamespace = scriptNamespace;  
+                else {
+                    typeSymbol.ScriptNamespace = scriptNamespace;
                 }
+                typeSymbol.SetPublic();
 
                 if (String.IsNullOrEmpty(scriptName) == false) {
                     typeSymbol.SetTransformedName(scriptName);
@@ -833,17 +749,13 @@ namespace ScriptSharp.Importer {
 
         private enum PseudoClassMembers {
 
-            Type = 0,
+            Script,
 
-            Script = 1,
+            Dictionary,
 
-            Dictionary = 2,
+            Arguments,
 
-            Arguments = 3,
-
-            Object = 4,
-
-            String = 5
+            Object
         }
     }
 }

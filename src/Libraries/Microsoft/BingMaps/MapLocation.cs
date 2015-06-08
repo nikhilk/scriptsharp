@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Location")]
     public sealed class MapLocation {
 
@@ -18,28 +18,28 @@ namespace Microsoft.Maps {
         public MapLocation(double latitude, double longitude, double altitude, MapAltitudeMode altitudeMode) {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Altitude {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public MapAltitudeMode AltitudeMode {
             get {
                 return MapAltitudeMode.Ground;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Latitude {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Longitude {
             get {
                 return 0;

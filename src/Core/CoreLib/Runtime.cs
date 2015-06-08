@@ -10,38 +10,32 @@ using System.Runtime.CompilerServices;
 namespace System {
 
     [AttributeUsage(AttributeTargets.Enum, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class FlagsAttribute : Attribute {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public abstract class MarshalByRefObject {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public abstract class ValueType {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public struct IntPtr {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public struct UIntPtr {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public abstract class MulticastDelegate : Delegate {
 
         protected MulticastDelegate(object target, string method)
@@ -54,32 +48,27 @@ namespace System {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public struct RuntimeTypeHandle {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public struct RuntimeFieldHandle {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public abstract class Attribute {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class ParamArrayAttribute : Attribute {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public enum AttributeTargets {
         Assembly = 0x0001,
         Module = 0x0002,
@@ -104,8 +93,7 @@ namespace System {
 
     [EditorBrowsable(EditorBrowsableState.Never)]
     [AttributeUsage(AttributeTargets.Class, Inherited = true)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AttributeUsageAttribute : Attribute {
 
         private AttributeTargets _attributeTarget = AttributeTargets.All;
@@ -144,8 +132,7 @@ namespace System {
 
     [EditorBrowsable(EditorBrowsableState.Never)]
     [AttributeUsage(AttributeTargets.Delegate | AttributeTargets.Interface | AttributeTargets.Event | AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Method | AttributeTargets.Constructor | AttributeTargets.Enum | AttributeTargets.Struct | AttributeTargets.Class, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class ObsoleteAttribute : Attribute {
 
         private bool _error;
@@ -178,8 +165,7 @@ namespace System {
 
     [EditorBrowsable(EditorBrowsableState.Never)]
     [AttributeUsage(AttributeTargets.All, Inherited = true, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class CLSCompliantAttribute : Attribute {
 
         private bool _isCompliant;
@@ -200,8 +186,7 @@ namespace System.CodeDom.Compiler {
 
     [EditorBrowsable(EditorBrowsableState.Never)]
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class GeneratedCodeAttribute : Attribute {
 
         private string _tool;
@@ -235,15 +220,13 @@ namespace System.ComponentModel {
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Event | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class BrowsableAttribute : Attribute {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Event | AttributeTargets.Delegate | AttributeTargets.Interface)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class EditorBrowsableAttribute : Attribute {
 
         private EditorBrowsableState _browsableState;
@@ -260,8 +243,7 @@ namespace System.ComponentModel {
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public enum EditorBrowsableState {
         Always = 0,
         Never = 1,
@@ -272,8 +254,7 @@ namespace System.ComponentModel {
 namespace System.Reflection {
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class DefaultMemberAttribute {
 
         private string _memberName;
@@ -290,8 +271,7 @@ namespace System.Reflection {
     }
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyCopyrightAttribute : Attribute {
 
         private string _copyright;
@@ -309,8 +289,7 @@ namespace System.Reflection {
 
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyTrademarkAttribute : Attribute {
 
         private string _trademark;
@@ -328,8 +307,7 @@ namespace System.Reflection {
 
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyProductAttribute : Attribute {
 
         private string _product;
@@ -347,8 +325,7 @@ namespace System.Reflection {
 
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyCompanyAttribute : Attribute {
 
         private string _company;
@@ -366,8 +343,7 @@ namespace System.Reflection {
 
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyDescriptionAttribute : Attribute {
 
         private string _description;
@@ -385,8 +361,7 @@ namespace System.Reflection {
 
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyTitleAttribute : Attribute {
 
         private string _title;
@@ -403,8 +378,7 @@ namespace System.Reflection {
     }
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyConfigurationAttribute : Attribute {
 
         private string _configuration;
@@ -422,8 +396,7 @@ namespace System.Reflection {
 
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyFileVersionAttribute : Attribute {
 
         private string _version;
@@ -441,8 +414,7 @@ namespace System.Reflection {
 
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyInformationalVersionAttribute : Attribute {
 
         private string _informationalVersion;
@@ -460,8 +432,7 @@ namespace System.Reflection {
 
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyCultureAttribute : Attribute {
 
         private string _culture;
@@ -479,8 +450,7 @@ namespace System.Reflection {
 
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyVersionAttribute : Attribute {
 
         private string _version;
@@ -498,8 +468,7 @@ namespace System.Reflection {
 
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyKeyFileAttribute : Attribute {
 
         private string _keyFile;
@@ -517,8 +486,7 @@ namespace System.Reflection {
 
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class AssemblyDelaySignAttribute : Attribute {
 
         private bool _delaySign;
@@ -538,8 +506,7 @@ namespace System.Reflection {
 namespace System.Runtime.CompilerServices {
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public class RuntimeHelpers {
 
         public static void InitializeArray(Array array, RuntimeFieldHandle handle) {
@@ -548,8 +515,7 @@ namespace System.Runtime.CompilerServices {
 
     [AttributeUsage(AttributeTargets.All, Inherited = true)]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class CompilerGeneratedAttribute : Attribute {
 
         public CompilerGeneratedAttribute() {
@@ -558,8 +524,7 @@ namespace System.Runtime.CompilerServices {
 
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field, Inherited = false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class DecimalConstantAttribute : Attribute {
 
         public DecimalConstantAttribute(byte scale, byte sign, int hi, int mid, int low) {
@@ -579,18 +544,73 @@ namespace System.Runtime.CompilerServices {
 
 namespace System.Runtime.InteropServices {
 
+    [AttributeUsageAttribute(AttributeTargets.Parameter, Inherited = false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [NonScriptable]
-    [Imported]
-    public class OutAttribute {
+    [ScriptIgnore]
+    public sealed class OutAttribute : Attribute {
+    }
+}
+
+namespace System.Runtime.Serialization {
+
+    [AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum, Inherited = false, AllowMultiple = false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [ScriptIgnore]
+    public sealed class DataContractAttribute : Attribute {
+
+        public bool IsReference {
+            get;
+            set;
+        }
+
+        public string Name {
+            get;
+            set;
+        }
+
+        public string Namespace {
+            get;
+            set;
+        }
+    }
+
+    [AttributeUsageAttribute(AttributeTargets.Property | AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [ScriptIgnore]
+    public sealed class DataMemberAttribute : Attribute {
+
+        public bool EmitDefaultValue {
+            get;
+            set;
+        }
+
+        public bool IsReference {
+            get;
+            set;
+        }
+
+        public string Name {
+            get;
+            set;
+        }
+
+        public int Order {
+            get;
+            set;
+        }
+    }
+
+    [AttributeUsageAttribute(AttributeTargets.Property | AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [ScriptIgnore]
+    public sealed class IgnoreDataMemberAttribute : Attribute {
     }
 }
 
 namespace System.Runtime.Versioning {
 
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
     public sealed class TargetFrameworkAttribute : Attribute {
 
         private string _frameworkName;

@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Services {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class Geolocation {
 
         private Geolocation() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("coords")]
         public GeoCoordinates Coordinates {
             get {
@@ -23,7 +23,7 @@ namespace System.Html.Services {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Timestamp {
             get {
                 return 0;

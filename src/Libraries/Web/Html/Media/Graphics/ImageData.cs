@@ -8,28 +8,28 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Media.Graphics {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class ImageData {
 
         private ImageData() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public PixelArray Data {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Height {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Width {
             get {
                 return 0;

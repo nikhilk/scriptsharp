@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace System.Testing {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public static class TestEngine {
 
         [ScriptAlias("QUnit.log")]

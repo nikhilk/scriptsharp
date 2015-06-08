@@ -28,12 +28,19 @@
       <a href="${imageUrl}" title="${title}"><img class="thumbnail" src="${thumbnailUrl}" title="${title}" width="${parseInt(thumbnailWidth*1.25)}" height="${parseInt(thumbnailHeight*1.25)}" /></a>
     </li>
   </script>
-  <script type="text/javascript" src="/Scripts/mscorlib.debug.js"></script>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
-  <script type="text/javascript" src="/Scripts/jquery.tmpl.js"></script>
-  <script type="text/javascript" src="/Scripts/jquery.isotope.min.js"></script>
-  <script type="text/javascript" src="/Scripts/jquery.lightbox-0.5.js"></script>
-  <script type="text/javascript" src="/Scripts/Photos.debug.js"></script>
-  <script type="text/javascript" src="/Scripts/PhotoGrid.debug.js"></script>
+
+  <script type="text/script" data-name="jquery" data-src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" data-autoload="true"></script>
+  <script type="text/script" data-name="jqueryTmpl" data-src="/Scripts/jquery.tmpl.js"
+    data-requires="jquery" data-export="$.fn.tmpl"></script>
+  <script type="text/script" data-name="jqueryIsotope" data-src="/Scripts/jquery.isotope.min.js"
+    data-requires="jquery" data-export="$.fn.isotope"></script>
+  <script type="text/script" data-name="jqueryLightBox" data-src="/Scripts/jquery.lightbox-0.5.js"
+    data-requires="jquery" data-export="$.fn.lightBox"></script>
+
+  <script type="text/script" data-name="ss" data-src="/Scripts/ss.min.js" data-autoload="true"></script>
+  <script type="text/script" data-name="flickr" data-src="/Scripts/Flickr.js"></script>
+  <script type="text/script" data-name="photoGrid" data-src="/Scripts/PhotoGrid.min.js" data-autoload="true"></script>
+
+  <script type="text/javascript" src="/Scripts/ssloader.min.js" async="async" defer="defer"></script>
 </body>
 </html>

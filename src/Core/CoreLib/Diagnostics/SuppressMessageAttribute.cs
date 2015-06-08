@@ -10,8 +10,8 @@ using System.Runtime.CompilerServices;
 namespace System.Diagnostics.CodeAnalysis {
 
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class SuppressMessageAttribute : Attribute {
 
         private string _category;

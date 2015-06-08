@@ -7,16 +7,11 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
-    /// <summary>
-    /// The Queue data type which is mapped to the Array type in Javascript.
-    /// </summary>
-    [IgnoreNamespace]
-    [Imported]
-    [ScriptName("Array")]
+    [ScriptImport]
+    [ScriptName("Queue")]
     public sealed class Queue<T> {
 
-        [IntrinsicProperty]
-        [ScriptName("length")]
+        [ScriptField]
         public int Count {
             get {
                 return 0;

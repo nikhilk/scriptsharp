@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class ScriptElement : Element {
 
         private ScriptElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Src {
             get {
                 return null;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Type {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string ReadyState {
             get {
                 return null;

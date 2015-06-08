@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class FormElement : Element {
 
         internal FormElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string AcceptCharset {
             get {
                 return null;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Action {
             get {
                 return null;
@@ -33,7 +33,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Element[] Elements {
             get {
                 return null;
@@ -42,7 +42,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string EncType {
             get {
                 return null;
@@ -51,7 +51,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Encoding {
             get {
                 return null;
@@ -60,14 +60,14 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
@@ -76,7 +76,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Method {
             get {
                 return null;
@@ -85,7 +85,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Target {
             get {
                 return null;

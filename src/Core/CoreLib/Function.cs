@@ -10,8 +10,8 @@ namespace System {
     /// <summary>
     /// Equivalent to the Function type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class Function {
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace System {
         /// <summary>
         /// Gets the number of parameters expected by the function.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;

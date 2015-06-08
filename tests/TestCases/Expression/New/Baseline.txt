@@ -1,39 +1,44 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Point
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.$create_Point = function(x, y) {
-    var $o = { };
-    $o.x = x;
-    $o.y = y;
+  // ExpressionTests.Point
+
+  function Point(x, y) {
+    var $o = {};
+    $o._x = x;
+    $o._y = y;
     return $o;
-}
+  }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Foo
+  // ExpressionTests.Foo
 
-test.Foo = function(i, j) {
-}
+  function Foo(i, j) {
+  }
+  var Foo$ = {
 
-
-////////////////////////////////////////////////////////////////////////////////
-// test.Bar
-
-test.Bar = function(i, j, f) {
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Test
+  // ExpressionTests.Bar
 
-test.Test = function() {
-}
-test.Test.main = function() {
-    var f = new test.Foo(0, 1);
-    var b = new test.Bar(0, 1, new test.Foo(0, 1));
-    var t = new test.Test();
+  function Bar(i, j, f) {
+  }
+  var Bar$ = {
+
+  };
+
+
+  // ExpressionTests.Test
+
+  function Test() {
+  }
+  Test.main = function() {
+    var f = new Foo(0, 1);
+    var b = new Bar(0, 1, new Foo(0, 1));
+    var t = new Test();
     var d = new Date('3/9/1976');
     var items = [];
     var items2 = [ 1, 2 ];
@@ -44,19 +49,30 @@ test.Test.main = function() {
     var list3 = ['abc', 'def', 'ghi'];
     var list4 = [1, 2, 3];
     var dates = [ new Date('1/1/2006'), new Date('1/1/2005') ];
-    var p = test.$create_Point(0, 0);
+    var p = Point(0, 0);
     var cd = {};
     var cd2 = { abc: 123, def: true };
-    var o1 = new test.Test();
-    var type1 = test.Foo;
+    var o1 = new Test();
+    var type1 = Foo;
     var o2 = new type1(1, 2);
-    var o3 = new test.Bar(1, 2, o2);
+    var o3 = new Bar(1, 2, o2);
     var f1 = new Function("alert('hello');");
     var f2 = new Function('s', 'alert(s);');
     var f3 = new Function('greeting', 'name', "alert(greeting + ' ' + name + '!');");
-}
+  };
+  var Test$ = {
+
+  };
 
 
-test.Foo.registerClass('test.Foo');
-test.Bar.registerClass('test.Bar');
-test.Test.registerClass('test.Test');
+  var $exports = ss.module('test', null,
+    {
+      Point: Point,
+      Foo: [ Foo, Foo$, null ],
+      Bar: [ Bar, Bar$, null ],
+      Test: [ Test, Test$, null ]
+    });
+
+
+  return $exports;
+});

@@ -3,7 +3,6 @@
 
 using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -20,4 +19,3 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: ScriptAssembly("AroundMe")]
-[assembly: ScriptNamespace("app")]

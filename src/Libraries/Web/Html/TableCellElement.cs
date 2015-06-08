@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class TableCellElement : Element {
 
         private TableCellElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int ColSpan {
             get {
                 return 0;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool NoWrap {
             get {
                 return false;
@@ -33,7 +33,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int RowSpan {
             get {
                 return 0;

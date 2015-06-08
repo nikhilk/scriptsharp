@@ -8,22 +8,22 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.VenueMaps {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class Venue {
 
         private Venue() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Distance {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public VenueMetadata Metadata {
             get {
                 return null;

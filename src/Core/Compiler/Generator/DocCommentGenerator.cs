@@ -3,14 +3,14 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
-namespace ScriptSharp.Generator {
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Xml;
+using ScriptSharp.ScriptModel;
 
-    using System;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Text;
-    using System.Xml;
-    using ScriptSharp.ScriptModel;
+namespace ScriptSharp.Generator {
 
     internal static class DocCommentGenerator {
 
@@ -22,7 +22,7 @@ namespace ScriptSharp.Generator {
                     GenerateClassComment(writer, (ClassSymbol)symbol);
                     break;
                 case SymbolType.Enumeration:
-                    GenerateEnumerationComment(writer, (EnumerationSymbol)symbol);
+                    // No-op - no doc-comments get generated for enums.
                     break;
                 case SymbolType.Event:
                     GenerateEventComment(writer, (EventSymbol)symbol);
@@ -74,7 +74,7 @@ namespace ScriptSharp.Generator {
         }
 
         private static void GenerateInterfaceComment(ScriptTextWriter writer, InterfaceSymbol interfaceSymbol) {
-            writer.WriteNewLine();
+            writer.WriteLine();
             writer.Indent++;
 
             GenerateSummaryComment(writer, interfaceSymbol);
@@ -98,28 +98,6 @@ namespace ScriptSharp.Generator {
             GenerateSummaryComment(writer, eventSymbol);
 
             writer.WriteLine("/// <param name=\"{0}\" type=\"Function\" />", eventSymbol.Parameters[0].Name);
-        }
-
-        private static void GenerateEnumerationComment(ScriptTextWriter writer, EnumerationSymbol enumSymbol) {
-            writer.WriteNewLine();
-            writer.Indent++;
-
-            GenerateSummaryComment(writer, enumSymbol);
-
-            foreach (MemberSymbol memberSymbol in enumSymbol.Members) {
-                EnumerationFieldSymbol fieldSymbol = memberSymbol as EnumerationFieldSymbol;
-                if (fieldSymbol != null) {
-                    writer.WriteLine(
-                        "/// <field name=\"{0}\" type=\"Number\" integer=\"true\" static=\"true\">",
-                        fieldSymbol.GeneratedName);
-
-                    GenerateFormattedComment(writer, fieldSymbol.Documentation);
-
-                    writer.WriteLine("/// </field>");
-                }
-            }
-
-            writer.Indent--;
         }
 
         private static void GenerateFieldComment(ScriptTextWriter writer, FieldSymbol fieldSymbol) {

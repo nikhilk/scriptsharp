@@ -4,37 +4,35 @@
 //
 
 using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace System {
 
-    // NOTE: Keep in sync with ArrayGrouping and ArrayList
+    // NOTE: Keep in sync with ArrayList and List
 
     /// <summary>
     /// Equivalent to the Array type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    [ScriptName("Array")]
     public sealed class Array : IEnumerable {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object this[int index] {
             get {
                 return null;
             }
             set {
             }
-        }
-
-        public Array Clone() {
-            return null;
         }
 
         public Array Concat(params object[] objects) {
@@ -51,14 +49,6 @@ namespace System {
 
         public bool Every(ArrayItemFilterCallback itemFilterCallback) {
             return false;
-        }
-
-        public Array Extract(int index) {
-            return null;
-        }
-
-        public Array Extract(int index, int count) {
-            return null;
         }
 
         public Array Filter(ArrayFilterCallback filterCallback) {
@@ -79,11 +69,11 @@ namespace System {
             return null;
         }
 
-        public ArrayGrouping[] GroupBy(ArrayItemKeyGenerator keyCallback) {
+        public Array GetRange(int index) {
             return null;
         }
 
-        public Dictionary Index(ArrayItemKeyGenerator keyCallback) {
+        public Array GetRange(int index, int count) {
             return null;
         }
 
@@ -119,6 +109,7 @@ namespace System {
             return null;
         }
 
+        [ScriptAlias("ss.array")]
         public static Array Parse(string s) {
             return null;
         }
@@ -190,11 +181,20 @@ namespace System {
         public void Splice(int start, int deleteCount, params object[] itemsToInsert) {
         }
 
+        [ScriptAlias("ss.array")]
         public static Array ToArray(object o) {
             return null;
         }
 
         public void Unshift(params object[] items) {
+        }
+
+        public static explicit operator ArrayList(Array array) {
+            return null;
+        }
+
+        public static explicit operator List<object>(Array array) {
+            return null;
         }
     }
 }

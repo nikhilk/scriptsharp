@@ -1,17 +1,35 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.App
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.App = function() {
+  // TypeTests.App
+
+  function App() {
     var elem = document.getElementById('foo');
     var s = elem.myString;
+    elem.do('foo');
+    elem.do('bar', 10);
     elem['Smith'] = elem['Joe'];
-    var n = parseInt(5.5);
+    var n = ss.truncate(5.5);
     var parser = new DOMParser();
     var doc = parser.parseFromString('<markup></markup>', 'text/xml');
-    var d = Date.parseDate('1/1/2010');
-}
+    var d = ss.date('1/1/2010');
+    var eventHandler = function() {
+    };
+    elem.addEventListener('click', eventHandler);
+    elem.removeEventListener('click', eventHandler);
+  }
+  var App$ = {
+
+  };
 
 
-test.App.registerClass('test.App');
+  var $exports = ss.module('test', null,
+    {
+      App: [ App, App$, null ]
+    });
+
+
+  return $exports;
+});

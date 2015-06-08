@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class DataTransfer {
 
         private DataTransfer() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public DropEffect DropEffect {
             get {
                 return DropEffect.None;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public DropEffects EffectAllowed {
             get {
                 return DropEffects.None;

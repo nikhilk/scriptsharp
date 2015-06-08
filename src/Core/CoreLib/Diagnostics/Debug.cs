@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace System.Diagnostics {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("console")]
     public static class Debug {
 
@@ -22,6 +22,7 @@ namespace System.Diagnostics {
         }
 
         [Conditional("DEBUG")]
+        [ScriptAlias("ss.fail")]
         public static void Fail(string message) {
         }
 

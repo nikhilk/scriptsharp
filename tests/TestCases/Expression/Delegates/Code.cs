@@ -2,7 +2,6 @@ using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace ExpressionTests {
 
@@ -31,6 +30,9 @@ namespace ExpressionTests {
 
             SomeClass s1 = new SomeClass(OnEvent);
             SomeClass s2 = new SomeClass(_handler);
+
+            Export e = Delegate.Export(_handler);
+            e.Dispose();
         }
 
         public void DoStuff() {

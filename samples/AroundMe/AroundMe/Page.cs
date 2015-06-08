@@ -107,13 +107,13 @@ namespace AroundMe {
             });
 
             Utility.SubscribeKey("searchBox", delegate(ElementEvent e) {
-                Window.SetTimeout(delegate() {
+                Script.SetTimeout(delegate() {
                     Document.GetElementById("searchButton").ClassName =
                         String.IsNullOrEmpty(Utility.GetElement("searchBox").As<InputElement>().Value) ? "reset" : "";
                 }, 0);
             });
             Utility.SubscribeBlur("searchBox", delegate(ElementEvent e) {
-                Window.SetTimeout(delegate() {
+                Script.SetTimeout(delegate() {
                     Document.GetElementById("searchButton").ClassName = "";
                 }, 0);
             });
@@ -157,7 +157,7 @@ namespace AroundMe {
         private static void FavoritePhoto() {
             Debug.Assert(_model.SelectedPhoto != null);
             _model.AddFavorite();
-            Script.Alert("This photo has been saved to your favorites.");
+            Window.Alert("This photo has been saved to your favorites.");
         }
 
         private static void HidePhoto() {
@@ -193,7 +193,7 @@ namespace AroundMe {
                 TweetBoxOptions options = new TweetBoxOptions();
                 options.Callback = delegate(string tweet, string htmlTweet) {
                     Utility.GetElement("photoTweet").InnerHTML = String.Empty;
-                    Script.Alert("This photo has been shared with your followers on Twitter.");
+                    Window.Alert("This photo has been shared with your followers on Twitter.");
                 };
                 options.Data = new TweetBoxData();
                 options.Data.Latitude = photo.latitude;
@@ -239,7 +239,7 @@ namespace AroundMe {
 
                 if (_currentPushpin == null) {
                     MapPushpinOptions pushpinOptions = new MapPushpinOptions();
-                    pushpinOptions.Icon = "Pushpin.png";
+                    pushpinOptions.Icon = "/Content/Pushpin.png";
                     pushpinOptions.Anchor = new MapPoint(12, 14);
                     pushpinOptions.Width = 25;
                     pushpinOptions.Height = 28;
@@ -309,7 +309,7 @@ namespace AroundMe {
             });
 
             if (continueLayout) {
-                Window.SetTimeout(UpdateLayout, 30);
+                Script.SetTimeout(UpdateLayout, 30);
             }
         }
 
@@ -351,11 +351,11 @@ namespace AroundMe {
                     calloutOptions.Offset = new MapPoint(-25, -25);
                     calloutOptions.HtmlContent =
                         "<div class=\"photoInfobox\" style=\"background-image: url(" + photo.thumbnailUrl + ")\"" +
-                        " title=\"" + photo.title.HtmlEncode() + "\"></div>";
+                        " title=\"" + photo.title + "\"></div>";
                     calloutOptions.Visible = true;
 
                     MapPushpinOptions pushpinOptions = new MapPushpinOptions();
-                    pushpinOptions.Icon = "Dot.png";
+                    pushpinOptions.Icon = "/Content/Dot.png";
                     pushpinOptions.Width = 10;
                     pushpinOptions.Height = 10;
                     pushpinOptions.Anchor = new MapPoint(5, 5);
@@ -397,7 +397,7 @@ namespace AroundMe {
                 _graph.AddEdge(connectorEdge);
             });
 
-            Window.SetTimeout(UpdateLayout, 30);
+            Script.SetTimeout(UpdateLayout, 30);
         }
     }
 }

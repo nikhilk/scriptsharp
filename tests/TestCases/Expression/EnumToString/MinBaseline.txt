@@ -1,23 +1,33 @@
-Type.registerNamespace('test');
+"use strict";
 
-test.App = function() {
-}
-test.App.prototype = {
-    
+define('test', ['ss'], function(ss) {
+  var $global = this;
+
+  // ExpressionTests.App
+
+  function App() {
+  }
+  var App$ = {
     test: function(arg) {
-        var $0 = (0).toString();
-        var $1 = (2).toString();
-        var $2 = '$0';
-        var $3 = (0).toString();
+      var s1 = (0).toString();
+      var s2 = (2).toString();
+      var s3 = 'starting';
+      var s4 = (0).toString();
     },
-    
-    $0: function($p0, $p1, $p2, $p3) {
-        var $0 = $p0.toString();
-        var $1 = $p1.toString();
-        var $2 = $p2;
-        var $3 = $p3.toString();
+    $0: function(m, c, s, t) {
+      var mstr = m.toString();
+      var cstr = c.toString();
+      var sstr = s;
+      var tstr = t.toString();
     }
-}
+  };
 
 
-test.App.registerClass('test.App');
+  var $exports = ss.module('test', null,
+    {
+      App: [ App, App$, null ]
+    });
+
+
+  return $exports;
+});

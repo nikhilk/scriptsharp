@@ -3,48 +3,51 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
+using System;
 using System.Runtime.CompilerServices;
 
 namespace System.Globalization {
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
+    [ScriptName("culture")]
     public sealed class CultureInfo {
 
         private CultureInfo() {
         }
 
-        [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptField]
+        [ScriptName("current")]
         public static CultureInfo CurrentCulture {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
+        [ScriptName("dtf")]
         public DateFormatInfo DateFormat {
             get {
                 return null;
             }
         }
 
-        [PreserveCase]
-        [IntrinsicProperty]
+        [ScriptField]
+        [ScriptName("neutral")]
         public static CultureInfo InvariantCulture {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
+        [ScriptName("nf")]
         public NumberFormatInfo NumberFormat {
             get {
                 return null;

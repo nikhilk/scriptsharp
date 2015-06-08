@@ -13,8 +13,8 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="index">The index of the item.</param>
     /// <param name="value">The item within the array.</param>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate void ArrayIterationCallback(int index, object value);
 
     /// <summary>
@@ -22,8 +22,8 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="index">The index of the item.</param>
     /// <param name="value">The item within the array.</param>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate void ArrayIterationCallback<T>(int index, T value);
 
     /// <summary>
@@ -32,8 +32,8 @@ namespace jQueryApi {
     /// <param name="index">The index of the item.</param>
     /// <param name="value">The item within the array.</param>
     /// <returns>false if the iteration is to be stopped; true otherwise.</returns>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate bool ArrayInterruptableIterationCallback(int index, object value);
 
     /// <summary>
@@ -42,7 +42,7 @@ namespace jQueryApi {
     /// <param name="index">The index of the item.</param>
     /// <param name="value">The item within the array.</param>
     /// <returns>false if the iteration is to be stopped; true otherwise.</returns>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate bool ArrayInterruptableIterationCallback<T>(int index, T value);
 }

@@ -10,7 +10,7 @@ namespace Microsoft.Maps {
 
     // TODO: Make properties
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("LabelOverlay")]
     public enum MapLabelOverlay {
 

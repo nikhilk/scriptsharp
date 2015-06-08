@@ -11,9 +11,9 @@ namespace jQueryApi.UI.Interactions {
     /// <summary>
     /// Events raised by Selectable.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum SelectableEvents {
 
         /// <summary>

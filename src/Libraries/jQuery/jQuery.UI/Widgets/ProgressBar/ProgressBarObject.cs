@@ -14,8 +14,8 @@ namespace jQueryApi.UI.Widgets {
     /// <remarks>
     /// <para>The progress bar is designed to simply display the current percent complete for a process. The bar is coded to be flexibly sized through CSS and will scale to fit inside it's parent container by default.</para><para>This is a determinate progress bar, meaning that it should only be used in situations where the system can accurately update the current status complete. A determinate progress bar should never fill from left to right, then loop back to empty for a single process -- if the actual percent complete status cannot be calculated, an indeterminate progress bar or spinner animation is a better way to provide user feedback.</para><para>This widget requires some functional CSS, otherwise it won't work. If you build a custom theme, use the widget's specific CSS file as a starting point.</para>
     /// </remarks>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class ProgressBarObject : WidgetObject {
 
         private ProgressBarObject() {

@@ -3,7 +3,7 @@
 ScriptSharp.targets
 Defines the steps in the standard build process specific for Script# projects.
 
-Copyright (C) 2012. Script# Project. All rights reserved.
+Copyright (c) 2013. Script# Project. All rights reserved.
 *******************************************************************************
 -->
 
@@ -12,6 +12,7 @@ Copyright (C) 2012. Script# Project. All rights reserved.
   <UsingTask TaskName="ResXCodeGeneratorTask" AssemblyFile="ScriptSharp.Build.dll" />
 
   <PropertyGroup>
+    <ScriptSharp>true</ScriptSharp>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
@@ -25,26 +26,24 @@ Copyright (C) 2012. Script# Project. All rights reserved.
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="mscorlib, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL">
+    <Reference Include="mscorlib, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL">
       <HintPath>$(MSBuildThisFileDirectory)mscorlib.dll</HintPath>
     </Reference>
     <GeneratedResourceCode Include="$(IntermediateOutputPath)Resources.g.cs" />
   </ItemGroup>
 
-  <Target Name="BuildScript">
+  <Target Name="BuildScript" Returns="@(Scripts)">
     <ScriptCompilerTask
       Sources="@(Compile)"
       Resources="@(EmbeddedResource)"
       References="@(ReferencePath);@(ReferenceDependencyPaths)"
       Defines="$(DefineConstants)"
+      Minimize="$(MinimizeScript)"
+      CopyReferences="$(CopyReferences)"
+      CopyReferencesPath="$(CopyReferencesPath)"
       OutputPath="$(OutputPath)"
-      DeploymentPath="$(DeploymentPath)"
-      LocaleSubFolders="$(LocaleSubFolders)"
-      ConfigSubFolders="$(ConfigSubFolders)"
-      Template="$(ScriptTemplate)"
-      CSharpAssembly="@(IntermediateAssembly)"
-      DocumentationFile="$(DocumentationFile)"
-      SuppressDocumentation="$(SuppressDocumentation)"
+      Assembly="@(IntermediateAssembly)"
+      ScriptName="$(ScriptName)"
       ProjectPath="$(MSBuildProjectFullPath)">
       <Output TaskParameter="Scripts" ItemName="Scripts" />
     </ScriptCompilerTask>

@@ -8,28 +8,28 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class ElementAttribute {
 
         internal ElementAttribute() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Specified {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Value {
             get {
                 return null;

@@ -19,5 +19,13 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: ScriptAssembly("FishTank")]
-[assembly: ScriptNamespace("ft")]
+[assembly: ScriptAssembly("ft")]
+[assembly: ScriptTemplate(@"
+// {name}.js
+//
+
+'use strict';
+(function($global) {
+  {script}
+})(this);
+")]

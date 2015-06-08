@@ -4,14 +4,12 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 
 namespace ScriptSharp {
 
-    internal sealed class Application : IStreamResolver, IErrorHandler {
+    public sealed class Application : IStreamResolver, IErrorHandler {
 
         private static readonly string AboutTextFormat = @"
 Script# Preprocessor v{0} (Script minimizer/merger)
@@ -33,7 +31,7 @@ sspp [/?] [/nologo] [/noMin] [/debug] [/browser:<browser_name>]
            (implies /noMin)
 /d       - Allows you to define one or more additional preprocessor variables.
 /crlf    - Use Windows-style line breaks
-/input   - Specifies the input .jsa file (required)
+/input   - Specifies the input .js file (required)
 /output  - Specifies the output .js file (required)
 /?       - Shows usage information.";
 
@@ -123,7 +121,6 @@ sspp [/?] [/nologo] [/noMin] [/debug] [/browser:<browser_name>]
             return String.Format(AboutTextFormat, versionInfo);
         }
 
-        [STAThread]
         public static int Main(string[] args) {
             Application app = new Application(args);
             bool success = app.Execute();

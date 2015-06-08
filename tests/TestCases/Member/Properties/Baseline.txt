@@ -1,57 +1,64 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Test
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.Test = function() {
+  // MemberTests.Test
+
+  function Test() {
     this.set_XYZ(1);
     this.set_XYZ(this.get_name().length);
     this.set_XYZ(this.get_name().length);
-    var v = test.Test.get_staticProp();
-    v = test.Test.get_staticProp();
-}
-test.Test.get_staticProp = function() {
+    var v = Test.get_staticProp();
+    v = Test.get_staticProp();
+  }
+  Test.get_staticProp = function() {
     return 2006;
-}
-test.Test.set_staticProp = function(value) {
+  };
+  Test.set_staticProp = function(value) {
     return value;
-}
-test.Test.prototype = {
-    
+  };
+  var Test$ = {
     get_XYZ: function() {
-        return 0;
+      return 0;
     },
     set_XYZ: function(value) {
-        return value;
+      return value;
     },
-    
     get_isFoo: function() {
-        return true;
+      return true;
     },
-    
     get_name: function() {
-        return 'nk';
+      return 'nk';
     },
-    
-    get_isInitialized: function() {
-        return false;
+    get__isInitialized: function() {
+      return false;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Test2
+  // MemberTests.Test2
 
-test.Test2 = function() {
-    test.Test2.initializeBase(this);
-    var n = test.Test2.callBaseMethod(this, 'get_XYZ');
+  function Test2() {
+    Test.call(this);
+    var n = Test.prototype.get_XYZ.call(this);
     if (n === this.get_XYZ()) {
     }
     if (this.get_XYZ() === n) {
     }
-    n = test.Test.get_staticProp();
-}
+    n = Test.get_staticProp();
+  }
+  var Test2$ = {
+
+  };
 
 
-test.Test.registerClass('test.Test');
-test.Test2.registerClass('test.Test2', test.Test);
+  var $exports = ss.module('test', null,
+    {
+      Test: [ Test, Test$, null ],
+      Test2: [ Test2, Test2$, Test ]
+    });
+
+
+  return $exports;
+});

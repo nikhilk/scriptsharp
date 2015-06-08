@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Queue</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+
+<script type="text/javascript" src="Scripts/ssloader.js"></script>
+<script type="text/script" data-name="ss" data-src="Scripts/ss.js"></script>
+<script type="text/script">
+define(['ss'], function(ss) {
+  module('Queue');
+  test('new', function() {
+    var q = new ss.Queue();
+    q.enqueue(1);
+    
+    QUnit.equal(q.count, 1);
+  });
+
+  test('enqueueDequeue', function() {
+    var q = new ss.Queue();
+    q.enqueue(1);
+    q.enqueue(2);
+    
+    QUnit.equal(q.count, 2);
+
+    var item1 = q.dequeue();
+    QUnit.equal(item1, 1);
+    QUnit.equal(q.count, 1);
+
+    var item2 = q.dequeue();
+    QUnit.equal(item2, 2);
+    QUnit.equal(q.count, 0);
+
+    q.dequeue();
+    QUnit.equal(q.count, 0);
+  });
+
+  test('peek', function() {
+    var q = new ss.Queue();
+    q.enqueue(1);
+    q.enqueue(2);
+    
+    QUnit.equal(q.count, 2);
+
+    var item = q.peek();
+    QUnit.equal(item, 1);
+    QUnit.equal(q.count, 2);
+  });
+
+  test('clear', function() {
+    var q = new ss.Queue();
+    q.enqueue(1);
+    q.enqueue(2);
+    
+    QUnit.equal(q.count, 2);
+
+    q.clear();
+    QUnit.equal(q.count, 0);
+  });
+
+  test('enumerate', function() {
+    var q = new ss.Queue();
+    q.enqueue(1);
+    q.enqueue(2);
+    
+    QUnit.equal(q.count, 2);
+
+    var items = '';
+    var e = q.getEnumerator();
+    while (e.moveNext()) {
+      items = items + e.current;
+    }
+
+    QUnit.equal(items, '12');
+  });
+
+  test('cleanup', function() {
+    var q = new ss.Queue();
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(4);
+    q.enqueue(5);
+    
+    QUnit.equal(q.count, 5);
+    QUnit.equal(q._items.length, 5);
+
+    q.dequeue();
+    QUnit.equal(q._items.length, 5);
+
+    q.enqueue('a');
+    QUnit.equal(q._items.length, 6);
+
+    q.dequeue();
+    QUnit.equal(q._items.length, 6);
+
+    q.dequeue();
+    QUnit.equal(q._items.length, 3);
+
+    q.dequeue();
+    QUnit.equal(q._items.length, 3);
+
+    q.enqueue('a');
+    QUnit.equal(q._items.length, 4);
+  });
+});
+</script>
+</html>

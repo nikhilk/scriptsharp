@@ -7,56 +7,56 @@ using System.Runtime.CompilerServices;
 
 namespace System.Xml {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public class XmlNode {
 
         internal XmlNode() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public XmlNamedNodeMap Attributes {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string BaseName {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public XmlNodeList ChildNodes {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public XmlNode FirstChild {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public XmlNode LastChild {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public XmlNode NextSibling {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("nodeName")]
         public virtual string Name {
             get {
@@ -64,14 +64,14 @@ namespace System.Xml {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public XmlNodeType NodeType {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("nodeValue")]
         public virtual string Value {
             get {
@@ -81,35 +81,35 @@ namespace System.Xml {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public XmlDocument OwnerDocument {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public XmlNode ParentNode {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Prefix {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public XmlNode PreviousSibling {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("text")]
         public string InnerText {
             get {
@@ -117,7 +117,7 @@ namespace System.Xml {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("xml")]
         public string OuterXml {
             get {
@@ -137,6 +137,10 @@ namespace System.Xml {
             return null;
         }
 
+        public bool HasAttributes() {
+            return false;
+        }
+
         public bool HasChildNodes() {
             return false;
         }
@@ -145,23 +149,19 @@ namespace System.Xml {
             return null;
         }
 
+        public XmlNode QuerySelector(string selector) {
+            return null;
+        }
+
+        public XmlNodeList QuerySelectorAll(string selector) {
+            return null;
+        }
+
         public XmlNode RemoveChild(XmlNode child) {
             return null;
         }
 
         public XmlNode ReplaceChild(XmlNode child, XmlNode oldChild) {
-            return null;
-        }
-
-        public XmlNodeList SelectNodes(string xpath) {
-            return null;
-        }
-
-        public XmlNode SelectSingleNode(string xpath) {
-            return null;
-        }
-
-        public string TransformNode(XmlDocument stylesheet) {
             return null;
         }
     }

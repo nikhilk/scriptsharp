@@ -1,39 +1,43 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Foo
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.Foo = function(i, j) {
-}
-test.Foo.prototype = {
-    
+  // ExpressionTests.Foo
+
+  function Foo(i, j) {
+  }
+  var Foo$ = {
     toString: function() {
-        return 'Foo';
+      return 'Foo';
     },
-    
     sum: function(i) {
-        return 0;
+      return 0;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Bar
+  // ExpressionTests.Bar
 
-test.Bar = function(i, j, f) {
-    test.Bar.initializeBase(this, [ i, j ]);
-}
-test.Bar.prototype = {
-    
+  function Bar(i, j, f) {
+    Foo.call(this, i, j);
+  }
+  var Bar$ = {
     sum: function() {
-        return test.Bar.callBaseMethod(this, 'sum', [ 1 ]) + 1;
+      return Foo.prototype.sum.call(this, 1) + 1;
     },
-    
     toString: function() {
-        return test.Bar.callBaseMethod(this, 'toString') + ' -> Bar';
+      return Foo.prototype.toString.call(this) + ' -> Bar';
     }
-}
+  };
 
 
-test.Foo.registerClass('test.Foo');
-test.Bar.registerClass('test.Bar', test.Foo);
+  var $exports = ss.module('test', null,
+    {
+      Foo: [ Foo, Foo$, null ],
+      Bar: [ Bar, Bar$, Foo ]
+    });
+
+
+  return $exports;
+});

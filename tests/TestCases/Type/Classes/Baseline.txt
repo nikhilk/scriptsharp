@@ -1,45 +1,72 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.FooBarBaz
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.FooBarBaz = function test_FooBarBaz() {
-}
+  // TypeTests.Foo
 
+  function FooBarBaz() {
+  }
+  var FooBarBaz$ = {
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass
-
-test.MyClass = function test_MyClass() {
-    test.FooBarBaz = new test.FooBarBaz();
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass2
+  // TypeTests.MyClass
 
-test.MyClass2 = function test_MyClass2() {
-    test.MyClass2.initializeBase(this);
-}
+  function MyClass() {
+    var f = new FooBarBaz();
+  }
+  var MyClass$ = {
 
-
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass3
-
-test.MyClass3 = function test_MyClass3() {
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass4
+  // TypeTests.MyClass3
 
-test.MyClass4 = function test_MyClass4() {
-    test.MyClass4.initializeBase(this);
-}
+  function MyClass3() {
+  }
+  var MyClass3$ = {
+
+  };
 
 
-test.FooBarBaz.registerClass('test.FooBarBaz');
-test.MyClass.registerClass('test.MyClass');
-test.MyClass2.registerClass('test.MyClass2', test.MyClass);
-test.MyClass3.registerClass('test.MyClass3', null, ss.IDisposable);
-test.MyClass4.registerClass('test.MyClass4', test.MyClass, ss.IDisposable);
+  // TypeTests.StaticClass
+
+  function StaticClass() {
+  }
+
+
+  // TypeTests.MyClass2
+
+  function MyClass2() {
+    MyClass.call(this);
+  }
+  var MyClass2$ = {
+
+  };
+
+
+  // TypeTests.MyClass4
+
+  function MyClass4() {
+    MyClass.call(this);
+  }
+  var MyClass4$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      FooBarBaz: [ FooBarBaz, FooBarBaz$, null ],
+      MyClass: [ MyClass, MyClass$, null ],
+      MyClass3: [ MyClass3, MyClass3$, null, ss.IDisposable ],
+      StaticClass: [ StaticClass, null, null ],
+      MyClass2: [ MyClass2, MyClass2$, MyClass ],
+      MyClass4: [ MyClass4, MyClass4$, MyClass, ss.IDisposable ]
+    });
+
+
+  return $exports;
+});

@@ -1,46 +1,57 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyDebug
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.MyDebug = function test_MyDebug() {
-}
-test.MyDebug.showInfo = function test_MyDebug$showInfo() {
-}
-test.MyDebug.traceInfo = function test_MyDebug$traceInfo() {
-}
-test.MyDebug.logInfo = function test_MyDebug$logInfo() {
-}
+  // BasicTests.MyDebug
+
+  function MyDebug() {
+  }
+  MyDebug.showInfo = function() {
+  };
+  MyDebug.traceInfo = function() {
+  };
+  MyDebug.logInfo = function() {
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.App
+  // BasicTests.App
 
-test.App = function test_App(i) {
+  function App(i) {
     console.assert(false);
-    test.MyDebug.showInfo();
+    MyDebug.showInfo();
     while (true) {
-        console.assert(false);
+      console.assert(false);
     }
     switch (i) {
-        case 0:
-            console.assert(false);
-            break;
+      case 0:
+        console.assert(false);
+        break;
     }
     console.assert(!!i);
     console.assert(!!i);
     i++;
     if (false) {
-        console.log('Debug spew');
+      console.log('Debug spew');
     }
     while (false) {
-        console.log('.');
+      console.log('.');
     }
     for (var i = 0; i < 10; i++) {
-        console.log('.');
+      console.log('.');
     }
-}
+  }
+  var App$ = {
+
+  };
 
 
-test.MyDebug.registerClass('test.MyDebug');
-test.App.registerClass('test.App');
+  var $exports = ss.module('test', null,
+    {
+      MyDebug: [ MyDebug, null, null ],
+      App: [ App, App$, null ]
+    });
+
+
+  return $exports;
+});

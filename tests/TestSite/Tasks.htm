@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tasks</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+<script type="text/javascript" src="Scripts/ssloader.js"></script>
+<script type="text/script" data-name="ss" data-src="Scripts/ss.js"></script>
+
+<script type="text/script">
+define(['ss'], function(ss) {
+  module('Task');
+  test('preresolved', function() {
+    var deferred = ss.deferred(10);
+    var task = deferred.task;
+
+    QUnit.equal(task.status, 'done');
+  });
+
+  asyncTest('resolve', function() {
+    QUnit.expect(2);
+
+    var deferred = ss.deferred();
+    deferred.task.continueWith(function(t) {
+      QUnit.start();
+      QUnit.equal(t.status, 'done');
+      QUnit.equal(t.result, 123);
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred.resolve(123);
+    }, 100);
+
+    QUnit.stop();
+  });
+
+  asyncTest('reject', function() {
+    QUnit.expect(2);
+
+    var deferred = ss.deferred();
+    deferred.task.continueWith(function(t) {
+      QUnit.start();
+      QUnit.equal(t.status, 'failed');
+      QUnit.notEqual(t.error, null);
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred.reject();
+    }, 100);
+
+    QUnit.stop();
+  });
+
+  asyncTest('reresolve', function() {
+    QUnit.expect(2);
+
+    var deferred = ss.deferred();
+    deferred.task.continueWith(function(t) {
+      QUnit.start();
+      QUnit.equal(t.status, 'done');
+      QUnit.equal(t.result, 123);
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred.resolve(123);
+      deferred.resolve(456);
+    }, 100);
+
+    QUnit.stop();
+  });
+
+  asyncTest('anyFirst', function() {
+    QUnit.expect(3);
+
+    var deferred1 = ss.deferred();
+    var deferred2 = ss.deferred();
+
+    ss.Task.any(deferred1.task, deferred2.task)
+           .continueWith(function(t) {
+      QUnit.start();
+      QUnit.equal(t.status, 'done');
+      QUnit.notEqual(t.result, null);
+      QUnit.equal(t.result.result, 123);
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred1.resolve(123);
+    }, 100);
+
+    setTimeout(function() {
+      deferred2.resolve(456);
+    }, 300);
+
+    QUnit.stop();
+  });
+
+  asyncTest('anySecond', function() {
+    QUnit.expect(3);
+
+    var deferred1 = ss.deferred();
+    var deferred2 = ss.deferred();
+    var deferred3 = ss.deferred();
+
+    ss.Task.any(deferred1.task, deferred2.task, deferred3.task)
+           .continueWith(function(t) {
+      QUnit.start();
+      QUnit.equal(t.status, 'done');
+      QUnit.notEqual(t.result, null);
+      QUnit.equal(t.result.result, 456);
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred1.resolve(123);
+    }, 400);
+
+    setTimeout(function() {
+      deferred2.resolve(456);
+    }, 300);
+
+    setTimeout(function() {
+      deferred3.resolve(123);
+    }, 500);
+
+    QUnit.stop();
+  });
+
+  asyncTest('anyTimeout', function() {
+    QUnit.expect(2);
+
+    var deferred1 = ss.deferred();
+    var deferred2 = ss.deferred();
+    var deferred3 = ss.deferred();
+
+    ss.Task.any(100, deferred1.task, deferred2.task, deferred3.task)
+           .continueWith(function(t) {
+      QUnit.start();
+      QUnit.equal(t.status, 'done');
+      QUnit.equal(t.result, null);
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred1.resolve(123);
+    }, 400);
+
+    setTimeout(function() {
+      deferred2.resolve(456);
+    }, 300);
+
+    setTimeout(function() {
+      deferred3.resolve(123);
+    }, 500);
+
+    QUnit.stop();
+  });
+
+  asyncTest('allSimple', function() {
+    QUnit.expect(2);
+
+    var deferred1 = ss.deferred();
+    var deferred2 = ss.deferred();
+
+    ss.Task.all(deferred1.task, deferred2.task)
+           .continueWith(function(t) {
+      QUnit.start();
+      QUnit.equal(t.status, 'done');
+      QUnit.equal(t.result, true);
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred1.resolve(123);
+    }, 100);
+
+    setTimeout(function() {
+      deferred2.resolve(456);
+    }, 300);
+
+    QUnit.stop();
+  });
+
+  asyncTest('allTimeout', function() {
+    QUnit.expect(2);
+
+    var deferred1 = ss.deferred();
+    var deferred2 = ss.deferred();
+
+    ss.Task.all(200, deferred1.task, deferred2.task)
+           .continueWith(function(t) {
+      QUnit.start();
+      QUnit.equal(t.status, 'done');
+      QUnit.equal(t.result, false);
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred1.resolve(123);
+    }, 100);
+
+    setTimeout(function() {
+      deferred2.resolve(456);
+    }, 300);
+
+    QUnit.stop();
+  });
+
+  asyncTest('resolveDone', function() {
+    QUnit.expect(1);
+
+    var deferred = ss.deferred();
+    deferred.task.done(function(result) {
+      QUnit.start();
+      QUnit.equal(result, 123);
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred.resolve(123);
+    }, 100);
+
+    QUnit.stop();
+  });
+
+  asyncTest('rejectFail', function() {
+    QUnit.expect(1);
+
+    var deferred = ss.deferred();
+    deferred.task.fail(function(error) {
+      QUnit.start();
+      QUnit.notEqual(error, null);
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred.reject();
+    }, 100);
+
+    QUnit.stop();
+  });
+
+  asyncTest('completed', function() {
+    QUnit.expect(4);
+
+    var deferred1 = ss.deferred();
+    deferred1.task.then(function(result) {
+      QUnit.start();
+      QUnit.equal(result, 123);
+      QUnit.equal(deferred1.task.get_completed(), true);
+      QUnit.stop();
+    },
+    function(error) {
+      QUnit.start();
+      throw new Error('unexpected failure');
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred1.resolve(123);
+    }, 100);
+
+    var deferred2 = ss.deferred();
+    deferred2.task.then(function(result) {
+      QUnit.start();
+      throw new Error('unexpected done');
+      QUnit.stop();
+    },
+    function(error) {
+      QUnit.start();
+      QUnit.equal(error.message, 'error message');
+      QUnit.equal(deferred2.task.get_completed(), true);
+      QUnit.stop();
+    });
+
+    setTimeout(function() {
+      deferred2.reject(new Error('error message'));
+    }, 100);
+
+    QUnit.stop();
+  });
+});
+</script>
+</html>

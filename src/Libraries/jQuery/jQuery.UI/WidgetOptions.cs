@@ -11,8 +11,8 @@ namespace jQueryApi.UI {
     /// <summary>
     /// Options used to initialize or customize Widget.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public  class WidgetOptions {
 
@@ -25,7 +25,7 @@ namespace jQueryApi.UI {
         /// <summary>
         /// This event is triggered when the widget is created.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryEventHandler Create {
              get {
                 return null;
@@ -37,7 +37,7 @@ namespace jQueryApi.UI {
         /// <summary>
         /// Disables the widget if set to true.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Disabled {
             get {
                 return false;

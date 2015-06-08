@@ -1,30 +1,44 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.App
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.App = function test_App() {
-    var s1 = test._strings1.string1;
-}
+  // Resources.Strings1
 
-
-////////////////////////////////////////////////////////////////////////////////
-// test._strings1
-
-test._strings1 = { 
+  var Strings1 = {
     string1: 'neutral: aaa',
     string2: 'fr: bbb',
     string3: 'fr-FR: ccc'
-};
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Strings2
+  // Resources.Strings2
 
-test.Strings2 = { 
+  var Strings2 = {
     string1: 's2',
     string2: '1234'
-};
+  };
 
 
-test.App.registerClass('test.App');
+  // BasicTests.App
+
+  function App() {
+    var s1 = Strings1.string1;
+  }
+  var App$ = {
+
+  };
+
+
+  var $exports = ss.module('test',
+    {
+      Strings1: Strings1
+    },
+    {
+      Strings2: Strings2,
+      App: [ App, App$, null ]
+    });
+
+
+  return $exports;
+});

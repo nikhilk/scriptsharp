@@ -2,7 +2,6 @@ using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace BasicTests {
 
@@ -62,13 +61,14 @@ namespace BasicTests {
         void Run();
     }
 
-    [GlobalMethods]
+    [ScriptExtension("$global")]
     internal static class Util {
 
         internal static void ShowHelp() { }
     }
 
-    internal sealed class Point : Record {
+    [ScriptObject]
+    internal sealed class Point {
          public int x;
          public int y;
 

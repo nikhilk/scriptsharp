@@ -11,39 +11,39 @@ namespace System.Html {
     /// <summary>
     /// The screen object represents information about the current desktop.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public class Screen {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int AvailHeight {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int AvailWidth {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int ColorDepth {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Height {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Width {
             get {
                 return 0;

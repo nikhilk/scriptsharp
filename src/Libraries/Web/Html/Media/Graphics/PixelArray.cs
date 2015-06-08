@@ -8,21 +8,21 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Media.Graphics {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class PixelArray {
 
         private PixelArray() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object this[int index] {
             get {
                 return null;

@@ -18,27 +18,19 @@ namespace ScriptSharp.Validator {
         bool IParseNodeValidator.Validate(ParseNode node, CompilerOptions options, IErrorHandler errorHandler) {
             CustomTypeNode typeNode = (CustomTypeNode)node;
 
-            bool restrictToMethodMembers = false;
+            bool extensionRestrictions = false;
+            bool moduleRestrictions = false;
+            bool recordRestrictions = false;
             bool hasCodeMembers = false;
             ParseNode codeMemberNode = null;
 
-            AttributeNode importedTypeAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "Imported");
+            AttributeNode importedTypeAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptImport");
             if (importedTypeAttribute != null) {
                 // This is an imported type definition... we'll assume its valid, since
                 // the set of restrictions for such types is fewer, and different, so
                 // for now that translates into skipping the members.
 
                 return false;
-            }
-
-            AttributeNode scriptNamespaceNode = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptNamespace");
-            if (scriptNamespaceNode != null) {
-                string scriptNamespace = (string)((LiteralNode)scriptNamespaceNode.Arguments[0]).Value;
-
-                if (Utility.IsValidScriptNamespace(scriptNamespace) == false) {
-                    errorHandler.ReportError("A script namespace must be a valid script identifier.",
-                                             scriptNamespaceNode.Token.Location);
-                }
             }
 
             if (typeNode.Type == TokenType.Struct) {
@@ -66,18 +58,7 @@ namespace ScriptSharp.Validator {
                     NameNode baseTypeNameNode = typeNode.BaseTypes[0] as NameNode;
 
                     if (baseTypeNameNode != null) {
-                        if (String.CompareOrdinal(baseTypeNameNode.Name, "Record") == 0) {
-                            if ((typeNode.Modifiers & Modifiers.Sealed) == 0) {
-                                errorHandler.ReportError("Classes derived from the Record base class must be marked as sealed.",
-                                                         typeNode.Token.Location);
-                            }
-
-                            if (typeNode.BaseTypes.Count != 1) {
-                                errorHandler.ReportError("Classes derived from the Record base class cannot implement interfaces.",
-                                                         typeNode.Token.Location);
-                            }
-                        }
-                        else if (String.CompareOrdinal(baseTypeNameNode.Name, "TestClass") == 0) {
+                        if (String.CompareOrdinal(baseTypeNameNode.Name, "TestClass") == 0) {
                             if ((typeNode.Modifiers & Modifiers.Internal) == 0) {
                                 errorHandler.ReportError("Classes derived from TestClass must be marked as internal.",
                                                          typeNode.Token.Location);
@@ -98,22 +79,46 @@ namespace ScriptSharp.Validator {
                     }
                 }
 
-                AttributeNode globalMethodsAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "GlobalMethods");
-                if (globalMethodsAttribute != null) {
-                    restrictToMethodMembers = true;
+                AttributeNode objectAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptObject");
+                if (objectAttribute != null) {
+                    if ((typeNode.Modifiers & Modifiers.Sealed) == 0) {
+                        errorHandler.ReportError("ScriptObject attribute can only be set on sealed classes.",
+                                                 typeNode.Token.Location);
+                    }
+
+                    if (typeNode.BaseTypes.Count != 0) {
+                        errorHandler.ReportError("Classes marked with ScriptObject must not derive from another class or implement interfaces.",
+                                                 typeNode.Token.Location);
+                    }
+
+                    recordRestrictions = true;
+                }
+
+                AttributeNode extensionAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptExtension");
+                if (extensionAttribute != null) {
+                    extensionRestrictions = true;
 
                     if ((typeNode.Modifiers & Modifiers.Static) == 0) {
-                        errorHandler.ReportError("GlobalMethods attribute can only be set on static classes.",
+                        errorHandler.ReportError("ScriptExtension attribute can only be set on static classes.",
+                                                 typeNode.Token.Location);
+                    }
+
+                    if ((extensionAttribute.Arguments.Count != 1) ||
+                        !(extensionAttribute.Arguments[0] is LiteralNode) ||
+                        !(((LiteralNode)extensionAttribute.Arguments[0]).Value is string) ||
+                        String.IsNullOrEmpty((string)((LiteralNode)extensionAttribute.Arguments[0]).Value)) {
+                        errorHandler.ReportError("ScriptExtension attribute declaration must specify the object being extended.",
                                                  typeNode.Token.Location);
                     }
                 }
 
-                AttributeNode mixinAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "Mixin");
-                if (mixinAttribute != null) {
-                    restrictToMethodMembers = true;
+                AttributeNode moduleAttribute = AttributeNode.FindAttribute(typeNode.Attributes, "ScriptModule");
+                if (moduleAttribute != null) {
+                    moduleRestrictions = true;
 
-                    if ((typeNode.Modifiers & Modifiers.Static) == 0) {
-                        errorHandler.ReportError("Mixin attribute can only be set on static classes.",
+                    if (((typeNode.Modifiers & Modifiers.Static) == 0) ||
+                        ((typeNode.Modifiers & Modifiers.Internal) == 0)) {
+                        errorHandler.ReportError("ScriptModule attribute can only be set on internal static classes.",
                                                  typeNode.Token.Location);
                     }
                 }
@@ -137,10 +142,21 @@ namespace ScriptSharp.Validator {
                         continue;
                     }
 
-                    if (restrictToMethodMembers &&
-                        (memberNode.NodeType != ParseNodeType.MethodDeclaration) &&
-                        (memberNode.NodeType != ParseNodeType.ConstructorDeclaration)) {
-                        errorHandler.ReportError("Classes marked with GlobalMethods or Mixin attribute should only have methods.",
+                    if (extensionRestrictions && (memberNode.NodeType != ParseNodeType.MethodDeclaration)) {
+                        errorHandler.ReportError("Classes marked with ScriptExtension attribute should only have methods.",
+                                                 memberNode.Token.Location);
+                    }
+
+                    if (moduleRestrictions && (memberNode.NodeType != ParseNodeType.ConstructorDeclaration)) {
+                        errorHandler.ReportError("Classes marked with ScriptModule attribute should only have a static constructor.",
+                                                 memberNode.Token.Location);
+                    }
+
+                    if (recordRestrictions &&
+                        (((memberNode.Modifiers & Modifiers.Static) != 0) ||
+                         ((memberNode.NodeType != ParseNodeType.ConstructorDeclaration) &&
+                          (memberNode.NodeType != ParseNodeType.FieldDeclaration)))) {
+                        errorHandler.ReportError("Classes marked with ScriptObject attribute should only have a constructor and field members.",
                                                  memberNode.Token.Location);
                     }
 
@@ -167,8 +183,23 @@ namespace ScriptSharp.Validator {
 
                     memberNames[name] = null;
 
-                    bool preserveCase = (AttributeNode.FindAttribute(memberNode.Attributes, "PreserveCase") != null);
-                    if (Utility.IsKeyword(name, /* testCamelCase */ (preserveCase == false))) {
+                    string nameToValidate = name;
+                    bool preserveCase = false;
+                    AttributeNode nameAttribute = AttributeNode.FindAttribute(memberNode.Attributes, "ScriptName");
+                    if ((nameAttribute != null) && (nameAttribute.Arguments.Count != 0)) {
+                        foreach (ParseNode argNode in nameAttribute.Arguments) {
+                            if (argNode.NodeType == ParseNodeType.Literal) {
+                                nameToValidate = (string)((LiteralNode)argNode).Value;
+                            }
+                            else if (argNode.NodeType == ParseNodeType.BinaryExpression) {
+                                if (String.CompareOrdinal(((NameNode)((BinaryExpressionNode)argNode).LeftChild).Name, "PreserveCase") == 0) {
+                                    preserveCase = (bool)((LiteralNode)((BinaryExpressionNode)argNode).RightChild).Value;
+                                }
+                            }
+                        }
+                    }
+
+                    if (Utility.IsKeyword(nameToValidate, /* testCamelCase */ (preserveCase == false))) {
                         errorHandler.ReportError("Invalid member name. Member names should not use keywords.",
                                                  memberNode.Token.Location);
                     }
@@ -181,11 +212,6 @@ namespace ScriptSharp.Validator {
                         codeMemberNode = memberNode;
                     }
                 }
-            }
-
-            if ((typeNode.Type == TokenType.Struct) && hasCodeMembers) {
-                errorHandler.ReportError("A struct type is limited to field and constructor members.",
-                                         codeMemberNode.Token.Location);
             }
 
             return true;

@@ -10,18 +10,16 @@ namespace System {
     /// <summary>
     /// The short data type which is mapped to the Number type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Number")]
     public struct Int16 {
 
-        public string Format(string format) {
-            return null;
-        }
+        [ScriptName("MAX_VALUE")]
+        public const int MaxValue = 0;
 
-        public string LocaleFormat(string format) {
-            return null;
-        }
+        [ScriptName("MIN_VALUE")]
+        public const int MinValue = 0;
 
         /// <summary>
         /// Converts the value to its string representation.

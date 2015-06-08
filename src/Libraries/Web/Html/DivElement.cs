@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class DivElement : Element {
 
         private DivElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Align {
             get {
                 return null;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool NoWrap {
             get {
                 return false;

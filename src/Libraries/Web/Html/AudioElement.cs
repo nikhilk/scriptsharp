@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class AudioElement : Element {
 
         private AudioElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double CurrentTime {
             get {
                 return 0;
@@ -24,28 +24,28 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Duration {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Ended {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Paused {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Src {
             get {
                 return "";
@@ -54,7 +54,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public float Volume {
             get {
                 return 0;

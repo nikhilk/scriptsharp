@@ -3,7 +3,6 @@ using System.Html;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace MemberTests {
 
@@ -24,8 +23,7 @@ namespace MemberTests {
             Do1();
             int v = Do2();
 
-            string s = String.FromCharCode(0);
-            s = String.FromCharCode(32, 65, 66);
+            string s = String.FromChar('A', 3);
             int i = s.IndexOf('A');
             i = s.IndexOf('A', 1);
         }
@@ -42,14 +40,14 @@ namespace MemberTests {
         }
     }
 
-    [GlobalMethods]
+    [ScriptExtension("$global")]
     public static class Foo {
 
         public static void DoStuff() {
         }
     }
 
-    [Mixin("window")]
+    [ScriptExtension("window")]
     public static class Bar {
 
         public static void M1() {
@@ -59,32 +57,12 @@ namespace MemberTests {
         }
     }
 
-    [GlobalMethods]
-    public static class FooBar {
-    
-        static FooBar() {
-            Window.Alert("Startup code in FooBar");
-        }
-
-        public static void DoStuff2() {
-        }
-    }
-
-    [GlobalMethods]
-    public static class FooBar2 {
-    
-        static FooBar2() {
-            int timeStamp = (new Date()).GetMilliseconds();
-            Window.Alert("Startup code in FooBar: " + timeStamp);
-        }
-    }
-
     public class X {
 
         public void Update(int i) { }
     }
 
-    [Mixin("$.fn")]
+    [ScriptExtension("$.fn")]
     public static class Plugin {
 
         public static X Extend(X x, int i) {

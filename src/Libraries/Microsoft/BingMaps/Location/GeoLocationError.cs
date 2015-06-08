@@ -8,21 +8,21 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.Location {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class GeoLocationError {
 
         private GeoLocationError() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int ErrorCode {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("internalError.code")]
         public int InternalCode {
             get {
@@ -30,7 +30,7 @@ namespace Microsoft.Maps.Location {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("internalError.message")]
         public string Message {
             get {

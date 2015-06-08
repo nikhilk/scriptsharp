@@ -26,6 +26,12 @@
     <None Include="Packages\Lib.jQuery.Templating.nuspec" />
     <None Include="Packages\Lib.jQuery.Validation.nuspec" />
     <None Include="Packages\Lib.Knockout.nuspec" />
+    <None Include="Packages\Lib.Node.nuspec" />
+    <None Include="Packages\Lib.Node.Express.nuspec" />
+    <None Include="Packages\Lib.Node.Restify.nuspec" />
+    <None Include="Packages\Lib.Node.Mongo.nuspec" />
+    <None Include="Packages\Lib.Node.Neo4j.nuspec" />
+    <None Include="Packages\Lib.Node.Azure.nuspec" />
     <None Include="Packages\Testing.nuspec" />
     <None Include="Packages\Runtime.nuspec" />
   </ItemGroup>
@@ -38,8 +44,12 @@
     <ItemTestClass Include="ItemTemplates\TestClass\*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectClassLibrary Include="ProjectTemplates\ClassLibrary\*" />
-    <ProjectJQueryClassLibrary Include="ProjectTemplates\jQueryClassLibrary\*" />
+    <ProjectHTMLApp Include="ProjectTemplates\HTMLApplication\*" />
+    <ProjectHTMLModule Include="ProjectTemplates\HTMLModule\*" />
+    <ProjectJQueryApp Include="ProjectTemplates\jQueryApplication\*" />
+    <ProjectJQueryPlugin Include="ProjectTemplates\jQueryPlugin\*" />
+    <ProjectNodeApp Include="ProjectTemplates\NodeApplication\*" />
+    <ProjectNodeModule Include="ProjectTemplates\NodeModule\*" />
     <ProjectUnitTest Include="ProjectTemplates\UnitTest\*" />
     <ProjectImportLibrary Include="ProjectTemplates\ImportLibrary\*" />
   </ItemGroup>
@@ -71,15 +81,27 @@
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.jQuery.Validation.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Knockout.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.BingMaps.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.Express.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.Restify.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.Mongo.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.Neo4j.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Lib.Node.Azure.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
     <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack $(ProjectDir)Packages\Runtime.nuspec -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+
     <Zip ZipLevel="9" Files="@(ItemClass)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Class.zip" WorkingDirectory="ItemTemplates\Class" />
     <Zip ZipLevel="9" Files="@(ItemPage)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Page.zip" WorkingDirectory="ItemTemplates\Page" />
     <Zip ZipLevel="9" Files="@(ItemJQueryPage)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\jQueryPage.zip" WorkingDirectory="ItemTemplates\jQueryPage" />
     <Zip ZipLevel="9" Files="@(ItemJQueryPlugin)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\jQueryPlugin.zip" WorkingDirectory="ItemTemplates\jQueryPlugin" />
     <Zip ZipLevel="9" Files="@(ItemResource)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Resource.zip" WorkingDirectory="ItemTemplates\Resource" />
     <Zip ZipLevel="9" Files="@(ItemTestClass)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\TestClass.zip" WorkingDirectory="ItemTemplates\TestClass" />
-    <Zip ZipLevel="9" Files="@(ProjectClassLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\ClassLibrary.zip" WorkingDirectory="ProjectTemplates\ClassLibrary" />
-    <Zip ZipLevel="9" Files="@(ProjectJQueryClassLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\jQueryClassLibrary.zip" WorkingDirectory="ProjectTemplates\jQueryClassLibrary" />
+
+    <Zip ZipLevel="9" Files="@(ProjectHTMLApp)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\HTMLApplication.zip" WorkingDirectory="ProjectTemplates\HTMLApplication" />
+    <Zip ZipLevel="9" Files="@(ProjectHTMLModule)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\HTMLModule.zip" WorkingDirectory="ProjectTemplates\HTMLModule" />
+    <Zip ZipLevel="9" Files="@(ProjectJQueryApp)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\jQueryApplication.zip" WorkingDirectory="ProjectTemplates\jQueryApplication" />
+    <Zip ZipLevel="9" Files="@(ProjectJQueryPlugin)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\jQueryPlugin.zip" WorkingDirectory="ProjectTemplates\jQueryPlugin" />
+    <Zip ZipLevel="9" Files="@(ProjectNodeApp)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\NodeApplication.zip" WorkingDirectory="ProjectTemplates\NodeApplication" />
+    <Zip ZipLevel="9" Files="@(ProjectNodeModule)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\NodeModule.zip" WorkingDirectory="ProjectTemplates\NodeModule" />
     <Zip ZipLevel="9" Files="@(ProjectUnitTest)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\UnitTest.zip" WorkingDirectory="ProjectTemplates\UnitTest" />
     <Zip ZipLevel="9" Files="@(ProjectImportLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\ImportLibrary.zip" WorkingDirectory="ProjectTemplates\ImportLibrary" />
     <Copy SourceFiles="@(Content)" DestinationFolder="$(OutputPath)" />

@@ -11,12 +11,12 @@ Types:
         Application Type: True
         Public: True
         Generated Name: App
-        Global Methods: False
+        Extension Methods: False
         Interfaces:
-            BasicTests.IApp
+            IApp
         Constructor:
             Constructor: 
-                AssociatedType: BasicTests.App
+                AssociatedType: App
                 Visibility: Public
                 Generated Name: 
         Members:
@@ -63,7 +63,7 @@ Types:
         Application Type: True
         Public: False
         Generated Name: AppHelper
-        Global Methods: False
+        Extension Methods: False
         Indexer:
             Indexer: Item
                 AssociatedType: Int32
@@ -137,10 +137,10 @@ Types:
         Application Type: True
         Public: False
         Generated Name: Point
-        Global Methods: False
+        Extension Methods: False
         Constructor:
             Constructor: 
-                AssociatedType: BasicTests.Point
+                AssociatedType: Point
                 Visibility: Public
                 Generated Name: 
                 Parameters:Parameter: x
@@ -163,7 +163,7 @@ Types:
         Application Type: True
         Public: False
         Generated Name: Util
-        Global Methods: True
+        Extension Methods: True
         Members:
             Method: ShowHelp
                 AssociatedType: Void
@@ -278,7 +278,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: arguments
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -310,7 +311,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -323,11 +325,6 @@ Types:
                 AssociatedType: Int32
                 Visibility: Public
                 Generated Name: length
-            Method: Clone
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: clone
-                Abstract: False
             Method: Concat
                 AssociatedType: Array
                 Visibility: Public
@@ -343,11 +340,6 @@ Types:
                 Visibility: Public
                 Generated Name: every
                 Abstract: False
-            Method: Extract
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: extract
-                Abstract: False
             Method: Filter
                 AssociatedType: Array
                 Visibility: Public
@@ -359,19 +351,14 @@ Types:
                 Generated Name: forEach
                 Abstract: False
             Method: GetEnumerator
-                AssociatedType: System.Collections.IEnumerator
+                AssociatedType: IEnumerator
                 Visibility: Public
                 Generated Name: getEnumerator
                 Abstract: False
-            Method: GroupBy
+            Method: GetRange
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: groupBy
-                Abstract: False
-            Method: Index
-                AssociatedType: Dictionary
-                Visibility: Public
-                Generated Name: index
+                Generated Name: getRange
                 Abstract: False
             Method: IndexOf
                 AssociatedType: Int32
@@ -396,7 +383,7 @@ Types:
             Method: Parse
                 AssociatedType: Array
                 Visibility: Public, Static
-                Generated Name: parse
+                Generated Name: ss.array
                 Abstract: False
             Method: Reduce
                 AssociatedType: Object
@@ -441,7 +428,7 @@ Types:
             Method: ToArray
                 AssociatedType: Array
                 Visibility: Public, Static
-                Generated Name: toArray
+                Generated Name: ss.array
                 Abstract: False
             Method: Unshift
                 AssociatedType: Void
@@ -453,30 +440,20 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Boolean
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: Parse
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: parse
+                Generated Name: ss.boolean
                 Abstract: False
         
     Class: Byte
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
             Method: ToString
                 AssociatedType: String
                 Visibility: Public
@@ -498,8 +475,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: CancelEventArgs
-        Global Methods: False
-        BaseClass: System.EventArgs
+        Extension Methods: False
+        BaseClass: EventArgs
         Members:
             Field: Cancel
                 AssociatedType: Boolean
@@ -510,7 +487,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: String
-        Global Methods: False
+        Extension Methods: False
         Members:
         
     Delegate: CompareCallback
@@ -528,29 +505,17 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Date
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
-            Field: Empty
+            Field: Now
                 AssociatedType: Date
                 Visibility: Public, Static
-                Generated Name: empty
-            Property: Now
+                Generated Name: ss.now()
+            Field: Today
                 AssociatedType: Date
                 Visibility: Public, Static
-                Generated Name: now
-                ReadOnly: True
-                Abstract: False
-            Property: Today
-                AssociatedType: Date
-                Visibility: Public, Static
-                Generated Name: today
-                ReadOnly: True
-                Abstract: False
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
+                Generated Name: ss.today()
             Method: GetDate
                 AssociatedType: Int32
                 Visibility: Public
@@ -641,20 +606,10 @@ Types:
                 Visibility: Public
                 Generated Name: getUTCSeconds
                 Abstract: False
-            Method: IsEmpty
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: isEmpty
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
             Method: Parse
                 AssociatedType: Date
                 Visibility: Public, Static
-                Generated Name: parseDate
+                Generated Name: ss.date
                 Abstract: False
             Method: SetDate
                 AssociatedType: Void
@@ -776,7 +731,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: Format
                 AssociatedType: String
@@ -803,59 +758,56 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Delegate
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
-            Field: Empty
-                AssociatedType: System.Delegate
-                Visibility: Public, Static
-                Generated Name: empty
-            Method: ClearExport
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: clearExport
-                Abstract: False
             Method: Combine
-                AssociatedType: System.Delegate
+                AssociatedType: Delegate
                 Visibility: Public, Static
-                Generated Name: combine
+                Generated Name: ss.bindAdd
                 Abstract: False
             Method: Create
-                AssociatedType: System.Delegate
+                AssociatedType: Delegate
                 Visibility: Public, Static
-                Generated Name: create
+                Generated Name: ss.bind
                 Abstract: False
-            Method: CreateExport
-                AssociatedType: String
+            Method: Export
+                AssociatedType: Export
                 Visibility: Public, Static
-                Generated Name: createExport
-                Abstract: False
-            Method: DeleteExport
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: deleteExport
+                Generated Name: ss.bindExport
                 Abstract: False
             Method: Remove
-                AssociatedType: System.Delegate
+                AssociatedType: Delegate
                 Visibility: Public, Static
-                Generated Name: remove
+                Generated Name: ss.bindSub
                 Abstract: False
         
     Class: Double
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
+            Field: MaxValue
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: MAX_VALUE
+            Field: MinValue
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: MIN_VALUE
+            Field: NaN
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: NaN
+            Field: NegativeInfinity
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: NEGATIVE_INFINITY
+            Field: PositiveInfinity
+                AssociatedType: Double
+                Visibility: Public, Static
+                Generated Name: POSITIVE_INFINITY
             Method: Parse
                 AssociatedType: Double
                 Visibility: Public, Static
@@ -881,17 +833,18 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Enum
-        Global Methods: False
+        Extension Methods: False
         Members:
         
     Class: EventArgs
         Application Type: False
         Public: True
         Generated Name: EventArgs
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: Empty
-                AssociatedType: System.EventArgs
+                AssociatedType: EventArgs
                 Visibility: Public, Static
                 Generated Name: Empty
         
@@ -921,7 +874,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Error
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -945,7 +899,29 @@ Types:
             Method: Create
                 AssociatedType: Exception
                 Visibility: Public, Static
-                Generated Name: Error.createError
+                Generated Name: ss.error
+                Abstract: False
+        
+    Class: Export
+        Application Type: False
+        Public: True
+        Generated Name: Export
+        Extension Methods: False
+        BaseClass: Object
+        Members:
+            Field: Name
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: name
+            Method: Detach
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: detach
+                Abstract: False
+            Method: Dispose
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: dispose
                 Abstract: False
         
     Delegate: Func`1
@@ -1051,7 +1027,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Function
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: Length
                 AssociatedType: Int32
@@ -1083,18 +1060,16 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
+            Field: MaxValue
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: MAX_VALUE
+            Field: MinValue
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: MIN_VALUE
             Method: ToString
                 AssociatedType: String
                 Visibility: Public
@@ -1105,18 +1080,16 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
+            Field: MaxValue
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: MAX_VALUE
+            Field: MinValue
+                AssociatedType: Int32
+                Visibility: Public, Static
+                Generated Name: MIN_VALUE
             Method: Parse
                 AssociatedType: Int32
                 Visibility: Public, Static
@@ -1132,18 +1105,16 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
+            Field: MaxValue
+                AssociatedType: Int64
+                Visibility: Public, Static
+                Generated Name: MAX_VALUE
+            Field: MinValue
+                AssociatedType: Int64
+                Visibility: Public, Static
+                Generated Name: MIN_VALUE
             Method: ToString
                 AssociatedType: String
                 Visibility: Public
@@ -1154,7 +1125,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Math
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: E
                 AssociatedType: Double
@@ -1281,14 +1253,14 @@ Types:
             Method: Truncate
                 AssociatedType: Int32
                 Visibility: Public, Static
-                Generated Name: parseInt
+                Generated Name: ss.truncate
                 Abstract: False
         
     Class: Nullable`1
         Application Type: False
         Public: True
         Generated Name: Nullable`1
-        Global Methods: False
+        Extension Methods: False
         Members:
             Property: HasValue
                 AssociatedType: Boolean
@@ -1312,33 +1284,29 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
-            Field: MAX_VALUE
-                AssociatedType: Int32
+            Field: MaxValue
+                AssociatedType: Double
                 Visibility: Public, Static
                 Generated Name: MAX_VALUE
-            Field: MIN_VALUE
-                AssociatedType: Int32
+            Field: MinValue
+                AssociatedType: Double
                 Visibility: Public, Static
                 Generated Name: MIN_VALUE
             Field: NaN
-                AssociatedType: Int32
+                AssociatedType: Double
                 Visibility: Public, Static
                 Generated Name: NaN
-            Field: NEGATIVE_INFINITY
-                AssociatedType: Int32
+            Field: NegativeInfinity
+                AssociatedType: Double
                 Visibility: Public, Static
                 Generated Name: NEGATIVE_INFINITY
-            Field: POSITIVE_INFINITY
-                AssociatedType: Int32
+            Field: PositiveInfinity
+                AssociatedType: Double
                 Visibility: Public, Static
                 Generated Name: POSITIVE_INFINITY
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
             Method: IsFinite
                 AssociatedType: Boolean
                 Visibility: Public, Static
@@ -1349,15 +1317,10 @@ Types:
                 Visibility: Public, Static
                 Generated Name: isNaN
                 Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
             Method: Parse
                 AssociatedType: Number
                 Visibility: Public, Static
-                Generated Name: parse
+                Generated Name: ss.number
                 Abstract: False
             Method: ParseDouble
                 AssociatedType: Double
@@ -1399,12 +1362,12 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Object
-        Global Methods: False
+        Extension Methods: False
         Members:
             Method: GetType
                 AssociatedType: Type
                 Visibility: Public
-                Generated Name: getType
+                Generated Name: ss.typeOf
                 Abstract: False
             Method: ToString
                 AssociatedType: String
@@ -1417,18 +1380,12 @@ Types:
                 Generated Name: toLocaleString
                 Abstract: False
         
-    Class: Record
-        Application Type: False
-        Public: True
-        Generated Name: Record
-        Global Methods: False
-        Members:
-        
-    Class: RegularExpression
+    Class: RegExp
         Application Type: False
         Public: True
         Generated Name: RegExp
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: LastIndex
                 AssociatedType: Int32
@@ -1460,9 +1417,9 @@ Types:
                 Generated Name: exec
                 Abstract: False
             Method: Parse
-                AssociatedType: RegularExpression
+                AssociatedType: RegExp
                 Visibility: Public, Static
-                Generated Name: parse
+                Generated Name: ss.regexp
                 Abstract: False
             Method: Test
                 AssociatedType: Boolean
@@ -1474,18 +1431,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
             Method: ToString
                 AssociatedType: String
                 Visibility: Public
@@ -1496,8 +1443,21 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Script
-        Global Methods: True
+        Extension Methods: False
+        BaseClass: Object
         Members:
+            Field: Global
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: $global
+            Field: Modules
+                AssociatedType: Dictionary`2
+                Visibility: Public, Static
+                Generated Name: ss.modules
+            Field: Undefined
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: undefined
             Method: Boolean
                 AssociatedType: Boolean
                 Visibility: Public, Static
@@ -1512,11 +1472,6 @@ Types:
                 AssociatedType: Void
                 Visibility: Public, Static
                 Generated Name: clearTimeout
-                Abstract: False
-            Method: Confirm
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: confirm
                 Abstract: False
             Method: CreateInstance
                 AssociatedType: Object
@@ -1558,6 +1513,21 @@ Types:
                 Visibility: Public, Static
                 Generated Name: invokeMethod
                 Abstract: False
+            Method: IsFalsey
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isFalsey
+                Abstract: False
+            Method: IsFinite
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isFinite
+                Abstract: False
+            Method: IsNaN
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isNaN
+                Abstract: False
             Method: IsNull
                 AssociatedType: Boolean
                 Visibility: Public, Static
@@ -1578,10 +1548,20 @@ Types:
                 Visibility: Public, Static
                 Generated Name: ss.isValue
                 Abstract: False
+            Method: IsTruthy
+                AssociatedType: Boolean
+                Visibility: Public, Static
+                Generated Name: isTruthy
+                Abstract: False
             Method: Literal
                 AssociatedType: Object
                 Visibility: Public, Static
                 Generated Name: literal
+                Abstract: False
+            Method: Or
+                AssociatedType: TValue
+                Visibility: Public, Static
+                Generated Name: or
                 Abstract: False
             Method: SetField
                 AssociatedType: Void
@@ -1601,55 +1581,45 @@ Types:
             Method: Value
                 AssociatedType: TValue
                 Visibility: Public, Static
-                Generated Name: value
+                Generated Name: ss.value
                 Abstract: False
-            Method: Escape
+            Method: Enumerate
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: ss.enumerate
+                Abstract: False
+                Parameters:
+                    Parameter: obj
+                    AssociatedType: Object
+                    Mode: In
+            Method: GetTypeName
                 AssociatedType: String
                 Visibility: Public, Static
-                Generated Name: escape
+                Generated Name: ss.typeName
                 Abstract: False
-            Method: Unescape
-                AssociatedType: String
+                Parameters:
+                    Parameter: obj
+                    AssociatedType: Object
+                    Mode: In
+            Method: CompareDates
+                AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: unescape
+                Generated Name: ss.compareDates
                 Abstract: False
-            Method: EncodeUri
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: encodeURI
-                Abstract: False
-            Method: DecodeUri
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: decodeURI
-                Abstract: False
-            Method: EncodeUriComponent
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: encodeURIComponent
-                Abstract: False
-            Method: DecodeUriComponent
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: decodeURIComponent
-                Abstract: False
+                Parameters:
+                    Parameter: d1
+                    AssociatedType: Date
+                    Mode: In
+                    Parameter: d2
+                    AssociatedType: Date
+                    Mode: In
         
     Class: Single
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
             Method: Parse
                 AssociatedType: Single
                 Visibility: Public, Static
@@ -1675,7 +1645,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: String
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Indexer:
             Indexer: Item
                 AssociatedType: Char
@@ -1687,7 +1658,7 @@ Types:
             Field: Empty
                 AssociatedType: String
                 Visibility: Public, Static
-                Generated Name: Empty
+                Generated Name: empty
             Field: Length
                 AssociatedType: Int32
                 Visibility: Public
@@ -1705,17 +1676,12 @@ Types:
             Method: Compare
                 AssociatedType: Int32
                 Visibility: Public, Static
-                Generated Name: compare
-                Abstract: False
-            Method: CompareTo
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: compareTo
+                Generated Name: ss.compareStrings
                 Abstract: False
             Method: Concat
                 AssociatedType: String
                 Visibility: Public, Static
-                Generated Name: concat
+                Generated Name: ss.string
                 Abstract: False
             Method: DecodeUri
                 AssociatedType: String
@@ -1740,12 +1706,7 @@ Types:
             Method: EndsWith
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: endsWith
-                Abstract: False
-            Method: Equals
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: equals
+                Generated Name: ss.endsWith
                 Abstract: False
             Method: Escape
                 AssociatedType: String
@@ -1755,72 +1716,42 @@ Types:
             Method: Format
                 AssociatedType: String
                 Visibility: Public, Static
-                Generated Name: format
+                Generated Name: ss.format
                 Abstract: False
             Method: FromChar
                 AssociatedType: String
                 Visibility: Public, Static
-                Generated Name: fromChar
+                Generated Name: ss.string
                 Abstract: False
             Method: FromCharCode
                 AssociatedType: String
                 Visibility: Public, Static
                 Generated Name: fromCharCode
                 Abstract: False
-            Method: HtmlDecode
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: htmlDecode
-                Abstract: False
-            Method: HtmlEncode
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: htmlEncode
-                Abstract: False
             Method: IndexOf
                 AssociatedType: Int32
                 Visibility: Public
                 Generated Name: indexOf
                 Abstract: False
-            Method: IndexOfAny
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: indexOfAny
-                Abstract: False
             Method: Insert
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: insert
+                Generated Name: ss.insertString
                 Abstract: False
             Method: IsNullOrEmpty
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: isNullOrEmpty
+                Generated Name: ss.emptyString
                 Abstract: False
             Method: IsNullOrWhiteSpace
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: isNullOrWhiteSpace
+                Generated Name: ss.whitespace
                 Abstract: False
             Method: LastIndexOf
                 AssociatedType: Int32
                 Visibility: Public
                 Generated Name: lastIndexOf
-                Abstract: False
-            Method: LastIndexOfAny
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: lastIndexOfAny
-                Abstract: False
-            Method: LocaleCompare
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: localeCompare
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public, Static
-                Generated Name: localeFormat
                 Abstract: False
             Method: Match
                 AssociatedType: Array
@@ -1830,22 +1761,22 @@ Types:
             Method: PadLeft
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: padLeft
+                Generated Name: ss.padLeft
                 Abstract: False
             Method: PadRight
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: padRight
+                Generated Name: ss.padRight
                 Abstract: False
             Method: Remove
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: remove
+                Generated Name: ss.removeString
                 Abstract: False
             Method: Replace
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: replaceAll
+                Generated Name: ss.replaceString
                 Abstract: False
             Method: ReplaceFirst
                 AssociatedType: String
@@ -1870,7 +1801,7 @@ Types:
             Method: StartsWith
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: startsWith
+                Generated Name: ss.startsWith
                 Abstract: False
             Method: Substr
                 AssociatedType: String
@@ -1905,17 +1836,17 @@ Types:
             Method: Trim
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: trim
-                Abstract: False
-            Method: TrimStart
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: trimStart
+                Generated Name: ss.trim
                 Abstract: False
             Method: TrimEnd
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: trimEnd
+                Generated Name: ss.trimEnd
+                Abstract: False
+            Method: TrimStart
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: ss.trimStart
                 Abstract: False
             Method: Unescape
                 AssociatedType: String
@@ -1927,19 +1858,20 @@ Types:
         Application Type: False
         Public: True
         Generated Name: StringBuilder
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: IsEmpty
                 AssociatedType: Boolean
                 Visibility: Public
                 Generated Name: isEmpty
             Method: Append
-                AssociatedType: System.StringBuilder
+                AssociatedType: StringBuilder
                 Visibility: Public
                 Generated Name: append
                 Abstract: False
             Method: AppendLine
-                AssociatedType: System.StringBuilder
+                AssociatedType: StringBuilder
                 Visibility: Public
                 Generated Name: appendLine
                 Abstract: False
@@ -1969,54 +1901,73 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Tuple
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
-            Field: First
+            Field: Item1
                 AssociatedType: T1
                 Visibility: Public
-                Generated Name: first
-            Field: Second
+                Generated Name: item1
+            Field: Item2
                 AssociatedType: T2
                 Visibility: Public
-                Generated Name: second
+                Generated Name: item2
         
     Class: Tuple`3
         Application Type: False
         Public: True
         Generated Name: Tuple
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
-            Field: First
+            Field: Item1
                 AssociatedType: T1
                 Visibility: Public
-                Generated Name: first
-            Field: Second
+                Generated Name: item1
+            Field: Item2
                 AssociatedType: T2
                 Visibility: Public
-                Generated Name: second
-            Field: Third
+                Generated Name: item2
+            Field: Item3
                 AssociatedType: T3
                 Visibility: Public
-                Generated Name: third
+                Generated Name: item3
+        
+    Class: Tuple`4
+        Application Type: False
+        Public: True
+        Generated Name: Tuple
+        Extension Methods: False
+        BaseClass: Object
+        Members:
+            Field: Item1
+                AssociatedType: T1
+                Visibility: Public
+                Generated Name: item1
+            Field: Item2
+                AssociatedType: T2
+                Visibility: Public
+                Generated Name: item2
+            Field: Item3
+                AssociatedType: T3
+                Visibility: Public
+                Generated Name: item3
+            Field: Item4
+                AssociatedType: T4
+                Visibility: Public
+                Generated Name: item4
         
     Class: Type
         Application Type: False
         Public: True
         Generated Name: Type
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
-            Property: BaseType
+            Field: BaseType
                 AssociatedType: Type
                 Visibility: Public
-                Generated Name: baseType
-                ReadOnly: True
-                Abstract: False
-            Property: FullName
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: fullName
-                ReadOnly: True
-                Abstract: False
+                Generated Name: $base
             Property: Name
                 AssociatedType: String
                 Visibility: Public
@@ -2030,59 +1981,40 @@ Types:
             Method: GetType
                 AssociatedType: Type
                 Visibility: Public, Static
-                Generated Name: getType
+                Generated Name: ss.type
                 Abstract: False
             Method: IsAssignableFrom
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: isAssignableFrom
+                Generated Name: ss.canAssign
                 Abstract: False
             Method: IsClass
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: isClass
+                Generated Name: ss.isClass
                 Abstract: False
             Method: IsInterface
                 AssociatedType: Boolean
                 Visibility: Public, Static
-                Generated Name: isInterface
+                Generated Name: ss.isInterface
                 Abstract: False
             Method: IsInstanceOfType
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: isInstanceOfType
+                Generated Name: ss.instanceOf
                 Abstract: False
             Method: GetTypeFromHandle
                 AssociatedType: Type
                 Visibility: Public, Static
                 Generated Name: getTypeFromHandle
                 Abstract: False
-            Method: GetInstanceType
-                AssociatedType: Type
-                Visibility: Public, Static
-                Generated Name: getInstanceType
-                Abstract: False
-                Parameters:
-                    Parameter: instance
-                    AssociatedType: Object
-                    Mode: In
         
     Class: UInt16
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
             Method: ToString
                 AssociatedType: String
                 Visibility: Public
@@ -2093,18 +2025,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
             Method: ToString
                 AssociatedType: String
                 Visibility: Public
@@ -2115,18 +2037,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Number
-        Global Methods: False
+        Extension Methods: False
         Members:
-            Method: Format
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: format
-                Abstract: False
-            Method: LocaleFormat
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: localeFormat
-                Abstract: False
             Method: ToString
                 AssociatedType: String
                 Visibility: Public
@@ -2137,7 +2049,7 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Void
-        Global Methods: False
+        Extension Methods: False
         Members:
         
 
@@ -2166,113 +2078,6 @@ Types:
                 Generated Name: 
                 Abstract: True
         
-    Class: ArrayGrouping
-        Application Type: False
-        Public: True
-        Generated Name: Array
-        Global Methods: False
-        Indexer:
-            Indexer: Item
-                AssociatedType: Object
-                Visibility: Public
-                Generated Name: item
-                ReadOnly: False
-                Abstract: False
-        Members:
-            Field: Key
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: key
-            Field: Length
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: length
-            Method: Clone
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: clone
-                Abstract: False
-            Method: Concat
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: concat
-                Abstract: False
-            Method: Contains
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: contains
-                Abstract: False
-            Method: Every
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: every
-                Abstract: False
-            Method: Extract
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: extract
-                Abstract: False
-            Method: Filter
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: filter
-                Abstract: False
-            Method: ForEach
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: forEach
-                Abstract: False
-            Method: GetEnumerator
-                AssociatedType: System.Collections.IEnumerator
-                Visibility: Public
-                Generated Name: getEnumerator
-                Abstract: False
-            Method: GroupBy
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: groupBy
-                Abstract: False
-            Method: Index
-                AssociatedType: Dictionary
-                Visibility: Public
-                Generated Name: index
-                Abstract: False
-            Method: IndexOf
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: indexOf
-                Abstract: False
-            Method: Join
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: join
-                Abstract: False
-            Method: LastIndexOf
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: lastIndexOf
-                Abstract: False
-            Method: Map
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: map
-                Abstract: False
-            Method: Reverse
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: reverse
-                Abstract: False
-            Method: Some
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: some
-                Abstract: False
-            Method: Sort
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: sort
-                Abstract: False
-        
     Delegate: ArrayItemCallback
         Application Type: False
         Public: True
@@ -2291,17 +2096,6 @@ Types:
         Members:
             Method: Invoke
                 AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: 
-                Abstract: True
-        
-    Delegate: ArrayItemKeyGenerator
-        Application Type: False
-        Public: True
-        Generated Name: Function
-        Members:
-            Method: Invoke
-                AssociatedType: String
                 Visibility: Public
                 Generated Name: 
                 Abstract: True
@@ -2332,7 +2126,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2348,17 +2143,12 @@ Types:
             Method: Add
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: add
+                Generated Name: push
                 Abstract: False
             Method: AddRange
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: addRange
-                Abstract: False
-            Method: Clone
-                AssociatedType: ArrayList
-                Visibility: Public
-                Generated Name: clone
+                Generated Name: push
                 Abstract: False
             Method: Clear
                 AssociatedType: Void
@@ -2380,11 +2170,6 @@ Types:
                 Visibility: Public
                 Generated Name: every
                 Abstract: False
-            Method: Extract
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: extract
-                Abstract: False
             Method: Filter
                 AssociatedType: Array
                 Visibility: Public
@@ -2396,19 +2181,14 @@ Types:
                 Generated Name: forEach
                 Abstract: False
             Method: GetEnumerator
-                AssociatedType: System.Collections.IEnumerator
+                AssociatedType: IEnumerator
                 Visibility: Public
                 Generated Name: getEnumerator
                 Abstract: False
-            Method: GroupBy
+            Method: GetRange
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: groupBy
-                Abstract: False
-            Method: Index
-                AssociatedType: Dictionary
-                Visibility: Public
-                Generated Name: index
+                Generated Name: getRange
                 Abstract: False
             Method: IndexOf
                 AssociatedType: Int32
@@ -2458,7 +2238,7 @@ Types:
             Method: Remove
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: remove
+                Generated Name: ss.remove
                 Abstract: False
             Method: RemoveAt
                 AssociatedType: Void
@@ -2532,7 +2312,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Object
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2556,12 +2337,12 @@ Types:
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: clear
+                Generated Name: ss.clearKeys
                 Abstract: False
             Method: ContainsKey
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: containsKey
+                Generated Name: ss.keyExists
                 Abstract: False
             Method: GetDictionary
                 AssociatedType: Dictionary
@@ -2576,34 +2357,20 @@ Types:
             Method: GetKeys
                 AssociatedType: Array
                 Visibility: Public, Static
-                Generated Name: keys
+                Generated Name: ss.keys
                 Abstract: False
             Method: GetKeyCount
                 AssociatedType: Int32
                 Visibility: Public, Static
-                Generated Name: getKeyCount
-                Abstract: False
-            Method: ClearKeys
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: clearKeys
-                Abstract: False
-            Method: DeleteKey
-                AssociatedType: Void
-                Visibility: Public, Static
-                Generated Name: deleteKey
-                Abstract: False
-            Method: KeyExists
-                AssociatedType: Boolean
-                Visibility: Public, Static
-                Generated Name: keyExists
+                Generated Name: ss.keyCount
                 Abstract: False
         
     Class: DictionaryEntry
         Application Type: False
         Public: True
         Generated Name: DictionaryEntry
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: Key
                 AssociatedType: String
@@ -2630,7 +2397,7 @@ Types:
         Generated Name: IEnumerable
         Members:
             Method: GetEnumerator
-                AssociatedType: System.Collections.IEnumerator
+                AssociatedType: IEnumerator
                 Visibility: Public
                 Generated Name: getEnumerator
                 Abstract: True
@@ -2669,7 +2436,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: ObservableCollection
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2700,7 +2468,7 @@ Types:
                 Generated Name: contains
                 Abstract: False
             Method: GetEnumerator
-                AssociatedType: System.Collections.IEnumerator
+                AssociatedType: IEnumerator
                 Visibility: Public
                 Generated Name: getEnumerator
                 Abstract: False
@@ -2733,13 +2501,14 @@ Types:
     Class: Queue
         Application Type: False
         Public: True
-        Generated Name: Array
-        Global Methods: False
+        Generated Name: Queue
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: length
+                Generated Name: count
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
@@ -2769,13 +2538,14 @@ Types:
     Class: Stack
         Application Type: False
         Public: True
-        Generated Name: Array
-        Global Methods: False
+        Generated Name: Stack
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: length
+                Generated Name: count
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
@@ -2821,7 +2591,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Object
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Indexer:
             Indexer: Item
                 AssociatedType: TValue
@@ -2837,7 +2608,7 @@ Types:
                 ReadOnly: True
                 Abstract: False
             Property: Keys
-                AssociatedType: System.Collections.Generic.IReadonlyCollection`1
+                AssociatedType: IReadonlyCollection`1
                 Visibility: Public
                 Generated Name: keys
                 ReadOnly: True
@@ -2850,12 +2621,12 @@ Types:
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: clear
+                Generated Name: ss.clearKeys
                 Abstract: False
             Method: ContainsKey
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: containsKey
+                Generated Name: ss.keyExists
                 Abstract: False
             Method: GetDictionary
                 AssociatedType: Dictionary`2
@@ -2863,7 +2634,7 @@ Types:
                 Generated Name: getDictionary
                 Abstract: False
             Method: GetEnumerator
-                AssociatedType: System.Collections.Generic.IEnumerator`1
+                AssociatedType: IEnumerator`1
                 Visibility: Public
                 Generated Name: getEnumerator
                 Abstract: False
@@ -2894,7 +2665,7 @@ Types:
         Generated Name: IEnumerable
         Members:
             Method: GetEnumerator
-                AssociatedType: System.Collections.Generic.IEnumerator`1
+                AssociatedType: IEnumerator`1
                 Visibility: Public
                 Generated Name: getEnumerator
                 Abstract: True
@@ -2933,7 +2704,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Object
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: Key
                 AssociatedType: TKey
@@ -2948,7 +2720,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Array
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Indexer:
             Indexer: Item
                 AssociatedType: T
@@ -2964,17 +2737,12 @@ Types:
             Method: Add
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: add
+                Generated Name: push
                 Abstract: False
             Method: AddRange
                 AssociatedType: Void
                 Visibility: Public
-                Generated Name: addRange
-                Abstract: False
-            Method: Clone
-                AssociatedType: List`1
-                Visibility: Public
-                Generated Name: clone
+                Generated Name: push
                 Abstract: False
             Method: Clear
                 AssociatedType: Void
@@ -2996,11 +2764,6 @@ Types:
                 Visibility: Public
                 Generated Name: every
                 Abstract: False
-            Method: Extract
-                AssociatedType: List`1
-                Visibility: Public
-                Generated Name: extract
-                Abstract: False
             Method: Filter
                 AssociatedType: List`1
                 Visibility: Public
@@ -3012,14 +2775,14 @@ Types:
                 Generated Name: forEach
                 Abstract: False
             Method: GetEnumerator
-                AssociatedType: System.Collections.Generic.IEnumerator`1
+                AssociatedType: IEnumerator`1
                 Visibility: Public
                 Generated Name: getEnumerator
                 Abstract: False
-            Method: GroupBy
-                AssociatedType: Array
+            Method: GetRange
+                AssociatedType: List`1
                 Visibility: Public
-                Generated Name: groupBy
+                Generated Name: getRange
                 Abstract: False
             Method: IndexOf
                 AssociatedType: Int32
@@ -3069,7 +2832,7 @@ Types:
             Method: Remove
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: remove
+                Generated Name: ss.remove
                 Abstract: False
             Method: RemoveAt
                 AssociatedType: Void
@@ -3134,93 +2897,6 @@ Types:
                 Generated Name: 
                 Abstract: True
         
-    Class: ListGrouping`1
-        Application Type: False
-        Public: True
-        Generated Name: Array
-        Global Methods: False
-        Indexer:
-            Indexer: Item
-                AssociatedType: T
-                Visibility: Public
-                Generated Name: item
-                ReadOnly: True
-                Abstract: False
-        Members:
-            Field: Key
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: key
-            Field: Count
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: length
-            Method: Contains
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: contains
-                Abstract: False
-            Method: Every
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: every
-                Abstract: False
-            Method: Extract
-                AssociatedType: List`1
-                Visibility: Public
-                Generated Name: extract
-                Abstract: False
-            Method: Filter
-                AssociatedType: List`1
-                Visibility: Public
-                Generated Name: filter
-                Abstract: False
-            Method: ForEach
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: forEach
-                Abstract: False
-            Method: GetEnumerator
-                AssociatedType: System.Collections.Generic.IEnumerator`1
-                Visibility: Public
-                Generated Name: getEnumerator
-                Abstract: False
-            Method: GroupBy
-                AssociatedType: Array
-                Visibility: Public
-                Generated Name: groupBy
-                Abstract: False
-            Method: IndexOf
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: indexOf
-                Abstract: False
-            Method: Join
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: join
-                Abstract: False
-            Method: LastIndexOf
-                AssociatedType: Int32
-                Visibility: Public
-                Generated Name: lastIndexOf
-                Abstract: False
-            Method: Map
-                AssociatedType: List`1
-                Visibility: Public
-                Generated Name: map
-                Abstract: False
-            Method: Reverse
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: reverse
-                Abstract: False
-            Method: Some
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: some
-                Abstract: False
-        
     Delegate: ListItemCallback`1
         Application Type: False
         Public: True
@@ -3239,17 +2915,6 @@ Types:
         Members:
             Method: Invoke
                 AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: 
-                Abstract: True
-        
-    Delegate: ListItemKeyGenerator`1
-        Application Type: False
-        Public: True
-        Generated Name: Function
-        Members:
-            Method: Invoke
-                AssociatedType: String
                 Visibility: Public
                 Generated Name: 
                 Abstract: True
@@ -3302,7 +2967,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: ObservableCollection
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Indexer:
             Indexer: Item
                 AssociatedType: T
@@ -3333,7 +2999,7 @@ Types:
                 Generated Name: contains
                 Abstract: False
             Method: GetEnumerator
-                AssociatedType: System.Collections.Generic.IEnumerator`1
+                AssociatedType: IEnumerator`1
                 Visibility: Public
                 Generated Name: getEnumerator
                 Abstract: False
@@ -3366,13 +3032,14 @@ Types:
     Class: Queue`1
         Application Type: False
         Public: True
-        Generated Name: Array
-        Global Methods: False
+        Generated Name: Queue
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: length
+                Generated Name: count
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
@@ -3402,13 +3069,14 @@ Types:
     Class: Stack`1
         Application Type: False
         Public: True
-        Generated Name: Array
-        Global Methods: False
+        Generated Name: Stack
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: length
+                Generated Name: count
             Method: Clear
                 AssociatedType: Void
                 Visibility: Public
@@ -3523,7 +3191,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Observable
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Method: GetValue
                 AssociatedType: T
@@ -3540,10 +3209,11 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Observable
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Method: RegisterObserver
-                AssociatedType: System.IDisposable
+                AssociatedType: IDisposable
                 Visibility: Public, Static
                 Generated Name: registerObserver
                 Abstract: False
@@ -3556,7 +3226,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: console
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Method: Assert
                 AssociatedType: Void
@@ -3568,7 +3239,7 @@ Types:
             Method: Fail
                 AssociatedType: Void
                 Visibility: Public, Static
-                Generated Name: fail
+                Generated Name: ss.fail
                 Abstract: False
                 Conditions:
                     DEBUG
@@ -3587,21 +3258,22 @@ Types:
     Class: CultureInfo
         Application Type: False
         Public: True
-        Generated Name: CultureInfo
-        Global Methods: False
+        Generated Name: culture
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: CurrentCulture
-                AssociatedType: System.Globalization.CultureInfo
+                AssociatedType: CultureInfo
                 Visibility: Public, Static
-                Generated Name: CurrentCulture
+                Generated Name: current
             Field: DateFormat
                 AssociatedType: DateFormatInfo
                 Visibility: Public
-                Generated Name: dateFormat
+                Generated Name: dtf
             Field: InvariantCulture
-                AssociatedType: System.Globalization.CultureInfo
+                AssociatedType: CultureInfo
                 Visibility: Public, Static
-                Generated Name: InvariantCulture
+                Generated Name: neutral
             Field: Name
                 AssociatedType: String
                 Visibility: Public
@@ -3609,185 +3281,187 @@ Types:
             Field: NumberFormat
                 AssociatedType: NumberFormatInfo
                 Visibility: Public
-                Generated Name: numberFormat
+                Generated Name: nf
         
     Class: DateFormatInfo
         Application Type: False
         Public: True
         Generated Name: DateFormatInfo
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: AMDesignator
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: amDesignator
+                Generated Name: am
             Field: PMDesignator
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: pmDesignator
+                Generated Name: pm
             Field: DateSeparator
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: dateSeparator
+                Generated Name: ds
             Field: TimeSeparator
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: timeSeparator
+                Generated Name: ts
             Field: GMTDateTimePattern
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: gmtDateTimePattern
+                Generated Name: gmt
             Field: UniversalDateTimePattern
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: universalDateTimePattern
+                Generated Name: uni
             Field: SortableDateTimePattern
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: sortableDateTimePattern
+                Generated Name: sort
             Field: DateTimePattern
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: dateTimePattern
+                Generated Name: dt
             Field: LongDatePattern
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: longDatePattern
+                Generated Name: ld
             Field: ShortDatePattern
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: shortDatePattern
+                Generated Name: sd
             Field: LongTimePattern
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: longTimePattern
+                Generated Name: lt
             Field: ShortTimePattern
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: shortTimePattern
+                Generated Name: st
             Field: FirstDayOfWeek
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: firstDayOfWeek
+                Generated Name: day0
             Field: DayNames
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: dayNames
+                Generated Name: day
             Field: ShortDayNames
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: shortDayNames
+                Generated Name: sday
             Field: MinimizedDayNames
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: minimizedDayNames
+                Generated Name: mday
             Field: MonthNames
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: monthNames
+                Generated Name: mon
             Field: ShortMonthNames
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: shortMonthNames
+                Generated Name: smon
         
     Class: NumberFormatInfo
         Application Type: False
         Public: True
         Generated Name: NumberFormatInfo
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: NaNSymbol
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: naNSymbol
+                Generated Name: nan
             Field: NegativeSign
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: negativeSign
+                Generated Name: neg
             Field: PositiveSign
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: positiveSign
+                Generated Name: pos
             Field: NegativeInfinityText
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: negativeInfinityText
+                Generated Name: negInf
             Field: PositiveInfinityText
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: positiveInfinityText
+                Generated Name: posInf
             Field: PercentSymbol
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: percentSymbol
+                Generated Name: per
             Field: PercentGroupSizes
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: percentGroupSizes
+                Generated Name: perGW
             Field: PercentDecimalDigits
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: percentDecimalDigits
+                Generated Name: perDD
             Field: PercentDecimalSeparator
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: percentDecimalSeparator
+                Generated Name: perDS
             Field: PercentGroupSeparator
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: percentGroupSeparator
-            Field: PercentPositivePattern
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: percentPositivePattern
+                Generated Name: perGS
             Field: PercentNegativePattern
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: percentNegativePattern
+                Generated Name: perNP
+            Field: PercentPositivePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: perPP
             Field: CurrencySymbol
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: currencySymbol
+                Generated Name: cur
             Field: CurrencyGroupSizes
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: currencyGroupSizes
+                Generated Name: curGW
             Field: CurrencyDecimalDigits
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: currencyDecimalDigits
+                Generated Name: curDD
             Field: CurrencyDecimalSeparator
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: currencyDecimalSeparator
+                Generated Name: curDS
             Field: CurrencyGroupSeparator
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: currencyGroupSeparator
-            Field: CurrencyPositivePattern
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: currencyPositivePattern
+                Generated Name: curGS
             Field: CurrencyNegativePattern
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: currencyNegativePattern
+                Generated Name: curNP
+            Field: CurrencyPositivePattern
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: curPP
             Field: NumberGroupSizes
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: numberGroupSizes
+                Generated Name: gw
             Field: NumberDecimalDigits
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: numberDecimalDigits
+                Generated Name: dd
             Field: NumberDecimalSeparator
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: numberDecimalSeparator
+                Generated Name: ds
             Field: NumberGroupSeparator
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: numberGroupSeparator
+                Generated Name: gs
         
 
 Namespace: System.Serialization
@@ -3797,7 +3471,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: JSON
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Method: Parse
                 AssociatedType: Object
@@ -3845,7 +3520,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Assert
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Method: AreEqual
                 AssociatedType: Void
@@ -3872,7 +3548,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: TestClass
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Method: Cleanup
                 AssociatedType: Void
@@ -3889,7 +3566,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: TestEngine
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Method: Log
                 AssociatedType: Void
@@ -3920,12 +3598,18 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Deferred
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Field: Task
-                AssociatedType: System.Threading.Task
+                AssociatedType: Task
                 Visibility: Public
                 Generated Name: task
+            Method: Create
+                AssociatedType: Deferred
+                Visibility: Public, Static
+                Generated Name: ss.deferred
+                Abstract: False
             Method: Reject
                 AssociatedType: Void
                 Visibility: Public
@@ -3941,11 +3625,11 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Deferred
-        Global Methods: False
-        BaseClass: System.Threading.Deferred
+        Extension Methods: False
+        BaseClass: Deferred
         Members:
             Field: Task
-                AssociatedType: System.Threading.Task`1
+                AssociatedType: Task`1
                 Visibility: Public
                 Generated Name: task
             Method: Resolve
@@ -3958,7 +3642,8 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Task
-        Global Methods: False
+        Extension Methods: False
+        BaseClass: Object
         Members:
             Property: Completed
                 AssociatedType: Boolean
@@ -3975,37 +3660,42 @@ Types:
                 Visibility: Public
                 Generated Name: status
             Method: All
-                AssociatedType: System.Threading.Task`1
+                AssociatedType: Task`1
                 Visibility: Public, Static
                 Generated Name: all
                 Abstract: False
             Method: Any
-                AssociatedType: System.Threading.Task`1
+                AssociatedType: Task`1
                 Visibility: Public, Static
                 Generated Name: any
                 Abstract: False
+            Method: ChangeWith
+                AssociatedType: Task`1
+                Visibility: Public
+                Generated Name: changeWith
+                Abstract: False
             Method: ContinueWith
-                AssociatedType: System.Threading.Task
+                AssociatedType: Task
                 Visibility: Public
                 Generated Name: continueWith
                 Abstract: False
             Method: Delay
-                AssociatedType: System.Threading.Task
+                AssociatedType: Task
                 Visibility: Public, Static
                 Generated Name: delay
                 Abstract: False
             Method: Done
-                AssociatedType: System.Threading.Task
+                AssociatedType: Task
                 Visibility: Public
                 Generated Name: done
                 Abstract: False
             Method: Fail
-                AssociatedType: System.Threading.Task
+                AssociatedType: Task
                 Visibility: Public
                 Generated Name: fail
                 Abstract: False
             Method: Then
-                AssociatedType: System.Threading.Task
+                AssociatedType: Task
                 Visibility: Public
                 Generated Name: then
                 Abstract: False
@@ -4014,20 +3704,25 @@ Types:
         Application Type: False
         Public: True
         Generated Name: Task
-        Global Methods: False
-        BaseClass: System.Threading.Task
+        Extension Methods: False
+        BaseClass: Task
         Members:
             Field: Result
                 AssociatedType: T
                 Visibility: Public
                 Generated Name: result
+            Method: ChangeWith
+                AssociatedType: Task`1
+                Visibility: Public
+                Generated Name: changeWith
+                Abstract: False
             Method: ContinueWith
-                AssociatedType: System.Threading.Task`1
+                AssociatedType: Task`1
                 Visibility: Public
                 Generated Name: continueWith
                 Abstract: False
             Method: Done
-                AssociatedType: System.Threading.Task`1
+                AssociatedType: Task`1
                 Visibility: Public
                 Generated Name: done
                 Abstract: False
@@ -4058,122 +3753,110 @@ Script
 ================================================================
 
 
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.AppFlags
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.AppFlags = function() { };
-test.AppFlags.prototype = {
+  // BasicTests.AppFlags
+
+  var AppFlags = {
     AAA: 1, 
     BBB: 2
-}
-test.AppFlags.registerEnum('test.AppFlags', true);
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Mode
+  // BasicTests.Mode
 
-test.Mode = function() { };
-test.Mode.prototype = {
+  var Mode = {
     mode1: 0, 
     mode2: 1
-}
-test.Mode.registerEnum('test.Mode', false);
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test._iFoo
+  // BasicTests.IFoo
 
-test._iFoo = function() { };
-test._iFoo.prototype = {
-
-}
-test._iFoo.registerInterface('test._iFoo');
+  function IFoo() { }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.IApp
+  // BasicTests.IApp
 
-test.IApp = function() { };
-test.IApp.prototype = {
-    run : null
-}
-test.IApp.registerInterface('test.IApp');
+  function IApp() { }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test._point
+  // BasicTests.Point
 
-test.$create__point = function test__point(x, y) {
-    var $o = { };
+  function Point(x, y) {
+    var $o = {};
     $o.x = x;
     $o.y = y;
     return $o;
-}
+  }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.App
+  // BasicTests.App
 
-test.App = function test_App() {
-}
-test.App.prototype = {
-    
-    add_event1: function test_App$add_event1(value) {
-        this.__event1 = ss.Delegate.combine(this.__event1, value);
+  function App() {
+  }
+  var App$ = {
+    add_event1: function(value) {
+      this.__event1 = ss.bindAdd(this.__event1, value);
     },
-    remove_event1: function test_App$remove_event1(value) {
-        this.__event1 = ss.Delegate.remove(this.__event1, value);
+    remove_event1: function(value) {
+      this.__event1 = ss.bindSub(this.__event1, value);
     },
-    
-    __event1: null,
-    
-    add_event2: function test_App$add_event2(value) {
+    add_event2: function(value) {
     },
-    remove_event2: function test_App$remove_event2(value) {
+    remove_event2: function(value) {
     },
-    
-    run: function test_App$run() {
+    run: function() {
     },
-    
-    _initialize: function test_App$_initialize() {
+    _initialize: function() {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test._appHelper
+  // BasicTests.AppHelper
 
-test._appHelper = function test__appHelper() {
-}
-test._appHelper.prototype = {
-    
-    get_prop1: function test__appHelper$get_prop1() {
-        return 0;
+  function AppHelper() {
+  }
+  var AppHelper$ = {
+    get_prop1: function() {
+      return 0;
     },
-    
-    get_prop2: function test__appHelper$get_prop2() {
-        return 0;
+    get_prop2: function() {
+      return 0;
     },
-    set_prop2: function test__appHelper$set_prop2(value) {
-        return value;
+    set_prop2: function(value) {
+      return value;
     },
-    
-    _showHelp: function test__appHelper$_showHelp() {
+    _showHelp: function() {
     },
-    get_item: function test__appHelper$get_item(name) {
-        return 0;
+    get_item: function(name) {
+      return 0;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test._util
+  // BasicTests.Util
 
-window._showHelp = function test__util$_showHelp() {
-}
+  $global.showHelp = function() {
+  };
 
 
-test.App.registerClass('test.App', null, test.IApp);
-test._appHelper.registerClass('test._appHelper');
+  var $exports = ss.module('test',
+    {
+      IFoo: [ IFoo ],
+      Point: Point,
+      AppHelper: [ AppHelper, AppHelper$, null ]
+    },
+    {
+      AppFlags: AppFlags,
+      Mode: Mode,
+      IApp: [ IApp ],
+      App: [ App, App$, null, IApp ]
+    });
+
+
+  return $exports;
+});

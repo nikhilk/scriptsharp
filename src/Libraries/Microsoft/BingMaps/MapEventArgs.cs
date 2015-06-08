@@ -12,8 +12,8 @@ namespace Microsoft.Maps {
 
     // TODO: Make properties
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public class MapEventArgs : EventArgs {
 
         internal MapEventArgs() {

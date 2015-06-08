@@ -14,7 +14,7 @@ namespace jQueryApi {
     /// <param name="item">The item within the array.</param>
     /// <param name="index">The index of the item.</param>
     /// <returns>True if the value satisfies the filter; false if it doesn't.</returns>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate bool ArrayFilterCallback(object item, int index);
 }

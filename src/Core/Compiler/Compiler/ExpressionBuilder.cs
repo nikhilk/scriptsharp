@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using ScriptSharp;
 using ScriptSharp.CodeModel;
@@ -317,11 +318,25 @@ namespace ScriptSharp.Compiler {
 
             if (leftExpression.Type == ExpressionType.Member) {
                 leftExpression = TransformMemberExpression((MemberExpression)leftExpression,
-                    /* getOrAdd */ (node.Operator != TokenType.Equal));
+                                                           /* getOrAdd */ (node.Operator != TokenType.Equal));
             }
 
             if (rightExpression.Type == ExpressionType.Member) {
                 rightExpression = TransformMemberExpression((MemberExpression)rightExpression);
+            }
+
+            if (node.Operator == TokenType.Coalesce) {
+                TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
+                MethodSymbol valueMethod = (MethodSymbol)scriptType.GetMember("Value");
+
+                TypeExpression scriptExpression = new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers);
+                MethodExpression valueExpression = new MethodExpression(scriptExpression, valueMethod);
+
+                valueExpression.AddParameterValue(leftExpression);
+                valueExpression.AddParameterValue(rightExpression);
+                valueExpression.Reevaluate(rightExpression.EvaluatedType);
+
+                return valueExpression;
             }
 
             TypeSymbol resultType = null;
@@ -417,6 +432,29 @@ namespace ScriptSharp.Compiler {
                                 return new BinaryExpression(Operator.NotEqual, leftExpression, rightExpression, resultType);
                             }
                         }
+                    }
+
+                    if ((leftExpression.EvaluatedType == rightExpression.EvaluatedType) &&
+                        (leftExpression.EvaluatedType == _symbolSet.ResolveIntrinsicType(IntrinsicType.Date))) {
+                        // Map equality comparison between Date objects to a call to
+                        // Script.CompareDates
+
+                        TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
+                        Debug.Assert(scriptType != null);
+
+                        MethodSymbol compareMethod = (MethodSymbol)scriptType.GetMember("CompareDates");
+                        Debug.Assert(compareMethod != null);
+
+                        MethodExpression compareExpression =
+                            new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
+                                                 compareMethod);
+                        compareExpression.AddParameterValue(leftExpression);
+                        compareExpression.AddParameterValue(rightExpression);
+
+                        if (operatorType == Operator.NotEqualEqual) {
+                            return new UnaryExpression(Operator.LogicalNot, compareExpression);
+                        }
+                        return compareExpression;
                     }
                 }
 
@@ -517,12 +555,7 @@ namespace ScriptSharp.Compiler {
             }
 
             if (objectExpression is LiteralExpression) {
-                object literalValue = ((LiteralExpression)objectExpression).Value;
-                if (!((literalValue is Boolean) || (literalValue is String))) {
-                    // Numeric literals need to be paranthesized in script when followed by a
-                    // dot member access.
-                    objectExpression.AddParenthesisHint();
-                }
+                objectExpression.AddParenthesisHint();
             }
 
             Debug.Assert(objectExpression.EvaluatedType is ISymbolTable);
@@ -582,6 +615,7 @@ namespace ScriptSharp.Compiler {
             TypeSymbol dictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Dictionary);
             TypeSymbol genericDictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.GenericDictionary);
             TypeSymbol nullableType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Nullable);
+            TypeSymbol typeType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
 
             if (memberSymbol.Type == SymbolType.Property) {
                 if ((memberSymbol.Parent == dictionaryType) ||
@@ -628,6 +662,21 @@ namespace ScriptSharp.Compiler {
                         return methodExpression;
                     }
                 }
+                else if (memberSymbol.Parent == typeType) {
+                    if (String.CompareOrdinal(memberSymbol.Name, "Name") == 0) {
+                        // type.Name becomes ss.typeName(type)
+
+                        TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
+                        MethodSymbol typeNameMethod = (MethodSymbol)scriptType.GetMember("GetTypeName");
+
+                        MethodExpression methodExpression
+                            = new MethodExpression(new TypeExpression(memberSymbol.AssociatedType, SymbolFilter.Public | SymbolFilter.StaticMembers),
+                                                   typeNameMethod);
+                        methodExpression.AddParameterValue(objectExpression);
+
+                        return methodExpression;
+                    }
+                }
             }
             else if (memberSymbol.Type == SymbolType.Method) {
                 if (memberSymbol.Parent == nullableType) {
@@ -653,9 +702,9 @@ namespace ScriptSharp.Compiler {
                 }
             }
 
-            string dependency = ((TypeSymbol)memberSymbol.Parent).DependencyName;
-            if (String.IsNullOrEmpty(dependency) == false) {
-                _options.AddExecutionDependency(dependency);
+            ScriptReference dependency = ((TypeSymbol)memberSymbol.Parent).Dependency;
+            if (dependency != null) {
+                _symbolSet.AddDependency(dependency);
             }
 
             MemberExpression expression = new MemberExpression(objectExpression, memberSymbol);
@@ -807,7 +856,23 @@ namespace ScriptSharp.Compiler {
                 Debug.Assert(node.Arguments is ExpressionListNode);
                 Debug.Assert(((ExpressionListNode)node.Arguments).Expressions.Count == 1);
 
-                return BuildExpression(((ExpressionListNode)node.Arguments).Expressions[0]);
+                Expression subExpression = BuildExpression(((ExpressionListNode)node.Arguments).Expressions[0]);
+
+                // We need parenthesis if we are declaring an inline function, ie
+                // Callback c = new Callback(delegate {}); --> var c = (function () {});
+                // But not for:
+                // Callback c = new Callback(this.callback); --> var c = this._callback;
+                bool needsParenthesis = subExpression.Type == ExpressionType.Delegate;
+
+                if (subExpression is MemberExpression) {
+                    subExpression = TransformMemberExpression((MemberExpression)subExpression);
+                }
+
+                NewDelegateExpression expr = new NewDelegateExpression(subExpression, type);
+                if (needsParenthesis) {
+                    expr.AddParenthesisHint();
+                }
+                return expr;
             }
 
             NewExpression newExpression = new NewExpression(type);
@@ -852,8 +917,8 @@ namespace ScriptSharp.Compiler {
                 }
             }
 
-            if (String.IsNullOrEmpty(type.DependencyName) == false) {
-                _options.AddExecutionDependency(type.DependencyName);
+            if (type.Dependency != null) {
+                _symbolSet.AddDependency(type.Dependency);
             }
 
             return newExpression;
@@ -895,7 +960,7 @@ namespace ScriptSharp.Compiler {
             bool isDelegateInvoke = false;
             Expression leftExpression = BuildExpression(node.LeftChild);
 
-            if (leftExpression is LocalExpression) {
+            if (leftExpression is LocalExpression || leftExpression is NewDelegateExpression) {
                 Debug.Assert(leftExpression.EvaluatedType.Type == SymbolType.Delegate);
 
                 // Handle the implicit delegate invoke scenario by turning the expression
@@ -926,6 +991,19 @@ namespace ScriptSharp.Compiler {
                 args = BuildExpressionList(argNodes);
             }
 
+            // REVIEW: Uggh... this has become too complex over time with all the transformations
+            //         added over time. Refactoring needed...
+
+            TypeSymbol objectType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Object);
+            TypeSymbol typeType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
+            TypeSymbol dictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Dictionary);
+            TypeSymbol genericDictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.GenericDictionary);
+            TypeSymbol intType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Integer);
+            TypeSymbol stringType = _symbolSet.ResolveIntrinsicType(IntrinsicType.String);
+            TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
+            TypeSymbol argsType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Arguments);
+            TypeSymbol voidType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Void);
+
             MethodExpression methodExpression = null;
 
             if (memberExpression.Member.Type != SymbolType.Method) {
@@ -944,178 +1022,302 @@ namespace ScriptSharp.Compiler {
             else {
                 // The member being accessed is a method...
 
-                // REVIEW: Uggh... this has become too complex over time with all the transformations
-                //         added over time. Refactoring needed...
-
                 MethodSymbol method = (MethodSymbol)memberExpression.Member;
-                TypeSymbol objectType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Object);
-                TypeSymbol typeType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
-                TypeSymbol dictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Dictionary);
-                TypeSymbol genericDictionaryType = _symbolSet.ResolveIntrinsicType(IntrinsicType.GenericDictionary);
-                TypeSymbol numberType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Number);
-                TypeSymbol stringType = _symbolSet.ResolveIntrinsicType(IntrinsicType.String);
-                TypeSymbol scriptType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
-                TypeSymbol argsType = _symbolSet.ResolveIntrinsicType(IntrinsicType.Arguments);
-
-                if ((method.Parent == objectType) &&
-                    method.Name.Equals("GetType", StringComparison.Ordinal)) {
-                    // Since we can't extend object's prototype, we need to transform the
-                    // natural c# syntax into a static method.
-                    // Object.GetType instance method becomes Type.GetInstanceType static method
-
-                    TypeSymbol typeSymbol = typeType;
-
-                    method = (MethodSymbol)typeSymbol.GetMember("GetInstanceType");
-                    Debug.Assert(method != null);
-
-                    methodExpression = new MethodExpression(new TypeExpression(typeSymbol, SymbolFilter.Public | SymbolFilter.StaticMembers),
-                                                            method);
-                    methodExpression.AddParameterValue(memberExpression.ObjectReference);
-                    return methodExpression;
+                if (!method.MatchesConditions(_options.Defines)) {
+                    return null;
                 }
-                else if ((method.Parent == objectType) &&
-                         (method.Name.Equals("ToString", StringComparison.Ordinal) ||
-                          method.Name.Equals("ToLocaleString", StringComparison.Ordinal)) &&
-                         (memberExpression.ObjectReference.EvaluatedType == stringType)) {
-                    // No-op ToString calls on strings (this happens when performing a ToString
-                    // on a named enum value.
-                    return memberExpression.ObjectReference;
-                }
-                else if ((method.Parent == objectType) &&
-                         (method.Name.Equals("ToString", StringComparison.Ordinal) ||
-                          method.Name.Equals("ToLocaleString", StringComparison.Ordinal)) &&
-                         (memberExpression.ObjectReference.EvaluatedType is EnumerationSymbol)) {
-                    EnumerationSymbol enumSymbol = (EnumerationSymbol)memberExpression.ObjectReference.EvaluatedType;
 
-                    if (enumSymbol.UseNamedValues) {
-                        // If the enum value is a named enum, then it is already a string.
-                        return memberExpression.ObjectReference;
-                    }
+                if (method.Name.Equals("GetEnumerator", StringComparison.Ordinal)) {
+                    // This is a bit dangerous - GetEnumerator on any type gets mapped to
+                    // Script.Enumerate. This actually somewhat matches c# semantics, where you
+                    // can perform a foreach on any type that has a GetEnumerator method, rather
+                    // than only types that implement IEnumerable.
 
-                    return new MethodExpression(memberExpression.ObjectReference, method);
-                }
-                else if (((method.Parent == dictionaryType) || (method.Parent == genericDictionaryType)) &&
-                         method.Name.Equals("ContainsKey", StringComparison.Ordinal)) {
-                    // Switch the instance ContainsKey method on Dictionary to
-                    // calls to the static KeyExists method.
-                    Debug.Assert(args.Count == 1);
-
-                    MethodSymbol keyExistsMethod = (MethodSymbol)dictionaryType.GetMember("KeyExists");
-                    Debug.Assert(keyExistsMethod != null);
-
-                    methodExpression = new MethodExpression(new TypeExpression(dictionaryType, SymbolFilter.Public | SymbolFilter.StaticMembers),
-                                                            keyExistsMethod);
-                    methodExpression.AddParameterValue(memberExpression.ObjectReference);
-                    methodExpression.AddParameterValue(args[0]);
-
-                    return methodExpression;
-                }
-                else if (((method.Parent == dictionaryType) || (method.Parent == genericDictionaryType)) &&
-                         method.Name.Equals("Remove", StringComparison.Ordinal)) {
-                    // Switch the instance Remove method on Dictionary to
-                    // calls to the static DeleteKey method.
-                    Debug.Assert(args.Count == 1);
-
-                    return new LateBoundExpression(memberExpression.ObjectReference,
-                                                   args[0], LateBoundOperation.DeleteField,
-                                                   objectType);
-                }
-                else if (((method.Parent == dictionaryType) || (method.Parent == genericDictionaryType)) &&
-                         method.Name.Equals("Clear")) {
-                    // Switch the instance Clear method on Dictionary to
-                    // calls to the static ClearKeys method.
-                    MethodSymbol clearKeysMethod = (MethodSymbol)dictionaryType.GetMember("ClearKeys");
-                    Debug.Assert(clearKeysMethod != null);
-
-                    methodExpression = new MethodExpression(new TypeExpression(dictionaryType, SymbolFilter.Public | SymbolFilter.StaticMembers),
-                                                            clearKeysMethod);
-                    methodExpression.AddParameterValue(memberExpression.ObjectReference);
-                    return methodExpression;
-                }
-                else if (((method.Parent == dictionaryType) || (((TypeSymbol)method.Parent).GenericType == genericDictionaryType)) &&
-                         ((method.Visibility & MemberVisibility.Static) != 0) &&
-                         method.Name.Equals("GetDictionary", StringComparison.Ordinal)) {
-                    // Dictionary.GetDictionary is a no-op method; we're just interested
-                    // in the object being passed in.
-                    // However we'll re-evaluate the argument to be of dictionary type
-                    // so that subsequent use of this expression sees it as a dictionary.
-                    Debug.Assert(args.Count == 1);
-                    args[0].Reevaluate((TypeSymbol)method.Parent);
-
-                    return args[0];
-                }
-                else if ((method.Parent == stringType) &&
-                         (method.Name.Equals("Escape", StringComparison.Ordinal) ||
-                          method.Name.Equals("Unescape", StringComparison.Ordinal) ||
-                          method.Name.Equals("EncodeUri", StringComparison.Ordinal) ||
-                          method.Name.Equals("DecodeUri", StringComparison.Ordinal) ||
-                          method.Name.Equals("EncodeUriComponent", StringComparison.Ordinal) ||
-                          method.Name.Equals("DecodeUriComponent", StringComparison.Ordinal))) {
-                    // String.<Method> becomes Script.<Method>, as its a global method in script
-                    MethodSymbol scriptMethod = (MethodSymbol)scriptType.GetMember(method.Name);
+                    MethodSymbol enumerateMethod = (MethodSymbol)scriptType.GetMember("Enumerate");
+                    Debug.Assert(enumerateMethod != null);
 
                     methodExpression = new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
-                                                            scriptMethod);
+                                                            enumerateMethod);
                     methodExpression.AddParameterValue(memberExpression.ObjectReference);
+                    methodExpression.Reevaluate(memberExpression.EvaluatedType);
+
                     return methodExpression;
                 }
-                else if ((method.Parent == scriptType) &&
-                         method.Name.Equals("Literal", StringComparison.Ordinal)) {
-                    // Convert a call to Script.Literal into a literal expression
 
-                    Debug.Assert(args.Count >= 1);
-                    string script = null;
+                if ((method.Parent == objectType) &&
+                    (method.Name.Equals("ToString", StringComparison.Ordinal) ||
+                    method.Name.Equals("ToLocaleString", StringComparison.Ordinal))) {
+                    if (memberExpression.ObjectReference.EvaluatedType == stringType) {
+                        // No-op ToString calls on strings (this happens when performing a ToString
+                        // on a named enum value.
+                        return memberExpression.ObjectReference;
+                    }
+                    if (memberExpression.ObjectReference.EvaluatedType.Type == SymbolType.Enumeration) {
+                        EnumerationSymbol enumSymbol = (EnumerationSymbol)memberExpression.ObjectReference.EvaluatedType;
 
-                    if (args[0].Type == ExpressionType.Field) {
-                        Debug.Assert(args[0].EvaluatedType == stringType);
-
-                        FieldSymbol field = ((FieldExpression)args[0]).Field;
-                        if (field.IsConstant) {
-                            Debug.Assert(field.Value is string);
-                            script = (string)field.Value;
+                        if (enumSymbol.UseNamedValues) {
+                            // If the enum value is a named enum, then it is already a string.
+                            return memberExpression.ObjectReference;
                         }
-                    }
-                    else if (args[0].Type == ExpressionType.Literal) {
-                        Debug.Assert(((LiteralExpression)args[0]).Value is string);
-                        script = (string)((LiteralExpression)args[0]).Value;
-                    }
 
-                    if (script == null) {
-                        // TODO: When we start raising errors at the expression level instead of the statement
-                        //       level, we should return an ErrorExpression instead of a dummy expression.
-                        Token argToken = argNodes.Expressions[0].Token;
-
-                        _errorHandler.ReportError("The argument to Script.Literal must be a constant string.",
-                                                  argToken.Location);
-                        return new InlineScriptExpression("", objectType);
+                        return new MethodExpression(memberExpression.ObjectReference, method);
                     }
-
-                    InlineScriptExpression scriptExpression = new InlineScriptExpression(script, objectType);
-                    for (int i = 1; i < args.Count; i++) {
-                        scriptExpression.AddParameterValue(args[i]);
-                    }
-
-                    return scriptExpression;
                 }
-                else if ((method.Parent == scriptType) &&
-                         method.Name.Equals("Boolean", StringComparison.Ordinal)) {
-                    Debug.Assert(args.Count == 1);
+                else if ((method.Parent == dictionaryType) || (method.Parent == genericDictionaryType)) {
+                    if (method.Name.Equals("Remove", StringComparison.Ordinal)) {
+                        // Switch the instance Remove method on Dictionary to
+                        // calls to the delete operator.
+                        Debug.Assert(args.Count == 1);
 
-                    return new UnaryExpression(Operator.LogicalNot, new UnaryExpression(Operator.LogicalNot, args[0]));
+                        return new LateBoundExpression(memberExpression.ObjectReference,
+                                                       args[0], LateBoundOperation.DeleteField,
+                                                       objectType);
+                    }
+                    else if (method.Name.Equals("GetDictionary", StringComparison.Ordinal)) {
+                        // Dictionary.GetDictionary is a no-op method; we're just interested
+                        // in the object being passed in.
+                        // However we'll re-evaluate the argument to be of dictionary type
+                        // so that subsequent use of this expression sees it as a dictionary.
+                        Debug.Assert(args.Count == 1);
+                        args[0].Reevaluate((TypeSymbol)method.Parent);
+
+                        return args[0];
+                    }
                 }
-                else if ((method.Parent == scriptType) &&
-                         method.Name.Equals("Value", StringComparison.Ordinal)) {
-                    Debug.Assert(args.Count >= 2);
+                else if (method.Parent == scriptType) {
+                    if (method.Name.Equals("Literal", StringComparison.Ordinal)) {
+                        // Convert a call to Script.Literal into a literal expression
 
-                    Expression expr = args[0];
-                    for (int i = 1; i < args.Count; i++) {
-                        expr = new BinaryExpression(Operator.LogicalOr, expr, args[i]);
+                        Debug.Assert(args.Count >= 1);
+                        string script = null;
+
+                        if (args[0].Type == ExpressionType.Field) {
+                            Debug.Assert(args[0].EvaluatedType == stringType);
+
+                            FieldSymbol field = ((FieldExpression)args[0]).Field;
+                            if (field.IsConstant) {
+                                Debug.Assert(field.Value is string);
+                                script = (string)field.Value;
+                            }
+                        }
+                        else if (args[0].Type == ExpressionType.Literal) {
+                            Debug.Assert(((LiteralExpression)args[0]).Value is string);
+                            script = (string)((LiteralExpression)args[0]).Value;
+                        }
+
+                        if (script == null) {
+                            // TODO: When we start raising errors at the expression level instead of the statement
+                            //       level, we should return an ErrorExpression instead of a dummy expression.
+                            Token argToken = argNodes.Expressions[0].Token;
+
+                            _errorHandler.ReportError("The argument to Script.Literal must be a constant string.",
+                                                      argToken.Location);
+                            return new InlineScriptExpression("", objectType);
+                        }
+
+                        if (args.Count > 1) {
+                            // Check whether the script is a valid string format string
+                            try {
+                                object[] argValues = new object[args.Count - 1];
+                                String.Format(CultureInfo.InvariantCulture, script, argValues);
+                            }
+                            catch {
+                                _errorHandler.ReportError("The argument to Script.Literal must be a valid String.Format string.",
+                                                          argNodes.Expressions[0].Token.Location);
+                                return new InlineScriptExpression("", objectType);
+                            }
+                        }
+
+                        InlineScriptExpression scriptExpression = new InlineScriptExpression(script, objectType);
+                        for (int i = 1; i < args.Count; i++) {
+                            scriptExpression.AddParameterValue(args[i]);
+                        }
+
+                        return scriptExpression;
+                    }
+                    else if (method.Name.Equals("Boolean", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        args[0].AddParenthesisHint();
+                        return new UnaryExpression(Operator.LogicalNot, new UnaryExpression(Operator.LogicalNot, args[0]));
+                    }
+                    else if (method.Name.Equals("IsTruthy", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        args[0].AddParenthesisHint();
+                        return new UnaryExpression(Operator.LogicalNot, new UnaryExpression(Operator.LogicalNot, args[0]));
+                    }
+                    else if (method.Name.Equals("IsFalsey", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        args[0].AddParenthesisHint();
+                        return new UnaryExpression(Operator.LogicalNot, args[0]);
+                    }
+                    else if (method.Name.Equals("Or", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count >= 2);
+
+                        Expression expr = args[0];
+                        for (int i = 1; i < args.Count; i++) {
+                            expr = new BinaryExpression(Operator.LogicalOr, expr, args[i]);
+                        }
+
+                        expr.Reevaluate(args[0].EvaluatedType);
+                        expr.AddParenthesisHint();
+
+                        return expr;
+                    }
+                    else if (method.Name.Equals("IsNull", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        Expression expr = new BinaryExpression(Operator.EqualEqualEqual, args[0],
+                                                               new LiteralExpression(objectType, null));
+                        expr.AddParenthesisHint();
+
+                        return expr;
+                    }
+                    else if (method.Name.Equals("IsUndefined", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        MemberSymbol undefinedMember = scriptType.GetMember("Undefined");
+                        Debug.Assert(undefinedMember != null);
+
+                        MemberExpression undefinedExpression =
+                            new MemberExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
+                                                 undefinedMember);
+
+                        Expression expr = new BinaryExpression(Operator.EqualEqualEqual, args[0], TransformMemberExpression(undefinedExpression));
+                        expr.AddParenthesisHint();
+
+                        return expr;
+                    }
+                    else if (method.Name.Equals("IsNullOrUndefined", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
+
+                        MethodSymbol isValueMethod = (MethodSymbol)scriptType.GetMember("IsValue");
+                        Debug.Assert(isValueMethod != null);
+
+                        methodExpression = new MethodExpression(new TypeExpression(scriptType, SymbolFilter.Public | SymbolFilter.StaticMembers),
+                                                                isValueMethod);
+                        methodExpression.AddParameterValue(args[0]);
+
+                        return new UnaryExpression(Operator.LogicalNot, methodExpression);
+                    }
+                    else if (method.Name.Equals("CreateInstance", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count >= 1);
+
+                        if ((args[0].Type == ExpressionType.MethodInvoke) ||
+                            (args[0].Type == ExpressionType.PropertyGet)) {
+                            // When using the result of a method call/property access directly
+                            // with Type.CreateInstance, the following script would be generated:
+                            //
+                            // new method()()
+                            // which is invalid. Instead we need to generate the following:
+                            // var type = method();
+                            // new type()
+
+                            _errorHandler.ReportError("You must store the type returned from a method or property into a local variable to use with Type.CreateInstance.",
+                                                      node.Token.Location);
+                        }
+
+                        NewExpression newExpression = new NewExpression(args[0], objectType);
+                        if (args.Count > 1) {
+                            bool first = true;
+                            foreach (Expression paramExpr in args) {
+                                if (first) {
+                                    first = false;
+                                    continue;
+                                }
+                                newExpression.AddParameterValue(paramExpr);
+                            }
+                        }
+                        return newExpression;
                     }
 
-                    expr.Reevaluate(args[0].EvaluatedType);
-                    expr.AddParenthesisHint();
+                    bool lateBound = false;
+                    LateBoundOperation lateBoundOperation = LateBoundOperation.InvokeMethod;
 
-                    return expr;
+                    if (method.Name.Equals("InvokeMethod", StringComparison.Ordinal)) {
+                        lateBound = true;
+                    }
+                    else if (method.Name.Equals("DeleteField", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.DeleteField;
+                    }
+                    else if (method.Name.Equals("GetField", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.GetField;
+                    }
+                    else if (method.Name.Equals("SetField", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.SetField;
+                    }
+                    else if (method.Name.Equals("GetScriptType", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.GetScriptType;
+                    }
+                    else if (method.Name.Equals("HasField", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.HasField;
+                    }
+                    else if (method.Name.Equals("HasMethod", StringComparison.Ordinal)) {
+                        lateBound = true;
+                        lateBoundOperation = LateBoundOperation.HasMethod;
+                    }
+
+                    if (lateBound) {
+                        // Switch explicit late-bound calls into implicit late-bound expressions
+                        // in script
+                        Debug.Assert((args != null) &&
+                                     (((lateBoundOperation == LateBoundOperation.GetScriptType) && (args.Count == 1)) ||
+                                     (args.Count >= 2)));
+
+                        LateBoundExpression lateBoundExpression = null;
+                        Expression instanceExpression = null;
+                        Expression nameExpression = null;
+
+                        foreach (Expression paramExpr in args) {
+                            if (instanceExpression == null) {
+                                instanceExpression = paramExpr;
+
+                                if (lateBoundOperation == LateBoundOperation.GetScriptType) {
+                                    // GetScriptType only takes an instance
+                                    return new LateBoundExpression(instanceExpression, null,
+                                                                    lateBoundOperation, objectType);
+                                }
+                                continue;
+                            }
+                            if (nameExpression == null) {
+                                nameExpression = paramExpr;
+
+                                Expression objectExpression = instanceExpression;
+                                if (lateBoundOperation == LateBoundOperation.InvokeMethod) {
+                                    if ((instanceExpression.Type == ExpressionType.Literal) &&
+                                        (((LiteralExpression)instanceExpression).Value == null)) {
+                                        objectExpression = null;
+
+                                        LiteralExpression literalExpression = nameExpression as LiteralExpression;
+                                        if (literalExpression == null) {
+                                            _errorHandler.ReportError("The name of a global method must be a constant string known at compile time.",
+                                                                        argNodes.Expressions[0].Token.Location);
+                                        }
+                                        else if (!Utility.IsValidIdentifier((string)literalExpression.Value)) {
+                                            _errorHandler.ReportError("The name of a global method must be a valid identifer.",
+                                                                        argNodes.Expressions[0].Token.Location);
+                                        }
+                                    }
+                                }
+
+                                lateBoundExpression = new LateBoundExpression(objectExpression, nameExpression,
+                                                                                lateBoundOperation, objectType);
+                                continue;
+                            }
+
+                            lateBoundExpression.AddParameterValue(paramExpr);
+                        }
+
+                        Debug.Assert(lateBoundExpression != null);
+                        return lateBoundExpression;
+                    }
                 }
                 else if (method.Parent == argsType) {
                     if (method.Name.Equals("GetArgument", StringComparison.Ordinal)) {
@@ -1145,144 +1347,130 @@ namespace ScriptSharp.Compiler {
                         return toArrayExpression;
                     }
                 }
-                else {
-                    bool lateBound = false;
+                else if ((method.Parent.Type == SymbolType.Class) && ((ClassSymbol)method.Parent).IsArray) {
+                    ClassSymbol arraySymbol = (ClassSymbol)method.Parent;
 
-                    if (method.Parent == scriptType) {
-                        LateBoundOperation lateBoundOperation = LateBoundOperation.InvokeMethod;
+                    if (method.Name.Equals("Clear", StringComparison.Ordinal)) {
+                        // array.Clear() becomes array.length = 0 in generated code
 
-                        if (method.Name.Equals("InvokeMethod", StringComparison.Ordinal)) {
-                            lateBound = true;
+                        MemberSymbol lengthMember = arraySymbol.GetMember("Length");
+                        if (lengthMember == null) {
+                            lengthMember = arraySymbol.GetMember("Count");
                         }
-                        else if (method.Name.Equals("DeleteField", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.DeleteField;
-                        }
-                        else if (method.Name.Equals("GetField", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.GetField;
-                        }
-                        else if (method.Name.Equals("SetField", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.SetField;
-                        }
-                        else if (method.Name.Equals("GetScriptType", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.GetScriptType;
-                        }
-                        else if (method.Name.Equals("HasField", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.HasField;
-                        }
-                        else if (method.Name.Equals("HasMethod", StringComparison.Ordinal)) {
-                            lateBound = true;
-                            lateBoundOperation = LateBoundOperation.HasMethod;
-                        }
-                        else if (method.Name.Equals("CreateInstance", StringComparison.Ordinal)) {
-                            Debug.Assert(args.Count >= 1);
+                        Debug.Assert((lengthMember != null) && (lengthMember.Type == SymbolType.Field));
 
-                            if ((args[0].Type == ExpressionType.MethodInvoke) ||
-                                (args[0].Type == ExpressionType.PropertyGet)) {
-                                // When using the result of a method call/property access directly
-                                // with Type.CreateInstance, the following script would be generated:
-                                //
-                                // new method()()
-                                // which is invalid. Instead we need to generate the following:
-                                // var type = method();
-                                // new type()
-
-                                _errorHandler.ReportError("You must store the type returned from a method or property into a local variable to use with Type.CreateInstance.",
-                                                          node.Token.Location);
-                            }
-
-                            NewExpression newExpression = new NewExpression(args[0], objectType);
-                            if (args.Count > 1) {
-                                bool first = true;
-                                foreach (Expression paramExpr in args) {
-                                    if (first) {
-                                        first = false;
-                                        continue;
-                                    }
-                                    newExpression.AddParameterValue(paramExpr);
-                                }
-                            }
-                            return newExpression;
-                        }
-
-                        if (lateBound) {
-                            // Switch explicit late-bound calls into implicit late-bound expressions
-                            // in script
-                            Debug.Assert((args != null) &&
-                                         (((lateBoundOperation == LateBoundOperation.GetScriptType) && (args.Count == 1)) ||
-                                          (args.Count >= 2)));
-
-                            LateBoundExpression lateBoundExpression = null;
-                            Expression instanceExpression = null;
-                            Expression nameExpression = null;
-
-                            foreach (Expression paramExpr in args) {
-                                if (instanceExpression == null) {
-                                    instanceExpression = paramExpr;
-
-                                    if (lateBoundOperation == LateBoundOperation.GetScriptType) {
-                                        // GetScriptType only takes an instance
-                                        return new LateBoundExpression(instanceExpression, null,
-                                                                       lateBoundOperation, objectType);
-                                    }
-                                    continue;
-                                }
-                                if (nameExpression == null) {
-                                    nameExpression = paramExpr;
-
-                                    Expression objectExpression = instanceExpression;
-                                    if (lateBoundOperation == LateBoundOperation.InvokeMethod) {
-                                        if ((instanceExpression.Type == ExpressionType.Literal) &&
-                                            (((LiteralExpression)instanceExpression).Value == null)) {
-                                            objectExpression = null;
-
-                                            LiteralExpression literalExpression = nameExpression as LiteralExpression;
-                                            if (literalExpression == null) {
-                                                _errorHandler.ReportError("The name of a global method must be a constant string known at compile time.",
-                                                                          argNodes.Expressions[0].Token.Location);
-                                            }
-                                            else if (!Utility.IsValidIdentifier((string)literalExpression.Value)) {
-                                                _errorHandler.ReportError("The name of a global method must be a valid identifer.",
-                                                                          argNodes.Expressions[0].Token.Location);
-                                            }
-                                        }
-                                    }
-
-                                    lateBoundExpression = new LateBoundExpression(objectExpression, nameExpression,
-                                                                                  lateBoundOperation, objectType);
-                                    continue;
-                                }
-
-                                lateBoundExpression.AddParameterValue(paramExpr);
-                            }
-
-                            Debug.Assert(lateBoundExpression != null);
-                            return lateBoundExpression;
-                        }
+                        MemberExpression lengthExpression =
+                            new MemberExpression(memberExpression.ObjectReference, lengthMember);
+                        return new BinaryExpression(Operator.Equals, TransformMemberExpression(lengthExpression),
+                                                    new LiteralExpression(intType, 0));
                     }
+                    if (method.Name.Equals("Contains", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count == 1);
 
-                    if (!method.MatchesConditions(_options.Defines)) {
-                        return null;
+                        // array.Contains(item) becomes array.indexOf(item) >= 0
+
+                        MemberSymbol indexOfSymbol = arraySymbol.GetMember("IndexOf");
+                        Debug.Assert((indexOfSymbol != null) && (indexOfSymbol.Type == SymbolType.Method));
+
+                        MethodExpression indexOfExpression =
+                            new MethodExpression(memberExpression.ObjectReference, (MethodSymbol)indexOfSymbol);
+                        indexOfExpression.AddParameterValue(args[0]);
+
+                        BinaryExpression compareExpression =
+                            new BinaryExpression(Operator.GreaterEqual, indexOfExpression, new LiteralExpression(intType, 0));
+                        compareExpression.AddParenthesisHint();
+
+                        return compareExpression;
                     }
+                    if (method.Name.Equals("Insert", StringComparison.Ordinal) ||
+                        method.Name.Equals("InsertRange", StringComparison.Ordinal)) {
+                        Debug.Assert(args.Count >= 1);
 
-                    methodExpression = new MethodExpression(memberExpression.ObjectReference,
-                                                            method);
+                        // array.Insert(index, item) becomes array.splice(index, 0, item);
+
+                        MemberSymbol spliceSymbol = arraySymbol.GetMember("Splice");
+                        Debug.Assert((spliceSymbol != null) && (spliceSymbol.Type == SymbolType.Method));
+
+                        MethodExpression spliceExpression =
+                            new MethodExpression(memberExpression.ObjectReference, (MethodSymbol)spliceSymbol);
+                        spliceExpression.AddParameterValue(args[0]);
+                        spliceExpression.AddParameterValue(new LiteralExpression(intType, 0));
+
+                        for (int i = 1; i < args.Count; i++) {
+                            spliceExpression.AddParameterValue(args[i]);
+                        }
+
+                        return spliceExpression;
+                    }
+                    if (method.Name.Equals("RemoveAt", StringComparison.Ordinal) ||
+                        method.Name.Equals("RemoveRange", StringComparison.Ordinal)) {
+                        Debug.Assert((args.Count >= 1) && (args.Count <= 2));
+
+                        // array.RemoveAt(index) becomes array.splice(index, 1)
+                        // array.RemoveRange(index, count) becomes array.splice(index, count)
+
+                        MemberSymbol spliceSymbol = arraySymbol.GetMember("Splice");
+                        Debug.Assert((spliceSymbol != null) && (spliceSymbol.Type == SymbolType.Method));
+
+                        MethodExpression spliceExpression =
+                            new MethodExpression(memberExpression.ObjectReference, (MethodSymbol)spliceSymbol);
+                        spliceExpression.AddParameterValue(args[0]);
+                        if (args.Count == 1) {
+                            spliceExpression.AddParameterValue(new LiteralExpression(intType, 1));
+                        }
+                        else {
+                            spliceExpression.AddParameterValue(args[1]);
+                        }
+
+                        return spliceExpression;
+                    }
+                    if (method.Name.Equals("GetRange", StringComparison.Ordinal)) {
+                        Debug.Assert((args.Count == 2));
+
+                        // array.GetRange(index, count) becomes array.slice(index, index + count)
+
+                        MemberSymbol sliceSymbol = arraySymbol.GetMember("Slice");
+                        Debug.Assert((sliceSymbol != null) && (sliceSymbol.Type == SymbolType.Method));
+
+                        MethodExpression sliceExpression =
+                            new MethodExpression(memberExpression.ObjectReference, (MethodSymbol)sliceSymbol);
+                        sliceExpression.AddParameterValue(args[0]);
+
+                        if ((args[0].Type == ExpressionType.Literal) &&
+                            (args[1].Type == ExpressionType.Literal)) {
+                            int endValue = (int)((LiteralExpression)args[0]).Value +
+                                            (int)((LiteralExpression)args[1]).Value;
+                            sliceExpression.AddParameterValue(new LiteralExpression(intType, endValue));
+                        }
+                        else {
+                            sliceExpression.AddParameterValue(new BinaryExpression(Operator.Plus, args[0], args[1]));
+                        }
+
+                        return sliceExpression;
+                    }
+                }
+
+                methodExpression = new MethodExpression(memberExpression.ObjectReference, method);
+            }
+
+            if (methodExpression != null) {
+                if (methodExpression.Method.HasSelector) {
+                    LiteralExpression selectorExpression =
+                        new LiteralExpression(stringType, methodExpression.Method.Selector);
+                    methodExpression.AddParameterValue(selectorExpression);
+                }
+
+                if (args != null) {
+                    foreach (Expression paramExpr in args) {
+                        methodExpression.AddParameterValue(paramExpr);
+                    }
+                }
+
+                if (isDelegateInvoke) {
+                    return new DelegateInvokeExpression(methodExpression);
                 }
             }
 
-            if (args != null) {
-                foreach (Expression paramExpr in args) {
-                    methodExpression.AddParameterValue(paramExpr);
-                }
-            }
-
-            if (isDelegateInvoke) {
-                return new DelegateInvokeExpression(methodExpression);
-            }
             return methodExpression;
         }
 
@@ -1294,8 +1482,8 @@ namespace ScriptSharp.Compiler {
             TypeSymbol referencedType = _symbolSet.ResolveType(node.TypeReference, _symbolTable, _symbolContext);
             Debug.Assert(referencedType != null);
 
-            if (String.IsNullOrEmpty(referencedType.DependencyName) == false) {
-                _options.AddExecutionDependency(referencedType.DependencyName);
+            if (referencedType.Dependency != null) {
+                _symbolSet.AddDependency(referencedType.Dependency);
             }
 
             TypeSymbol typeSymbol = _symbolSet.ResolveIntrinsicType(IntrinsicType.Type);

@@ -50,6 +50,9 @@
     <Compile Include="..\ResXParser.cs">
       <Link>ResXParser.cs</Link>
     </Compile>
+    <Compile Include="IStreamSourceResolver.cs" />
+    <Compile Include="ScriptReference.cs" />
+    <Compile Include="ScriptInfo.cs" />
     <Compile Include="Importer\IL\ArrayType.cs" />
     <Compile Include="Importer\IL\AssemblyDefinition.cs" />
     <Compile Include="Importer\IL\AssemblyFlags.cs" />
@@ -172,7 +175,6 @@
     <Compile Include="Importer\IL\Utility\CryptoService.cs" />
     <Compile Include="Importer\IL\Utility\Empty.cs" />
     <Compile Include="Importer\IL\VariantType.cs" />
-    <Compile Include="IStreamResolver.cs" />
     <Compile Include="IStreamSource.cs" />
     <Compile Include="ScriptModel\Symbols\IntrinsicType.cs" />
     <Compile Include="ScriptModel\Symbols\GenericParameterSymbol.cs" />
@@ -180,17 +182,10 @@
     <Compile Include="CompilerOptions.cs" />
     <Compile Include="IErrorHandler.cs" />
     <Compile Include="ScriptCompiler.cs" />
-    <Compile Include="ScriptPreprocessor.cs" />
-    <Compile Include="PreprocessorOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\ScriptSharp.cs">
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Preprocessor\CondenserTextReader.cs" />
-    <Compile Include="Preprocessor\PreprocessorException.cs" />
-    <Compile Include="Preprocessor\PreprocessorTextReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Importer\MetadataImporter.cs" />
@@ -359,6 +354,7 @@
     <Compile Include="ScriptModel\Expressions\BinaryExpression.cs" />
     <Compile Include="ScriptModel\Expressions\ConditionalExpression.cs" />
     <Compile Include="ScriptModel\Expressions\NewExpression.cs" />
+    <Compile Include="ScriptModel\Expressions\NewDelegateExpression.cs" />
     <Compile Include="ScriptModel\Expressions\UnaryExpression.cs" />
     <Compile Include="ScriptModel\Expressions\ThisExpression.cs" />
     <Compile Include="ScriptModel\Expressions\TypeExpression.cs" />
@@ -465,13 +461,11 @@
     <Compile Include="Generator\MemberGenerator.cs" />
     <Compile Include="Generator\TypeGenerator.cs" />
     <Compile Include="Generator\ScriptTextWriter.cs" />
-    <Compile Include="Generator\NamespaceGenerator.cs" />
     <Compile Include="Generator\ScriptGenerator.cs" />
     <Compile Include="Generator\TestGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Importer\MetadataHelpers.cs" />
-    <Compile Include="IScriptInfo.cs" />
     <Compile Include="Compiler\ResourcesBuilder.cs" />
   </ItemGroup>
   <ItemGroup />

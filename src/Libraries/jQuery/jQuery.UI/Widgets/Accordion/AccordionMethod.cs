@@ -11,9 +11,9 @@ namespace jQueryApi.UI.Widgets {
     /// <summary>
     /// Operations supported by Accordion.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum AccordionMethod {
 
         /// <summary>

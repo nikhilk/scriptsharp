@@ -1,22 +1,39 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.App
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.App = function() {
-}
-test.App.prototype = {
-    
-    get_foo: function() {
-        return 0;
+  // ExpressionTests.App
+
+  function App() {
+  }
+  var App$ = {
+    get__foo: function() {
+      return 0;
     },
-    
     test: function(x) {
-        var t = Type.getInstanceType(x);
-        var t2 = Type.getInstanceType(x.toString());
-        var t3 = Type.getInstanceType(this.get_foo());
+      var t = ss.typeOf(x);
+      var t2 = ss.typeOf(x.toString());
+      var t3 = ss.typeOf(this.get__foo());
+      var t4 = ss.type('String');
+      var t5 = ss.type('test.Foo');
+      var b1 = ss.canAssign((Object), App);
+      var b2 = ss.canAssign((ss.IDisposable), App);
+      var b3 = ss.canAssign(t, App);
+      var b4 = ss.instanceOf((App), new App());
+      var b5 = ss.instanceOf((ss.IDisposable), new App());
+      var b6 = ss.instanceOf(t, new App());
+      var b7 = ss.isInterface(t) || ss.isClass(t);
+      var n = ss.typeName(t);
     }
-}
+  };
 
 
-test.App.registerClass('test.App');
+  var $exports = ss.module('test', null,
+    {
+      App: [ App, App$, null ]
+    });
+
+
+  return $exports;
+});

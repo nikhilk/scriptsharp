@@ -11,9 +11,9 @@ namespace jQueryApi.UI.Interactions {
     /// <summary>
     /// Events raised by Resizable.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum ResizableEvents {
 
         /// <summary>

@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Media.Graphics {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class Pattern {
 
         private Pattern() {

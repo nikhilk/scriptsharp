@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Editing {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public abstract class Range {
 
         internal Range() {

@@ -1,64 +1,85 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Behavior
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.Behavior = function(e, name) {
-}
+  // MemberTests.Behavior
 
+  function Behavior(e, name) {
+  }
+  var Behavior$ = {
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass
-
-test.MyClass = function(d) {
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClassEmpty
+  // MemberTests.MyClass
 
-test.MyClassEmpty = function() {
-}
+  function MyClass(d) {
+  }
+  var MyClass$ = {
 
-
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClassSimple
-
-test.MyClassSimple = function() {
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClassSimpleMulti
+  // MemberTests.MyClassEmpty
 
-test.MyClassSimpleMulti = function() {
-}
+  function MyClassEmpty() {
+  }
+  var MyClassEmpty$ = {
 
-
-////////////////////////////////////////////////////////////////////////////////
-// test.MyBehavior
-
-test.MyBehavior = function(element) {
-    test.MyBehavior.initializeBase(this, [ element, 'myBehavior' ]);
-}
+  };
 
 
-test.Behavior.registerClass('test.Behavior');
-test.MyClass.registerClass('test.MyClass');
-test.MyClassEmpty.registerClass('test.MyClassEmpty');
-test.MyClassSimple.registerClass('test.MyClassSimple');
-test.MyClassSimpleMulti.registerClass('test.MyClassSimpleMulti');
-test.MyBehavior.registerClass('test.MyBehavior', test.Behavior);
-test.MyClass.instance = null;
-test.MyClass.instance = new test.MyClass(Date.get_now());
-alert('simple static ctor');
-alert('simple static ctor with multiple statements');
-document.getElementById('foo').innerHTML = '...';
-(function () {
+  // MemberTests.MyClassSimple
+
+  function MyClassSimple() {
+  }
+  var MyClassSimple$ = {
+
+  };
+
+
+  // MemberTests.MyClassSimpleMulti
+
+  function MyClassSimpleMulti() {
+  }
+  var MyClassSimpleMulti$ = {
+
+  };
+
+
+  // MemberTests.MyBehavior
+
+  function MyBehavior(element) {
+    Behavior.call(this, element, 'myBehavior');
+  }
+  var MyBehavior$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      Behavior: [ Behavior, Behavior$, null ],
+      MyClass: [ MyClass, MyClass$, null ],
+      MyClassEmpty: [ MyClassEmpty, MyClassEmpty$, null ],
+      MyClassSimple: [ MyClassSimple, MyClassSimple$, null ],
+      MyClassSimpleMulti: [ MyClassSimpleMulti, MyClassSimpleMulti$, null ],
+      MyBehavior: [ MyBehavior, MyBehavior$, Behavior ]
+    });
+
+  MyClass.instance = new MyClass(ss.now());
+  alert('simple static ctor');
+  alert('simple static ctor with multiple statements');
+  document.getElementById('foo').innerHTML = '...';
+  (function() {
     var e = document.body;
     var b = true;
     if (!b) {
-        return;
+      return;
     }
-    new test.MyBehavior(e);
-})();
+    new MyBehavior(e);
+  })();
+
+  return $exports;
+});

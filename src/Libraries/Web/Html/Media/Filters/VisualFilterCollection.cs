@@ -8,21 +8,21 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Media.Filters {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class VisualFilterCollection {
 
         private VisualFilterCollection() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public VisualFilter this[int index] {
             get {
                 return null;

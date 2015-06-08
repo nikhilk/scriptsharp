@@ -1,44 +1,52 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.App
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.App = function() {
-}
-test.App.prototype = {
-    
+  // ExpressionTests.App
+
+  function App() {
+  }
+  var App$ = {
     test: function(arg) {
-        var o;
-        var b;
-        o[arg]();
-        o.xyz();
-        o['Proxy-Connection']();
-        o.xyz(0);
-        o.xyz(0, arg);
-        b = (typeof(o[arg]) === 'function');
-        b = (typeof(o.xyz) === 'function');
-        b = (typeof(Object.xyz) === 'function');
-        o[arg] = 0;
-        o.abc = 0;
-        o['Proxy-Connection'] = 0;
-        var v = o[arg];
-        v = o.abc;
-        v = o['Proxy-Connection'];
-        b = (arg in o);
-        b = ('abc' in o);
-        b = ('abc' in Object);
-        delete o.xyz;
-        delete o['Proxy-Connection'];
-        delete o[arg];
-        var t = typeof(o);
-        if (typeof(o) === 'object') {
-        }
-        if ((typeof(o.execute) === 'function')) {
-        }
-        globalMethod();
-        globalMethod('xyz');
+      var o;
+      var b;
+      o[arg]();
+      o.xyz();
+      o['Proxy-Connection']();
+      o.xyz(0);
+      o.xyz(0, arg);
+      b = (typeof(o[arg]) === 'function');
+      b = (typeof(o.xyz) === 'function');
+      b = (typeof(Object.xyz) === 'function');
+      o[arg] = 0;
+      o.abc = 0;
+      o['Proxy-Connection'] = 0;
+      var v = o[arg];
+      v = o.abc;
+      v = o['Proxy-Connection'];
+      b = (arg in o);
+      b = ('abc' in o);
+      b = ('abc' in Object);
+      delete o.xyz;
+      delete o['Proxy-Connection'];
+      delete o[arg];
+      var t = typeof(o);
+      if (typeof(o) === 'object') {
+      }
+      if ((typeof(o.execute) === 'function')) {
+      }
+      globalMethod();
+      globalMethod('xyz');
     }
-}
+  };
 
 
-test.App.registerClass('test.App');
+  var $exports = ss.module('test', null,
+    {
+      App: [ App, App$, null ]
+    });
+
+
+  return $exports;
+});

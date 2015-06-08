@@ -15,6 +15,7 @@
     <GenerateScript>True</GenerateScript>
     <GenerateResources>True</GenerateResources>
     <RestoreNugetPackages>true</RestoreNugetPackages>
+    <MinimizeScript>True</MinimizeScript>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -45,7 +46,6 @@
     <Compile Include="Tests\PageModelTests.cs" />
     <None Include="packages.config" />
     <None Include="Properties\FxCop.ruleset" />
-    <None Include="Properties\Script.template" />
     <Compile Include="Core\Model.cs" />
     <Compile Include="Core\PropertyChangedEventArgs.cs" />
     <Compile Include="Core\Utility.cs" />
@@ -57,62 +57,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Script.Microsoft.BingMaps">
-      <HintPath>..\packages\ScriptSharp.Lib.BingMaps.0.7.5.0\lib\Script.Microsoft.BingMaps.dll</HintPath>
-    </Reference>
-    <Reference Include="Script.Web">
-      <HintPath>..\packages\ScriptSharp.Lib.HTML.0.7.5.0\lib\Script.Web.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Twitter\Twitter.csproj">
       <Project>{476312f9-5403-4c3a-848a-0f31213fc72e}</Project>
       <Name>Twitter</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Content\AroundMe.htm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\CloseButton.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Dot.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Flickr.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Heart.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Location.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\PlaceHolder.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\ProgressBar.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Pushpin.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Reset.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Search.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Site.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Twitter.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Reference Include="Script.Microsoft.BingMaps">
+      <HintPath>..\packages\ScriptSharp.Lib.BingMaps.0.8\lib\Script.Microsoft.BingMaps.dll</HintPath>
+    </Reference>
+    <Reference Include="Script.Web">
+      <HintPath>..\packages\ScriptSharp.Lib.HTML.0.8\lib\Script.Web.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\ScriptSharp.0.7.5.0\tools\ScriptSharp.targets" Condition="Exists('..\packages\ScriptSharp.0.7.5.0\tools\ScriptSharp.targets')" />
   <Import Project="..\packages\nuget.targets" />
+  <Import Project="..\packages\ScriptSharp.0.8\tools\ScriptSharp.targets" Condition="Exists('..\packages\ScriptSharp.0.8\tools\ScriptSharp.targets')" />
 </Project>

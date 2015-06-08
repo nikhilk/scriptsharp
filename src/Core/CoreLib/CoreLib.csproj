@@ -50,7 +50,6 @@
     <Compile Include="Collections\Generic\ListMapCallback.cs" />
     <Compile Include="Collections\Generic\ListItemMapCallback.cs" />
     <Compile Include="Collections\Generic\CompareCallback.cs" />
-    <Compile Include="Collections\Generic\ListItemKeyGenerator.cs" />
     <Compile Include="Collections\Generic\ListItemCallback.cs" />
     <Compile Include="Collections\Generic\ListCallback.cs" />
     <Compile Include="Collections\Generic\ListItemFilterCallback.cs" />
@@ -60,7 +59,6 @@
     <Compile Include="Collections\Generic\Queue.cs" />
     <Compile Include="Collections\Generic\Dictionary.cs" />
     <Compile Include="Collections\Generic\KeyValuePair.cs" />
-    <Compile Include="Collections\Generic\ListGrouping.cs" />
     <Compile Include="Collections\Generic\List.cs" />
     <Compile Include="Collections\Generic\IReadonlyCollection.cs" />
     <Compile Include="Collections\Generic\ICollection.cs" />
@@ -78,6 +76,7 @@
     <Compile Include="ComponentModel\ObserverManager.cs" />
     <Compile Include="ComponentModel\IObserver.cs" />
     <Compile Include="ComponentModel\Observable.cs" />
+    <Compile Include="Export.cs" />
     <Compile Include="Diagnostics\SyntaxValidationAttribute.cs" />
     <Compile Include="Threading\Deferred.cs" />
     <Compile Include="Threading\TaskStatus.cs" />
@@ -101,10 +100,8 @@
     <Compile Include="Array.cs" />
     <Compile Include="Collections\ArrayCallback.cs" />
     <Compile Include="Collections\ArrayFilterCallback.cs" />
-    <Compile Include="Collections\ArrayGrouping.cs" />
     <Compile Include="Collections\ArrayItemCallback.cs" />
     <Compile Include="Collections\ArrayItemFilterCallback.cs" />
-    <Compile Include="Collections\ArrayItemKeyGenerator.cs" />
     <Compile Include="Collections\ArrayItemMapCallback.cs" />
     <Compile Include="Collections\ArrayList.cs" />
     <Compile Include="Collections\ArrayMapCallback.cs" />
@@ -117,7 +114,6 @@
     <Compile Include="Action.cs" />
     <Compile Include="Testing\Assert.cs" />
     <Compile Include="Func.cs" />
-    <Compile Include="Record.cs" />
     <Compile Include="Date.cs" />
     <Compile Include="Diagnostics\Debug.cs" />
     <Compile Include="Decimal.cs" />
@@ -140,7 +136,7 @@
     <Compile Include="Number.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="Collections\Queue.cs" />
-    <Compile Include="RegularExpression.cs" />
+    <Compile Include="RegExp.cs" />
     <Compile Include="SByte.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="Single.cs" />

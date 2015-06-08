@@ -23,9 +23,10 @@ namespace ScriptSharp.ScriptModel {
         private ConstructorSymbol _staticConstructor;
         private IndexerSymbol _indexer;
 
-        private bool _globalMethods;
-        private string _mixinRoot;
+        private string _extendee;
         private bool _testClass;
+        private bool _moduleClass;
+        private bool _staticClass;
 
         private ClassSymbol _primaryPartialClass;
 
@@ -58,18 +59,18 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public string Extendee {
+            get {
+                return _extendee;
+            }
+        }
+
         public override string GeneratedName {
             get {
                 if (_primaryPartialClass != null) {
                     return _primaryPartialClass.GeneratedName;
                 }
                 return base.GeneratedName;
-            }
-        }
-
-        public bool HasGlobalMethods {
-            get {
-                return _globalMethods;
             }
         }
 
@@ -105,6 +106,31 @@ namespace ScriptSharp.ScriptModel {
                     return _primaryPartialClass.Interfaces;
                 }
                 return _interfaces;
+            }
+        }
+
+        public bool IsExtenderClass {
+            get {
+                if (_primaryPartialClass != null) {
+                    return _primaryPartialClass.IsExtenderClass;
+                }
+
+                return (String.IsNullOrEmpty(_extendee) == false);
+            }
+        }
+
+        public bool IsModuleClass {
+            get {
+                return _moduleClass;
+            }
+        }
+
+        public bool IsStaticClass {
+            get {
+                if (_primaryPartialClass != null) {
+                    return _primaryPartialClass.IsStaticClass;
+                }
+                return _staticClass;
             }
         }
 
@@ -147,12 +173,6 @@ namespace ScriptSharp.ScriptModel {
                     }
                 }
                 return _minimizationDepth;
-            }
-        }
-
-        public string MixinRoot {
-            get {
-                return _mixinRoot;
             }
         }
 
@@ -263,9 +283,15 @@ namespace ScriptSharp.ScriptModel {
             return base.GetMember(name);
         }
 
-        public void SetGlobalMethods(string mixinRoot) {
-            _globalMethods = true;
-            _mixinRoot = mixinRoot;
+        public void SetExtenderClass(string extendee) {
+            Debug.Assert(String.IsNullOrEmpty(extendee) == false);
+
+            if (_primaryPartialClass != null) {
+                _primaryPartialClass.SetExtenderClass(extendee);
+                return;
+            }
+
+            _extendee = extendee;
         }
 
         public void SetInheritance(ClassSymbol baseClass, ICollection<InterfaceSymbol> interfaces) {
@@ -276,11 +302,24 @@ namespace ScriptSharp.ScriptModel {
             _interfaces = interfaces;
         }
 
+        public void SetModuleClass() {
+            _moduleClass = true;
+        }
+
         public void SetPrimaryPartialClass(ClassSymbol primaryPartialClass) {
             Debug.Assert(_primaryPartialClass == null);
             Debug.Assert(primaryPartialClass != null);
 
             _primaryPartialClass = primaryPartialClass;
+        }
+
+        public void SetStaticClass() {
+            if (_primaryPartialClass != null) {
+                _primaryPartialClass.SetStaticClass();
+                return;
+            }
+
+            _staticClass = true;
         }
 
         public void SetTestClass() {

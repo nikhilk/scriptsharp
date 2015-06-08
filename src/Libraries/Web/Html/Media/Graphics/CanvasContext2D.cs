@@ -9,100 +9,100 @@ using System.Html;
 
 namespace System.Html.Media.Graphics {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class CanvasContext2D : CanvasContext {
 
         private CanvasContext2D() {
         }
 
         [ScriptName("globalAlpha")]
-        [IntrinsicProperty]
+        [ScriptField]
         public double Alpha {
             get;
             set;
         }
 
         [ScriptName("globalCompositeOperation")]
-        [IntrinsicProperty]
+        [ScriptField]
         public CompositeOperation CompositeOperation {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object FillStyle {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Font {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public LineCap LineCap {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public LineJoin LineJoin {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double LineWidth {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int MiterLimit {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double ShadowBlur {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string ShadowColor {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double ShadowOffsetX {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double ShadowOffsetY {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object StrokeStyle {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public TextAlign TextAlign {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public TextBaseline TextBaseline {
             get;
             set;

@@ -14,11 +14,11 @@
   </style>
 </head>
 <body>
-  <div id="inputPanel">
+  <form id="inputPanel">
     <label>Enter some tags:</label><br />
     <input type="text" id="tagsTextBox" size="40" placeholder="search for interestingness" />
-    <button type="button" id="searchButton">Search</button>
-  </div>
+    <button type="submit" id="searchButton">Search</button>
+  </form>
   <div id="gallery">
     <ul id="thumbsList"></ul>
     <div id="photoPanel" style="display: none"></div>
@@ -35,14 +35,21 @@
     <label>${title}</label>
   </script>
 
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.js"></script>
-  <script type="text/javascript" src="/Scripts/jquery.tmpl.js"></script>
-  <script type="text/javascript" src="/Scripts/jquery.bbq.js"></script>
-  <script type="text/javascript" src="/Scripts/mscorlib.js"></script>
-  <script type="text/javascript" src="/Scripts/Photos.debug.js"></script>
-  <script type="text/javascript" src="/Scripts/PhotoList.debug.js"></script>
+  <script type="text/script" data-name="jquery" data-src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" data-autoload="true"></script>
+  <script type="text/script" data-name="jqueryTmpl" data-src="/Scripts/jquery.tmpl.js"
+    data-requires="jquery" data-export="$.fn.tmpl"></script>
+  <script type="text/script" data-name="jqueryBBQ" data-src="/Scripts/jquery.bbq.js"
+    data-requires="jquery" data-export="$.bbq"></script>
+
+  <script type="text/script" data-name="ss" data-src="/Scripts/ss.min.js" data-autoload="true"></script>
+  <script type="text/script" data-name="flickr" data-src="/Scripts/Flickr.min.js"></script>
+  <script type="text/script" data-name="photoList" data-src="/Scripts/PhotoList.min.js" data-autoload="true"></script>
+
+  <script type="text/javascript" src="/Scripts/ssloader.min.js"></script>
   <script type="text/javascript">
-    PhotoList.ListPage.main();
+    require(['photoList'], function(photoList) {
+      photoList.ListPage.main();
+    });
   </script>
 </body>
 </html>

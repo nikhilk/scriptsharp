@@ -2,7 +2,7 @@
 <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>ScriptSharp</id>
-    <version>0.7.6.0</version>
+    <version>0.8</version>
     <title>Script#</title>
     <authors>Nikhil Kothari</authors>
     <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
@@ -21,12 +21,13 @@
   <files>
     <file src="..\..\..\bin\Release\mscorlib.dll" target="tools" />
     <file src="..\..\..\bin\Release\mscorlib.xml" target="tools" />
-    <file src="..\..\..\bin\Release\mscorlib.js" target="tools" />
-    <file src="..\..\..\bin\Release\mscorlib.debug.js" target="tools" />
+    <file src="..\..\..\bin\Release\ss.js" target="tools" />
+    <file src="..\..\..\bin\Release\ss.min.js" target="tools" />
     <file src="..\..\..\bin\Release\ScriptSharp.dll" target="tools" />
     <file src="..\..\..\bin\Release\ScriptSharp.Build.dll" target="tools" />
     <file src="..\..\..\bin\Release\ScriptSharp.targets" target="tools" />
     <file src="..\..\..\bin\Release\ssc.exe" target="tools" />
+    <file src="..\..\..\bin\Release\AjaxMin.dll" target="tools" />
     <file src="Core\Install.ps1" target="tools" />
     <file src="Core\Uninstall.ps1" target="tools" />
     <file src="Core\Reset.psm1" target="tools" />

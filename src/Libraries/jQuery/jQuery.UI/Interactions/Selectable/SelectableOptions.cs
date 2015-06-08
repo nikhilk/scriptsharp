@@ -11,8 +11,8 @@ namespace jQueryApi.UI.Interactions {
     /// <summary>
     /// Options used to initialize or customize Selectable.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class SelectableOptions {
 
@@ -25,7 +25,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// This event is triggered when the selectable is created.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryEventHandler Create {
              get {
                 return null;
@@ -37,7 +37,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// This event is triggered at the end of the select operation, on each element added to the selection.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryUIEventHandler<SelectableSelectedEvent> Selected {
              get {
                 return null;
@@ -49,7 +49,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// This event is triggered during the select operation, on each element added to the selection.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryUIEventHandler<SelectableSelectingEvent> Selecting {
              get {
                 return null;
@@ -61,7 +61,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// This event is triggered at the beginning of the select operation.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryUIEventHandler<jQueryObject> Start {
              get {
                 return null;
@@ -73,7 +73,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// This event is triggered at the end of the select operation.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryUIEventHandler<jQueryObject> Stop {
              get {
                 return null;
@@ -85,7 +85,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// This event is triggered at the end of the select operation, on each element removed from the selection.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryUIEventHandler<SelectableUnselectedEvent> Unselected {
              get {
                 return null;
@@ -97,7 +97,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// This event is triggered during the select operation, on each element removed from the selection.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryUIEventHandler<SelectableUnselectingEvent> Unselecting {
              get {
                 return null;
@@ -109,7 +109,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// This determines whether to refresh (recalculate) the position and size of each selectee at the beginning of each select operation. If you have many many items, you may want to set this to false and call the refresh method manually.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool AutoRefresh {
             get {
                 return false;
@@ -121,7 +121,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// Prevents selecting if you start on elements matching the selector.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Cancel {
             get {
                 return null;
@@ -133,7 +133,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// Time in milliseconds to define when the selecting should start. It helps preventing unwanted selections when clicking on an element.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Delay {
             get {
                 return 0;
@@ -145,7 +145,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// Disables the selectable if set to true.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Disabled {
             get {
                 return false;
@@ -157,7 +157,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// Tolerance, in pixels, for when selecting should start. If specified, selecting will not start until after mouse is dragged beyond distance.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Distance {
             get {
                 return 0;
@@ -169,7 +169,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// The matching child elements will be made selectees (able to be selected).
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Filter {
             get {
                 return null;
@@ -181,7 +181,7 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// Possible values: 'touch', 'fit'.<ul><li>'''fit''': draggable overlaps the droppable entirely</li><li>'''touch''': draggable overlaps the droppable any amount</li></ul>
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Tolerance {
             get {
                 return null;

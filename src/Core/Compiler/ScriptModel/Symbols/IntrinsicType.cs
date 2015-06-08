@@ -35,6 +35,8 @@ namespace ScriptSharp.ScriptModel {
 
         Single,
 
+        Date,
+
         Double,
 
         Decimal,

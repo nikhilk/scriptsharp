@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Media.Graphics {
 
-    [IgnoreNamespace]
-    [Imported]
-    [NamedValues]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    [ScriptConstants(UseNames = true)]
     public enum Rendering {
 
         [ScriptName("2d")]

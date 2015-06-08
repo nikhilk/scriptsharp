@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class History {
 
         private History() {
@@ -18,7 +18,7 @@ namespace System.Html {
         /// <summary>
         /// Retrieves the number of elements in the history list.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
@@ -28,7 +28,7 @@ namespace System.Html {
         /// <summary>
         /// Retrieves the current state object.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public object State {
             get {
                 return null;

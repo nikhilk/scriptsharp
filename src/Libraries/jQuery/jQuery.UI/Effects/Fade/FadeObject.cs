@@ -14,8 +14,8 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// 
     /// </remarks>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class FadeObject : EffectObject {
 
         private FadeObject() {

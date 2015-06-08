@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delegates</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+<script type="text/javascript" src="Scripts/ssloader.js"></script>
+<script type="text/script" data-name="ss" data-src="Scripts/ss.js"></script>
+<script type="text/script">
+define(['ss'], function(ss) {
+  var TargetClass = function() {
+  }
+  TargetClass.prototype.instanceCallback1 = function() {
+      log('Instance Callback1 invoked');
+  }
+  TargetClass.prototype.instanceCallback2 = function() {
+      log('Instance Callback2 invoked');
+  }
+  TargetClass.staticCallback1 = function() {
+      log('Static Callback1 invoked');
+  }
+  TargetClass.staticCallback2 = function(v) {
+      log('Static Callback2 invoked');
+      log('Value = ' + v);
+  }
+  TargetClass.complexCallback1 = function(delegate) {
+      log('ComplexCallback1 invoked');
+
+      var delegate2 = TargetClass.complexCallback2;
+      ss.bindSub(delegate, delegate2);
+  }
+  TargetClass.complexCallback2 = function(delegate) {
+      log('ComplexCallback2 invoked');
+  }
+  TargetClass.complexCallback3 = function(delegate) {
+      log('ComplexCallback3 invoked');
+  }
+
+  function staticGlobalCallback(v) {
+      log('Static Global Callback invoked');
+      log('Value = ' + v);
+  }
+
+  function setupLog() {
+      var logs = [];
+      window.log = function(log) {
+          QUnit.log(log);
+          logs.push(log);
+      };
+      return logs;
+  }
+
+  module('Delegate');
+  test('testCreateInvoke', function() {
+      var logs = setupLog();
+      var tc = new TargetClass();
+
+      var delegate = ss.bind(tc.instanceCallback1, tc);
+      delegate();
+      
+      QUnit.equal(logs.length, 1);
+  });
+
+  test('testEmpty', function() {
+      var tc = new TargetClass();
+      var delegate = ss.bind(tc.instanceCallback1, tc);
+      delegate = ss.bindSub(delegate, delegate);
+
+      QUnit.equal(delegate, null);
+  });
+
+  test('testDuplicate', function() {
+      var logs = setupLog();
+      var tc = new TargetClass();
+
+      var delegate = ss.bind(tc.instanceCallback1, tc);
+      delegate = ss.bindAdd(delegate, ss.bind(tc.instanceCallback1, tc));
+      delegate();
+
+      QUnit.equal(logs.length, 2);
+  });
+
+  test('testCreateInvokeStatic', function() {
+      var logs = setupLog();
+      var tc = new TargetClass();
+
+      var delegate = ss.bind(TargetClass.staticCallback2);
+      delegate('abc');
+
+      var delegate2 = ss.bind(staticGlobalCallback, null);
+      delegate2('abc');
+
+      QUnit.equal(logs.length, 4);
+  });
+
+  test('testCreateInvokeMultiple', function() {
+      var logs = setupLog();
+      var tc = new TargetClass();
+
+      var delegate = ss.bind(tc.instanceCallback1, tc);
+      delegate = ss.bindAdd(delegate, ss.bind(tc.instanceCallback2, tc));
+      delegate = ss.bindAdd(delegate, TargetClass.staticCallback1);
+      delegate();
+
+      QUnit.equal(logs.length, 3);
+  });
+
+  test('testWithRemoval', function() {
+      var logs = setupLog();
+
+      var delegate1 = ss.bind(TargetClass.complexCallback1);
+      var delegate2 = ss.bind(TargetClass.complexCallback2);
+      var delegate3 = TargetClass.complexCallback3;
+
+      var delegate = ss.bindAdd(delegate1, ss.bindAdd(delegate2, delegate3));
+      delegate(delegate);
+
+      // delegate1 removes delegate2 from the delegate it is passed in.
+      // This test makes sure that removing a delegate from a delegate chain
+      // while the delegate is being invoked doesn't affect the delegate chain
+      // being invoked!
+
+      QUnit.equal(logs.length, 3);
+  });
+
+  test('testPublish', function() {
+      var logs = setupLog();
+      
+      var delegate = ss.bind(function() { log('delegate invoked') }, null);
+
+      var api = ss.bindExport(delegate, /* multiUse */ true, 'xyz');
+      QUnit.equal(api.name, 'xyz', 'Expected published delegate to be named "xyz"');
+      QUnit.equal(window[api.name] !== null, true, 'Expected window member');
+      window[api.name]();
+      QUnit.equal(window[api.name] !== null, true, 'Expected window member since it was multiuse');
+
+      api.detach();
+      QUnit.equal(window[api.name] !== null, true, 'Expected window member');
+      api.dispose();
+      QUnit.equal(!window[api.name], true, 'Did not expect window member since it was deleted');
+
+      // Test single use delegate
+      api = ss.bindExport(delegate);
+      QUnit.equal(window[api.name] !== null, true, 'Expected window member');
+      window[api.name]();
+      QUnit.equal(!window[api.name], true, 'Did not expect window member since it was deleted');
+  });
+
+  module('Delegate');
+  test('testCache', function() {
+      var tc = new TargetClass();
+      var tc2 = new TargetClass();
+
+      var b1 = ss.bind(tc.instanceCallback1, tc);
+      var b2 = ss.bind(tc.instanceCallback1, tc);
+      QUnit.notEqual(b1, b2, 'Expected different bindings as result of each bind call');
+
+      var b3 = ss.bind('instanceCallback1', tc);
+      var b4 = ss.bind('instanceCallback1', tc);
+      QUnit.equal(b3, b4, 'Expected same bindings as result of each caching bind call');
+
+      var b5 = ss.bind('instanceCallback1', tc);
+      var b6 = ss.bind('instanceCallback2', tc);
+      QUnit.notEqual(b5, b6, 'Expected different bindings for different cache keys');
+
+      var b7 = ss.bind('instanceCallback1', tc);
+      var b8 = ss.bind('instanceCallback1', tc2);
+      QUnit.notEqual(b7, b8, 'Expected different bindings for different objects');
+  });
+});
+</script>
+</html>

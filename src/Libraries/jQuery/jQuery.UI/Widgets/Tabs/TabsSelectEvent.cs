@@ -8,12 +8,12 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Widgets {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class TabsSelectEvent {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Index {
             get {
                 return 0;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryObject Panel {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryObject Tab {
             get {
                 return null;

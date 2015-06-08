@@ -11,7 +11,7 @@ namespace ScriptSharp.ScriptModel {
 
     internal sealed class IndexerSymbol : PropertySymbol {
 
-        private bool _intrinsic;
+        private bool _scriptIndexer;
 
         public IndexerSymbol(TypeSymbol parent, TypeSymbol propertyType)
             : base(SymbolType.Indexer, "Item", parent, propertyType) {
@@ -41,15 +41,15 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
-        public bool IsIntrinsic {
+        public bool UseScriptIndexer {
             get {
-                return _intrinsic;
+                return _scriptIndexer;
             }
         }
 
-        public void SetIntrinsic() {
-            Debug.Assert(_intrinsic == false);
-            _intrinsic = true;
+        public void SetScriptIndexer() {
+            Debug.Assert(_scriptIndexer == false);
+            _scriptIndexer = true;
         }
     }
 }

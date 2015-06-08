@@ -10,11 +10,9 @@ using ScriptSharp.Testing;
 namespace PhotoListTests {
 
     [TestClass]
-    [DeploymentItem("PhotoListTests\\Web", "Web")]
-    [DeploymentItem("PhotoList\\bin\\debug\\mscorlib.js", "Web")]
-    [DeploymentItem("PhotoList\\bin\\debug\\Photos.debug.js", "Web")]
-    [DeploymentItem("PhotoList\\bin\\debug\\PhotoList.test.js", "Web")]
     public class GalleryPluginTests {
+
+        private const int Port = 3976;
 
         private static WebTest _webTest;
 
@@ -28,11 +26,11 @@ namespace PhotoListTests {
             // This starts the web server rooted at the specified directory
             // on http://localhost:<port>
 
-            string webRoot = Path.Combine(testContext.DeploymentDirectory, "Web");
-            int port = 3976;
+            string testContentRoot = Path.GetFullPath(Path.Combine(testContext.TestRunDirectory, "..\\..\\PhotoListTests\\Web"));
+            string scriptsRoot = Path.GetFullPath(Path.Combine(testContext.TestRunDirectory, "..\\..\\PhotoList\\bin\\Debug"));
 
             _webTest = new WebTest();
-            _webTest.StartWebServer(webRoot, port);
+            _webTest.StartWebServer(Port, testContentRoot, scriptsRoot);
         }
 
         [ClassCleanup()]

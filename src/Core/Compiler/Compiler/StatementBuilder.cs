@@ -202,9 +202,13 @@ namespace ScriptSharp.Compiler {
 
             ForInStatement statement;
             if (dictionaryContainer) {
-                string dictionaryVariableName = _symbolTable.CreateSymbolName("dict");
-                VariableSymbol dictionaryVariable = new VariableSymbol(dictionaryVariableName, _memberContext,
-                                                                       collectionExpression.EvaluatedType);
+                VariableSymbol dictionaryVariable = null;
+
+                if (collectionExpression.Type != ExpressionType.Local) {
+                    string dictionaryVariableName = _symbolTable.CreateSymbolName("dict");
+                    dictionaryVariable = new VariableSymbol(dictionaryVariableName, _memberContext,
+                                                            collectionExpression.EvaluatedType);
+                }
 
                 statement = new ForInStatement(collectionExpression, dictionaryVariable);
 

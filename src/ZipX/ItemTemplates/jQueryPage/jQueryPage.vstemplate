@@ -1,7 +1,7 @@
 <VSTemplate Version="2.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
     <Name>jQuery Page Script</Name>
-    <Description>A new jQuery-based script within a web application project associated with a specific page.</Description>
+    <Description>Script within an application project that runs as the script loads within a page.</Description>
     <Icon Package="{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}" ID="4515" />
     <ProjectType>CSharp</ProjectType>
     <SortOrder>20</SortOrder>
@@ -16,9 +16,9 @@
   </WizardExtension>
   <WizardData>
     <packages repository="extension" repositoryId="ScriptSharp.Extension.Templates">
-      <package id="ScriptSharp" version="0.7.6" />
-      <package id="ScriptSharp.Lib.HTML" version="0.7.6" />
-      <package id="ScriptSharp.Lib.jQuery" version="0.7.6" />
+      <package id="ScriptSharp" version="0.8" />
+      <package id="ScriptSharp.Lib.HTML" version="0.8" />
+      <package id="ScriptSharp.Lib.jQuery" version="0.8" />
     </packages>
   </WizardData>
 </VSTemplate>

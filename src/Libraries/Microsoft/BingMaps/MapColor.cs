@@ -10,7 +10,7 @@ namespace Microsoft.Maps {
 
     // TODO: Members
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Color")]
     public sealed class MapColor {
 

@@ -40,13 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Script.Web">
-      <HintPath>..\packages\ScriptSharp.Lib.HTML.0.7.5.0\lib\Script.Web.dll</HintPath>
+      <HintPath>..\packages\ScriptSharp.Lib.HTML.0.8\lib\Script.Web.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <Copy SourceFiles="@(ScriptInfo)" DestinationFiles="$(OutputPath)$(AssemblyName).txt" />
   </Target>
-  <Import Project="..\packages\ScriptSharp.0.7.5.0\tools\ScriptSharp.targets" Condition="Exists('..\packages\ScriptSharp.0.7.5.0\tools\ScriptSharp.targets')" />
   <Import Project="..\packages\nuget.targets" />
+  <Import Project="..\packages\ScriptSharp.0.8\tools\ScriptSharp.targets" Condition="Exists('..\packages\ScriptSharp.0.8\tools\ScriptSharp.targets')" />
 </Project>

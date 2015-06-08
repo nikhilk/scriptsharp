@@ -10,21 +10,21 @@ namespace System.Xml {
     /// <summary>
     /// Represents the hierarchy of node objects parsed from XML markup.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class XmlDocument : XmlNode {
 
         internal XmlDocument() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Doctype {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public XmlNode DocumentElement {
             get {
                 return null;
@@ -57,6 +57,10 @@ namespace System.Xml {
         }
 
         public XmlText CreateTextNode(string text) {
+            return null;
+        }
+
+        public XmlNode ImportNode(XmlNode externalNode, bool deep) {
             return null;
         }
     }

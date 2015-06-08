@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class CustomEvent : ElementEvent {
 
         internal CustomEvent() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Data {
             get {
                 return null;

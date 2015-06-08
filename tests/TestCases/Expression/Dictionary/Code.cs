@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace ExpressionTests {
 
@@ -57,6 +56,13 @@ namespace ExpressionTests {
             dictionary1.Clear();
             
             string[] keys = dictionary1.Keys;
+        }
+
+        public void Test4(int arg) {
+            Dictionary<int, string> d1 = new Dictionary<int, string>();
+            d1[1] = d1[arg] = "aaa";
+            d1.Remove(1);
+            d1.Remove(arg);
         }
     }
 }

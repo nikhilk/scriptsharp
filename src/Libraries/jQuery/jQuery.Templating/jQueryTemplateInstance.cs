@@ -15,8 +15,8 @@ namespace jQueryApi.Templating {
     /// <summary>
     /// Represents an instantiated jQuery template.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class jQueryTemplateInstance {
 
         private jQueryTemplateInstance() {
@@ -25,7 +25,7 @@ namespace jQueryApi.Templating {
         /// <summary>
         /// Gets the data that this instance is based on.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public object Data {
             get {
                 return null;
@@ -35,7 +35,7 @@ namespace jQueryApi.Templating {
         /// <summary>
         /// Gets the elements that this template instance represents.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Element[] Nodes {
             get {
                 return null;
@@ -45,7 +45,7 @@ namespace jQueryApi.Templating {
         /// <summary>
         /// Gets or sets the template that this instance is based on.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryTemplate Template {
             get {
                 return null;

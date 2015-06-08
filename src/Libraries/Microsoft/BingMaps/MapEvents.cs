@@ -12,7 +12,7 @@ namespace Microsoft.Maps {
 
     public delegate void MapEventHandler(MapEventArgs e);
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Events")]
     public static class MapEvents {
 

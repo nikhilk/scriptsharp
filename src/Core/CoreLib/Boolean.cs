@@ -10,8 +10,8 @@ namespace System {
     /// <summary>
     /// Equivalent to the Boolean type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public struct Boolean {
 
         /// <summary>
@@ -19,6 +19,7 @@ namespace System {
         /// </summary>
         /// <param name="s">The string to be parsed.</param>
         /// <returns>The resulting boolean value.</returns>
+        [ScriptAlias("ss.boolean")]
         public static bool Parse(string s) {
             return false;
         }

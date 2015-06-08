@@ -11,8 +11,8 @@ namespace System.Collections {
     /// <summary>
     /// The Dictionary data type which is mapped to the Object type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class Dictionary : IEnumerable {
 
@@ -34,7 +34,7 @@ namespace System.Collections {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object this[string key] {
             get {
                 return null;
@@ -43,9 +43,11 @@ namespace System.Collections {
             }
         }
 
+        [ScriptAlias("ss.clearKeys")]
         public void Clear() {
         }
 
+        [ScriptAlias("ss.keyExists")]
         public bool ContainsKey(string key) {
             return false;
         }

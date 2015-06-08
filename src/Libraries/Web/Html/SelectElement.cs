@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class SelectElement : InputElement {
 
         private SelectElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Multiple {
             get {
                 return false;
@@ -24,14 +24,14 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public ElementCollection Options {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int SelectedIndex {
             get {
                 return 0;
@@ -40,7 +40,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Size {
             get {
                 return 0;

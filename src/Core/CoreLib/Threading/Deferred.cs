@@ -8,15 +8,32 @@ using System.Runtime.CompilerServices;
 
 namespace System.Threading {
 
-    [Imported]
-    [ScriptNamespace("ss")]
-    public class Deferred {
+    [ScriptImport]
+    public abstract class Deferred {
 
-        [IntrinsicProperty]
+        internal Deferred() {
+        }
+
+        [ScriptField]
         public Task Task {
             get {
                 return null;
             }
+        }
+
+        [ScriptAlias("ss.deferred")]
+        public static Deferred Create() {
+            return null;
+        }
+
+        [ScriptAlias("ss.deferred")]
+        public static Deferred<T> Create<T>() {
+            return null;
+        }
+
+        [ScriptAlias("ss.deferred")]
+        public static Deferred<T> Create<T>(T result) {
+            return null;
         }
 
         public void Reject() {
@@ -29,12 +46,14 @@ namespace System.Threading {
         }
     }
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     [ScriptName("Deferred")]
     public sealed class Deferred<T> : Deferred {
 
-        [IntrinsicProperty]
+        private Deferred() {
+        }
+
+        [ScriptField]
         public new Task<T> Task {
             get {
                 return null;

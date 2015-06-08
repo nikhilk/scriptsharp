@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>PhotoListTests - GalleryPluginTests</title>
-  <link rel="stylesheet" href="/QUnit.css" type="text/css"/>
-  <script type="text/javascript" src="/QUnit.js"></script>
-  <script type="text/javascript" src="/QUnitExt.js"></script>
+  <link rel="stylesheet" href="QUnit.css" type="text/css"/>
+  <script type="text/javascript" src="QUnit.js"></script>
+  <script type="text/javascript" src="QUnitExt.js"></script>
 </head>
 <body>
   <div>
@@ -15,9 +15,15 @@
     <br />
     <textarea id="qunit-log" rows="10" cols="100"></textarea>
   </div>
-  <script type="text/javascript" src="mscorlib.js"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
-  <script type="text/javascript" src="Photos.debug.js"></script>
-  <script type="text/javascript" src="PhotoList.test.js"></script>
+  <script type="text/script" data-name="jquery" data-src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+  <script type="text/script" data-name="ss" data-src="ss.min.js"></script>
+  <script type="text/script" data-name="flickr" data-src="Flickr.js"></script>
+  <script type="text/script" data-name="photoList" data-src="PhotoList.test.js" data-autoload="true"></script>
+
+  <script src="ssloader.js"></script>
+  <script>
+    define('jqueryTmpl', [], function() { return null; });
+    define('jqueryBBQ', [], function() { return null; });
+  </script>
 </body>
 </html>

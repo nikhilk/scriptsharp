@@ -3,7 +3,6 @@ using System.Html;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace BasicTests {
 
@@ -221,7 +220,8 @@ namespace BasicTests {
     /// <summary>
     /// Represents a record.
     /// </summary>
-    public sealed class RecordClass : Record {
+    [ScriptObject]
+    public sealed class RecordClass {
 
         /// <summary>
         /// Gets or sets a count.
@@ -248,9 +248,9 @@ namespace BasicTests {
     }
 
     /// <summary>
-    /// Class with global methods.
+    /// Class with extension methods.
     /// </summary>
-    [GlobalMethods]
+    [ScriptExtension("$global")]
     public static class GlobalMethodsClass {
 
         /// <summary>

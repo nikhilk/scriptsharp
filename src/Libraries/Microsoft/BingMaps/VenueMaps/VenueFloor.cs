@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.VenueMaps {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class VenueFloor {
 
@@ -17,21 +17,21 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("primitives")]
-        [IntrinsicProperty]
+        [ScriptField]
         public VenueEntity[] Entities {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int[] ZoomRange {
             get {
                 return null;

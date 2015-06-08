@@ -7,11 +7,8 @@ using System.Runtime.CompilerServices;
 
 namespace System {
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     public abstract class Delegate {
-
-        public static readonly Delegate Empty = null;
 
         protected Delegate(object target, string method) {
         }
@@ -19,32 +16,37 @@ namespace System {
         protected Delegate(Type target, string method) {
         }
 
-        public static void ClearExport(string name) {
-        }
-
+        [ScriptAlias("ss.bindAdd")]
         public static Delegate Combine(Delegate a, Delegate b) {
             return null;
         }
 
-        public static Delegate Create(object instance, Function f) {
+        [ScriptAlias("ss.bind")]
+        public static Delegate Create(Function f, object instance) {
             return null;
         }
 
-        public static string CreateExport(Delegate d) {
+        [ScriptAlias("ss.bindExport")]
+        public static Export Export(Delegate d) {
             return null;
         }
 
-        public static string CreateExport(Delegate d, bool multiUse) {
+        [ScriptAlias("ss.bindExport")]
+        public static Export Export(Delegate d, bool multiUse) {
             return null;
         }
 
-        public static string CreateExport(Delegate d, bool multiUse, string name) {
+        [ScriptAlias("ss.bindExport")]
+        public static Export Export(Delegate d, bool multiUse, string name) {
             return null;
         }
 
-        public static void DeleteExport(string name) {
+        [ScriptAlias("ss.bindExport")]
+        public static Export Export(Delegate d, bool multiUse, string name, object root) {
+            return null;
         }
 
+        [ScriptAlias("ss.bindSub")]
         public static Delegate Remove(Delegate source, Delegate value) {
             return null;
         }
