@@ -70,7 +70,7 @@ namespace ScriptSharp.Tests.Core {
         public string GetToolPath(string fileName) {
             // Get the path to the tools folder
             string assemblyPath = this.GetType().Assembly.GetModules()[0].FullyQualifiedName;
-            string toolsPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\tools\\bin"));
+            string toolsPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\tools\\bin"));
 
             return Path.Combine(toolsPath, fileName);
         }

@@ -6,6 +6,7 @@
     <DeploymentItem filename="bin\Debug\Test\" outputDirectory="Test\" />
 	<DeploymentItem filename="bin\Debug\TestCases\" outputDirectory="TestCases\" />
 	<DeploymentItem filename="bin\Debug\TestSite\" outputDirectory="TestSite\" />
+	<DeploymentItem filename="bin\Debug\tools\" outputDirectory="tools\" />
   </Deployment>
   <NamingScheme baseName="Run" appendTimeStamp="false" useDefault="false" />
   <Execution>
