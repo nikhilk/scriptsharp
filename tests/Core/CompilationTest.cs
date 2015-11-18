@@ -94,21 +94,14 @@ namespace ScriptSharp.Tests.Core {
             string baseline = File.ReadAllText(baselinePath);
             string output = compilation.Output.GeneratedOutput;
 
-            bool validResults = ValidateResults(output, baselineFile);
-            if (validResults == false) {
-                string outputPath = Path.Combine(_context.TestRunDirectory, "..", this.GetType().Name + "." + _context.TestName + ".txt");
-                File.WriteAllText(outputPath, output);
 
-                // File.WriteAllText(baselinePath, output);
-            }
-
-            Assert.IsTrue(validResults, "Unexpected differences between baseline and result.");
+            Assert.AreEqual(output, baseline, "Unexpected differences between baseline and result.");
         }
 
         protected bool ValidateResults(string output, string baselineFile) {
             string baselinePath = GetTestFilePath(baselineFile);
             string baseline = File.ReadAllText(baselinePath);
-
+            
             if (String.CompareOrdinal(baseline, output) != 0) {
                 string diff = null;
 
