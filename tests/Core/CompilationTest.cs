@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text;
 
 namespace ScriptSharp.Tests.Core {
 
@@ -91,9 +92,8 @@ namespace ScriptSharp.Tests.Core {
             Assert.IsTrue(result, "Compilation failed.");
 
             string baselinePath = GetTestFilePath(baselineFile);
-            string baseline = File.ReadAllText(baselinePath);
+            string baseline = File.ReadAllText(baselinePath, new UTF8Encoding(false));
             string output = compilation.Output.GeneratedOutput;
-
 
             Assert.AreEqual(output, baseline, "Unexpected differences between baseline and result.");
         }
