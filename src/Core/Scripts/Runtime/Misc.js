@@ -129,3 +129,12 @@ function fail(message) {
   }
 }
 
+function paramsGenerator(n, f) {
+    return function () {
+        var slice = Array.prototype.slice;
+        var args = slice.call(arguments, 0, n);
+        var unnamed = slice.call(arguments, n);
+        args.push(unnamed);
+        return f.apply(this, args);
+    }
+}

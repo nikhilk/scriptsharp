@@ -82,6 +82,7 @@
       bindSub: bindSub,
       bindExport: bindExport,
       deferred: deferred,
+      paramsGenerator: paramsGenerator,
 
       module: module,
       modules: _modules,

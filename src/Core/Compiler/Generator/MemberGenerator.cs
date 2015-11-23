@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using ScriptSharp;
 using ScriptSharp.ScriptModel;
+using System.Linq;
 
 namespace ScriptSharp.Generator {
 
@@ -55,6 +56,7 @@ namespace ScriptSharp.Generator {
             else {
                 writer.Write(" = ");
             }
+
             writer.Write("function(");
             writer.Write(valueParameter.GeneratedName);
             writer.WriteLine(") {");
@@ -125,7 +127,8 @@ namespace ScriptSharp.Generator {
             }
         }
 
-        private static void GenerateField(ScriptGenerator generator, string typeName, FieldSymbol fieldSymbol) {
+        private static void GenerateField(ScriptGenerator generator, string typeName, FieldSymbol fieldSymbol)
+        {
             ScriptTextWriter writer = generator.Writer;
 
             bool instanceMember = true;
@@ -245,18 +248,16 @@ namespace ScriptSharp.Generator {
                 writer.Write(" = ");
             }
 
-            writer.Write("function(");
-            if (methodSymbol.Parameters != null) {
-                int paramIndex = 0;
-                foreach (ParameterSymbol parameterSymbol in methodSymbol.Parameters) {
-                    if (paramIndex > 0) {
-                        writer.Write(", ");
-                    }
-                    writer.Write(parameterSymbol.GeneratedName);
+            bool hasParams = HasParamsModifier(methodSymbol);
 
-                    paramIndex++;
-                }
+            if (hasParams) {
+                writer.Write("ss.paramsGenerator(");
+                writer.Write("{0}, ", methodSymbol.Parameters.Count - 1);
             }
+
+            writer.Write("function(");
+            WriteParameters(methodSymbol, writer);
+           
             writer.WriteLine(") {");
             writer.Indent++;
 
@@ -268,8 +269,36 @@ namespace ScriptSharp.Generator {
             writer.Indent--;
             writer.Write("}");
 
+            if (hasParams) {
+                writer.Write(")");
+            }
+
             if (instanceMember == false) {
                 writer.WriteLine(";");
+            }
+        }
+
+        private static bool HasParamsModifier(MethodSymbol methodSymbol) {
+            if (methodSymbol == null || methodSymbol.Parameters == null || methodSymbol.Parameters.Count() == 0) {
+                return false;
+            }
+
+            var lastParameterParseContext = methodSymbol.Parameters.Last().ParseContext as ScriptSharp.CodeModel.ParameterNode;
+            return lastParameterParseContext.Flags.HasFlag(CodeModel.ParameterFlags.Params);
+        }
+
+        private static void WriteParameters(MethodSymbol methodSymbol, ScriptTextWriter writer) {
+            if (methodSymbol.Parameters != null) {
+                int paramIndex = 0;
+
+                foreach (ParameterSymbol parameterSymbol in methodSymbol.Parameters) {
+                    if (paramIndex > 0){
+                        writer.Write(", ");
+                    }
+                    writer.Write(parameterSymbol.GeneratedName);
+
+                    paramIndex++;
+                }
             }
         }
 
