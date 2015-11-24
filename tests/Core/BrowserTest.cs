@@ -81,7 +81,8 @@ namespace ScriptSharp.Tests.Core {
             Uri testUri = _webTest.GetTestUri(url);
 
             WebTestResult result = _webTest.RunTest(testUri, WebBrowser.Chrome);
-            Assert.IsTrue(result.Succeeded, "Log:\r\n" + result.Log);
+            Console.Write(result.Log);
+            Assert.IsTrue(result.Succeeded, "Log:\n" + result.Log);
         }
     }
 }
