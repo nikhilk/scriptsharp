@@ -13,7 +13,6 @@ Script# requires .NET 4.0 and Visual Studio 2012. You can also use one of the fr
 ## More Information ##
 The following set of links are relevant if you're using Script# and want to learn more or ask questions, or stay up-to-date.
 
-* [Script# Project page](http://scriptsharp.com)
 * [Latest released build](http://bit.ly/ssrelease) (packaged as a Visual Studio extension containing Script# project and item templates)
 * [Issues, suggestions](https://github.com/nikhilk/scriptsharp/issues) here on GitHub. Also, check this out to participate in future design questions, calls for feedback, etc.
 * For general discussion and Q&A, use [StackOverflow](http://stackoverflow.com/questions/tagged/scriptsharp)
