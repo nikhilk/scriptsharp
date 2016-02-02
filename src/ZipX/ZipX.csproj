@@ -100,4 +100,8 @@
     <RemoveDir Directories="$(OutputPath)" />
   </Target>
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+  <Target Name="RestorePackageVersion" AfterTargets="Build">
+    <XmlPoke Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd' /&gt;" Query="/package/x:metadata/x:version" Value="$(AssemblyVersion)" XmlInputPath="%(NuSpec.Identity)" />
+    <XmlPoke Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd' /&gt;" Query="//x:dependencies/x:dependency/@version" Value="$(AssemblyVersion)" XmlInputPath="%(NuSpec.Identity)" />
+  </Target>
 </Project>
