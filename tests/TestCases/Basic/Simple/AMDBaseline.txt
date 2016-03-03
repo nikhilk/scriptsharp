@@ -78,4 +78,4 @@ define('basic', ['ss'], function(ss) {
   return $exports;
 });
 
-// Generated with Script# 0.8.0.0
+// Generated with Script# 1.0.0.0
