@@ -14,6 +14,7 @@
   </ItemGroup>
   
   <Target Name="BeforeBuild">
+    <MakeDir Directories="$(BaseIntermediateOutputPath)" />
     <ItemGroup>
       <AssemblyAttributes Include="AssemblyVersion;AssemblyFileVersion">
         <_Parameter1>$(AssemblyVersion)</_Parameter1>
