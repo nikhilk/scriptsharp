@@ -9,5 +9,10 @@ namespace System {
 
     [ScriptImport]
     public abstract class Enum : ValueType {
+        
+        [ScriptAlias("ss.enumgetname")]
+        public static string GetName(Type enumType, object value) {
+            return null;
+        }
     }
 }
