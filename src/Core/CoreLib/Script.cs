@@ -61,6 +61,10 @@ namespace System {
             return null;
         }
 
+        [ScriptAlias("debugger")]
+        public static void Debugger() {
+        }
+        
         public static void DeleteField(object instance, string name) {
         }
 
