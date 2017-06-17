@@ -3821,13 +3821,13 @@ define('test', ['ss'], function(ss) {
   function AppHelper() {
   }
   var AppHelper$ = {
-    get_prop1: function() {
+    $get_prop1: function() {
       return 0;
     },
-    get_prop2: function() {
+    $get_prop2: function() {
       return 0;
     },
-    set_prop2: function(value) {
+    $set_prop2: function(value) {
       return value;
     },
     _showHelp: function() {

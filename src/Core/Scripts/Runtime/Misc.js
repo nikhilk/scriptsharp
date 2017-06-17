@@ -26,6 +26,28 @@ function extend(o, items) {
   return o;
 }
 
+function extendType(o, items) {
+    for (var n in items) {
+        if (n.startsWith("$get_")) {
+            Object.defineProperty(o, n.slice(5), {
+                configurable: true,
+                get: items[n]
+            });
+        }
+        else if (n.startsWith("$set_")) {
+            Object.defineProperty(o, n.slice(5), {
+                configurable: true,
+                set: items[n]
+            });
+        }
+        else {
+            o[n] = items[n];
+        }
+    }
+    return o;
+}
+
+
 function parseBoolean(s) {
   return (s.toLowerCase() == 'true');
 }

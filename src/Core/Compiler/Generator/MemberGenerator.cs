@@ -316,7 +316,7 @@ namespace ScriptSharp.Generator {
                 writer.Write(".");
             }
 
-            writer.Write("get_");
+            writer.Write("$get_");
             writer.Write(propertySymbol.GeneratedName);
             if (instanceMember) {
                 writer.Write(": ");
@@ -349,7 +349,7 @@ namespace ScriptSharp.Generator {
                     writer.Write(".");
                 }
 
-                writer.Write("set_");
+                writer.Write("$set_");
                 writer.Write(propertySymbol.GeneratedName);
                 if (instanceMember) {
                     writer.Write(": ");

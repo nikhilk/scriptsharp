@@ -29,7 +29,7 @@ define('basic', ['ss'], function(ss) {
     remove_click: function(value) {
       this.__click = ss.bindSub(this.__click, value);
     },
-    get_text: function() {
+    $get_text: function() {
       return this._text;
     },
     performClick: function() {
@@ -58,10 +58,10 @@ define('basic', ['ss'], function(ss) {
     _echo: function(s) {
     },
     _onClickButton: function(sender, e) {
-      this._echo((sender).get_text() + ' was clicked!');
+      this._echo((sender).text + ' was clicked!');
     },
     _onClickButtonDup: function(sender, e) {
-      this._echo((sender).get_text() + ' was clicked as well!');
+      this._echo((sender).text + ' was clicked as well!');
     }
   };
 

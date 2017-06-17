@@ -28,7 +28,7 @@ function createType(typeName, typeInfo, typeRegistry) {
       }
 
       // Add the type's prototype members if there are any
-      typeInfo[1] && extend(type.prototype, typeInfo[1]);
+      typeInfo[1] && extendType(type.prototype, typeInfo[1]);
 
       type.$base = baseType || Object;
       type.$interfaces = typeInfo.slice(3);

@@ -33,7 +33,7 @@ define('test', ['ss'], function(ss) {
   function Foo() {
   }
   var Foo$ = {
-    get_canRun: function() {
+    $get_canRun: function() {
       return true;
     },
     run: function() {
@@ -50,7 +50,7 @@ define('test', ['ss'], function(ss) {
     MyObject.call(this);
   }
   var MyObject2$ = {
-    get_canRun: function() {
+    $get_canRun: function() {
       return true;
     },
     run: function() {

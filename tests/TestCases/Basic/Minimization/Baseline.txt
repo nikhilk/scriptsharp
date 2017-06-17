@@ -196,14 +196,14 @@ define('test', ['ss', 'lib'], function(ss, lib) {
         return numericValue + indexValue + stringValue + textValue + value;
       });
     },
-    get_$5: function() {
+    $get_$5: function() {
       return 0;
     },
-    set_$5: function(value) {
+    $set_$5: function(value) {
       var x = value;
       return value;
     },
-    get_$6: function() {
+    $get_$6: function() {
       var $this = this;
 
       this.$1(function(indexValue, textValue) {
@@ -217,7 +217,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
       });
       return 0;
     },
-    set_$6: function(value) {
+    $set_$6: function(value) {
       var $this = this;
 
       var numericValue = value + 1;
@@ -277,7 +277,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
     },
     c$6: function() {
     },
-    get_c$7: function() {
+    $get_c$7: function() {
       return null;
     },
     get_item: function(name) {
