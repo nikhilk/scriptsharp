@@ -45,6 +45,20 @@ function createType(typeName, typeInfo, typeRegistry) {
   return typeInfo;
 }
 
+function createPropertyGet(obj, propertyName, fn) {
+    Object.defineProperty(obj, propertyName, {
+        configurable: true,
+        get: fn
+    });
+}
+
+function createPropertySet(obj, propertyName, fn) {
+    Object.defineProperty(obj, propertyName, {
+        configurable: true,
+        set: fn
+    });
+}
+
 function isClass(fn) {
   return fn.$type == _classMarker;
 }
@@ -172,3 +186,7 @@ function module(name, implementation, exports) {
   return api;
 }
 
+function baseProperty(type, propertyName) {
+    var baseType = type.$base;
+    return Object.getOwnPropertyDescriptor(baseType.prototype, propertyName) || baseProperty(baseType, propertyName);
+}

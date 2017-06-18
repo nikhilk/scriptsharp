@@ -95,7 +95,7 @@ namespace ScriptSharp.Tests.Core {
             string baseline = File.ReadAllText(baselinePath, new UTF8Encoding(false));
             string output = compilation.Output.GeneratedOutput;
 
-            Assert.AreEqual(output, baseline, "Unexpected differences between baseline and result.");
+            Assert.AreEqual(baseline, output, "Unexpected differences between baseline and result.");
         }
 
         protected bool ValidateResults(string output, string baselineFile) {

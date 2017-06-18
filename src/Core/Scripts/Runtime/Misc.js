@@ -29,16 +29,10 @@ function extend(o, items) {
 function extendType(o, items) {
     for (var n in items) {
         if (n.startsWith("$get_")) {
-            Object.defineProperty(o, n.slice(5), {
-                configurable: true,
-                get: items[n]
-            });
+            createPropertyGet(o, n.slice(5), items[n]);
         }
         else if (n.startsWith("$set_")) {
-            Object.defineProperty(o, n.slice(5), {
-                configurable: true,
-                set: items[n]
-            });
+            createPropertySet(o, n.slice(5), items[n]);
         }
         else {
             o[n] = items[n];

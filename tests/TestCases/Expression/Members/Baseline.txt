@@ -67,10 +67,10 @@ define('test', ['ss'], function(ss) {
     test2: function() {
       var n = this.XYZ;
       n = this.XYZ;
-      n = App.prototype.get_XYZ.call(this);
+      n = ss.baseProperty(DApp, 'XYZ').get.call(this);
       this.XYZ = n;
       this.XYZ = n;
-      App.prototype.set_XYZ.call(this, n);
+      ss.baseProperty(DApp, 'XYZ').set.call(this, n);
       this._value2 = n;
       this._value2 = n;
       this._value2 = n;

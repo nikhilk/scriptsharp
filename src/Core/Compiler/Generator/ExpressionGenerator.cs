@@ -43,9 +43,10 @@ namespace ScriptSharp.Generator {
                     Debug.Assert(propExpression.Type == ExpressionType.PropertySet);
 
                     if (propExpression.ObjectReference is BaseExpression) {
-					    writer.Write("Object.getOwnPropertyDescriptor(");
-                        writer.Write(((BaseExpression)propExpression.ObjectReference).EvaluatedType.FullGeneratedName);
-                        writer.Write(".prototype, '");
+                        ClassSymbol classSymbol = (ClassSymbol)symbol.Parent;
+					    writer.Write("ss.baseProperty(");
+                        writer.Write(classSymbol.FullGeneratedName);
+                        writer.Write(", '");
                         writer.Write(propExpression.Property.GeneratedName);
                         writer.Write("').set.call(");
                         writer.Write(generator.CurrentImplementation.ThisIdentifier);
@@ -848,11 +849,11 @@ namespace ScriptSharp.Generator {
             if (expression.ObjectReference is BaseExpression) {
                 Debug.Assert(symbol.Parent is ClassSymbol);
 
-                ClassSymbol baseClass = ((ClassSymbol)symbol.Parent).BaseClass;
-                Debug.Assert(baseClass != null);
-				writer.Write("Object.getOwnPropertyDescriptor(");
-                writer.Write(baseClass.FullGeneratedName);
-                writer.Write(".prototype, '");
+                ClassSymbol classSymbol = (ClassSymbol)symbol.Parent;
+                Debug.Assert(classSymbol.BaseClass != null);
+				writer.Write("ss.baseProperty(");
+                writer.Write(classSymbol.FullGeneratedName);
+                writer.Write(", '");
                 writer.Write(expression.Property.GeneratedName);
                 writer.Write("').get.call(");
                 writer.Write(generator.CurrentImplementation.ThisIdentifier);
