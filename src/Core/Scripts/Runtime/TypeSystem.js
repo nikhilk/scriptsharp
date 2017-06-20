@@ -28,7 +28,7 @@ function createType(typeName, typeInfo, typeRegistry) {
       }
 
       // Add the type's prototype members if there are any
-      typeInfo[1] && extend(type.prototype, typeInfo[1]);
+      typeInfo[1] && extendType(type.prototype, typeInfo[1]);
 
       type.$base = baseType || Object;
       type.$interfaces = typeInfo.slice(3);
@@ -43,6 +43,20 @@ function createType(typeName, typeInfo, typeRegistry) {
   }
 
   return typeInfo;
+}
+
+function createPropertyGet(obj, propertyName, fn) {
+    Object.defineProperty(obj, propertyName, {
+        configurable: true,
+        get: fn
+    });
+}
+
+function createPropertySet(obj, propertyName, fn) {
+    Object.defineProperty(obj, propertyName, {
+        configurable: true,
+        set: fn
+    });
 }
 
 function isClass(fn) {
@@ -172,3 +186,7 @@ function module(name, implementation, exports) {
   return api;
 }
 
+function baseProperty(type, propertyName) {
+    var baseType = type.$base;
+    return Object.getOwnPropertyDescriptor(baseType.prototype, propertyName) || baseProperty(baseType, propertyName);
+}

@@ -5,6 +5,12 @@ using System.Runtime.CompilerServices;
 
 namespace MemberTests {
 
+    public interface ITest
+    {
+        int XYZ { get; set; }
+        bool IsFoo { get; }
+    }
+
     public class Test {
 
         public static int StaticProp {
@@ -28,7 +34,13 @@ namespace MemberTests {
         public Test() {
             XYZ = 1;
             this.XYZ = this.Name.Length;
-            this.XYZ = Name.Length;
+
+            ITest inter = (ITest)this;
+
+            inter.XYZ = Name.Length;
+
+            inter.XYZ++;
+            --this.XYZ;
 
             int v = StaticProp;
             v = Test.StaticProp;
@@ -39,6 +51,7 @@ namespace MemberTests {
 
         public Test2() {
             int n = base.XYZ;
+            base.XYZ = 6;
             if (n == XYZ) {
             }
             if (XYZ == n) {

@@ -312,18 +312,23 @@ namespace ScriptSharp.Generator {
             bool instanceMember = true;
             if ((propertySymbol.Visibility & MemberVisibility.Static) != 0) {
                 instanceMember = false;
-                writer.Write(typeName);
-                writer.Write(".");
             }
 
-            writer.Write("get_");
-            writer.Write(propertySymbol.GeneratedName);
-            if (instanceMember) {
+            if (instanceMember)
+            {
+                writer.Write("$get_");
+                writer.Write(propertySymbol.GeneratedName);
                 writer.Write(": ");
             }
-            else {
-                writer.Write(" = ");
+            else
+            {
+                writer.Write("ss.createPropertyGet(");
+                writer.Write(typeName);
+                writer.Write(", '");
+                writer.Write(propertySymbol.GeneratedName);
+                writer.Write("', ");
             }
+
             writer.WriteLine("function() {");
             writer.Indent++;
 
@@ -336,27 +341,25 @@ namespace ScriptSharp.Generator {
             writer.Write("}");
 
             if (instanceMember == false) {
-                writer.WriteLine(";");
+                writer.WriteLine(");");
             }
 
             if (propertySymbol.IsReadOnly == false) {
                 ParameterSymbol valueParameter = propertySymbol.Parameters[0];
                 if (instanceMember) {
                     writer.WriteLine(",");
-                }
-                else {
-                    writer.Write(typeName);
-                    writer.Write(".");
-                }
-
-                writer.Write("set_");
-                writer.Write(propertySymbol.GeneratedName);
-                if (instanceMember) {
+                    writer.Write("$set_");
+                    writer.Write(propertySymbol.GeneratedName);
                     writer.Write(": ");
                 }
                 else {
-                    writer.Write(" = ");
+                    writer.Write("ss.createPropertySet(");
+                    writer.Write(typeName);
+                    writer.Write(", '");
+                    writer.Write(propertySymbol.GeneratedName);
+                    writer.Write("', ");
                 }
+
                 writer.Write("function(");
                 writer.Write(valueParameter.GeneratedName);
                 writer.WriteLine(") {");
@@ -375,7 +378,7 @@ namespace ScriptSharp.Generator {
                 writer.Write("}");
 
                 if (instanceMember == false) {
-                    writer.WriteLine(";");
+                    writer.WriteLine(");");
                 }
             }
         }

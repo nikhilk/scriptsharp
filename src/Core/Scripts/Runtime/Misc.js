@@ -26,6 +26,22 @@ function extend(o, items) {
   return o;
 }
 
+function extendType(o, items) {
+    for (var n in items) {
+        if (n.startsWith("$get_")) {
+            createPropertyGet(o, n.slice(5), items[n]);
+        }
+        else if (n.startsWith("$set_")) {
+            createPropertySet(o, n.slice(5), items[n]);
+        }
+        else {
+            o[n] = items[n];
+        }
+    }
+    return o;
+}
+
+
 function parseBoolean(s) {
   return (s.toLowerCase() == 'true');
 }

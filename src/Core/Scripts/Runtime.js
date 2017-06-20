@@ -83,7 +83,9 @@
       bindExport: bindExport,
       deferred: deferred,
       paramsGenerator: paramsGenerator,
-
+      createPropertyGet: createPropertyGet,
+      createPropertySet: createPropertySet,
+      
       module: module,
       modules: _modules,
 
@@ -96,6 +98,7 @@
       safeCast: safeCast,
       canAssign: canAssign,
       instanceOf: instanceOf,
+      baseProperty : baseProperty,
 
       culture: {
         neutral: neutralCulture,
