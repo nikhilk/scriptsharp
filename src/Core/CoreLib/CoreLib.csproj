@@ -44,6 +44,7 @@
     <DocumentationFile>..\..\..\bin\Release\mscorlib.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collections\Collection.cs" />
     <Compile Include="Collections\ArrayReduceCallback.cs" />
     <Compile Include="Collections\ArrayItemReduceCallback.cs" />
     <Compile Include="Collections\Generic\ListReduceCallback.cs" />
