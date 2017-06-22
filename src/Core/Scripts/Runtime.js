@@ -23,23 +23,23 @@
   #include "Runtime\TypeSystem.js"
 
   return extend(module('ss', null, {
-      IDisposable: [ 'interface', IDisposable ],
-      IEnumerable: [ 'interface', IEnumerable ],
-      IEnumerator: [ 'interface', IEnumerator ],
-      IObserver: [ 'interface', IObserver ],
-      IApplication: [ 'interface', IApplication ],
-      IContainer: [ 'interface', IContainer ],
-      IObjectFactory: [ 'interface', IObjectFactory ],
-      IEventManager: [ 'interface', IEventManager ],
-      IInitializable: [ 'interface', IInitializable ],
-      EventArgs: [ 'interface', EventArgs, { } ],
-      CancelEventArgs: [ 'class', CancelEventArgs, { }, EventArgs ],
-      StringBuilder: [ 'class', StringBuilder, StringBuilder$ ],
-      Stack: [ 'class', Stack, Stack$ ],
-      Queue: [ 'class', Queue, Queue$ ],
-      Observable: [ 'class', Observable, Observable$ ],
-      ObservableCollection: [ 'class', ObservableCollection, ObservableCollection$, null, IEnumerable ],
-      Task: [ 'class', Task, Task$ ]
+      IDisposable: [ _interfaceMarker, IDisposable ],
+      IEnumerable: [ _interfaceMarker, IEnumerable ],
+      IEnumerator: [ _interfaceMarker, IEnumerator ],
+      IObserver: [ _interfaceMarker, IObserver ],
+      IApplication: [ _interfaceMarker, IApplication ],
+      IContainer: [ _interfaceMarker, IContainer ],
+      IObjectFactory: [ _interfaceMarker, IObjectFactory ],
+      IEventManager: [ _interfaceMarker, IEventManager ],
+      IInitializable: [ _interfaceMarker, IInitializable ],
+      EventArgs: [ _interfaceMarker, EventArgs, { } ],
+      CancelEventArgs: [ _classMarker, CancelEventArgs, { }, EventArgs ],
+      StringBuilder: [ _classMarker, StringBuilder, StringBuilder$ ],
+      Stack: [ _classMarker, Stack, Stack$ ],
+      Queue: [ _classMarker, Queue, Queue$ ],
+      Observable: [ _classMarker, Observable, Observable$ ],
+      ObservableCollection: [ _classMarker, ObservableCollection, ObservableCollection$, null, IEnumerable ],
+      Task: [ _classMarker, Task, Task$ ]
     }), {
       version: '0.8',
 
