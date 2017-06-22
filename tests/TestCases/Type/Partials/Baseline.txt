@@ -122,17 +122,17 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      SingleMemberClass: [ SingleMemberClass, SingleMemberClass$, null ],
-      SomeClass: [ SomeClass, SomeClass$, null ]
+      SingleMemberClass: [ ss.classMarker, SingleMemberClass, SingleMemberClass$, null ],
+      SomeClass: [ ss.classMarker, SomeClass, SomeClass$, null ]
     },
     {
-      IMyInterface: [ IMyInterface ],
-      EmptyClass: [ EmptyClass, EmptyClass$, null ],
-      MergedMembersClass: [ MergedMembersClass, MergedMembersClass$, null ],
-      MyClass: [ MyClass, MyClass$, null, IMyInterface ],
-      App: [ App, App$, null ],
-      DerivedMemberClass: [ DerivedMemberClass, DerivedMemberClass$, SingleMemberClass ],
-      DerivedMergedMembersClass: [ DerivedMergedMembersClass, DerivedMergedMembersClass$, MergedMembersClass ]
+      IMyInterface: [ ss.interfaceMarker, IMyInterface, null, null ],
+      EmptyClass: [ ss.classMarker, EmptyClass, EmptyClass$, null ],
+      MergedMembersClass: [ ss.classMarker, MergedMembersClass, MergedMembersClass$, null ],
+      MyClass: [ ss.classMarker, MyClass, MyClass$, null, IMyInterface ],
+      App: [ ss.classMarker, App, App$, null ],
+      DerivedMemberClass: [ ss.classMarker, DerivedMemberClass, DerivedMemberClass$, SingleMemberClass ],
+      DerivedMergedMembersClass: [ ss.classMarker, DerivedMergedMembersClass, DerivedMergedMembersClass$, MergedMembersClass ]
     });
 
 

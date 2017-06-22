@@ -23,23 +23,23 @@
   #include "Runtime\TypeSystem.js"
 
   return extend(module('ss', null, {
-      IDisposable: [ IDisposable ],
-      IEnumerable: [ IEnumerable ],
-      IEnumerator: [ IEnumerator ],
-      IObserver: [ IObserver ],
-      IApplication: [ IApplication ],
-      IContainer: [ IContainer ],
-      IObjectFactory: [ IObjectFactory ],
-      IEventManager: [ IEventManager ],
-      IInitializable: [ IInitializable ],
-      EventArgs: [ EventArgs, { } ],
-      CancelEventArgs: [ CancelEventArgs, { }, EventArgs ],
-      StringBuilder: [ StringBuilder, StringBuilder$ ],
-      Stack: [ Stack, Stack$ ],
-      Queue: [ Queue, Queue$ ],
-      Observable: [ Observable, Observable$ ],
-      ObservableCollection: [ ObservableCollection, ObservableCollection$, null, IEnumerable ],
-      Task: [ Task, Task$ ]
+      IDisposable: [ 'interface', IDisposable ],
+      IEnumerable: [ 'interface', IEnumerable ],
+      IEnumerator: [ 'interface', IEnumerator ],
+      IObserver: [ 'interface', IObserver ],
+      IApplication: [ 'interface', IApplication ],
+      IContainer: [ 'interface', IContainer ],
+      IObjectFactory: [ 'interface', IObjectFactory ],
+      IEventManager: [ 'interface', IEventManager ],
+      IInitializable: [ 'interface', IInitializable ],
+      EventArgs: [ 'interface', EventArgs, { } ],
+      CancelEventArgs: [ 'class', CancelEventArgs, { }, EventArgs ],
+      StringBuilder: [ 'class', StringBuilder, StringBuilder$ ],
+      Stack: [ 'class', Stack, Stack$ ],
+      Queue: [ 'class', Queue, Queue$ ],
+      Observable: [ 'class', Observable, Observable$ ],
+      ObservableCollection: [ 'class', ObservableCollection, ObservableCollection$, null, IEnumerable ],
+      Task: [ 'class', Task, Task$ ]
     }), {
       version: '0.8',
 
@@ -99,6 +99,8 @@
       canAssign: canAssign,
       instanceOf: instanceOf,
       baseProperty : baseProperty,
+      classMarker : _classMarker,
+      interfaceMarker : _interfaceMarker,
 
       culture: {
         neutral: neutralCulture,

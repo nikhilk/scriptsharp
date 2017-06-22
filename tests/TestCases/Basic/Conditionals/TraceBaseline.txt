@@ -34,8 +34,8 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      MyDebug: [ MyDebug, null, null ],
-      App: [ App, App$, null ]
+      MyDebug: [ ss.classMarker, MyDebug, null, null ],
+      App: [ ss.classMarker, App, App$, null ]
     });
 
 

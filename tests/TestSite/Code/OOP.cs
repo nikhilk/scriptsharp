@@ -9,8 +9,13 @@ namespace Test {
 
     public interface IMammal {
     }
-    
-    public interface IPet {
+
+    public interface IAnimal
+    {
+        string Species { get; }
+    }
+
+    public interface IPet : IAnimal {
     
         string Name {
             get;
@@ -20,8 +25,9 @@ namespace Test {
             get;
         }
     }
-    
-    public class Animal {
+
+    public class Animal
+    {
     
         private string _species;
         

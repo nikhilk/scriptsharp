@@ -82,13 +82,13 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      InternalClass: [ InternalClass, InternalClass$, null ],
-      Foo: [ Foo, Foo$, null ],
-      PublicTests: [ PublicTests, PublicTests$, null ],
-      InternalTests: [ InternalTests, InternalTests$, null ]
+      InternalClass: [ ss.classMarker, InternalClass, InternalClass$, null ],
+      Foo: [ ss.classMarker, Foo, Foo$, null ],
+      PublicTests: [ ss.classMarker, PublicTests, PublicTests$, null ],
+      InternalTests: [ ss.classMarker, InternalTests, InternalTests$, null ]
     },
     {
-      PublicClass: [ PublicClass, PublicClass$, null ]
+      PublicClass: [ ss.classMarker, PublicClass, PublicClass$, null ]
     });
 
 

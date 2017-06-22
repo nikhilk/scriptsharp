@@ -190,19 +190,19 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IIndexable: [ IIndexable ],
-      Normal: [ Normal, Normal$, null ],
-      GetterOnly: [ GetterOnly, GetterOnly$, null ],
-      VirtualIndexer: [ VirtualIndexer, VirtualIndexer$, null ],
-      AbstractIndexer: [ AbstractIndexer, AbstractIndexer$, null ],
-      MultipleArgs: [ MultipleArgs, MultipleArgs$, null ],
-      ImplementedIndexer2: [ ImplementedIndexer2, ImplementedIndexer2$, null, IIndexable ],
-      Test: [ Test, Test$, null ],
-      A: [ A, A$, null ],
-      OverriddenIndexer: [ OverriddenIndexer, OverriddenIndexer$, VirtualIndexer ],
-      ImplementedIndexer: [ ImplementedIndexer, ImplementedIndexer$, AbstractIndexer ],
-      B: [ B, B$, A ],
-      C: [ C, C$, B ]
+      IIndexable: [ ss.interfaceMarker, IIndexable, null, null ],
+      Normal: [ ss.classMarker, Normal, Normal$, null ],
+      GetterOnly: [ ss.classMarker, GetterOnly, GetterOnly$, null ],
+      VirtualIndexer: [ ss.classMarker, VirtualIndexer, VirtualIndexer$, null ],
+      AbstractIndexer: [ ss.classMarker, AbstractIndexer, AbstractIndexer$, null ],
+      MultipleArgs: [ ss.classMarker, MultipleArgs, MultipleArgs$, null ],
+      ImplementedIndexer2: [ ss.classMarker, ImplementedIndexer2, ImplementedIndexer2$, null, IIndexable ],
+      Test: [ ss.classMarker, Test, Test$, null ],
+      A: [ ss.classMarker, A, A$, null ],
+      OverriddenIndexer: [ ss.classMarker, OverriddenIndexer, OverriddenIndexer$, VirtualIndexer ],
+      ImplementedIndexer: [ ss.classMarker, ImplementedIndexer, ImplementedIndexer$, AbstractIndexer ],
+      B: [ ss.classMarker, B, B$, A ],
+      C: [ ss.classMarker, C, C$, B ]
     });
 
 

@@ -18,7 +18,7 @@ define('test', ['ss', 'lib1', 'comp3', 'comp4'], function(ss, lib1, comp3, comp4
 
   var $exports = ss.module('test', null,
     {
-      App: [ App, App$, null ]
+      App: [ ss.classMarker, App, App$, null ]
     });
 
 

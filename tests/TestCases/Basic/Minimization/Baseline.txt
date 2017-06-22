@@ -312,24 +312,24 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   var $exports = ss.module('test',
     {
-      IApp: [ IApp ],
+      IApp: [ ss.interfaceMarker, IApp, null, null ],
       MyData: MyData,
-      AppHelper: [ AppHelper, AppHelper$, null ],
-      Bar: [ Bar, Bar$, null ],
-      BaseBaseClass: [ BaseBaseClass, BaseBaseClass$, null ],
-      ABC: [ ABC, ABC$, null ],
-      Bar2: [ Bar2, Bar2$, Bar ],
-      BarCustom: [ BarCustom, BarCustom$, Bar ],
-      BaseClass: [ BaseClass, BaseClass$, BaseBaseClass ],
-      BarEx: [ BarEx, BarEx$, Bar2 ],
-      BarCustom2: [ BarCustom2, BarCustom2$, BarCustom ],
-      DerivedClass: [ DerivedClass, DerivedClass$, BaseClass ],
-      MaskTextBox: [ MaskTextBox, MaskTextBox$, lib.TextBox ]
+      AppHelper: [ ss.classMarker, AppHelper, AppHelper$, null ],
+      Bar: [ ss.classMarker, Bar, Bar$, null ],
+      BaseBaseClass: [ ss.classMarker, BaseBaseClass, BaseBaseClass$, null ],
+      ABC: [ ss.classMarker, ABC, ABC$, null ],
+      Bar2: [ ss.classMarker, Bar2, Bar2$, Bar ],
+      BarCustom: [ ss.classMarker, BarCustom, BarCustom$, Bar ],
+      BaseClass: [ ss.classMarker, BaseClass, BaseClass$, BaseBaseClass ],
+      BarEx: [ ss.classMarker, BarEx, BarEx$, Bar2 ],
+      BarCustom2: [ ss.classMarker, BarCustom2, BarCustom2$, BarCustom ],
+      DerivedClass: [ ss.classMarker, DerivedClass, DerivedClass$, BaseClass ],
+      MaskTextBox: [ ss.classMarker, MaskTextBox, MaskTextBox$, lib.TextBox ]
     },
     {
       AppFlags: AppFlags,
-      App: [ App, App$, null ],
-      FooBehavior: [ FooBehavior, FooBehavior$, lib.Behavior ]
+      App: [ ss.classMarker, App, App$, null ],
+      FooBehavior: [ ss.classMarker, FooBehavior, FooBehavior$, lib.Behavior ]
     });
 
 

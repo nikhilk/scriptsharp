@@ -14,7 +14,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      EventArgs: [ EventArgs, EventArgs$, null ]
+      EventArgs: [ ss.classMarker, EventArgs, EventArgs$, null ]
     });
 
 
