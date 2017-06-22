@@ -32,7 +32,7 @@
       IObjectFactory: [ _interfaceMarker, IObjectFactory ],
       IEventManager: [ _interfaceMarker, IEventManager ],
       IInitializable: [ _interfaceMarker, IInitializable ],
-      EventArgs: [ _interfaceMarker, EventArgs, { } ],
+      EventArgs: [ _classMarker, EventArgs, { } ],
       CancelEventArgs: [ _classMarker, CancelEventArgs, { }, EventArgs ],
       StringBuilder: [ _classMarker, StringBuilder, StringBuilder$ ],
       Stack: [ _classMarker, Stack, Stack$ ],
