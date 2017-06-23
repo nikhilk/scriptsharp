@@ -19,7 +19,7 @@ namespace TypeTests {
         object serialize();
     }
 
-    public interface IRunnable {
+    public interface IRunnable : IMarker, IDisposable {
 
         bool canRun { get; }
 
@@ -40,5 +40,7 @@ namespace TypeTests {
         public void run() { }
 
         public object serialize() { return null; }
+
+        public void dispose() { }
     }
 }

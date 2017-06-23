@@ -97,10 +97,10 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IFoo: [ IFoo ],
-      BApp: [ BApp, BApp$, null ],
-      App: [ App, App$, BApp ],
-      DApp: [ DApp, DApp$, App ]
+      IFoo: [ ss.interfaceMarker, IFoo, null, null ],
+      BApp: [ ss.classMarker, BApp, BApp$, null ],
+      App: [ ss.classMarker, App, App$, BApp ],
+      DApp: [ ss.classMarker, DApp, DApp$, App ]
     });
 
   BApp.myConstant = 3;

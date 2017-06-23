@@ -4,6 +4,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ScriptSharp.ScriptModel {
@@ -11,6 +12,7 @@ namespace ScriptSharp.ScriptModel {
     internal sealed class InterfaceSymbol : TypeSymbol {
 
         private IndexerSymbol _indexer;
+        private ICollection<InterfaceSymbol> _interfaces;
 
         public InterfaceSymbol(string name, NamespaceSymbol parent)
             : base(SymbolType.Interface, name, parent) {
@@ -31,6 +33,19 @@ namespace ScriptSharp.ScriptModel {
             }
             else {
                 base.AddMember(memberSymbol);
+            }
+        }
+
+        public void SetInheritance(ICollection<InterfaceSymbol> interfaces)
+        {
+            _interfaces = interfaces;
+        }
+
+        public ICollection<InterfaceSymbol> Interfaces
+        {
+            get
+            {
+                return _interfaces;
             }
         }
     }

@@ -45,8 +45,8 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      App1: [ App1, App1$, null, ss.IEnumerable ],
-      App: [ App, App$, null ]
+      App1: [ ss.classMarker, App1, App1$, null, ss.IEnumerable ],
+      App: [ ss.classMarker, App, App$, null ]
     });
 
 
