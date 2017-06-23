@@ -259,7 +259,7 @@ namespace ScriptSharp.Generator {
 
             switch (typeSymbol.Type) {
                 case SymbolType.Class:
-                    writer.Write("[ ");
+                    writer.Write("[ ss.classMarker, ");
                     writer.Write(typeSymbol.FullGeneratedName);
                     writer.Write(", ");
                     if (((ClassSymbol)typeSymbol).IsStaticClass == false) {
@@ -287,8 +287,21 @@ namespace ScriptSharp.Generator {
                     writer.Write(" ]");
                     break;
                 case SymbolType.Interface:
-                    writer.Write("[ ");
+                    writer.Write("[ ss.interfaceMarker, ");
                     writer.Write(typeSymbol.FullGeneratedName);
+                    writer.Write(", ");
+                    writer.Write("null, ");
+                    writer.Write("null");
+
+                    var interfaces = ((InterfaceSymbol)typeSymbol).Interfaces;
+                    if (interfaces != null)
+                    {
+                        foreach (InterfaceSymbol interfaceSymbol in interfaces)
+                        {
+                            writer.Write(", ");
+                            writer.Write(interfaceSymbol.FullGeneratedName);
+                        }
+                    }
                     writer.Write(" ]");
                     break;
                 case SymbolType.Record:

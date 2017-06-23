@@ -15,7 +15,7 @@
 
   var $exports = ss.module('basic', null,
     {
-      App: [ App, App$, null ]
+      App: [ ss.classMarker, App, App$, null ]
     });
 
 

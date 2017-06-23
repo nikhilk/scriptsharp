@@ -25,10 +25,10 @@ define('test', ['ss'], function(ss) {
     BApp.call(this);
   }
   var App$ = {
-    get_XYZ: function() {
+    $get_XYZ: function() {
       return 1;
     },
-    set_XYZ: function(value) {
+    $set_XYZ: function(value) {
       return value;
     },
     test: function(arg) {
@@ -36,13 +36,13 @@ define('test', ['ss'], function(ss) {
       var n = s.length;
       var n2 = Number.MAX_VALUE;
       var m = 0;
-      n = this.get_XYZ();
-      n = this.get_XYZ();
-      this.set_XYZ(n);
-      this.set_XYZ(n);
+      n = this.XYZ;
+      n = this.XYZ;
+      this.XYZ = n;
+      this.XYZ = n;
       var a;
-      n = a.get_XYZ();
-      a.set_XYZ(n);
+      n = a.XYZ;
+      a.XYZ = n;
       n = this._value$1;
       n = this._value$1;
       this._value$1 = n;
@@ -65,12 +65,12 @@ define('test', ['ss'], function(ss) {
   }
   var DApp$ = {
     test2: function() {
-      var n = this.get_XYZ();
-      n = this.get_XYZ();
-      n = App.prototype.get_XYZ.call(this);
-      this.set_XYZ(n);
-      this.set_XYZ(n);
-      App.prototype.set_XYZ.call(this, n);
+      var n = this.XYZ;
+      n = this.XYZ;
+      n = ss.baseProperty(DApp, 'XYZ').get.call(this);
+      this.XYZ = n;
+      this.XYZ = n;
+      ss.baseProperty(DApp, 'XYZ').set.call(this, n);
       this._value2 = n;
       this._value2 = n;
       this._value2 = n;
@@ -97,10 +97,10 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IFoo: [ IFoo ],
-      BApp: [ BApp, BApp$, null ],
-      App: [ App, App$, BApp ],
-      DApp: [ DApp, DApp$, App ]
+      IFoo: [ ss.interfaceMarker, IFoo, null, null ],
+      BApp: [ ss.classMarker, BApp, BApp$, null ],
+      App: [ ss.classMarker, App, App$, BApp ],
+      DApp: [ ss.classMarker, DApp, DApp$, App ]
     });
 
   BApp.myConstant = 3;

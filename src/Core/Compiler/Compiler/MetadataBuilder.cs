@@ -541,6 +541,10 @@ namespace ScriptSharp.Compiler {
                 if (typeSymbol.Type == SymbolType.Class) {
                     BuildTypeInheritance((ClassSymbol)typeSymbol);
                 }
+                else if (typeSymbol.Type == SymbolType.Interface)
+                {
+                    BuildTypeInheritance((InterfaceSymbol)typeSymbol);
+                }
             }
 
             // Import members
@@ -956,6 +960,34 @@ namespace ScriptSharp.Compiler {
 
                 if ((baseClass != null) || (interfaces != null)) {
                     classSymbol.SetInheritance(baseClass, interfaces);
+                }
+            }
+        }
+
+        private void BuildTypeInheritance(InterfaceSymbol interfaceSymbol)
+        {
+            CustomTypeNode customTypeNode = (CustomTypeNode)interfaceSymbol.ParseContext;
+
+            if ((customTypeNode.BaseTypes != null) && (customTypeNode.BaseTypes.Count != 0))
+            {
+                List<InterfaceSymbol> interfaces = null;
+
+                foreach (NameNode node in customTypeNode.BaseTypes)
+                {
+                    TypeSymbol baseTypeSymbol = (TypeSymbol)_symbolTable.FindSymbol(node.Name, interfaceSymbol, SymbolFilter.Types);
+                        Debug.Assert(baseTypeSymbol.Type == SymbolType.Interface);
+
+                        if (interfaces == null)
+                        {
+                            interfaces = new List<InterfaceSymbol>();
+                        }
+                        interfaces.Add((InterfaceSymbol)baseTypeSymbol);
+                    
+                }
+
+                if (interfaces != null)
+                {
+                    interfaceSymbol.SetInheritance(interfaces);
                 }
             }
         }

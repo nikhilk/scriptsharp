@@ -33,13 +33,15 @@ define('test', ['ss'], function(ss) {
   function Foo() {
   }
   var Foo$ = {
-    get_canRun: function() {
+    $get_canRun: function() {
       return true;
     },
     run: function() {
     },
     serialize: function() {
       return null;
+    },
+    dispose: function() {
     }
   };
 
@@ -50,7 +52,7 @@ define('test', ['ss'], function(ss) {
     MyObject.call(this);
   }
   var MyObject2$ = {
-    get_canRun: function() {
+    $get_canRun: function() {
       return true;
     },
     run: function() {
@@ -60,12 +62,12 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IMarker: [ IMarker ],
-      ISerializable: [ ISerializable ],
-      IRunnable: [ IRunnable ],
-      MyObject: [ MyObject, MyObject$, null, ss.IDisposable ],
-      Foo: [ Foo, Foo$, null, IMarker, ISerializable, IRunnable ],
-      MyObject2: [ MyObject2, MyObject2$, MyObject, IRunnable ]
+      IMarker: [ ss.interfaceMarker, IMarker, null, null ],
+      ISerializable: [ ss.interfaceMarker, ISerializable, null, null ],
+      IRunnable: [ ss.interfaceMarker, IRunnable, null, null, IMarker, ss.IDisposable ],
+      MyObject: [ ss.classMarker, MyObject, MyObject$, null, ss.IDisposable ],
+      Foo: [ ss.classMarker, Foo, Foo$, null, IMarker, ISerializable, IRunnable ],
+      MyObject2: [ ss.classMarker, MyObject2, MyObject2$, MyObject, IRunnable ]
     });
 
 

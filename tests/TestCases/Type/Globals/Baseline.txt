@@ -73,13 +73,13 @@ define('test', ['ss'], function(ss) {
   var $exports = ss.module('test', null,
     {
       MyEnum: MyEnum,
-      IXyzInterface: [ IXyzInterface ],
+      IXyzInterface: [ ss.interfaceMarker, IXyzInterface, null, null ],
       MyRecord: MyRecord,
-      MyClass: [ MyClass, MyClass$, null ],
-      MyClass3: [ MyClass3, MyClass3$, null, ss.IDisposable ],
-      MyClassF: [ MyClassF, MyClassF$, null ],
-      MyClass2: [ MyClass2, MyClass2$, MyClass ],
-      MyClass4: [ MyClass4, MyClass4$, MyClass, ss.IDisposable ]
+      MyClass: [ ss.classMarker, MyClass, MyClass$, null ],
+      MyClass3: [ ss.classMarker, MyClass3, MyClass3$, null, ss.IDisposable ],
+      MyClassF: [ ss.classMarker, MyClassF, MyClassF$, null ],
+      MyClass2: [ ss.classMarker, MyClass2, MyClass2$, MyClass ],
+      MyClass4: [ ss.classMarker, MyClass4, MyClass4$, MyClass, ss.IDisposable ]
     });
 
 

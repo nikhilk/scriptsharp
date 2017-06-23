@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text;
 
 namespace ScriptSharp.Tests.Core {
 
@@ -41,7 +42,7 @@ namespace ScriptSharp.Tests.Core {
         public string GetAssemblyFilePath(string fileName) {
             // Get the path to the ScriptSharp build output folder
             string assemblyPath = this.GetType().Assembly.GetModules()[0].FullyQualifiedName;
-            string binPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\bin\\Debug"));
+            string binPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\Test"));
 
             return Path.Combine(binPath, fileName);
         }
@@ -49,7 +50,7 @@ namespace ScriptSharp.Tests.Core {
         public string GetTestFilePath(string fileName) {
             // Get the path to the test cases folder
             string assemblyPath = this.GetType().Assembly.GetModules()[0].FullyQualifiedName;
-            string testCasesPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\TestCases\\"));
+            string testCasesPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\TestCases\\"));
 
             // Files within the test cases folder are organized into a two level folder
             // structure ... group\test
@@ -70,7 +71,7 @@ namespace ScriptSharp.Tests.Core {
         public string GetToolPath(string fileName) {
             // Get the path to the tools folder
             string assemblyPath = this.GetType().Assembly.GetModules()[0].FullyQualifiedName;
-            string toolsPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\tools\\bin"));
+            string toolsPath = Path.GetFullPath(Path.Combine(assemblyPath, "..\\tools\\bin"));
 
             return Path.Combine(toolsPath, fileName);
         }
@@ -91,24 +92,16 @@ namespace ScriptSharp.Tests.Core {
             Assert.IsTrue(result, "Compilation failed.");
 
             string baselinePath = GetTestFilePath(baselineFile);
-            string baseline = File.ReadAllText(baselinePath);
+            string baseline = File.ReadAllText(baselinePath, new UTF8Encoding(false));
             string output = compilation.Output.GeneratedOutput;
 
-            bool validResults = ValidateResults(output, baselineFile);
-            if (validResults == false) {
-                string outputPath = Path.Combine(_context.TestRunDirectory, "..", this.GetType().Name + "." + _context.TestName + ".txt");
-                File.WriteAllText(outputPath, output);
-
-                // File.WriteAllText(baselinePath, output);
-            }
-
-            Assert.IsTrue(validResults, "Unexpected differences between baseline and result.");
+            Assert.AreEqual(baseline, output, "Unexpected differences between baseline and result.");
         }
 
         protected bool ValidateResults(string output, string baselineFile) {
             string baselinePath = GetTestFilePath(baselineFile);
             string baseline = File.ReadAllText(baselinePath);
-
+            
             if (String.CompareOrdinal(baseline, output) != 0) {
                 string diff = null;
 

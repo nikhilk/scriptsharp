@@ -46,13 +46,6 @@ namespace ScriptSharp.Validator {
                 return false;
             }
 
-            if ((typeNode.Type == TokenType.Interface) &&
-                (typeNode.BaseTypes.Count != 0)) {
-                errorHandler.ReportError("Derived interface types are not supported.",
-                                         typeNode.Token.Location);
-                return false;
-            }
-
             if (typeNode.Type == TokenType.Class) {
                 if (typeNode.BaseTypes.Count != 0) {
                     NameNode baseTypeNameNode = typeNode.BaseTypes[0] as NameNode;

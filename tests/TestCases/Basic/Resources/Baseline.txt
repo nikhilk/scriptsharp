@@ -36,7 +36,7 @@ define('test', ['ss'], function(ss) {
     },
     {
       Strings2: Strings2,
-      App: [ App, App$, null ]
+      App: [ ss.classMarker, App, App$, null ]
     });
 
 

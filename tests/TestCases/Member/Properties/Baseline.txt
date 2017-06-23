@@ -3,35 +3,43 @@
 define('test', ['ss'], function(ss) {
   var $global = this;
 
+  // MemberTests.ITest
+
+  function ITest() { }
+
+
   // MemberTests.Test
 
   function Test() {
-    this.set_XYZ(1);
-    this.set_XYZ(this.get_name().length);
-    this.set_XYZ(this.get_name().length);
-    var v = Test.get_staticProp();
-    v = Test.get_staticProp();
+    this.XYZ = 1;
+    this.XYZ = this.name.length;
+    var inter = this;
+    inter.XYZ = this.name.length;
+    inter.XYZ++;
+    --this.XYZ;
+    var v = Test.staticProp;
+    v = Test.staticProp;
   }
-  Test.get_staticProp = function() {
+  ss.createPropertyGet(Test, 'staticProp', function() {
     return 2006;
-  };
-  Test.set_staticProp = function(value) {
+  });
+  ss.createPropertySet(Test, 'staticProp', function(value) {
     return value;
-  };
+  });
   var Test$ = {
-    get_XYZ: function() {
+    $get_XYZ: function() {
       return 0;
     },
-    set_XYZ: function(value) {
+    $set_XYZ: function(value) {
       return value;
     },
-    get_isFoo: function() {
+    $get_isFoo: function() {
       return true;
     },
-    get_name: function() {
+    $get_name: function() {
       return 'nk';
     },
-    get__isInitialized: function() {
+    $get__isInitialized: function() {
       return false;
     }
   };
@@ -41,12 +49,13 @@ define('test', ['ss'], function(ss) {
 
   function Test2() {
     Test.call(this);
-    var n = Test.prototype.get_XYZ.call(this);
-    if (n === this.get_XYZ()) {
+    var n = ss.baseProperty(Test2, 'XYZ').get.call(this);
+    ss.baseProperty(Test2, 'XYZ').set.call(this, 6);
+    if (n === this.XYZ) {
     }
-    if (this.get_XYZ() === n) {
+    if (this.XYZ === n) {
     }
-    n = Test.get_staticProp();
+    n = Test.staticProp;
   }
   var Test2$ = {
 
@@ -55,8 +64,9 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Test: [ Test, Test$, null ],
-      Test2: [ Test2, Test2$, Test ]
+      ITest: [ ss.interfaceMarker, ITest, null, null ],
+      Test: [ ss.classMarker, Test, Test$, null ],
+      Test2: [ ss.classMarker, Test2, Test2$, Test ]
     });
 
 

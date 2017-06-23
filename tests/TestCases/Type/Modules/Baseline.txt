@@ -14,7 +14,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Dummy: [ Dummy, Dummy$, null ]
+      Dummy: [ ss.classMarker, Dummy, Dummy$, null ]
     });
 
   alert('Hello Startup');

@@ -29,7 +29,7 @@ define('basic', ['ss'], function(ss) {
     remove_click: function(value) {
       this.__click = ss.bindSub(this.__click, value);
     },
-    get_text: function() {
+    $get_text: function() {
       return this._text;
     },
     performClick: function() {
@@ -58,19 +58,19 @@ define('basic', ['ss'], function(ss) {
     _echo: function(s) {
     },
     _onClickButton: function(sender, e) {
-      this._echo((sender).get_text() + ' was clicked!');
+      this._echo((sender).text + ' was clicked!');
     },
     _onClickButtonDup: function(sender, e) {
-      this._echo((sender).get_text() + ' was clicked as well!');
+      this._echo((sender).text + ' was clicked as well!');
     }
   };
 
 
   var $exports = ss.module('basic', null,
     {
-      EventArgs: [ EventArgs, EventArgs$, null ],
-      Button: [ Button, Button$, null ],
-      App: [ App, App$, null ]
+      EventArgs: [ ss.classMarker, EventArgs, EventArgs$, null ],
+      Button: [ ss.classMarker, Button, Button$, null ],
+      App: [ ss.classMarker, App, App$, null ]
     });
 
   EventArgs.Empty = new EventArgs();
@@ -78,4 +78,4 @@ define('basic', ['ss'], function(ss) {
   return $exports;
 });
 
-// Generated with Script# 0.8.0.0
+// Generated with Script# 1.0.0.0

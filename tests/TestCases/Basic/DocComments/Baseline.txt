@@ -58,13 +58,13 @@ define('test', ['ss'], function(ss) {
     this.instanceField = 0;
     this._domElement = domElement;
   }
-  BaseClass.get_totalCount = function() {
+  ss.createPropertyGet(BaseClass, 'totalCount', function() {
     /// <summary>
     /// Gets the total count.
     /// </summary>
     /// <value type="Number" integer="true"></value>
     return 0;
-  };
+  });
   BaseClass.staticMethod = function(length) {
     /// <summary>
     /// A static method.
@@ -74,42 +74,42 @@ define('test', ['ss'], function(ss) {
     /// </param>
   };
   var BaseClass$ = {
-    get_name: function() {
+    $get_name: function() {
       /// <summary>
       /// Gets or sets the name.
       /// </summary>
       /// <value type="String"></value>
       return null;
     },
-    set_name: function(value) {
+    $set_name: function(value) {
       /// <summary>
       /// Gets or sets the name.
       /// </summary>
       /// <value type="String"></value>
       return value;
     },
-    get_domElement: function() {
+    $get_domElement: function() {
       /// <summary>
       /// Gets or sets the element.
       /// </summary>
       /// <value type="Object" domElement="true"></value>
       return null;
     },
-    set_domElement: function(value) {
+    $set_domElement: function(value) {
       /// <summary>
       /// Gets or sets the element.
       /// </summary>
       /// <value type="Object" domElement="true"></value>
       return value;
     },
-    get_count: function() {
+    $get_count: function() {
       /// <summary>
       /// Gets the count.
       /// </summary>
       /// <value type="Number" integer="true"></value>
       return 0;
     },
-    get__privateName: function() {
+    $get__privateName: function() {
       /// <summary>
       /// Gets the private name.
       /// </summary>
@@ -248,15 +248,15 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      InternalClass: [ InternalClass, InternalClass$, null ],
-      InternalClassWithNoComments: [ InternalClassWithNoComments, InternalClassWithNoComments$, null ]
+      InternalClass: [ ss.classMarker, InternalClass, InternalClass$, null ],
+      InternalClassWithNoComments: [ ss.classMarker, InternalClassWithNoComments, InternalClassWithNoComments$, null ]
     },
     {
       Suit: Suit,
-      IInterface: [ IInterface ],
+      IInterface: [ ss.interfaceMarker, IInterface, null, null ],
       RecordClass: RecordClass,
-      BaseClass: [ BaseClass, BaseClass$, null ],
-      DerivedClass: [ DerivedClass, DerivedClass$, BaseClass ]
+      BaseClass: [ ss.classMarker, BaseClass, BaseClass$, null ],
+      DerivedClass: [ ss.classMarker, DerivedClass, DerivedClass$, BaseClass ]
     });
 
   BaseClass.constantField = 3;

@@ -8,13 +8,13 @@ define('test', ['ss'], function(ss) {
   function App() {
   }
   var App$ = {
-    get__foo: function() {
+    $get__foo: function() {
       return 0;
     },
     test: function(x) {
       var t = ss.typeOf(x);
       var t2 = ss.typeOf(x.toString());
-      var t3 = ss.typeOf(this.get__foo());
+      var t3 = ss.typeOf(this._foo);
       var t4 = ss.type('String');
       var t5 = ss.type('test.Foo');
       var b1 = ss.canAssign((Object), App);
@@ -31,7 +31,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      App: [ App, App$, null ]
+      App: [ ss.classMarker, App, App$, null ]
     });
 
 

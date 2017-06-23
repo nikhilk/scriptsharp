@@ -16,12 +16,19 @@ define('test', ['ss'], function(ss) {
     do3: function(i, j) {
       return i;
     },
+    do4: ss.paramsGenerator(1, function(zero, stuff) {
+      return stuff.length;
+    }),
+    do5: ss.paramsGenerator(0, function(stuff) {
+    }),
     run: function() {
       this.do1();
       var v = this.do2();
       var s = ss.string('A', 3);
       var i = s.indexOf('A');
       i = s.indexOf('A', 1);
+      var ln = this.do4(0, 1, 2, 3, 'a', 'b', 'c', true, false);
+      this.do5();
     },
     toString: function() {
       window.m1();
@@ -66,8 +73,8 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Test: [ Test, Test$, null ],
-      X: [ X, X$, null ]
+      Test: [ ss.classMarker, Test, Test$, null ],
+      X: [ ss.classMarker, X, X$, null ]
     });
 
 
