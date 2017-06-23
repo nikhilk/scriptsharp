@@ -19,7 +19,7 @@ function createType(typeName, typeInfo, typeRegistry) {
     // A class is minimally the class type and an object representing
     // its prototype members, and optionally the base type, and references
     // to interfaces implemented by the class.
-    if (typeMarker == _classMarker) {
+    if (typeMarker === _classMarker) {
       if (baseType) {
         // Chain the prototype of the base type (using an anonymous type
         // in case the base class is not creatable, or has side-effects).
