@@ -31,9 +31,6 @@ namespace ScriptSharp.Validator {
                 case ParseNodeType.Goto:
                     message = "Goto statements";
                     break;
-                case ParseNodeType.Using:
-                    message = "Using statements";
-                    break;
                 case ParseNodeType.Lock:
                     message = "Lock statements";
                     break;

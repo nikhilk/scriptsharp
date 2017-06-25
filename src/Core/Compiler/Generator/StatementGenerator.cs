@@ -251,6 +251,9 @@ namespace ScriptSharp.Generator {
                 case StatementType.Error:
                     GenerateErrorStatement(generator, symbol, (ErrorStatement)statement);
                     break;
+                case StatementType.Using:
+                    GenerateUsingStatement(generator, symbol, (UsingStatement)statement);
+                    break;
                 default:
                     Debug.Fail("Unexpected statement type: " + statement.Type);
                     break;
@@ -319,6 +322,33 @@ namespace ScriptSharp.Generator {
                 writer.Indent--;
                 writer.WriteLine("}");
             }
+        }
+
+        private static void GenerateUsingStatement(ScriptGenerator generator, MemberSymbol symbol, UsingStatement statement)
+        {
+            GenerateVariableDeclarationStatement(generator, symbol, statement.Guard);
+            ScriptTextWriter writer = generator.Writer;
+            
+            writer.WriteLine("try {");
+            writer.Indent++;
+            GenerateStatement(generator, symbol, statement.Body);
+            writer.Indent--;
+            writer.WriteLine("}");
+            writer.WriteLine("finally {");
+            writer.Indent++;
+            foreach (var variable in statement.Guard.Variables)
+            {
+                writer.Write("if(");
+                writer.Write(variable.GeneratedName);
+                writer.WriteLine(") {");
+                writer.Indent++;
+                writer.Write(variable.GeneratedName);
+                writer.WriteLine(".dispose();");
+                writer.Indent--;
+                writer.WriteLine("}");
+            }
+            writer.Indent--;
+            writer.WriteLine("}");
         }
 
         private static void GenerateVariableDeclarations(ScriptGenerator generator, MemberSymbol symbol, VariableDeclarationStatement statement) {
