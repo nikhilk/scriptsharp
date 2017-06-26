@@ -18,7 +18,7 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
-    <CompilerResponseFile>AdditionalCompilerOptions.txt</CompilerResponseFile>
+    <CompilerResponseFile Condition=" $(MSBuildToolsVersion) >= 13.0 ">AdditionalCompilerOptions.txt</CompilerResponseFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
