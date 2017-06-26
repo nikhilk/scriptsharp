@@ -1256,6 +1256,14 @@ Types:
                 Generated Name: ss.truncate
                 Abstract: False
         
+    Class: NotImplementedException
+        Application Type: False
+        Public: True
+        Generated Name: Error
+        Extension Methods: False
+        BaseClass: Exception
+        Members:
+        
     Class: Nullable`1
         Application Type: False
         Public: True
