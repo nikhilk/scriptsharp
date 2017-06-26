@@ -52,6 +52,7 @@
       <Link>ResXParser.cs</Link>
     </Compile>
     <Compile Include="IStreamSourceResolver.cs" />
+    <Compile Include="ScriptModel\Statements\UsingStatement.cs" />
     <Compile Include="ScriptReference.cs" />
     <Compile Include="ScriptInfo.cs" />
     <Compile Include="Importer\IL\ArrayType.cs" />

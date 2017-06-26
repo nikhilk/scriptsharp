@@ -316,8 +316,7 @@ namespace ScriptSharp.Tests {
         [TestMethod]
         public void TestUnsupported() {
             string expectedErrors1 =
-                "Type destructors are not supported. Code1.cs(14, 9)" + Environment.NewLine +
-                "Using statements are not supported. Code1.cs(18, 13)";
+                "Type destructors are not supported. Code1.cs(14, 9)";
 
             string expectedErrors2 =
                 "Check that your C# source compiles and that you are not using an unsupported feature. Common things to check for include use of fully-qualified names (use a using statement to import namespaces instead) or accessing private members of a type from a static member of the same type. Code2.cs(12, 13)";

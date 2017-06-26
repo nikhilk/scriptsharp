@@ -1,0 +1,48 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+
+  // StatementTests.App
+
+  function App() {
+  }
+  var App$ = {
+    dispose: function() {
+    },
+    test: function() {
+      var d = new App();
+      try {
+        var a = 0;
+        a++;
+      }
+      finally {
+        if(d) {
+          d.dispose();
+        }
+      }
+      var d1 = new App(), d2 = new App();
+      try {
+        var a = 0;
+        a++;
+      }
+      finally {
+        if(d1) {
+          d1.dispose();
+        }
+        if(d2) {
+          d2.dispose();
+        }
+      }
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: [ ss.classMarker, App, App$, null, ss.IDisposable ]
+    });
+
+
+  return $exports;
+});
