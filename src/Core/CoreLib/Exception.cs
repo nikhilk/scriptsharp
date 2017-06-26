@@ -14,7 +14,7 @@ namespace System {
     [ScriptIgnoreNamespace]
     [ScriptImport]
     [ScriptName("Error")]
-    public sealed class Exception {
+    public class Exception {
 
         public Exception(string message) {
         }
