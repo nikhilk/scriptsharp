@@ -7,7 +7,7 @@ namespace TypeTests {
 
     public class MyObject : IDisposable {
 
-        public void dispose() {
+        public void Dispose() {
         }
     }
 
@@ -41,6 +41,14 @@ namespace TypeTests {
 
         public object serialize() { return null; }
 
-        public void dispose() { }
+        public void Dispose() { }
+    }
+
+    public class Program
+    {
+        public void useInterfaces(IRunnable runnable)
+        {
+            runnable.Dispose();
+        }
     }
 }

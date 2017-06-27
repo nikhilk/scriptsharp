@@ -46,6 +46,17 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // TypeTests.Program
+
+  function Program() {
+  }
+  var Program$ = {
+    useInterfaces: function(runnable) {
+      runnable.dispose();
+    }
+  };
+
+
   // TypeTests.MyObject2
 
   function MyObject2() {
@@ -67,6 +78,7 @@ define('test', ['ss'], function(ss) {
       IRunnable: [ ss.interfaceMarker, IRunnable, null, null, IMarker, ss.IDisposable ],
       MyObject: [ ss.classMarker, MyObject, MyObject$, null, ss.IDisposable ],
       Foo: [ ss.classMarker, Foo, Foo$, null, IMarker, ISerializable, IRunnable ],
+      Program: [ ss.classMarker, Program, Program$, null ],
       MyObject2: [ ss.classMarker, MyObject2, MyObject2$, MyObject, IRunnable ]
     });
 
