@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace ScriptSharp.ScriptModel {
 
@@ -34,6 +35,25 @@ namespace ScriptSharp.ScriptModel {
             else {
                 base.AddMember(memberSymbol);
             }
+        }
+
+        public override MemberSymbol GetMember(string name)
+        {
+            MemberSymbol member = base.GetMember(name);
+            
+            if(member==null && Interfaces != null)
+            {
+                foreach (InterfaceSymbol interfaceSymbol in Interfaces)
+                {
+                    member = interfaceSymbol.GetMember(name);
+                    if (member != null)
+                    {
+                        return member;
+                    }
+                }
+            }
+
+            return member;
         }
 
         public void SetInheritance(ICollection<InterfaceSymbol> interfaces)
