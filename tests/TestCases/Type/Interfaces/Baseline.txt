@@ -53,6 +53,8 @@ define('test', ['ss'], function(ss) {
   var Program$ = {
     useInterfaces: function(runnable) {
       runnable.dispose();
+      var s = [];
+      ss.enumerate(s);
     }
   };
 

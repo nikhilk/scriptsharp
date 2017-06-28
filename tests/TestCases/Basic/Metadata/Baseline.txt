@@ -313,6 +313,8 @@ Types:
         Generated Name: Array
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -908,6 +910,8 @@ Types:
         Generated Name: Export
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IDisposable
         Members:
             Field: Name
                 AssociatedType: String
@@ -2136,6 +2140,8 @@ Types:
         Generated Name: Array
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2322,6 +2328,8 @@ Types:
         Generated Name: Object
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2446,6 +2454,8 @@ Types:
         Generated Name: ObservableCollection
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2601,6 +2611,8 @@ Types:
         Generated Name: Object
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable`1
         Indexer:
             Indexer: Item
                 AssociatedType: TValue
@@ -2730,6 +2742,9 @@ Types:
         Generated Name: Array
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            ICollection`1
+            IEnumerable`1
         Indexer:
             Indexer: Item
                 AssociatedType: T
@@ -2977,6 +2992,8 @@ Types:
         Generated Name: ObservableCollection
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable`1
         Indexer:
             Indexer: Item
                 AssociatedType: T

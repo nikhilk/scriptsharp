@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
@@ -49,6 +50,9 @@ namespace TypeTests {
         public void useInterfaces(IRunnable runnable)
         {
             runnable.Dispose();
+
+            IEnumerable<string> s = new List<string>();
+            s.GetEnumerator();
         }
     }
 }
