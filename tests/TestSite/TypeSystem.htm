@@ -153,6 +153,10 @@
         QUnit.equal(true, ss.canCast(garfield, oop.IAnimal), "Expected Garfield to be castable as IPet.");
         QUnit.equal(garfield, ss.safeCast(garfield, oop.IAnimal), "Expected Garfield to be safe cast as IPet.");
       });
+    test('constructor parameter reflection', function() {
+        QUnit.deepEqual([String, oop.ICharacter], ss.getConstructorParams(oop.Comic), "Expected IComic to take string and ICharacter.");
+        QUnit.deepEqual([], ss.getConstructorParams(oop.Cat), "Expected Cat to have empty constructor.");
+      });
     });
 </script>
 </html>

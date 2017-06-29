@@ -32,7 +32,7 @@ namespace ScriptSharp.Generator {
             }
             writer.WriteLine(") {");
             writer.Indent++;
-
+            
             if (generator.Options.EnableDocComments) {
                 DocCommentGenerator.GenerateComment(generator, classSymbol);
             }
@@ -108,6 +108,25 @@ namespace ScriptSharp.Generator {
                 writer.WriteLine();
                 writer.Write("};");
                 writer.WriteLine();
+
+                writer.Write(name);
+                writer.Write(".");
+                writer.Write("$constructorParams = [");
+                if ((classSymbol.Constructor != null) && (classSymbol.Constructor.Parameters != null))
+                {
+                    bool firstParameter = true;
+                    foreach (ParameterSymbol parameterSymbol in classSymbol.Constructor.Parameters)
+                    {
+                        if (firstParameter == false)
+                        {
+                            writer.Write(", ");
+                        }
+
+                        writer.Write(parameterSymbol.ValueType.FullGeneratedName);
+                        firstParameter = false;
+                    }
+                }
+                writer.WriteLine("];");
             }
         }
 

@@ -101,6 +101,7 @@
       baseProperty : baseProperty,
       classMarker : _classMarker,
       interfaceMarker : _interfaceMarker,
+      getConstructorParams : getConstructorParams,
 
       culture: {
         neutral: neutralCulture,

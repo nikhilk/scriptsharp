@@ -206,3 +206,7 @@ function baseProperty(type, propertyName) {
     var baseType = type.$base;
     return Object.getOwnPropertyDescriptor(baseType.prototype, propertyName) || baseProperty(baseType, propertyName);
 }
+
+function getConstructorParams(type) {
+    return type.$constructorParams;
+}
