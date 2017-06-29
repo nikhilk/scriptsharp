@@ -11,6 +11,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Linq;
 using ScriptSharp;
 using ScriptSharp.Importer.IL;
 using ScriptSharp.ScriptModel;
@@ -106,6 +107,10 @@ namespace ScriptSharp.Importer {
                 if (typeSymbol.Type == SymbolType.Class) {
                     ImportBaseType((ClassSymbol)typeSymbol);
                 }
+                else if (typeSymbol.Type == SymbolType.Interface)
+                {
+                    ImportInterfaces((InterfaceSymbol)typeSymbol);
+                }
             }
 
             // Import members
@@ -123,15 +128,39 @@ namespace ScriptSharp.Importer {
 
         private void ImportBaseType(ClassSymbol classSymbol) {
             TypeDefinition type = (TypeDefinition)classSymbol.MetadataReference;
+            var interfaces = GetInterfaceSymbols(type.Interfaces);
             TypeReference baseType = type.BaseType;
 
-            if (baseType != null) {
+            if (baseType != null)
+            {
                 ClassSymbol baseClassSymbol = ResolveType(baseType) as ClassSymbol;
                 if ((baseClassSymbol != null) &&
-                    (String.CompareOrdinal(baseClassSymbol.FullName, "Object") != 0)) {
-                    classSymbol.SetInheritance(baseClassSymbol, /* interfaces */ null);
+                    (String.CompareOrdinal(baseClassSymbol.FullName, "Object") != 0))
+                {
+                    classSymbol.SetInheritance(baseClassSymbol, interfaces);
                 }
             }
+            else
+            {
+                classSymbol.SetInheritance(null, interfaces);
+            }
+        }
+
+        private void ImportInterfaces(InterfaceSymbol interfaceSymbol)
+        {
+            TypeDefinition type = (TypeDefinition)interfaceSymbol.MetadataReference;
+            var interfaces = GetInterfaceSymbols(type.Interfaces);
+            interfaceSymbol.SetInheritance(interfaces);
+        }
+
+        private ICollection<InterfaceSymbol> GetInterfaceSymbols(ICollection<TypeReference> interfaceReferences)
+        {
+            if (interfaceReferences == null || interfaceReferences.Count == 0)
+            {
+                return null;
+            }
+
+            return interfaceReferences.Select(i => (InterfaceSymbol)ResolveType(i)).ToList();
         }
 
         private void ImportDelegateInvoke(TypeSymbol delegateTypeSymbol) {
@@ -588,7 +617,7 @@ namespace ScriptSharp.Importer {
                 catch (Exception e) {
                     Debug.Fail(e.ToString());
                 }
-            }
+            }            
         }
 
         private void ImportType(MetadataSource mdSource, TypeDefinition type, bool inScriptCoreAssembly, string scriptNamespace) {
@@ -607,7 +636,7 @@ namespace ScriptSharp.Importer {
 
             NamespaceSymbol namespaceSymbol = _symbols.GetNamespace(namespaceName);
             TypeSymbol typeSymbol = null;
-
+            
             if (type.IsInterface) {
                 typeSymbol = new InterfaceSymbol(name, namespaceSymbol);
             }
