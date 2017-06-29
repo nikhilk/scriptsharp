@@ -44,10 +44,10 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      MyClass: [ ss.classMarker, MyClass, MyClass$, null ],
-      MyClass2: [ ss.classMarker, MyClass2, MyClass2$, null ],
-      MyClass3: [ ss.classMarker, MyClass3, MyClass3$, null ],
-      MyClass4: [ ss.classMarker, MyClass4, MyClass4$, MyClass3 ]
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null),
+      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], null),
+      MyClass3: ss.defineClass(MyClass3, MyClass3$, [Number, Number], null),
+      MyClass4: ss.defineClass(MyClass4, MyClass4$, [Number, Number, Number], MyClass3)
     });
 
   MyClass2._x = 'Hello';

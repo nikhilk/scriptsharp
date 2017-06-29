@@ -68,9 +68,9 @@ define('test', ['ss'], function(ss) {
   var $exports = ss.module('test', null,
     {
       Point: Point,
-      Foo: [ ss.classMarker, Foo, Foo$, null ],
-      Bar: [ ss.classMarker, Bar, Bar$, null ],
-      Test: [ ss.classMarker, Test, Test$, null ]
+      Foo: ss.defineClass(Foo, Foo$, [Number, Number], null),
+      Bar: ss.defineClass(Bar, Bar$, [Number, Number, Foo], null),
+      Test: ss.defineClass(Test, Test$, [], null)
     });
 
 

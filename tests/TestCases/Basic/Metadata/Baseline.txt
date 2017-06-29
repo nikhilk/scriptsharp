@@ -1500,6 +1500,11 @@ Types:
                 Visibility: Public, Static
                 Generated Name: eval
                 Abstract: False
+            Method: GetConstructorParameterTypes
+                AssociatedType: Array
+                Visibility: Public, Static
+                Generated Name: ss.getConstructorParams
+                Abstract: False
             Method: GetField
                 AssociatedType: Object
                 Visibility: Public, Static
@@ -3871,15 +3876,15 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      IFoo: [ ss.interfaceMarker, IFoo, null, null ],
+      IFoo: ss.defineInterface(IFoo),
       Point: Point,
-      AppHelper: [ ss.classMarker, AppHelper, AppHelper$, null ]
+      AppHelper: ss.defineClass(AppHelper, AppHelper$, [], null)
     },
     {
       AppFlags: AppFlags,
       Mode: Mode,
-      IApp: [ ss.interfaceMarker, IApp, null, null ],
-      App: [ ss.classMarker, App, App$, null, IApp ]
+      IApp: ss.defineInterface(IApp),
+      App: ss.defineClass(App, App$, [], null, [IApp])
     });
 
 

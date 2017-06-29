@@ -46,7 +46,7 @@ define('test', ['ss'], function(ss) {
     {
       Color: Color,
       Types: Types,
-      App: [ ss.classMarker, App, App$, null ]
+      App: ss.defineClass(App, App$, [], null)
     });
 
 

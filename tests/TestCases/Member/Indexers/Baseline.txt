@@ -190,19 +190,19 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IIndexable: [ ss.interfaceMarker, IIndexable, null, null ],
-      Normal: [ ss.classMarker, Normal, Normal$, null ],
-      GetterOnly: [ ss.classMarker, GetterOnly, GetterOnly$, null ],
-      VirtualIndexer: [ ss.classMarker, VirtualIndexer, VirtualIndexer$, null ],
-      AbstractIndexer: [ ss.classMarker, AbstractIndexer, AbstractIndexer$, null ],
-      MultipleArgs: [ ss.classMarker, MultipleArgs, MultipleArgs$, null ],
-      ImplementedIndexer2: [ ss.classMarker, ImplementedIndexer2, ImplementedIndexer2$, null, IIndexable ],
-      Test: [ ss.classMarker, Test, Test$, null ],
-      A: [ ss.classMarker, A, A$, null ],
-      OverriddenIndexer: [ ss.classMarker, OverriddenIndexer, OverriddenIndexer$, VirtualIndexer ],
-      ImplementedIndexer: [ ss.classMarker, ImplementedIndexer, ImplementedIndexer$, AbstractIndexer ],
-      B: [ ss.classMarker, B, B$, A ],
-      C: [ ss.classMarker, C, C$, B ]
+      IIndexable: ss.defineInterface(IIndexable),
+      Normal: ss.defineClass(Normal, Normal$, [], null),
+      GetterOnly: ss.defineClass(GetterOnly, GetterOnly$, [], null),
+      VirtualIndexer: ss.defineClass(VirtualIndexer, VirtualIndexer$, [], null),
+      AbstractIndexer: ss.defineClass(AbstractIndexer, AbstractIndexer$, [], null),
+      MultipleArgs: ss.defineClass(MultipleArgs, MultipleArgs$, [], null),
+      ImplementedIndexer2: ss.defineClass(ImplementedIndexer2, ImplementedIndexer2$, [], null, [IIndexable]),
+      Test: ss.defineClass(Test, Test$, [], null),
+      A: ss.defineClass(A, A$, [], null),
+      OverriddenIndexer: ss.defineClass(OverriddenIndexer, OverriddenIndexer$, [], VirtualIndexer),
+      ImplementedIndexer: ss.defineClass(ImplementedIndexer, ImplementedIndexer$, [], AbstractIndexer),
+      B: ss.defineClass(B, B$, [], A),
+      C: ss.defineClass(C, C$, [], B)
     });
 
 

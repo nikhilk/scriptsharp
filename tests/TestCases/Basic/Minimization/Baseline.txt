@@ -312,24 +312,24 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   var $exports = ss.module('test',
     {
-      IApp: [ ss.interfaceMarker, IApp, null, null ],
+      IApp: ss.defineInterface(IApp),
       MyData: MyData,
-      AppHelper: [ ss.classMarker, AppHelper, AppHelper$, null ],
-      Bar: [ ss.classMarker, Bar, Bar$, null ],
-      BaseBaseClass: [ ss.classMarker, BaseBaseClass, BaseBaseClass$, null ],
-      ABC: [ ss.classMarker, ABC, ABC$, null ],
-      Bar2: [ ss.classMarker, Bar2, Bar2$, Bar ],
-      BarCustom: [ ss.classMarker, BarCustom, BarCustom$, Bar ],
-      BaseClass: [ ss.classMarker, BaseClass, BaseClass$, BaseBaseClass ],
-      BarEx: [ ss.classMarker, BarEx, BarEx$, Bar2 ],
-      BarCustom2: [ ss.classMarker, BarCustom2, BarCustom2$, BarCustom ],
-      DerivedClass: [ ss.classMarker, DerivedClass, DerivedClass$, BaseClass ],
-      MaskTextBox: [ ss.classMarker, MaskTextBox, MaskTextBox$, lib.TextBox ]
+      AppHelper: ss.defineClass(AppHelper, AppHelper$, [], null),
+      Bar: ss.defineClass(Bar, Bar$, [], null),
+      BaseBaseClass: ss.defineClass(BaseBaseClass, BaseBaseClass$, [], null),
+      ABC: ss.defineClass(ABC, ABC$, [], null),
+      Bar2: ss.defineClass(Bar2, Bar2$, [], Bar),
+      BarCustom: ss.defineClass(BarCustom, BarCustom$, [], Bar),
+      BaseClass: ss.defineClass(BaseClass, BaseClass$, [], BaseBaseClass),
+      BarEx: ss.defineClass(BarEx, BarEx$, [], Bar2),
+      BarCustom2: ss.defineClass(BarCustom2, BarCustom2$, [], BarCustom),
+      DerivedClass: ss.defineClass(DerivedClass, DerivedClass$, [], BaseClass),
+      MaskTextBox: ss.defineClass(MaskTextBox, MaskTextBox$, [Object], lib.TextBox)
     },
     {
       AppFlags: AppFlags,
-      App: [ ss.classMarker, App, App$, null ],
-      FooBehavior: [ ss.classMarker, FooBehavior, FooBehavior$, lib.Behavior ]
+      App: ss.defineClass(App, App$, [], null),
+      FooBehavior: ss.defineClass(FooBehavior, FooBehavior$, [Object, Number], lib.Behavior)
     });
 
 
