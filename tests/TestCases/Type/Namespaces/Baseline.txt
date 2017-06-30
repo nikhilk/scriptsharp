@@ -84,14 +84,14 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      MyClass: [ ss.classMarker, MyClass, MyClass$, null ],
-      YourClass: [ ss.classMarker, YourClass, YourClass$, null ],
-      YourClass1: [ ss.classMarker, YourClass1, YourClass1$, null ],
-      MyClassF: [ ss.classMarker, MyClassF, MyClassF$, null ],
-      Test: [ ss.classMarker, Test, Test$, null ],
-      Utility: [ ss.classMarker, Utility, Utility$, null ],
-      UtilityP: [ ss.classMarker, UtilityP, UtilityP$, null ],
-      Component: [ ss.classMarker, Component, Component$, null ]
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null),
+      YourClass: ss.defineClass(YourClass, YourClass$, [], null),
+      YourClass1: ss.defineClass(YourClass1, YourClass1$, [], null),
+      MyClassF: ss.defineClass(MyClassF, MyClassF$, [], null),
+      Test: ss.defineClass(Test, Test$, [], null),
+      Utility: ss.defineClass(Utility, Utility$, [], null),
+      UtilityP: ss.defineClass(UtilityP, UtilityP$, [], null),
+      Component: ss.defineClass(Component, Component$, [], null)
     });
 
 

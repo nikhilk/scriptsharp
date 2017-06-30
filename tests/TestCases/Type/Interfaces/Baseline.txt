@@ -75,13 +75,13 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IMarker: [ ss.interfaceMarker, IMarker, null, null ],
-      ISerializable: [ ss.interfaceMarker, ISerializable, null, null ],
-      IRunnable: [ ss.interfaceMarker, IRunnable, null, null, IMarker, ss.IDisposable ],
-      MyObject: [ ss.classMarker, MyObject, MyObject$, null, ss.IDisposable ],
-      Foo: [ ss.classMarker, Foo, Foo$, null, IMarker, ISerializable, IRunnable ],
-      Program: [ ss.classMarker, Program, Program$, null ],
-      MyObject2: [ ss.classMarker, MyObject2, MyObject2$, MyObject, IRunnable ]
+      IMarker: ss.defineInterface(IMarker),
+      ISerializable: ss.defineInterface(ISerializable),
+      IRunnable: ss.defineInterface(IRunnable, [IMarker, ss.IDisposable]),
+      MyObject: ss.defineClass(MyObject, MyObject$, [], null, [ss.IDisposable]),
+      Foo: ss.defineClass(Foo, Foo$, [], null, [IMarker, ISerializable, IRunnable]),
+      Program: ss.defineClass(Program, Program$, [], null),
+      MyObject2: ss.defineClass(MyObject2, MyObject2$, [], MyObject, [IRunnable])
     });
 
 

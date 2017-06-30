@@ -99,8 +99,9 @@
       canAssign: canAssign,
       instanceOf: instanceOf,
       baseProperty : baseProperty,
-      classMarker : _classMarker,
-      interfaceMarker : _interfaceMarker,
+      defineClass : defineClass,
+      defineInterface : defineInterface,
+      getConstructorParams : getConstructorParams,
 
       culture: {
         neutral: neutralCulture,

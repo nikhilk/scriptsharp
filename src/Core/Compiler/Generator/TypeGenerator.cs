@@ -32,7 +32,7 @@ namespace ScriptSharp.Generator {
             }
             writer.WriteLine(") {");
             writer.Indent++;
-
+            
             if (generator.Options.EnableDocComments) {
                 DocCommentGenerator.GenerateComment(generator, classSymbol);
             }
@@ -259,50 +259,12 @@ namespace ScriptSharp.Generator {
 
             switch (typeSymbol.Type) {
                 case SymbolType.Class:
-                    writer.Write("[ ss.classMarker, ");
-                    writer.Write(typeSymbol.FullGeneratedName);
-                    writer.Write(", ");
-                    if (((ClassSymbol)typeSymbol).IsStaticClass == false) {
-                        writer.Write(typeSymbol.FullGeneratedName);
-                        writer.Write("$, ");
-                    }
-                    else {
-                        writer.Write("null, ");
-                    }
-                    if ((classSymbol.BaseClass == null) || classSymbol.IsTestClass) {
-                        // TODO: We need to introduce the notion of a base class that only exists in the metadata
-                        //       and not at runtime. At that point this check of IsTestClass can be generalized.
-
-                        writer.Write("null");
-                    }
-                    else {
-                        writer.Write(classSymbol.BaseClass.FullGeneratedName);
-                    }
-                    if (classSymbol.Interfaces != null) {
-                        foreach (InterfaceSymbol interfaceSymbol in classSymbol.Interfaces) {
-                            writer.Write(", ");
-                            writer.Write(interfaceSymbol.FullGeneratedName);
-                        }
-                    }
-                    writer.Write(" ]");
+                    GenerateClassRegistrationScript(generator, classSymbol);
+                    
                     break;
                 case SymbolType.Interface:
-                    writer.Write("[ ss.interfaceMarker, ");
-                    writer.Write(typeSymbol.FullGeneratedName);
-                    writer.Write(", ");
-                    writer.Write("null, ");
-                    writer.Write("null");
-
-                    var interfaces = ((InterfaceSymbol)typeSymbol).Interfaces;
-                    if (interfaces != null)
-                    {
-                        foreach (InterfaceSymbol interfaceSymbol in interfaces)
-                        {
-                            writer.Write(", ");
-                            writer.Write(interfaceSymbol.FullGeneratedName);
-                        }
-                    }
-                    writer.Write(" ]");
+                    GenerateInterfaceRegistrationScript(generator, (InterfaceSymbol)typeSymbol);
+                    
                     break;
                 case SymbolType.Record:
                 case SymbolType.Resources:
@@ -310,6 +272,104 @@ namespace ScriptSharp.Generator {
                     writer.Write(typeSymbol.FullGeneratedName);
                     break;
             }
+        }
+
+        private static void GenerateClassRegistrationScript(ScriptGenerator generator, ClassSymbol classSymbol)
+        {
+            ScriptTextWriter writer = generator.Writer;
+
+            //class definition
+            writer.Write("ss.defineClass(");
+            writer.Write(classSymbol.FullGeneratedName);
+            writer.Write(", ");
+            if (classSymbol.IsStaticClass)
+            {
+                writer.Write("null, ");
+            }
+            else
+            {
+                writer.Write(classSymbol.FullGeneratedName);
+                writer.Write("$, ");
+            }
+
+            //constructor params
+            writer.Write("[");
+            if ((classSymbol.Constructor != null) && (classSymbol.Constructor.Parameters != null))
+            {
+                bool firstParameter = true;
+                foreach (ParameterSymbol parameterSymbol in classSymbol.Constructor.Parameters)
+                {
+                    if (firstParameter == false)
+                    {
+                        writer.Write(", ");
+                    }
+
+                    writer.Write(parameterSymbol.ValueType.FullGeneratedName);
+                    firstParameter = false;
+                }
+            }
+            writer.Write("], ");
+
+            //base class
+            if ((classSymbol.BaseClass == null) || classSymbol.IsTestClass)
+            {
+                // TODO: We need to introduce the notion of a base class that only exists in the metadata
+                //       and not at runtime. At that point this check of IsTestClass can be generalized.
+
+                writer.Write("null");
+            }
+            else
+            {
+                writer.Write(classSymbol.BaseClass.FullGeneratedName);
+            }
+            
+            //interfaces
+            if (classSymbol.Interfaces != null)
+            {
+                writer.Write(", [");
+                bool first = true;
+
+                foreach (InterfaceSymbol inheritedInterface in classSymbol.Interfaces)
+                {
+                    if (!first)
+                    {
+                        writer.Write(", ");
+                    }
+                    writer.Write(inheritedInterface.FullGeneratedName);
+                    first = false;
+                }
+
+                writer.Write("]");
+            }
+
+            writer.Write(")");
+        }
+
+        private static void GenerateInterfaceRegistrationScript(ScriptGenerator generator, InterfaceSymbol interfaceSymbol)
+        {
+            ScriptTextWriter writer = generator.Writer;
+
+            writer.Write("ss.defineInterface(");
+            writer.Write(interfaceSymbol.FullGeneratedName);
+
+            if (interfaceSymbol.Interfaces != null)
+            {
+                writer.Write(", [");
+                bool first = true;
+
+                foreach (InterfaceSymbol inheritedInterface in interfaceSymbol.Interfaces)
+                {
+                    if (!first)
+                    {
+                        writer.Write(", ");
+                    }
+                    writer.Write(inheritedInterface.FullGeneratedName);
+                    first = false;
+                }
+
+                writer.Write("]");
+            }
+            writer.Write(")");
         }
 
         private static void GenerateResources(ScriptGenerator generator, ResourcesSymbol resourcesSymbol) {

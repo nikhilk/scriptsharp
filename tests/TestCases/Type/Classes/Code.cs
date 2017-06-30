@@ -5,8 +5,12 @@ using System.Runtime.CompilerServices;
 
 namespace TypeTests {
 
-    [ScriptName("FooBarBaz")]
+    [ScriptName("FooBaz")]
     public class Foo {
+    }
+
+    [ScriptName("BarBaz")]
+    public class Bar {
     }
 
     public class MyClass {
@@ -20,6 +24,10 @@ namespace TypeTests {
     }
 
     public class MyClass4 : MyClass, IDisposable {
+
+        public MyClass4(Foo foo, Bar bar, IDisposable disposable)
+        {
+        }
     }
 
     public static class StaticClass {

@@ -15,7 +15,6 @@ function createType(typeName, typeInfo, typeRegistry) {
       var type = typeInfo[1];
       var prototypeDescription = typeInfo[2];
       var baseType = typeInfo[3];
-      var interfaces = typeInfo.slice(4);
     // A class is minimally the class type and an object representing
     // its prototype members, and optionally the base type, and references
     // to interfaces implemented by the class.
@@ -34,13 +33,24 @@ function createType(typeName, typeInfo, typeRegistry) {
       type.$base = baseType || Object;
     }
 
-    type.$type = typeMarker;
-    type.$interfaces = interfaces;
     type.$name = typeName;
     return typeRegistry[typeName] = type;
   }
 
   return typeInfo;
+}
+
+function defineClass(type, prototypeDescription, constructorParams ,baseType, interfaces) {
+    type.$type = _classMarker;
+    type.$constructorParams = constructorParams;
+    type.$interfaces = interfaces;
+    return [_classMarker, type, prototypeDescription, baseType];
+}
+
+function defineInterface(type, interfaces) {
+    type.$type = _interfaceMarker;
+    type.$interfaces = interfaces;
+    return [_interfaceMarker, type];
 }
 
 function createPropertyGet(obj, propertyName, fn) {
@@ -205,4 +215,8 @@ function module(name, implementation, exports) {
 function baseProperty(type, propertyName) {
     var baseType = type.$base;
     return Object.getOwnPropertyDescriptor(baseType.prototype, propertyName) || baseProperty(baseType, propertyName);
+}
+
+function getConstructorParams(type) {
+    return type.$constructorParams;
 }
