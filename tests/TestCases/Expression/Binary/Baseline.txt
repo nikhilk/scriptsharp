@@ -9,17 +9,17 @@ define('test', ['ss'], function(ss) {
     this._value = 0;
   }
   var Data$ = {
-    $get_value: function() {
+    $get_Value: function() {
       return this._value;
     },
-    $set_value: function(value) {
+    $set_Value: function(value) {
       this._value = value;
       return value;
     },
-    $get_flag: function() {
+    $get_Flag: function() {
       return true;
     },
-    $set_flag: function(value) {
+    $set_Flag: function(value) {
       return value;
     }
   };
@@ -42,16 +42,16 @@ define('test', ['ss'], function(ss) {
     $set__bar: function(value) {
       return value;
     },
-    $get_data: function() {
+    $get_Data: function() {
       return new Data();
     },
-    $set_data: function(value) {
+    $set_Data: function(value) {
       return value;
     },
-    $get_flag1: function() {
-      return this.data.flag;
+    $get_Flag1: function() {
+      return this.Data.Flag;
     },
-    $get_flag2: function() {
+    $get_Flag2: function() {
       return Data.staticFlag;
     },
     test: function(arg1, arg2) {
@@ -83,8 +83,8 @@ define('test', ['ss'], function(ss) {
       abc <<= 1;
       xyz >>>= 1;
       var d = new Data();
-      d.value = d.value + 5;
-      d.flag = (d.flag | true) === 1;
+      d.Value = d.Value + 5;
+      d.Flag = (d.Flag | true) === 1;
       var o1 = ss.value(null, {});
       var s2 = (10).toString();
       s2 = (100).toString();
@@ -101,9 +101,9 @@ define('test', ['ss'], function(ss) {
       c = (c ^ true) === 1;
       a = (a | (a || a)) === 1;
       var d = new Data();
-      d.flag = (d.flag & true) === 1;
-      d.flag = (d.flag | true) === 1;
-      d.flag = (d.flag ^ true) === 1;
+      d.Flag = (d.Flag & true) === 1;
+      d.Flag = (d.Flag | true) === 1;
+      d.Flag = (d.Flag ^ true) === 1;
     }
   };
 
