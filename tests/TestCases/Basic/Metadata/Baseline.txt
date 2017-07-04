@@ -1845,10 +1845,20 @@ Types:
                 Visibility: Public
                 Generated Name: toLowerCase
                 Abstract: False
+            Method: ToLower
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toLower
+                Abstract: False
             Method: ToUpperCase
                 AssociatedType: String
                 Visibility: Public
                 Generated Name: toUpperCase
+                Abstract: False
+            Method: ToUpper
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toUpper
                 Abstract: False
             Method: Trim
                 AssociatedType: String
