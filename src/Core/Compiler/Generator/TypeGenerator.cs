@@ -358,7 +358,7 @@ namespace ScriptSharp.Generator {
 
             TypeSymbol typeType = symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
             TypeSymbol functionType = symbolSet.ResolveIntrinsicType(IntrinsicType.Function);
-            if (parameterType.FullName == typeType.FullName)
+            if (parameterType.FullName == typeType.FullName || parameterType.Type == SymbolType.Delegate)
             {
                 parameterType = functionType;
             }

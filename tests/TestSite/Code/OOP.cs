@@ -239,7 +239,7 @@ namespace Test.Bases {
 
     public class C6
     {
-        public C6(Nullable<int> i, Type t)
+        public C6(Nullable<int> i, Type t, Func<string> f, Action<string,int> a)
         {
 
         }

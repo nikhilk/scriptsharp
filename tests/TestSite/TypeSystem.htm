@@ -156,7 +156,7 @@
     test('constructor parameter reflection', function() {
         QUnit.deepEqual([String, oop.ICharacter], ss.getConstructorParams(oop.Comic), "Expected IComic to take string and ICharacter.");
         QUnit.deepEqual([], ss.getConstructorParams(oop.Cat), "Expected Cat to have empty constructor.");
-        QUnit.deepEqual([Number, Function], ss.getConstructorParams(oop.C6), "Expected C6 to take Number, Function in its constructor.");
+        QUnit.deepEqual([Number, Function, Function, Function], ss.getConstructorParams(oop.C6), "Expected C6 to take Number, Function, Function, Function in its constructor.");
       });
     });
 </script>
