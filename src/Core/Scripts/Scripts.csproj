@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Runtime\Collections.js" />
+    <Content Include="Runtime\Guid.js" />
     <Content Include="Runtime\String.js" />
     <Content Include="Runtime\Misc.js" />
     <Content Include="Runtime\Format.js" />

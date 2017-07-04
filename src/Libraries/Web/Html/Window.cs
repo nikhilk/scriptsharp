@@ -485,5 +485,8 @@ namespace System.Html {
         public static WindowInstance ShowModalDialog(string url, object dialogArguments, string features) {
             return null; 
         }
+
+        [ScriptField]
+        public static extern Html5Performance Performance { get; }
     }
 }

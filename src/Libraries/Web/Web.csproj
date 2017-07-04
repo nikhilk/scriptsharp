@@ -48,8 +48,16 @@
     <Compile Include="Html\AudioElement.cs" />
     <Compile Include="Html\CheckBoxElement.cs" />
     <Compile Include="Html\CanvasElement.cs" />
+    <Compile Include="Html\Console.cs" />
     <Compile Include="Html\ClientRectList.cs" />
+    <Compile Include="Html\Html5Timings.cs" />
+    <Compile Include="Html\Html5Performance.cs" />
+    <Compile Include="Html\Html5InputElement.cs" />
     <Compile Include="Html\LinkElement.cs" />
+    <Compile Include="Html\PopStateEvent.cs" />
+    <Compile Include="Html\WheelEvent.cs" />
+    <Compile Include="Html\UIEvent.cs" />
+    <Compile Include="Html\MouseEvent.cs" />
     <Compile Include="Html\StyleSheets\StyleRuleType.cs" />
     <Compile Include="Html\StyleSheets\StylePageRule.cs" />
     <Compile Include="Html\StyleSheets\StyleCharsetRule.cs" />

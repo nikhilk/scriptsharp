@@ -87,5 +87,9 @@ namespace System.Html {
         /// <param name="url">The URL to place into history.</param>
         public void ReplaceState(object data, string title, string url) {
         }
+
+        public static extern string ScrollRestoration { get; set; }
+
+
     }
 }

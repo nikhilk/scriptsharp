@@ -1049,6 +1049,23 @@ Types:
                 Generated Name: call
                 Abstract: False
         
+    Class: Guid
+        Application Type: False
+        Public: True
+        Generated Name: Guid
+        Extension Methods: False
+        Members:
+            Method: NewGuid
+                AssociatedType: Guid
+                Visibility: Public, Static
+                Generated Name: newGuid
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
     Interface: IDisposable
         Application Type: False
         Public: True
@@ -1845,10 +1862,20 @@ Types:
                 Visibility: Public
                 Generated Name: toLowerCase
                 Abstract: False
+            Method: ToLower
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toLower
+                Abstract: False
             Method: ToUpperCase
                 AssociatedType: String
                 Visibility: Public
                 Generated Name: toUpperCase
+                Abstract: False
+            Method: ToUpper
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toUpper
                 Abstract: False
             Method: Trim
                 AssociatedType: String
@@ -2618,6 +2645,7 @@ Types:
         BaseClass: Object
         Interfaces:
             IEnumerable`1
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: TValue
@@ -2750,6 +2778,7 @@ Types:
         Interfaces:
             ICollection`1
             IEnumerable`1
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: T
@@ -2902,6 +2931,11 @@ Types:
                 Visibility: Public
                 Generated Name: unshift
                 Abstract: False
+            Method: ToArray
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: toArray
+                Abstract: False
         
     Delegate: ListCallback`1
         Application Type: False
@@ -2999,6 +3033,7 @@ Types:
         BaseClass: Object
         Interfaces:
             IEnumerable`1
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: T
@@ -3132,6 +3167,98 @@ Types:
                 Visibility: Public
                 Generated Name: push
                 Abstract: False
+        
+
+Namespace: System.Collections.ObjectModel
+HasApplicationTypes: False
+Types:
+    Class: Collection`1
+        Application Type: False
+        Public: True
+        Generated Name: Array
+        Extension Methods: False
+        BaseClass: Object
+        Interfaces:
+            ICollection`1
+            IEnumerable`1
+            IEnumerable
+        Indexer:
+            Indexer: Item
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: False
+                Abstract: True
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: GetEnumerator
+                AssociatedType: IEnumerator
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: False
+            Method: Add
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: push
+                Abstract: True
+            Method: AddRange
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: push
+                Abstract: True
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: True
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: True
+            Method: CopyTo
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: copyTo
+                Abstract: True
+            Method: IndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: indexOf
+                Abstract: True
+            Method: Insert
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: insert
+                Abstract: True
+            Method: Remove
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: ss.remove
+                Abstract: True
+            Method: RemoveAt
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: removeAt
+                Abstract: True
+            Method: Select
+                AssociatedType: Collection`1
+                Visibility: Public
+                Generated Name: map
+                Abstract: True
+            Method: ToArray
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: sse.TypeExtension.Cast
+                Abstract: True
+            Method: ToList
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: sse.TypeExtension.Cast
+                Abstract: True
         
 
 Namespace: System.ComponentModel

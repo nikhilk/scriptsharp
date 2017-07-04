@@ -11,6 +11,7 @@
 
   #include "Runtime\Misc.js"
   #include "Runtime\Collections.js"
+  #include "Runtime\Guid.js"
   #include "Runtime\String.js"
   #include "Runtime\Delegate.js"
   #include "Runtime\EventArgs.js"
@@ -23,25 +24,26 @@
   #include "Runtime\TypeSystem.js"
 
   return extend(module('ss', null, {
-      IDisposable: [ _interfaceMarker, IDisposable ],
-      IEnumerable: [ _interfaceMarker, IEnumerable ],
-      IEnumerator: [ _interfaceMarker, IEnumerator ],
-      IObserver: [ _interfaceMarker, IObserver ],
-      IApplication: [ _interfaceMarker, IApplication ],
-      IContainer: [ _interfaceMarker, IContainer ],
-      IObjectFactory: [ _interfaceMarker, IObjectFactory ],
-      IEventManager: [ _interfaceMarker, IEventManager ],
-      IInitializable: [ _interfaceMarker, IInitializable ],
-      EventArgs: [ _classMarker, EventArgs, { } ],
-      CancelEventArgs: [ _classMarker, CancelEventArgs, { }, EventArgs ],
-      StringBuilder: [ _classMarker, StringBuilder, StringBuilder$ ],
-      Stack: [ _classMarker, Stack, Stack$ ],
-      Queue: [ _classMarker, Queue, Queue$ ],
-      Observable: [ _classMarker, Observable, Observable$ ],
-      ObservableCollection: [ _classMarker, ObservableCollection, ObservableCollection$, null, IEnumerable ],
-      Task: [ _classMarker, Task, Task$ ]
+      IDisposable: defineInterface(IDisposable),
+      IEnumerable: defineInterface(IEnumerable),
+      IEnumerator: defineInterface(IEnumerator),
+      IObserver: defineInterface(IObserver),
+      IApplication: defineInterface(IApplication),
+      IContainer: defineInterface(IContainer),
+      IObjectFactory: defineInterface(IObjectFactory),
+      IEventManager: defineInterface(IEventManager),
+      IInitializable: defineInterface(IInitializable),
+      EventArgs: defineClass(EventArgs, { }, [], null),
+      CancelEventArgs: defineClass(CancelEventArgs, { }, [], null),
+      StringBuilder: defineClass(StringBuilder, StringBuilder$, [], null),
+      Stack: defineClass(Stack, Stack$, [], null),
+      Queue: defineClass(Queue, Queue$, [], null),
+      Observable: defineClass(Observable, Observable$, [], null),
+      ObservableCollection: defineClass(ObservableCollection, ObservableCollection$, [], null, [IEnumerable]),
+      Task: defineClass(Task, Task$, [], null),
+      Guid: defineClass(Guid, Guid$, [], null)
     }), {
-      version: '0.8',
+      version: '1.0',
 
       isValue: isValue,
       value: value,
