@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -18,7 +18,7 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
-    <CompilerResponseFile Condition=" $(MSBuildToolsVersion) >= 13.0 ">AdditionalCompilerOptions.txt</CompilerResponseFile>
+    <CompilerResponseFile Condition=" $(MSBuildToolsVersion) &gt;= 13.0 ">AdditionalCompilerOptions.txt</CompilerResponseFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -52,6 +52,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Guid.cs" />
     <Compile Include="Collections\Collection.cs" />
     <Compile Include="Collections\ArrayReduceCallback.cs" />
     <Compile Include="Collections\ArrayItemReduceCallback.cs" />

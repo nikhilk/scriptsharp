@@ -1049,6 +1049,23 @@ Types:
                 Generated Name: call
                 Abstract: False
         
+    Class: Guid
+        Application Type: False
+        Public: True
+        Generated Name: Guid
+        Extension Methods: False
+        Members:
+            Method: NewGuid
+                AssociatedType: Guid
+                Visibility: Public, Static
+                Generated Name: newGuid
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
     Interface: IDisposable
         Application Type: False
         Public: True

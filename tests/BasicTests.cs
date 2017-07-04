@@ -26,6 +26,16 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestGuid()
+        {
+            RunTest((c) =>
+            {
+                c.AddSource("Code.cs");
+                c.Options.Defines = new string[] { "DEBUG" };
+            }, "Baseline.txt");
+        }
+
+        [TestMethod]
         public void TestConditionals() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
