@@ -492,6 +492,7 @@ namespace ScriptSharp.Importer {
                     else {
                         propertySymbol = new PropertySymbol(propertyName, typeSymbol, propertyType);
                         ImportMemberDetails(propertySymbol, property.GetMethod, property);
+                        propertySymbol.SetNameCasing(true);
                     }
                 }
 
