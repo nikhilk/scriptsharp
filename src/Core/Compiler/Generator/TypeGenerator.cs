@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using ScriptSharp;
 using ScriptSharp.ScriptModel;
+using System.Linq;
 
 namespace ScriptSharp.Generator {
 
@@ -303,8 +304,9 @@ namespace ScriptSharp.Generator {
                     {
                         writer.Write(", ");
                     }
-
-                    writer.Write(parameterSymbol.ValueType.FullGeneratedName);
+                    var parameterType = parameterSymbol.ValueType;
+                    string parameterTypeName = GetParameterTypeName(parameterType);
+                    writer.Write(parameterTypeName);
                     firstParameter = false;
                 }
             }
@@ -343,6 +345,25 @@ namespace ScriptSharp.Generator {
             }
 
             writer.Write(")");
+        }
+
+        private static string GetParameterTypeName(TypeSymbol parameterType)
+        {
+            var symbolSet = parameterType.SymbolSet;
+            TypeSymbol nullableType = symbolSet.ResolveIntrinsicType(IntrinsicType.Nullable);
+            if (parameterType.FullName == nullableType.FullName)
+            {
+                parameterType = parameterType.GenericArguments.First();
+            }
+
+            TypeSymbol typeType = symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
+            TypeSymbol functionType = symbolSet.ResolveIntrinsicType(IntrinsicType.Function);
+            if (parameterType.FullName == typeType.FullName)
+            {
+                parameterType = functionType;
+            }
+
+            return parameterType.FullGeneratedName;
         }
 
         private static void GenerateInterfaceRegistrationScript(ScriptGenerator generator, InterfaceSymbol interfaceSymbol)
