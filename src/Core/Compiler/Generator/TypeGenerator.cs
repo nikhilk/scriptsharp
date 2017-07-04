@@ -362,6 +362,20 @@ namespace ScriptSharp.Generator {
             {
                 parameterType = functionType;
             }
+            if (parameterType.Type == SymbolType.Enumeration)
+            {
+                EnumerationSymbol enumType = (EnumerationSymbol)parameterType;
+                if (enumType.UseNamedValues)
+                {
+                    TypeSymbol stringType = symbolSet.ResolveIntrinsicType(IntrinsicType.String);
+                    parameterType = stringType;
+                }
+                else
+                {
+                    TypeSymbol numberType = symbolSet.ResolveIntrinsicType(IntrinsicType.Number);
+                    parameterType = numberType;
+                }
+            }
 
             return parameterType.FullGeneratedName;
         }

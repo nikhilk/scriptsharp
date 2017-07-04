@@ -237,9 +237,24 @@ namespace Test.Bases {
         }
     }
 
+    public enum E1
+    {
+        Zero = 0,
+        One = 1,
+        Two = 2
+    }
+
+    [ScriptConstants(UseNames = true)]
+    public enum E2
+    {
+        Zero = 0,
+        One = 1,
+        Two = 2
+    }
+
     public class C6
     {
-        public C6(Nullable<int> i, Type t, Func<string> f, Action<string,int> a)
+        public C6(Nullable<int> i, Type t, Func<string> f, Action<string,int> a, E1 e1, E2 e2)
         {
 
         }
