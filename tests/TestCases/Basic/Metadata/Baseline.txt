@@ -1271,7 +1271,7 @@ Types:
     Class: Nullable`1
         Application Type: False
         Public: True
-        Generated Name: Nullable`1
+        Generated Name: Nullable_$1
         Extension Methods: False
         Members:
             Property: HasValue

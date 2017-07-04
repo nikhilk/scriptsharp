@@ -237,6 +237,14 @@ namespace Test.Bases {
         }
     }
 
+    public class C6
+    {
+        public C6(Nullable<int> i, Type t, Func<string> f, Action<string,int> a)
+        {
+
+        }
+    }
+
     public class TestCase {
 
         public static string RunTest(C1 x) {
