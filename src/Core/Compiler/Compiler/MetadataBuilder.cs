@@ -698,7 +698,7 @@ namespace ScriptSharp.Compiler {
             if (propertyType != null) {
                 PropertySymbol property = new PropertySymbol(propertyNode.Name, typeSymbol, propertyType);
                 BuildMemberDetails(property, typeSymbol, propertyNode, propertyNode.Attributes);
-
+                property.SetNameCasing(true);
                 SymbolImplementationFlags implFlags = SymbolImplementationFlags.Regular;
                 if (propertyNode.SetAccessor == null) {
                     implFlags |= SymbolImplementationFlags.ReadOnly;

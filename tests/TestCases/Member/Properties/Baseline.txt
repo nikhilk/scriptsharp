@@ -11,20 +11,20 @@ define('test', ['ss'], function(ss) {
   // MemberTests.Test
 
   function Test() {
+    this.isFoo = false;
     this.XYZ = 1;
-    this.XYZ = this.name.length;
+    this.XYZ = this.Name.length;
     var inter = this;
-    inter.XYZ = this.name.length;
+    inter.XYZ = this.Name.length;
     inter.XYZ++;
     --this.XYZ;
-    var v = Test.staticProp;
-    v = Test.staticProp;
+    var v = Test.StaticProp;
+    v = Test.StaticProp;
+    var foo = this.IsFoo;
+    this.IsFoo = true;
   }
-  ss.createPropertyGet(Test, 'staticProp', function() {
+  ss.createPropertyGet(Test, 'StaticProp', function() {
     return 2006;
-  });
-  ss.createPropertySet(Test, 'staticProp', function(value) {
-    return value;
   });
   var Test$ = {
     $get_XYZ: function() {
@@ -33,10 +33,14 @@ define('test', ['ss'], function(ss) {
     $set_XYZ: function(value) {
       return value;
     },
-    $get_isFoo: function() {
-      return true;
+    $get_IsFoo: function() {
+      return this.isFoo;
     },
-    $get_name: function() {
+    $set_IsFoo: function(value) {
+      this.isFoo = value;
+      return value;
+    },
+    $get_Name: function() {
       return 'nk';
     },
     $get__isInitialized: function() {
@@ -55,7 +59,7 @@ define('test', ['ss'], function(ss) {
     }
     if (this.XYZ === n) {
     }
-    n = Test.staticProp;
+    n = Test.StaticProp;
   }
   var Test2$ = {
 

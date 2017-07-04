@@ -75,13 +75,13 @@ Types:
             Property: Prop1
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: prop1
+                Generated Name: Prop1
                 ReadOnly: True
                 Abstract: False
             Property: Prop2
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: prop2
+                Generated Name: Prop2
                 ReadOnly: False
                 Abstract: False
             Method: ShowHelp
@@ -1277,13 +1277,13 @@ Types:
             Property: HasValue
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: hasValue
+                Generated Name: HasValue
                 ReadOnly: True
                 Abstract: False
             Property: Value
                 AssociatedType: T
                 Visibility: Public
-                Generated Name: value
+                Generated Name: Value
                 ReadOnly: True
                 Abstract: False
             Method: GetValueOrDefault
@@ -1988,7 +1988,7 @@ Types:
             Property: Name
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: name
+                Generated Name: Name
                 ReadOnly: True
                 Abstract: False
             Field: Prototype
@@ -2346,13 +2346,13 @@ Types:
             Property: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: count
+                Generated Name: Count
                 ReadOnly: True
                 Abstract: False
             Property: Keys
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: keys
+                Generated Name: Keys
                 ReadOnly: True
                 Abstract: False
             Method: Clear
@@ -2629,13 +2629,13 @@ Types:
             Property: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: count
+                Generated Name: Count
                 ReadOnly: True
                 Abstract: False
             Property: Keys
                 AssociatedType: IReadonlyCollection`1
                 Visibility: Public
-                Generated Name: keys
+                Generated Name: Keys
                 ReadOnly: True
                 Abstract: False
             Method: Add
@@ -3678,7 +3678,7 @@ Types:
             Property: Completed
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: completed
+                Generated Name: Completed
                 ReadOnly: True
                 Abstract: False
             Field: Error
@@ -3851,13 +3851,13 @@ define('test', ['ss'], function(ss) {
   function AppHelper() {
   }
   var AppHelper$ = {
-    $get_prop1: function() {
+    $get_Prop1: function() {
       return 0;
     },
-    $get_prop2: function() {
+    $get_Prop2: function() {
       return 0;
     },
-    $set_prop2: function(value) {
+    $set_Prop2: function(value) {
       return value;
     },
     _showHelp: function() {

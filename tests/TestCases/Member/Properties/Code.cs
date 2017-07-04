@@ -13,18 +13,20 @@ namespace MemberTests {
 
     public class Test {
 
+        public bool isFoo;
+
         public static int StaticProp {
             get { return 2006; }
-            set { }
         }
 
         public int XYZ {
             get { return 0; }
-            set { }
+            set {  }
         }
 
         public bool IsFoo {
-            get { return true; }
+            get { return isFoo; }
+            set { isFoo = value; }
         }
 
         protected string Name { get { return "nk"; } }
@@ -44,6 +46,9 @@ namespace MemberTests {
 
             int v = StaticProp;
             v = Test.StaticProp;
+
+            bool foo = IsFoo;
+            IsFoo = true;
         }
     }
 
