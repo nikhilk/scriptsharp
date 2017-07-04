@@ -101,6 +101,9 @@ namespace ScriptSharp.Compiler {
                 case ParseNodeType.Try:
                     statement = ProcessTryCatchFinallyStatement((TryNode)statementNode);
                     break;
+                case ParseNodeType.Using:
+                    statement = ProcessUsingStatement((UsingNode)statementNode);
+                    break;
             }
             return statement;
         }
@@ -363,6 +366,14 @@ namespace ScriptSharp.Compiler {
                 statement.AddFinally(finallyStatement);
             }
 
+            return statement;
+        }
+
+        private Statement ProcessUsingStatement(UsingNode node)
+        {
+            UsingStatement statement = new UsingStatement();
+            statement.AddGuard((VariableDeclarationStatement)ProcessVariableDeclarationStatement((VariableDeclarationNode)node.Guard));
+            statement.AddBody(BuildStatement((StatementNode)node.Body));
             return statement;
         }
 

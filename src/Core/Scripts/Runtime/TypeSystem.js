@@ -11,13 +11,14 @@ function createType(typeName, typeInfo, typeRegistry) {
   // or a function, representing a record factory.
 
   if (Array.isArray(typeInfo)) {
-    var type = typeInfo[0];
-
+      var typeMarker = typeInfo[0];
+      var type = typeInfo[1];
+      var prototypeDescription = typeInfo[2];
+      var baseType = typeInfo[3];
     // A class is minimally the class type and an object representing
     // its prototype members, and optionally the base type, and references
     // to interfaces implemented by the class.
-    if (typeInfo.length >= 2) {
-      var baseType = typeInfo[2];
+    if (typeMarker === _classMarker) {
       if (baseType) {
         // Chain the prototype of the base type (using an anonymous type
         // in case the base class is not creatable, or has side-effects).
@@ -28,14 +29,8 @@ function createType(typeName, typeInfo, typeRegistry) {
       }
 
       // Add the type's prototype members if there are any
-      typeInfo[1] && extendType(type.prototype, typeInfo[1]);
-
+      prototypeDescription && extendType(type.prototype, prototypeDescription);
       type.$base = baseType || Object;
-      type.$interfaces = typeInfo.slice(3);
-      type.$type = _classMarker;
-    }
-    else {
-      type.$type = _interfaceMarker;
     }
 
     type.$name = typeName;
@@ -43,6 +38,19 @@ function createType(typeName, typeInfo, typeRegistry) {
   }
 
   return typeInfo;
+}
+
+function defineClass(type, prototypeDescription, constructorParams ,baseType, interfaces) {
+    type.$type = _classMarker;
+    type.$constructorParams = constructorParams;
+    type.$interfaces = interfaces;
+    return [_classMarker, type, prototypeDescription, baseType];
+}
+
+function defineInterface(type, interfaces) {
+    type.$type = _interfaceMarker;
+    type.$interfaces = interfaces;
+    return [_interfaceMarker, type];
 }
 
 function createPropertyGet(obj, propertyName, fn) {
@@ -134,14 +142,32 @@ function canAssign(type, otherType) {
   else if (type.$type == _interfaceMarker) {
     var baseType = otherType;
     while (baseType) {
-      var interfaces = baseType.$interfaces;
-      if (interfaces && (interfaces.indexOf(type) >= 0)) {
-        return true;
+        if (interfaceOf(baseType, type))
+      {
+          return true;
       }
+
       baseType = baseType.$base;
     }
   }
   return false;
+}
+
+function interfaceOf(baseType, otherType) {
+    if (baseType == otherType) {
+        return true;
+    }
+
+    var interfaces = baseType.$interfaces;
+
+    if (interfaces) {
+        for (var i = 0, ln = interfaces.length; i < ln; ++i) {
+            if (interfaceOf(interfaces[i], otherType)) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 function instanceOf(type, instance) {
@@ -189,4 +215,8 @@ function module(name, implementation, exports) {
 function baseProperty(type, propertyName) {
     var baseType = type.$base;
     return Object.getOwnPropertyDescriptor(baseType.prototype, propertyName) || baseProperty(baseType, propertyName);
+}
+
+function getConstructorParams(type) {
+    return type.$constructorParams;
 }

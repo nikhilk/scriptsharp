@@ -101,8 +101,8 @@ define('test', ['ss'], function(ss) {
       UInt32Mask: UInt32Mask,
       ShortMask: ShortMask,
       Errors: Errors,
-      App: [ App, App$, null ],
-      App2: [ App2, App2$, null ]
+      App: ss.defineClass(App, App$, [], null),
+      App2: ss.defineClass(App2, App2$, [], null)
     });
 
 

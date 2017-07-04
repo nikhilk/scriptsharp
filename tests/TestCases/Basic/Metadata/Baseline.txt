@@ -75,13 +75,13 @@ Types:
             Property: Prop1
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: prop1
+                Generated Name: Prop1
                 ReadOnly: True
                 Abstract: False
             Property: Prop2
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: prop2
+                Generated Name: Prop2
                 ReadOnly: False
                 Abstract: False
             Method: ShowHelp
@@ -313,6 +313,8 @@ Types:
         Generated Name: Array
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -908,6 +910,8 @@ Types:
         Generated Name: Export
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IDisposable
         Members:
             Field: Name
                 AssociatedType: String
@@ -1256,22 +1260,30 @@ Types:
                 Generated Name: ss.truncate
                 Abstract: False
         
+    Class: NotImplementedException
+        Application Type: False
+        Public: True
+        Generated Name: Error
+        Extension Methods: False
+        BaseClass: Exception
+        Members:
+        
     Class: Nullable`1
         Application Type: False
         Public: True
-        Generated Name: Nullable`1
+        Generated Name: Nullable_$1
         Extension Methods: False
         Members:
             Property: HasValue
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: hasValue
+                Generated Name: HasValue
                 ReadOnly: True
                 Abstract: False
             Property: Value
                 AssociatedType: T
                 Visibility: Public
-                Generated Name: value
+                Generated Name: Value
                 ReadOnly: True
                 Abstract: False
             Method: GetValueOrDefault
@@ -1487,6 +1499,11 @@ Types:
                 AssociatedType: Object
                 Visibility: Public, Static
                 Generated Name: eval
+                Abstract: False
+            Method: GetConstructorParameterTypes
+                AssociatedType: Array
+                Visibility: Public, Static
+                Generated Name: ss.getConstructorParams
                 Abstract: False
             Method: GetField
                 AssociatedType: Object
@@ -1971,7 +1988,7 @@ Types:
             Property: Name
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: name
+                Generated Name: Name
                 ReadOnly: True
                 Abstract: False
             Field: Prototype
@@ -2128,6 +2145,8 @@ Types:
         Generated Name: Array
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2314,6 +2333,8 @@ Types:
         Generated Name: Object
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2325,13 +2346,13 @@ Types:
             Property: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: count
+                Generated Name: Count
                 ReadOnly: True
                 Abstract: False
             Property: Keys
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: keys
+                Generated Name: Keys
                 ReadOnly: True
                 Abstract: False
             Method: Clear
@@ -2438,6 +2459,8 @@ Types:
         Generated Name: ObservableCollection
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2593,6 +2616,8 @@ Types:
         Generated Name: Object
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable`1
         Indexer:
             Indexer: Item
                 AssociatedType: TValue
@@ -2604,13 +2629,13 @@ Types:
             Property: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: count
+                Generated Name: Count
                 ReadOnly: True
                 Abstract: False
             Property: Keys
                 AssociatedType: IReadonlyCollection`1
                 Visibility: Public
-                Generated Name: keys
+                Generated Name: Keys
                 ReadOnly: True
                 Abstract: False
             Method: Add
@@ -2722,6 +2747,9 @@ Types:
         Generated Name: Array
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            ICollection`1
+            IEnumerable`1
         Indexer:
             Indexer: Item
                 AssociatedType: T
@@ -2969,6 +2997,8 @@ Types:
         Generated Name: ObservableCollection
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable`1
         Indexer:
             Indexer: Item
                 AssociatedType: T
@@ -3648,7 +3678,7 @@ Types:
             Property: Completed
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: completed
+                Generated Name: Completed
                 ReadOnly: True
                 Abstract: False
             Field: Error
@@ -3821,13 +3851,13 @@ define('test', ['ss'], function(ss) {
   function AppHelper() {
   }
   var AppHelper$ = {
-    $get_prop1: function() {
+    $get_Prop1: function() {
       return 0;
     },
-    $get_prop2: function() {
+    $get_Prop2: function() {
       return 0;
     },
-    $set_prop2: function(value) {
+    $set_Prop2: function(value) {
       return value;
     },
     _showHelp: function() {
@@ -3846,15 +3876,15 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      IFoo: [ IFoo ],
+      IFoo: ss.defineInterface(IFoo),
       Point: Point,
-      AppHelper: [ AppHelper, AppHelper$, null ]
+      AppHelper: ss.defineClass(AppHelper, AppHelper$, [], null)
     },
     {
       AppFlags: AppFlags,
       Mode: Mode,
-      IApp: [ IApp ],
-      App: [ App, App$, null, IApp ]
+      IApp: ss.defineInterface(IApp),
+      App: ss.defineClass(App, App$, [], null, [IApp])
     });
 
 

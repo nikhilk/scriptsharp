@@ -9,10 +9,10 @@ define('test', ['ss'], function(ss) {
     this._value = 0;
   }
   var Data$ = {
-    $get_value: function() {
+    $get_Value: function() {
       return this._value;
     },
-    $set_value: function(value) {
+    $set_Value: function(value) {
       this._value = value;
       return value;
     }
@@ -41,16 +41,16 @@ define('test', ['ss'], function(ss) {
       var num = 1.01;
       s = (~num).toExponential();
       var d = new Data();
-      d.value++;
-      ++d.value;
+      d.Value++;
+      ++d.Value;
     }
   };
 
 
   var $exports = ss.module('test', null,
     {
-      Data: [ Data, Data$, null ],
-      App: [ App, App$, null ]
+      Data: ss.defineClass(Data, Data$, [], null),
+      App: ss.defineClass(App, App$, [], null)
     });
 
 

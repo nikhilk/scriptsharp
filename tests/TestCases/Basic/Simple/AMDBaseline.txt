@@ -68,9 +68,9 @@ define('basic', ['ss'], function(ss) {
 
   var $exports = ss.module('basic', null,
     {
-      EventArgs: [ EventArgs, EventArgs$, null ],
-      Button: [ Button, Button$, null ],
-      App: [ App, App$, null ]
+      EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null),
+      Button: ss.defineClass(Button, Button$, [String], null),
+      App: ss.defineClass(App, App$, [], null)
     });
 
   EventArgs.Empty = new EventArgs();

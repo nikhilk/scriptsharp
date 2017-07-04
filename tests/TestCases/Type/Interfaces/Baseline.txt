@@ -40,6 +40,21 @@ define('test', ['ss'], function(ss) {
     },
     serialize: function() {
       return null;
+    },
+    dispose: function() {
+    }
+  };
+
+
+  // TypeTests.Program
+
+  function Program() {
+  }
+  var Program$ = {
+    useInterfaces: function(runnable) {
+      runnable.dispose();
+      var s = [];
+      ss.enumerate(s);
     }
   };
 
@@ -60,12 +75,13 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IMarker: [ IMarker ],
-      ISerializable: [ ISerializable ],
-      IRunnable: [ IRunnable ],
-      MyObject: [ MyObject, MyObject$, null, ss.IDisposable ],
-      Foo: [ Foo, Foo$, null, IMarker, ISerializable, IRunnable ],
-      MyObject2: [ MyObject2, MyObject2$, MyObject, IRunnable ]
+      IMarker: ss.defineInterface(IMarker),
+      ISerializable: ss.defineInterface(ISerializable),
+      IRunnable: ss.defineInterface(IRunnable, [IMarker, ss.IDisposable]),
+      MyObject: ss.defineClass(MyObject, MyObject$, [], null, [ss.IDisposable]),
+      Foo: ss.defineClass(Foo, Foo$, [], null, [IMarker, ISerializable, IRunnable]),
+      Program: ss.defineClass(Program, Program$, [], null),
+      MyObject2: ss.defineClass(MyObject2, MyObject2$, [], MyObject, [IRunnable])
     });
 
 

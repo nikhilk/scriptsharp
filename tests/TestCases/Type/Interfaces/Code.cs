@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
@@ -7,7 +8,7 @@ namespace TypeTests {
 
     public class MyObject : IDisposable {
 
-        public void dispose() {
+        public void Dispose() {
         }
     }
 
@@ -19,7 +20,7 @@ namespace TypeTests {
         object serialize();
     }
 
-    public interface IRunnable {
+    public interface IRunnable : IMarker, IDisposable {
 
         bool canRun { get; }
 
@@ -40,5 +41,18 @@ namespace TypeTests {
         public void run() { }
 
         public object serialize() { return null; }
+
+        public void Dispose() { }
+    }
+
+    public class Program
+    {
+        public void useInterfaces(IRunnable runnable)
+        {
+            runnable.Dispose();
+
+            IEnumerable<string> s = new List<string>();
+            s.GetEnumerator();
+        }
     }
 }

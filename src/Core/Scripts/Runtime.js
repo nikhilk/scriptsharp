@@ -23,23 +23,23 @@
   #include "Runtime\TypeSystem.js"
 
   return extend(module('ss', null, {
-      IDisposable: [ IDisposable ],
-      IEnumerable: [ IEnumerable ],
-      IEnumerator: [ IEnumerator ],
-      IObserver: [ IObserver ],
-      IApplication: [ IApplication ],
-      IContainer: [ IContainer ],
-      IObjectFactory: [ IObjectFactory ],
-      IEventManager: [ IEventManager ],
-      IInitializable: [ IInitializable ],
-      EventArgs: [ EventArgs, { } ],
-      CancelEventArgs: [ CancelEventArgs, { }, EventArgs ],
-      StringBuilder: [ StringBuilder, StringBuilder$ ],
-      Stack: [ Stack, Stack$ ],
-      Queue: [ Queue, Queue$ ],
-      Observable: [ Observable, Observable$ ],
-      ObservableCollection: [ ObservableCollection, ObservableCollection$, null, IEnumerable ],
-      Task: [ Task, Task$ ]
+      IDisposable: [ _interfaceMarker, IDisposable ],
+      IEnumerable: [ _interfaceMarker, IEnumerable ],
+      IEnumerator: [ _interfaceMarker, IEnumerator ],
+      IObserver: [ _interfaceMarker, IObserver ],
+      IApplication: [ _interfaceMarker, IApplication ],
+      IContainer: [ _interfaceMarker, IContainer ],
+      IObjectFactory: [ _interfaceMarker, IObjectFactory ],
+      IEventManager: [ _interfaceMarker, IEventManager ],
+      IInitializable: [ _interfaceMarker, IInitializable ],
+      EventArgs: [ _classMarker, EventArgs, { } ],
+      CancelEventArgs: [ _classMarker, CancelEventArgs, { }, EventArgs ],
+      StringBuilder: [ _classMarker, StringBuilder, StringBuilder$ ],
+      Stack: [ _classMarker, Stack, Stack$ ],
+      Queue: [ _classMarker, Queue, Queue$ ],
+      Observable: [ _classMarker, Observable, Observable$ ],
+      ObservableCollection: [ _classMarker, ObservableCollection, ObservableCollection$, null, IEnumerable ],
+      Task: [ _classMarker, Task, Task$ ]
     }), {
       version: '0.8',
 
@@ -99,6 +99,9 @@
       canAssign: canAssign,
       instanceOf: instanceOf,
       baseProperty : baseProperty,
+      defineClass : defineClass,
+      defineInterface : defineInterface,
+      getConstructorParams : getConstructorParams,
 
       culture: {
         neutral: neutralCulture,

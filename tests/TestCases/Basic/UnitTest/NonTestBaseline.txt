@@ -33,10 +33,10 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      InternalClass: [ InternalClass, InternalClass$, null ]
+      InternalClass: ss.defineClass(InternalClass, InternalClass$, [], null)
     },
     {
-      PublicClass: [ PublicClass, PublicClass$, null ]
+      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null)
     });
 
 

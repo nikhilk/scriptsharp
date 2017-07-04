@@ -79,6 +79,12 @@ namespace System {
             return null;
         }
 
+        [ScriptAlias("ss.getConstructorParams")]
+        public static Type[] GetConstructorParameterTypes(Type type)
+        {
+            return null;
+        }
+
         public static object GetField(object instance, string name) {
             return null;
         }
