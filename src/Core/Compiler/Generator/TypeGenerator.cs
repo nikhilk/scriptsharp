@@ -350,7 +350,6 @@ namespace ScriptSharp.Generator {
         private static string GetParameterTypeName(TypeSymbol parameterType)
         {
             var symbolSet = parameterType.SymbolSet;
-
             TypeSymbol nullableType = symbolSet.ResolveIntrinsicType(IntrinsicType.Nullable);
             if (parameterType.FullName == nullableType.FullName)
             {
@@ -376,12 +375,6 @@ namespace ScriptSharp.Generator {
                     TypeSymbol numberType = symbolSet.ResolveIntrinsicType(IntrinsicType.Number);
                     parameterType = numberType;
                 }
-            }
-
-            if (!parameterType.IsApplicationType && !parameterType.IsCoreType)
-            {
-                TypeSymbol objectType = symbolSet.ResolveIntrinsicType(IntrinsicType.Object);
-                parameterType = objectType;
             }
 
             return parameterType.FullGeneratedName;

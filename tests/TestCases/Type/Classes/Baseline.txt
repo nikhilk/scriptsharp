@@ -40,15 +40,6 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  // TypeTests.ApplicationClass
-
-  function ApplicationClass(imported) {
-  }
-  var ApplicationClass$ = {
-
-  };
-
-
   // TypeTests.StaticClass
 
   function StaticClass() {
@@ -83,7 +74,6 @@ define('test', ['ss'], function(ss) {
       BarBaz: ss.defineClass(BarBaz, BarBaz$, [FooBaz], null),
       MyClass: ss.defineClass(MyClass, MyClass$, [], null),
       MyClass3: ss.defineClass(MyClass3, MyClass3$, [], null, [ss.IDisposable]),
-      ApplicationClass: ss.defineClass(ApplicationClass, ApplicationClass$, [Object], null),
       StaticClass: ss.defineClass(StaticClass, null, [], null),
       MyClass2: ss.defineClass(MyClass2, MyClass2$, [], MyClass),
       MyClass4: ss.defineClass(MyClass4, MyClass4$, [FooBaz, BarBaz, ss.IDisposable], MyClass, [ss.IDisposable])
