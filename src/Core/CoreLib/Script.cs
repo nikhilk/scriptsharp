@@ -57,7 +57,7 @@ namespace System {
         public static void ClearTimeout(int timeoutID) {
         }
 
-        [Obsolete("switch to using Activator.CreateInstance")]
+        [Obsolete("Switch to using Activator.CreateInstance")]
         [ScriptAlias("ss.createInstance")]
         public static object CreateInstance(Type type, params object[] arguments) {
             return null;
