@@ -36,6 +36,17 @@ namespace TypeTests {
         }
     }
 
+    [ScriptImport]
+    public class ImportedClass
+    {
+    }
+
+    public class ApplicationClass {
+        public ApplicationClass(ImportedClass imported)
+        {
+        }
+    }
+
     public static class StaticClass {
     }
 }
