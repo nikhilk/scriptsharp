@@ -1202,36 +1202,6 @@ namespace ScriptSharp.Compiler {
 
                         return new UnaryExpression(Operator.LogicalNot, methodExpression);
                     }
-                    else if (method.Name.Equals("CreateInstance", StringComparison.Ordinal)) {
-                        Debug.Assert(args.Count >= 1);
-
-                        if ((args[0].Type == ExpressionType.MethodInvoke) ||
-                            (args[0].Type == ExpressionType.PropertyGet)) {
-                            // When using the result of a method call/property access directly
-                            // with Type.CreateInstance, the following script would be generated:
-                            //
-                            // new method()()
-                            // which is invalid. Instead we need to generate the following:
-                            // var type = method();
-                            // new type()
-
-                            _errorHandler.ReportError("You must store the type returned from a method or property into a local variable to use with Type.CreateInstance.",
-                                                      node.Token.Location);
-                        }
-
-                        NewExpression newExpression = new NewExpression(args[0], objectType);
-                        if (args.Count > 1) {
-                            bool first = true;
-                            foreach (Expression paramExpr in args) {
-                                if (first) {
-                                    first = false;
-                                    continue;
-                                }
-                                newExpression.AddParameterValue(paramExpr);
-                            }
-                        }
-                        return newExpression;
-                    }
 
                     bool lateBound = false;
                     LateBoundOperation lateBoundOperation = LateBoundOperation.InvokeMethod;

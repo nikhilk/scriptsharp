@@ -57,6 +57,7 @@ namespace System {
         public static void ClearTimeout(int timeoutID) {
         }
 
+        [ScriptAlias("ss.createInstance")]
         public static object CreateInstance(Type type, params object[] arguments) {
             return null;
         }

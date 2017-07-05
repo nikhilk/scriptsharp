@@ -220,3 +220,10 @@ function baseProperty(type, propertyName) {
 function getConstructorParams(type) {
     return type.$constructorParams;
 }
+
+function createInstance(type, parameters) {
+    var proto = type.prototype;
+    var instance = Object.create(proto);
+    proto.constructor.apply(instance, parameters);
+    return instance;
+}

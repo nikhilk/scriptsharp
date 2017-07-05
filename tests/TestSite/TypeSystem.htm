@@ -158,6 +158,12 @@
         QUnit.deepEqual([], ss.getConstructorParams(oop.Cat), "Expected Cat to have empty constructor.");
         QUnit.deepEqual([Number, Function, Function, Function, Number, String], ss.getConstructorParams(oop.C6), "Expected C6 to take Number, Function, Function, Function, Number, String in its constructor.");
       });
+    test('createInstance', function() {
+        var garfield = new oop.Garfield();
+        var comic = ss.createInstance(oop.Comic, "Garfield and Odie", garfield);
+        QUnit.equal("Garfield and Odie", comic.Name, "Expected comic to have name 'Garfield and Odie'");
+        QUnit.equal(garfield, comic.Star, "Expected comic to star garfield");
+      });
     });
 </script>
 </html>
