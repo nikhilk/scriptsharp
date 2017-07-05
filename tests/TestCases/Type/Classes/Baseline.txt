@@ -14,7 +14,7 @@ define('test', ['ss'], function(ss) {
 
   // TypeTests.Bar
 
-  function BarBaz() {
+  function BarBaz(f) {
   }
   var BarBaz$ = {
 
@@ -60,6 +60,8 @@ define('test', ['ss'], function(ss) {
 
   function MyClass4(foo, bar, disposable) {
     MyClass.call(this);
+    var f = ss.createInstance();
+    var b = ss.createInstance(BarBaz, f);
   }
   var MyClass4$ = {
 
@@ -69,7 +71,7 @@ define('test', ['ss'], function(ss) {
   var $exports = ss.module('test', null,
     {
       FooBaz: ss.defineClass(FooBaz, FooBaz$, [], null),
-      BarBaz: ss.defineClass(BarBaz, BarBaz$, [], null),
+      BarBaz: ss.defineClass(BarBaz, BarBaz$, [FooBaz], null),
       MyClass: ss.defineClass(MyClass, MyClass$, [], null),
       MyClass3: ss.defineClass(MyClass3, MyClass3$, [], null, [ss.IDisposable]),
       StaticClass: ss.defineClass(StaticClass, null, [], null),

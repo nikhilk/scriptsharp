@@ -11,6 +11,10 @@ namespace TypeTests {
 
     [ScriptName("BarBaz")]
     public class Bar {
+        public Bar(Foo f)
+        {
+
+        }
     }
 
     public class MyClass {
@@ -27,6 +31,8 @@ namespace TypeTests {
 
         public MyClass4(Foo foo, Bar bar, IDisposable disposable)
         {
+            Foo f = Activator.CreateInstance<Foo>();
+            Bar b = Activator.CreateInstance(typeof(Bar), f);
         }
     }
 
