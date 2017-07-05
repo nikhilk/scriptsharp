@@ -109,7 +109,7 @@ define('test', ['ss'], function(ss) {
       /// <value type="Number" integer="true"></value>
       return 0;
     },
-    $get__privateName: function() {
+    $get_PrivateName: function() {
       /// <summary>
       /// Gets the private name.
       /// </summary>

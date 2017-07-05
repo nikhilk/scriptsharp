@@ -21,6 +21,7 @@ namespace ScriptSharp.ScriptModel {
             TypeSymbol type = (TypeSymbol)memberSymbol.Parent;
             if (((memberSymbol.Visibility & MemberVisibility.Public) != 0) ||
                 ((memberSymbol.Visibility & MemberVisibility.Protected) != 0) ||
+                (memberSymbol.Type == SymbolType.Property) ||
                 (memberSymbol.IsTransformAllowed == false)) {
                 return null;
             }

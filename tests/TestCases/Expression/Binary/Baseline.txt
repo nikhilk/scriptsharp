@@ -30,16 +30,16 @@ define('test', ['ss'], function(ss) {
   function App() {
   }
   var App$ = {
-    $get__foo: function() {
+    $get_Foo: function() {
       return 0;
     },
-    $set__foo: function(value) {
+    $set_Foo: function(value) {
       return value;
     },
-    $get__bar: function() {
+    $get_Bar: function() {
       return 0;
     },
-    $set__bar: function(value) {
+    $set_Bar: function(value) {
       return value;
     },
     $get_Data: function() {
@@ -72,8 +72,8 @@ define('test', ['ss'], function(ss) {
       sum = arg1 + (arg2 + ~arg1) * (arg1 - 10);
       var b2 = ss.canCast(sum, Number);
       var o = ss.safeCast(b, ss.IDisposable);
-      this._foo = this._foo + 10;
-      this._foo = this._foo - this._bar;
+      this.Foo = this.Foo + 10;
+      this.Foo = this.Foo - this.Bar;
       sum = sum << 1;
       sum <<= 1;
       var xyz;

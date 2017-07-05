@@ -43,7 +43,7 @@ define('test', ['ss'], function(ss) {
     $get_Name: function() {
       return 'nk';
     },
-    $get__isInitialized: function() {
+    $get_IsInitialized: function() {
       return false;
     }
   };
