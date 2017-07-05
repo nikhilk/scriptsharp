@@ -149,8 +149,13 @@ function paramsGenerator(n, f) {
     return function () {
         var slice = Array.prototype.slice;
         var args = slice.call(arguments, 0, n);
-        var unnamed = slice.call(arguments, n);
-        args.push(unnamed);
+        if (arguments.length == n + 1 && Array.isArray(arguments[n])) {
+            args.push(arguments[n]);
+        }
+        else {
+            var unnamed = slice.call(arguments, n);
+            args.push(unnamed);
+        }
         return f.apply(this, args);
     }
 }
