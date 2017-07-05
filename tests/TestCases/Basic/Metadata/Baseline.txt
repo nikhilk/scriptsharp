@@ -274,6 +274,19 @@ Types:
                 Generated Name: 
                 Abstract: True
         
+    Class: Activator
+        Application Type: False
+        Public: True
+        Generated Name: ss
+        Extension Methods: False
+        BaseClass: Object
+        Members:
+            Method: CreateInstance
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: createInstance
+                Abstract: False
+        
     Class: Arguments
         Application Type: False
         Public: True
@@ -1505,7 +1518,7 @@ Types:
             Method: CreateInstance
                 AssociatedType: Object
                 Visibility: Public, Static
-                Generated Name: createInstance
+                Generated Name: ss.createInstance
                 Abstract: False
             Method: DeleteField
                 AssociatedType: Void

@@ -38,31 +38,6 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
-        public void TestCreateInstance() {
-            string expectedErrors =
-                "You must store the type returned from a method or property into a local variable to use with Type.CreateInstance. Code.cs(37, 25)" + Environment.NewLine +
-                "You must store the type returned from a method or property into a local variable to use with Type.CreateInstance. Code.cs(38, 25)";
-
-            Compilation compilation = CreateCompilation();
-            compilation.AddSource("Code.cs");
-
-            bool result = compilation.Execute();
-            Assert.IsFalse(result, "Expected compilation to fail.");
-
-            Assert.IsTrue(compilation.HasErrors, "Expected compilation to fail with errors.");
-            if (String.CompareOrdinal(compilation.ErrorMessages, expectedErrors) != 0) {
-                Console.WriteLine("Expected Errors:");
-                Console.WriteLine(expectedErrors);
-                Console.WriteLine();
-                Console.WriteLine("Actual Errors:");
-                Console.WriteLine(compilation.ErrorMessages);
-                Console.WriteLine();
-
-                Assert.Fail("Unexpected errors.");
-            }
-        }
-
-        [TestMethod]
         public void TestExceptions() {
             string expectedErrors =
                 "Try/Catch statements are limited to a single catch clause. Code.cs(12, 13)" + Environment.NewLine +

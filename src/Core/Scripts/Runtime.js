@@ -104,7 +104,8 @@
       defineClass : defineClass,
       defineInterface : defineInterface,
       getConstructorParams : getConstructorParams,
-
+      createInstance : paramsGenerator(1, createInstance),
+      
       culture: {
         neutral: neutralCulture,
         current: currentCulture
