@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
 
-namespace ListTests
+namespace GuidTests
 {
 
     public class PublicClass

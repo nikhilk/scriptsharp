@@ -375,7 +375,8 @@ namespace System {
         public string ToLowerCase() {
             return null;
         }
-        
+
+        [ScriptName("toLowerCase")]
         public string ToLower()
         {
             return null;
@@ -387,6 +388,7 @@ namespace System {
             return null;
         }
 
+        [ScriptName("toUpperCase")]
         public string ToUpper()
         {
             return null;
