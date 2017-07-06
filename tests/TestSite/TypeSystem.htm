@@ -164,6 +164,12 @@
         QUnit.equal("Garfield and Odie", comic.Name, "Expected comic to have name 'Garfield and Odie'");
         QUnit.equal(garfield, comic.Star, "Expected comic to star garfield");
       });
+    test('internal types derived from public type', function() {
+        var derived = new oop.PublicAccessorClass().create();
+        QUnit.equal(true, derived.baseField && derived.baseField, "Expected derived to have baseField");
+        QUnit.equal(true, derived.baseMethod && derived.baseMethod(), "Expected derived to have baseMethod");
+        QUnit.equal(true, derived.BaseProperty && derived.BaseProperty, "Expected derived to have BaseProperty");
+      });
     });
 </script>
 </html>

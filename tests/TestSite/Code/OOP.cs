@@ -237,6 +237,39 @@ namespace Test.Bases {
         }
     }
 
+    public class PublicBaseClass
+    {
+        public bool baseField;
+
+        public PublicBaseClass()
+        {
+            this.baseField = true;
+        }
+
+        public bool BaseMethod()
+        {
+            return true;
+        }
+
+        public bool BaseProperty
+        {
+            get { return true; }
+        }
+    }
+
+    internal class InternalDerivedClass : PublicBaseClass
+    {
+
+    }
+
+    public class PublicAccessorClass
+    {
+        public PublicBaseClass Create()
+        {
+            return new InternalDerivedClass();
+        }
+    }
+
     public enum E1
     {
         Zero = 0,

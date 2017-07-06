@@ -196,16 +196,16 @@ function safeCast(instance, type) {
 function module(name, implementation, exports) {
   var registry = _modules[name] = { $name: name };
 
-  if (implementation) {
-    for (var typeName in implementation) {
-      createType(typeName, implementation[typeName], registry);
-    }
-  }
-
   var api = {};
   if (exports) {
     for (var typeName in exports) {
       api[typeName] = createType(typeName, exports[typeName], registry);
+    }
+  }
+
+  if (implementation) {
+    for (var typeName in implementation) {
+      createType(typeName, implementation[typeName], registry);
     }
   }
 
