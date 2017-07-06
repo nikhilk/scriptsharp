@@ -3,7 +3,7 @@
 define('test', ['ss'], function(ss) {
   var $global = this;
 
-  // ListTests.PublicClass
+  // GuidTests.PublicClass
 
   function PublicClass() {
     var guid = ss.Guid.newGuid();

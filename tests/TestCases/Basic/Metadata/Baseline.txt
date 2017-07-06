@@ -1878,7 +1878,7 @@ Types:
             Method: ToLower
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: toLower
+                Generated Name: toLowerCase
                 Abstract: False
             Method: ToUpperCase
                 AssociatedType: String
@@ -1888,7 +1888,7 @@ Types:
             Method: ToUpper
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: toUpper
+                Generated Name: toUpperCase
                 Abstract: False
             Method: Trim
                 AssociatedType: String
