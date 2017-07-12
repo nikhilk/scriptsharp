@@ -12,6 +12,7 @@ namespace System {
     [ScriptName("Guid")]
     public struct Guid {
 
+        [ScriptName(PreserveCase=true)]
         public static Guid NewGuid()
         {
             return new Guid();
