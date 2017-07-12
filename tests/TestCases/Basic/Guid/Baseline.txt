@@ -6,7 +6,7 @@ define('test', ['ss'], function(ss) {
   // GuidTests.PublicClass
 
   function PublicClass() {
-    var guid = ss.Guid.newGuid();
+    var guid = ss.Guid.NewGuid();
   }
   var PublicClass$ = {
 

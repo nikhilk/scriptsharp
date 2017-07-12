@@ -1071,7 +1071,7 @@ Types:
             Method: NewGuid
                 AssociatedType: Guid
                 Visibility: Public, Static
-                Generated Name: newGuid
+                Generated Name: NewGuid
                 Abstract: False
             Method: ToString
                 AssociatedType: String
