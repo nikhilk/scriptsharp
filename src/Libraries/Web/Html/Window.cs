@@ -8,6 +8,7 @@ using System.Html.Data;
 using System.Html.Data.Files;
 using System.Html.Data.IndexedDB;
 using System.Html.Data.Sql;
+using System.Html.Editing;
 using System.Runtime.CompilerServices;
 
 namespace System.Html {
@@ -488,5 +489,23 @@ namespace System.Html {
 
         [ScriptField]
         public static extern Html5Performance Performance { get; }
+
+        public static int RequestAnimationFrame(int timestamp)
+        {
+            return 0;
+        }
+
+        public static void CancelAnimationFrame(int request)
+        {
+        }
+
+        public static int RequestIdleCallback(Action<object> callback)
+        {
+            return 0;
+        }
+
+        public static Style GetComputedStyle(Element element) { return null; }
+
+        public static Selection GetSelection() { return null; }
     }
 }
