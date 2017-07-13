@@ -495,9 +495,8 @@ namespace System.Html {
             return 0;
         }
 
-        public static int CancelAnimationFrame()
+        public static void CancelAnimationFrame(int request)
         {
-            return 0;
         }
 
         public static int RequestIdleCallback(Action<object> callback)
