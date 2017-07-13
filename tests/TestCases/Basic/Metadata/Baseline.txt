@@ -1911,38 +1911,6 @@ Types:
                 Generated Name: unescape
                 Abstract: False
         
-    Class: StringBuilder
-        Application Type: False
-        Public: True
-        Generated Name: StringBuilder
-        Extension Methods: False
-        BaseClass: Object
-        Members:
-            Field: IsEmpty
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: isEmpty
-            Method: Append
-                AssociatedType: StringBuilder
-                Visibility: Public
-                Generated Name: append
-                Abstract: False
-            Method: AppendLine
-                AssociatedType: StringBuilder
-                Visibility: Public
-                Generated Name: appendLine
-                Abstract: False
-            Method: Clear
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: clear
-                Abstract: False
-            Method: ToString
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: toString
-                Abstract: False
-        
     Delegate: StringReplaceCallback
         Application Type: False
         Public: True
@@ -3758,6 +3726,42 @@ Types:
                 AssociatedType: Void
                 Visibility: Public, Static
                 Generated Name: QUnit.stop
+                Abstract: False
+        
+
+Namespace: System.Text
+HasApplicationTypes: False
+Types:
+    Class: StringBuilder
+        Application Type: False
+        Public: True
+        Generated Name: StringBuilder
+        Extension Methods: False
+        BaseClass: Object
+        Members:
+            Field: IsEmpty
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: isEmpty
+            Method: Append
+                AssociatedType: StringBuilder
+                Visibility: Public
+                Generated Name: append
+                Abstract: False
+            Method: AppendLine
+                AssociatedType: StringBuilder
+                Visibility: Public
+                Generated Name: appendLine
+                Abstract: False
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
                 Abstract: False
         
 
