@@ -9,6 +9,7 @@ namespace MemberTests {
     {
         int XYZ { get; set; }
         bool IsFoo { get; }
+        string ISet { set; }
     }
 
     public class Test {
@@ -27,6 +28,11 @@ namespace MemberTests {
         public bool IsFoo {
             get { return isFoo; }
             set { isFoo = value; }
+        }
+
+        public string ISet
+        {
+            set {  }
         }
 
         protected string Name { get { return "nk"; } }
@@ -49,6 +55,8 @@ namespace MemberTests {
 
             bool foo = IsFoo;
             IsFoo = true;
+
+            ISet = "set me";
         }
     }
 

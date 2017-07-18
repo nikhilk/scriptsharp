@@ -203,6 +203,10 @@ namespace ScriptSharp.Compiler {
 
         public SymbolImplementation BuildPropertyGetter(PropertySymbol propertySymbol) {
             AccessorNode getterNode = ((PropertyDeclarationNode)propertySymbol.ParseContext).GetAccessor;
+            if (getterNode == null)
+            {
+                return null;
+            }
             BlockStatementNode accessorBody = getterNode.Implementation;
 
             return BuildImplementation((ISymbolTable)propertySymbol.Parent,
@@ -211,6 +215,10 @@ namespace ScriptSharp.Compiler {
 
         public SymbolImplementation BuildPropertySetter(PropertySymbol propertySymbol) {
             AccessorNode setterNode = ((PropertyDeclarationNode)propertySymbol.ParseContext).SetAccessor;
+            if (setterNode == null)
+            {
+                return null;
+            }
             BlockStatementNode accessorBody = setterNode.Implementation;
 
             return BuildImplementation((ISymbolTable)propertySymbol.Parent,
