@@ -313,7 +313,21 @@ namespace ScriptSharp.Generator {
             if ((propertySymbol.Visibility & MemberVisibility.Static) != 0) {
                 instanceMember = false;
             }
+            if (propertySymbol.HasGetter) {
+                GeneratePropertyGetter(generator, typeName, propertySymbol, writer, instanceMember);
+            }
+            if (propertySymbol.HasSetter) {
+                if (instanceMember && propertySymbol.HasGetter)
+                {
+                    writer.WriteLine(",");
+                }
 
+                GeneratePropertySetter(generator, typeName, propertySymbol, writer, instanceMember);
+            }
+        }
+
+        private static void GeneratePropertyGetter(ScriptGenerator generator, string typeName, PropertySymbol propertySymbol, ScriptTextWriter writer, bool instanceMember)
+        {
             if (instanceMember)
             {
                 writer.Write("$get_");
@@ -332,7 +346,8 @@ namespace ScriptSharp.Generator {
             writer.WriteLine("function() {");
             writer.Indent++;
 
-            if (generator.Options.EnableDocComments) {
+            if (generator.Options.EnableDocComments)
+            {
                 DocCommentGenerator.GenerateComment(generator, propertySymbol);
             }
 
@@ -340,46 +355,51 @@ namespace ScriptSharp.Generator {
             writer.Indent--;
             writer.Write("}");
 
-            if (instanceMember == false) {
+            if (instanceMember == false)
+            {
                 writer.WriteLine(");");
             }
+        }
 
-            if (propertySymbol.IsReadOnly == false) {
-                ParameterSymbol valueParameter = propertySymbol.Parameters[0];
-                if (instanceMember) {
-                    writer.WriteLine(",");
-                    writer.Write("$set_");
-                    writer.Write(propertySymbol.GeneratedName);
-                    writer.Write(": ");
-                }
-                else {
-                    writer.Write("ss.createPropertySet(");
-                    writer.Write(typeName);
-                    writer.Write(", '");
-                    writer.Write(propertySymbol.GeneratedName);
-                    writer.Write("', ");
-                }
+        private static void GeneratePropertySetter(ScriptGenerator generator, string typeName, PropertySymbol propertySymbol, ScriptTextWriter writer, bool instanceMember)
+        {
+            ParameterSymbol valueParameter = propertySymbol.Parameters[0];
+            if (instanceMember)
+            {
+                writer.Write("$set_");
+                writer.Write(propertySymbol.GeneratedName);
+                writer.Write(": ");
+            }
+            else
+            {
+                writer.Write("ss.createPropertySet(");
+                writer.Write(typeName);
+                writer.Write(", '");
+                writer.Write(propertySymbol.GeneratedName);
+                writer.Write("', ");
+            }
 
-                writer.Write("function(");
-                writer.Write(valueParameter.GeneratedName);
-                writer.WriteLine(") {");
-                writer.Indent++;
+            writer.Write("function(");
+            writer.Write(valueParameter.GeneratedName);
+            writer.WriteLine(") {");
+            writer.Indent++;
 
-                if (generator.Options.EnableDocComments) {
-                    DocCommentGenerator.GenerateComment(generator, propertySymbol);
-                }
+            if (generator.Options.EnableDocComments)
+            {
+                DocCommentGenerator.GenerateComment(generator, propertySymbol);
+            }
 
-                CodeGenerator.GenerateScript(generator, propertySymbol, /* getter */ false);
-                writer.Write("return ");
-                writer.Write(valueParameter.GeneratedName);
-                writer.Write(";");
-                writer.WriteLine();
-                writer.Indent--;
-                writer.Write("}");
+            CodeGenerator.GenerateScript(generator, propertySymbol, /* getter */ false);
+            writer.Write("return ");
+            writer.Write(valueParameter.GeneratedName);
+            writer.Write(";");
+            writer.WriteLine();
+            writer.Indent--;
+            writer.Write("}");
 
-                if (instanceMember == false) {
-                    writer.WriteLine(");");
-                }
+            if (instanceMember == false)
+            {
+                writer.WriteLine(");");
             }
         }
 

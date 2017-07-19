@@ -33,6 +33,12 @@ namespace ScriptSharp.Tests {
             RunTest("/ParamsGenerator.htm");
         }
 
+        [TestMethod]
+        public void TestProperties()
+        {
+            RunTest("/Properties.htm");
+        }
+
         #region Loader Tests
         [TestMethod]
         public void TestLoader() {

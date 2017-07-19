@@ -52,11 +52,19 @@ namespace Test {
 
     public class Cat : Animal, IMammal {
 
+        private string speak;
+
         public Cat() : base("Cat") {
+            this.speak = "meow";
+        }
+
+        public bool SetSpeak
+        {
+            set { speak = value; }
         }
 
         public virtual string Speak() {
-            return "meow";
+            return speak;
         }
 
         public override string Die() {

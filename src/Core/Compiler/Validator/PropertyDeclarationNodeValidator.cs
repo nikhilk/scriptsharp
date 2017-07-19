@@ -21,12 +21,6 @@ namespace ScriptSharp.Validator {
                 return false;
             }
 
-            if (propertyNode.GetAccessor == null) {
-                errorHandler.ReportError("Set-only properties are not supported. Use a set method instead.",
-                                         propertyNode.Token.Location);
-                return false;
-            }
-
             return true;
         }
     }
