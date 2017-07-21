@@ -490,7 +490,7 @@ namespace System.Html {
         [ScriptField]
         public static extern Html5Performance Performance { get; }
 
-        public static int RequestAnimationFrame(int timestamp)
+        public static int RequestAnimationFrame(Action<int> action)
         {
             return 0;
         }

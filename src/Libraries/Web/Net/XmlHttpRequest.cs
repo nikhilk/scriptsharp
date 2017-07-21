@@ -65,6 +65,7 @@ namespace System.Net {
             get {
                 return false;
             }
+            set { }
         }        
 
         public void Abort() {
