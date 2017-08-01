@@ -344,7 +344,8 @@ namespace ScriptSharp.Generator {
                 writer.Indent++;
                 writer.Write(variable.GeneratedName);
                 writer.Write(".");
-                writer.WriteLine(variable.ValueType.GetMember("Dispose").GeneratedName);
+                writer.Write(variable.ValueType.GetMember("Dispose").GeneratedName);
+                writer.WriteLine("();");
                 writer.Indent--;
                 writer.WriteLine("}");
             }
