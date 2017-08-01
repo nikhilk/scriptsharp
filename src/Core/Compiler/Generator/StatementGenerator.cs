@@ -343,7 +343,8 @@ namespace ScriptSharp.Generator {
                 writer.WriteLine(") {");
                 writer.Indent++;
                 writer.Write(variable.GeneratedName);
-                writer.WriteLine(".dispose();");
+                writer.Write(".");
+                writer.WriteLine(variable.ValueType.GetMember("Dispose").GeneratedName);
                 writer.Indent--;
                 writer.WriteLine("}");
             }
