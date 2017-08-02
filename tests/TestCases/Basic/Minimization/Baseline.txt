@@ -19,8 +19,8 @@ Minimization Map
     Member 'Initialize' renamed to '$0'
     Member 'Numeric' renamed to '$1'
     Member 'OnClicked' renamed to 'e$1'
-    Member 'OnValueChanged' renamed to 'c$6'
     Member 'OnValueChanged' renamed to 'e$0'
+    Member 'OnValueChanged' renamed to 'c$6'
     Member 'Property1' renamed to 'c$7'
     Member 'Setup' renamed to '$2'
     Member 'ShowHelp' renamed to '$0'
@@ -28,6 +28,7 @@ Minimization Map
     Member 'string2' renamed to '$1'
     Member 'Stuff' renamed to '$5'
     Member 'StuffProperty' renamed to '$6'
+    Member 'TestMethod5' renamed to '$0'
     Member 'ToString' renamed to 'toString'
     Member 'ValueChanged' renamed to 'c$4'
 
@@ -52,6 +53,26 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   // BasicTests.IApp
 
   function IApp() { }
+
+
+  // BasicTests.IInterfaceTest1
+
+  function IInterfaceTest1() { }
+
+
+  // BasicTests.IInterfaceTest2
+
+  function IInterfaceTest2() { }
+
+
+  // BasicTests.IInterfaceTest3
+
+  function IInterfaceTest3() { }
+
+
+  // BasicTests.IInterfaceTest4
+
+  function IInterfaceTest4() { }
 
 
   // BasicTests.MyData
@@ -91,6 +112,24 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   function AppHelper() {
   }
   var AppHelper$ = {
+    $0: function() {
+    }
+  };
+
+
+  // BasicTests.InterfaceTest
+
+  function InterfaceTest() {
+  }
+  var InterfaceTest$ = {
+    testMethod1: function() {
+    },
+    testMethod2: function() {
+    },
+    testMethod3: function() {
+    },
+    testMethod4: function() {
+    },
     $0: function() {
     }
   };
@@ -315,6 +354,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
       IApp: ss.defineInterface(IApp),
       MyData: MyData,
       AppHelper: ss.defineClass(AppHelper, AppHelper$, [], null),
+      InterfaceTest: ss.defineClass(InterfaceTest, InterfaceTest$, [], null, [IInterfaceTest4]),
       Bar: ss.defineClass(Bar, Bar$, [], null),
       BaseBaseClass: ss.defineClass(BaseBaseClass, BaseBaseClass$, [], null),
       ABC: ss.defineClass(ABC, ABC$, [], null),
@@ -328,6 +368,10 @@ define('test', ['ss', 'lib'], function(ss, lib) {
     },
     {
       AppFlags: AppFlags,
+      IInterfaceTest1: ss.defineInterface(IInterfaceTest1),
+      IInterfaceTest2: ss.defineInterface(IInterfaceTest2, [IInterfaceTest1]),
+      IInterfaceTest3: ss.defineInterface(IInterfaceTest3),
+      IInterfaceTest4: ss.defineInterface(IInterfaceTest4, [IInterfaceTest2, IInterfaceTest3]),
       App: ss.defineClass(App, App$, [], null),
       FooBehavior: ss.defineClass(FooBehavior, FooBehavior$, [Object, Number], lib.Behavior)
     });

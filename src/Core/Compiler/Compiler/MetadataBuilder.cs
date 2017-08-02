@@ -247,15 +247,47 @@ namespace ScriptSharp.Compiler {
                 return;
             }
 
-            ICollection<InterfaceSymbol> interfaces = classSymbol.Interfaces;
-            if ((interfaces != null) && (interfaces.Count != 0)) {
-                foreach (InterfaceSymbol interfaceSymbol in interfaces) {
-                    foreach (MemberSymbol memberSymbol in interfaceSymbol.Members) {
-                        MemberSymbol associatedSymbol = classSymbol.GetMember(memberSymbol.Name);
-                        if (associatedSymbol != null) {
-                            associatedSymbol.SetInterfaceMember(memberSymbol);
-                        }
+            Dictionary<string, MemberSymbol> interfaceMemberSymbols = new Dictionary<string, MemberSymbol>();
+            AggregateInterfaceMembers(classSymbol.Interfaces, interfaceMemberSymbols);
+            if (interfaceMemberSymbols.Count > 0)
+            {
+                foreach (MemberSymbol memberSymbol in interfaceMemberSymbols.Values)
+                {
+                    MemberSymbol associatedSymbol = classSymbol.GetMember(memberSymbol.Name);
+                    if (associatedSymbol != null)
+                    {
+                        associatedSymbol.SetInterfaceMember(memberSymbol);
                     }
+                }
+            }
+        }
+
+        private void AggregateInterfaceMembers(ICollection<InterfaceSymbol> subInterfaceCollection, Dictionary<string, MemberSymbol> aggregateMemberCollection)
+        {
+            if(subInterfaceCollection == null)
+            {
+                return;
+            }
+
+            foreach (InterfaceSymbol newInterfaceSymbol in subInterfaceCollection)
+            {
+                AddInterfaceMembers(newInterfaceSymbol.Members, aggregateMemberCollection);
+                AggregateInterfaceMembers(newInterfaceSymbol.Interfaces, aggregateMemberCollection);
+            }
+        }
+
+        private void AddInterfaceMembers(ICollection<MemberSymbol> newMemberSymbols, Dictionary<string, MemberSymbol> aggregateMemberCollection)
+        {
+            if (newMemberSymbols == null)
+            {
+                return;
+            }
+
+            foreach(MemberSymbol newMemberSymbol in newMemberSymbols)
+            {
+                if(!aggregateMemberCollection.ContainsKey(newMemberSymbol.Name))
+                {
+                    aggregateMemberCollection[newMemberSymbol.Name] = newMemberSymbol;
                 }
             }
         }

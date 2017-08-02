@@ -48,6 +48,39 @@ namespace BasicTests {
     internal interface IApp {
     }
 
+    public interface IInterfaceTest1
+    {
+        void TestMethod1();
+    }
+
+    public interface IInterfaceTest2 : IInterfaceTest1
+    {
+        void TestMethod2();
+    }
+
+    public interface IInterfaceTest3
+    {
+        void TestMethod3();
+    }
+
+    public interface IInterfaceTest4 : IInterfaceTest2, IInterfaceTest3
+    {
+        void TestMethod4();
+    }
+
+    internal class InterfaceTest : IInterfaceTest4
+    {
+        public void TestMethod1() { }
+
+        public void TestMethod2() { }
+
+        public void TestMethod3() { }
+
+        public void TestMethod4() { }
+
+        public void TestMethod5() { }
+    }
+
     internal class Bar {
 
         public virtual void DoStuff() { }
