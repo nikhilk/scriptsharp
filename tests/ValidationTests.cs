@@ -162,6 +162,51 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestAllowSystemNamespace()
+        {
+            Compilation compilation = CreateCompilation();
+            compilation.AddSource("Code.cs");
+
+            bool result = compilation.Execute();
+            Assert.IsTrue(result, "Expected compilation to succeed.");
+
+            if(compilation.Errors != null && compilation.Errors.Any())
+            {
+                Console.WriteLine("Actual Errors:");
+                Console.WriteLine(compilation.ErrorMessages);
+                Console.WriteLine();
+
+                Assert.Fail("Unexpected errors.");
+            }
+        }
+
+        [TestMethod]
+        public void TestNamespace()
+        {
+            string expectedErrors =
+                "Only types marked as Imported are allowed within the System namespace. Code.cs(6, 1)";
+
+            Compilation compilation = CreateCompilation();
+            compilation.AddSource("Code.cs");
+
+            bool result = compilation.Execute();
+            Assert.IsFalse(result, "Expected compilation to fail.");
+
+            Assert.IsTrue(compilation.HasErrors, "Expected compilation to fail with errors.");
+            if(String.CompareOrdinal(compilation.ErrorMessages, expectedErrors) != 0)
+            {
+                Console.WriteLine("Expected Errors:");
+                Console.WriteLine(expectedErrors);
+                Console.WriteLine();
+                Console.WriteLine("Actual Errors:");
+                Console.WriteLine(compilation.ErrorMessages);
+                Console.WriteLine();
+
+                Assert.Fail("Unexpected errors.");
+            }
+        }
+
+        [TestMethod]
         public void TestNestedTypes() {
             string expectedErrors =
                 "Only members are allowed inside types. Nested types are not supported. Code.cs(9, 5)" + Environment.NewLine +
