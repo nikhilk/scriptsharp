@@ -3161,8 +3161,8 @@ Types:
         BaseClass: Object
         Interfaces:
             ICollection`1
-			IEnumerable`1
-			IEnumerable
+            IEnumerable`1
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: T
