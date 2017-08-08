@@ -91,6 +91,7 @@
     <Compile Include="Export.cs" />
     <Compile Include="Diagnostics\SyntaxValidationAttribute.cs" />
     <Compile Include="NotImplementedException.cs" />
+    <Compile Include="Runtime\CompilerServices\ScriptAllowSystemNamespaceAttribute.cs" />
     <Compile Include="Threading\Deferred.cs" />
     <Compile Include="Threading\TaskStatus.cs" />
     <Compile Include="Threading\Task.cs" />
