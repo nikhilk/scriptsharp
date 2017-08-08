@@ -3160,9 +3160,9 @@ Types:
         Extension Methods: False
         BaseClass: Object
         Interfaces:
-            IEnumerable
-            IEnumerable`1
             ICollection`1
+            IEnumerable`1
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: T
