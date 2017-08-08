@@ -797,7 +797,7 @@ namespace ScriptSharp.Compiler {
             TypeSymbol typeSymbol = null;
             ParseNodeList attributes = typeNode.Attributes;
 
-            if (typeNode.Type == TokenType.Class) {
+            if (typeNode.Type == TokenType.Class || typeNode.Type == TokenType.Struct) {
                 CustomTypeNode customTypeNode = (CustomTypeNode)typeNode;
                 Debug.Assert(customTypeNode != null);
 
@@ -910,7 +910,7 @@ namespace ScriptSharp.Compiler {
                 typeSymbol.SetTransformedName(scriptName);
             }
 
-            if (typeNode.Type == TokenType.Class) {
+            if (typeNode.Type == TokenType.Class || typeNode.Type == TokenType.Struct) {
                 AttributeNode extensionAttribute = AttributeNode.FindAttribute(attributes, "ScriptExtension");
                 if (extensionAttribute != null) {
                     Debug.Assert(extensionAttribute.Arguments[0] is LiteralNode);
