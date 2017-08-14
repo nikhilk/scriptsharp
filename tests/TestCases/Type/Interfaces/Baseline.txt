@@ -31,6 +31,7 @@ define('test', ['ss'], function(ss) {
   // TypeTests.Foo
 
   function Foo() {
+    this._someValues = {};
   }
   var Foo$ = {
     $get_canRun: function() {
@@ -42,6 +43,13 @@ define('test', ['ss'], function(ss) {
       return null;
     },
     dispose: function() {
+    },
+    get_item: function(key) {
+      return this._someValues[key];
+    },
+    set_item: function(key, value) {
+      this._someValues[key] = value;
+      return value;
     }
   };
 
@@ -55,6 +63,7 @@ define('test', ['ss'], function(ss) {
       runnable.dispose();
       var s = [];
       ss.enumerate(s);
+      var someValue = new Foo().get_item('someValuesKey');
     }
   };
 

@@ -13,6 +13,7 @@ namespace TypeTests {
     }
 
     public interface IMarker {
+        string this[string key] { get; set; }
     }
 
     public interface ISerializable {
@@ -35,6 +36,13 @@ namespace TypeTests {
     }
 
     public class Foo : IMarker, ISerializable, IRunnable {
+        private Dictionary<string, string> someValues = new Dictionary<string, string>();
+
+        public string this[string key]
+        {
+            get { return someValues[key]; }
+            set { someValues[key] = value; }
+        }
 
         public bool canRun { get { return true; } }
 
@@ -53,6 +61,8 @@ namespace TypeTests {
 
             IEnumerable<string> s = new List<string>();
             s.GetEnumerator();
+
+            string someValue = new Foo()["someValuesKey"];
         }
     }
 }

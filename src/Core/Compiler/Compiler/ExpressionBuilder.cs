@@ -938,8 +938,9 @@ namespace ScriptSharp.Compiler {
             if (leftExpression.EvaluatedType.Type != SymbolType.Interface) {
                 indexer = ((ClassSymbol)leftExpression.EvaluatedType).GetIndexer();
             }
-            else {
-                indexer = ((InterfaceSymbol)leftExpression.EvaluatedType).Indexer;
+            else
+            {
+                indexer = GetInterfaceIndexer((InterfaceSymbol)leftExpression.EvaluatedType);
             }
             Debug.Assert(indexer != null);
             Debug.Assert(indexer.MatchFilter(leftExpression.MemberMask));
@@ -954,6 +955,33 @@ namespace ScriptSharp.Compiler {
             }
 
             return indexerExpression;
+        }
+
+        private static IndexerSymbol GetInterfaceIndexer(InterfaceSymbol interfaceSymbol)
+        {
+            if(interfaceSymbol == null)
+            {
+                return null;
+            }
+
+            return interfaceSymbol.Indexer ?? GetInheritedInterfaceIndexer(interfaceSymbol);
+        }
+
+        private static IndexerSymbol GetInheritedInterfaceIndexer(InterfaceSymbol interfaceSymbol)
+        {
+            foreach(InterfaceSymbol inheritedInterface in interfaceSymbol.Interfaces)
+            {
+                IndexerSymbol indexer = inheritedInterface.Indexer != null
+                    ? inheritedInterface.Indexer
+                    : GetInheritedInterfaceIndexer(interfaceSymbol);
+
+                if(indexer != null)
+                {
+                    return indexer;
+                }
+            }
+
+            return null;
         }
 
         private Expression ProcessOpenParenExpressionNode(BinaryExpressionNode node) {
