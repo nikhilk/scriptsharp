@@ -973,7 +973,7 @@ namespace ScriptSharp.Compiler {
             {
                 IndexerSymbol indexer = inheritedInterface.Indexer != null
                     ? inheritedInterface.Indexer
-                    : GetInheritedInterfaceIndexer(interfaceSymbol);
+                    : GetInheritedInterfaceIndexer(inheritedInterface);
 
                 if(indexer != null)
                 {
