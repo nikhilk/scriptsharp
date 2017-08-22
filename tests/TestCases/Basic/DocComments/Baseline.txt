@@ -255,7 +255,7 @@ define('test', ['ss'], function(ss) {
       Suit: Suit,
       IInterface: ss.defineInterface(IInterface),
       RecordClass: RecordClass,
-      BaseClass: ss.defineClass(BaseClass, BaseClass$, [Object, String, Number], null),
+      BaseClass: ss.defineClass(BaseClass, BaseClass$, [Element, String, Number], null),
       DerivedClass: ss.defineClass(DerivedClass, DerivedClass$, [], BaseClass)
     });
 
