@@ -28,7 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\bin\Debug\Script.Web.xml</DocumentationFile>
-    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <NoWarn>1591, 0661, 0660, 1684, 0626</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -39,7 +39,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\bin\Release\Script.Web.xml</DocumentationFile>
-    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <NoWarn>1591, 0661, 0660, 1684, 0626</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Html\ActiveXObject.cs" />
@@ -52,7 +52,6 @@
     <Compile Include="Html\ClientRectList.cs" />
     <Compile Include="Html\Html5Timings.cs" />
     <Compile Include="Html\Html5Performance.cs" />
-    <Compile Include="Html\Html5InputElement.cs" />
     <Compile Include="Html\LinkElement.cs" />
     <Compile Include="Html\PopStateEvent.cs" />
     <Compile Include="Html\WheelEvent.cs" />

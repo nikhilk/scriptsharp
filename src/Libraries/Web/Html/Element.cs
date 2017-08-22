@@ -11,7 +11,7 @@ namespace System.Html {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    [ScriptName("Object")]
+    [ScriptName(PreserveCase = true)]
     public class Element {
 
         protected internal Element() {
