@@ -364,7 +364,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
       BarEx: ss.defineClass(BarEx, BarEx$, [], Bar2),
       BarCustom2: ss.defineClass(BarCustom2, BarCustom2$, [], BarCustom),
       DerivedClass: ss.defineClass(DerivedClass, DerivedClass$, [], BaseClass),
-      MaskTextBox: ss.defineClass(MaskTextBox, MaskTextBox$, [Object], lib.TextBox)
+      MaskTextBox: ss.defineClass(MaskTextBox, MaskTextBox$, [Element], lib.TextBox)
     },
     {
       AppFlags: AppFlags,
@@ -373,7 +373,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
       IInterfaceTest3: ss.defineInterface(IInterfaceTest3),
       IInterfaceTest4: ss.defineInterface(IInterfaceTest4, [IInterfaceTest2, IInterfaceTest3]),
       App: ss.defineClass(App, App$, [], null),
-      FooBehavior: ss.defineClass(FooBehavior, FooBehavior$, [Object, Number], lib.Behavior)
+      FooBehavior: ss.defineClass(FooBehavior, FooBehavior$, [Element, Number], lib.Behavior)
     });
 
 

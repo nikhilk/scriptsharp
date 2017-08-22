@@ -60,12 +60,12 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Behavior: ss.defineClass(Behavior, Behavior$, [Object, String], null),
+      Behavior: ss.defineClass(Behavior, Behavior$, [Element, String], null),
       MyClass: ss.defineClass(MyClass, MyClass$, [Date], null),
       MyClassEmpty: ss.defineClass(MyClassEmpty, MyClassEmpty$, [], null),
       MyClassSimple: ss.defineClass(MyClassSimple, MyClassSimple$, [], null),
       MyClassSimpleMulti: ss.defineClass(MyClassSimpleMulti, MyClassSimpleMulti$, [], null),
-      MyBehavior: ss.defineClass(MyBehavior, MyBehavior$, [Object], Behavior)
+      MyBehavior: ss.defineClass(MyBehavior, MyBehavior$, [Element], Behavior)
     });
 
   MyClass.instance = new MyClass(ss.now());
