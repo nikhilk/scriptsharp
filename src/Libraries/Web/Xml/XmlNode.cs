@@ -9,6 +9,7 @@ namespace System.Xml {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
+    [ScriptName(Object.NAME_DEFINITION)]
     public class XmlNode {
 
         internal XmlNode() {
