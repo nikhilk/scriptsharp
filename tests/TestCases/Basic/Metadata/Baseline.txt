@@ -1406,6 +1406,10 @@ Types:
         Generated Name: Object
         Extension Methods: False
         Members:
+            Field: NAME_DEFINITION
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: name
             Method: GetType
                 AssociatedType: Type
                 Visibility: Public
