@@ -9,6 +9,7 @@ namespace System.Xml {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
+    [ScriptName("Attr")]
     public sealed class XmlAttribute : XmlNode {
 
         internal XmlAttribute() {

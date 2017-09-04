@@ -14,6 +14,8 @@ namespace System {
     [ScriptImport]
     public class Object {
 
+        public const string NAME_DEFINITION = "Object";
+
         /// <summary>
         /// Retrieves the type associated with an object instance.
         /// </summary>
