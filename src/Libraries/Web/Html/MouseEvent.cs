@@ -11,8 +11,11 @@ namespace System.Html {
     [ScriptIgnoreNamespace]
     [ScriptImport]
     public class MouseEvent : UIEvent {
+
+        [ScriptField]
         public extern int X { get; }
 
+        [ScriptField]
         public extern int Y { get; }
     }
 }

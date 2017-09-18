@@ -12,12 +12,16 @@ namespace System.Html {
     [ScriptImport]
     public class WheelEvent : MouseEvent
     {
+        [ScriptField]
         public extern double DeltaX { get; }
-        
+
+        [ScriptField]
         public extern double DeltaY { get; }
 
+        [ScriptField]
         public extern double DeltaZ { get; }
 
+        [ScriptField]
         public extern long DeltaMode { get; }
     }
 }
