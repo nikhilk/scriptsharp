@@ -12,6 +12,7 @@ namespace System.Html {
     [ScriptImport]
     public class PopStateEvent : ElementEvent
     {
+        [ScriptField]
         public extern object State { get; }
     }
 }
