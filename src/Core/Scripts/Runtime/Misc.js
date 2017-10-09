@@ -28,10 +28,10 @@ function extend(o, items) {
 
 function extendType(o, items) {
     for (var n in items) {
-        if (n.startsWith("$get_")) {
+        if (startsWith(n, "$get_")) {
             createPropertyGet(o, n.slice(5), items[n]);
         }
-        else if (n.startsWith("$set_")) {
+        else if (startsWith(n, "$set_")) {
             createPropertySet(o, n.slice(5), items[n]);
         }
         else {
