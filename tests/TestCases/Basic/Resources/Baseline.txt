@@ -36,7 +36,7 @@ define('test', ['ss'], function(ss) {
     },
     {
       Strings2: Strings2,
-      App: ss.defineClass(App, App$, [], null)
+      App: ss.defineClass(App, App$, [], null, [], "BasicTests")
     });
 
 

@@ -248,15 +248,15 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      InternalClass: ss.defineClass(InternalClass, InternalClass$, [], null),
-      InternalClassWithNoComments: ss.defineClass(InternalClassWithNoComments, InternalClassWithNoComments$, [], null)
+      InternalClass: ss.defineClass(InternalClass, InternalClass$, [], null, [], "BasicTests"),
+      InternalClassWithNoComments: ss.defineClass(InternalClassWithNoComments, InternalClassWithNoComments$, [], null, [], "BasicTests")
     },
     {
       Suit: Suit,
-      IInterface: ss.defineInterface(IInterface),
+      IInterface: ss.defineInterface(IInterface, [], "BasicTests"),
       RecordClass: RecordClass,
-      BaseClass: ss.defineClass(BaseClass, BaseClass$, [Element, String, Number], null),
-      DerivedClass: ss.defineClass(DerivedClass, DerivedClass$, [], BaseClass)
+      BaseClass: ss.defineClass(BaseClass, BaseClass$, [Element, String, Number], null, [], "BasicTests"),
+      DerivedClass: ss.defineClass(DerivedClass, DerivedClass$, [], BaseClass, [], "BasicTests")
     });
 
   BaseClass.constantField = 3;

@@ -2003,6 +2003,10 @@ Types:
                 Generated Name: Name
                 ReadOnly: True
                 Abstract: False
+            Field: Namespace
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: $namespace
             Field: Prototype
                 AssociatedType: Dictionary
                 Visibility: Public
@@ -4024,15 +4028,15 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      IFoo: ss.defineInterface(IFoo),
+      IFoo: ss.defineInterface(IFoo, [], "BasicTests"),
       Point: Point,
-      AppHelper: ss.defineClass(AppHelper, AppHelper$, [], null)
+      AppHelper: ss.defineClass(AppHelper, AppHelper$, [], null, [], "BasicTests")
     },
     {
       AppFlags: AppFlags,
       Mode: Mode,
-      IApp: ss.defineInterface(IApp),
-      App: ss.defineClass(App, App$, [], null, [IApp])
+      IApp: ss.defineInterface(IApp, [], "BasicTests"),
+      App: ss.defineClass(App, App$, [], null, [IApp], "BasicTests")
     });
 
 

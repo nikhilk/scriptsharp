@@ -46,7 +46,7 @@ define('test', ['ss'], function(ss) {
     {
       Color: Color,
       Types: Types,
-      App: ss.defineClass(App, App$, [], null)
+      App: ss.defineClass(App, App$, [], null, [], "ExpressionTests")
     });
 
 

@@ -30,6 +30,13 @@ namespace System {
             }
         }
 
+        [ScriptName("$namespace")]
+        [ScriptField]
+        public extern string Namespace
+        {
+            get;
+        }
+
         /// <summary>
         /// Gets the prototype associated with the type.
         /// </summary>

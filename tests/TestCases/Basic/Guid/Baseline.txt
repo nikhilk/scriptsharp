@@ -15,7 +15,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null)
+      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null, [], "GuidTests")
     });
 
 

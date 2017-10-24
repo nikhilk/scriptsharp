@@ -324,11 +324,12 @@ namespace ScriptSharp.Generator {
             {
                 writer.Write(classSymbol.BaseClass.FullGeneratedName);
             }
-            
+            writer.Write(", ");
+
             //interfaces
             if (classSymbol.Interfaces != null)
             {
-                writer.Write(", [");
+                writer.Write("[");
                 bool first = true;
 
                 foreach (InterfaceSymbol inheritedInterface in classSymbol.Interfaces)
@@ -343,7 +344,16 @@ namespace ScriptSharp.Generator {
 
                 writer.Write("]");
             }
+            else
+            {
+                writer.Write("[]");
+            }
+            writer.Write(", ");
 
+            //namespace
+            writer.Write("\"" + classSymbol.Namespace + "\"");
+
+            //end
             writer.Write(")");
         }
 
@@ -386,10 +396,11 @@ namespace ScriptSharp.Generator {
 
             writer.Write("ss.defineInterface(");
             writer.Write(interfaceSymbol.FullGeneratedName);
+            writer.Write(", ");
 
             if (interfaceSymbol.Interfaces != null)
             {
-                writer.Write(", [");
+                writer.Write("[");
                 bool first = true;
 
                 foreach (InterfaceSymbol inheritedInterface in interfaceSymbol.Interfaces)
@@ -404,6 +415,15 @@ namespace ScriptSharp.Generator {
 
                 writer.Write("]");
             }
+            else
+            {
+                writer.Write("[]");
+            }
+            writer.Write(", ");
+
+            //namespace
+            writer.Write("\"" + interfaceSymbol.Namespace + "\"");
+
             writer.Write(")");
         }
 

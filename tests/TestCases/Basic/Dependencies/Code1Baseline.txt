@@ -16,7 +16,7 @@ define('test', ['ss', 'lib1'], function(ss, lib1) {
 
   var $exports = ss.module('test', null,
     {
-      App: ss.defineClass(App, App$, [], null)
+      App: ss.defineClass(App, App$, [], null, [], "BasicTests")
     });
 
 

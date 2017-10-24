@@ -63,8 +63,8 @@ define('test', ['ss'], function(ss) {
     },
     {
       Mode: Mode,
-      Test: ss.defineClass(Test, Test$, [], null),
-      App: ss.defineClass(App, App$, [], null)
+      Test: ss.defineClass(Test, Test$, [], null, [], "MemberTests"),
+      App: ss.defineClass(App, App$, [], null, [], "MemberTests")
     });
 
   Test.greeting = 'Hello!';

@@ -40,16 +40,18 @@ function createType(typeName, typeInfo, typeRegistry) {
   return typeInfo;
 }
 
-function defineClass(type, prototypeDescription, constructorParams ,baseType, interfaces) {
+function defineClass(type, prototypeDescription, constructorParams, baseType, interfaces, namespace) {
     type.$type = _classMarker;
     type.$constructorParams = constructorParams;
     type.$interfaces = interfaces;
+    type.$namespace = namespace;
     return [_classMarker, type, prototypeDescription, baseType];
 }
 
-function defineInterface(type, interfaces) {
+function defineInterface(type, interfaces, namespace) {
     type.$type = _interfaceMarker;
     type.$interfaces = interfaces;
+    type.$namespace = namespace;
     return [_interfaceMarker, type];
 }
 

@@ -84,14 +84,14 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      MyClass: ss.defineClass(MyClass, MyClass$, [], null),
-      YourClass: ss.defineClass(YourClass, YourClass$, [], null),
-      YourClass1: ss.defineClass(YourClass1, YourClass1$, [], null),
-      MyClassF: ss.defineClass(MyClassF, MyClassF$, [], null),
-      Test: ss.defineClass(Test, Test$, [], null),
-      Utility: ss.defineClass(Utility, Utility$, [], null),
-      UtilityP: ss.defineClass(UtilityP, UtilityP$, [], null),
-      Component: ss.defineClass(Component, Component$, [], null)
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [], "TypeTests.Sub1.Sub2"),
+      YourClass: ss.defineClass(YourClass, YourClass$, [], null, [], "TypeTests.Sub1"),
+      YourClass1: ss.defineClass(YourClass1, YourClass1$, [], null, [], "TypeTests"),
+      MyClassF: ss.defineClass(MyClassF, MyClassF$, [], null, [], "MyApp.Foo"),
+      Test: ss.defineClass(Test, Test$, [], null, [], "MyApp"),
+      Utility: ss.defineClass(Utility, Utility$, [], null, [], "MyCompany"),
+      UtilityP: ss.defineClass(UtilityP, UtilityP$, [], null, [], "MyCompany.MyProduct"),
+      Component: ss.defineClass(Component, Component$, [], null, [], "MyCompany.MyProduct.MyComponent")
     });
 
 

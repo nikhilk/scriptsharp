@@ -72,9 +72,9 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      ITest: ss.defineInterface(ITest),
-      Test: ss.defineClass(Test, Test$, [], null),
-      Test2: ss.defineClass(Test2, Test2$, [], Test)
+      ITest: ss.defineInterface(ITest, [], "MemberTests"),
+      Test: ss.defineClass(Test, Test$, [], null, [], "MemberTests"),
+      Test2: ss.defineClass(Test2, Test2$, [], Test, [], "MemberTests")
     });
 
 
