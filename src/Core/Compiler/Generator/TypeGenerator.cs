@@ -21,16 +21,10 @@ namespace ScriptSharp.Generator
                 return;
             }
 
-            writer.WriteLine("var " + namespaceTable.TableName + " = {");
-            writer.Indent++;
-
             foreach(KeyValuePair<string, string> namespaceEntry in namespaceTable.Namespaces)
             {
-                writer.WriteLine("{0} : \"{1}\",", namespaceEntry.Value, namespaceEntry.Key);
+                writer.WriteLine("var {0} = \"{1}\";", namespaceEntry.Value, namespaceEntry.Key);
             }
-
-            writer.Indent--;
-            writer.Write("};");
         }
 
         private static void GenerateClass(ScriptGenerator generator, ClassSymbol classSymbol) {

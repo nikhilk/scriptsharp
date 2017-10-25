@@ -223,29 +223,16 @@ namespace ScriptSharp.Generator
             }
         }
 
-        private NamespaceTable BuildNamespaceTable(IList<TypeSymbol> types, string tableName = "namespaceTable")
+        private NamespaceTable BuildNamespaceTable(IList<TypeSymbol> types)
         {
-            Dictionary<string, string> namespaceTable = new Dictionary<string, string>();
+            NamespaceTable namespaceTable = new NamespaceTable();        
+
             foreach(TypeSymbol typeSymbol in types)
             {
-                string typeNamespace = typeSymbol.Namespace;
-
-                if(!string.IsNullOrWhiteSpace(typeNamespace) && !namespaceTable.ContainsKey(typeNamespace))
-                {
-                    namespaceTable[typeNamespace] = GenerateNamespaceToken(typeNamespace);
-                }
+                namespaceTable.AddNamespace(typeSymbol.Namespace);
             }
 
-            return new NamespaceTable
-            {
-                TableName = tableName,
-                Namespaces = namespaceTable
-            };
-        }
-
-        private string GenerateNamespaceToken(string typeNamespace)
-        {
-            return typeNamespace.Replace(".", string.Empty);
+            return namespaceTable;
         }
 
         public void StartImplementation(SymbolImplementation implementation) {
