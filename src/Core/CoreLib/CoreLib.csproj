@@ -52,6 +52,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Reflection\Assembly.cs" />
     <Compile Include="Linq\Linq.cs" />
     <Compile Include="Activator.cs" />
     <Compile Include="Guid.cs" />

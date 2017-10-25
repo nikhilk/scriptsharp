@@ -13,7 +13,8 @@ using System.Linq;
 using ScriptSharp;
 using ScriptSharp.ScriptModel;
 
-namespace ScriptSharp.Generator {
+namespace ScriptSharp.Generator
+{
 
     internal sealed class ScriptGenerator {
 
@@ -134,7 +135,8 @@ namespace ScriptSharp.Generator {
                                   ((internalTypes.Count != 0) && hasNonModuleInternalTypes);
 
             if (generateModule) {
-                IDictionary<string, string> namespaceTable = BuildNamespaceTable(types);
+
+                NamespaceTable namespaceTable = BuildNamespaceTable(types);
                 this.GenerateNamespaceTable(namespaceTable);
                 _writer.WriteLine();
 
@@ -221,7 +223,7 @@ namespace ScriptSharp.Generator {
             }
         }
 
-        private IDictionary<string, string> BuildNamespaceTable(IList<TypeSymbol> types)
+        private NamespaceTable BuildNamespaceTable(IList<TypeSymbol> types, string tableName = "namespaceTable")
         {
             Dictionary<string, string> namespaceTable = new Dictionary<string, string>();
             foreach(TypeSymbol typeSymbol in types)
@@ -234,7 +236,11 @@ namespace ScriptSharp.Generator {
                 }
             }
 
-            return namespaceTable;
+            return new NamespaceTable
+            {
+                TableName = tableName,
+                Namespaces = namespaceTable
+            };
         }
 
         private string GenerateNamespaceToken(string typeNamespace)

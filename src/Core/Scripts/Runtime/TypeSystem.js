@@ -5,7 +5,7 @@ var _modules = {};
 var _classMarker = 'class';
 var _interfaceMarker = 'interface';
 
-function createType(typeName, typeInfo, typeRegistry) {
+function createType(typeName, typeInfo, typeRegistry, assemblyReference) {
   // The typeInfo is either an array of information representing
   // classes and interfaces, or an object representing enums and resources
   // or a function, representing a record factory.
@@ -34,6 +34,8 @@ function createType(typeName, typeInfo, typeRegistry) {
     }
 
     type.$name = typeName;
+    type.$assembly = assemblyReference;
+
     return typeRegistry[typeName] = type;
   }
 
@@ -203,21 +205,22 @@ function safeCast(instance, type) {
 
 function module(name, implementation, exports) {
   var registry = _modules[name] = { $name: name };
+  var exportedTypes = {};
+  var assembly = new Assembly(name, exportedTypes);
 
-  var api = {};
   if (exports) {
     for (var typeName in exports) {
-      api[typeName] = createType(typeName, exports[typeName], registry);
+        exportedTypes[typeName] = createType(typeName, exports[typeName], registry, assembly);
     }
   }
 
   if (implementation) {
     for (var typeName in implementation) {
-      createType(typeName, implementation[typeName], registry);
+        createType(typeName, implementation[typeName], registry, assembly);
     }
   }
 
-  return api;
+  return exportedTypes;
 }
 
 function baseProperty(type, propertyName) {

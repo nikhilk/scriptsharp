@@ -5,6 +5,7 @@
 
 using System.Collections;
 using System.ComponentModel;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace System {
@@ -40,6 +41,13 @@ namespace System {
         [ScriptName("$fullName")]
         [ScriptField]
         public extern string FullName
+        {
+            get;
+        }
+
+        [ScriptName("$assembly")]
+        [ScriptField]
+        public extern Assembly Assembly
         {
             get;
         }

@@ -13,13 +13,24 @@ namespace ScriptSharp.Generator
 
     internal static class TypeGenerator
     {
-        public static void GenerateNamespaceTable(this ScriptGenerator generator, IDictionary<string, string> namespaceTable)
+        public static void GenerateNamespaceTable(this ScriptGenerator generator, NamespaceTable namespaceTable)
         {
             ScriptTextWriter writer = generator.Writer;
-            foreach(KeyValuePair<string, string> namespaceEntry in namespaceTable)
+            if(namespaceTable.Namespaces.Count <= 0)
             {
-                writer.WriteLine("var {0} = \"{1}\";", namespaceEntry.Value, namespaceEntry.Key);
+                return;
             }
+
+            writer.WriteLine("var " + namespaceTable.TableName + " = {");
+            writer.Indent++;
+
+            foreach(KeyValuePair<string, string> namespaceEntry in namespaceTable.Namespaces)
+            {
+                writer.WriteLine("{0} : \"{1}\",", namespaceEntry.Value, namespaceEntry.Key);
+            }
+
+            writer.Indent--;
+            writer.Write("};");
         }
 
         private static void GenerateClass(ScriptGenerator generator, ClassSymbol classSymbol) {
@@ -257,29 +268,27 @@ namespace ScriptSharp.Generator
         public static void GenerateRegistrationScript(
             ScriptGenerator generator, 
             TypeSymbol typeSymbol, 
-            IDictionary<string, string> namespaceTokens)
+            NamespaceTable namespaceTable)
         {
             ClassSymbol classSymbol = typeSymbol as ClassSymbol;
-
-            string namespaceToken = null;
-            namespaceTokens.TryGetValue(typeSymbol.Namespace, out namespaceToken);
 
             if ((classSymbol != null) && classSymbol.IsExtenderClass) {
                 return;
             }
 
             ScriptTextWriter writer = generator.Writer;
+            string namespaceLookup = namespaceTable.GenerateNamespaceRequest(typeSymbol.Namespace);
 
             writer.Write(typeSymbol.GeneratedName);
             writer.Write(": ");
 
             switch (typeSymbol.Type) {
                 case SymbolType.Class:
-                    GenerateClassRegistrationScript(generator, classSymbol, namespaceToken);
+                    GenerateClassRegistrationScript(generator, classSymbol, namespaceLookup);
                     
                     break;
                 case SymbolType.Interface:
-                    GenerateInterfaceRegistrationScript(generator, (InterfaceSymbol)typeSymbol, namespaceToken);
+                    GenerateInterfaceRegistrationScript(generator, (InterfaceSymbol)typeSymbol, namespaceLookup);
                     
                     break;
                 case SymbolType.Record:
