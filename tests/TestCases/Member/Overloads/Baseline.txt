@@ -33,12 +33,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var MemberTests = "MemberTests";
+  var ns_MemberTests = "MemberTests";
 
   var $exports = ss.module('test', null,
     {
-      Test: ss.defineClass(Test, Test$, [String], null, [], MemberTests),
-      App: ss.defineClass(App, App$, [], null, [], MemberTests)
+      Test: ss.defineClass(Test, Test$, [String], null, [], ns_MemberTests),
+      App: ss.defineClass(App, App$, [], null, [], ns_MemberTests)
     });
 
 

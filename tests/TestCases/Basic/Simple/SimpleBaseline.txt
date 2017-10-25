@@ -63,13 +63,13 @@
   };
 
 
-  var Basic = "Basic";
+  var ns_Basic = "Basic";
 
   var $exports = ss.module('basic', null,
     {
-      EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null, [], Basic),
-      Button: ss.defineClass(Button, Button$, [String], null, [], Basic),
-      App: ss.defineClass(App, App$, [], null, [], Basic)
+      EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null, [], ns_Basic),
+      Button: ss.defineClass(Button, Button$, [String], null, [], ns_Basic),
+      App: ss.defineClass(App, App$, [], null, [], ns_Basic)
     });
 
   EventArgs.Empty = new EventArgs();

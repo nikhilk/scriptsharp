@@ -16,11 +16,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var ListTests = "ListTests";
+  var ns_ListTests = "ListTests";
 
   var $exports = ss.module('test', null,
     {
-      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null, [], ListTests)
+      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null, [], ns_ListTests)
     });
 
 

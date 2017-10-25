@@ -43,11 +43,11 @@ define('test', ['ss', 'jquery'], function(ss, $) {
   };
 
 
-  var ExpressionTests = "ExpressionTests";
+  var ns_ExpressionTests = "ExpressionTests";
 
   var $exports = ss.module('test', null,
     {
-      Foo: ss.defineClass(Foo, Foo$, [], null, [], ExpressionTests)
+      Foo: ss.defineClass(Foo, Foo$, [], null, [], ns_ExpressionTests)
     });
 
 

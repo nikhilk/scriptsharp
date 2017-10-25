@@ -32,12 +32,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var BasicTests = "BasicTests";
+  var ns_BasicTests = "BasicTests";
 
   var $exports = ss.module('test', null,
     {
-      MyDebug: ss.defineClass(MyDebug, null, [], null, [], BasicTests),
-      App: ss.defineClass(App, App$, [Number], null, [], BasicTests)
+      MyDebug: ss.defineClass(MyDebug, null, [], null, [], ns_BasicTests),
+      App: ss.defineClass(App, App$, [Number], null, [], ns_BasicTests)
     });
 
 

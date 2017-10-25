@@ -57,7 +57,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var MemberTests = "MemberTests";
+  var ns_MemberTests = "MemberTests";
 
   var $exports = ss.module('test',
     {
@@ -65,8 +65,8 @@ define('test', ['ss'], function(ss) {
     },
     {
       Mode: Mode,
-      Test: ss.defineClass(Test, Test$, [], null, [], MemberTests),
-      App: ss.defineClass(App, App$, [], null, [], MemberTests)
+      Test: ss.defineClass(Test, Test$, [], null, [], ns_MemberTests),
+      App: ss.defineClass(App, App$, [], null, [], ns_MemberTests)
     });
 
   Test.greeting = 'Hello!';

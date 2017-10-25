@@ -16,11 +16,11 @@ define('test', ['ss', 'lib1', 'comp3', 'comp4'], function(ss, lib1, comp3, comp4
   };
 
 
-  var BasicTests = "BasicTests";
+  var ns_BasicTests = "BasicTests";
 
   var $exports = ss.module('test', null,
     {
-      App: ss.defineClass(App, App$, [], null, [], BasicTests)
+      App: ss.defineClass(App, App$, [], null, [], ns_BasicTests)
     });
 
 
