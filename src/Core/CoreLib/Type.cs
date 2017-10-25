@@ -37,6 +37,13 @@ namespace System {
             get;
         }
 
+        [ScriptName("$fullName")]
+        [ScriptField]
+        public extern string FullName
+        {
+            get;
+        }
+
         /// <summary>
         /// Gets the prototype associated with the type.
         /// </summary>

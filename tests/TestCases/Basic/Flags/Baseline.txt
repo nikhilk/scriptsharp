@@ -19,9 +19,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var BasicTests = "BasicTests";
+
   var $exports = ss.module('test', null,
     {
-      App: ss.defineClass(App, App$, [], null, [], "BasicTests")
+      App: ss.defineClass(App, App$, [], null, [], BasicTests)
     });
 
 

@@ -70,16 +70,18 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var Foo = "Foo";
+
   var $exports = ss.module('test', null,
     {
       MyEnum: MyEnum,
-      IXyzInterface: ss.defineInterface(IXyzInterface, [], ""),
+      IXyzInterface: ss.defineInterface(IXyzInterface, []),
       MyRecord: MyRecord,
-      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [], ""),
-      MyClass3: ss.defineClass(MyClass3, MyClass3$, [], null, [ss.IDisposable], ""),
-      MyClassF: ss.defineClass(MyClassF, MyClassF$, [], null, [], "Foo"),
-      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], MyClass, [], ""),
-      MyClass4: ss.defineClass(MyClass4, MyClass4$, [], MyClass, [ss.IDisposable], "")
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null, []),
+      MyClass3: ss.defineClass(MyClass3, MyClass3$, [], null, [ss.IDisposable]),
+      MyClassF: ss.defineClass(MyClassF, MyClassF$, [], null, [], Foo),
+      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], MyClass, []),
+      MyClass4: ss.defineClass(MyClass4, MyClass4$, [], MyClass, [ss.IDisposable])
     });
 
 

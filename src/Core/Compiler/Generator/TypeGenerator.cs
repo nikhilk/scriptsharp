@@ -3,16 +3,24 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using ScriptSharp;
-using ScriptSharp.ScriptModel;
 using System.Linq;
+using ScriptSharp.ScriptModel;
 
-namespace ScriptSharp.Generator {
+namespace ScriptSharp.Generator
+{
 
-    internal static class TypeGenerator {
+    internal static class TypeGenerator
+    {
+        public static void GenerateNamespaceTable(this ScriptGenerator generator, IDictionary<string, string> namespaceTable)
+        {
+            ScriptTextWriter writer = generator.Writer;
+            foreach(KeyValuePair<string, string> namespaceEntry in namespaceTable)
+            {
+                writer.WriteLine("var {0} = \"{1}\";", namespaceEntry.Value, namespaceEntry.Key);
+            }
+        }
 
         private static void GenerateClass(ScriptGenerator generator, ClassSymbol classSymbol) {
             ScriptTextWriter writer = generator.Writer;
@@ -246,8 +254,15 @@ namespace ScriptSharp.Generator {
             writer.WriteLine();
         }
 
-        public static void GenerateRegistrationScript(ScriptGenerator generator, TypeSymbol typeSymbol) {
+        public static void GenerateRegistrationScript(
+            ScriptGenerator generator, 
+            TypeSymbol typeSymbol, 
+            IDictionary<string, string> namespaceTokens)
+        {
             ClassSymbol classSymbol = typeSymbol as ClassSymbol;
+
+            string namespaceToken = null;
+            namespaceTokens.TryGetValue(typeSymbol.Namespace, out namespaceToken);
 
             if ((classSymbol != null) && classSymbol.IsExtenderClass) {
                 return;
@@ -260,11 +275,11 @@ namespace ScriptSharp.Generator {
 
             switch (typeSymbol.Type) {
                 case SymbolType.Class:
-                    GenerateClassRegistrationScript(generator, classSymbol);
+                    GenerateClassRegistrationScript(generator, classSymbol, namespaceToken);
                     
                     break;
                 case SymbolType.Interface:
-                    GenerateInterfaceRegistrationScript(generator, (InterfaceSymbol)typeSymbol);
+                    GenerateInterfaceRegistrationScript(generator, (InterfaceSymbol)typeSymbol, namespaceToken);
                     
                     break;
                 case SymbolType.Record:
@@ -275,7 +290,7 @@ namespace ScriptSharp.Generator {
             }
         }
 
-        private static void GenerateClassRegistrationScript(ScriptGenerator generator, ClassSymbol classSymbol)
+        private static void GenerateClassRegistrationScript(ScriptGenerator generator, ClassSymbol classSymbol, string namespaceToken)
         {
             ScriptTextWriter writer = generator.Writer;
 
@@ -348,10 +363,12 @@ namespace ScriptSharp.Generator {
             {
                 writer.Write("[]");
             }
-            writer.Write(", ");
 
             //namespace
-            writer.Write("\"" + classSymbol.Namespace + "\"");
+            if(!string.IsNullOrWhiteSpace(namespaceToken))
+            {
+                writer.Write(", " + namespaceToken);
+            }
 
             //end
             writer.Write(")");
@@ -390,7 +407,7 @@ namespace ScriptSharp.Generator {
             return parameterType.FullGeneratedName;
         }
 
-        private static void GenerateInterfaceRegistrationScript(ScriptGenerator generator, InterfaceSymbol interfaceSymbol)
+        private static void GenerateInterfaceRegistrationScript(ScriptGenerator generator, InterfaceSymbol interfaceSymbol, string namespaceToken)
         {
             ScriptTextWriter writer = generator.Writer;
 
@@ -419,10 +436,12 @@ namespace ScriptSharp.Generator {
             {
                 writer.Write("[]");
             }
-            writer.Write(", ");
 
             //namespace
-            writer.Write("\"" + interfaceSymbol.Namespace + "\"");
+            if(!string.IsNullOrWhiteSpace(namespaceToken))
+            {
+                writer.Write(", "+ namespaceToken);
+            }
 
             writer.Write(")");
         }

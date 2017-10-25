@@ -82,15 +82,17 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var TypeTests = "TypeTests";
+
   var $exports = ss.module('test', null,
     {
-      IMarker: ss.defineInterface(IMarker, [], "TypeTests"),
-      ISerializable: ss.defineInterface(ISerializable, [], "TypeTests"),
-      IRunnable: ss.defineInterface(IRunnable, [IMarker, ss.IDisposable], "TypeTests"),
-      MyObject: ss.defineClass(MyObject, MyObject$, [], null, [ss.IDisposable], "TypeTests"),
-      Foo: ss.defineClass(Foo, Foo$, [], null, [IMarker, ISerializable, IRunnable], "TypeTests"),
-      Program: ss.defineClass(Program, Program$, [], null, [], "TypeTests"),
-      MyObject2: ss.defineClass(MyObject2, MyObject2$, [], MyObject, [IRunnable], "TypeTests")
+      IMarker: ss.defineInterface(IMarker, [], TypeTests),
+      ISerializable: ss.defineInterface(ISerializable, [], TypeTests),
+      IRunnable: ss.defineInterface(IRunnable, [IMarker, ss.IDisposable], TypeTests),
+      MyObject: ss.defineClass(MyObject, MyObject$, [], null, [ss.IDisposable], TypeTests),
+      Foo: ss.defineClass(Foo, Foo$, [], null, [IMarker, ISerializable, IRunnable], TypeTests),
+      Program: ss.defineClass(Program, Program$, [], null, [], TypeTests),
+      MyObject2: ss.defineClass(MyObject2, MyObject2$, [], MyObject, [IRunnable], TypeTests)
     });
 
 

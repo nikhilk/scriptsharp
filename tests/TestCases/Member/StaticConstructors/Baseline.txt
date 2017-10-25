@@ -58,14 +58,16 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var MemberTests = "MemberTests";
+
   var $exports = ss.module('test', null,
     {
-      Behavior: ss.defineClass(Behavior, Behavior$, [Element, String], null, [], "MemberTests"),
-      MyClass: ss.defineClass(MyClass, MyClass$, [Date], null, [], "MemberTests"),
-      MyClassEmpty: ss.defineClass(MyClassEmpty, MyClassEmpty$, [], null, [], "MemberTests"),
-      MyClassSimple: ss.defineClass(MyClassSimple, MyClassSimple$, [], null, [], "MemberTests"),
-      MyClassSimpleMulti: ss.defineClass(MyClassSimpleMulti, MyClassSimpleMulti$, [], null, [], "MemberTests"),
-      MyBehavior: ss.defineClass(MyBehavior, MyBehavior$, [Element], Behavior, [], "MemberTests")
+      Behavior: ss.defineClass(Behavior, Behavior$, [Element, String], null, [], MemberTests),
+      MyClass: ss.defineClass(MyClass, MyClass$, [Date], null, [], MemberTests),
+      MyClassEmpty: ss.defineClass(MyClassEmpty, MyClassEmpty$, [], null, [], MemberTests),
+      MyClassSimple: ss.defineClass(MyClassSimple, MyClassSimple$, [], null, [], MemberTests),
+      MyClassSimpleMulti: ss.defineClass(MyClassSimpleMulti, MyClassSimpleMulti$, [], null, [], MemberTests),
+      MyBehavior: ss.defineClass(MyBehavior, MyBehavior$, [Element], Behavior, [], MemberTests)
     });
 
   MyClass.instance = new MyClass(ss.now());

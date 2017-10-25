@@ -95,12 +95,14 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var ExpressionTests = "ExpressionTests";
+
   var $exports = ss.module('test', null,
     {
-      IFoo: ss.defineInterface(IFoo, [], "ExpressionTests"),
-      BApp: ss.defineClass(BApp, BApp$, [], null, [], "ExpressionTests"),
-      App: ss.defineClass(App, App$, [], BApp, [], "ExpressionTests"),
-      DApp: ss.defineClass(DApp, DApp$, [], App, [], "ExpressionTests")
+      IFoo: ss.defineInterface(IFoo, [], ExpressionTests),
+      BApp: ss.defineClass(BApp, BApp$, [], null, [], ExpressionTests),
+      App: ss.defineClass(App, App$, [], BApp, [], ExpressionTests),
+      DApp: ss.defineClass(DApp, DApp$, [], App, [], ExpressionTests)
     });
 
   BApp.myConstant = 3;

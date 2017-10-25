@@ -134,6 +134,10 @@ namespace ScriptSharp.Generator {
                                   ((internalTypes.Count != 0) && hasNonModuleInternalTypes);
 
             if (generateModule) {
+                IDictionary<string, string> namespaceTable = BuildNamespaceTable(types);
+                this.GenerateNamespaceTable(namespaceTable);
+                _writer.WriteLine();
+
                 _writer.Write("var $exports = ss.module('");
                 _writer.Write(symbolSet.ScriptName);
                 _writer.Write("',");
@@ -156,7 +160,7 @@ namespace ScriptSharp.Generator {
                         if (firstType == false) {
                             _writer.WriteLine(",");
                         }
-                        TypeGenerator.GenerateRegistrationScript(this, type);
+                        TypeGenerator.GenerateRegistrationScript(this, type, namespaceTable);
                         firstType = false;
                     }
                     _writer.Indent--;
@@ -182,7 +186,7 @@ namespace ScriptSharp.Generator {
                         if (firstType == false) {
                             _writer.WriteLine(",");
                         }
-                        TypeGenerator.GenerateRegistrationScript(this, type);
+                        TypeGenerator.GenerateRegistrationScript(this, type, namespaceTable);
                         firstType = false;
                     }
                     _writer.Indent--;
@@ -215,6 +219,27 @@ namespace ScriptSharp.Generator {
             if (initialIndent) {
                 _writer.Indent--;
             }
+        }
+
+        private IDictionary<string, string> BuildNamespaceTable(IList<TypeSymbol> types)
+        {
+            Dictionary<string, string> namespaceTable = new Dictionary<string, string>();
+            foreach(TypeSymbol typeSymbol in types)
+            {
+                string typeNamespace = typeSymbol.Namespace;
+
+                if(!string.IsNullOrWhiteSpace(typeNamespace) && !namespaceTable.ContainsKey(typeNamespace))
+                {
+                    namespaceTable[typeNamespace] = GenerateNamespaceToken(typeNamespace);
+                }
+            }
+
+            return namespaceTable;
+        }
+
+        private string GenerateNamespaceToken(string typeNamespace)
+        {
+            return typeNamespace.Replace(".", string.Empty);
         }
 
         public void StartImplementation(SymbolImplementation implementation) {

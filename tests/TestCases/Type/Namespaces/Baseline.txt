@@ -82,16 +82,25 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var TypeTestsSub1Sub2 = "TypeTests.Sub1.Sub2";
+  var TypeTestsSub1 = "TypeTests.Sub1";
+  var TypeTests = "TypeTests";
+  var MyAppFoo = "MyApp.Foo";
+  var MyApp = "MyApp";
+  var MyCompany = "MyCompany";
+  var MyCompanyMyProduct = "MyCompany.MyProduct";
+  var MyCompanyMyProductMyComponent = "MyCompany.MyProduct.MyComponent";
+
   var $exports = ss.module('test', null,
     {
-      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [], "TypeTests.Sub1.Sub2"),
-      YourClass: ss.defineClass(YourClass, YourClass$, [], null, [], "TypeTests.Sub1"),
-      YourClass1: ss.defineClass(YourClass1, YourClass1$, [], null, [], "TypeTests"),
-      MyClassF: ss.defineClass(MyClassF, MyClassF$, [], null, [], "MyApp.Foo"),
-      Test: ss.defineClass(Test, Test$, [], null, [], "MyApp"),
-      Utility: ss.defineClass(Utility, Utility$, [], null, [], "MyCompany"),
-      UtilityP: ss.defineClass(UtilityP, UtilityP$, [], null, [], "MyCompany.MyProduct"),
-      Component: ss.defineClass(Component, Component$, [], null, [], "MyCompany.MyProduct.MyComponent")
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [], TypeTestsSub1Sub2),
+      YourClass: ss.defineClass(YourClass, YourClass$, [], null, [], TypeTestsSub1),
+      YourClass1: ss.defineClass(YourClass1, YourClass1$, [], null, [], TypeTests),
+      MyClassF: ss.defineClass(MyClassF, MyClassF$, [], null, [], MyAppFoo),
+      Test: ss.defineClass(Test, Test$, [], null, [], MyApp),
+      Utility: ss.defineClass(Utility, Utility$, [], null, [], MyCompany),
+      UtilityP: ss.defineClass(UtilityP, UtilityP$, [], null, [], MyCompanyMyProduct),
+      Component: ss.defineClass(Component, Component$, [], null, [], MyCompanyMyProductMyComponent)
     });
 
 

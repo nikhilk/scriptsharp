@@ -120,19 +120,21 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var TypeTests = "TypeTests";
+
   var $exports = ss.module('test',
     {
-      SingleMemberClass: ss.defineClass(SingleMemberClass, SingleMemberClass$, [], null, [], "TypeTests"),
-      SomeClass: ss.defineClass(SomeClass, SomeClass$, [], null, [], "TypeTests")
+      SingleMemberClass: ss.defineClass(SingleMemberClass, SingleMemberClass$, [], null, [], TypeTests),
+      SomeClass: ss.defineClass(SomeClass, SomeClass$, [], null, [], TypeTests)
     },
     {
-      IMyInterface: ss.defineInterface(IMyInterface, [], "TypeTests"),
-      EmptyClass: ss.defineClass(EmptyClass, EmptyClass$, [], null, [], "TypeTests"),
-      MergedMembersClass: ss.defineClass(MergedMembersClass, MergedMembersClass$, [], null, [], "TypeTests"),
-      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [IMyInterface], "TypeTests"),
-      App: ss.defineClass(App, App$, [], null, [], "TypeTests"),
-      DerivedMemberClass: ss.defineClass(DerivedMemberClass, DerivedMemberClass$, [], SingleMemberClass, [], "TypeTests"),
-      DerivedMergedMembersClass: ss.defineClass(DerivedMergedMembersClass, DerivedMergedMembersClass$, [], MergedMembersClass, [], "TypeTests")
+      IMyInterface: ss.defineInterface(IMyInterface, [], TypeTests),
+      EmptyClass: ss.defineClass(EmptyClass, EmptyClass$, [], null, [], TypeTests),
+      MergedMembersClass: ss.defineClass(MergedMembersClass, MergedMembersClass$, [], null, [], TypeTests),
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [IMyInterface], TypeTests),
+      App: ss.defineClass(App, App$, [], null, [], TypeTests),
+      DerivedMemberClass: ss.defineClass(DerivedMemberClass, DerivedMemberClass$, [], SingleMemberClass, [], TypeTests),
+      DerivedMergedMembersClass: ss.defineClass(DerivedMergedMembersClass, DerivedMergedMembersClass$, [], MergedMembersClass, [], TypeTests)
     });
 
 

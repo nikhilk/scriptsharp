@@ -40,9 +40,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var StatementTests = "StatementTests";
+
   var $exports = ss.module('test', null,
     {
-      App: ss.defineClass(App, App$, [], null, [], "StatementTests")
+      App: ss.defineClass(App, App$, [], null, [], StatementTests)
     });
 
 

@@ -41,18 +41,24 @@ function createType(typeName, typeInfo, typeRegistry) {
 }
 
 function defineClass(type, prototypeDescription, constructorParams, baseType, interfaces, namespace) {
-    type.$type = _classMarker;
     type.$constructorParams = constructorParams;
-    type.$interfaces = interfaces;
-    type.$namespace = namespace;
+    type.$type = _classMarker;
+    assignTypeProperties(type, interfaces, namespace);
     return [_classMarker, type, prototypeDescription, baseType];
 }
 
 function defineInterface(type, interfaces, namespace) {
     type.$type = _interfaceMarker;
+    assignTypeProperties(type, interfaces, namespace);
+    return [_interfaceMarker, type];
+}
+
+function assignTypeProperties(type, interfaces, namespace) {
     type.$interfaces = interfaces;
     type.$namespace = namespace;
-    return [_interfaceMarker, type];
+    createPropertyGet(type, "$fullName", function () {
+        return this.$namespace + "." + this.$name;
+    });
 }
 
 function createPropertyGet(obj, propertyName, fn) {

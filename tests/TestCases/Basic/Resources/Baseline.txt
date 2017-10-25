@@ -30,13 +30,16 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var Resources = "Resources";
+  var BasicTests = "BasicTests";
+
   var $exports = ss.module('test',
     {
       Strings1: Strings1
     },
     {
       Strings2: Strings2,
-      App: ss.defineClass(App, App$, [], null, [], "BasicTests")
+      App: ss.defineClass(App, App$, [], null, [], BasicTests)
     });
 
 

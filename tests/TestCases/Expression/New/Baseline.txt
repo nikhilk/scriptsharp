@@ -65,12 +65,14 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var ExpressionTests = "ExpressionTests";
+
   var $exports = ss.module('test', null,
     {
       Point: Point,
-      Foo: ss.defineClass(Foo, Foo$, [Number, Number], null, [], "ExpressionTests"),
-      Bar: ss.defineClass(Bar, Bar$, [Number, Number, Foo], null, [], "ExpressionTests"),
-      Test: ss.defineClass(Test, Test$, [], null, [], "ExpressionTests")
+      Foo: ss.defineClass(Foo, Foo$, [Number, Number], null, [], ExpressionTests),
+      Bar: ss.defineClass(Bar, Bar$, [Number, Number, Foo], null, [], ExpressionTests),
+      Test: ss.defineClass(Test, Test$, [], null, [], ExpressionTests)
     });
 
 

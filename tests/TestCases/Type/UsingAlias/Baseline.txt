@@ -15,9 +15,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var TypeTests = "TypeTests";
+
   var $exports = ss.module('test', null,
     {
-      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [], "TypeTests")
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [], TypeTests)
     });
 
 

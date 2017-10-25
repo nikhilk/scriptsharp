@@ -42,12 +42,14 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var MemberTests = "MemberTests";
+
   var $exports = ss.module('test', null,
     {
-      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [], "MemberTests"),
-      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], null, [], "MemberTests"),
-      MyClass3: ss.defineClass(MyClass3, MyClass3$, [Number, Number], null, [], "MemberTests"),
-      MyClass4: ss.defineClass(MyClass4, MyClass4$, [Number, Number, Number], MyClass3, [], "MemberTests")
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [], MemberTests),
+      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], null, [], MemberTests),
+      MyClass3: ss.defineClass(MyClass3, MyClass3$, [Number, Number], null, [], MemberTests),
+      MyClass4: ss.defineClass(MyClass4, MyClass4$, [Number, Number, Number], MyClass3, [], MemberTests)
     });
 
   MyClass2._x = 'Hello';

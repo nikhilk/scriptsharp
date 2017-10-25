@@ -57,14 +57,16 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var MemberTests = "MemberTests";
+
   var $exports = ss.module('test',
     {
       Point: Point
     },
     {
       Mode: Mode,
-      Test: ss.defineClass(Test, Test$, [], null, [], "MemberTests"),
-      App: ss.defineClass(App, App$, [], null, [], "MemberTests")
+      Test: ss.defineClass(Test, Test$, [], null, [], MemberTests),
+      App: ss.defineClass(App, App$, [], null, [], MemberTests)
     });
 
   Test.greeting = 'Hello!';
