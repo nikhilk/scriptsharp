@@ -10,7 +10,7 @@ namespace ScriptSharp.Generator
 {
     public class NamespaceTable
     {
-        public IDictionary<string, string> Namespaces { get; }
+        public IDictionary<string, string> Namespaces { get; private set; }
 
         public NamespaceTable()
         {
