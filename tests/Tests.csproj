@@ -302,6 +302,9 @@
     <Content Include="TestCases\Statement\While\Baseline.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="TestCases\Basic\Assemblies\Baseline.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestCases\Type\Classes\Baseline.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -643,6 +646,9 @@
     </Content>
     <Content Include="TestCases\Validation\Namespace\Code.Cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestCases\Basic\Assemblies\Code.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Compile Include="TypeTests.cs" />
     <Compile Include="ValidationTests.cs" />

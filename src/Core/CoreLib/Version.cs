@@ -2,28 +2,32 @@
 
 namespace System
 {
-    [ScriptIgnore]
+    [ScriptImport]
     public sealed class Version
     {
         [ScriptField]
+        [ScriptName(PreserveCase = true)]
         public extern int Major
         {
             get;
         }
 
         [ScriptField]
+        [ScriptName(PreserveCase = true)]
         public extern int Minor
         {
             get;
         }
 
         [ScriptField]
+        [ScriptName(PreserveCase = true)]
         public extern int Build
         {
             get;
         }
 
         [ScriptField]
+        [ScriptName(PreserveCase = true)]
         public extern int Revision
         {
             get;

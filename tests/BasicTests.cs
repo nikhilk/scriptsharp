@@ -16,6 +16,15 @@ namespace ScriptSharp.Tests {
     public sealed class BasicTests : CompilationTest {
 
         [TestMethod]
+        public void TestAssemblies()
+        {
+            RunTest((c) =>
+            {
+                c.AddSource("Code.cs");
+            }, "Baseline.js");
+        }
+
+        [TestMethod]
         public void TestLists()
         {
             RunTest((c) =>

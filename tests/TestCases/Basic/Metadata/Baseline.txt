@@ -2086,6 +2086,35 @@ Types:
                 Generated Name: toString
                 Abstract: False
         
+    Class: Version
+        Application Type: False
+        Public: True
+        Generated Name: Version
+        Extension Methods: False
+        BaseClass: Object
+        Members:
+            Field: Major
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: Major
+            Field: Minor
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: Minor
+            Field: Build
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: Build
+            Field: Revision
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: Revision
+            Method: Parse
+                AssociatedType: Version
+                Visibility: Public, Static
+                Generated Name: Parse
+                Abstract: False
+        
     Class: Void
         Application Type: False
         Public: True
@@ -3628,18 +3657,35 @@ Types:
         Extension Methods: False
         BaseClass: Object
         Members:
-            Property: FullName
+            Field: FullName
                 AssociatedType: String
                 Visibility: Public
                 Generated Name: FullName
-                ReadOnly: True
-                Abstract: False
-            Property: ExportedTypes
+            Field: ExportedTypes
                 AssociatedType: Array
                 Visibility: Public
                 Generated Name: ExportedTypes
-                ReadOnly: True
+            Method: GetName
+                AssociatedType: AssemblyName
+                Visibility: Public
+                Generated Name: getName
                 Abstract: False
+        
+    Class: AssemblyName
+        Application Type: False
+        Public: True
+        Generated Name: AssemblyName
+        Extension Methods: False
+        BaseClass: Object
+        Members:
+            Field: Name
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: Name
+            Field: Version
+                AssociatedType: Version
+                Visibility: Public
+                Generated Name: Version
         
 
 Namespace: System.Serialization

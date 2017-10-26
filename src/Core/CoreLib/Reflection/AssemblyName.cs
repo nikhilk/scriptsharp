@@ -2,10 +2,12 @@
 
 namespace System.Reflection
 {
-    [ScriptIgnore]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class AssemblyName
     {
         [ScriptField]
+        [ScriptName(PreserveCase = true)]
         public extern string Name
         {
             get;
@@ -13,6 +15,7 @@ namespace System.Reflection
         }
 
         [ScriptField]
+        [ScriptName(PreserveCase = true)]
         public extern Version Version
         {
             get;
