@@ -40,7 +40,8 @@
       IObjectFactory: defineInterface(IObjectFactory, [], ns_System$ComponentModel),
       IEventManager: defineInterface(IEventManager, [], ns_System$ComponentModel),
       IInitializable: defineInterface(IInitializable, [], ns_System$ComponentModel),
-      Assembly: defineClass(Assembly, {}, [], null, [], ns_System$Reflection),
+      Assembly: defineClass(Assembly, Assembly$, [], null, [], ns_System$Reflection),
+      AssemblyName: defineClass(AssemblyName, AssemblyName$, [], null, [], ns_System$Reflection),
       EventArgs: defineClass(EventArgs, {}, [], null, [], ns_System),
       CancelEventArgs: defineClass(CancelEventArgs, {}, [], null, [], ns_System),
       StringBuilder: defineClass(StringBuilder, StringBuilder$, [], null, [], ns_System$Text),
@@ -49,7 +50,8 @@
       Observable: defineClass(Observable, Observable$, [], null, [], ns_System$ComponentModel),
       ObservableCollection: defineClass(ObservableCollection, ObservableCollection$, [], null, [IEnumerable], ns_System$Collections),
       Task: defineClass(Task, Task$, [], null, [], ns_System$Threading),
-      Guid: defineClass(Guid, Guid$, [], null, [], ns_System)
+      Guid: defineClass(Guid, Guid$, [], null, [], ns_System),
+      Version: defineClass(Version, Version$, [], null, [], ns_System)
     }), {
       version: '1.0',
 

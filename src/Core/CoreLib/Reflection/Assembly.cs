@@ -14,5 +14,7 @@ namespace System.Reflection
         {
             get;
         }
+
+        internal Assembly(AssemblyName assemblyName, Type[] exportedTypes) { }
     }
 }
