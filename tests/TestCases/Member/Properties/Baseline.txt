@@ -70,11 +70,13 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var ns_MemberTests = "MemberTests";
+
   var $exports = ss.module('test', null,
     {
-      ITest: ss.defineInterface(ITest),
-      Test: ss.defineClass(Test, Test$, [], null),
-      Test2: ss.defineClass(Test2, Test2$, [], Test)
+      ITest: ss.defineInterface(ITest, [], ns_MemberTests),
+      Test: ss.defineClass(Test, Test$, [], null, [], ns_MemberTests),
+      Test2: ss.defineClass(Test2, Test2$, [], Test, [], ns_MemberTests)
     });
 
 

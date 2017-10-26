@@ -8,7 +8,7 @@
 
 (function(global) {
   function _ss() {
-
+  #include "Runtime\Assembly.js"
   #include "Runtime\Misc.js"
   #include "Runtime\Collections.js"
   #include "Runtime\Guid.js"
@@ -23,25 +23,35 @@
   #include "Runtime\Format.js"
   #include "Runtime\TypeSystem.js"
 
+  var ns_System = "System";
+  var ns_System$Collections = "System.Collections";
+  var ns_System$ComponentModel = "System.ComponentModel";
+  var ns_System$Reflection = "System.Reflection";
+  var ns_System$Text = "System.Text";
+  var ns_System$Threading = "System.Threading";
+
   return extend(module('ss', null, {
-      IDisposable: defineInterface(IDisposable),
-      IEnumerable: defineInterface(IEnumerable),
-      IEnumerator: defineInterface(IEnumerator),
-      IObserver: defineInterface(IObserver),
-      IApplication: defineInterface(IApplication),
-      IContainer: defineInterface(IContainer),
-      IObjectFactory: defineInterface(IObjectFactory),
-      IEventManager: defineInterface(IEventManager),
-      IInitializable: defineInterface(IInitializable),
-      EventArgs: defineClass(EventArgs, { }, [], null),
-      CancelEventArgs: defineClass(CancelEventArgs, { }, [], null),
-      StringBuilder: defineClass(StringBuilder, StringBuilder$, [], null),
-      Stack: defineClass(Stack, Stack$, [], null),
-      Queue: defineClass(Queue, Queue$, [], null),
-      Observable: defineClass(Observable, Observable$, [], null),
-      ObservableCollection: defineClass(ObservableCollection, ObservableCollection$, [], null, [IEnumerable]),
-      Task: defineClass(Task, Task$, [], null),
-      Guid: defineClass(Guid, Guid$, [], null)
+      IDisposable: defineInterface(IDisposable, [], ns_System),
+      IEnumerable: defineInterface(IEnumerable, [], ns_System$Collections),
+      IEnumerator: defineInterface(IEnumerator, [], ns_System$Collections),
+      IObserver: defineInterface(IObserver, [], ns_System$ComponentModel),
+      IApplication: defineInterface(IApplication, [], ns_System$ComponentModel),
+      IContainer: defineInterface(IContainer, [], ns_System$ComponentModel),
+      IObjectFactory: defineInterface(IObjectFactory, [], ns_System$ComponentModel),
+      IEventManager: defineInterface(IEventManager, [], ns_System$ComponentModel),
+      IInitializable: defineInterface(IInitializable, [], ns_System$ComponentModel),
+      Assembly: defineClass(Assembly, Assembly$, [], null, [], ns_System$Reflection),
+      AssemblyName: defineClass(AssemblyName, AssemblyName$, [], null, [], ns_System$Reflection),
+      EventArgs: defineClass(EventArgs, {}, [], null, [], ns_System),
+      CancelEventArgs: defineClass(CancelEventArgs, {}, [], null, [], ns_System),
+      StringBuilder: defineClass(StringBuilder, StringBuilder$, [], null, [], ns_System$Text),
+      Stack: defineClass(Stack, Stack$, [], null, [], ns_System$Collections),
+      Queue: defineClass(Queue, Queue$, [], null, [], ns_System$Collections),
+      Observable: defineClass(Observable, Observable$, [], null, [], ns_System$ComponentModel),
+      ObservableCollection: defineClass(ObservableCollection, ObservableCollection$, [], null, [IEnumerable], ns_System$Collections),
+      Task: defineClass(Task, Task$, [], null, [], ns_System$Threading),
+      Guid: defineClass(Guid, Guid$, [], null, [], ns_System),
+      Version: defineClass(Version, Version$, [], null, [], ns_System)
     }), {
       version: '1.0',
 

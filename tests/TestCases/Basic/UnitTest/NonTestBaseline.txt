@@ -31,12 +31,14 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var ns_BasicTests = "BasicTests";
+
   var $exports = ss.module('test',
     {
-      InternalClass: ss.defineClass(InternalClass, InternalClass$, [], null)
+      InternalClass: ss.defineClass(InternalClass, InternalClass$, [], null, [], ns_BasicTests)
     },
     {
-      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null)
+      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null, [], ns_BasicTests)
     });
 
 

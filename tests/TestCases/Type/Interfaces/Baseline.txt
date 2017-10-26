@@ -82,15 +82,17 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var ns_TypeTests = "TypeTests";
+
   var $exports = ss.module('test', null,
     {
-      IMarker: ss.defineInterface(IMarker),
-      ISerializable: ss.defineInterface(ISerializable),
-      IRunnable: ss.defineInterface(IRunnable, [IMarker, ss.IDisposable]),
-      MyObject: ss.defineClass(MyObject, MyObject$, [], null, [ss.IDisposable]),
-      Foo: ss.defineClass(Foo, Foo$, [], null, [IMarker, ISerializable, IRunnable]),
-      Program: ss.defineClass(Program, Program$, [], null),
-      MyObject2: ss.defineClass(MyObject2, MyObject2$, [], MyObject, [IRunnable])
+      IMarker: ss.defineInterface(IMarker, [], ns_TypeTests),
+      ISerializable: ss.defineInterface(ISerializable, [], ns_TypeTests),
+      IRunnable: ss.defineInterface(IRunnable, [IMarker, ss.IDisposable], ns_TypeTests),
+      MyObject: ss.defineClass(MyObject, MyObject$, [], null, [ss.IDisposable], ns_TypeTests),
+      Foo: ss.defineClass(Foo, Foo$, [], null, [IMarker, ISerializable, IRunnable], ns_TypeTests),
+      Program: ss.defineClass(Program, Program$, [], null, [], ns_TypeTests),
+      MyObject2: ss.defineClass(MyObject2, MyObject2$, [], MyObject, [IRunnable], ns_TypeTests)
     });
 
 

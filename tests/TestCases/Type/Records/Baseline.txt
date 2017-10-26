@@ -18,6 +18,8 @@ define('test', ['ss'], function(ss) {
   function Pair() { return {}; }
 
 
+  var ns_TypeTests = "TypeTests";
+
   var $exports = ss.module('test', null,
     {
       Point: Point,

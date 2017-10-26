@@ -3,16 +3,29 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using ScriptSharp;
-using ScriptSharp.ScriptModel;
 using System.Linq;
+using ScriptSharp.ScriptModel;
 
-namespace ScriptSharp.Generator {
+namespace ScriptSharp.Generator
+{
 
-    internal static class TypeGenerator {
+    internal static class TypeGenerator
+    {
+        public static void GenerateNamespaceTable(this ScriptGenerator generator, NamespaceTable namespaceTable)
+        {
+            ScriptTextWriter writer = generator.Writer;
+            if(namespaceTable.Namespaces.Count <= 0)
+            {
+                return;
+            }
+
+            foreach(KeyValuePair<string, string> namespaceEntry in namespaceTable.Namespaces)
+            {
+                writer.WriteLine("var {0} = \"{1}\";", namespaceEntry.Value, namespaceEntry.Key);
+            }
+        }
 
         private static void GenerateClass(ScriptGenerator generator, ClassSymbol classSymbol) {
             ScriptTextWriter writer = generator.Writer;
@@ -246,7 +259,11 @@ namespace ScriptSharp.Generator {
             writer.WriteLine();
         }
 
-        public static void GenerateRegistrationScript(ScriptGenerator generator, TypeSymbol typeSymbol) {
+        public static void GenerateRegistrationScript(
+            ScriptGenerator generator, 
+            TypeSymbol typeSymbol, 
+            NamespaceTable namespaceTable)
+        {
             ClassSymbol classSymbol = typeSymbol as ClassSymbol;
 
             if ((classSymbol != null) && classSymbol.IsExtenderClass) {
@@ -254,17 +271,18 @@ namespace ScriptSharp.Generator {
             }
 
             ScriptTextWriter writer = generator.Writer;
+            string namespaceLookup = namespaceTable.GenerateNamespaceRequest(typeSymbol.Namespace);
 
             writer.Write(typeSymbol.GeneratedName);
             writer.Write(": ");
 
             switch (typeSymbol.Type) {
                 case SymbolType.Class:
-                    GenerateClassRegistrationScript(generator, classSymbol);
+                    GenerateClassRegistrationScript(generator, classSymbol, namespaceLookup);
                     
                     break;
                 case SymbolType.Interface:
-                    GenerateInterfaceRegistrationScript(generator, (InterfaceSymbol)typeSymbol);
+                    GenerateInterfaceRegistrationScript(generator, (InterfaceSymbol)typeSymbol, namespaceLookup);
                     
                     break;
                 case SymbolType.Record:
@@ -275,7 +293,7 @@ namespace ScriptSharp.Generator {
             }
         }
 
-        private static void GenerateClassRegistrationScript(ScriptGenerator generator, ClassSymbol classSymbol)
+        private static void GenerateClassRegistrationScript(ScriptGenerator generator, ClassSymbol classSymbol, string namespaceToken)
         {
             ScriptTextWriter writer = generator.Writer;
 
@@ -324,11 +342,12 @@ namespace ScriptSharp.Generator {
             {
                 writer.Write(classSymbol.BaseClass.FullGeneratedName);
             }
-            
+            writer.Write(", ");
+
             //interfaces
             if (classSymbol.Interfaces != null)
             {
-                writer.Write(", [");
+                writer.Write("[");
                 bool first = true;
 
                 foreach (InterfaceSymbol inheritedInterface in classSymbol.Interfaces)
@@ -343,7 +362,18 @@ namespace ScriptSharp.Generator {
 
                 writer.Write("]");
             }
+            else
+            {
+                writer.Write("[]");
+            }
 
+            //namespace
+            if(!string.IsNullOrWhiteSpace(namespaceToken))
+            {
+                writer.Write(", " + namespaceToken);
+            }
+
+            //end
             writer.Write(")");
         }
 
@@ -380,16 +410,17 @@ namespace ScriptSharp.Generator {
             return parameterType.FullGeneratedName;
         }
 
-        private static void GenerateInterfaceRegistrationScript(ScriptGenerator generator, InterfaceSymbol interfaceSymbol)
+        private static void GenerateInterfaceRegistrationScript(ScriptGenerator generator, InterfaceSymbol interfaceSymbol, string namespaceToken)
         {
             ScriptTextWriter writer = generator.Writer;
 
             writer.Write("ss.defineInterface(");
             writer.Write(interfaceSymbol.FullGeneratedName);
+            writer.Write(", ");
 
             if (interfaceSymbol.Interfaces != null)
             {
-                writer.Write(", [");
+                writer.Write("[");
                 bool first = true;
 
                 foreach (InterfaceSymbol inheritedInterface in interfaceSymbol.Interfaces)
@@ -404,6 +435,17 @@ namespace ScriptSharp.Generator {
 
                 writer.Write("]");
             }
+            else
+            {
+                writer.Write("[]");
+            }
+
+            //namespace
+            if(!string.IsNullOrWhiteSpace(namespaceToken))
+            {
+                writer.Write(", "+ namespaceToken);
+            }
+
             writer.Write(")");
         }
 

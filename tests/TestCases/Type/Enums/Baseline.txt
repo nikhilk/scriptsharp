@@ -93,6 +93,8 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var ns_TypeTests = "TypeTests";
+
   var $exports = ss.module('test', null,
     {
       Colors: Colors,
@@ -101,8 +103,8 @@ define('test', ['ss'], function(ss) {
       UInt32Mask: UInt32Mask,
       ShortMask: ShortMask,
       Errors: Errors,
-      App: ss.defineClass(App, App$, [], null),
-      App2: ss.defineClass(App2, App2$, [], null)
+      App: ss.defineClass(App, App$, [], null, [], ns_TypeTests),
+      App2: ss.defineClass(App2, App2$, [], null, [], ns_TypeTests)
     });
 
 

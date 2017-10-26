@@ -52,6 +52,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Reflection\Assembly.cs" />
     <Compile Include="Linq\Linq.cs" />
     <Compile Include="Activator.cs" />
     <Compile Include="Guid.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Export.cs" />
     <Compile Include="Diagnostics\SyntaxValidationAttribute.cs" />
     <Compile Include="NotImplementedException.cs" />
+    <Compile Include="Reflection\AssemblyName.cs" />
     <Compile Include="Runtime\CompilerServices\ScriptAllowSystemNamespaceAttribute.cs" />
     <Compile Include="Threading\Deferred.cs" />
     <Compile Include="Threading\TaskStatus.cs" />
@@ -163,6 +165,7 @@
     <Compile Include="UInt16.cs" />
     <Compile Include="UInt32.cs" />
     <Compile Include="UInt64.cs" />
+    <Compile Include="Version.cs" />
     <Compile Include="Void.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\ScriptSharp.cs">

@@ -108,10 +108,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var ns_ExpressionTests = "ExpressionTests";
+
   var $exports = ss.module('test', null,
     {
-      Data: ss.defineClass(Data, Data$, [], null),
-      App: ss.defineClass(App, App$, [], null)
+      Data: ss.defineClass(Data, Data$, [], null, [], ns_ExpressionTests),
+      App: ss.defineClass(App, App$, [], null, [], ns_ExpressionTests)
     });
 
   Data.staticFlag = false;

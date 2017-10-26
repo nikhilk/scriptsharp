@@ -11,9 +11,11 @@ var App$ = {
 };
 
 
+var ns_Basic = "Basic";
+
 var $exports = ss.module('basic', null,
   {
-    App: ss.defineClass(App, App$, [], null)
+    App: ss.defineClass(App, App$, [], null, [], ns_Basic)
   });
 
 

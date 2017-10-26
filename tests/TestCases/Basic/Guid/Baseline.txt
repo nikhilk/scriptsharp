@@ -13,9 +13,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var ns_GuidTests = "GuidTests";
+
   var $exports = ss.module('test', null,
     {
-      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null)
+      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null, [], ns_GuidTests)
     });
 
 

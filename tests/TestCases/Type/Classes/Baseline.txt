@@ -68,15 +68,17 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var ns_TypeTests = "TypeTests";
+
   var $exports = ss.module('test', null,
     {
-      FooBaz: ss.defineClass(FooBaz, FooBaz$, [], null),
-      BarBaz: ss.defineClass(BarBaz, BarBaz$, [FooBaz], null),
-      MyClass: ss.defineClass(MyClass, MyClass$, [], null),
-      MyClass3: ss.defineClass(MyClass3, MyClass3$, [], null, [ss.IDisposable]),
-      StaticClass: ss.defineClass(StaticClass, null, [], null),
-      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], MyClass),
-      MyClass4: ss.defineClass(MyClass4, MyClass4$, [FooBaz, BarBaz, ss.IDisposable], MyClass, [ss.IDisposable])
+      FooBaz: ss.defineClass(FooBaz, FooBaz$, [], null, [], ns_TypeTests),
+      BarBaz: ss.defineClass(BarBaz, BarBaz$, [FooBaz], null, [], ns_TypeTests),
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [], ns_TypeTests),
+      MyClass3: ss.defineClass(MyClass3, MyClass3$, [], null, [ss.IDisposable], ns_TypeTests),
+      StaticClass: ss.defineClass(StaticClass, null, [], null, [], ns_TypeTests),
+      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], MyClass, [], ns_TypeTests),
+      MyClass4: ss.defineClass(MyClass4, MyClass4$, [FooBaz, BarBaz, ss.IDisposable], MyClass, [ss.IDisposable], ns_TypeTests)
     });
 
 

@@ -349,31 +349,33 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   };
 
 
+  var ns_BasicTests = "BasicTests";
+
   var $exports = ss.module('test',
     {
-      IApp: ss.defineInterface(IApp),
+      IApp: ss.defineInterface(IApp, [], ns_BasicTests),
       MyData: MyData,
-      AppHelper: ss.defineClass(AppHelper, AppHelper$, [], null),
-      InterfaceTest: ss.defineClass(InterfaceTest, InterfaceTest$, [], null, [IInterfaceTest4]),
-      Bar: ss.defineClass(Bar, Bar$, [], null),
-      BaseBaseClass: ss.defineClass(BaseBaseClass, BaseBaseClass$, [], null),
-      ABC: ss.defineClass(ABC, ABC$, [], null),
-      Bar2: ss.defineClass(Bar2, Bar2$, [], Bar),
-      BarCustom: ss.defineClass(BarCustom, BarCustom$, [], Bar),
-      BaseClass: ss.defineClass(BaseClass, BaseClass$, [], BaseBaseClass),
-      BarEx: ss.defineClass(BarEx, BarEx$, [], Bar2),
-      BarCustom2: ss.defineClass(BarCustom2, BarCustom2$, [], BarCustom),
-      DerivedClass: ss.defineClass(DerivedClass, DerivedClass$, [], BaseClass),
-      MaskTextBox: ss.defineClass(MaskTextBox, MaskTextBox$, [Element], lib.TextBox)
+      AppHelper: ss.defineClass(AppHelper, AppHelper$, [], null, [], ns_BasicTests),
+      InterfaceTest: ss.defineClass(InterfaceTest, InterfaceTest$, [], null, [IInterfaceTest4], ns_BasicTests),
+      Bar: ss.defineClass(Bar, Bar$, [], null, [], ns_BasicTests),
+      BaseBaseClass: ss.defineClass(BaseBaseClass, BaseBaseClass$, [], null, [], ns_BasicTests),
+      ABC: ss.defineClass(ABC, ABC$, [], null, [], ns_BasicTests),
+      Bar2: ss.defineClass(Bar2, Bar2$, [], Bar, [], ns_BasicTests),
+      BarCustom: ss.defineClass(BarCustom, BarCustom$, [], Bar, [], ns_BasicTests),
+      BaseClass: ss.defineClass(BaseClass, BaseClass$, [], BaseBaseClass, [], ns_BasicTests),
+      BarEx: ss.defineClass(BarEx, BarEx$, [], Bar2, [], ns_BasicTests),
+      BarCustom2: ss.defineClass(BarCustom2, BarCustom2$, [], BarCustom, [], ns_BasicTests),
+      DerivedClass: ss.defineClass(DerivedClass, DerivedClass$, [], BaseClass, [], ns_BasicTests),
+      MaskTextBox: ss.defineClass(MaskTextBox, MaskTextBox$, [Element], lib.TextBox, [], ns_BasicTests)
     },
     {
       AppFlags: AppFlags,
-      IInterfaceTest1: ss.defineInterface(IInterfaceTest1),
-      IInterfaceTest2: ss.defineInterface(IInterfaceTest2, [IInterfaceTest1]),
-      IInterfaceTest3: ss.defineInterface(IInterfaceTest3),
-      IInterfaceTest4: ss.defineInterface(IInterfaceTest4, [IInterfaceTest2, IInterfaceTest3]),
-      App: ss.defineClass(App, App$, [], null),
-      FooBehavior: ss.defineClass(FooBehavior, FooBehavior$, [Element, Number], lib.Behavior)
+      IInterfaceTest1: ss.defineInterface(IInterfaceTest1, [], ns_BasicTests),
+      IInterfaceTest2: ss.defineInterface(IInterfaceTest2, [IInterfaceTest1], ns_BasicTests),
+      IInterfaceTest3: ss.defineInterface(IInterfaceTest3, [], ns_BasicTests),
+      IInterfaceTest4: ss.defineInterface(IInterfaceTest4, [IInterfaceTest2, IInterfaceTest3], ns_BasicTests),
+      App: ss.defineClass(App, App$, [], null, [], ns_BasicTests),
+      FooBehavior: ss.defineClass(FooBehavior, FooBehavior$, [Element, Number], lib.Behavior, [], ns_BasicTests)
     });
 
 

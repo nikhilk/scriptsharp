@@ -188,21 +188,23 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var ns_MemberTests = "MemberTests";
+
   var $exports = ss.module('test', null,
     {
-      IIndexable: ss.defineInterface(IIndexable),
-      Normal: ss.defineClass(Normal, Normal$, [], null),
-      GetterOnly: ss.defineClass(GetterOnly, GetterOnly$, [], null),
-      VirtualIndexer: ss.defineClass(VirtualIndexer, VirtualIndexer$, [], null),
-      AbstractIndexer: ss.defineClass(AbstractIndexer, AbstractIndexer$, [], null),
-      MultipleArgs: ss.defineClass(MultipleArgs, MultipleArgs$, [], null),
-      ImplementedIndexer2: ss.defineClass(ImplementedIndexer2, ImplementedIndexer2$, [], null, [IIndexable]),
-      Test: ss.defineClass(Test, Test$, [], null),
-      A: ss.defineClass(A, A$, [], null),
-      OverriddenIndexer: ss.defineClass(OverriddenIndexer, OverriddenIndexer$, [], VirtualIndexer),
-      ImplementedIndexer: ss.defineClass(ImplementedIndexer, ImplementedIndexer$, [], AbstractIndexer),
-      B: ss.defineClass(B, B$, [], A),
-      C: ss.defineClass(C, C$, [], B)
+      IIndexable: ss.defineInterface(IIndexable, [], ns_MemberTests),
+      Normal: ss.defineClass(Normal, Normal$, [], null, [], ns_MemberTests),
+      GetterOnly: ss.defineClass(GetterOnly, GetterOnly$, [], null, [], ns_MemberTests),
+      VirtualIndexer: ss.defineClass(VirtualIndexer, VirtualIndexer$, [], null, [], ns_MemberTests),
+      AbstractIndexer: ss.defineClass(AbstractIndexer, AbstractIndexer$, [], null, [], ns_MemberTests),
+      MultipleArgs: ss.defineClass(MultipleArgs, MultipleArgs$, [], null, [], ns_MemberTests),
+      ImplementedIndexer2: ss.defineClass(ImplementedIndexer2, ImplementedIndexer2$, [], null, [IIndexable], ns_MemberTests),
+      Test: ss.defineClass(Test, Test$, [], null, [], ns_MemberTests),
+      A: ss.defineClass(A, A$, [], null, [], ns_MemberTests),
+      OverriddenIndexer: ss.defineClass(OverriddenIndexer, OverriddenIndexer$, [], VirtualIndexer, [], ns_MemberTests),
+      ImplementedIndexer: ss.defineClass(ImplementedIndexer, ImplementedIndexer$, [], AbstractIndexer, [], ns_MemberTests),
+      B: ss.defineClass(B, B$, [], A, [], ns_MemberTests),
+      C: ss.defineClass(C, C$, [], B, [], ns_MemberTests)
     });
 
 

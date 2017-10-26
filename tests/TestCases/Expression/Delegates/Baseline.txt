@@ -55,12 +55,14 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  var ns_ExpressionTests = "ExpressionTests";
+
   var $exports = ss.module('test', null,
     {
-      EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null),
-      SomeClass: ss.defineClass(SomeClass, SomeClass$, [Function], null),
-      Test: ss.defineClass(Test, Test$, [], null),
-      Test2: ss.defineClass(Test2, Test2$, [], null)
+      EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null, [], ns_ExpressionTests),
+      SomeClass: ss.defineClass(SomeClass, SomeClass$, [Function], null, [], ns_ExpressionTests),
+      Test: ss.defineClass(Test, Test$, [], null, [], ns_ExpressionTests),
+      Test2: ss.defineClass(Test2, Test2$, [], null, [], ns_ExpressionTests)
     });
 
 

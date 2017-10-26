@@ -19,6 +19,7 @@
     <Content Include="Runtime.js" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Runtime\Assembly.js" />
     <Content Include="Runtime\Collections.js" />
     <Content Include="Runtime\Guid.js" />
     <Content Include="Runtime\String.js" />
