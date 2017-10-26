@@ -1,10 +1,10 @@
 ﻿function Assembly(assemblyName, exportedTypes) {
     this._assemblyName = assemblyName;
 
-    createPropertyGet(this, "exportedTypes", function () {
+    createPropertyGet(this, "ExportedTypes", function () {
         return exportedTypes;
     });
-    createPropertyGet(this, "fullName", function () {
+    createPropertyGet(this, "FullName", function () {
         return this._assemblyName.toString();
     });
 }
