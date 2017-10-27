@@ -34,7 +34,7 @@ define('test', ['ss'], function(ss) {
 
   var ns_ExpressionTests = "ExpressionTests";
 
-  var $exports = ss.module('test', null,
+  var $exports = ss.module('test', '', null,
     {
       Foo: ss.defineClass(Foo, Foo$, [Number, Number], null, [], ns_ExpressionTests),
       Bar: ss.defineClass(Bar, Bar$, [Number, Number, Foo], Foo, [], ns_ExpressionTests)

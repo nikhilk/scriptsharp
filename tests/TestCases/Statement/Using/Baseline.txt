@@ -40,7 +40,7 @@ define('test', ['ss'], function(ss) {
 
   var ns_StatementTests = "StatementTests";
 
-  var $exports = ss.module('test', null,
+  var $exports = ss.module('test', '', null,
     {
       App: ss.defineClass(App, App$, [], null, [ss.IDisposable], ns_StatementTests)
     });

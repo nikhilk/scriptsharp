@@ -59,7 +59,7 @@ define('test', ['ss'], function(ss) {
 
   var ns_MemberTests = "MemberTests";
 
-  var $exports = ss.module('test',
+  var $exports = ss.module('test', '',
     {
       Point: Point
     },

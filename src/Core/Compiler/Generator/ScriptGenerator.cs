@@ -142,6 +142,8 @@ namespace ScriptSharp.Generator
 
                 _writer.Write("var $exports = ss.module('");
                 _writer.Write(symbolSet.ScriptName);
+                _writer.Write("','");
+                _writer.Write(symbolSet.ScriptVersion);
                 _writer.Write("',");
                 if ((internalTypes.Count != 0) && hasNonModuleInternalTypes) {
                     _writer.WriteLine();

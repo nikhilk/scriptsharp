@@ -90,6 +90,8 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public string ScriptVersion { get; set; }
+
         public NamespaceSymbol SystemNamespace {
             get {
                 return _systemNamespace;
@@ -718,6 +720,7 @@ namespace ScriptSharp.ScriptModel {
                 return _namespaces;
             }
         }
+
 
         Symbol ISymbolTable.FindSymbol(string name, Symbol context, SymbolFilter filter) {
             if ((filter & SymbolFilter.Types) == 0) {

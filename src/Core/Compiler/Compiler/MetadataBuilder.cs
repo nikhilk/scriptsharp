@@ -106,6 +106,7 @@ namespace ScriptSharp.Compiler {
                 _options.ScriptInfo.Copyright = copyright;
             }
             if (version != null) {
+                _symbols.ScriptVersion = version;
                 _options.ScriptInfo.Version = version;
             }
         }

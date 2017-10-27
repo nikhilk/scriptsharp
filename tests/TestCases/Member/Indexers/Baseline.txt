@@ -190,7 +190,7 @@ define('test', ['ss'], function(ss) {
 
   var ns_MemberTests = "MemberTests";
 
-  var $exports = ss.module('test', null,
+  var $exports = ss.module('test', '', null,
     {
       IIndexable: ss.defineInterface(IIndexable, [], ns_MemberTests),
       Normal: ss.defineClass(Normal, Normal$, [], null, [], ns_MemberTests),

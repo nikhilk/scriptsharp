@@ -84,7 +84,7 @@ define('test', ['ss'], function(ss) {
   var ns_BasicTests$Tests$Helpers = "BasicTests.Tests.Helpers";
   var ns_BasicTests$Tests = "BasicTests.Tests";
 
-  var $exports = ss.module('test',
+  var $exports = ss.module('test', '',
     {
       InternalClass: ss.defineClass(InternalClass, InternalClass$, [], null, [], ns_BasicTests),
       Foo: ss.defineClass(Foo, Foo$, [], null, [], ns_BasicTests$Tests$Helpers),

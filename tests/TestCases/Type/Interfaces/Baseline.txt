@@ -84,7 +84,7 @@ define('test', ['ss'], function(ss) {
 
   var ns_TypeTests = "TypeTests";
 
-  var $exports = ss.module('test', null,
+  var $exports = ss.module('test', '', null,
     {
       IMarker: ss.defineInterface(IMarker, [], ns_TypeTests),
       ISerializable: ss.defineInterface(ISerializable, [], ns_TypeTests),

@@ -97,7 +97,7 @@ define('test', ['ss'], function(ss) {
 
   var ns_ExpressionTests = "ExpressionTests";
 
-  var $exports = ss.module('test', null,
+  var $exports = ss.module('test', '', null,
     {
       IFoo: ss.defineInterface(IFoo, [], ns_ExpressionTests),
       BApp: ss.defineClass(BApp, BApp$, [], null, [], ns_ExpressionTests),

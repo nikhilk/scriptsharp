@@ -203,10 +203,11 @@ function safeCast(instance, type) {
   return instanceOf(type, instance) ? instance : null;
 }
 
-function module(name, implementation, exports) {
+function module(name, version, implementation, exports) {
   var registry = _modules[name] = { $name: name };
   var exportedTypes = {};
-  var assembly = new Assembly(name, exportedTypes);
+  var assemblyName = new AssemblyName(name, version);
+  var assembly = new Assembly(assemblyName, exportedTypes);
 
   if (exports) {
     for (var typeName in exports) {
