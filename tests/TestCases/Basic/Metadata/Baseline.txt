@@ -4106,7 +4106,7 @@ define('test', ['ss'], function(ss) {
 
   var ns_BasicTests = "BasicTests";
 
-  var $exports = ss.module('test',
+  var $exports = ss.module('test', '',
     {
       IFoo: ss.defineInterface(IFoo, [], ns_BasicTests),
       Point: Point,

@@ -122,7 +122,7 @@ define('test', ['ss'], function(ss) {
 
   var ns_TypeTests = "TypeTests";
 
-  var $exports = ss.module('test',
+  var $exports = ss.module('test', '',
     {
       SingleMemberClass: ss.defineClass(SingleMemberClass, SingleMemberClass$, [], null, [], ns_TypeTests),
       SomeClass: ss.defineClass(SomeClass, SomeClass$, [], null, [], ns_TypeTests)

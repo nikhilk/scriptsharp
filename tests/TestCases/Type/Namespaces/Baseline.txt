@@ -91,7 +91,7 @@ define('test', ['ss'], function(ss) {
   var ns_MyCompany$MyProduct = "MyCompany.MyProduct";
   var ns_MyCompany$MyProduct$MyComponent = "MyCompany.MyProduct.MyComponent";
 
-  var $exports = ss.module('test', null,
+  var $exports = ss.module('test', '', null,
     {
       MyClass: ss.defineClass(MyClass, MyClass$, [], null, [], ns_TypeTests$Sub1$Sub2),
       YourClass: ss.defineClass(YourClass, YourClass$, [], null, [], ns_TypeTests$Sub1),

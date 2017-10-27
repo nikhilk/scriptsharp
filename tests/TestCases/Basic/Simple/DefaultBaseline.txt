@@ -63,7 +63,7 @@ define('basic', ['ss'], function(ss) {
 
   var ns_Basic = "Basic";
 
-  var $exports = ss.module('basic', null,
+  var $exports = ss.module('basic', '1.0.0.0', null,
     {
       EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null, [], ns_Basic),
       Button: ss.defineClass(Button, Button$, [String], null, [], ns_Basic),

@@ -18,7 +18,7 @@ define('test', ['ss'], function(ss) {
 
   var ns_ExpressionTests = "ExpressionTests";
 
-  var $exports = ss.module('test', null,
+  var $exports = ss.module('test', '', null,
     {
       Test: ss.defineClass(Test, Test$, [], null, [], ns_ExpressionTests)
     });

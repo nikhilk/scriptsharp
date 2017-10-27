@@ -70,7 +70,7 @@ define('test', ['ss'], function(ss) {
 
   var ns_TypeTests = "TypeTests";
 
-  var $exports = ss.module('test', null,
+  var $exports = ss.module('test', '', null,
     {
       FooBaz: ss.defineClass(FooBaz, FooBaz$, [], null, [], ns_TypeTests),
       BarBaz: ss.defineClass(BarBaz, BarBaz$, [FooBaz], null, [], ns_TypeTests),

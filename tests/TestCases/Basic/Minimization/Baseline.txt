@@ -351,7 +351,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
 
   var ns_BasicTests = "BasicTests";
 
-  var $exports = ss.module('test',
+  var $exports = ss.module('test', '',
     {
       IApp: ss.defineInterface(IApp, [], ns_BasicTests),
       MyData: MyData,
