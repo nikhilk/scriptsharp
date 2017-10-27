@@ -30,7 +30,7 @@
   var ns_System$Text = "System.Text";
   var ns_System$Threading = "System.Threading";
 
-  return extend(module('ss', null, {
+  return extend(module('ss', '1.0.0.0', null, {
       IDisposable: defineInterface(IDisposable, [], ns_System),
       IEnumerable: defineInterface(IEnumerable, [], ns_System$Collections),
       IEnumerator: defineInterface(IEnumerator, [], ns_System$Collections),
