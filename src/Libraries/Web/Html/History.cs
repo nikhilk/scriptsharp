@@ -36,6 +36,13 @@ namespace System.Html {
         }
 
         /// <summary>
+        /// Allows web applications to explicitly set default scroll restoration
+        /// behavior on history navigation. This property can be either 'auto' or 'manual'
+        /// </summary>
+        [ScriptField]
+        public string ScrollRestoration { get; set; }
+
+        /// <summary>
         /// Navigates to the previous page in history.
         /// </summary>
         public void Back() {
@@ -87,9 +94,5 @@ namespace System.Html {
         /// <param name="url">The URL to place into history.</param>
         public void ReplaceState(object data, string title, string url) {
         }
-
-        public static extern string ScrollRestoration { get; set; }
-
-
     }
 }
