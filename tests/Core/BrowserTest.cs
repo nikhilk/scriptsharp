@@ -30,9 +30,9 @@ namespace ScriptSharp.Tests.Core {
 
         static BrowserTest() {
             string assemblyPath = typeof(BrowserTest).Assembly.GetModules()[0].FullyQualifiedName;
-            string binDirectory = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\..\\bin\\Debug\\"));
+            string binDirectory = Path.GetFullPath(Path.Combine(assemblyPath, "..\\Test\\"));
 
-            string webRoot = Path.GetFullPath(Path.Combine(assemblyPath, "..\\..\\..\\TestSite\\"));
+            string webRoot = Path.GetFullPath(Path.Combine(assemblyPath, "..\\TestSite\\"));
             string scriptsDirectory = Path.Combine(webRoot, "Scripts");
             string codeDirectory = Path.Combine(webRoot, "Code");
 
@@ -81,7 +81,8 @@ namespace ScriptSharp.Tests.Core {
             Uri testUri = _webTest.GetTestUri(url);
 
             WebTestResult result = _webTest.RunTest(testUri, WebBrowser.Chrome);
-            Assert.IsTrue(result.Succeeded, "Log:\r\n" + result.Log);
+            Console.Write(result.Log);
+            Assert.IsTrue(result.Succeeded, "Log:\n" + result.Log);
         }
     }
 }

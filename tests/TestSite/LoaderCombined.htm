@@ -30,7 +30,7 @@ asyncTest('chained dependencies', function() {
 
     QUnit.equal(b.$name, 'B', 'Expected B dependency.');
     QUnit.equal(b.$dep.$name, 'A', 'Expected A to have been loaded.');
-    QUnit.equal(b.$dep.$dep.version, '0.8', 'Expected scriptsharp to have been loaded.');
+    QUnit.equal(b.$dep.$dep.version, '1.0', 'Expected scriptsharp to have been loaded.');
 
     QUnit.stop();
   });

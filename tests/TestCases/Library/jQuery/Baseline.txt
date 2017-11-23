@@ -37,9 +37,10 @@ define('test', ['ss', 'jquery'], function(ss, $) {
   };
 
 
-  var $exports = ss.module('test', null,
+
+  var $exports = ss.module('test', '', null,
     {
-      MyApp: [ MyApp, MyApp$, null ]
+      MyApp: ss.defineClass(MyApp, MyApp$, [], null, [])
     });
 
   (function() {

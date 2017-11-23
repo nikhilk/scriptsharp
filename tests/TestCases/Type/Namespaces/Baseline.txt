@@ -82,16 +82,25 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var ns_TypeTests$Sub1$Sub2 = "TypeTests.Sub1.Sub2";
+  var ns_TypeTests$Sub1 = "TypeTests.Sub1";
+  var ns_TypeTests = "TypeTests";
+  var ns_MyApp$Foo = "MyApp.Foo";
+  var ns_MyApp = "MyApp";
+  var ns_MyCompany = "MyCompany";
+  var ns_MyCompany$MyProduct = "MyCompany.MyProduct";
+  var ns_MyCompany$MyProduct$MyComponent = "MyCompany.MyProduct.MyComponent";
+
+  var $exports = ss.module('test', '', null,
     {
-      MyClass: [ MyClass, MyClass$, null ],
-      YourClass: [ YourClass, YourClass$, null ],
-      YourClass1: [ YourClass1, YourClass1$, null ],
-      MyClassF: [ MyClassF, MyClassF$, null ],
-      Test: [ Test, Test$, null ],
-      Utility: [ Utility, Utility$, null ],
-      UtilityP: [ UtilityP, UtilityP$, null ],
-      Component: [ Component, Component$, null ]
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [], ns_TypeTests$Sub1$Sub2),
+      YourClass: ss.defineClass(YourClass, YourClass$, [], null, [], ns_TypeTests$Sub1),
+      YourClass1: ss.defineClass(YourClass1, YourClass1$, [], null, [], ns_TypeTests),
+      MyClassF: ss.defineClass(MyClassF, MyClassF$, [], null, [], ns_MyApp$Foo),
+      Test: ss.defineClass(Test, Test$, [], null, [], ns_MyApp),
+      Utility: ss.defineClass(Utility, Utility$, [], null, [], ns_MyCompany),
+      UtilityP: ss.defineClass(UtilityP, UtilityP$, [], null, [], ns_MyCompany$MyProduct),
+      Component: ss.defineClass(Component, Component$, [], null, [], ns_MyCompany$MyProduct$MyComponent)
     });
 
 

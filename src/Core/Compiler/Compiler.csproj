@@ -16,6 +16,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,7 +52,9 @@
     <Compile Include="..\ResXParser.cs">
       <Link>ResXParser.cs</Link>
     </Compile>
+    <Compile Include="Generator\NamespaceTable.cs" />
     <Compile Include="IStreamSourceResolver.cs" />
+    <Compile Include="ScriptModel\Statements\UsingStatement.cs" />
     <Compile Include="ScriptReference.cs" />
     <Compile Include="ScriptInfo.cs" />
     <Compile Include="Importer\IL\ArrayType.cs" />
@@ -470,6 +474,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)version.targets" Condition="Exists('$(SolutionDir)version.targets')" />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>

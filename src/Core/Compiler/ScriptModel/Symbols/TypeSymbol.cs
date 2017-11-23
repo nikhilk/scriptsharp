@@ -99,6 +99,14 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public override string GeneratedName
+        {
+            get
+            {
+                return base.GeneratedName.Replace("`", "_$");
+            }
+        }
+
         public ICollection<TypeSymbol> GenericArguments {
             get {
                 return _genericArguments;

@@ -13,7 +13,8 @@ using System.Linq;
 using ScriptSharp;
 using ScriptSharp.ScriptModel;
 
-namespace ScriptSharp.Generator {
+namespace ScriptSharp.Generator
+{
 
     internal sealed class ScriptGenerator {
 
@@ -134,8 +135,15 @@ namespace ScriptSharp.Generator {
                                   ((internalTypes.Count != 0) && hasNonModuleInternalTypes);
 
             if (generateModule) {
+
+                NamespaceTable namespaceTable = BuildNamespaceTable(types);
+                this.GenerateNamespaceTable(namespaceTable);
+                _writer.WriteLine();
+
                 _writer.Write("var $exports = ss.module('");
                 _writer.Write(symbolSet.ScriptName);
+                _writer.Write("', '");
+                _writer.Write(symbolSet.ScriptVersion);
                 _writer.Write("',");
                 if ((internalTypes.Count != 0) && hasNonModuleInternalTypes) {
                     _writer.WriteLine();
@@ -156,7 +164,7 @@ namespace ScriptSharp.Generator {
                         if (firstType == false) {
                             _writer.WriteLine(",");
                         }
-                        TypeGenerator.GenerateRegistrationScript(this, type);
+                        TypeGenerator.GenerateRegistrationScript(this, type, namespaceTable);
                         firstType = false;
                     }
                     _writer.Indent--;
@@ -182,7 +190,7 @@ namespace ScriptSharp.Generator {
                         if (firstType == false) {
                             _writer.WriteLine(",");
                         }
-                        TypeGenerator.GenerateRegistrationScript(this, type);
+                        TypeGenerator.GenerateRegistrationScript(this, type, namespaceTable);
                         firstType = false;
                     }
                     _writer.Indent--;
@@ -215,6 +223,18 @@ namespace ScriptSharp.Generator {
             if (initialIndent) {
                 _writer.Indent--;
             }
+        }
+
+        private NamespaceTable BuildNamespaceTable(IList<TypeSymbol> types)
+        {
+            NamespaceTable namespaceTable = new NamespaceTable();        
+
+            foreach(TypeSymbol typeSymbol in types)
+            {
+                namespaceTable.AddNamespace(typeSymbol.Namespace);
+            }
+
+            return namespaceTable;
         }
 
         public void StartImplementation(SymbolImplementation implementation) {

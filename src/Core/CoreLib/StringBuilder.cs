@@ -5,7 +5,7 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System {
+namespace System.Text {
 
     /// <summary>
     /// Provides an optimized mechanism to concatenate strings.

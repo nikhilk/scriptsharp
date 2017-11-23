@@ -33,22 +33,9 @@ namespace ScriptSharp.Validator {
                 return false;
             }
 
-            if (typeNode.Type == TokenType.Struct) {
-                errorHandler.ReportError("Struct types are not supported. Use classes annotated with the Record metadata attribute.",
-                                         typeNode.Token.Location);
-                return false;
-            }
-
             if (((typeNode.Modifiers & Modifiers.Partial) != 0) &&
                 (typeNode.Type != TokenType.Class)) {
                 errorHandler.ReportError("Partial types can only be classes, not enumerations or interfaces.",
-                                         typeNode.Token.Location);
-                return false;
-            }
-
-            if ((typeNode.Type == TokenType.Interface) &&
-                (typeNode.BaseTypes.Count != 0)) {
-                errorHandler.ReportError("Derived interface types are not supported.",
                                          typeNode.Token.Location);
                 return false;
             }

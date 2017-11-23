@@ -31,15 +31,39 @@ define('test', ['ss'], function(ss) {
   // TypeTests.Foo
 
   function Foo() {
+    this._someValues = {};
   }
   var Foo$ = {
-    get_canRun: function() {
+    $get_canRun: function() {
       return true;
     },
     run: function() {
     },
     serialize: function() {
       return null;
+    },
+    dispose: function() {
+    },
+    get_item: function(key) {
+      return this._someValues[key];
+    },
+    set_item: function(key, value) {
+      this._someValues[key] = value;
+      return value;
+    }
+  };
+
+
+  // TypeTests.Program
+
+  function Program() {
+  }
+  var Program$ = {
+    useInterfaces: function(runnable) {
+      runnable.dispose();
+      var s = [];
+      ss.enumerate(s);
+      var someValue = new Foo().get_item('someValuesKey');
     }
   };
 
@@ -50,7 +74,7 @@ define('test', ['ss'], function(ss) {
     MyObject.call(this);
   }
   var MyObject2$ = {
-    get_canRun: function() {
+    $get_canRun: function() {
       return true;
     },
     run: function() {
@@ -58,14 +82,17 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var ns_TypeTests = "TypeTests";
+
+  var $exports = ss.module('test', '', null,
     {
-      IMarker: [ IMarker ],
-      ISerializable: [ ISerializable ],
-      IRunnable: [ IRunnable ],
-      MyObject: [ MyObject, MyObject$, null, ss.IDisposable ],
-      Foo: [ Foo, Foo$, null, IMarker, ISerializable, IRunnable ],
-      MyObject2: [ MyObject2, MyObject2$, MyObject, IRunnable ]
+      IMarker: ss.defineInterface(IMarker, [], ns_TypeTests),
+      ISerializable: ss.defineInterface(ISerializable, [], ns_TypeTests),
+      IRunnable: ss.defineInterface(IRunnable, [IMarker, ss.IDisposable], ns_TypeTests),
+      MyObject: ss.defineClass(MyObject, MyObject$, [], null, [ss.IDisposable], ns_TypeTests),
+      Foo: ss.defineClass(Foo, Foo$, [], null, [IMarker, ISerializable, IRunnable], ns_TypeTests),
+      Program: ss.defineClass(Program, Program$, [], null, [], ns_TypeTests),
+      MyObject2: ss.defineClass(MyObject2, MyObject2$, [], MyObject, [IRunnable], ns_TypeTests)
     });
 
 

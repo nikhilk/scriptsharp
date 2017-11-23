@@ -26,6 +26,22 @@ function extend(o, items) {
   return o;
 }
 
+function extendType(o, items) {
+    for (var n in items) {
+        if (startsWith(n, "$get_")) {
+            createPropertyGet(o, n.slice(5), items[n]);
+        }
+        else if (startsWith(n, "$set_")) {
+            createPropertySet(o, n.slice(5), items[n]);
+        }
+        else {
+            o[n] = items[n];
+        }
+    }
+    return o;
+}
+
+
 function parseBoolean(s) {
   return (s.toLowerCase() == 'true');
 }
@@ -129,3 +145,17 @@ function fail(message) {
   }
 }
 
+function paramsGenerator(n, f) {
+    return function () {
+        var slice = Array.prototype.slice;
+        var args = slice.call(arguments, 0, n);
+        if (arguments.length == n + 1 && Array.isArray(arguments[n])) {
+            args.push(arguments[n]);
+        }
+        else {
+            var unnamed = slice.call(arguments, n);
+            args.push(unnamed);
+        }
+        return f.apply(this, args);
+    }
+}

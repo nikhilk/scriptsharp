@@ -16,6 +16,7 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\..\..\..\bin\Debug\</OutputPath>
@@ -77,5 +78,6 @@
   <Target Name="AfterBuild">
     <Copy SourceFiles="@(ScriptInfo)" DestinationFiles="$(OutputPath)$(AssemblyName).txt" />
   </Target>
+  <Import Project="$(SolutionDir)version.targets" Condition="Exists('$(SolutionDir)version.targets')" />
   <Import Project="..\..\..\packages\ScriptSharp.0.8\tools\ScriptSharp.targets" Condition="Exists('..\..\..\packages\ScriptSharp.0.8\tools\ScriptSharp.targets')" />
 </Project>

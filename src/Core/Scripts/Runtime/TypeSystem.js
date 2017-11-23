@@ -5,19 +5,20 @@ var _modules = {};
 var _classMarker = 'class';
 var _interfaceMarker = 'interface';
 
-function createType(typeName, typeInfo, typeRegistry) {
+function createType(typeName, typeInfo, typeRegistry, assemblyReference) {
   // The typeInfo is either an array of information representing
   // classes and interfaces, or an object representing enums and resources
   // or a function, representing a record factory.
 
   if (Array.isArray(typeInfo)) {
-    var type = typeInfo[0];
-
+      var typeMarker = typeInfo[0];
+      var type = typeInfo[1];
+      var prototypeDescription = typeInfo[2];
+      var baseType = typeInfo[3];
     // A class is minimally the class type and an object representing
     // its prototype members, and optionally the base type, and references
     // to interfaces implemented by the class.
-    if (typeInfo.length >= 2) {
-      var baseType = typeInfo[2];
+    if (typeMarker === _classMarker) {
       if (baseType) {
         // Chain the prototype of the base type (using an anonymous type
         // in case the base class is not creatable, or has side-effects).
@@ -28,21 +29,52 @@ function createType(typeName, typeInfo, typeRegistry) {
       }
 
       // Add the type's prototype members if there are any
-      typeInfo[1] && extend(type.prototype, typeInfo[1]);
-
+      prototypeDescription && extendType(type.prototype, prototypeDescription);
       type.$base = baseType || Object;
-      type.$interfaces = typeInfo.slice(3);
-      type.$type = _classMarker;
-    }
-    else {
-      type.$type = _interfaceMarker;
     }
 
     type.$name = typeName;
+    type.$assembly = assemblyReference;
+
     return typeRegistry[typeName] = type;
   }
 
   return typeInfo;
+}
+
+function defineClass(type, prototypeDescription, constructorParams, baseType, interfaces, namespace) {
+    type.$constructorParams = constructorParams;
+    type.$type = _classMarker;
+    assignTypeProperties(type, interfaces, namespace);
+    return [_classMarker, type, prototypeDescription, baseType];
+}
+
+function defineInterface(type, interfaces, namespace) {
+    type.$type = _interfaceMarker;
+    assignTypeProperties(type, interfaces, namespace);
+    return [_interfaceMarker, type];
+}
+
+function assignTypeProperties(type, interfaces, namespace) {
+    type.$interfaces = interfaces;
+    type.$namespace = namespace;
+    createPropertyGet(type, "$fullName", function () {
+        return this.$namespace + "." + this.$name;
+    });
+}
+
+function createPropertyGet(obj, propertyName, fn) {
+    Object.defineProperty(obj, propertyName, {
+        configurable: true,
+        get: fn
+    });
+}
+
+function createPropertySet(obj, propertyName, fn) {
+    Object.defineProperty(obj, propertyName, {
+        configurable: true,
+        set: fn
+    });
 }
 
 function isClass(fn) {
@@ -120,14 +152,32 @@ function canAssign(type, otherType) {
   else if (type.$type == _interfaceMarker) {
     var baseType = otherType;
     while (baseType) {
-      var interfaces = baseType.$interfaces;
-      if (interfaces && (interfaces.indexOf(type) >= 0)) {
-        return true;
+        if (interfaceOf(baseType, type))
+      {
+          return true;
       }
+
       baseType = baseType.$base;
     }
   }
   return false;
+}
+
+function interfaceOf(baseType, otherType) {
+    if (baseType == otherType) {
+        return true;
+    }
+
+    var interfaces = baseType.$interfaces;
+
+    if (interfaces) {
+        for (var i = 0, ln = interfaces.length; i < ln; ++i) {
+            if (interfaceOf(interfaces[i], otherType)) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 function instanceOf(type, instance) {
@@ -153,22 +203,39 @@ function safeCast(instance, type) {
   return instanceOf(type, instance) ? instance : null;
 }
 
-function module(name, implementation, exports) {
+function module(name, version, implementation, exports) {
   var registry = _modules[name] = { $name: name };
+  var exportedTypes = {};
+  var assemblyName = new AssemblyName(name, version);
+  var assembly = new Assembly(assemblyName, exportedTypes);
+
+  if (exports) {
+    for (var typeName in exports) {
+        exportedTypes[typeName] = createType(typeName, exports[typeName], registry, assembly);
+    }
+  }
 
   if (implementation) {
     for (var typeName in implementation) {
-      createType(typeName, implementation[typeName], registry);
+        createType(typeName, implementation[typeName], registry, assembly);
     }
   }
 
-  var api = {};
-  if (exports) {
-    for (var typeName in exports) {
-      api[typeName] = createType(typeName, exports[typeName], registry);
-    }
-  }
-
-  return api;
+  return exportedTypes;
 }
 
+function baseProperty(type, propertyName) {
+    var baseType = type.$base;
+    return Object.getOwnPropertyDescriptor(baseType.prototype, propertyName) || baseProperty(baseType, propertyName);
+}
+
+function getConstructorParams(type) {
+    return type.$constructorParams;
+}
+
+function createInstance(type, parameters) {
+    var proto = type.prototype;
+    var instance = Object.create(proto);
+    proto.constructor.apply(instance, parameters);
+    return instance;
+}

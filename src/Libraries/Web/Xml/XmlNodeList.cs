@@ -10,6 +10,7 @@ namespace System.Xml {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
+    [ScriptName("NodeList")]
     public sealed class XmlNodeList : IEnumerable {
 
         internal XmlNodeList() {

@@ -80,15 +80,19 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test',
+  var ns_BasicTests = "BasicTests";
+  var ns_BasicTests$Tests$Helpers = "BasicTests.Tests.Helpers";
+  var ns_BasicTests$Tests = "BasicTests.Tests";
+
+  var $exports = ss.module('test', '',
     {
-      InternalClass: [ InternalClass, InternalClass$, null ],
-      Foo: [ Foo, Foo$, null ],
-      PublicTests: [ PublicTests, PublicTests$, null ],
-      InternalTests: [ InternalTests, InternalTests$, null ]
+      InternalClass: ss.defineClass(InternalClass, InternalClass$, [], null, [], ns_BasicTests),
+      Foo: ss.defineClass(Foo, Foo$, [], null, [], ns_BasicTests$Tests$Helpers),
+      PublicTests: ss.defineClass(PublicTests, PublicTests$, [], null, [], ns_BasicTests$Tests),
+      InternalTests: ss.defineClass(InternalTests, InternalTests$, [], null, [], ns_BasicTests$Tests)
     },
     {
-      PublicClass: [ PublicClass, PublicClass$, null ]
+      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null, [], ns_BasicTests)
     });
 
 

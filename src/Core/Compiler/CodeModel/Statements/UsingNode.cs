@@ -21,5 +21,21 @@ namespace ScriptSharp.CodeModel {
             _guard = GetParentedNode(guard);
             _body = GetParentedNode(body);
         }
+
+        public ParseNode Body
+        {
+            get
+            {
+                return _body;
+            }
+        }
+
+        public ParseNode Guard
+        {
+            get
+            {
+                return _guard;
+            }
+        }
     }
 }

@@ -194,6 +194,25 @@ namespace System.Html {
             }
         }
 
+        [ScriptField]
+        public bool Bubbles
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        [ScriptField]
+        public bool Cancelable
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+
         public void PreventDefault() {
         }
 

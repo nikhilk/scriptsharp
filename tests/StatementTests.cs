@@ -62,6 +62,15 @@ namespace ScriptSharp.Tests {
         }
 
         [TestMethod]
+        public void TestUsing()
+        {
+            RunTest((c) =>
+            {
+                c.AddSource("Code.cs");
+            });
+        }
+
+        [TestMethod]
         public void TestVariables() {
             RunTest((c) => {
                 c.AddSource("Code.cs");

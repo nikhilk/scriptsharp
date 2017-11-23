@@ -101,6 +101,7 @@ namespace ScriptSharp.Validator {
                 case ParseNodeType.UsingAlias:
                 case ParseNodeType.AnonymousMethod:
                 case ParseNodeType.BinaryExpression:
+                case ParseNodeType.Using:
                     // No validation required
                     break;
                 case ParseNodeType.PointerType:
@@ -114,7 +115,6 @@ namespace ScriptSharp.Validator {
                 case ParseNodeType.LabeledStatement:
                 case ParseNodeType.Checked:
                 case ParseNodeType.Unchecked:
-                case ParseNodeType.Using:
                 case ParseNodeType.Sizeof:
                 case ParseNodeType.Fixed:
                 case ParseNodeType.StackAlloc:

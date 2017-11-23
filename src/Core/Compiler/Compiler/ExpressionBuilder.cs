@@ -938,8 +938,9 @@ namespace ScriptSharp.Compiler {
             if (leftExpression.EvaluatedType.Type != SymbolType.Interface) {
                 indexer = ((ClassSymbol)leftExpression.EvaluatedType).GetIndexer();
             }
-            else {
-                indexer = ((InterfaceSymbol)leftExpression.EvaluatedType).Indexer;
+            else
+            {
+                indexer = GetInterfaceIndexer((InterfaceSymbol)leftExpression.EvaluatedType);
             }
             Debug.Assert(indexer != null);
             Debug.Assert(indexer.MatchFilter(leftExpression.MemberMask));
@@ -954,6 +955,33 @@ namespace ScriptSharp.Compiler {
             }
 
             return indexerExpression;
+        }
+
+        private static IndexerSymbol GetInterfaceIndexer(InterfaceSymbol interfaceSymbol)
+        {
+            if(interfaceSymbol == null)
+            {
+                return null;
+            }
+
+            return interfaceSymbol.Indexer ?? GetInheritedInterfaceIndexer(interfaceSymbol);
+        }
+
+        private static IndexerSymbol GetInheritedInterfaceIndexer(InterfaceSymbol interfaceSymbol)
+        {
+            foreach(InterfaceSymbol inheritedInterface in interfaceSymbol.Interfaces)
+            {
+                IndexerSymbol indexer = inheritedInterface.Indexer != null
+                    ? inheritedInterface.Indexer
+                    : GetInheritedInterfaceIndexer(inheritedInterface);
+
+                if(indexer != null)
+                {
+                    return indexer;
+                }
+            }
+
+            return null;
         }
 
         private Expression ProcessOpenParenExpressionNode(BinaryExpressionNode node) {
@@ -1201,36 +1229,6 @@ namespace ScriptSharp.Compiler {
                         methodExpression.AddParameterValue(args[0]);
 
                         return new UnaryExpression(Operator.LogicalNot, methodExpression);
-                    }
-                    else if (method.Name.Equals("CreateInstance", StringComparison.Ordinal)) {
-                        Debug.Assert(args.Count >= 1);
-
-                        if ((args[0].Type == ExpressionType.MethodInvoke) ||
-                            (args[0].Type == ExpressionType.PropertyGet)) {
-                            // When using the result of a method call/property access directly
-                            // with Type.CreateInstance, the following script would be generated:
-                            //
-                            // new method()()
-                            // which is invalid. Instead we need to generate the following:
-                            // var type = method();
-                            // new type()
-
-                            _errorHandler.ReportError("You must store the type returned from a method or property into a local variable to use with Type.CreateInstance.",
-                                                      node.Token.Location);
-                        }
-
-                        NewExpression newExpression = new NewExpression(args[0], objectType);
-                        if (args.Count > 1) {
-                            bool first = true;
-                            foreach (Expression paramExpr in args) {
-                                if (first) {
-                                    first = false;
-                                    continue;
-                                }
-                                newExpression.AddParameterValue(paramExpr);
-                            }
-                        }
-                        return newExpression;
                     }
 
                     bool lateBound = false;

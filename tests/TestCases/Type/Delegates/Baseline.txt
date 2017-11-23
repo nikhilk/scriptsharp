@@ -12,9 +12,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var ns_TypeTests = "TypeTests";
+
+  var $exports = ss.module('test', '', null,
     {
-      EventArgs: [ EventArgs, EventArgs$, null ]
+      EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null, [], ns_TypeTests)
     });
 
 

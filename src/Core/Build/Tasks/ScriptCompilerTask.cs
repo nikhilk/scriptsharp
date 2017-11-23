@@ -293,7 +293,9 @@ namespace ScriptSharp.Tasks {
                 StripDebugStatements = false,
                 OutputMode = Microsoft.Ajax.Utilities.OutputMode.SingleLine,
                 IgnorePreprocessorDefines = true,
-                IgnoreConditionalCompilation = true
+                IgnoreConditionalCompilation = true,
+                TermSemicolons = true,
+                
             };
             cruncherSettings.AddNoAutoRename("$");
             cruncherSettings.SetDebugNamespaces(null);

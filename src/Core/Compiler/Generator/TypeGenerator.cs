@@ -3,15 +3,29 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using ScriptSharp;
+using System.Linq;
 using ScriptSharp.ScriptModel;
 
-namespace ScriptSharp.Generator {
+namespace ScriptSharp.Generator
+{
 
-    internal static class TypeGenerator {
+    internal static class TypeGenerator
+    {
+        public static void GenerateNamespaceTable(this ScriptGenerator generator, NamespaceTable namespaceTable)
+        {
+            ScriptTextWriter writer = generator.Writer;
+            if(namespaceTable.Namespaces.Count <= 0)
+            {
+                return;
+            }
+
+            foreach(KeyValuePair<string, string> namespaceEntry in namespaceTable.Namespaces)
+            {
+                writer.WriteLine("var {0} = \"{1}\";", namespaceEntry.Value, namespaceEntry.Key);
+            }
+        }
 
         private static void GenerateClass(ScriptGenerator generator, ClassSymbol classSymbol) {
             ScriptTextWriter writer = generator.Writer;
@@ -32,7 +46,7 @@ namespace ScriptSharp.Generator {
             }
             writer.WriteLine(") {");
             writer.Indent++;
-
+            
             if (generator.Options.EnableDocComments) {
                 DocCommentGenerator.GenerateComment(generator, classSymbol);
             }
@@ -245,7 +259,11 @@ namespace ScriptSharp.Generator {
             writer.WriteLine();
         }
 
-        public static void GenerateRegistrationScript(ScriptGenerator generator, TypeSymbol typeSymbol) {
+        public static void GenerateRegistrationScript(
+            ScriptGenerator generator, 
+            TypeSymbol typeSymbol, 
+            NamespaceTable namespaceTable)
+        {
             ClassSymbol classSymbol = typeSymbol as ClassSymbol;
 
             if ((classSymbol != null) && classSymbol.IsExtenderClass) {
@@ -253,43 +271,19 @@ namespace ScriptSharp.Generator {
             }
 
             ScriptTextWriter writer = generator.Writer;
+            string namespaceLookup = namespaceTable.GenerateNamespaceRequest(typeSymbol.Namespace);
 
             writer.Write(typeSymbol.GeneratedName);
             writer.Write(": ");
 
             switch (typeSymbol.Type) {
                 case SymbolType.Class:
-                    writer.Write("[ ");
-                    writer.Write(typeSymbol.FullGeneratedName);
-                    writer.Write(", ");
-                    if (((ClassSymbol)typeSymbol).IsStaticClass == false) {
-                        writer.Write(typeSymbol.FullGeneratedName);
-                        writer.Write("$, ");
-                    }
-                    else {
-                        writer.Write("null, ");
-                    }
-                    if ((classSymbol.BaseClass == null) || classSymbol.IsTestClass) {
-                        // TODO: We need to introduce the notion of a base class that only exists in the metadata
-                        //       and not at runtime. At that point this check of IsTestClass can be generalized.
-
-                        writer.Write("null");
-                    }
-                    else {
-                        writer.Write(classSymbol.BaseClass.FullGeneratedName);
-                    }
-                    if (classSymbol.Interfaces != null) {
-                        foreach (InterfaceSymbol interfaceSymbol in classSymbol.Interfaces) {
-                            writer.Write(", ");
-                            writer.Write(interfaceSymbol.FullGeneratedName);
-                        }
-                    }
-                    writer.Write(" ]");
+                    GenerateClassRegistrationScript(generator, classSymbol, namespaceLookup);
+                    
                     break;
                 case SymbolType.Interface:
-                    writer.Write("[ ");
-                    writer.Write(typeSymbol.FullGeneratedName);
-                    writer.Write(" ]");
+                    GenerateInterfaceRegistrationScript(generator, (InterfaceSymbol)typeSymbol, namespaceLookup);
+                    
                     break;
                 case SymbolType.Record:
                 case SymbolType.Resources:
@@ -297,6 +291,162 @@ namespace ScriptSharp.Generator {
                     writer.Write(typeSymbol.FullGeneratedName);
                     break;
             }
+        }
+
+        private static void GenerateClassRegistrationScript(ScriptGenerator generator, ClassSymbol classSymbol, string namespaceToken)
+        {
+            ScriptTextWriter writer = generator.Writer;
+
+            //class definition
+            writer.Write("ss.defineClass(");
+            writer.Write(classSymbol.FullGeneratedName);
+            writer.Write(", ");
+            if (classSymbol.IsStaticClass)
+            {
+                writer.Write("null, ");
+            }
+            else
+            {
+                writer.Write(classSymbol.FullGeneratedName);
+                writer.Write("$, ");
+            }
+
+            //constructor params
+            writer.Write("[");
+            if ((classSymbol.Constructor != null) && (classSymbol.Constructor.Parameters != null))
+            {
+                bool firstParameter = true;
+                foreach (ParameterSymbol parameterSymbol in classSymbol.Constructor.Parameters)
+                {
+                    if (firstParameter == false)
+                    {
+                        writer.Write(", ");
+                    }
+                    var parameterType = parameterSymbol.ValueType;
+                    string parameterTypeName = GetParameterTypeName(parameterType);
+                    writer.Write(parameterTypeName);
+                    firstParameter = false;
+                }
+            }
+            writer.Write("], ");
+
+            //base class
+            if ((classSymbol.BaseClass == null) || classSymbol.IsTestClass)
+            {
+                // TODO: We need to introduce the notion of a base class that only exists in the metadata
+                //       and not at runtime. At that point this check of IsTestClass can be generalized.
+
+                writer.Write("null");
+            }
+            else
+            {
+                writer.Write(classSymbol.BaseClass.FullGeneratedName);
+            }
+            writer.Write(", ");
+
+            //interfaces
+            if (classSymbol.Interfaces != null)
+            {
+                writer.Write("[");
+                bool first = true;
+
+                foreach (InterfaceSymbol inheritedInterface in classSymbol.Interfaces)
+                {
+                    if (!first)
+                    {
+                        writer.Write(", ");
+                    }
+                    writer.Write(inheritedInterface.FullGeneratedName);
+                    first = false;
+                }
+
+                writer.Write("]");
+            }
+            else
+            {
+                writer.Write("[]");
+            }
+
+            //namespace
+            if(!string.IsNullOrWhiteSpace(namespaceToken))
+            {
+                writer.Write(", " + namespaceToken);
+            }
+
+            //end
+            writer.Write(")");
+        }
+
+        private static string GetParameterTypeName(TypeSymbol parameterType)
+        {
+            var symbolSet = parameterType.SymbolSet;
+            TypeSymbol nullableType = symbolSet.ResolveIntrinsicType(IntrinsicType.Nullable);
+            if (parameterType.FullName == nullableType.FullName)
+            {
+                parameterType = parameterType.GenericArguments.First();
+            }
+
+            TypeSymbol typeType = symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
+            TypeSymbol functionType = symbolSet.ResolveIntrinsicType(IntrinsicType.Function);
+            if (parameterType.FullName == typeType.FullName || parameterType.Type == SymbolType.Delegate)
+            {
+                parameterType = functionType;
+            }
+            if (parameterType.Type == SymbolType.Enumeration)
+            {
+                EnumerationSymbol enumType = (EnumerationSymbol)parameterType;
+                if (enumType.UseNamedValues)
+                {
+                    TypeSymbol stringType = symbolSet.ResolveIntrinsicType(IntrinsicType.String);
+                    parameterType = stringType;
+                }
+                else
+                {
+                    TypeSymbol numberType = symbolSet.ResolveIntrinsicType(IntrinsicType.Number);
+                    parameterType = numberType;
+                }
+            }
+
+            return parameterType.FullGeneratedName;
+        }
+
+        private static void GenerateInterfaceRegistrationScript(ScriptGenerator generator, InterfaceSymbol interfaceSymbol, string namespaceToken)
+        {
+            ScriptTextWriter writer = generator.Writer;
+
+            writer.Write("ss.defineInterface(");
+            writer.Write(interfaceSymbol.FullGeneratedName);
+            writer.Write(", ");
+
+            if (interfaceSymbol.Interfaces != null)
+            {
+                writer.Write("[");
+                bool first = true;
+
+                foreach (InterfaceSymbol inheritedInterface in interfaceSymbol.Interfaces)
+                {
+                    if (!first)
+                    {
+                        writer.Write(", ");
+                    }
+                    writer.Write(inheritedInterface.FullGeneratedName);
+                    first = false;
+                }
+
+                writer.Write("]");
+            }
+            else
+            {
+                writer.Write("[]");
+            }
+
+            //namespace
+            if(!string.IsNullOrWhiteSpace(namespaceToken))
+            {
+                writer.Write(", "+ namespaceToken);
+            }
+
+            writer.Write(")");
         }
 
         private static void GenerateResources(ScriptGenerator generator, ResourcesSymbol resourcesSymbol) {

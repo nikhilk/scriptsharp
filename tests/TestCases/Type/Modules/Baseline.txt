@@ -12,9 +12,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var ns_App = "App";
+
+  var $exports = ss.module('test', '', null,
     {
-      Dummy: [ Dummy, Dummy$, null ]
+      Dummy: ss.defineClass(Dummy, Dummy$, [], null, [], ns_App)
     });
 
   alert('Hello Startup');
