@@ -60,6 +60,14 @@ namespace System.Net {
             }
         }
 
+        [ScriptField]
+        public bool WithCredentials {
+            get {
+                return false;
+            }
+            set { }
+        }        
+
         public void Abort() {
         }
 

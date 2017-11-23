@@ -46,10 +46,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var ns_BasicTests = "BasicTests";
+
+  var $exports = ss.module('test', '', null,
     {
-      MyDebug: [ MyDebug, null, null ],
-      App: [ App, App$, null ]
+      MyDebug: ss.defineClass(MyDebug, null, [], null, [], ns_BasicTests),
+      App: ss.defineClass(App, App$, [Number], null, [], ns_BasicTests)
     });
 
 

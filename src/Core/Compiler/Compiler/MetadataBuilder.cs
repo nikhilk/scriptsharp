@@ -106,6 +106,7 @@ namespace ScriptSharp.Compiler {
                 _options.ScriptInfo.Copyright = copyright;
             }
             if (version != null) {
+                _symbols.ScriptVersion = version;
                 _options.ScriptInfo.Version = version;
             }
         }
@@ -247,15 +248,47 @@ namespace ScriptSharp.Compiler {
                 return;
             }
 
-            ICollection<InterfaceSymbol> interfaces = classSymbol.Interfaces;
-            if ((interfaces != null) && (interfaces.Count != 0)) {
-                foreach (InterfaceSymbol interfaceSymbol in interfaces) {
-                    foreach (MemberSymbol memberSymbol in interfaceSymbol.Members) {
-                        MemberSymbol associatedSymbol = classSymbol.GetMember(memberSymbol.Name);
-                        if (associatedSymbol != null) {
-                            associatedSymbol.SetInterfaceMember(memberSymbol);
-                        }
+            Dictionary<string, MemberSymbol> interfaceMemberSymbols = new Dictionary<string, MemberSymbol>();
+            AggregateInterfaceMembers(classSymbol.Interfaces, interfaceMemberSymbols);
+            if (interfaceMemberSymbols.Count > 0)
+            {
+                foreach (MemberSymbol memberSymbol in interfaceMemberSymbols.Values)
+                {
+                    MemberSymbol associatedSymbol = classSymbol.GetMember(memberSymbol.Name);
+                    if (associatedSymbol != null)
+                    {
+                        associatedSymbol.SetInterfaceMember(memberSymbol);
                     }
+                }
+            }
+        }
+
+        private void AggregateInterfaceMembers(ICollection<InterfaceSymbol> subInterfaceCollection, Dictionary<string, MemberSymbol> aggregateMemberCollection)
+        {
+            if(subInterfaceCollection == null)
+            {
+                return;
+            }
+
+            foreach (InterfaceSymbol newInterfaceSymbol in subInterfaceCollection)
+            {
+                AddInterfaceMembers(newInterfaceSymbol.Members, aggregateMemberCollection);
+                AggregateInterfaceMembers(newInterfaceSymbol.Interfaces, aggregateMemberCollection);
+            }
+        }
+
+        private void AddInterfaceMembers(ICollection<MemberSymbol> newMemberSymbols, Dictionary<string, MemberSymbol> aggregateMemberCollection)
+        {
+            if (newMemberSymbols == null)
+            {
+                return;
+            }
+
+            foreach(MemberSymbol newMemberSymbol in newMemberSymbols)
+            {
+                if(!aggregateMemberCollection.ContainsKey(newMemberSymbol.Name))
+                {
+                    aggregateMemberCollection[newMemberSymbol.Name] = newMemberSymbol;
                 }
             }
         }
@@ -541,6 +574,10 @@ namespace ScriptSharp.Compiler {
                 if (typeSymbol.Type == SymbolType.Class) {
                     BuildTypeInheritance((ClassSymbol)typeSymbol);
                 }
+                else if (typeSymbol.Type == SymbolType.Interface)
+                {
+                    BuildTypeInheritance((InterfaceSymbol)typeSymbol);
+                }
             }
 
             // Import members
@@ -694,7 +731,7 @@ namespace ScriptSharp.Compiler {
             if (propertyType != null) {
                 PropertySymbol property = new PropertySymbol(propertyNode.Name, typeSymbol, propertyType);
                 BuildMemberDetails(property, typeSymbol, propertyNode, propertyNode.Attributes);
-
+                property.SetNameCasing(true);
                 SymbolImplementationFlags implFlags = SymbolImplementationFlags.Regular;
                 if (propertyNode.SetAccessor == null) {
                     implFlags |= SymbolImplementationFlags.ReadOnly;
@@ -761,7 +798,7 @@ namespace ScriptSharp.Compiler {
             TypeSymbol typeSymbol = null;
             ParseNodeList attributes = typeNode.Attributes;
 
-            if (typeNode.Type == TokenType.Class) {
+            if (typeNode.Type == TokenType.Class || typeNode.Type == TokenType.Struct) {
                 CustomTypeNode customTypeNode = (CustomTypeNode)typeNode;
                 Debug.Assert(customTypeNode != null);
 
@@ -874,7 +911,7 @@ namespace ScriptSharp.Compiler {
                 typeSymbol.SetTransformedName(scriptName);
             }
 
-            if (typeNode.Type == TokenType.Class) {
+            if (typeNode.Type == TokenType.Class || typeNode.Type == TokenType.Struct) {
                 AttributeNode extensionAttribute = AttributeNode.FindAttribute(attributes, "ScriptExtension");
                 if (extensionAttribute != null) {
                     Debug.Assert(extensionAttribute.Arguments[0] is LiteralNode);
@@ -956,6 +993,34 @@ namespace ScriptSharp.Compiler {
 
                 if ((baseClass != null) || (interfaces != null)) {
                     classSymbol.SetInheritance(baseClass, interfaces);
+                }
+            }
+        }
+
+        private void BuildTypeInheritance(InterfaceSymbol interfaceSymbol)
+        {
+            CustomTypeNode customTypeNode = (CustomTypeNode)interfaceSymbol.ParseContext;
+
+            if ((customTypeNode.BaseTypes != null) && (customTypeNode.BaseTypes.Count != 0))
+            {
+                List<InterfaceSymbol> interfaces = null;
+
+                foreach (NameNode node in customTypeNode.BaseTypes)
+                {
+                    TypeSymbol baseTypeSymbol = (TypeSymbol)_symbolTable.FindSymbol(node.Name, interfaceSymbol, SymbolFilter.Types);
+                        Debug.Assert(baseTypeSymbol.Type == SymbolType.Interface);
+
+                        if (interfaces == null)
+                        {
+                            interfaces = new List<InterfaceSymbol>();
+                        }
+                        interfaces.Add((InterfaceSymbol)baseTypeSymbol);
+                    
+                }
+
+                if (interfaces != null)
+                {
+                    interfaceSymbol.SetInheritance(interfaces);
                 }
             }
         }

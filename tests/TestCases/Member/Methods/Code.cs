@@ -19,6 +19,13 @@ namespace MemberTests {
             return i;
         }
 
+        public int Do4(int zero, params object[] stuff) {
+            return stuff.Length;
+        }
+
+        public void Do5(params object[] stuff) {
+        }
+
         public void Run() {
             Do1();
             int v = Do2();
@@ -26,6 +33,8 @@ namespace MemberTests {
             string s = String.FromChar('A', 3);
             int i = s.IndexOf('A');
             i = s.IndexOf('A', 1);
+            int ln = Do4(0, 1, 2, 3, "a", "b", "c", true, false);
+            Do5();
         }
 
         public abstract object getRunOptions();

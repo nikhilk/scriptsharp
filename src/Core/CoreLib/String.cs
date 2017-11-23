@@ -371,11 +371,26 @@ namespace System {
             return null;
         }
 
+        [Obsolete("ToLowerCase() should not be used, switch to ToLower()")]
         public string ToLowerCase() {
             return null;
         }
 
-        public string ToUpperCase() {
+        [ScriptName("toLowerCase")]
+        public string ToLower()
+        {
+            return null;
+        }
+
+        [Obsolete("ToUpperCase() should not be used, switch to ToUpper()")]
+        public string ToUpperCase()
+        {
+            return null;
+        }
+
+        [ScriptName("toUpperCase")]
+        public string ToUpper()
+        {
             return null;
         }
 

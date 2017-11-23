@@ -37,6 +37,8 @@ namespace ScriptSharp.ScriptModel {
 
         TryCatchFinally = 13,
 
-        Error = 14
+        Error = 14,
+
+        Using = 15
     }
 }

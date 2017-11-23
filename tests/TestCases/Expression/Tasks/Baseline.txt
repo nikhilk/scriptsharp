@@ -16,9 +16,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var ns_ExpressionTests = "ExpressionTests";
+
+  var $exports = ss.module('test', '', null,
     {
-      Test: [ Test, Test$, null ]
+      Test: ss.defineClass(Test, Test$, [], null, [], ns_ExpressionTests)
     });
 
 

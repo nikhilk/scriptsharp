@@ -44,6 +44,20 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
+        public bool HasGetter
+        {
+            get {
+                return _getterImplementation != null;
+            }
+        }
+
+        public bool HasSetter
+        {
+            get {
+                return _setterImplementation != null;
+            }
+        }
+
         public SymbolImplementation GetterImplementation {
             get {
                 Debug.Assert(_getterImplementation != null);

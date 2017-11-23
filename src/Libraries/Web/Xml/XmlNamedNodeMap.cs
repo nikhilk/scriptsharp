@@ -10,6 +10,7 @@ namespace System.Xml {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
+    [ScriptName("NamedNodeMap")]
     public sealed class XmlNamedNodeMap : IEnumerable {
 
         internal XmlNamedNodeMap() {

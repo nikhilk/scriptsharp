@@ -19,8 +19,8 @@ Minimization Map
     Member 'Initialize' renamed to '$0'
     Member 'Numeric' renamed to '$1'
     Member 'OnClicked' renamed to 'e$1'
-    Member 'OnValueChanged' renamed to 'c$6'
     Member 'OnValueChanged' renamed to 'e$0'
+    Member 'OnValueChanged' renamed to 'c$6'
     Member 'Property1' renamed to 'c$7'
     Member 'Setup' renamed to '$2'
     Member 'ShowHelp' renamed to '$0'
@@ -28,6 +28,7 @@ Minimization Map
     Member 'string2' renamed to '$1'
     Member 'Stuff' renamed to '$5'
     Member 'StuffProperty' renamed to '$6'
+    Member 'TestMethod5' renamed to '$0'
     Member 'ToString' renamed to 'toString'
     Member 'ValueChanged' renamed to 'c$4'
 
@@ -52,6 +53,26 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   // BasicTests.IApp
 
   function IApp() { }
+
+
+  // BasicTests.IInterfaceTest1
+
+  function IInterfaceTest1() { }
+
+
+  // BasicTests.IInterfaceTest2
+
+  function IInterfaceTest2() { }
+
+
+  // BasicTests.IInterfaceTest3
+
+  function IInterfaceTest3() { }
+
+
+  // BasicTests.IInterfaceTest4
+
+  function IInterfaceTest4() { }
 
 
   // BasicTests.MyData
@@ -91,6 +112,24 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   function AppHelper() {
   }
   var AppHelper$ = {
+    $0: function() {
+    }
+  };
+
+
+  // BasicTests.InterfaceTest
+
+  function InterfaceTest() {
+  }
+  var InterfaceTest$ = {
+    testMethod1: function() {
+    },
+    testMethod2: function() {
+    },
+    testMethod3: function() {
+    },
+    testMethod4: function() {
+    },
     $0: function() {
     }
   };
@@ -196,14 +235,14 @@ define('test', ['ss', 'lib'], function(ss, lib) {
         return numericValue + indexValue + stringValue + textValue + value;
       });
     },
-    get_$5: function() {
+    $get_$5: function() {
       return 0;
     },
-    set_$5: function(value) {
+    $set_$5: function(value) {
       var x = value;
       return value;
     },
-    get_$6: function() {
+    $get_$6: function() {
       var $this = this;
 
       this.$1(function(indexValue, textValue) {
@@ -217,7 +256,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
       });
       return 0;
     },
-    set_$6: function(value) {
+    $set_$6: function(value) {
       var $this = this;
 
       var numericValue = value + 1;
@@ -277,7 +316,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
     },
     c$6: function() {
     },
-    get_c$7: function() {
+    $get_c$7: function() {
       return null;
     },
     get_item: function(name) {
@@ -310,26 +349,33 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   };
 
 
-  var $exports = ss.module('test',
+  var ns_BasicTests = "BasicTests";
+
+  var $exports = ss.module('test', '',
     {
-      IApp: [ IApp ],
+      IApp: ss.defineInterface(IApp, [], ns_BasicTests),
       MyData: MyData,
-      AppHelper: [ AppHelper, AppHelper$, null ],
-      Bar: [ Bar, Bar$, null ],
-      BaseBaseClass: [ BaseBaseClass, BaseBaseClass$, null ],
-      ABC: [ ABC, ABC$, null ],
-      Bar2: [ Bar2, Bar2$, Bar ],
-      BarCustom: [ BarCustom, BarCustom$, Bar ],
-      BaseClass: [ BaseClass, BaseClass$, BaseBaseClass ],
-      BarEx: [ BarEx, BarEx$, Bar2 ],
-      BarCustom2: [ BarCustom2, BarCustom2$, BarCustom ],
-      DerivedClass: [ DerivedClass, DerivedClass$, BaseClass ],
-      MaskTextBox: [ MaskTextBox, MaskTextBox$, lib.TextBox ]
+      AppHelper: ss.defineClass(AppHelper, AppHelper$, [], null, [], ns_BasicTests),
+      InterfaceTest: ss.defineClass(InterfaceTest, InterfaceTest$, [], null, [IInterfaceTest4], ns_BasicTests),
+      Bar: ss.defineClass(Bar, Bar$, [], null, [], ns_BasicTests),
+      BaseBaseClass: ss.defineClass(BaseBaseClass, BaseBaseClass$, [], null, [], ns_BasicTests),
+      ABC: ss.defineClass(ABC, ABC$, [], null, [], ns_BasicTests),
+      Bar2: ss.defineClass(Bar2, Bar2$, [], Bar, [], ns_BasicTests),
+      BarCustom: ss.defineClass(BarCustom, BarCustom$, [], Bar, [], ns_BasicTests),
+      BaseClass: ss.defineClass(BaseClass, BaseClass$, [], BaseBaseClass, [], ns_BasicTests),
+      BarEx: ss.defineClass(BarEx, BarEx$, [], Bar2, [], ns_BasicTests),
+      BarCustom2: ss.defineClass(BarCustom2, BarCustom2$, [], BarCustom, [], ns_BasicTests),
+      DerivedClass: ss.defineClass(DerivedClass, DerivedClass$, [], BaseClass, [], ns_BasicTests),
+      MaskTextBox: ss.defineClass(MaskTextBox, MaskTextBox$, [Element], lib.TextBox, [], ns_BasicTests)
     },
     {
       AppFlags: AppFlags,
-      App: [ App, App$, null ],
-      FooBehavior: [ FooBehavior, FooBehavior$, lib.Behavior ]
+      IInterfaceTest1: ss.defineInterface(IInterfaceTest1, [], ns_BasicTests),
+      IInterfaceTest2: ss.defineInterface(IInterfaceTest2, [IInterfaceTest1], ns_BasicTests),
+      IInterfaceTest3: ss.defineInterface(IInterfaceTest3, [], ns_BasicTests),
+      IInterfaceTest4: ss.defineInterface(IInterfaceTest4, [IInterfaceTest2, IInterfaceTest3], ns_BasicTests),
+      App: ss.defineClass(App, App$, [], null, [], ns_BasicTests),
+      FooBehavior: ss.defineClass(FooBehavior, FooBehavior$, [Element, Number], lib.Behavior, [], ns_BasicTests)
     });
 
 

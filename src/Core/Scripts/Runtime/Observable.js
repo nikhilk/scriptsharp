@@ -70,7 +70,7 @@ var ObservableCollection$ = {
     this._items[index] = item;
     this._updated();
   },
-  get_length: function() {
+  $get_length: function() {
     this._observers = _captureObservers(this._observers);
     return this._items.length;
   },

@@ -47,6 +47,11 @@ namespace System.Collections.Generic {
             return null;
         }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return null;
+        }
+
         public int IndexOf(T item) {
             return 0;
         }

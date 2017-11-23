@@ -55,10 +55,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var ns_StatementTests = "StatementTests";
+
+  var $exports = ss.module('test', '', null,
     {
-      Set: [ Set, Set$, null, ss.IEnumerable ],
-      App: [ App, App$, null ]
+      Set: ss.defineClass(Set, Set$, [], null, [ss.IEnumerable], ns_StatementTests),
+      App: ss.defineClass(App, App$, [], null, [], ns_StatementTests)
     });
 
 

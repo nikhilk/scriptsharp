@@ -16,6 +16,35 @@ namespace ScriptSharp.Tests {
     public sealed class BasicTests : CompilationTest {
 
         [TestMethod]
+        public void TestAssemblies()
+        {
+            RunTest((c) =>
+            {
+                c.AddSource("Code.cs");
+            }, "Baseline.js");
+        }
+
+        [TestMethod]
+        public void TestLists()
+        {
+            RunTest((c) =>
+            {
+                c.AddSource("Code.cs");
+                c.Options.Defines = new string[] { "DEBUG" };
+            }, "Baseline.txt");
+        }
+
+        [TestMethod]
+        public void TestGuid()
+        {
+            RunTest((c) =>
+            {
+                c.AddSource("Code.cs");
+                c.Options.Defines = new string[] { "DEBUG" };
+            }, "Baseline.txt");
+        }
+
+        [TestMethod]
         public void TestConditionals() {
             RunTest((c) => {
                 c.AddSource("Code.cs");
