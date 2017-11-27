@@ -14,9 +14,7 @@ namespace System.Html
     public sealed class History
     {
 
-        private History()
-        {
-        }
+        private History() { }
 
         /// <summary>
         /// Retrieves the number of elements in the history list.
