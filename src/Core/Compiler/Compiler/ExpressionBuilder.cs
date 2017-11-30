@@ -1611,7 +1611,7 @@ namespace ScriptSharp.Compiler {
                                                    (FieldSymbol)expression.Member);
                     }
                     if (((expression.Member.Visibility & MemberVisibility.Static) != 0) &&
-                        (expression.Member.Parent != expression.ObjectReference.EvaluatedType)) {
+                        (expression.Member.Parent == expression.ObjectReference.EvaluatedType)) {
                         // Create a new type expression because a static member
                         // of the base type is being used.
                         return new FieldExpression(new TypeExpression((ClassSymbol)expression.Member.Parent, expression.MemberMask),
