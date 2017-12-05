@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
-    [NamedValues]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    [ScriptConstants(UseNames = true)]
     public enum DropEffects {
 
         Copy = 0,

@@ -20,18 +20,12 @@ namespace ScriptSharp {
         private ICollection<string> _defines;
         private ICollection<IStreamSource> _sources;
         private ICollection<IStreamSource> _resources;
-        private IStreamSource _templateFile;
         private IStreamSource _scriptFile;
         private IStreamSource _docCommentFile;
-        private string _scriptNameSuffix;
-        private bool _debugFlavor;
+        private IStreamSourceResolver _includeResolver;
         private bool _includeTests;
         private bool _minimize;
-
-        private string _testsSubnamespace;
-
-        private List<string> _executionDependencies;
-        private List<string> _referencedDependencies;
+        private ScriptInfo _scriptInfo;
 
         private bool _hasTestTypes;
 
@@ -40,16 +34,7 @@ namespace ScriptSharp {
         private string _internalTestType;
 
         public CompilerOptions() {
-            _testsSubnamespace = ".Tests";
-        }
-
-        public bool DebugFlavor {
-            get {
-                return _debugFlavor;
-            }
-            set {
-                _debugFlavor = value;
-            }
+            _scriptInfo = new ScriptInfo();
         }
 
         public ICollection<string> Defines {
@@ -72,16 +57,7 @@ namespace ScriptSharp {
 
         public bool EnableDocComments {
             get {
-                if (DebugFlavor) {
-                    return (_docCommentFile != null);
-                }
-                return false;
-            }
-        }
-
-        public IEnumerable<string> ExecutionDependencies {
-            get {
-                return _executionDependencies;
+                return (_docCommentFile != null);
             }
         }
 
@@ -91,6 +67,15 @@ namespace ScriptSharp {
             }
             set {
                 _hasTestTypes = value;
+            }
+        }
+
+        public IStreamSourceResolver IncludeResolver {
+            get {
+                return _includeResolver;
+            }
+            set {
+                _includeResolver = value;
             }
         }
 
@@ -123,10 +108,7 @@ namespace ScriptSharp {
 
         public bool Minimize {
             get {
-                if (!DebugFlavor) {
-                    return _minimize;
-                }
-                return false;
+                return _minimize;
             }
             set {
                 _minimize = value;
@@ -139,7 +121,6 @@ namespace ScriptSharp {
             }
             set {
                 _references = value;
-                _referencedDependencies = null;
             }
         }
 
@@ -152,21 +133,18 @@ namespace ScriptSharp {
             }
         }
 
+        public ScriptInfo ScriptInfo {
+            get {
+                return _scriptInfo;
+            }
+        }
+
         public IStreamSource ScriptFile {
             get {
                 return _scriptFile;
             }
             set {
                 _scriptFile = value;
-            }
-        }
-
-        public string ScriptNameSuffix {
-            get {
-                return _scriptNameSuffix ?? String.Empty;
-            }
-            set {
-                _scriptNameSuffix = value;
             }
         }
 
@@ -177,40 +155,6 @@ namespace ScriptSharp {
             set {
                 _sources = value;
             }
-        }
-
-        public IStreamSource TemplateFile {
-            get {
-                return _templateFile;
-            }
-            set {
-                _templateFile = value;
-            }
-        }
-
-        public string TestsSubnamespace {
-            get {
-                return _testsSubnamespace;
-            }
-            set {
-                _testsSubnamespace = value;
-            }
-        }
-
-        public void AddExecutionDependency(string scriptName) {
-            if (_executionDependencies == null) {
-                _executionDependencies = new List<string>();
-            }
-            if (_executionDependencies.Contains(scriptName) == false) {
-                _executionDependencies.Add(scriptName);
-            }
-        }
-
-        public void AddReferencedDependency(string scriptName) {
-            if (_referencedDependencies == null) {
-                _referencedDependencies = new List<string>();
-            }
-            _referencedDependencies.Add(scriptName);
         }
 
         public bool Validate(out string errorMessage) {

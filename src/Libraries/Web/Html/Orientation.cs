@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
-    [NumericValues]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    [ScriptConstants]
     public enum Orientation {
 
         Portrait = 0,

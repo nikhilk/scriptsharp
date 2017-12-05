@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Html;
 using System.Testing;
-using Photos.FlickrClient;
+using Flickr.FlickrClient;
 
 namespace Gallery.Tests {
 
@@ -19,7 +19,7 @@ namespace Gallery.Tests {
         }
 
         public void SearchPhotos(string tags, int count, FlickrSearchCallback callback) {
-            Window.SetTimeout(delegate() {
+            Script.SetTimeout(delegate() {
                 callback(_photos);
             }, 0);
         }

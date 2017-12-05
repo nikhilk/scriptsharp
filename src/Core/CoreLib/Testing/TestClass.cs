@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace System.Testing {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public abstract class TestClass {
 
         public virtual void Cleanup() {

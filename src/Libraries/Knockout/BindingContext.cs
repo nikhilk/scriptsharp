@@ -9,32 +9,32 @@ using System.Runtime.CompilerServices;
 
 namespace KnockoutApi {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public class BindingContext<TRoot, TParent, T> {
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("$data")]
         public T Data {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("$parent")]
         public TParent Parent {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("$parents")]
         public TParent[] Parents {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("$root")]
         public TRoot[] Root {
             get;

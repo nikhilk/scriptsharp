@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Bases</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+
+<script type="text/javascript" src="Scripts/ssloader.min.js"></script>
+<script type="text/script" data-name="ss" data-src="Scripts/ss.js"></script>
+<script type="text/script" data-name="oop" data-src="Scripts/OOP.js"></script>
+
+<script type="text/script">
+define(['ss', 'oop'], function(ss, oop) {
+  module('OOP');
+
+  test('bases', function() {
+    var output1 = oop.TestCase.runTest(new oop.C1());
+    QUnit.equal(output1, "A-PC1,A-MC1,A-99IC1,X+PC1-PC1,Y+88IC1-99IC1", "Code path through base classes problem (C1)");
+
+    var output2 = oop.TestCase.runTest(new oop.C2());
+    QUnit.equal(output2, "A-PC1-PC2,A-MC1-MC2,A-99IC1-99IC2,X+PC2+PC1-PC1-PC2,Y+88IC2+88IC1-99IC1-99IC2", "Code path through base classes problem (C2)");
+
+    var output3 = oop.TestCase.runTest(new oop.C3());
+    QUnit.equal(output3, "A-PC1-PC2-PC3,A-MC1-MC2-MC3,A-99IC1-99IC2-99IC3,X+PC3+PC2+PC1-PC1-PC2-PC3,Y+88IC3+88IC2+88IC1-99IC1-99IC2-99IC3", "Code path through base classes problem (C3)");
+
+    // A C4 should act just like a C3 as it has no overrides
+    var output4 = oop.TestCase.runTest(new oop.C4());
+    QUnit.equal(output4, "A-PC1-PC2-PC3,A-MC1-MC2-MC3,A-99IC1-99IC2-99IC3,X+PC3+PC2+PC1-PC1-PC2-PC3,Y+88IC3+88IC2+88IC1-99IC1-99IC2-99IC3", "Code path through base classes problem (C4)");
+
+    var output5 = oop.TestCase.runTest(new oop.C5());
+    QUnit.equal(output5, "A-PC1-PC2-PC3-PC5,A-MC1-MC2-MC3-MC5,A-99IC1-99IC2-99IC3-99IC5,X+PC5+PC3+PC2+PC1-PC1-PC2-PC3-PC5,Y+88IC5+88IC3+88IC2+88IC1-99IC1-99IC2-99IC3-99IC5", "Code path through base classes problem (C5)");
+  });
+});
+</script>
+</html>

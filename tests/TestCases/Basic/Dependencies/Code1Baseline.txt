@@ -1,0 +1,24 @@
+"use strict";
+
+define('test', ['ss', 'lib1'], function(ss, lib1) {
+  var $global = this;
+
+  // BasicTests.App
+
+  function App() {
+    var c1 = new lib1.Component1();
+    var c2 = new Component2();
+  }
+  var App$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, App$, [], null)
+    });
+
+
+  return $exports;
+});

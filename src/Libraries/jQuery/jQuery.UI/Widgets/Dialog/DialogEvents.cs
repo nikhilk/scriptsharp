@@ -11,9 +11,9 @@ namespace jQueryApi.UI.Widgets {
     /// <summary>
     /// Events raised by Dialog.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum DialogEvents {
 
         /// <summary>

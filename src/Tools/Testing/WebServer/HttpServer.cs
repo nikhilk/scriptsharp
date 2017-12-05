@@ -29,10 +29,12 @@ namespace ScriptSharp.Testing.WebServer {
 
             while (_alive) {
                 try {
-                    TcpClient client = listener.AcceptTcpClient();
+                    if (listener.Pending()) {
+                        TcpClient client = listener.AcceptTcpClient();
 
-                    HttpMessage message = new HttpMessage(this, _getHandler, _postHandler);
-                    message.ProcessClient(client);
+                        HttpMessage message = new HttpMessage(this, _getHandler, _postHandler);
+                        message.ProcessClient(client);
+                    }
                 }
                 catch {
                 }

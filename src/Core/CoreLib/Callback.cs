@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate void Callback(object arg);
 }

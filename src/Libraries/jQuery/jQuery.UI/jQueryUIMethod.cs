@@ -11,9 +11,9 @@ namespace jQueryApi.UI {
     /// <summary>
     /// Operations supported by jQueryUI.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum jQueryUIMethod {
 
         DisableSelection,

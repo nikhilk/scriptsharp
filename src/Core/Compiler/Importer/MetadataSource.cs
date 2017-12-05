@@ -126,7 +126,7 @@ namespace ScriptSharp.Importer {
 
         private bool VerifyScriptAssembly(AssemblyDefinition assembly) {
             foreach (CustomAttribute attribute in assembly.CustomAttributes) {
-                if (String.CompareOrdinal(attribute.Constructor.DeclaringType.FullName, "System.Runtime.CompilerServices.ScriptAssemblyAttribute") == 0) {
+                if (String.CompareOrdinal(attribute.Constructor.DeclaringType.FullName, "System.ScriptAssemblyAttribute") == 0) {
                     return true;
                 }
             }

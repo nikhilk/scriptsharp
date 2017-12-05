@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{36D4B098-A21C-4725-ACD3-400922885F38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>mscorlib</AssemblyName>
-    <NoStdLib>True</NoStdLib>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\ScriptSharp.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -18,6 +17,8 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <CompilerResponseFile Condition=" $(MSBuildToolsVersion) &gt;= 13.0 ">AdditionalCompilerOptions.txt</CompilerResponseFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -28,7 +29,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\bin\Debug\mscorlib.xml</DocumentationFile>
-    <NoWarn>1591, 0661, 0660</NoWarn>
+    <NoWarn>1591, 0626, 0824, 0660, 0661</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -39,10 +40,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <NoWarn>1591, 0661, 0660</NoWarn>
+    <NoWarn>1591, 0626, 0824, 0660, 0661</NoWarn>
     <DocumentationFile>..\..\..\bin\Release\mscorlib.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoStdLib>True</NoStdLib>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <AdditionalExplicitAssemblyReferences />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Linq\Linq.cs" />
+    <Compile Include="Activator.cs" />
+    <Compile Include="Guid.cs" />
+    <Compile Include="Collections\Collection.cs" />
     <Compile Include="Collections\ArrayReduceCallback.cs" />
     <Compile Include="Collections\ArrayItemReduceCallback.cs" />
     <Compile Include="Collections\Generic\ListReduceCallback.cs" />
@@ -50,7 +63,6 @@
     <Compile Include="Collections\Generic\ListMapCallback.cs" />
     <Compile Include="Collections\Generic\ListItemMapCallback.cs" />
     <Compile Include="Collections\Generic\CompareCallback.cs" />
-    <Compile Include="Collections\Generic\ListItemKeyGenerator.cs" />
     <Compile Include="Collections\Generic\ListItemCallback.cs" />
     <Compile Include="Collections\Generic\ListCallback.cs" />
     <Compile Include="Collections\Generic\ListItemFilterCallback.cs" />
@@ -60,7 +72,6 @@
     <Compile Include="Collections\Generic\Queue.cs" />
     <Compile Include="Collections\Generic\Dictionary.cs" />
     <Compile Include="Collections\Generic\KeyValuePair.cs" />
-    <Compile Include="Collections\Generic\ListGrouping.cs" />
     <Compile Include="Collections\Generic\List.cs" />
     <Compile Include="Collections\Generic\IReadonlyCollection.cs" />
     <Compile Include="Collections\Generic\ICollection.cs" />
@@ -78,7 +89,10 @@
     <Compile Include="ComponentModel\ObserverManager.cs" />
     <Compile Include="ComponentModel\IObserver.cs" />
     <Compile Include="ComponentModel\Observable.cs" />
+    <Compile Include="Export.cs" />
     <Compile Include="Diagnostics\SyntaxValidationAttribute.cs" />
+    <Compile Include="NotImplementedException.cs" />
+    <Compile Include="Runtime\CompilerServices\ScriptAllowSystemNamespaceAttribute.cs" />
     <Compile Include="Threading\Deferred.cs" />
     <Compile Include="Threading\TaskStatus.cs" />
     <Compile Include="Threading\Task.cs" />
@@ -101,10 +115,8 @@
     <Compile Include="Array.cs" />
     <Compile Include="Collections\ArrayCallback.cs" />
     <Compile Include="Collections\ArrayFilterCallback.cs" />
-    <Compile Include="Collections\ArrayGrouping.cs" />
     <Compile Include="Collections\ArrayItemCallback.cs" />
     <Compile Include="Collections\ArrayItemFilterCallback.cs" />
-    <Compile Include="Collections\ArrayItemKeyGenerator.cs" />
     <Compile Include="Collections\ArrayItemMapCallback.cs" />
     <Compile Include="Collections\ArrayList.cs" />
     <Compile Include="Collections\ArrayMapCallback.cs" />
@@ -117,7 +129,6 @@
     <Compile Include="Action.cs" />
     <Compile Include="Testing\Assert.cs" />
     <Compile Include="Func.cs" />
-    <Compile Include="Record.cs" />
     <Compile Include="Date.cs" />
     <Compile Include="Diagnostics\Debug.cs" />
     <Compile Include="Decimal.cs" />
@@ -140,7 +151,7 @@
     <Compile Include="Number.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="Collections\Queue.cs" />
-    <Compile Include="RegularExpression.cs" />
+    <Compile Include="RegExp.cs" />
     <Compile Include="SByte.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="Single.cs" />
@@ -160,6 +171,9 @@
     <Compile Include="Testing\TestEngine.cs" />
     <Compile Include="Testing\TestClass.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="AdditionalCompilerOptions.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)version.targets" Condition="Exists('$(SolutionDir)version.targets')" />
 </Project>

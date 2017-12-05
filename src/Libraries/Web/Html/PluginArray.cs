@@ -9,8 +9,8 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class PluginArray {
 
         private PluginArray() {
@@ -19,7 +19,7 @@ namespace System.Html {
         /// <summary>
         /// The number of plugins in the array.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public long Length {
             get {
                 return 0;
@@ -29,7 +29,7 @@ namespace System.Html {
         /// <summary>
         /// Returns the Plugin at the specified index into the array.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Plugin this[int index] {
             get {
                 return null;
@@ -41,7 +41,7 @@ namespace System.Html {
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        [IntrinsicProperty]
+        [ScriptField]
         public Plugin this[string name] {
             get {
                 return null;

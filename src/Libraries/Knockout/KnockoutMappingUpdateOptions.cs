@@ -8,12 +8,12 @@ using System.Runtime.CompilerServices;
 
 namespace KnockoutApi {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class KnockoutMappingUpdateOptions {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Data {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace KnockoutApi {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Observable {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace KnockoutApi {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Parent {
             get {
                 return null;

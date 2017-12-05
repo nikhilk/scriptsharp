@@ -17,6 +17,7 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -42,20 +43,20 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ComputedObservable.cs" />
     <Compile Include="BindingContext.cs" />
     <Compile Include="CompareResult.cs" />
+    <Compile Include="ComputedObservableOptions.cs" />
     <Compile Include="KnockoutMappingArrayCreateOptions.cs" />
     <Compile Include="KnockoutMappingArraySpecification.cs" />
     <Compile Include="KnockoutMappingCreateOptions.cs" />
     <Compile Include="KnockoutMappingUpdateOptions.cs" />
-    <Compile Include="DependentObservableOptions.cs" />
     <Compile Include="BindingHandler.cs" />
     <Compile Include="KnockoutMapping.cs" />
     <Compile Include="KnockoutMappingPropertySpecification.cs" />
     <Compile Include="KnockoutMappingSpecification.cs" />
     <Compile Include="KnockoutUtils.cs" />
     <Compile Include="ObservableArray.cs" />
-    <Compile Include="DependentObservable.cs" />
     <Compile Include="Knockout.cs" />
     <Compile Include="Observable.cs" />
     <Compile Include="Subscribable.cs" />
@@ -79,6 +80,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)version.targets" Condition="Exists('$(SolutionDir)version.targets')" />
   <Target Name="AfterBuild">
     <Copy SourceFiles="@(ScriptInfo)" DestinationFiles="$(OutputPath)$(AssemblyName).txt" />
   </Target>

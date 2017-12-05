@@ -8,21 +8,21 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Data {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class Storage {
 
         private Storage() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object this[string key] {
             get {
                 return null;

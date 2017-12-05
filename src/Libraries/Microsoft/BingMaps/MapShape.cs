@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
-    [Imported]
+    [ScriptImport]
     public abstract class MapShape : MapEntity {
 
         public MapLocation[] GetLocations() {

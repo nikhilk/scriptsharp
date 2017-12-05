@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate bool ListFilterCallback<T>(T value, int index, IReadonlyCollection<T> list);
 }

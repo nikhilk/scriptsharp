@@ -2,11 +2,11 @@ using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace TypeTests {
 
-    public sealed class Point : Record {
+    [ScriptObject]
+    public sealed class Point {
          public int x;
          public int y;
 
@@ -16,7 +16,8 @@ namespace TypeTests {
          }
     }
 
-    public sealed class Pair : Record {
+    [ScriptObject]
+    public sealed class Pair {
         public object first;
         public object second;
     }

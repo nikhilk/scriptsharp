@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TypeSystem</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+
+<script type="text/javascript" src="Scripts/ssloader.min.js"></script>
+<script type="text/script" data-name="ss" data-src="Scripts/ss.min.js"></script>
+<script type="text/script" data-name="oop" data-src="Scripts/OOP.js"></script>
+
+<script type="text/script">
+    define(['ss', 'oop'], function(ss, oop) {
+      module('OOP');
+
+      test('modules', function() {
+        var modules = ss.modules;
+        QUnit.equal(ss.keyCount(modules), 2, 'Expected two modules: ss, and oop');
+        QUnit.equal(modules['ss'].$name, 'ss');
+        QUnit.equal(modules['oop'].$name, 'oop');
+      });
+
+      test('isClass', function() {
+        QUnit.equal(ss.isClass(oop.Cat), true, 'Expected Cat to be a class');
+        QUnit.equal(ss.isClass(oop.IPet), false, 'Did not expect IPet to be a class');
+        QUnit.equal(ss.isClass(oop.Comic), true, 'Expectd Comic to be a class');
+      });
+
+      test('isInteface', function() {
+        QUnit.equal(ss.isInterface(oop.Cat), false, 'Did not expect Cat to be an interface');
+        QUnit.equal(ss.isInterface(oop.IPet), true, 'Expected IPet to be an interface');
+        QUnit.equal(ss.isInterface(oop.Comic), false, 'Did not expect Comic to be an interface');
+      });
+
+      test('canAssign', function() {
+        QUnit.equal(ss.canAssign(oop.Animal, oop.Cat), true, 'Cat should be assignable to an Animal');
+        QUnit.equal(ss.canAssign(oop.IMammal, oop.Cat), true, 'Cat should be assignable to an IMammal');
+        QUnit.equal(ss.canAssign(oop.IMammal, oop.Garfield), true, 'Garfield should be assignable to an IMammal');
+        QUnit.equal(ss.canAssign(oop.IPet, oop.Cat), false, 'Cat should not be assignable to an IPet');
+        QUnit.equal(ss.canAssign(Object, oop.Cat), true, 'Cat should be assignable to an Object');
+      });
+
+      test('instanceOf', function() {
+        var c = new oop.Cat();
+        var g = new oop.Garfield();
+
+        QUnit.equal(ss.instanceOf(oop.Animal, c), true, 'Cat instance should be an Animal instance');
+        QUnit.equal(ss.instanceOf(oop.IMammal, c), true, 'Cat instance should be an IMammal instance');
+        QUnit.equal(ss.instanceOf(oop.IMammal, g), true, 'Garfield instance should be an IMammal instance');
+        QUnit.equal(ss.instanceOf(oop.Zoo, c), false, 'Cat instance should not be a Zoo instance');
+        QUnit.equal(ss.instanceOf(oop.IPet, c), false, 'Cat instance should not be an IPet instance');
+        QUnit.equal(ss.instanceOf(Object, c), true, 'Cat instance should not be an Object instance');
+      });
+
+      test('baseType', function() {
+        QUnit.equal(oop.Cat.$base.$name, 'Animal', 'Cat\'s base type should be Animal');
+        QUnit.equal(oop.Animal.$base, Object, 'Animal\'s base type should be Object');
+        QUnit.equal(Object.$base, undefined, 'Object\'s base type should not be set');
+      });
+
+      test('canCast and safeCast', function() {
+        var g = new oop.Garfield();
+
+        QUnit.equal(ss.canCast(g, oop.IPet), true, 'Garfield instance should be castable to Test.IPet');
+        QUnit.equal(ss.canCast(g, oop.Animal), true, 'Garfield instance should be castable to Test.Animal');
+        QUnit.equal(ss.canCast(g, oop.IObject), false, 'Garfield instance should not be castable to IObject');
+        QUnit.equal(ss.safeCast(g, oop.IPet), g, 'Garfield instance should be castable to Test.IPet');
+        QUnit.equal(ss.safeCast(g, oop.Animal), g, 'Garfield instance should be castable to Test.Animal');
+        QUnit.equal(ss.safeCast(g, oop.IObject), null, 'Garfield instance should not be castable to IObject');
+      });
+
+      test('base ctor', function() {
+        var c = new oop.Cat();
+        QUnit.equal(c.Species, 'Cat', 'Cat is of cat species');
+      });
+
+      test('base method', function() {
+        var g = new oop.Garfield();
+        QUnit.equal(g.speak(), 'meow\r\nTranslation: I am fat, lazy, and cynical, but still, a favorite cat...', 'Garfield meows and says something cute');
+        QUnit.equal(g.live(0), '[0] ... zzz');
+
+        QUnit.equal(g.die(), '...');
+      });
+
+      test('typeOf', function() {
+        var g = new oop.Garfield();
+        QUnit.equal(ss.typeOf(g), oop.Garfield, "Expected Garfield instance.");
+
+        var c = new oop.Comic();
+        QUnit.equal(ss.typeOf(c), oop.Comic, "Expected Comic instance.");
+      });
+
+      test('type names', function() {
+        var g = new oop.Garfield();
+        QUnit.equal(ss.typeOf(g).$name, 'Garfield', "Expected 'Garfield' for type name.");
+        QUnit.equal(ss.typeName(g), 'Garfield', "Expected 'Garfield' for type name.");
+
+        var c = new oop.Comic();
+        QUnit.equal(ss.typeOf(c).$name, 'Comic', "Expected 'Comic' for type name.");
+        QUnit.equal(ss.typeName(c), 'Comic', "Expected 'Comic' for type name.");
+
+        QUnit.equal(ss.typeName('aaa'), 'String');
+        QUnit.equal(ss.typeName(String), 'String');
+
+        QUnit.equal(ss.typeName(true), 'Boolean');
+        QUnit.equal(ss.typeName(false), 'Boolean');
+        QUnit.equal(ss.typeName(Boolean), 'Boolean');
+
+        QUnit.equal(ss.typeName(1), 'Number');
+        QUnit.equal(ss.typeName(Number), 'Number');
+
+        QUnit.equal(ss.typeName(new Date()), 'Date');
+        QUnit.equal(ss.typeName(Date), 'Date');
+
+        QUnit.equal(ss.typeName({}), 'Object');
+        QUnit.equal(ss.typeName(Object), 'Object');
+
+        QUnit.equal(ss.typeName([]), 'Array');
+        QUnit.equal(ss.typeName(Array), 'Array');
+      });
+
+      test('type parsing', function() {
+        var t1 = ss.type('String');
+        var t2 = ss.type('oop.Zoo');
+        var t3 = ss.type('oop.Garfield');
+        var t4 = ss.type('oop.Comic');
+        var t5 = ss.type('oop.Foo');
+        var t6 = ss.type('xyz.Bar');
+
+        QUnit.equal(t1, String, "Expected String type.");
+        QUnit.equal(t2, oop.Zoo, "Expected Zoo type.");
+        QUnit.equal(t3, oop.Garfield, "Expected Garfield type.");
+        QUnit.equal(t4, oop.Comic, "Expected Comic type.");
+        QUnit.equal(t5, null, "Expected null type.");
+        QUnit.equal(t6, null, "Expected null type.");
+      });
+      test('type interface inheritence', function() {
+        var garfield = new oop.Garfield();
+
+        QUnit.equal(true, ss.instanceOf(oop.IPet, garfield), "Expected Garfield instance to implement interface IPet.");
+        QUnit.equal(true, ss.instanceOf(oop.IAnimal, garfield), "Expected Garfield instance to implement interface IAnimal.");
+        QUnit.equal(false, ss.instanceOf(ss.IDisposable, garfield), "Expected Garfield not to implement interface IDisposable.");
+        QUnit.equal(true, ss.canCast(garfield, oop.IAnimal), "Expected Garfield to be castable as IPet.");
+        QUnit.equal(garfield, ss.safeCast(garfield, oop.IAnimal), "Expected Garfield to be safe cast as IPet.");
+      });
+    test('constructor parameter reflection', function() {
+        QUnit.deepEqual([String, oop.ICharacter], ss.getConstructorParams(oop.Comic), "Expected IComic to take string and ICharacter.");
+        QUnit.deepEqual([], ss.getConstructorParams(oop.Cat), "Expected Cat to have empty constructor.");
+        QUnit.deepEqual([Number, Function, Function, Function, Number, String], ss.getConstructorParams(oop.C6), "Expected C6 to take Number, Function, Function, Function, Number, String in its constructor.");
+      });
+    test('createInstance', function() {
+        var garfield = new oop.Garfield();
+        var comic = ss.createInstance(oop.Comic, "Garfield and Odie", garfield);
+        QUnit.equal("Garfield and Odie", comic.Name, "Expected comic to have name 'Garfield and Odie'");
+        QUnit.equal(garfield, comic.Star, "Expected comic to star garfield");
+      });
+    test('internal types derived from public type', function() {
+        var derived = new oop.PublicAccessorClass().create();
+        QUnit.equal(true, derived.baseField && derived.baseField, "Expected derived to have baseField");
+        QUnit.equal(true, derived.baseMethod && derived.baseMethod(), "Expected derived to have baseMethod");
+        QUnit.equal(true, derived.BaseProperty && derived.BaseProperty, "Expected derived to have BaseProperty");
+      });
+    });
+</script>
+</html>

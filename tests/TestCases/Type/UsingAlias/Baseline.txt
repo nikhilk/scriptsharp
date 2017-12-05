@@ -1,13 +1,25 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.MyClass = function test_MyClass() {
+  // TypeTests.MyClass
+
+  function MyClass() {
     var body = document.body;
     var head = document.getElementsByTagName('head')[0];
     head.appendChild(body);
-}
+  }
+  var MyClass$ = {
+
+  };
 
 
-test.MyClass.registerClass('test.MyClass');
+  var $exports = ss.module('test', null,
+    {
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null)
+    });
+
+
+  return $exports;
+});

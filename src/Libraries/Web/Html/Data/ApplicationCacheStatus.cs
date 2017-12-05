@@ -11,9 +11,9 @@ namespace System.Html.Data {
     /// <summary>
     /// Indicates the status of the application cache.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
-    [NumericValues]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    [ScriptConstants]
     public enum ApplicationCacheStatus {
 
         /// <summary>

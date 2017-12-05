@@ -27,16 +27,15 @@ Usage:
       [/tests]
       [/minimize]
       [/D:<variable>]
-      [/template:<template text file>]
-      [/doc:<file>]
       [/res:<resource file>]
       /ref:<assembly path>
       /out:<script file>
+      [/inc:<include base path>]
       <C# source files>
 
 /nologo     Hides the about information.
 /?          Displays usage information.
-/debug      Turns on debug mode. Automatically defines the 'DEBUG'
+/debug      Turns on debug mode. Specifically, it defines the 'DEBUG'
             variable.
 /tests      Includes test classes defined in the sources into the
             generated script.
@@ -44,21 +43,15 @@ Usage:
             This is only used in non-debug builds.
 /D          Defines one or more variables that are used to conditionally
             compile code.
-/template   This can be used to provide a template file for the generated
-            script. The template can be used to include static content
-            such as copyright information. It can be used to #include
-            other script files. It can be used for conditional compilation
-            via #if etc. Finally #include[as-is] ""%code%"" can be used
-            to specify where the generated code appears in the template.
 /ref        One or more references to C# assemblies to be used
             to import metadata corresponding to dependency script files.
             (Note you must include a reference to mscorlib.dll)
-/doc        XML Documentation to embed into the resulting script file.
 /res        The set of one or more resources to compile in. These should be
             .resx files. You should pass in both the language-neutral
             resources and the locale specific resources for the locale
             associated with the output script.
 /out        The resulting script file. Typically this is a .js file.
+/inc        The base path against which includes are resolved.
 ";
 
         private static CompilerOptions CreateCompilerOptions(CommandLine commandLine) {
@@ -71,8 +64,7 @@ Usage:
             bool includeTests = false;
             bool minimize = true;
             IStreamSource scriptFile = null;
-            IStreamSource templateFile = null;
-            IStreamSource docCommentFile = null;
+            IStreamSourceResolver includeResolver = null;
 
             foreach (string fileName in commandLine.Arguments) {
                 // TODO: This is a hack... something in the .net 4 build system causes
@@ -135,14 +127,6 @@ Usage:
                 }
             }
 
-            if (commandLine.Options.Contains("template")) {
-                templateFile = new FileInputStreamSource((string)commandLine.Options["template"], "Template");
-            }
-
-            if (commandLine.Options.Contains("doc")) {
-                docCommentFile = new FileInputStreamSource((string)commandLine.Options["doc"], "DocComment");
-            }
-
             debug = commandLine.Options.Contains("debug");
             if (debug && !defines.Contains("DEBUG")) {
                 defines.Add("DEBUG");
@@ -151,8 +135,12 @@ Usage:
             includeTests = commandLine.Options.Contains("tests");
             minimize = commandLine.Options.Contains("minimize");
 
+            if (commandLine.Options.Contains("inc")) {
+                string basePath = (string)commandLine.Options["inc"];
+                includeResolver = new IncludeResolver(basePath);
+            }
+
             CompilerOptions compilerOptions = new CompilerOptions();
-            compilerOptions.DebugFlavor = debug;
             compilerOptions.IncludeTests = includeTests;
             compilerOptions.Defines = defines;
             compilerOptions.Minimize = minimize;
@@ -160,8 +148,7 @@ Usage:
             compilerOptions.Sources = sources;
             compilerOptions.Resources = resources;
             compilerOptions.ScriptFile = scriptFile;
-            compilerOptions.TemplateFile = templateFile;
-            compilerOptions.DocCommentFile = docCommentFile;
+            compilerOptions.IncludeResolver = includeResolver;
 
             compilerOptions.InternalTestMode = commandLine.Options.Contains("test");
             if (compilerOptions.InternalTestMode) {
@@ -183,15 +170,6 @@ Usage:
             }
 
             CompilerOptions compilerOptions = CreateCompilerOptions(commandLine);
-
-#if DEBUG
-            if (compilerOptions.InternalTestMode) {
-                // HACK: Our tests are currently in the Tests subnamespace, which is now
-                //       used as a pattern for writing unit tests. This hack allows postponing
-                //       modifying all tests and baselines.
-                compilerOptions.TestsSubnamespace = ".UnitTests";
-            }
-#endif // DEBUG
 
             string errorMessage;
             if (compilerOptions.Validate(out errorMessage) == false) {
@@ -237,6 +215,25 @@ Usage:
                 Console.WriteLine(message);
             }
             Console.WriteLine(UsageText);
+        }
+
+
+        private sealed class IncludeResolver : IStreamSourceResolver {
+
+            private string _basePath;
+
+            public IncludeResolver(string basePath) {
+                _basePath = basePath;
+            }
+
+            public IStreamSource Resolve(string name) {
+                string path = Path.Combine(_basePath, name);
+                if (File.Exists(path)) {
+                    return new FileInputStreamSource(path, name);
+                }
+
+                return null;
+            }
         }
     }
 }

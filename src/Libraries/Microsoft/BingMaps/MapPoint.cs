@@ -8,21 +8,21 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Point")]
     public sealed class MapPoint {
 
         public MapPoint(double x, double y) {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double X {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Y {
             get {
                 return 0;

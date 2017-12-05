@@ -1,4 +1,4 @@
-// IndentedTextWriter.cs
+// ScriptTextWriter.cs
 // Script#/Core/Compiler
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -14,7 +14,6 @@ namespace ScriptSharp.Generator {
     internal sealed class ScriptTextWriter : TextWriter {
 
         private TextWriter _writer;
-        private bool _minimize;
 
         private int _indentLevel;
         private bool _tabsPending;
@@ -24,21 +23,12 @@ namespace ScriptSharp.Generator {
         private int _globalIndentLevel;
         private bool _globalTabsPending;
 
-        public ScriptTextWriter(TextWriter writer, CompilerOptions options)
+        public ScriptTextWriter(TextWriter writer)
             : base(CultureInfo.InvariantCulture) {
             _writer = writer;
             _globalWriter = writer;
 
-#if DEBUG
-            _minimize = options.Minimize && (options.InternalTestMode == false);
-#else
-            _minimize = options.Minimize;
-#endif
-            if (_minimize) {
-                NewLine = "\n";
-            }
-
-            _tabString = "    ";
+            _tabString = "  ";
             _indentLevel = 0;
             _tabsPending = false;
         }
@@ -81,10 +71,8 @@ namespace ScriptSharp.Generator {
 
         private void OutputTabs() {
             if (_tabsPending) {
-                if (_minimize == false) {
-                    for (int i = 0; i < _indentLevel; i++) {
-                        _writer.Write(_tabString);
-                    }
+                for (int i = 0; i < _indentLevel; i++) {
+                    _writer.Write(_tabString);
                 }
                 _tabsPending = false;
             }
@@ -173,19 +161,14 @@ namespace ScriptSharp.Generator {
             _writer.Write(format, arg);
         }
 
-        public void WriteLineNoTabs(string s) {
-            _writer.WriteLine(s);
+        public override void WriteLine() {
+            _writer.WriteLine();
+            _tabsPending = true;
         }
 
         public override void WriteLine(string s) {
             OutputTabs();
             _writer.WriteLine(s);
-            _tabsPending = true;
-        }
-
-        public override void WriteLine() {
-            OutputTabs();
-            _writer.WriteLine();
             _tabsPending = true;
         }
 
@@ -265,25 +248,6 @@ namespace ScriptSharp.Generator {
             OutputTabs();
             _writer.WriteLine(value);
             _tabsPending = true;
-        }
-
-        public void WriteSignificantNewLine() {
-            WriteLine();
-        }
-
-        public void WriteNewLine() {
-            if (_minimize == false) {
-                WriteLine();
-            }
-        }
-
-        public void WriteTrimmed(string text) {
-            if (_minimize == false) {
-                Write(text);
-            }
-            else {
-                Write(text.Trim());
-            }
         }
     }
 }

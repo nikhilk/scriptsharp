@@ -9,4 +9,4 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("Script.Knockout")]
 [assembly: AssemblyDescription("Script# Knockout API")]
-[assembly: ScriptAssembly("Knockout")]
+[assembly: ScriptAssembly("knockout", Identifier = "ko")]

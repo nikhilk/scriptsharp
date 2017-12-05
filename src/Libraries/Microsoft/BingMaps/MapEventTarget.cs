@@ -12,9 +12,9 @@ namespace Microsoft.Maps {
 
     // TODO: Make properties
 
-    [Imported]
-    [IgnoreNamespace]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
     public enum MapEventTarget {
 
         Map = 0,

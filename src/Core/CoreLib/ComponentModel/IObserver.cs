@@ -8,8 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.ComponentModel {
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     [ScriptName("IObserver")]
     public interface IObserver {
 

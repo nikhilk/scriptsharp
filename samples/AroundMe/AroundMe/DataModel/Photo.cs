@@ -8,7 +8,8 @@ namespace AroundMe.DataModel {
     /// <summary>
     /// Represents a geo-tagged photo along with various bits of metadata.
     /// </summary>
-    internal sealed class Photo : Record {
+    [ScriptObject]
+    internal sealed class Photo {
 
         /// <summary>
         /// The ID of the photo.

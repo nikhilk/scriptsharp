@@ -1,0 +1,20 @@
+// basic.js 
+//
+
+// pre script
+
+// Basic.App
+
+function App() {
+}
+var App$ = {
+
+};
+
+
+var $exports = ss.module('basic', null,
+  {
+    App: ss.defineClass(App, App$, [], null)
+  });
+
+

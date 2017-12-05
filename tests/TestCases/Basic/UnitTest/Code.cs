@@ -4,7 +4,6 @@ using System.Testing;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace BasicTests {
 
@@ -62,5 +61,11 @@ namespace BasicTests.Tests {
         public override void Cleanup() {
             _endTime = Date.Now;
         }
+    }
+}
+
+namespace BasicTests.Tests.Helpers {
+
+    internal sealed class Foo {
     }
 }

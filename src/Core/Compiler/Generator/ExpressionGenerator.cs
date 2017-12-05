@@ -22,13 +22,14 @@ namespace ScriptSharp.Generator {
 
             Debug.Assert(symbol.Parent is ClassSymbol);
 
-            writer.Write(((ClassSymbol)symbol.Parent).FullGeneratedName);
-            writer.Write(".initializeBase(this");
+            ClassSymbol baseClass = ((ClassSymbol)symbol.Parent).BaseClass;
+            Debug.Assert(baseClass != null);
+
+            writer.Write(baseClass.FullGeneratedName);
+            writer.Write(".call(this");
             if (expression.Parameters != null) {
-                writer.Write(",");
-                writer.WriteTrimmed(" [ ");
+                writer.Write(", ");
                 GenerateExpressionList(generator, symbol, expression.Parameters);
-                writer.WriteTrimmed(" ]");
             }
             writer.Write(")");
         }
@@ -42,23 +43,23 @@ namespace ScriptSharp.Generator {
                     Debug.Assert(propExpression.Type == ExpressionType.PropertySet);
 
                     if (propExpression.ObjectReference is BaseExpression) {
-                        Debug.Assert(symbol.Parent is ClassSymbol);
-
-                        writer.Write(((ClassSymbol)symbol.Parent).FullGeneratedName);
-                        writer.Write(".callBaseMethod(this, 'set_");
+                        ClassSymbol classSymbol = (ClassSymbol)symbol.Parent;
+					    writer.Write("ss.baseProperty(");
+                        writer.Write(classSymbol.FullGeneratedName);
+                        writer.Write(", '");
                         writer.Write(propExpression.Property.GeneratedName);
-                        writer.Write("',");
-                        writer.WriteTrimmed(" [ ");
+                        writer.Write("').set.call(");
+                        writer.Write(generator.CurrentImplementation.ThisIdentifier);
+                        writer.Write(", ");
                         GenerateExpression(generator, symbol, expression.RightOperand);
-                        writer.WriteTrimmed(" ])");
+                        writer.Write(")");
                     }
                     else {
                         GenerateExpression(generator, symbol, propExpression.ObjectReference);
-                        writer.Write(".set_");
+                        writer.Write(".");
                         writer.Write(propExpression.Property.GeneratedName);
-                        writer.Write("(");
+                        writer.Write(" = ");
                         GenerateExpression(generator, symbol, expression.RightOperand);
-                        writer.Write(")");
                     }
 
                     return;
@@ -66,21 +67,20 @@ namespace ScriptSharp.Generator {
 
                 IndexerExpression indexExpression = expression.LeftOperand as IndexerExpression;
                 if ((indexExpression != null) &&
-                    !indexExpression.Indexer.IsIntrinsic) {
+                    !indexExpression.Indexer.UseScriptIndexer) {
                     Debug.Assert(indexExpression.Type == ExpressionType.Indexer);
 
                     if (indexExpression.ObjectReference is BaseExpression) {
-                        Debug.Assert(symbol.Parent is ClassSymbol);
-
-                        writer.Write(((ClassSymbol)symbol.Parent).FullGeneratedName);
-                        writer.Write(".callBaseMethod(this, 'set_");
+                        writer.Write(((BaseExpression)indexExpression.ObjectReference).EvaluatedType.FullGeneratedName);
+                        writer.Write(".prototype.set_");
                         writer.Write(indexExpression.Indexer.GeneratedName);
-                        writer.Write("',");
-                        writer.WriteTrimmed(" [ ");
+                        writer.Write(".call(");
+                        writer.Write(generator.CurrentImplementation.ThisIdentifier);
+                        writer.Write(", ");
                         GenerateExpressionList(generator, symbol, indexExpression.Indices);
-                        writer.WriteTrimmed(", ");
+                        writer.Write(", ");
                         GenerateExpression(generator, symbol, expression.RightOperand);
-                        writer.WriteTrimmed(" ])");
+                        writer.Write(")");
                     }
                     else {
                         IndexerSymbol indexerSymbol = indexExpression.Indexer;
@@ -90,7 +90,7 @@ namespace ScriptSharp.Generator {
                         writer.Write(indexerSymbol.GeneratedName);
                         writer.Write("(");
                         GenerateExpressionList(generator, symbol, indexExpression.Indices);
-                        writer.WriteTrimmed(", ");
+                        writer.Write(", ");
                         GenerateExpression(generator, symbol, expression.RightOperand);
                         writer.Write(")");
                     }
@@ -114,16 +114,12 @@ namespace ScriptSharp.Generator {
                     Debug.Assert(propExpression.Type == ExpressionType.PropertyGet);
 
                     GenerateExpression(generator, symbol, propExpression.ObjectReference);
-                    writer.Write(".set_");
+                    writer.Write(".");
                     writer.Write(propExpression.Property.GeneratedName);
-                    writer.Write("(");
+                    writer.Write(" = ");
                     GenerateExpression(generator, symbol, propExpression.ObjectReference);
-                    writer.Write(".get_");
-                    writer.Write(propExpression.Property.GeneratedName);
-                    writer.WriteTrimmed("()");
-                    writer.WriteTrimmed(OperatorConverter.OperatorToString(expression.Operator - 1));
+                    writer.Write(OperatorConverter.OperatorToString(expression.Operator - 1));
                     GenerateExpression(generator, symbol, expression.RightOperand);
-                    writer.Write(")");
 
                     return;
                 }
@@ -133,7 +129,7 @@ namespace ScriptSharp.Generator {
                 TypeExpression typeExpression = expression.RightOperand as TypeExpression;
                 Debug.Assert(typeExpression != null);
 
-                writer.Write("Type.");
+                writer.Write("ss.");
                 if (expression.Operator == Operator.Is) {
                     writer.Write("canCast(");
                 }
@@ -143,7 +139,7 @@ namespace ScriptSharp.Generator {
 
                 GenerateExpression(generator, symbol, expression.LeftOperand);
 
-                writer.WriteTrimmed(", ");
+                writer.Write(", ");
                 writer.Write(typeExpression.AssociatedType.FullGeneratedName);
                 writer.Write(")");
 
@@ -204,7 +200,7 @@ namespace ScriptSharp.Generator {
             }
 
             GenerateExpression(generator, symbol, expression.LeftOperand);
-            writer.WriteTrimmed(OperatorConverter.OperatorToString(expression.Operator));
+            writer.Write(OperatorConverter.OperatorToString(expression.Operator));
             GenerateExpression(generator, symbol, expression.RightOperand);
         }
 
@@ -218,67 +214,57 @@ namespace ScriptSharp.Generator {
             if (expression.Condition.Parenthesized == false) {
                 writer.Write(")");
             }
-            writer.WriteTrimmed(" ? ");
+            writer.Write(" ? ");
             ExpressionGenerator.GenerateExpression(generator, symbol, expression.TrueValue);
-            writer.WriteTrimmed(" : ");
+            writer.Write(" : ");
             ExpressionGenerator.GenerateExpression(generator, symbol, expression.FalseValue);
         }
 
         private static void GenerateDelegateExpression(ScriptGenerator generator, MemberSymbol symbol, DelegateExpression expression) {
             ScriptTextWriter writer = generator.Writer;
 
-            bool createDelegate = false;
-
-            if ((expression.Method.Visibility & MemberVisibility.Static) == 0) {
-                createDelegate = true;
-
-                writer.Write("ss.Delegate.create(");
-                ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
-                writer.WriteTrimmed(", ");
-            }
-
             AnonymousMethodSymbol anonymousMethod = expression.Method as AnonymousMethodSymbol;
-            if (anonymousMethod == null) {
-                // TODO: This probably needs to handle global method roots...
-
-                if (expression.Method.IsGlobalMethod == false) {
-                    ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
-                    writer.Write(".");
-                }
-                writer.Write(expression.Method.GeneratedName);
-            }
-            else {
+            if (anonymousMethod != null) {
                 writer.Write("function(");
                 if ((anonymousMethod.Parameters != null) && (anonymousMethod.Parameters.Count != 0)) {
-                    bool obfuscateParams = generator.Options.Minimize;
-                    string obfuscationPrefix = null;
-
                     int paramIndex = 0;
                     foreach (ParameterSymbol parameterSymbol in anonymousMethod.Parameters) {
                         if (paramIndex > 0) {
-                            writer.WriteTrimmed(", ");
-                        }
-                        if (obfuscateParams) {
-                            if (paramIndex == 0) {
-                                obfuscationPrefix = "$p" + anonymousMethod.Depth.ToString(CultureInfo.InvariantCulture) + "_";
-                            }
-                            parameterSymbol.SetTransformedName(obfuscationPrefix + paramIndex);
+                            writer.Write(", ");
                         }
                         writer.Write(parameterSymbol.GeneratedName);
 
                         paramIndex++;
                     }
                 }
-                writer.Write(")");
-                writer.WriteTrimmed(" {");
-                writer.WriteLine();
+                writer.WriteLine(") {");
                 writer.Indent++;
                 CodeGenerator.GenerateScript(generator, anonymousMethod);
                 writer.Indent--;
                 writer.Write("}");
             }
+            else if ((expression.Method.Visibility & MemberVisibility.Static) != 0) {
+                if (expression.Method.IsExtension) {
+                    Debug.Assert(expression.Method.Parent.Type == SymbolType.Class);
 
-            if (createDelegate) {
+                    ClassSymbol classSymbol = (ClassSymbol)expression.Method.Parent;
+                    Debug.Assert(classSymbol.IsExtenderClass);
+
+                    writer.Write(classSymbol.Extendee);
+                    writer.Write(".");
+                    writer.Write(expression.Method.GeneratedName);
+                }
+                else {
+                    ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
+                    writer.Write(".");
+                    writer.Write(expression.Method.GeneratedName);
+                }
+            }
+            else {
+                writer.Write("ss.bind('");
+                writer.Write(expression.Method.GeneratedName);
+                writer.Write("', ");
+                ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
                 writer.Write(")");
             }
         }
@@ -294,17 +280,36 @@ namespace ScriptSharp.Generator {
         private static void GenerateEventExpression(ScriptGenerator generator, MemberSymbol symbol, EventExpression expression) {
             ScriptTextWriter writer = generator.Writer;
 
+            EventSymbol eventSymbol = expression.Event;
+
             ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
-            if (expression.Type == ExpressionType.EventAdd) {
-                writer.Write(".add_");
+            if (eventSymbol.HasCustomAccessors) {
+                writer.Write(".");
+                if (expression.Type == ExpressionType.EventAdd) {
+                    writer.Write(eventSymbol.AddAccessor);
+                }
+                else {
+                    writer.Write(eventSymbol.RemoveAccessor);
+                }
+
+                writer.Write("('");
+                writer.Write(expression.Event.GeneratedName);
+                writer.Write("', ");
+                ExpressionGenerator.GenerateExpression(generator, symbol, expression.Handler);
+                writer.Write(")");
             }
             else {
-                writer.Write(".remove_");
+                if (expression.Type == ExpressionType.EventAdd) {
+                    writer.Write(".add_");
+                }
+                else {
+                    writer.Write(".remove_");
+                }
+                writer.Write(expression.Event.GeneratedName);
+                writer.Write("(");
+                ExpressionGenerator.GenerateExpression(generator, symbol, expression.Handler);
+                writer.Write(")");
             }
-            writer.Write(expression.Event.GeneratedName);
-            writer.Write("(");
-            ExpressionGenerator.GenerateExpression(generator, symbol, expression.Handler);
-            writer.Write(")");
         }
 
         public static void GenerateExpression(ScriptGenerator generator, MemberSymbol symbol, Expression expression) {
@@ -380,6 +385,9 @@ namespace ScriptSharp.Generator {
                 case ExpressionType.InlineScript:
                     GenerateInlineScriptExpression(generator, symbol, (InlineScriptExpression)expression);
                     break;
+                case ExpressionType.NewDelegate:
+                    GenerateExpression(generator, symbol, ((NewDelegateExpression)expression).TypeExpression);
+                    break;
                 default:
                     Debug.Fail("Unexpected expression type: " + expression.Type);
                     break;
@@ -396,7 +404,7 @@ namespace ScriptSharp.Generator {
             bool firstExpression = true;
             foreach (Expression expression in expressions) {
                 if (firstExpression == false) {
-                    writer.WriteTrimmed(", ");
+                    writer.Write(", ");
                 }
                 GenerateExpression(generator, symbol, expression);
                 firstExpression = false;
@@ -413,11 +421,11 @@ namespace ScriptSharp.Generator {
 
             foreach (Expression expression in expressions) {
                 if ((firstExpression == false) && (valueExpression == false)) {
-                    writer.WriteTrimmed(", ");
+                    writer.Write(", ");
                 }
 
                 if (valueExpression) {
-                    writer.WriteTrimmed(": ");
+                    writer.Write(": ");
                     GenerateExpression(generator, symbol, expression);
 
                     valueExpression = false;
@@ -458,22 +466,21 @@ namespace ScriptSharp.Generator {
         private static void GenerateIndexerExpression(ScriptGenerator generator, MemberSymbol symbol, IndexerExpression expression) {
             ScriptTextWriter writer = generator.Writer;
 
-            if (expression.Indexer.IsIntrinsic) {
+            if (expression.Indexer.UseScriptIndexer) {
                 GenerateExpression(generator, symbol, expression.ObjectReference);
                 writer.Write("[");
                 GenerateExpressionList(generator, symbol, expression.Indices);
                 writer.Write("]");
             }
             else if (expression.ObjectReference is BaseExpression) {
-                Debug.Assert(symbol.Parent is ClassSymbol);
-
-                writer.Write(((ClassSymbol)symbol.Parent).FullGeneratedName);
-                writer.Write(".callBaseMethod(this, 'get_");
+                writer.Write(((BaseExpression)expression.ObjectReference).EvaluatedType.FullGeneratedName);
+                writer.Write(".prototype.get_");
                 writer.Write(expression.Indexer.GeneratedName);
-                writer.Write("',");
-                writer.WriteTrimmed(" [ ");
+                writer.Write(".call(");
+                writer.Write(generator.CurrentImplementation.ThisIdentifier);
+                writer.Write(", ");
                 GenerateExpressionList(generator, symbol, expression.Indices);
-                writer.WriteTrimmed(" ])");
+                writer.Write(")");
             }
             else {
                 GenerateExpression(generator, expression.Indexer, expression.ObjectReference);
@@ -512,7 +519,7 @@ namespace ScriptSharp.Generator {
                     }
                 }
 
-                script = String.Format(script, parameterScripts);
+                script = String.Format(CultureInfo.InvariantCulture, script, parameterScripts);
             }
 
             writer.Write(script);
@@ -523,9 +530,7 @@ namespace ScriptSharp.Generator {
             string name = null;
 
             LiteralExpression literalNameExpression = expression.NameExpression as LiteralExpression;
-            if (literalNameExpression != null) {
-                Debug.Assert(literalNameExpression.Value is string);
-
+            if ((literalNameExpression != null) && (literalNameExpression.Value is string)) {
                 name = (string)literalNameExpression.Value;
                 Debug.Assert(String.IsNullOrEmpty(name) == false);
             }
@@ -593,7 +598,7 @@ namespace ScriptSharp.Generator {
                         writer.Write("]");
                     }
 
-                    writer.WriteTrimmed(" = ");
+                    writer.Write(" = ");
                     GenerateExpressionList(generator, symbol, expression.Parameters);
                     break;
                 case LateBoundOperation.DeleteField:
@@ -626,10 +631,7 @@ namespace ScriptSharp.Generator {
                         writer.Write("]");
                     }
 
-                    writer.Write(")");
-                    writer.WriteTrimmed(" === ");
-                    writer.Write("'function'");
-                    writer.Write(")");
+                    writer.Write(") === 'function')");
                     break;
             }
         }
@@ -664,9 +666,9 @@ namespace ScriptSharp.Generator {
                         textValue = "[]";
                     }
                     else {
-                        writer.WriteTrimmed("[ ");
+                        writer.Write("[ ");
                         GenerateExpressionList(generator, symbol, (Expression[])value);
-                        writer.WriteTrimmed(" ]");
+                        writer.Write(" ]");
                     }
                 }
                 else {
@@ -697,46 +699,60 @@ namespace ScriptSharp.Generator {
             }
 
             if (expression.ObjectReference is BaseExpression) {
-                Debug.Assert(symbol.Parent is ClassSymbol);
-                Debug.Assert(expression.Method.IsGlobalMethod == false);
+                Debug.Assert(expression.Method.IsExtension == false);
 
-                writer.Write(((ClassSymbol)symbol.Parent).FullGeneratedName);
-                writer.Write(".callBaseMethod(this, '");
+                writer.Write(((BaseExpression)expression.ObjectReference).EvaluatedType.FullGeneratedName);
+                writer.Write(".prototype.");
                 writer.Write(expression.Method.GeneratedName);
-                writer.Write("'");
+                writer.Write(".call(");
+                writer.Write(generator.CurrentImplementation.ThisIdentifier);
                 if ((expression.Parameters != null) && (expression.Parameters.Count != 0)) {
-                    writer.Write(",");
-                    writer.WriteTrimmed(" [ ");
+                    writer.Write(", ");
                     GenerateExpressionList(generator, symbol, expression.Parameters);
-                    writer.WriteTrimmed(" ]");
                 }
                 writer.Write(")");
             }
             else {
-                if (expression.Method.IsGlobalMethod) {
-                    if (expression.Method.Parent is ClassSymbol) {
-                        string mixinRoot = ((ClassSymbol)expression.Method.Parent).MixinRoot;
-                        if (String.IsNullOrEmpty(mixinRoot) == false) {
-                            writer.Write(mixinRoot);
+                if (expression.Method.IsAliased) {
+                    writer.Write(expression.Method.Alias);
+                    writer.Write("(");
+                    if ((expression.Method.Visibility & MemberVisibility.Static) == 0) {
+                        GenerateExpression(generator, symbol, expression.ObjectReference);
+                        if ((expression.Parameters != null) && (expression.Parameters.Count != 0)) {
+                            writer.Write(", ");
+                        }
+                    }
+                    if ((expression.Parameters != null) && (expression.Parameters.Count != 0)) {
+                        GenerateExpressionList(generator, symbol, expression.Parameters);
+                    }
+                    writer.Write(")");
+                }
+                else {
+                    if (expression.Method.IsExtension) {
+                        Debug.Assert(expression.Method.Parent.Type == SymbolType.Class);
+
+                        string extendee = ((ClassSymbol)expression.Method.Parent).Extendee;
+                        Debug.Assert(String.IsNullOrEmpty(extendee) == false);
+
+                        writer.Write(extendee);
+                        writer.Write(".");
+                    }
+                    else {
+                        GenerateExpression(generator, symbol, expression.ObjectReference);
+                        if (expression.Method.GeneratedName.Length != 0) {
                             writer.Write(".");
                         }
                     }
-                }
-                else {
-                    GenerateExpression(generator, symbol, expression.ObjectReference);
-                    if (expression.Method.GeneratedName.Length != 0) {
-                        writer.Write(".");
-                    }
-                }
 
-                if (expression.Method.GeneratedName.Length != 0) {
-                    writer.Write(expression.Method.GeneratedName);
+                    if (expression.Method.GeneratedName.Length != 0) {
+                        writer.Write(expression.Method.GeneratedName);
+                    }
+                    writer.Write("(");
+                    if (expression.Parameters != null) {
+                        GenerateExpressionList(generator, symbol, expression.Parameters);
+                    }
+                    writer.Write(")");
                 }
-                writer.Write("(");
-                if (expression.Parameters != null) {
-                    GenerateExpressionList(generator, symbol, expression.Parameters);
-                }
-                writer.Write(")");
             }
         }
 
@@ -767,19 +783,41 @@ namespace ScriptSharp.Generator {
                         writer.Write("{}");
                     }
                     else {
-                        writer.WriteTrimmed("{ ");
+                        writer.Write("{ ");
                         GenerateExpressionListAsNameValuePairs(generator, symbol, expression.Parameters);
-                        writer.WriteTrimmed(" }");
+                        writer.Write(" }");
                     }
                     return;
                 }
-                else if (expression.AssociatedType.Type == SymbolType.Record) {
-                    if (expression.AssociatedType.IgnoreNamespace == false) {
-                        writer.Write(expression.AssociatedType.GeneratedNamespace);
-                        writer.Write(".");
+                else if (type.Equals("Tuple")) {
+                    if ((expression.Parameters == null) || (expression.Parameters.Count == 0)) {
+                        writer.Write("{ }");
                     }
-                    writer.Write("$create_");
-                    writer.Write(expression.AssociatedType.GeneratedName);
+                    else {
+                        writer.Write("{ ");
+                        for (int i = 0; i < expression.Parameters.Count; i++) {
+                            if (i != 0) {
+                                writer.Write(", ");
+                            }
+
+                            writer.Write("item");
+                            writer.Write(i + 1);
+                            writer.Write(": ");
+                            GenerateExpression(generator, symbol, expression.Parameters[i]);
+                        }
+                        writer.Write(" }");
+                    }
+
+                    return;
+                }
+                else if (expression.AssociatedType.Type == SymbolType.Record) {
+                    if (expression.AssociatedType.IsApplicationType &&
+                        ((RecordSymbol)expression.AssociatedType).Constructor == null) {
+                        writer.Write("{ }");
+                        return;
+                    }
+
+                    writer.Write(expression.AssociatedType.FullGeneratedName);
                     writer.Write("(");
                     if (expression.Parameters != null) {
                         GenerateExpressionList(generator, symbol, expression.Parameters);
@@ -811,22 +849,26 @@ namespace ScriptSharp.Generator {
             if (expression.ObjectReference is BaseExpression) {
                 Debug.Assert(symbol.Parent is ClassSymbol);
 
-                writer.Write(((ClassSymbol)symbol.Parent).FullGeneratedName);
-                writer.Write(".callBaseMethod(this, 'get_");
+                ClassSymbol classSymbol = (ClassSymbol)symbol.Parent;
+                Debug.Assert(classSymbol.BaseClass != null);
+				writer.Write("ss.baseProperty(");
+                writer.Write(classSymbol.FullGeneratedName);
+                writer.Write(", '");
                 writer.Write(expression.Property.GeneratedName);
-                writer.Write("')");
+                writer.Write("').get.call(");
+                writer.Write(generator.CurrentImplementation.ThisIdentifier);
+                writer.Write(")");
             }
             else {
                 ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
-                writer.Write(".get_");
+                writer.Write(".");
                 writer.Write(expression.Property.GeneratedName);
-                writer.Write("()");
             }
         }
 
         private static void GenerateThisExpression(ScriptGenerator generator, MemberSymbol symbol, ThisExpression expression) {
             ScriptTextWriter writer = generator.Writer;
-            writer.Write("this");
+            writer.Write(generator.CurrentImplementation.ThisIdentifier);
         }
 
         private static void GenerateTypeExpression(ScriptGenerator generator, MemberSymbol symbol, TypeExpression expression) {
@@ -836,41 +878,6 @@ namespace ScriptSharp.Generator {
 
         private static void GenerateUnaryExpression(ScriptGenerator generator, MemberSymbol symbol, UnaryExpression expression) {
             ScriptTextWriter writer = generator.Writer;
-
-            PropertyExpression propExpression = expression.Operand as PropertyExpression;
-            if ((propExpression != null) &&
-                ((expression.Operator == Operator.PreIncrement) || (expression.Operator == Operator.PostIncrement) ||
-                 (expression.Operator == Operator.PreDecrement) || (expression.Operator == Operator.PostDecrement))) {
-                Debug.Assert(propExpression.Type == ExpressionType.PropertyGet);
-
-                string fudgeOperator;
-
-                GenerateExpression(generator, symbol, propExpression.ObjectReference);
-                writer.Write(".set_");
-                writer.Write(propExpression.Property.GeneratedName);
-                writer.Write("(");
-                GenerateExpression(generator, symbol, propExpression.ObjectReference);
-                writer.Write(".get_");
-                writer.Write(propExpression.Property.GeneratedName);
-                writer.Write("()");
-                if ((expression.Operator == Operator.PreIncrement) || (expression.Operator == Operator.PostIncrement)) {
-                    writer.WriteTrimmed(" + ");
-                    fudgeOperator = " - ";
-                }
-                else {
-                    writer.WriteTrimmed(" - ");
-                    fudgeOperator = " + ";
-                }
-                writer.Write("1");
-                writer.Write(")");
-
-                if ((expression.Operator == Operator.PreIncrement) || (expression.Operator == Operator.PreDecrement)) {
-                    writer.WriteTrimmed(fudgeOperator);
-                    writer.Write("1");
-                }
-
-                return;
-            }
 
             if ((expression.Operator == Operator.PreIncrement) ||
                 (expression.Operator == Operator.PreDecrement)) {

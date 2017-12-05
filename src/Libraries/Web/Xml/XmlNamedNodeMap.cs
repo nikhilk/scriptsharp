@@ -8,14 +8,15 @@ using System.Runtime.CompilerServices;
 
 namespace System.Xml {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    [ScriptName("NamedNodeMap")]
     public sealed class XmlNamedNodeMap : IEnumerable {
 
         internal XmlNamedNodeMap() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("length")]
         public int Count {
             get {
@@ -23,7 +24,7 @@ namespace System.Xml {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public XmlNode this[int index] {
             get {
                 return null;

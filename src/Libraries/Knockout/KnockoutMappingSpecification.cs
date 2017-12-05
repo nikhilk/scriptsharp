@@ -8,12 +8,12 @@ using System.Runtime.CompilerServices;
 
 namespace KnockoutApi {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class KnockoutMappingSpecification {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string[] Copy {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace KnockoutApi {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string[] Ignore {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace KnockoutApi {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string[] Include {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace KnockoutApi {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public KnockoutMappingPropertySpecification this[string propertyName] {
             get {
                 return null;

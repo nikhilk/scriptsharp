@@ -1,5 +1,5 @@
 // PreprocessorTextReader.cs
-// Script#/Core/ScriptSharp
+// Script#/Tools/Preprocessor
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
@@ -8,7 +8,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using ScriptSharp;
 
 namespace ScriptSharp.Preprocessor {
 
@@ -18,7 +17,6 @@ namespace ScriptSharp.Preprocessor {
 
         private IStreamSource _source;
         private IStreamResolver _includeResolver;
-        private IScriptInfo _scriptInfo;
 
         private Dictionary<string, string> _definedVariables;
         private Stack<Instruction> _activeInstructions;
@@ -36,12 +34,11 @@ namespace ScriptSharp.Preprocessor {
         private TextReader _includeTextReader;
         private int _includeLineCounter;
 
-        public PreprocessorTextReader(IStreamSource source, ICollection<string> predefinedVariables, IStreamResolver includeResolver, IScriptInfo scriptInfo) {
+        public PreprocessorTextReader(IStreamSource source, ICollection<string> predefinedVariables, IStreamResolver includeResolver) {
             Debug.Assert(source != null);
 
             _source = source;
             _includeResolver = includeResolver;
-            _scriptInfo = scriptInfo;
 
             _definedVariables = new Dictionary<string, string>();
             _activeInstructions = new Stack<Instruction>();
@@ -152,31 +149,7 @@ namespace ScriptSharp.Preprocessor {
                     isActive = currentInstruction.IsActive;
                 }
 
-                if (trimmedLine.StartsWith("##")) {
-                    if (isActive == false) {
-                        line = null;
-                    }
-                    if (line != null) {
-                        line = ProcessSingleLineInstruction(trimmedLine);
-                    }
-                }
-                else if (trimmedLine.StartsWith("#include[as-is] ")) {
-                    if (isActive == false) {
-                        line = null;
-                    }
-
-                    if (line != null) {
-                        _currentLine = line;
-                        if (_includeResolver != null) {
-                            ProcessIncludeInstruction(trimmedLine, /* skipPreprocessing */ true);
-                            line = null;
-                        }
-                        else {
-                            RaiseError("Includes are not supported in this file.");
-                        }
-                    }
-                }
-                else if (trimmedLine.StartsWith("#include ")) {
+                if (trimmedLine.StartsWith("#include ")) {
                     if (isActive == false) {
                         line = null;
                     }
@@ -185,7 +158,7 @@ namespace ScriptSharp.Preprocessor {
                         _currentLine = line;
                         if (_includeResolver != null) {
                             if (_includeStream == null) {
-                                ProcessIncludeInstruction(trimmedLine, /* skipPreprocessing */ false);
+                                ProcessIncludeInstruction(trimmedLine);
                                 line = null;
                             }
                             else {
@@ -218,7 +191,7 @@ namespace ScriptSharp.Preprocessor {
                 }
             }
 
-            return ProcessInlineInstruction(line);
+            return line;
         }
 
         public bool Initialize(TextWriter skipPreprocessingWriter) {
@@ -278,7 +251,7 @@ namespace ScriptSharp.Preprocessor {
             return ch;
         }
 
-        private void ProcessIncludeInstruction(string instructionLine, bool skipPreprocessing) {
+        private void ProcessIncludeInstruction(string instructionLine) {
             Debug.Assert(_includeStream == null);
             Debug.Assert(_includeTextReader == null);
 
@@ -301,17 +274,6 @@ namespace ScriptSharp.Preprocessor {
                         if (_includeStream != null) {
                             _includeTextReader = new StreamReader(_includeStream);
                             _includeLineCounter = 0;
-
-                            if (skipPreprocessing) {
-                                string includeText = _includeTextReader.ReadToEnd();
-                                _skipPreprocessingWriter.Write(includeText);
-
-                                _include.CloseStream(_includeStream);
-                                _includeTextReader = null;
-                                _includeStream = null;
-
-                                included = true;
-                            }
                         }
                     }
                 }
@@ -326,84 +288,6 @@ namespace ScriptSharp.Preprocessor {
             else {
                 RaiseError("Invalid #include instruction.");
             }
-        }
-
-        private string ProcessInlineInstruction(string line) {
-            if (String.IsNullOrEmpty(line)) {
-                return line;
-            }
-
-            int inlineInstructionIndex;
-
-            // Processes inline instructions within the line such as
-            // ... #= XYZ ## ...
-            inlineInstructionIndex = line.IndexOf("#=");
-            while (inlineInstructionIndex >= 0) {
-                int variableEndIndex;
-                string variable = ParseInstructionVariable(line, inlineInstructionIndex + 2, out variableEndIndex);
-                if (variable == null) {
-                    RaiseError("Variable name was missing after '#=' instruction.");
-                    continue;
-                }
-
-                string value = _scriptInfo.GetValue(variable);
-                if (value == null) {
-                    RaiseError("Unknown variable name, '" + variable + "' after '#=' instruction.");
-                    continue;
-                }
-
-                int inlineInstructionEndIndex = line.IndexOf("##", variableEndIndex);
-                if (inlineInstructionEndIndex < 0) {
-                    RaiseError("Invalid instruction. Missing ending '##' after '#='.");
-                    continue;
-                }
-
-                if (line.Length > inlineInstructionEndIndex + 2) {
-                    line = line.Substring(0, inlineInstructionIndex) + value + line.Substring(inlineInstructionEndIndex + 2);
-                }
-                else {
-                    line = line.Substring(0, inlineInstructionIndex) + value;
-                }
-
-                inlineInstructionIndex = line.IndexOf("#=");
-            }
-
-            // Processes inline instructions within the line such as
-            // ... #? DEBUG ... ## ...
-            inlineInstructionIndex = line.IndexOf("#?");
-            while (inlineInstructionIndex >= 0) {
-                int variableEndIndex;
-                string variable = ParseInstructionVariable(line, inlineInstructionIndex + 2, out variableEndIndex);
-                if (variable == null) {
-                    RaiseError("Variable name was missing after '#?' instruction.");
-                    continue;
-                }
-
-                int inlineInstructionEndIndex = line.IndexOf("##", variableEndIndex);
-                if (inlineInstructionEndIndex < 0) {
-                    RaiseError("Invalid instruction. Missing ending '##' after '#?'.");
-                    continue;
-                }
-
-                if (_definedVariables.ContainsKey(variable)) {
-                    int scriptIndex = variableEndIndex + 1;
-                    if (line.Length > scriptIndex) {
-                        line = line.Remove(inlineInstructionEndIndex, 2);
-                        line = line.Remove(inlineInstructionIndex, variableEndIndex - inlineInstructionIndex);
-                    }
-                    else {
-                        RaiseError("No script was present on the line after the '##' instruction.");
-                    }
-                }
-                else {
-                    // Update the line to be everything except for the inline instruction
-                    line = line.Remove(inlineInstructionIndex, inlineInstructionEndIndex - inlineInstructionIndex + 2);
-                }
-
-                inlineInstructionIndex = line.IndexOf("#?");
-            }
-
-            return line;
         }
 
         private void ProcessInstruction(string instructionLine) {
@@ -480,28 +364,6 @@ namespace ScriptSharp.Preprocessor {
 
                 _activeInstructions.Pop();
             }
-        }
-
-        private string ProcessSingleLineInstruction(string instructionLine) {
-            string scriptLine = null;
-
-            int variableEndIndex;
-            string variable = ParseInstructionVariable(instructionLine, 2, out variableEndIndex);
-            if (variable == null) {
-                RaiseError("Variable name was missing after '##' instruction.");
-            }
-
-            if (_definedVariables.ContainsKey(variable)) {
-                int scriptIndex = variableEndIndex + 1;
-                if (instructionLine.Length > scriptIndex) {
-                    scriptLine = instructionLine.Substring(scriptIndex);
-                }
-                else {
-                    RaiseError("No script was present on the line after the '##' instruction.");
-                }
-            }
-
-            return scriptLine;
         }
 
         private void RaiseError(string errorMessage) {

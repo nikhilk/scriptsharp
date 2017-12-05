@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Media.Graphics {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class TextMetrics {
 
         private TextMetrics() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Width {
             get {
                 return 0f;

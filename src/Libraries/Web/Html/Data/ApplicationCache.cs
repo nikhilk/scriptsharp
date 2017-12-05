@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Data {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class ApplicationCache {
 
         private ApplicationCache() {
@@ -18,7 +18,7 @@ namespace System.Html.Data {
         /// <summary>
         /// Gets the current status of the application cache.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public ApplicationCacheStatus Status {
             get {
                 return ApplicationCacheStatus.Uncached;

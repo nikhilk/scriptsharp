@@ -101,6 +101,9 @@ namespace ScriptSharp.Compiler {
                 case ParseNodeType.Try:
                     statement = ProcessTryCatchFinallyStatement((TryNode)statementNode);
                     break;
+                case ParseNodeType.Using:
+                    statement = ProcessUsingStatement((UsingNode)statementNode);
+                    break;
             }
             return statement;
         }
@@ -202,9 +205,13 @@ namespace ScriptSharp.Compiler {
 
             ForInStatement statement;
             if (dictionaryContainer) {
-                string dictionaryVariableName = _symbolTable.CreateSymbolName("dict");
-                VariableSymbol dictionaryVariable = new VariableSymbol(dictionaryVariableName, _memberContext,
-                                                                       collectionExpression.EvaluatedType);
+                VariableSymbol dictionaryVariable = null;
+
+                if (collectionExpression.Type != ExpressionType.Local) {
+                    string dictionaryVariableName = _symbolTable.CreateSymbolName("dict");
+                    dictionaryVariable = new VariableSymbol(dictionaryVariableName, _memberContext,
+                                                            collectionExpression.EvaluatedType);
+                }
 
                 statement = new ForInStatement(collectionExpression, dictionaryVariable);
 
@@ -359,6 +366,14 @@ namespace ScriptSharp.Compiler {
                 statement.AddFinally(finallyStatement);
             }
 
+            return statement;
+        }
+
+        private Statement ProcessUsingStatement(UsingNode node)
+        {
+            UsingStatement statement = new UsingStatement();
+            statement.AddGuard((VariableDeclarationStatement)ProcessVariableDeclarationStatement((VariableDeclarationNode)node.Guard));
+            statement.AddBody(BuildStatement((StatementNode)node.Body));
             return statement;
         }
 

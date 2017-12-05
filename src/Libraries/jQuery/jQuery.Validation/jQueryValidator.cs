@@ -10,8 +10,8 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.Validation {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class jQueryValidator {
 
         private jQueryValidator() {

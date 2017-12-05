@@ -1,43 +1,57 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.MyClass = function() {
+  // MemberTests.MyClass
+
+  function MyClass() {
+    this._value = 0;
     this._value = 1;
-}
-test.MyClass.prototype = {
-    _value: 0
-}
+  }
+  var MyClass$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass2
+  // MemberTests.MyClass2
 
-test.MyClass2 = function() {
-}
+  function MyClass2() {
+  }
+  var MyClass2$ = {
 
-
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass3
-
-test.MyClass3 = function(arg, arg2) {
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass4
+  // MemberTests.MyClass3
 
-test.MyClass4 = function(arg, arg2, arg3) {
-    test.MyClass4.initializeBase(this, [ arg, arg2 ]);
-}
+  function MyClass3(arg, arg2) {
+  }
+  var MyClass3$ = {
+
+  };
 
 
-test.MyClass.registerClass('test.MyClass');
-test.MyClass2.registerClass('test.MyClass2');
-test.MyClass3.registerClass('test.MyClass3');
-test.MyClass4.registerClass('test.MyClass4', test.MyClass3);
-test.MyClass2.x = null;
-test.MyClass2.x = 'Hello';
-test.MyClass3.c = null;
-test.MyClass3.c = new test.MyClass();
+  // MemberTests.MyClass4
+
+  function MyClass4(arg, arg2, arg3) {
+    MyClass3.call(this, arg, arg2);
+  }
+  var MyClass4$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null),
+      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], null),
+      MyClass3: ss.defineClass(MyClass3, MyClass3$, [Number, Number], null),
+      MyClass4: ss.defineClass(MyClass4, MyClass4$, [Number, Number, Number], MyClass3)
+    });
+
+  MyClass2._x = 'Hello';
+  MyClass3.c = new MyClass();
+
+  return $exports;
+});

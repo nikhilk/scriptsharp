@@ -44,7 +44,6 @@
     <Compile Include="FileInputStreamSource.cs" />
     <Compile Include="FileOutputStreamSource.cs" />
     <Compile Include="IErrorHandler.cs" />
-    <Compile Include="IScriptInfo.cs" />
     <Compile Include="IStreamResolver.cs" />
     <Compile Include="IStreamSource.cs" />
     <Compile Include="PreprocessorOptions.cs" />

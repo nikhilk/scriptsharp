@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace System.Serialization {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("JSON")]
     public static class Json {
 

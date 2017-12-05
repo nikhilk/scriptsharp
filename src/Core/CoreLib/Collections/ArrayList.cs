@@ -4,17 +4,18 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    // NOTE: Keep in sync with ArrayGrouping and Array
+    // NOTE: Keep in sync with Array and List
 
     /// <summary>
     /// Equivalent to the Array type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Array")]
     public sealed class ArrayList : IEnumerable {
 
@@ -27,7 +28,7 @@ namespace System.Collections {
         public ArrayList(params object[] items) {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("length")]
         public int Count {
             get {
@@ -35,7 +36,7 @@ namespace System.Collections {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object this[int index] {
             get {
                 return null;
@@ -44,17 +45,12 @@ namespace System.Collections {
             }
         }
 
+        [ScriptName("push")]
         public void Add(object item) {
         }
 
-        public void AddRange(object[] items) {
-        }
-
-        public void AddRange(ArrayList items) {
-        }
-
-        public ArrayList Clone() {
-            return null;
+        [ScriptName("push")]
+        public void AddRange(params object[] items) {
         }
 
         public void Clear() {
@@ -76,14 +72,6 @@ namespace System.Collections {
             return false;
         }
 
-        public Array Extract(int index) {
-            return null;
-        }
-
-        public Array Extract(int index, int count) {
-            return null;
-        }
-
         public Array Filter(ArrayFilterCallback filterCallback) {
             return null;
         }
@@ -102,11 +90,11 @@ namespace System.Collections {
             return null;
         }
 
-        public ArrayGrouping[] GroupBy(ArrayItemKeyGenerator keyCallback) {
+        public Array GetRange(int index) {
             return null;
         }
 
-        public Dictionary Index(ArrayItemKeyGenerator keyCallback) {
+        public Array GetRange(int index, int count) {
             return null;
         }
 
@@ -121,7 +109,7 @@ namespace System.Collections {
         public void Insert(int index, object item) {
         }
 
-        public void InsertRange(int index, object[] items) {
+        public void InsertRange(int index, params object[] items) {
         }
 
         public string Join() {
@@ -184,6 +172,7 @@ namespace System.Collections {
             return null;
         }
 
+        [ScriptAlias("ss.remove")]
         public bool Remove(object item) {
             return false;
         }
@@ -233,7 +222,19 @@ namespace System.Collections {
         public void Unshift(params object[] items) {
         }
 
-        public static explicit operator Array(ArrayList list) {
+        public static implicit operator Array(ArrayList list) {
+            return null;
+        }
+
+        public static implicit operator object[](ArrayList list) {
+            return null;
+        }
+
+        public static implicit operator List<object>(ArrayList list) {
+            return null;
+        }
+
+        public static explicit operator ArrayList(object[] array) {
             return null;
         }
     }

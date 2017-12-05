@@ -8,21 +8,21 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class IFrameElement : Element {
 
         private IFrameElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public WindowInstance ContentWindow {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string FrameBorder {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Scrolling {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Src {
             get {
                 return null;

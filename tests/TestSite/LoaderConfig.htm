@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LoaderConfig</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+
+<script type="text/script" data-name="jquery" data-src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.js"></script>
+<script type="text/javascript" src="Scripts/ssloader.js"></script>
+<script type="text/javascript">
+define.config.scriptPath = 'Scripts/{name}.min.js';
+</script>
+
+<script type="text/javascript">
+module('Loader');
+
+asyncTest('no dependencies', function() {
+  QUnit.expect(2);
+
+  define('start1', [], function() {
+    QUnit.start();
+    QUnit.equal(1, 1);
+    QUnit.equal(this, window, 'Expected this to be set to the global window object');
+    QUnit.stop();
+  });
+
+  QUnit.stop();
+});
+
+asyncTest('ss dependency', function() {
+  QUnit.expect(3);
+
+  define('start2', ['ss'], function(ss) {
+    QUnit.start();
+
+    QUnit.equal(this, window, 'Expected this to be set to the global window object');
+    QUnit.notEqual(ss, null, 'Expected scriptsharp dependency reference');
+    QUnit.equal(ss.version, '1.0', 'Expected valid scriptsharp module');
+
+    QUnit.stop();
+  });
+
+  QUnit.stop();
+});
+
+asyncTest('multiple dependencies', function() {
+  QUnit.expect(5);
+
+  define('start3', ['ss', 'jquery'], function(ss, $) {
+    QUnit.start();
+
+    QUnit.equal(this, window, 'Expected this to be set to the global window object');
+    QUnit.notEqual(ss, null, 'Expected scriptsharp dependency reference');
+    QUnit.equal(ss.version, '1.0', 'Expected valid scriptsharp module');
+    QUnit.notEqual($, null, 'Expected jquery dependency reference');
+    QUnit.notEqual($.fn, null, 'Expected valid jquery dependency reference');
+
+    QUnit.stop();
+  });
+
+  QUnit.stop();
+});
+
+</script>
+</html>

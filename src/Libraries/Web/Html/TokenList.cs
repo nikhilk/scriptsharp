@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class TokenList {
 
         private TokenList() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("length")]
         public int Count {
             get {
@@ -23,7 +23,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string this[int index] {
             get {
                 return null;

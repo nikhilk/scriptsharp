@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Media.Filters {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public class VisualFilter {
 
         internal VisualFilter() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Enabled {
             get {
                 return false;

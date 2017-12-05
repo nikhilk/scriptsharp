@@ -10,18 +10,25 @@ namespace System {
     /// <summary>
     /// The double data type which is mapped to the Number type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Number")]
     public struct Double {
 
-        public string Format(string format) {
-            return null;
-        }
+        [ScriptName("MAX_VALUE")]
+        public const double MaxValue = 0;
 
-        public string LocaleFormat(string format) {
-            return null;
-        }
+        [ScriptName("MIN_VALUE")]
+        public const double MinValue = 0;
+
+        [ScriptName(PreserveCase = true)]
+        public const double NaN = 0;
+
+        [ScriptName("NEGATIVE_INFINITY")]
+        public const double NegativeInfinity = 0;
+
+        [ScriptName("POSITIVE_INFINITY")]
+        public const double PositiveInfinity = 0;
 
         [ScriptAlias("parseFloat")]
         public static double Parse(string s) {

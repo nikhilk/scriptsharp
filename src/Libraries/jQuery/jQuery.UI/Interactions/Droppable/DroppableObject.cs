@@ -14,8 +14,8 @@ namespace jQueryApi.UI.Interactions {
     /// <remarks>
     /// <para>The jQuery UI Droppable plugin makes selected elements droppable (meaning they accept being dropped on by draggables). You can specify which (individually) or which kind of draggables each will accept.</para>
     /// </remarks>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class DroppableObject : WidgetObject {
 
         private DroppableObject() {

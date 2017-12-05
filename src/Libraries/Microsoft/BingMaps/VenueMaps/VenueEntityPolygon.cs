@@ -8,29 +8,29 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.VenueMaps {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class VenueEntityPolygon {
 
         private VenueEntityPolygon() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public MapBounds Bounds {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public MapLocation Center {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public MapLocation[] Locations {
             get {
                 return null;

@@ -10,8 +10,8 @@ using System.Runtime.CompilerServices;
 namespace System.Diagnostics {
 
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
-    [NonScriptable]
-    [Imported]
+    [ScriptIgnore]
+    [ScriptImport]
     public sealed class ConditionalAttribute : Attribute {
 
         private string _conditionString;

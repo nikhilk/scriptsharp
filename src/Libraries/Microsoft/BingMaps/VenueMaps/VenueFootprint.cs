@@ -8,22 +8,22 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.VenueMaps {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class VenueFootprint {
 
         private VenueFootprint() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public VenueEntityPolygon[] Polygons {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int[] ZoomRange {
             get {
                 return null;

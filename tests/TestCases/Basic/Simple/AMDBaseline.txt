@@ -1,0 +1,81 @@
+// basic.js 1.0.0.0
+// Simple code generation test.
+// Copyright (c) Script# Project, 2012
+//
+
+"use strict";
+
+define('basic', ['ss'], function(ss) {
+  var $global = this;
+
+  // Basic.EventArgs
+
+  function EventArgs() {
+  }
+  var EventArgs$ = {
+
+  };
+
+
+  // Basic.Button
+
+  function Button(text) {
+    this._text = text;
+  }
+  var Button$ = {
+    add_click: function(value) {
+      this.__click = ss.bindAdd(this.__click, value);
+    },
+    remove_click: function(value) {
+      this.__click = ss.bindSub(this.__click, value);
+    },
+    $get_text: function() {
+      return this._text;
+    },
+    performClick: function() {
+      if (this.__click != null) {
+        this.__click(this, EventArgs.Empty);
+      }
+    }
+  };
+
+
+  // Basic.App
+
+  function App() {
+    this._btn1 = new Button('OK');
+    this._btn1.add_click(ss.bind('_onClickButton', this));
+    this._btn1.add_click(ss.bind('_onClickButtonDup', this));
+    this._btn2 = new Button('Cancel');
+    this._btn2.add_click(ss.bind('_onClickButton', this));
+  }
+  App.main = function(args) {
+    var theApp = new App();
+    theApp._btn1.performClick();
+    theApp._btn2.performClick();
+  };
+  var App$ = {
+    _echo: function(s) {
+    },
+    _onClickButton: function(sender, e) {
+      this._echo((sender).text + ' was clicked!');
+    },
+    _onClickButtonDup: function(sender, e) {
+      this._echo((sender).text + ' was clicked as well!');
+    }
+  };
+
+
+  var $exports = ss.module('basic', null,
+    {
+      EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null),
+      Button: ss.defineClass(Button, Button$, [String], null),
+      App: ss.defineClass(App, App$, [], null)
+    });
+
+  EventArgs.Empty = new EventArgs();
+
+  return $exports;
+});
+
+// Generated with Script# 1.0.0.0

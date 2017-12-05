@@ -4,11 +4,10 @@ using System.Runtime.CompilerServices;
 using ScriptFX;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace BasicTests {
 
-    [GlobalMethods]
+    [ScriptExtension("$global")]
     public static class GlobalMethodsClass {
 
         public static void Run() {
@@ -47,6 +46,39 @@ namespace BasicTests {
     }
 
     internal interface IApp {
+    }
+
+    public interface IInterfaceTest1
+    {
+        void TestMethod1();
+    }
+
+    public interface IInterfaceTest2 : IInterfaceTest1
+    {
+        void TestMethod2();
+    }
+
+    public interface IInterfaceTest3
+    {
+        void TestMethod3();
+    }
+
+    public interface IInterfaceTest4 : IInterfaceTest2, IInterfaceTest3
+    {
+        void TestMethod4();
+    }
+
+    internal class InterfaceTest : IInterfaceTest4
+    {
+        public void TestMethod1() { }
+
+        public void TestMethod2() { }
+
+        public void TestMethod3() { }
+
+        public void TestMethod4() { }
+
+        public void TestMethod5() { }
     }
 
     internal class Bar {
@@ -130,7 +162,7 @@ namespace BasicTests {
         }
     }
 
-    [PreserveName]
+    [ScriptName(PreserveName = true)]
     internal class BarCustom : Bar {
     }
 
@@ -138,10 +170,10 @@ namespace BasicTests {
 
         public int Foo() { return 0; }
 
-        [PreserveName]
+        [ScriptName(PreserveName = true)]
         public int Baz() { return 0; }
 
-        [PreserveName]
+        [ScriptName(PreserveName = true)]
         private void Xyz() { }
     }
 
@@ -210,7 +242,8 @@ namespace BasicTests {
         }
     }
 
-    internal sealed class MyData : Record {
+    [ScriptObject]
+    internal sealed class MyData {
 
         public string string1;
         public string string2;
@@ -221,6 +254,17 @@ namespace BasicTests {
         }
     }
 
+    [ScriptObject]
+    internal sealed class DataHolder {
+
+        public string s1;
+        public string s2;
+    }
+
     internal class ABC {
+
+        public ABC() {
+            DataHolder d = new DataHolder();
+        }
     }
 }

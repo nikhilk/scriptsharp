@@ -13,8 +13,8 @@ namespace System.ComponentModel {
     /// When placed on a property or parameter this can be used to mark a dependency
     /// and whether it is optional or not.
     /// </summary>
-    [Imported]
-    [NonScriptable]
+    [ScriptImport]
+    [ScriptIgnore]
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter, Inherited = true, AllowMultiple = false)]
     public sealed class DependencyAttribute : Attribute {
 

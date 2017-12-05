@@ -1,95 +1,99 @@
-Type.registerNamespace('TypeTests.Sub1.Sub2');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.Sub1.Sub2.MyClass
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-TypeTests.Sub1.Sub2.MyClass = function TypeTests_Sub1_Sub2_MyClass() {
-    var yc = new TypeTests.Sub1.YourClass();
+  // TypeTests.Sub1.Sub2.MyClass
+
+  function MyClass() {
+    var yc = new YourClass();
     yc.run();
-}
+  }
+  var MyClass$ = {
+
+  };
 
 
-Type.registerNamespace('TypeTests.Sub1');
+  // TypeTests.Sub1.YourClass
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.Sub1.YourClass
-
-TypeTests.Sub1.YourClass = function TypeTests_Sub1_YourClass() {
-}
-TypeTests.Sub1.YourClass.prototype = {
-    
-    run: function TypeTests_Sub1_YourClass$run() {
+  function YourClass() {
+  }
+  var YourClass$ = {
+    run: function() {
     }
-}
+  };
 
 
-Type.registerNamespace('TypeTests');
+  // TypeTests.YourClass1
 
-////////////////////////////////////////////////////////////////////////////////
-// TypeTests.YourClass
+  function YourClass1() {
+  }
+  var YourClass1$ = {
 
-TypeTests.YourClass = function TypeTests_YourClass() {
-}
-
-
-Type.registerNamespace('MyApp.Foo');
-
-////////////////////////////////////////////////////////////////////////////////
-// MyApp.Foo.MyClass
-
-MyApp.Foo.MyClass = function MyApp_Foo_MyClass() {
-}
+  };
 
 
-Type.registerNamespace('MyApp');
+  // MyApp.Foo.MyClassF
 
-////////////////////////////////////////////////////////////////////////////////
-// MyApp.Test
+  function MyClassF() {
+  }
+  var MyClassF$ = {
 
-MyApp.Test = function MyApp_Test() {
-    var c = new TypeTests.Sub1.Sub2.MyClass();
-}
+  };
 
 
-Type.registerNamespace('MyCompany');
+  // MyApp.Test
 
-////////////////////////////////////////////////////////////////////////////////
-// MyCompany.Utility
+  function Test() {
+    var c = new MyClass();
+  }
+  var Test$ = {
 
-MyCompany.Utility = function MyCompany_Utility() {
-}
-MyCompany.Utility.prototype = {
-    
-    run: function MyCompany_Utility$run() {
+  };
+
+
+  // MyCompany.Utility
+
+  function Utility() {
+  }
+  var Utility$ = {
+    run: function() {
     }
-}
+  };
 
 
-Type.registerNamespace('MyCompany.MyProduct');
+  // MyCompany.MyProduct.UtilityP
 
-////////////////////////////////////////////////////////////////////////////////
-// MyCompany.MyProduct.Utility
+  function UtilityP() {
+  }
+  var UtilityP$ = {
 
-MyCompany.MyProduct.Utility = function MyCompany_MyProduct_Utility() {
-}
+  };
 
 
-Type.registerNamespace('MyCompany.MyProduct.MyComponent');
+  // MyCompany.MyProduct.MyComponent.Component
 
-////////////////////////////////////////////////////////////////////////////////
-// MyCompany.MyProduct.MyComponent.Component
-
-MyCompany.MyProduct.MyComponent.Component = function MyCompany_MyProduct_MyComponent_Component() {
-    var u = new MyCompany.Utility();
+  function Component() {
+    var u = new Utility();
     u.run();
-}
+  }
+  var Component$ = {
+
+  };
 
 
-TypeTests.Sub1.Sub2.MyClass.registerClass('TypeTests.Sub1.Sub2.MyClass');
-TypeTests.Sub1.YourClass.registerClass('TypeTests.Sub1.YourClass');
-TypeTests.YourClass.registerClass('TypeTests.YourClass');
-MyApp.Foo.MyClass.registerClass('MyApp.Foo.MyClass');
-MyApp.Test.registerClass('MyApp.Test');
-MyCompany.Utility.registerClass('MyCompany.Utility');
-MyCompany.MyProduct.Utility.registerClass('MyCompany.MyProduct.Utility');
-MyCompany.MyProduct.MyComponent.Component.registerClass('MyCompany.MyProduct.MyComponent.Component');
+  var $exports = ss.module('test', null,
+    {
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null),
+      YourClass: ss.defineClass(YourClass, YourClass$, [], null),
+      YourClass1: ss.defineClass(YourClass1, YourClass1$, [], null),
+      MyClassF: ss.defineClass(MyClassF, MyClassF$, [], null),
+      Test: ss.defineClass(Test, Test$, [], null),
+      Utility: ss.defineClass(Utility, Utility$, [], null),
+      UtilityP: ss.defineClass(UtilityP, UtilityP$, [], null),
+      Component: ss.defineClass(Component, Component$, [], null)
+    });
+
+
+  return $exports;
+});

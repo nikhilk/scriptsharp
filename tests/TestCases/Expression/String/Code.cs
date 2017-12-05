@@ -2,7 +2,6 @@ using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace ExpressionTests {
 
@@ -18,6 +17,8 @@ namespace ExpressionTests {
             s = s2.DecodeUri();
             s2 = s.EncodeUriComponent();
             s = s2.DecodeUriComponent();
+            s = s.ToUpper();
+            s = s.ToLower();
         }
     }
 }

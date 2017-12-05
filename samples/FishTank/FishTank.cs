@@ -132,7 +132,7 @@ namespace FishTankApp {
         }
 
         private void QueueUpdate() {
-            Window.SetTimeout(_tickHandler, (int)(1000 / FramesPerSecond));
+            Script.SetTimeout(_tickHandler, (int)(1000 / FramesPerSecond));
         }
     }
 }

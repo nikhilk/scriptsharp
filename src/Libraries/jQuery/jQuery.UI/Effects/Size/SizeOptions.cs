@@ -11,8 +11,8 @@ namespace jQueryApi.UI.Effects {
     /// <summary>
     /// Options used to initialize or customize Size.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class SizeOptions {
 
@@ -25,7 +25,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// A callback function, executed when the effect completes
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Action Complete {
             get {
                 return null;
@@ -37,7 +37,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The number of ms the animation will run for
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Duration {
             get {
                 return 0;
@@ -49,7 +49,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The easing function to use
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Easing {
             get {
                 return null;
@@ -61,7 +61,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The vanishing point, default for show/hide.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Array Origin {
             get {
                 return null;
@@ -73,7 +73,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// Which areas of the element will be resized: 'both', 'box', 'content' Box resizes the border and padding of the element Content resizes any content inside of the element.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Scale {
             get {
                 return null;
@@ -85,7 +85,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// Height and width to resize to.{ height: .., width: .. }
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public object To {
             get {
                 return null;

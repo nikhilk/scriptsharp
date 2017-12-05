@@ -15,8 +15,35 @@ namespace ScriptSharp.Generator {
     internal static class CodeGenerator {
 
         private static void GenerateImplementationScript(ScriptGenerator generator, MemberSymbol symbol, SymbolImplementation implementation) {
-            foreach (Statement statement in implementation.Statements) {
-                StatementGenerator.GenerateStatement(generator, symbol, statement);
+            generator.StartImplementation(implementation);
+            try {
+                bool generateThisCacheStatement = false;
+
+                if ((symbol.Visibility & MemberVisibility.Static) == 0) {
+                    CodeMemberSymbol codeMemberSymbol = symbol as CodeMemberSymbol;
+                    if ((codeMemberSymbol != null) && (codeMemberSymbol.AnonymousMethods != null)) {
+                        foreach (AnonymousMethodSymbol anonymousMethod in codeMemberSymbol.AnonymousMethods) {
+                            if ((anonymousMethod.Visibility & MemberVisibility.Static) == 0) {
+                                generateThisCacheStatement = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (generateThisCacheStatement) {
+                    ScriptTextWriter writer = generator.Writer;
+
+                    writer.WriteLine("var $this = this;");
+                    writer.WriteLine();
+                }
+
+                foreach (Statement statement in implementation.Statements) {
+                    StatementGenerator.GenerateStatement(generator, symbol, statement);
+                }
+            }
+            finally {
+                generator.EndImplementation();
             }
         }
 

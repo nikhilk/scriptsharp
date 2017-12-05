@@ -12,8 +12,8 @@ namespace jQueryApi {
     /// A callback that returns a value for the element at the specified index.
     /// </summary>
     /// <param name="index">The index of the element in the set.</param>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate string StringFunction(int index);
 
     /// <summary>
@@ -21,7 +21,7 @@ namespace jQueryApi {
     /// </summary>
     /// <param name="index">The index of the element in the set.</param>
     /// <param name="currentValue">The current value.</param>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate string StringReplaceFunction(int index, string currentValue);
 }

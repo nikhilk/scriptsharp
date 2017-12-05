@@ -2,11 +2,12 @@ using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace ExpressionTests {
 
     public delegate void Foo(int i, string s, bool b);
+
+    public delegate int Bar(int i);
 
     public delegate void Callback();
 
@@ -53,9 +54,59 @@ namespace ExpressionTests {
             SomeClass s2 = new SomeClass(delegate {
                int[] numbers = new int[] { _n };
             });
+
+            SomeClass s3 = new SomeClass(delegate {
+                SomeClass s4 = new SomeClass(delegate {
+                    int[] numbers = new int[] { _n * 2 };
+                });
+            });
+
+            int j = 0;
+            new Callback(delegate {
+                this._n++;
+            }).Invoke();
+
+            new Callback(delegate {
+                j++;
+            })();
+
+            new Foo(delegate(int i, string s, bool b) {
+                i++;
+                b = string.IsNullOrEmpty(s);
+            }).Invoke(j, "foo", false);
+
+            new Foo(delegate(int i, string s, bool b) {
+                i++;
+                b = string.IsNullOrEmpty(s);
+            })(j, "foo", false);
+
+            j = new Bar(delegate (int k) { 
+                return k + 1; 
+            }).Invoke(3);
+
+            j = new Bar(delegate(int k) {
+                return k + 1;
+            })(3);
+        }
+
+        public void BBB(object o) {
+            SomeClass s = new SomeClass(delegate {
+                object temp = o;
+            });
+        }
+
+        public void CCC(object o) {
+            SomeClass s = new SomeClass(delegate {
+                SomeClass s = new SomeClass(delegate {
+                    int[] numbers = new int[] { _n * 2 };
+                });
+            });
         }
 
         public static void DoStuffStatic(object o, Foo callback) {
+            SomeClass s = new SomeClass(delegate {
+                object temp = o;
+            });
         }
 
         public void DoStuff(object o, Foo callback) {

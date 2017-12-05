@@ -1,5 +1,5 @@
 // IStreamSource.cs
-// Script#/Core/ScriptSharp
+// Script#/Tools/Preprocessor
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
@@ -8,7 +8,7 @@ using System.IO;
 
 namespace ScriptSharp {
 
-    public interface IStreamSource {
+    internal interface IStreamSource {
 
         string FullName {
             get;

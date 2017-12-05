@@ -46,7 +46,6 @@ namespace ScriptSharp.ScriptModel {
         public void AddType(TypeSymbol typeSymbol) {
             Debug.Assert(typeSymbol != null);
             Debug.Assert(String.IsNullOrEmpty(typeSymbol.Name) == false);
-            Debug.Assert(_typeMap.ContainsKey(typeSymbol.Name) == false);
 
             _types.Add(typeSymbol);
             _typeMap[typeSymbol.Name] = typeSymbol;

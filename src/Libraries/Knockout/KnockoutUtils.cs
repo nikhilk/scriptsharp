@@ -11,8 +11,8 @@ using System.Html;
 
 namespace KnockoutApi {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("ko.utils")]
     public static class KnockoutUtils {
 
@@ -100,7 +100,7 @@ namespace KnockoutApi {
         /// <summary>
         /// Finds the Matching Field Elements (input) in the given Form Element and the given regular expression
         /// </summary>
-        public static Element[] GetFormFields(Element form, RegularExpression match) {
+        public static Element[] GetFormFields(Element form, RegExp match) {
             return null;
         }
 

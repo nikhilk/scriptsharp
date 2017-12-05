@@ -12,30 +12,38 @@ namespace jQueryApi {
     /// <summary>
     /// Provides information about the position of an element.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptName("Object")]
     public sealed class jQueryPosition {
 
-        private jQueryPosition() {
+        public jQueryPosition() {
+        }
+
+        public jQueryPosition(params object[] nameValuePairs) {
         }
 
         /// <summary>
         /// Gets the left coordinate.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Left {
             get {
                 return 0;
+            }
+            set {
             }
         }
 
         /// <summary>
         /// Gets the top coordinate.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Top {
             get {
                 return 0;
+            }
+            set {
             }
         }
 

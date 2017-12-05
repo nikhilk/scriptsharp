@@ -12,7 +12,7 @@ namespace System {
     //       but there isn't a way to express the varying number of parameters in the
     //       middle of the signature!
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public delegate string StringReplaceCallback(string matchedValue);
 }

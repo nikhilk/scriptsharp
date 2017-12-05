@@ -8,12 +8,12 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Interactions {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class SelectableSelectedEvent {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Selected {
             get {
                 return null;

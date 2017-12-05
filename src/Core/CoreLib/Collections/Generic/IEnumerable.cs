@@ -7,11 +7,10 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     [ScriptName("IEnumerable")]
-    public interface IEnumerable<T> {
+    public interface IEnumerable<T> : IEnumerable {
 
-        IEnumerator<T> GetEnumerator();
+        new IEnumerator<T> GetEnumerator();
     }
 }

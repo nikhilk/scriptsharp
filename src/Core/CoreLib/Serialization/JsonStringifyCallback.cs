@@ -16,7 +16,7 @@ namespace System.Serialization {
     /// <param name="name">The name of the member.</param>
     /// <param name="value">The value of the member.</param>
     /// <returns>The value to be serialized.</returns>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public delegate object JsonStringifyCallback(string name, object value);
 }

@@ -8,8 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.ComponentModel {
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     [ScriptName("Observable")]
     public sealed class Observable<T> {
 

@@ -10,8 +10,8 @@ namespace Microsoft.Maps.VenueMaps {
 
     // TODO: Make properties
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class VenueMapOptions {
 

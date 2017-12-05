@@ -8,8 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Threading {
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     public class Task {
 
         internal Task() {
@@ -21,14 +20,14 @@ namespace System.Threading {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Exception Error {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public TaskStatus Status {
             get {
                 return TaskStatus.Pending;
@@ -48,6 +47,10 @@ namespace System.Threading {
         }
 
         public static Task<Task> Any(int timeout, params Task[] tasks) {
+            return null;
+        }
+
+        public Task<TResult> ChangeWith<TResult>(Func<Task, TResult> continuation) {
             return null;
         }
 
@@ -72,19 +75,22 @@ namespace System.Threading {
         }
     }
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     [ScriptName("Task")]
     public sealed class Task<T> : Task {
 
         internal Task() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public T Result {
             get {
                 return default(T);
             }
+        }
+
+        public Task<TResult> ChangeWith<TResult>(Func<Task<T>, TResult> continuation) {
+            return null;
         }
 
         public Task<T> ContinueWith(Action<Task<T>> continuation) {

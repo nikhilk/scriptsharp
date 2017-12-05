@@ -1,130 +1,75 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.IMyInterface
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.IMyInterface = function() { };
-test.IMyInterface.prototype = {
-    start : null,
-    Stop : null,
-    resume : null
-}
-test.IMyInterface.registerInterface('test.IMyInterface');
+  // TypeTests.IMyInterface
+
+  function IMyInterface() { }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.EmptyClass
+  // TypeTests.EmptyClass
 
-test.EmptyClass = function test_EmptyClass() {
-}
+  function EmptyClass() {
+  }
+  var EmptyClass$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test._singleMemberClass
+  // TypeTests.SingleMemberClass
 
-test._singleMemberClass = function test__singleMemberClass() {
-}
-test._singleMemberClass.prototype = {
-    
-    run: function test__singleMemberClass$run() {
+  function SingleMemberClass() {
+  }
+  var SingleMemberClass$ = {
+    run: function() {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.DerivedMemberClass
+  // TypeTests.MergedMembersClass
 
-test.DerivedMemberClass = function test_DerivedMemberClass() {
-    test.DerivedMemberClass.initializeBase(this);
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// test.MergedMembersClass
-
-test.MergedMembersClass = function test_MergedMembersClass() {
-}
-test.MergedMembersClass.prototype = {
-    foo: false,
-    bar: null,
-    
-    testMethod: function test_MergedMembersClass$testMethod() {
-        return null;
+  function MergedMembersClass() {
+    this.foo = false;
+  }
+  var MergedMembersClass$ = {
+    testMethod: function() {
+      return null;
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.DerivedMergedMembersClass
+  // TypeTests.MyClass
 
-test.DerivedMergedMembersClass = function test_DerivedMergedMembersClass() {
-    test.DerivedMergedMembersClass.initializeBase(this);
-    this.name = this.bar + this.bar + 'Name';
-}
-test.DerivedMergedMembersClass.prototype = {
-    name: null,
-    value: null,
-    
-    testMethod: function test_DerivedMergedMembersClass$testMethod() {
-        return null;
+  function MyClass() {
+  }
+  var MyClass$ = {
+    start: function() {
     },
-    
-    testMethod2: function test_DerivedMergedMembersClass$testMethod2() {
-        return this.get_item('foo');
+    Stop: function() {
     },
-    
-    someMethod: function test_DerivedMergedMembersClass$someMethod() {
-        var e1 = document.getElementById(this.bar);
-        var e2 = document.getElementById(this.name);
-        var e3 = document.getElementById(this.bar);
-        var s = this.testMethod() + test.DerivedMergedMembersClass.callBaseMethod(this, 'testMethod');
-    },
-    get_item: function test_DerivedMergedMembersClass$get_item(s) {
-        return s;
+    resume: function() {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass
+  // TypeTests.SomeClass
 
-test.MyClass = function test_MyClass() {
-}
-test.MyClass.prototype = {
-    
-    start: function test_MyClass$start() {
+  function SomeClass() {
+  }
+  var SomeClass$ = {
+    close: function() {
     },
-    
-    Stop: function test_MyClass$Stop() {
+    _cancel: function() {
     },
-    
-    resume: function test_MyClass$resume() {
+    run: function() {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test._someClass
+  // TypeTests.App
 
-test._someClass = function test__someClass() {
-}
-test._someClass.prototype = {
-    
-    close: function test__someClass$close() {
-    },
-    
-    _cancel: function test__someClass$_cancel() {
-    },
-    
-    run: function test__someClass$run() {
-    }
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// test.App
-
-test.App = function test_App() {
+  function App() {
     var s;
     s.run();
     var d;
@@ -134,14 +79,62 @@ test.App = function test_App() {
     mc.start();
     mc.Stop();
     mc.resume();
-}
+  }
+  var App$ = {
+
+  };
 
 
-test.EmptyClass.registerClass('test.EmptyClass');
-test._singleMemberClass.registerClass('test._singleMemberClass');
-test.DerivedMemberClass.registerClass('test.DerivedMemberClass', test._singleMemberClass);
-test.MergedMembersClass.registerClass('test.MergedMembersClass');
-test.DerivedMergedMembersClass.registerClass('test.DerivedMergedMembersClass', test.MergedMembersClass);
-test.MyClass.registerClass('test.MyClass', null, test.IMyInterface);
-test._someClass.registerClass('test._someClass');
-test.App.registerClass('test.App');
+  // TypeTests.DerivedMemberClass
+
+  function DerivedMemberClass() {
+    SingleMemberClass.call(this);
+  }
+  var DerivedMemberClass$ = {
+
+  };
+
+
+  // TypeTests.DerivedMergedMembersClass
+
+  function DerivedMergedMembersClass() {
+    MergedMembersClass.call(this);
+    this.name = this.bar + this.bar + 'Name';
+  }
+  var DerivedMergedMembersClass$ = {
+    testMethod: function() {
+      return null;
+    },
+    testMethod2: function() {
+      return this.get_item('foo');
+    },
+    someMethod: function() {
+      var e1 = document.getElementById(this.bar);
+      var e2 = document.getElementById(this.name);
+      var e3 = document.getElementById(this.bar);
+      var s = this.testMethod() + MergedMembersClass.prototype.testMethod.call(this);
+    },
+    get_item: function(s) {
+      return s;
+    }
+  };
+
+
+  var $exports = ss.module('test',
+    {
+      SingleMemberClass: ss.defineClass(SingleMemberClass, SingleMemberClass$, [], null),
+      SomeClass: ss.defineClass(SomeClass, SomeClass$, [], null)
+    },
+    {
+      IMyInterface: ss.defineInterface(IMyInterface),
+      EmptyClass: ss.defineClass(EmptyClass, EmptyClass$, [], null),
+      MergedMembersClass: ss.defineClass(MergedMembersClass, MergedMembersClass$, [], null),
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null, [IMyInterface]),
+      App: ss.defineClass(App, App$, [], null),
+      DerivedMemberClass: ss.defineClass(DerivedMemberClass, DerivedMemberClass$, [], SingleMemberClass),
+      DerivedMergedMembersClass: ss.defineClass(DerivedMergedMembersClass, DerivedMergedMembersClass$, [], MergedMembersClass)
+    });
+
+
+  return $exports;
+});

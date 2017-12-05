@@ -8,12 +8,12 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Widgets {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class AutoCompleteSelectEvent {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Item {
             get {
                 return null;

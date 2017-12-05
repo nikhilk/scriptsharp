@@ -6,7 +6,6 @@ using System.Serialization;
 using jQueryApi;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace ExpressionTests {
 
@@ -18,9 +17,9 @@ namespace ExpressionTests {
         public Foo() {
             _numbers = new List<int>();
             
-            string s = _numbers[10].Format("{0}");
-            string s2 = _numbers.GetEnumerator().Current.Format("{0}");
-            string s3 = _numbers.Reduce<int>(delegate(int accumulated, int item) { return accumulated + item; }, 0).Format("{0}");
+            string s = _numbers[10].ToString(10);
+            string s2 = _numbers.GetEnumerator().Current.ToString(10);
+            string s3 = _numbers.Reduce<int>(delegate(int accumulated, int item) { return accumulated + item; }, 0).ToString(10);
             
             string s4 = _func(10).EncodeUriComponent();
             
@@ -28,7 +27,7 @@ namespace ExpressionTests {
             f2(11).Trim();
             
             Dictionary<string, int> d = new Dictionary<string, int>();
-            string s5 = jQuery.ExtendDictionary<string, int>(d, d)["abc"].Format("{0}");
+            string s5 = jQuery.ExtendDictionary<string, int>(d, d)["abc"].ToString(10);
             int keys = d.Count;
             bool b = d.ContainsKey("abc");
             d.Remove("abc");

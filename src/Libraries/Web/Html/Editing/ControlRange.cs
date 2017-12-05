@@ -9,21 +9,21 @@ using System.Html;
 
 namespace System.Html.Editing {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class ControlRange : Range {
 
         private ControlRange() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Element this[int index] {
             get {
                 return null;

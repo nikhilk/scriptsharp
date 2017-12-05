@@ -8,15 +8,15 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.VenueMaps {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class VenueEntity {
 
         private VenueEntity() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public MapBounds Bounds {
             get {
                 return null;
@@ -24,42 +24,42 @@ namespace Microsoft.Maps.VenueMaps {
         }
 
         [ScriptName("categoryName")]
-        [IntrinsicProperty]
+        [ScriptField]
         public string Category {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public MapLocation Center {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public VenueFloor Floor {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string ID {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public MapLocation[] Locations {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;

@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Image")]
     public sealed class ImageElement : Element {
 
@@ -22,7 +22,7 @@ namespace System.Html {
         public ImageElement(int width, int height) {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Alt {
             get {
                 return null;
@@ -31,14 +31,14 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Complete {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Src {
             get {
                 return null;
@@ -47,7 +47,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Height {
             get {
                 return 0;
@@ -56,7 +56,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int NaturalHeight {
             get {
                 return 0;
@@ -65,7 +65,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int NaturalWidth {
             get {
                 return 0;
@@ -74,7 +74,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Width {
             get {
                 return 0;

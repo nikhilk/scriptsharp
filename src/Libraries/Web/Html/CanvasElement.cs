@@ -9,14 +9,14 @@ using System.Html.Media.Graphics;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class CanvasElement : Element {
 
         private CanvasElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Height {
             get {
                 return 0;
@@ -25,7 +25,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Width {
             get {
                 return 0;

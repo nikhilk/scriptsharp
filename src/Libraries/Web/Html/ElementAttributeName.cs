@@ -10,9 +10,9 @@ namespace System.Html {
 
     // TODO: Complete this enumeration
 
-    [IgnoreNamespace]
-    [NamedValues]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants(UseNames = true)]
+    [ScriptImport]
     public enum ElementAttributeName {
 
         Autocomplete = 0,

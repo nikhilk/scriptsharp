@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using ScriptSharp.CodeModel;
 using ScriptSharp.Compiler;
 using ScriptSharp.Generator;
@@ -22,7 +23,7 @@ namespace ScriptSharp {
     /// <summary>
     /// The Script# compiler.
     /// </summary>
-    public sealed class ScriptCompiler : IErrorHandler, IStreamResolver, IScriptInfo {
+    public sealed class ScriptCompiler : IErrorHandler {
 
         private CompilerOptions _options;
         private IErrorHandler _errorHandler;
@@ -89,14 +90,8 @@ namespace ScriptSharp {
             MetadataBuilder mdBuilder = new MetadataBuilder(this);
             _appSymbols = mdBuilder.BuildMetadata(_compilationUnitList, _symbols, _options);
 
-            // Check if any of the types defined in this assembly conflict against types in
-            // imported assemblies.
-
+            // Check if any of the types defined in this assembly conflict.
             Dictionary<string, TypeSymbol> types = new Dictionary<string, TypeSymbol>();
-            foreach (TypeSymbol importedType in _importedSymbols) {
-                types[importedType.FullGeneratedName] = importedType;
-            }
-
             foreach (TypeSymbol appType in _appSymbols) {
                 if ((appType.IsApplicationType == false) || (appType.Type == SymbolType.Delegate)) {
                     // Skip the check for types that are marked as imported, as they
@@ -113,9 +108,13 @@ namespace ScriptSharp {
                     continue;
                 }
 
-                string name = appType.FullGeneratedName;
+                // TODO: We could allow conflicting types as long as both aren't public
+                //       since they won't be on the exported types list. Internal types that
+                //       conflict could be generated using full name.
+
+                string name = appType.GeneratedName;
                 if (types.ContainsKey(name)) {
-                    string error = "The type '" + name + "' conflicts with another existing type with the same full name. This might be because a referenced assembly uses the same type, or you have multiple types with the same name across namespaces mapped to the same script namespace.";
+                    string error = "The type '" + appType.FullName + "' conflicts with with '" + types[name].FullName + "' as they have the same name.";
                     ((IErrorHandler)this).ReportError(error, null);
                 }
                 else {
@@ -152,11 +151,17 @@ namespace ScriptSharp {
             }
 #endif // DEBUG
 
+            ISymbolTransformer transformer = null;
             if (_options.Minimize) {
-                SymbolObfuscator obfuscator = new SymbolObfuscator();
-                SymbolSetTransformer obfuscationTransformer = new SymbolSetTransformer(obfuscator);
+                transformer = new SymbolObfuscator();
+            }
+            else {
+                transformer = new SymbolInternalizer();
+            }
 
-                ICollection<Symbol> obfuscatedSymbols = obfuscationTransformer.TransformSymbolSet(_symbols, /* useInheritanceOrder */ true);
+            if (transformer != null) {
+                SymbolSetTransformer symbolSetTransformer = new SymbolSetTransformer(transformer);
+                ICollection<Symbol> transformedSymbols = symbolSetTransformer.TransformSymbolSet(_symbols, /* useInheritanceOrder */ true);
 
 #if DEBUG
                 if (_options.InternalTestType == "minimizationMap") {
@@ -165,21 +170,14 @@ namespace ScriptSharp {
                     testWriter.WriteLine("Minimization Map");
                     testWriter.WriteLine("================================================================");
 
-                    List<Symbol> sortedObfuscatedSymbols = new List<Symbol>(obfuscatedSymbols);
-                    sortedObfuscatedSymbols.Sort(delegate(Symbol s1, Symbol s2) {
+                    List<Symbol> sortedTransformedSymbols = new List<Symbol>(transformedSymbols);
+                    sortedTransformedSymbols.Sort(delegate(Symbol s1, Symbol s2) {
                         return String.Compare(s1.Name, s2.Name);
                     });
 
-                    foreach (Symbol obfuscatedSymbol in sortedObfuscatedSymbols) {
-                        if (obfuscatedSymbol is TypeSymbol) {
-                            TypeSymbol typeSymbol = (TypeSymbol)obfuscatedSymbol;
-
-                            testWriter.WriteLine("Type '" + typeSymbol.FullName + "' renamed to '" + typeSymbol.GeneratedName + "'");
-                        }
-                        else {
-                            Debug.Assert(obfuscatedSymbol is MemberSymbol);
-                            testWriter.WriteLine("    Member '" + obfuscatedSymbol.Name + "' renamed to '" + obfuscatedSymbol.GeneratedName + "'");
-                        }
+                    foreach (Symbol transformedSymbol in sortedTransformedSymbols) {
+                        Debug.Assert(transformedSymbol is MemberSymbol);
+                        testWriter.WriteLine("    Member '" + transformedSymbol.Name + "' renamed to '" + transformedSymbol.GeneratedName + "'");
                     }
 
                     testWriter.WriteLine();
@@ -188,14 +186,6 @@ namespace ScriptSharp {
                     _testOutput = testWriter.ToString();
                 }
 #endif // DEBUG
-            }
-            else {
-                if (_options.DebugFlavor) {
-                    SymbolInternalizer internalizer = new SymbolInternalizer();
-                    SymbolSetTransformer internalizingTransformer = new SymbolSetTransformer(internalizer);
-
-                    internalizingTransformer.TransformSymbolSet(_symbols, /* useInheritanceOrder */ true);
-                }
             }
         }
 
@@ -237,70 +227,156 @@ namespace ScriptSharp {
         }
 
         private void GenerateScript() {
-            if (_options.TemplateFile != null) {
-                PreprocessorOptions preprocessorOptions = new PreprocessorOptions();
-                preprocessorOptions.SourceFile = _options.TemplateFile;
-                preprocessorOptions.TargetFile = _options.ScriptFile;
-                preprocessorOptions.DebugFlavor = _options.DebugFlavor;
-                preprocessorOptions.Minimize = _options.Minimize;
-                // preprocessorOptions.StripCommentsOnly = _options.StripCommentsOnly;
-                preprocessorOptions.UseWindowsLineBreaks = !_options.Minimize;
-                preprocessorOptions.PreprocessorVariables = _options.Defines;
+            Stream outputStream = null;
+            TextWriter outputWriter = null;
 
-                ScriptPreprocessor preprocessor = new ScriptPreprocessor(this, this, this);
-                preprocessor.Preprocess(preprocessorOptions);
-            }
-            else {
-                Stream outputStream = null;
-                TextWriter outputWriter = null;
+            try {
+                outputStream = _options.ScriptFile.GetStream();
+                if (outputStream == null) {
+                    ((IErrorHandler)this).ReportError("Unable to write to file " + _options.ScriptFile.FullName,
+                                                      _options.ScriptFile.FullName);
+                    return;
+                }
 
-                try {
-                    outputStream = _options.ScriptFile.GetStream();
-                    if (outputStream == null) {
-                        ((IErrorHandler)this).ReportError("Unable to write to file " + _options.ScriptFile.FullName,
-                                                                  _options.ScriptFile.FullName);
-                        return;
-                    }
-
-                    outputWriter = new StreamWriter(outputStream);
+                outputWriter = new StreamWriter(outputStream, new UTF8Encoding(false));
 
 #if DEBUG
-                    if (_options.InternalTestMode) {
-                        if (_testOutput != null) {
-                            outputWriter.Write(_testOutput);
-                            outputWriter.WriteLine("Script");
-                            outputWriter.WriteLine("================================================================");
-                            outputWriter.WriteLine();
-                            outputWriter.WriteLine();
-                        }
+                if (_options.InternalTestMode) {
+                    if (_testOutput != null) {
+                        outputWriter.Write(_testOutput);
+                        outputWriter.WriteLine("Script");
+                        outputWriter.WriteLine("================================================================");
+                        outputWriter.WriteLine();
+                        outputWriter.WriteLine();
                     }
+                }
 #endif // DEBUG
 
-                    GenerateScriptCore(outputWriter);
+                string script = GenerateScriptWithTemplate();
+                outputWriter.Write(script);
+            }
+            catch (Exception e) {
+                Debug.Fail(e.ToString());
+            }
+            finally {
+                if (outputWriter != null) {
+                    outputWriter.Flush();
                 }
-                catch (Exception e) {
-                    Debug.Fail(e.ToString());
-                }
-                finally {
-                    if (outputWriter != null) {
-                        outputWriter.Flush();
-                    }
-                    if (outputStream != null) {
-                        _options.ScriptFile.CloseStream(outputStream);
-                    }
+                if (outputStream != null) {
+                    _options.ScriptFile.CloseStream(outputStream);
                 }
             }
         }
 
-        private void GenerateScriptCore(TextWriter writer) {
-            ScriptGenerator scriptGenerator = new ScriptGenerator(writer, _options, this);
-            scriptGenerator.GenerateScript(_symbols);
+        private string GenerateScriptCore() {
+            StringWriter scriptWriter = new StringWriter();
+
+            try {
+                ScriptGenerator scriptGenerator = new ScriptGenerator(scriptWriter, _options, _symbols);
+                scriptGenerator.GenerateScript(_symbols);
+            }
+            catch (Exception e) {
+                Debug.Fail(e.ToString());
+            }
+            finally {
+                scriptWriter.Flush();
+            }
+
+            return scriptWriter.ToString();
+        }
+
+        private string GenerateScriptWithTemplate() {
+            string script = GenerateScriptCore();
+
+            string template = _options.ScriptInfo.Template;
+            if (String.IsNullOrEmpty(template)) {
+                return script;
+            }
+
+            template = PreprocessTemplate(template);
+
+            StringBuilder requiresBuilder = new StringBuilder();
+            StringBuilder dependenciesBuilder = new StringBuilder();
+            StringBuilder depLookupBuilder = new StringBuilder();
+
+            bool firstDependency = true;
+            foreach (ScriptReference dependency in _symbols.Dependencies) {
+                if (dependency.DelayLoaded) {
+                    continue;
+                }
+
+                if (firstDependency) {
+                    depLookupBuilder.Append("var ");
+                }
+                else {
+                    requiresBuilder.Append(", ");
+                    dependenciesBuilder.Append(", ");
+                    depLookupBuilder.Append(",\r\n    ");
+                }
+
+                string name = dependency.Name;
+                if (name == "ss") {
+                    // TODO: This is a hack... to make generated node.js scripts
+                    //       be able to reference the 'scriptsharp' node module.
+                    //       Fix this in a better/1st class manner by allowing
+                    //       script assemblies to declare such things.
+                    name = "scriptsharp";
+                }
+
+                requiresBuilder.Append("'" + dependency.Path + "'");
+                dependenciesBuilder.Append(dependency.Identifier);
+
+                depLookupBuilder.Append(dependency.Identifier);
+                depLookupBuilder.Append(" = require('" + name + "')");
+
+                firstDependency = false;
+            }
+
+            depLookupBuilder.Append(";");
+
+            return template.TrimStart()
+                           .Replace("{name}", _symbols.ScriptName)
+                           .Replace("{description}", _options.ScriptInfo.Description ?? String.Empty)
+                           .Replace("{copyright}", _options.ScriptInfo.Copyright ?? String.Empty)
+                           .Replace("{version}", _options.ScriptInfo.Version ?? String.Empty)
+                           .Replace("{compiler}", typeof(ScriptCompiler).Assembly.GetName().Version.ToString())
+                           .Replace("{description}", _options.ScriptInfo.Description)
+                           .Replace("{requires}", requiresBuilder.ToString())
+                           .Replace("{dependencies}", dependenciesBuilder.ToString())
+                           .Replace("{dependenciesLookup}", depLookupBuilder.ToString())
+                           .Replace("{script}", script);
         }
 
         private void ImportMetadata() {
             MetadataImporter mdImporter = new MetadataImporter(_options, this);
 
             _importedSymbols = mdImporter.ImportMetadata(_options.References, _symbols);
+        }
+
+        private string PreprocessTemplate(string template) {
+            if (_options.IncludeResolver == null) {
+                return template;
+            }
+
+            Regex includePattern = new Regex("\\{include:([^\\}]+)\\}", RegexOptions.Multiline | RegexOptions.CultureInvariant);
+            return includePattern.Replace(template, delegate(Match include) {
+                string includedScript = String.Empty;
+
+                if (include.Groups.Count == 2) {
+                    string includePath = include.Groups[1].Value;
+
+                    IStreamSource includeSource = _options.IncludeResolver.Resolve(includePath);
+                    if (includeSource != null) {
+                        Stream includeStream = includeSource.GetStream();
+                        StreamReader reader = new StreamReader(includeStream);
+
+                        includedScript = reader.ReadToEnd();
+                        includeSource.CloseStream(includeStream);
+                    }
+                }
+
+                return includedScript;
+            });
         }
 
         #region Implementation of IErrorHandler
@@ -320,104 +396,5 @@ namespace ScriptSharp {
             Console.Error.WriteLine(errorMessage);
         }
         #endregion
-
-        #region Implementation of IStreamResolver
-        IStreamSource IStreamResolver.ResolveInclude(IStreamSource baseStream, string includePath) {
-            if (includePath == "%code%") {
-                StringBuilder sb = new StringBuilder(4096);
-                StringWriter sw = new StringWriter(sb);
-
-                sw.WriteLine();
-                GenerateScriptCore(sw);
-
-                string compiledCode = sb.ToString();
-                return new CodeStreamSource(compiledCode);
-            }
-            else {
-                IStreamResolver resolver = baseStream as IStreamResolver;
-                if (resolver != null) {
-                    return resolver.ResolveInclude(baseStream, includePath);
-                }
-
-                string resolvedPath = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(baseStream.FullName)), includePath);
-                return new FileInputStreamSource(resolvedPath);
-            }
-        }
-        #endregion
-
-        #region Implementation of IScriptInfo
-        string IScriptInfo.GetValue(string name) {
-            if (_symbols == null) {
-                return null;
-            }
-
-            if (String.CompareOrdinal(name, "Name") == 0) {
-                if (String.IsNullOrEmpty(_options.ScriptNameSuffix) == false) {
-                    return _symbols.ScriptName + "." + _options.ScriptNameSuffix;
-                }
-                return _symbols.ScriptName;
-            }
-            if (String.CompareOrdinal(name, "ExecutionDependencies") == 0) {
-                if (_options.ExecutionDependencies == null) {
-                    return String.Empty;
-                }
-
-                bool first = true;
-                StringBuilder sb = new StringBuilder();
-                foreach (string scriptName in _options.ExecutionDependencies) {
-                    if (first == false) {
-                        sb.Append(",");
-                    }
-                    sb.Append(scriptName);
-                    first = false;
-                }
-
-                return sb.ToString();
-            }
-            if (String.CompareOrdinal(name, "ScriptFile") == 0) {
-                return Path.GetFileName(_options.ScriptFile.Name);
-            }
-            if (String.CompareOrdinal(name, "CompilerVersion") == 0) {
-                string exePath = typeof(ScriptCompiler).Assembly.GetModules()[0].FullyQualifiedName;
-                FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(exePath);
-
-                return versionInfo.FileVersion;
-            }
-
-            return null;
-        }
-        #endregion
-
-
-        private sealed class CodeStreamSource : IStreamSource {
-
-            private string _code;
-
-            public CodeStreamSource(string code) {
-                _code = code;
-            }
-
-            public string FullName {
-                get {
-                    return "%code%";
-                }
-            }
-
-            public string Name {
-                get {
-                    return "%code%";
-                }
-            }
-
-            public void CloseStream(Stream stream) {
-                Debug.Assert(stream != null);
-                stream.Close();
-            }
-
-            public Stream GetStream() {
-                byte[] buffer = Encoding.Default.GetBytes(_code);
-                return new MemoryStream(buffer);
-            }
-        }
     }
 }

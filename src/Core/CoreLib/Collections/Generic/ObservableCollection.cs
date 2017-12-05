@@ -8,8 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     [ScriptName("ObservableCollection")]
     public sealed class ObservableCollection<T> : IEnumerable<T> {
 
@@ -45,6 +44,11 @@ namespace System.Collections.Generic {
         }
 
         public IEnumerator<T> GetEnumerator() {
+            return null;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
             return null;
         }
 

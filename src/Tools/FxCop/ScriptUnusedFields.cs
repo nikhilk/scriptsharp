@@ -12,7 +12,7 @@ namespace ScriptSharp.FxCop {
     public sealed class ScriptUnusedFields : BaseIntrospectionRule {
 
         private TypeNode _importedAttributeType;
-        private TypeNode _recordType;
+        private TypeNode _recordAttributeType;
 
         public ScriptUnusedFields() :
             base(typeof(ScriptUnusedFields).Name,
@@ -31,10 +31,10 @@ namespace ScriptSharp.FxCop {
 
             _importedAttributeType =
                 FrameworkAssemblies.Mscorlib.GetType(Identifier.For("System.Runtime.CompilerServices"),
-                                                     Identifier.For("ImportedAttribute"));
-            _recordType =
+                                                     Identifier.For("ScriptImportAttribute"));
+            _recordAttributeType =
                 FrameworkAssemblies.Mscorlib.GetType(Identifier.For("System"),
-                                                     Identifier.For("Record"));
+                                                     Identifier.For("ScriptObjectAttribute"));
         }
 
         public override ProblemCollection Check(Member member) {
@@ -47,8 +47,8 @@ namespace ScriptSharp.FxCop {
                 return null;
             }
 
-            // If the type derives from Record, allow the field to exist
-            if (member.DeclaringType.BaseType == _recordType) {
+            // If the type is a ScriptObject, allow the field to exist
+            if (RuleUtilities.HasCustomAttribute(member.DeclaringType, _recordAttributeType)) {
                 return null;
             }
 

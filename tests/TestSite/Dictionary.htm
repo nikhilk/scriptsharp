@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dictionary</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+<script type="text/javascript" src="Scripts/ssloader.js"></script>
+<script type="text/script" data-name="ss" data-src="Scripts/ss.js"></script>
+<script type="text/script">
+define(['ss'], function(ss) {
+  module('Dictionary');
+  test('clearKeys', function() {
+    var d = { 'abc': 123, 'def': 456 };
+    var d2 = { };
+
+    QUnit.equal(ss.keyCount(d), 2);
+    ss.clearKeys(d);
+    QUnit.equal(ss.keyCount(d), 0);
+    ss.clearKeys(d2);
+    QUnit.equal(ss.keyCount(d2), 0);
+  });
+
+  test('keys', function() {
+    var d = { 'abc': 123, 'def': 456 };
+    var d2 = { };
+
+    var keys = ss.keys(d);
+    var keys2 = ss.keys(d2);
+
+    QUnit.equal(keys.length, 2);
+    QUnit.equal(keys.indexOf('abc') >= 0, true);
+    QUnit.equal(keys.indexOf('def') >= 0, true);
+    QUnit.equal(keys2.length, 0);
+  });
+
+  test('keyExists', function() {
+    var d = { 'abc': 123, 'def': 456 };
+    var d2 = { };
+
+    QUnit.equal(ss.keyExists(d, 'abc'), true);
+    QUnit.equal(ss.keyExists(d, 'ghi'), false);
+    QUnit.equal(ss.keyExists(d2, 'abc'), false);
+  });
+});
+</script>
+</html>

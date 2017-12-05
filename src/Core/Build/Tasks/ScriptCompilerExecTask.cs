@@ -19,16 +19,13 @@ namespace ScriptSharp.Tasks {
     /// The Script# MSBuild task corresponding exactly to functionality exposed
     /// by the command-line tool.
     /// </summary>
-    public sealed class ScriptCompilerExecTask : Task, IErrorHandler {
+    public sealed class ScriptCompilerExecTask : Task, IErrorHandler, IStreamSourceResolver {
 
         private string _projectPath;
         private ITaskItem[] _references;
         private ITaskItem[] _sources;
         private ITaskItem[] _resources;
-        private ITaskItem _template;
-        private ITaskItem _docCommentFile;
 
-        private bool _debug;
         private bool _minimize;
         private bool _tests;
         private string _defines;
@@ -39,15 +36,6 @@ namespace ScriptSharp.Tasks {
 
         private bool _hasErrors;
 
-        public bool DebugFlavor {
-            get {
-                return _debug;
-            }
-            set {
-                _debug = value;
-            }
-        }
-
         public string Defines {
             get {
                 if (_defines == null) {
@@ -57,15 +45,6 @@ namespace ScriptSharp.Tasks {
             }
             set {
                 _defines = value;
-            }
-        }
-
-        public ITaskItem DocumentationFile {
-            get {
-                return _docCommentFile;
-            }
-            set {
-                _docCommentFile = value;
             }
         }
 
@@ -157,34 +136,15 @@ namespace ScriptSharp.Tasks {
             }
         }
 
-        public ITaskItem Template {
-            get {
-                return _template;
-            }
-            set {
-                _template = value;
-            }
-        }
-
         private bool Compile() {
             CompilerOptions options = new CompilerOptions();
-            options.DebugFlavor = DebugFlavor;
-            if (DebugFlavor) {
-                options.IncludeTests = IncludeTests;
-            }
-            else {
-                options.Minimize = Minimize;
-            }
+            options.IncludeTests = IncludeTests;
+            options.Minimize = Minimize;
             options.Defines = GetDefines();
             options.References = GetReferences();
             options.Sources = GetSources(_sources);
             options.Resources = GetResources(_resources);
-            if (_template != null) {
-                options.TemplateFile = new TaskItemInputStreamSource(_template, "Template");
-            }
-            if (_docCommentFile != null) {
-                options.DocCommentFile = new TaskItemInputStreamSource(_docCommentFile, "DocComment");
-            }
+            options.IncludeResolver = this;
 
             ITaskItem scriptTaskItem = new TaskItem(OutputPath);
             options.ScriptFile = new TaskItemOutputStreamSource(scriptTaskItem);
@@ -323,6 +283,21 @@ namespace ScriptSharp.Tasks {
 
             Log.LogError(String.Empty, String.Empty, String.Empty, location, line, column, 0, 0, errorMessage);
         }
+        #endregion
+
+        #region Implementation of IStreamSourceResolver
+
+        IStreamSource IStreamSourceResolver.Resolve(string name) {
+            if (_projectPath != null) {
+                string path = Path.Combine(Path.GetDirectoryName(_projectPath), name);
+                if (File.Exists(path)) {
+                    return new FileInputStreamSource(path, name);
+                }
+            }
+
+            return null;
+        }
+
         #endregion
 
 

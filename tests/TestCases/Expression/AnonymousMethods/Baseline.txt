@@ -1,59 +1,113 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.SomeClass
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.SomeClass = function(cb) {
-}
+  // ExpressionTests.SomeClass
+
+  function SomeClass(cb) {
+  }
+  var SomeClass$ = {
+
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Test
+  // ExpressionTests.Test
 
-test.Test = function() {
-}
-test.Test.main = function(args) {
+  function Test() {
+    this._n = 0;
+  }
+  Test.main = function(args) {
     var o = {};
     var name;
-    test.Test.doStuffStatic(o, function(i, s, b) {
-        name = s;
+    Test.doStuffStatic(o, function(i, s, b) {
+      name = s;
     });
-}
-test.Test.doStuffStatic = function(o, callback) {
-}
-test.Test.prototype = {
-    _n: 0,
-    
+  };
+  Test.doStuffStatic = function(o, callback) {
+    var s = new SomeClass(function() {
+      var temp = o;
+    });
+  };
+  var Test$ = {
     AAA: function() {
-        var o = {};
-        this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
-            this._n = i;
-        }));
-        var s = new test.SomeClass(function() {
+      var $this = this;
+
+      var o = {};
+      this.doStuff(o, function(i, s, b) {
+        $this._n = i;
+      });
+      var s = new SomeClass(function() {
+      });
+      for (var i = 0; i < 10; i++) {
+        var foo;
+        this.doStuff(o, function(i, s, b) {
+          foo = i + s;
         });
-        for (var i = 0; i < 10; i++) {
-            var foo;
-            this.doStuff(o, function(i, s, b) {
-                foo = i + s;
-            });
-            this.doStuff(o, ss.Delegate.create(this, function(i, s, b) {
-                this._n += i;
-            }));
-            test.Test.doStuffStatic(o, function() {
-            });
-            test.Test.doStuffStatic(o, ss.Delegate.create(this, function() {
-                this._n++;
-            }));
-        }
-        var s2 = new test.SomeClass(ss.Delegate.create(this, function() {
-            var numbers = [ this._n ];
-        }));
+        this.doStuff(o, function(i, s, b) {
+          $this._n += i;
+        });
+        Test.doStuffStatic(o, function() {
+        });
+        Test.doStuffStatic(o, function() {
+          $this._n++;
+        });
+      }
+      var s2 = new SomeClass(function() {
+        var numbers = [ $this._n ];
+      });
+      var s3 = new SomeClass(function() {
+        var s4 = new SomeClass(function() {
+          var numbers = [ $this._n * 2 ];
+        });
+      });
+      var j = 0;
+      (function() {
+        $this._n++;
+      })();
+      (function() {
+        j++;
+      })();
+      (function(i, s, b) {
+        i++;
+        b = ss.emptyString(s);
+      })(j, 'foo', false);
+      (function(i, s, b) {
+        i++;
+        b = ss.emptyString(s);
+      })(j, 'foo', false);
+      j = (function(k) {
+        return k + 1;
+      })(3);
+      j = (function(k) {
+        return k + 1;
+      })(3);
     },
-    
+    BBB: function(o) {
+      var s = new SomeClass(function() {
+        var temp = o;
+      });
+    },
+    CCC: function(o) {
+      var $this = this;
+
+      var s = new SomeClass(function() {
+        var s = new SomeClass(function() {
+          var numbers = [ $this._n * 2 ];
+        });
+      });
+    },
     doStuff: function(o, callback) {
     }
-}
+  };
 
 
-test.SomeClass.registerClass('test.SomeClass');
-test.Test.registerClass('test.Test');
+  var $exports = ss.module('test', null,
+    {
+      SomeClass: ss.defineClass(SomeClass, SomeClass$, [Function], null),
+      Test: ss.defineClass(Test, Test$, [], null)
+    });
+
+
+  return $exports;
+});

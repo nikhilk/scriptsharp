@@ -1,0 +1,38 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+
+  // ExpressionTests.App
+
+  function App() {
+  }
+  var App$ = {
+    equality: function() {
+      var d1 = null;
+      var d2 = null;
+      if (ss.compareDates(d1, d2)) {
+      }
+      if (!ss.compareDates(d1, d2)) {
+      }
+      if (ss.compareDates(d1, ss.now())) {
+      }
+      if (!ss.compareDates(d1, new Date())) {
+      }
+      var o;
+      if (d1 === o) {
+      }
+      if (d1 !== o) {
+      }
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, App$, [], null)
+    });
+
+
+  return $exports;
+});

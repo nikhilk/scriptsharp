@@ -2,7 +2,6 @@ using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace TypeTests {
 
@@ -16,11 +15,11 @@ namespace TypeTests {
 
     [Flags]
     public enum Mode {
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         Public = 1,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         Protected = 2,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         Private = 4
     }
 
@@ -37,11 +36,11 @@ namespace TypeTests {
 
     public enum Errors {
 
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         S_OK = 0,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         S_FALSE = 1,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         E_FAIL = -1
     }
 
@@ -54,8 +53,8 @@ namespace TypeTests {
         }
     }
 
-    [NamedValues]
-    [Imported]
+    [ScriptConstants(UseNames = true)]
+    [ScriptImport]
     public enum HttpMethod {
         GET = 0,
         POST = 1,
@@ -63,21 +62,26 @@ namespace TypeTests {
         DELETE = 3,
     }
 
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     internal enum SortMode {
         Status = 1,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         Group = 2,
         [ScriptName("Ct")]
         Count = 3
     }
 
-    [NamedValues]
+    [ScriptConstants(UseNames = true)]
     public enum Size {
         Small = 0,
-        [PreserveCase]
+        [ScriptName(PreserveCase = true)]
         Medium = 1,
         Large = 2,
+    }
+
+    [ScriptConstants]
+    public enum Chars {
+        A = 65, B = 66
     }
 
     public class App2 {
@@ -102,6 +106,8 @@ namespace TypeTests {
         }
 
         public void Run2(SortMode m) {
+            Chars aCode = Chars.A;
+            Chars bCode = Chars.B;
         }
     }
 }

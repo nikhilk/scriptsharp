@@ -115,9 +115,12 @@ namespace ScriptSharp.Compiler {
 
         private void BuildCode(FieldSymbol fieldSymbol) {
             ImplementationBuilder implBuilder = new ImplementationBuilder(_options, _errorHandler);
-            fieldSymbol.AddImplementation(implBuilder.BuildField(fieldSymbol));
+            SymbolImplementation implementation = implBuilder.BuildField(fieldSymbol);
 
-            _implementations.Add(fieldSymbol.Implementation);
+            if (implementation != null) {
+                fieldSymbol.AddImplementation(implementation);
+                _implementations.Add(fieldSymbol.Implementation);
+            }
         }
 
         private void BuildCode(IndexerSymbol indexerSymbol) {
@@ -169,13 +172,19 @@ namespace ScriptSharp.Compiler {
             }
 
             ImplementationBuilder implBuilder = new ImplementationBuilder(_options, _errorHandler);
-            
-            propertySymbol.AddImplementation(implBuilder.BuildPropertyGetter(propertySymbol), /* getter */ true);
-            _implementations.Add(propertySymbol.GetterImplementation);
 
-            if (propertySymbol.IsReadOnly == false) {
-                propertySymbol.AddImplementation(implBuilder.BuildPropertySetter(propertySymbol), /* getter */ false);
-                _implementations.Add(propertySymbol.SetterImplementation);
+            var getter = implBuilder.BuildPropertyGetter(propertySymbol);
+            if (getter != null)
+            {
+                propertySymbol.AddImplementation(getter, /* getter */ true);
+                _implementations.Add(getter);
+            }
+
+            var setter = implBuilder.BuildPropertySetter(propertySymbol);
+            if (setter != null)
+            {
+                propertySymbol.AddImplementation(setter, /* getter */ false);
+                _implementations.Add(setter);
             }
 
             if (propertySymbol.AnonymousMethods != null) {

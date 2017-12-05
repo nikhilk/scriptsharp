@@ -8,12 +8,12 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Interactions {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class SelectableUnselectingEvent {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Unselecting {
             get {
                 return null;

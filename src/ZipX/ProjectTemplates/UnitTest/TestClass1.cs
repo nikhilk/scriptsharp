@@ -35,7 +35,7 @@ namespace $safeprojectname$ {
             int port = 3976;
 
             _webTest = new WebTest();
-            _webTest.StartWebServer(webRoot, port);
+            _webTest.StartWebServer(port, webRoot);
         }
 
         [ClassCleanup()]

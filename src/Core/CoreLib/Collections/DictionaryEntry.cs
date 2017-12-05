@@ -8,21 +8,21 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class DictionaryEntry {
 
         internal DictionaryEntry() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Key {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Value {
             get {
                 return null;

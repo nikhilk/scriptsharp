@@ -1,0 +1,26 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+
+  // ExpressionTests.Test
+
+  function Test() {
+    var deferredObject = ss.deferred();
+    var deferredNumber = ss.deferred();
+    var availabledNumber = ss.deferred(10);
+    deferredNumber.reject();
+  }
+  var Test$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      Test: ss.defineClass(Test, Test$, [], null)
+    });
+
+
+  return $exports;
+});

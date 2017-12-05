@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace System {
 
-    [IgnoreNamespace]
-    [Imported]
-    [NamedValues]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptConstants]
     public enum CompareResultStatus {
 
         Added,

@@ -7,11 +7,13 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic {
 
+    // NOTE: Keep in sync with ArrayList and Array
+
     /// <summary>
     /// Equivalent to the Array type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Array")]
     public sealed class List<T> : ICollection<T> {
 
@@ -24,7 +26,7 @@ namespace System.Collections.Generic {
         public List(params T[] items) {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("length")]
         public int Count {
             get {
@@ -32,7 +34,7 @@ namespace System.Collections.Generic {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public T this[int index] {
             get {
                 return default(T);
@@ -41,17 +43,12 @@ namespace System.Collections.Generic {
             }
         }
 
+        [ScriptName("push")]
         public void Add(T item) {
         }
 
-        public void AddRange(T[] items) {
-        }
-
-        public void AddRange(List<T> items) {
-        }
-
-        public List<T> Clone() {
-            return null;
+        [ScriptName("push")]
+        public void AddRange(params T[] items) {
         }
 
         public void Clear() {
@@ -73,14 +70,6 @@ namespace System.Collections.Generic {
             return false;
         }
 
-        public List<T> Extract(int index) {
-            return null;
-        }
-
-        public List<T> Extract(int index, int count) {
-            return null;
-        }
-
         public List<T> Filter(ListFilterCallback<T> filterCallback) {
             return null;
         }
@@ -99,17 +88,18 @@ namespace System.Collections.Generic {
             return null;
         }
 
-        public ListGrouping<T>[] GroupBy(ListItemKeyGenerator<T> keyCallback) {
+        IEnumerator IEnumerable.GetEnumerator()
+        {
             return null;
         }
 
-        /*
-        // HACK: This should be T instead of object, but we have a problem
-        //       handling partial generic types in the compiler.
-        public Dictionary<string, object> Index(ListItemKeyGenerator<T> keyCallback) {
+        public List<T> GetRange(int index) {
             return null;
         }
-        */
+
+        public List<T> GetRange(int index, int count) {
+            return null;
+        }
 
         public int IndexOf(T item) {
             return 0;
@@ -122,7 +112,7 @@ namespace System.Collections.Generic {
         public void Insert(int index, T item) {
         }
 
-        public void InsertRange(int index, T[] items) {
+        public void InsertRange(int index, params T[] items) {
         }
 
         public string Join() {
@@ -185,6 +175,7 @@ namespace System.Collections.Generic {
             return default(TReduced);
         }
 
+        [ScriptAlias("ss.remove")]
         public bool Remove(T item) {
             return false;
         }
@@ -230,7 +221,29 @@ namespace System.Collections.Generic {
         public void Unshift(params T[] items) {
         }
 
+        [ScriptSkip]
+        public T[] ToArray()
+        {
+            return null;
+        }
+
         public static explicit operator Array(List<T> list) {
+            return null;
+        }
+
+        public static explicit operator object[](List<T> list) {
+            return null;
+        }
+
+        public static implicit operator T[](List<T> list) {
+            return null;
+        }
+
+        public static explicit operator ArrayList(List<T> list) {
+            return null;
+        }
+
+        public static explicit operator List<T>(T[] array) {
             return null;
         }
     }

@@ -1,50 +1,53 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Foo
+define('test', ['ss', 'jquery'], function(ss, $) {
+  var $global = this;
 
-test.Foo = function() {
+  // ExpressionTests.Foo
+
+  function Foo() {
     this._numbers = [];
-    var s = this._numbers[10].format('{0}');
-    var s2 = this._numbers.getEnumerator().current.format('{0}');
+    var s = this._numbers[10].toString(10);
+    var s2 = ss.enumerate(this._numbers).current.toString(10);
     var s3 = this._numbers.reduce(function(accumulated, item) {
-        return accumulated + item;
-    }, 0).format('{0}');
+      return accumulated + item;
+    }, 0).toString(10);
     var s4 = encodeURIComponent(this._func(10));
     var f2 = this._func;
-    f2(11).trim();
+    ss.trim(f2(11));
     var d = {};
-    var s5 = $.extend(d, d)['abc'].format('{0}');
-    var keys = Object.getKeyCount(d);
-    var b = Object.keyExists(d, 'abc');
+    var s5 = $.extend(d, d)['abc'].toString(10);
+    var keys = ss.keyCount(d);
+    var b = ss.keyExists(d, 'abc');
     delete d.abc;
-    var $dict1 = d;
-    for (var $key2 in $dict1) {
-        var de = { key: $key2, value: $dict1[$key2] };
+    for (var $key1 in d) {
+      var de = { key: $key1, value: d[$key1] };
     }
     $.ajax('http://example.com').success(function(html) {
-        alert(html);
+      alert(html);
     });
     var json = '';
     var f = JSON.parse(json).setup().run().cleanup();
     var name = document.getElementById('nameTB').value;
-}
-test.Foo.prototype = {
-    _numbers: null,
-    _func: null,
-    
+  }
+  var Foo$ = {
     cleanup: function() {
-        return this;
+      return this;
     },
-    
     run: function() {
-        return this;
+      return this;
     },
-    
     setup: function() {
-        return this;
+      return this;
     }
-}
+  };
 
 
-test.Foo.registerClass('test.Foo');
+  var $exports = ss.module('test', null,
+    {
+      Foo: ss.defineClass(Foo, Foo$, [], null)
+    });
+
+
+  return $exports;
+});

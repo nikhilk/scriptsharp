@@ -16,14 +16,18 @@ namespace ScriptSharp.ScriptModel {
         private Expression _collectionExpression;
         private Statement _body;
 
+        private bool _dictionaryEnumeration;
+
         public ForInStatement(Expression collectionExpression)
             : this(collectionExpression, null) {
+            _dictionaryEnumeration = false;
         }
 
         public ForInStatement(Expression collectionExpression, VariableSymbol dictionaryVariable)
             : base(StatementType.ForIn) {
             _collectionExpression = collectionExpression;
             _dictionaryVariable = dictionaryVariable;
+            _dictionaryEnumeration = true;
         }
 
         public Statement Body {
@@ -46,7 +50,7 @@ namespace ScriptSharp.ScriptModel {
 
         public bool IsDictionaryEnumeration {
             get {
-                return (_dictionaryVariable != null);
+                return _dictionaryEnumeration;
             }
         }
 

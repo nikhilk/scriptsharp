@@ -8,21 +8,21 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class GestureEvent : ElementEvent {
 
         internal GestureEvent() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Rotation {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Scale {
             get {
                 return 0;

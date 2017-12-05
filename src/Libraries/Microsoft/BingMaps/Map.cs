@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
-    [Imported]
+    [ScriptImport]
     public sealed class Map {
 
         public Map(Element element) {
@@ -19,7 +19,7 @@ namespace Microsoft.Maps {
         public Map(Element element, MapOptions options) {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public MapEntityCollection Entities {
             get {
                 return null;

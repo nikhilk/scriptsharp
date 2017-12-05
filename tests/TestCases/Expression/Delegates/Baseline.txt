@@ -1,54 +1,68 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.EventArgs
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.EventArgs = function() {
-}
+  // ExpressionTests.EventArgs
 
+  function EventArgs() {
+  }
+  var EventArgs$ = {
 
-////////////////////////////////////////////////////////////////////////////////
-// test.SomeClass
-
-test.SomeClass = function(handler) {
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Test
+  // ExpressionTests.SomeClass
 
-test.Test = function() {
-    this._handler = ss.Delegate.create(this, this.onEvent);
-    this._handler = ss.Delegate.create(this, this.onEvent);
-    this._handler = ss.Delegate.create(this, this.onEvent);
-    this._handler = test.Test2.onGlobalEvent;
-    var s1 = new test.SomeClass(ss.Delegate.create(this, this.onEvent));
-    var s2 = new test.SomeClass(this._handler);
-}
-test.Test.prototype = {
-    _handler: null,
-    
+  function SomeClass(handler) {
+  }
+  var SomeClass$ = {
+
+  };
+
+
+  // ExpressionTests.Test
+
+  function Test() {
+    this._handler = ss.bind('onEvent', this);
+    this._handler = ss.bind('onEvent', this);
+    this._handler = ss.bind('onEvent', this);
+    this._handler = Test2.onGlobalEvent;
+    var s1 = new SomeClass(ss.bind('onEvent', this));
+    var s2 = new SomeClass(this._handler);
+    var e = ss.bindExport(this._handler);
+    e.dispose();
+  }
+  var Test$ = {
     doStuff: function() {
-        if (this._handler != null) {
-            this._handler(this, null);
-        }
+      if (this._handler != null) {
+        this._handler(this, null);
+      }
     },
-    
     onEvent: function(sender, e) {
     }
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.Test2
+  // ExpressionTests.Test2
 
-test.Test2 = function() {
-}
-test.Test2.onGlobalEvent = function(sender, e) {
-}
+  function Test2() {
+  }
+  Test2.onGlobalEvent = function(sender, e) {
+  };
+  var Test2$ = {
+
+  };
 
 
-test.EventArgs.registerClass('test.EventArgs');
-test.SomeClass.registerClass('test.SomeClass');
-test.Test.registerClass('test.Test');
-test.Test2.registerClass('test.Test2');
+  var $exports = ss.module('test', null,
+    {
+      EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null),
+      SomeClass: ss.defineClass(SomeClass, SomeClass$, [Function], null),
+      Test: ss.defineClass(Test, Test$, [], null),
+      Test2: ss.defineClass(Test2, Test2$, [], null)
+    });
+
+
+  return $exports;
+});

@@ -9,4 +9,4 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("Script.Microsoft.BingMaps")]
 [assembly: AssemblyDescription("Script# Bing Maps API")]
-[assembly: ScriptAssembly("bingMaps")]
+[assembly: ScriptAssembly("vemaps")]

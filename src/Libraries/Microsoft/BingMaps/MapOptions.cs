@@ -10,9 +10,9 @@ namespace Microsoft.Maps {
 
     // TODO: Make properties
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class MapOptions {
 
         public MapColor BackgroundColor;

@@ -8,12 +8,12 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Interactions {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class ResizeEvent {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryObject Element {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryObject Helper {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryObject OriginalElement {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryObject OriginalPosition {
             get {
                 return null;
@@ -49,7 +49,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object OriginalSize {
             get {
                 return null;
@@ -58,7 +58,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Position {
             get {
                 return null;
@@ -67,7 +67,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Size {
             get {
                 return null;

@@ -10,18 +10,10 @@ namespace System {
     /// <summary>
     /// The ushort data type which is mapped to the Number type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Number")]
     public struct UInt16 {
-
-        public string Format(string format) {
-            return null;
-        }
-
-        public string LocaleFormat(string format) {
-            return null;
-        }
 
         /// <summary>
         /// Converts the value to its string representation.

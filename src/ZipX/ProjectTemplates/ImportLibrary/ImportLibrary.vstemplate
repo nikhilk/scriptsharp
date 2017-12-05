@@ -1,7 +1,7 @@
 <VSTemplate Version="2.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
     <Name>Import Library</Name>
-    <Description>An assembly defining existing script APIs to import for use in Script#.</Description>
+    <Description>Allows importing existing script APIs and frameworks (types, methods, signatures) for use with Script#.</Description>
     <Icon Package="{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}" ID="4547" />
     <ProjectType>CSharp</ProjectType>
     <SortOrder>100</SortOrder>
@@ -22,8 +22,8 @@
   </WizardExtension>
   <WizardData>
     <packages repository="extension" repositoryId="ScriptSharp.Extension.Templates">
-      <package id="ScriptSharp" version="0.7.6" />
-      <package id="ScriptSharp.Lib.HTML" version="0.7.6" />
+      <package id="ScriptSharp" version="0.8" />
+      <package id="ScriptSharp.Lib.HTML" version="0.8" />
     </packages>
   </WizardData>
 </VSTemplate>

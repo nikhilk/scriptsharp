@@ -4,26 +4,41 @@ using System.Runtime.CompilerServices;
 using System.Xml;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace TypeTests {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class MyElement : Element {
 
         private MyElement() { }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string myString {
             get { return null; }
             set { }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string this[string name] {
             get { return null; }
             set { }
+        }
+
+        [ScriptMethod("foo")]
+        [ScriptName("do")]
+        public void DoFoo() {
+        }
+
+        [ScriptMethod("bar")]
+        [ScriptName("do")]
+        public void DoBar(int n) {
+        }
+
+        [ScriptEvent("addEventListener", "removeEventListener")]
+        public event Action Click {
+            add { }
+            remove { }
         }
     }
 
@@ -32,6 +47,8 @@ namespace TypeTests {
         public App() {
             MyElement elem = (MyElement)Document.GetElementById("foo");
             string s = elem.myString;
+            elem.DoFoo();
+            elem.DoBar(10);
 
             elem["Smith"] = elem["Joe"];
 
@@ -39,6 +56,10 @@ namespace TypeTests {
             XmlDocumentParser parser = new XmlDocumentParser();
             XmlDocument doc = parser.ParseFromString("<markup></markup>", "text/xml");
             Date d = Date.Parse("1/1/2010");
+
+            Action eventHandler = delegate() { };
+            elem.Click += eventHandler;
+            elem.Click -= eventHandler;
         }
     }
 }

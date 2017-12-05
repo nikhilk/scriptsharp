@@ -21,6 +21,7 @@ namespace ScriptSharp.ScriptModel {
             TypeSymbol type = (TypeSymbol)memberSymbol.Parent;
             if (((memberSymbol.Visibility & MemberVisibility.Public) != 0) ||
                 ((memberSymbol.Visibility & MemberVisibility.Protected) != 0) ||
+                (memberSymbol.Type == SymbolType.Property) ||
                 (memberSymbol.IsTransformAllowed == false)) {
                 return null;
             }
@@ -51,35 +52,30 @@ namespace ScriptSharp.ScriptModel {
             }
         }
 
-        private string TransformType(TypeSymbol typeSymbol, out bool transformChildren) {
-            transformChildren = (typeSymbol.Type != SymbolType.Interface) &&
-                                (typeSymbol.Type != SymbolType.Delegate);
-
-            if ((typeSymbol.Type == SymbolType.Enumeration) &&
-                ((EnumerationSymbol)typeSymbol).UseNamedValues) {
-                // If the enum uses named values, then don't transform, as its
-                // unlikely the code wants to use some random generated name as the
-                // named value.
-                transformChildren = false;
-            }
-
-            if ((typeSymbol.IsPublic == false) && typeSymbol.IsTransformAllowed) {
-                return GenerateName(typeSymbol.Name);
-            }
-
-            return null;
-        }
-
         #region Implementation of ISymbolTransformer
         string ISymbolTransformer.TransformSymbol(Symbol symbol, out bool transformChildren) {
             transformChildren = false;
 
             if (symbol is TypeSymbol) {
-                if ((symbol.Type == SymbolType.Class) && ((ClassSymbol)symbol).IsTestType) {
-                    return null;
+                transformChildren = (symbol.Type != SymbolType.Interface) &&
+                                    (symbol.Type != SymbolType.Delegate);
+
+                if ((symbol.Type == SymbolType.Enumeration) &&
+                    ((EnumerationSymbol)symbol).UseNamedValues) {
+                    // If the enum uses named values, then don't transform, as its
+                    // unlikely the code wants to use some random generated name as the
+                    // named value.
+                    transformChildren = false;
                 }
 
-                return TransformType((TypeSymbol)symbol, out transformChildren);
+                if ((symbol.Type == SymbolType.Class) &&
+                    ((ClassSymbol)symbol).IsExtenderClass) {
+                    // Unlikely that classes adding members to another object contain
+                    // members that should be renamed.
+                    transformChildren = false;
+                }
+
+                return null;
             }
             else if (symbol is MemberSymbol) {
                 return TransformMember((MemberSymbol)symbol);

@@ -1,1 +1,0 @@
-alert('some static script');

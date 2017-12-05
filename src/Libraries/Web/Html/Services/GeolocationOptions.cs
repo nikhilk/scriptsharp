@@ -8,15 +8,15 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Services {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class GeolocationOptions {
 
         public GeolocationOptions(params object[] nameValuePairs) {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool EnableHighAccuracy {
             get {
                 return false;
@@ -25,7 +25,7 @@ namespace System.Html.Services {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int MaximumAge {
             get {
                 return 0;
@@ -34,7 +34,7 @@ namespace System.Html.Services {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Timeout {
             get {
                 return 0;

@@ -11,8 +11,8 @@ namespace jQueryApi {
     /// <summary>
     /// Represents a deferred value.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class jQueryDeferred : IDeferred {
 
         private jQueryDeferred() {
@@ -252,8 +252,8 @@ namespace jQueryApi {
     /// <summary>
     /// Represents a deferred value.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class jQueryDeferred<TData> : IDeferred<TData> {
 
         private jQueryDeferred() {

@@ -9,21 +9,21 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps.Location {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class GeoLocation {
 
         private GeoLocation() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public MapLocation Center {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("position.coords")]
         public GeoCoordinates Coordinates {
             get {
@@ -31,7 +31,7 @@ namespace Microsoft.Maps.Location {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("position.timestamp")]
         public string Timestamp {
             get {

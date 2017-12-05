@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using ScriptSharp.Importer.IL;
 using ScriptSharp.ScriptModel;
@@ -37,31 +38,85 @@ namespace ScriptSharp.Importer {
             return null;
         }
 
-        public static string GetScriptAssemblyName(ICustomAttributeProvider attributeProvider) {
-            CustomAttribute scriptAssemblyAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptAssemblyAttribute");
+        public static string GetScriptAssemblyName(ICustomAttributeProvider attributeProvider, out string assemblyIdentifier) {
+            assemblyIdentifier = null;
+
+            CustomAttribute scriptAssemblyAttribute = GetAttribute(attributeProvider, "System.ScriptAssemblyAttribute");
             if (scriptAssemblyAttribute != null) {
-                return GetAttributeArgument(scriptAssemblyAttribute);
+                string name = GetAttributeArgument(scriptAssemblyAttribute);
+                if (scriptAssemblyAttribute.Properties.Count != 0) {
+                    assemblyIdentifier = (string)scriptAssemblyAttribute.Properties[0].Argument.Value;
+                }
+
+                return name;
             }
 
             return null;
         }
 
-        public static string GetScriptName(ICustomAttributeProvider attributeProvider) {
-            CustomAttribute scriptAssemblyAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptNameAttribute");
-            if (scriptAssemblyAttribute != null) {
-                return GetAttributeArgument(scriptAssemblyAttribute);
+        public static string GetScriptDependencyName(ICustomAttributeProvider attributeProvider, out string dependencyIdentifier) {
+            dependencyIdentifier = null;
+
+            CustomAttribute scriptDependencyAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptDependencyAttribute");
+            if (scriptDependencyAttribute != null) {
+                string name = GetAttributeArgument(scriptDependencyAttribute);
+                if (scriptDependencyAttribute.Properties.Count != 0) {
+                    dependencyIdentifier = (string)scriptDependencyAttribute.Properties[0].Argument.Value;
+                }
+
+                return name;
             }
 
             return null;
         }
 
-        public static string GetScriptNamespace(ICustomAttributeProvider attributeProvider) {
-            CustomAttribute scriptNamespaceAttribute = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptNamespaceAttribute");
-            if (scriptNamespaceAttribute != null) {
-                return GetAttributeArgument(scriptNamespaceAttribute);
+        public static bool GetScriptEventAccessors(EventDefinition eventDefinition, out string addAccessor, out string removeAccessor) {
+            addAccessor = null;
+            removeAccessor = null;
+
+            CustomAttribute eventAttribute = GetAttribute(eventDefinition, "System.Runtime.CompilerServices.ScriptEventAttribute");
+            if (eventAttribute != null) {
+                addAccessor = eventAttribute.ConstructorArguments[0].Value as string;
+                removeAccessor = eventAttribute.ConstructorArguments[1].Value as string;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public static string GetScriptMethodSelector(MethodDefinition method) {
+            CustomAttribute selectorAttribute = GetAttribute(method, "System.Runtime.CompilerServices.ScriptMethodAttribute");
+            if (selectorAttribute != null) {
+                return GetAttributeArgument(selectorAttribute);
             }
 
             return null;
+        }
+
+        public static string GetScriptName(ICustomAttributeProvider attributeProvider, out bool preserveName, out bool preserveCase) {
+            string name = null;
+            preserveName = false;
+            preserveCase = false;
+
+            CustomAttribute nameAttribute = GetAttribute(attributeProvider, "System.ScriptNameAttribute");
+            if (nameAttribute != null) {
+                if (nameAttribute.HasConstructorArguments) {
+                    name = GetAttributeArgument(nameAttribute);
+                }
+                if (nameAttribute.HasProperties) {
+                    for (int i = 0; i < nameAttribute.Properties.Count; i++) {
+                        if (String.CompareOrdinal(nameAttribute.Properties[i].Name, "PreserveName") == 0) {
+                            preserveName = (bool)nameAttribute.Properties[i].Argument.Value;
+                        }
+                        else {
+                            preserveCase = (bool)nameAttribute.Properties[i].Argument.Value;
+                        }
+                    }
+                }
+            }
+
+            return name;
         }
 
         public static bool IsCompilerGeneratedType(TypeDefinition type) {
@@ -89,40 +144,34 @@ namespace ScriptSharp.Importer {
             return (String.CompareOrdinal(type.BaseType.FullName, "System.Enum") == 0);
         }
 
-        public static bool ShouldGlobalizeMembers(TypeDefinition type, out string mixinRoot) {
-            mixinRoot = null;
+        public static bool IsScriptExtension(TypeDefinition type, out string extendee) {
+            extendee = null;
 
-            CustomAttribute globalMethodsAttribute = GetAttribute(type, "System.Runtime.CompilerServices.GlobalMethodsAttribute");
-            if (globalMethodsAttribute != null) {
-                return true;
-            }
-
-            CustomAttribute mixinAttribute = GetAttribute(type, "System.Runtime.CompilerServices.MixinAttribute");
-            if (mixinAttribute != null) {
-                mixinRoot = GetAttributeArgument(mixinAttribute);
+            CustomAttribute extensionAttribute = GetAttribute(type, "System.ScriptExtensionAttribute");
+            if (extensionAttribute != null) {
+                extendee = GetAttributeArgument(extensionAttribute);
+                if (String.IsNullOrEmpty(extendee) == false) {
+                    return true;
+                }
             }
 
             return false;
         }
 
         public static bool ShouldIgnoreNamespace(TypeDefinition type) {
-            return GetAttribute(type, "System.Runtime.CompilerServices.IgnoreNamespaceAttribute") != null;
+            return GetAttribute(type, "System.Runtime.CompilerServices.ScriptIgnoreNamespaceAttribute") != null;
         }
 
         public static bool ShouldImportScriptCoreType(TypeDefinition type) {
-            return GetAttribute(type, "System.Runtime.CompilerServices.NonScriptableAttribute") == null;
-        }
-
-        public static bool ShouldPreserveCase(ICustomAttributeProvider attributeProvider) {
-            return GetAttribute(attributeProvider, "System.Runtime.CompilerServices.PreserveCaseAttribute") != null;
+            return GetAttribute(type, "System.Runtime.CompilerServices.ScriptIgnoreAttribute") == null;
         }
 
         public static bool ShouldSkipFromScript(ICustomAttributeProvider attributeProvider) {
             return GetAttribute(attributeProvider, "System.Runtime.CompilerServices.ScriptSkipAttribute") != null;
         }
 
-        public static bool ShouldTreatAsIntrinsicProperty(PropertyDefinition property) {
-            return GetAttribute(property, "System.Runtime.CompilerServices.IntrinsicPropertyAttribute") != null;
+        public static bool ShouldTreatAsScriptField(PropertyDefinition property) {
+            return GetAttribute(property, "System.Runtime.CompilerServices.ScriptFieldAttribute") != null;
         }
 
         public static bool ShouldTreatAsConditionalMethod(MethodDefinition method, out ICollection<string> conditions) {
@@ -143,20 +192,39 @@ namespace ScriptSharp.Importer {
         }
 
         public static bool ShouldTreatAsRecordType(TypeDefinition type) {
-            if ((type.BaseType != null) &&
-                (String.CompareOrdinal(type.BaseType.FullName, "System.Record") == 0)) {
-                return true;
+            return GetAttribute(type, "System.ScriptObjectAttribute") != null;
+        }
+
+        public static bool ShouldUseEnumNames(TypeDefinition type) {
+            CustomAttribute attribute = GetAttribute(type, "System.ScriptConstantsAttribute");
+            if (attribute != null) {
+                if (attribute.HasProperties) {
+                    Debug.Assert(attribute.Properties.Count == 1);
+                    Debug.Assert(String.CompareOrdinal(attribute.Properties[0].Name, "UseNames") == 0);
+                    Debug.Assert(attribute.Properties[0].Argument.Value is bool);
+
+                    return (bool)attribute.Properties[0].Argument.Value;
+                }
             }
 
             return false;
         }
 
-        public static bool ShouldUseEnumNames(TypeDefinition type) {
-            return GetAttribute(type, "System.Runtime.CompilerServices.NamedValuesAttribute") != null;
-        }
-
         public static bool ShouldUseEnumValues(TypeDefinition type) {
-            return GetAttribute(type, "System.Runtime.CompilerServices.NumericValuesAttribute") != null;
+            CustomAttribute attribute = GetAttribute(type, "System.ScriptConstantsAttribute");
+            if (attribute != null) {
+                if (attribute.HasProperties) {
+                    Debug.Assert(attribute.Properties.Count == 1);
+                    Debug.Assert(String.CompareOrdinal(attribute.Properties[0].Name, "UseNames") == 0);
+                    Debug.Assert(attribute.Properties[0].Argument.Value is bool);
+
+                    return (bool)attribute.Properties[0].Argument.Value == false;
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

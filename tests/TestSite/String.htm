@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>String</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+<script type="text/javascript" src="Scripts/ssloader.js"></script>
+<script type="text/script" data-name="ss" data-src="Scripts/ss.js"></script>
+<script type="text/script">
+define(['ss'], function(ss) {
+  module('String');
+  test('trim', function() {
+    QUnit.equal(ss.trimStart('Hello'), 'Hello');
+    QUnit.equal(ss.trimStart('  Hello'), 'Hello');
+    QUnit.equal(ss.trimStart(' Hello  '), 'Hello  ');
+
+    QUnit.equal(ss.trimEnd('Hello'), 'Hello');
+    QUnit.equal(ss.trimEnd('Hello  '), 'Hello');
+    QUnit.equal(ss.trimEnd(' Hello  '), ' Hello');
+
+    QUnit.equal(ss.trimEnd(ss.trimStart('  Hello  ')), 'Hello');
+    QUnit.equal(ss.trimEnd(ss.trimStart('\tHello  ')), 'Hello');
+ 
+    QUnit.equal(ss.trim('Hello'), 'Hello');
+    QUnit.equal(ss.trim('  Hello  '), 'Hello');
+    QUnit.equal(ss.trim('\tHello  '), 'Hello');
+    QUnit.equal(ss.trim('\t Hello  World '), 'Hello  World');
+
+    QUnit.equal(ss.trimStart('00word00', ['0']), 'word00');
+    QUnit.equal(ss.trimStart('10word01', ['0', '1']), 'word01');
+    QUnit.equal(ss.trimStart('10 0word0 01', ['0', '1']), ' 0word0 01');
+
+    QUnit.equal(ss.trimEnd('00word00', ['0']), '00word');
+    QUnit.equal(ss.trimEnd('10word01', ['0', '1']), '10word');
+    QUnit.equal(ss.trimEnd('10 0word0 01', ['0', '1']), '10 0word0 ');
+
+    QUnit.equal(ss.trim('00word00', ['0']), 'word');
+    QUnit.equal(ss.trim('10word01', ['0', '1']), 'word');
+    QUnit.equal(ss.trim('10 0word0 01', ['0', '1']), ' 0word0 ');
+    QUnit.equal(ss.trim(' word ', []), 'word');
+  });
+
+  test('padLeft', function() {
+    QUnit.equal(ss.padLeft('Hello', 5), 'Hello');
+    QUnit.equal(ss.padLeft('HelloWorld', 5), 'HelloWorld');
+    QUnit.equal(ss.padLeft('Hey', 5), '  Hey');
+    QUnit.equal(ss.padLeft('HelloWorld', 5), 'HelloWorld');
+    QUnit.equal(ss.padLeft('Hey', 5, '.'), '..Hey');
+  });
+
+  test('padRight', function() {
+    QUnit.equal(ss.padRight('Hello', 5), 'Hello');
+    QUnit.equal(ss.padRight('HelloWorld', 5), 'HelloWorld');
+    QUnit.equal(ss.padRight('Hey', 5), 'Hey  ');
+    QUnit.equal(ss.padRight('HelloWorld', 5), 'HelloWorld');
+    QUnit.equal(ss.padRight('Hey', 5, '.'), 'Hey..');
+  });
+
+  test('compare', function() {
+    QUnit.equal(ss.compareStrings(null, null), 0, 'null vs null should be 0');
+    QUnit.equal(ss.compareStrings(null, 'x'), -1, 'null vs x should be -1');
+    QUnit.equal(ss.compareStrings('a', null), 1, 'a vs null should be 1');
+    QUnit.equal(ss.compareStrings('b', 'b'), 0, 'b vs b should be 0');
+    QUnit.equal(ss.compareStrings('aab', 'aaa'), 1, 'aab vs aaa should be 1');
+    QUnit.equal(ss.compareStrings('B', 'A'), 1, 'B vs A should be 1');
+    QUnit.equal(ss.compareStrings('e', 'E'), 1, 'e vs E should be 1');
+
+    QUnit.equal(ss.compareStrings(null, null, true), 0, 'null vs null should be 0');
+    QUnit.equal(ss.compareStrings(null, 'x', true), -1, 'null vs x should be -1');
+    QUnit.equal(ss.compareStrings('a', null, true), 1, 'a vs null should be 1');
+    QUnit.equal(ss.compareStrings('b', 'b', true), 0, 'b vs b should be 0');
+    QUnit.equal(ss.compareStrings('aab', 'aaa', true), 1, 'aab vs aaa should be 1');
+    QUnit.equal(ss.compareStrings('B', 'A', true), 1, 'B vs A should be 1');
+    QUnit.equal(ss.compareStrings('e', 'E', true), 0, 'e vs E should be 1');
+  });
+
+  test('endsWith', function() {
+    QUnit.equal(ss.endsWith('aaa', 'a'), true, 'aaa does end with a');
+    QUnit.equal(ss.endsWith('aaa', 'b'), false, 'aaa does not end with b');
+    QUnit.equal(ss.endsWith('aaa', 'aaa'), true, 'aaa does end with aaa');
+    QUnit.equal(ss.endsWith('aaa', 'aaaa'), false, 'aaa does not end with aaaa');
+  });
+
+  test('startsWith', function() {
+    QUnit.equal(ss.startsWith('aaa', 'a'), true, 'aaa does start with a');
+    QUnit.equal(ss.startsWith('aaa', 'b'), false, 'aaa does not start with b');
+    QUnit.equal(ss.startsWith('aaa', 'aaa'), true, 'aaa does start with aaa');
+    QUnit.equal(ss.startsWith('aaa', 'aaaa'), false, 'aaa does not start with aaaa');
+  });
+
+  test('isNullOrEmpty', function () {
+    QUnit.equal(ss.emptyString(null), true, 'null should be true');
+    QUnit.equal(ss.emptyString(undefined), true, 'undefined should be true');
+    QUnit.equal(ss.emptyString(), true, 'no param, should be true');
+    QUnit.equal(ss.emptyString(""), true, 'empty string, should be true');
+    QUnit.equal(ss.emptyString(" "), false, 'white space, should be false');
+    QUnit.equal(ss.emptyString("aaa"), false, 'aaa, should be false');
+  });
+
+  test('isNullOrWhiteSpace', function () {
+    QUnit.equal(ss.whitespace(null), true, 'null should be true');
+    QUnit.equal(ss.whitespace(undefined), true, 'undefined should be true');
+    QUnit.equal(ss.whitespace(), true, 'no param, should be true');
+    QUnit.equal(ss.whitespace(""), true, 'empty string, should be true');
+    QUnit.equal(ss.whitespace(" "), true, 'white space, should be true');
+    QUnit.equal(ss.whitespace("   "), true, 'triple white space, should be true');
+    QUnit.equal(ss.whitespace("\t"), true, 'tab should be true');
+    QUnit.equal(ss.whitespace("aaa"), false, 'aaa, should be false');
+  });
+});
+</script>
+</html>

@@ -8,26 +8,26 @@ using System.Runtime.CompilerServices;
 
 namespace KnockoutApi {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Object")]
     public sealed class KnockoutMappingArrayCreateOptions {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Data {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Parent {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Skip {
             get {
                 return null;

@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Media.Filters {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class VisualTransition : VisualFilter {
 
         private VisualTransition() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Duration {
             get {
                 return 0f;
@@ -24,14 +24,14 @@ namespace System.Html.Media.Filters {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Percent {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public VisualTransitionState Status {
             get {
                 return VisualTransitionState.Stopped;

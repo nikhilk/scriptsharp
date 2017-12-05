@@ -8,14 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public class TextElement : InputElement {
 
         internal TextElement() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int MaxLength {
             get {
                 return 0;
@@ -24,7 +24,7 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool ReadOnly {
             get {
                 return false;

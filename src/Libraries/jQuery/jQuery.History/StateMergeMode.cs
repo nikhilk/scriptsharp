@@ -11,9 +11,9 @@ namespace jQueryApi.History {
     /// <summary>
     /// Specifies how new state is merged into the current state.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
-    [NumericValues]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    [ScriptConstants]
     public enum StateMergeMode {
 
         /// <summary>

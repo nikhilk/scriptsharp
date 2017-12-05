@@ -14,6 +14,9 @@ namespace ScriptSharp {
 
     internal static class Utility {
 
+        private static readonly string Base64Alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$_";
+        private static readonly string Base54Alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$_";
+
         private static readonly string[] ScriptKeywords =
             new string[] {
                 // Current keywords
@@ -29,7 +32,7 @@ namespace ScriptSharp {
                 "protected", "throws", "class", "final", "interface", "public",
                 "transient", "const", "float", "long", "short", "volatile",
                 // Script#-specific words
-                "ss"
+                "ss", "global"
             };
         private static Hashtable _keywordTable;
 
@@ -75,6 +78,23 @@ namespace ScriptSharp {
                 // Convert the leading upper case character to lower case
                 return Char.ToLower(name[0], CultureInfo.InvariantCulture) + name.Substring(1);
             }
+        }
+
+        public static string CreateEncodedName(int number, bool useDigits) {
+            string alphabet = useDigits ? Base64Alphabet : Base54Alphabet;
+            if (number == 0) {
+                return alphabet[0].ToString();
+            }
+
+            string name = String.Empty;
+            while (number > 0) {
+                int remainder = number % alphabet.Length;
+                number = (int)(number / alphabet.Length);
+
+                name = alphabet[remainder] + name;
+            }
+
+            return name;
         }
 
         public static string GetResourceFileLocale(string fileName) {

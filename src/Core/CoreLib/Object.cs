@@ -10,14 +10,18 @@ namespace System {
     /// <summary>
     /// Equivalent to the Object type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public class Object {
+
+        [ScriptName("name")]
+        public const string NAME_DEFINITION = "Object";
 
         /// <summary>
         /// Retrieves the type associated with an object instance.
         /// </summary>
         /// <returns>The type of the object.</returns>
+        [ScriptAlias("ss.typeOf")]
         public Type GetType() {
             return null;
         }

@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
+
 
 namespace ValidationTests {
 
@@ -13,6 +13,7 @@ namespace ValidationTests {
             string scriptTemplate = "alert({0} + {1})";
             
             Script.Literal(scriptTemplate, a, a);
+            Script.Literal("alert({name:{0}})", "aaa");
         }
     }
 }

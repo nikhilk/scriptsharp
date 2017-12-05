@@ -11,8 +11,8 @@ namespace jQueryApi.UI.Effects {
     /// <summary>
     /// Options used to initialize or customize Shake.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class ShakeOptions {
 
@@ -25,7 +25,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// A callback function, executed when the effect completes
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Action Complete {
             get {
                 return null;
@@ -37,7 +37,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The direction of the effect. Can be "left", "right", "up", "down".
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Direction {
             get {
                 return null;
@@ -49,7 +49,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// Distance to shake.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Distance {
             get {
                 return 0;
@@ -61,7 +61,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The number of ms the animation will run for
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Duration {
             get {
                 return 0;
@@ -73,7 +73,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// The easing function to use
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Easing {
             get {
                 return null;
@@ -85,7 +85,7 @@ namespace jQueryApi.UI.Effects {
         /// <summary>
         /// Times to shake.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public int Times {
             get {
                 return 0;

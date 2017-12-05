@@ -12,8 +12,7 @@ namespace System.ComponentModel {
     /// Provides a simple pub/sub mechanism to allow objects to broadcast and
     /// listen to messages or events without being coupled to each other.
     /// </summary>
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     public interface IEventManager {
 
         /// <summary>

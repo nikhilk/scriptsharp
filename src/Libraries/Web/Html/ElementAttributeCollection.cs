@@ -8,17 +8,24 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class ElementAttributeCollection {
 
         internal ElementAttributeCollection() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Length {
             get {
                 return 0;
+            }
+        }
+
+        [ScriptField]
+        public ElementAttribute this[int index] {
+            get {
+                return null;
             }
         }
 

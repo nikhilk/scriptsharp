@@ -1,45 +1,84 @@
-Type.registerNamespace('test');
+"use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-// test.FooBarBaz
+define('test', ['ss'], function(ss) {
+  var $global = this;
 
-test.FooBarBaz = function test_FooBarBaz() {
-}
+  // TypeTests.Foo
 
+  function FooBaz() {
+  }
+  var FooBaz$ = {
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass
-
-test.MyClass = function test_MyClass() {
-    test.FooBarBaz = new test.FooBarBaz();
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass2
+  // TypeTests.Bar
 
-test.MyClass2 = function test_MyClass2() {
-    test.MyClass2.initializeBase(this);
-}
+  function BarBaz(f) {
+  }
+  var BarBaz$ = {
 
-
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass3
-
-test.MyClass3 = function test_MyClass3() {
-}
+  };
 
 
-////////////////////////////////////////////////////////////////////////////////
-// test.MyClass4
+  // TypeTests.MyClass
 
-test.MyClass4 = function test_MyClass4() {
-    test.MyClass4.initializeBase(this);
-}
+  function MyClass() {
+    var f = new FooBaz();
+  }
+  var MyClass$ = {
+
+  };
 
 
-test.FooBarBaz.registerClass('test.FooBarBaz');
-test.MyClass.registerClass('test.MyClass');
-test.MyClass2.registerClass('test.MyClass2', test.MyClass);
-test.MyClass3.registerClass('test.MyClass3', null, ss.IDisposable);
-test.MyClass4.registerClass('test.MyClass4', test.MyClass, ss.IDisposable);
+  // TypeTests.MyClass3
+
+  function MyClass3() {
+  }
+  var MyClass3$ = {
+
+  };
+
+
+  // TypeTests.StaticClass
+
+  function StaticClass() {
+  }
+
+
+  // TypeTests.MyClass2
+
+  function MyClass2() {
+    MyClass.call(this);
+  }
+  var MyClass2$ = {
+
+  };
+
+
+  // TypeTests.MyClass4
+
+  function MyClass4(foo, bar, disposable) {
+    MyClass.call(this);
+    var f = ss.createInstance();
+    var b = ss.createInstance(BarBaz, f);
+  }
+  var MyClass4$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      FooBaz: ss.defineClass(FooBaz, FooBaz$, [], null),
+      BarBaz: ss.defineClass(BarBaz, BarBaz$, [FooBaz], null),
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null),
+      MyClass3: ss.defineClass(MyClass3, MyClass3$, [], null, [ss.IDisposable]),
+      StaticClass: ss.defineClass(StaticClass, null, [], null),
+      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], MyClass),
+      MyClass4: ss.defineClass(MyClass4, MyClass4$, [FooBaz, BarBaz, ss.IDisposable], MyClass, [ss.IDisposable])
+    });
+
+
+  return $exports;
+});

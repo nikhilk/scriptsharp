@@ -8,28 +8,28 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public class ElementEvent {
 
         internal ElementEvent() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool AltKey {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Button {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool CancelBubble {
             get {
                 return false;
@@ -38,70 +38,98 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
+        public int ClientX {
+            get {
+                return 0;
+            }
+        }
+
+        [ScriptField]
+        public int ClientY {
+            get {
+                return 0;
+            }
+        }
+
+        [ScriptField]
         public bool CtrlKey {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Element CurrentTarget {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public DataTransfer DataTransfer {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Detail {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Element FromElement {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int KeyCode {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public bool MetaKey {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int OffsetX {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int OffsetY {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
+        public int PageX {
+            get {
+                return 0;
+            }
+        }
+
+        [ScriptField]
+        public int PageY {
+            get {
+                return 0;
+            }
+        }
+
+        [ScriptField]
         public bool ReturnValue {
             get {
                 return false;
@@ -110,47 +138,80 @@ namespace System.Html {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
+        public int ScreenX {
+            get {
+                return 0;
+            }
+        }
+
+        [ScriptField]
+        public int ScreenY {
+            get {
+                return 0;
+            }
+        }
+
+        [ScriptField]
         public bool ShiftKey {
             get {
                 return false;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Element SrcElement {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Element Target {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Date TimeStamp {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Element ToElement {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Type {
             get {
                 return null;
             }
         }
+
+        [ScriptField]
+        public bool Bubbles
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        [ScriptField]
+        public bool Cancelable
+        {
+            get
+            {
+                return false;
+            }
+        }
+
 
         public void PreventDefault() {
         }

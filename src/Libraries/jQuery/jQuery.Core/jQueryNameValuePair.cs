@@ -11,8 +11,8 @@ namespace jQueryApi {
     /// <summary>
     /// Represents a name and value.
     /// </summary>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public sealed class jQueryNameValuePair {
 
         private jQueryNameValuePair() {
@@ -21,7 +21,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the name.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public string Name {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi {
         /// <summary>
         /// Gets the value.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public object Value {
             get {
                 return null;

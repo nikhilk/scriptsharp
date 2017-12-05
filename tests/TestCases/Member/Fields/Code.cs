@@ -2,14 +2,12 @@ using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace MemberTests {
 
     public enum Mode { A = 0, B = 1 };
 
     public class Test {
-
         public static readonly string Greeting = "Hello!";
         public const int MyNumber = 1;
 
@@ -36,7 +34,8 @@ namespace MemberTests {
         }
     }
 
-    internal sealed class Point : Record {
+    [ScriptObject]
+    internal sealed class Point {
          public int x;
          public int y;
 

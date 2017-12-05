@@ -8,28 +8,28 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("LocationRect")]
     public sealed class MapBounds {
 
         public MapBounds(MapLocation center, double width, double height) {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public MapLocation Center {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Height {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public double Width {
             get {
                 return 0;

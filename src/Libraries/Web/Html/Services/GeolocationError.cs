@@ -8,21 +8,21 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Services {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class GeolocationError {
 
         private GeolocationError() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public GeolocationErrorCode Code {
             get {
                 return 0;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Message {
             get {
                 return null;

@@ -23,6 +23,12 @@ namespace ScriptSharp.ScriptModel {
             _transformationCookie = -1;
         }
 
+        public bool Constants {
+            get {
+                return _namedValues || _numericValues;
+            }
+        }
+
         public bool Flags {
             get {
                 return _flags;

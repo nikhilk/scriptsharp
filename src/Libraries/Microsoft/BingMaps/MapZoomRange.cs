@@ -8,18 +8,18 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Maps {
 
-    [Imported]
+    [ScriptImport]
     [ScriptName("Object")]
-    [IgnoreNamespace]
+    [ScriptIgnoreNamespace]
     public sealed class MapZoomRange {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Min {
             get;
             set;
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public int Max {
             get;
             set;

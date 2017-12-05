@@ -3,7 +3,6 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace ExpressionTests {
 
@@ -19,7 +18,8 @@ namespace ExpressionTests {
         }
     }
 
-    public sealed class Point : Record {
+    [ScriptObject]
+    public sealed class Point {
          int x;
          int y;
 
@@ -29,8 +29,8 @@ namespace ExpressionTests {
          }
     }
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public class CustomDictionary {
     

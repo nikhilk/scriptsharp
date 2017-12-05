@@ -8,12 +8,12 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Interactions {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class DropActivateEvent {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryObject Draggable {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public jQueryObject Helper {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Offset {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace jQueryApi.UI.Interactions {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object Position {
             get {
                 return null;

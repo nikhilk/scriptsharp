@@ -7,8 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System.Collections {
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     public interface IEnumerable {
 
         IEnumerator GetEnumerator();

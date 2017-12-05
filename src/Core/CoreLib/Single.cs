@@ -12,18 +12,10 @@ namespace System {
     /// <summary>
     /// The float data type which is mapped to the Number type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Number")]
     public struct Single {
-
-        public string Format(string format) {
-            return null;
-        }
-
-        public string LocaleFormat(string format) {
-            return null;
-        }
 
         [ScriptAlias("parseFloat")]
         public static float Parse(string s) {

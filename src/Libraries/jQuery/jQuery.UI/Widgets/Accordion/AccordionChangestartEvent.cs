@@ -8,12 +8,12 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Widgets {
 
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     [ScriptName("Object")]
     public sealed class AccordionChangestartEvent {
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object NewContent {
             get {
                 return null;
@@ -22,7 +22,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object NewHeader {
             get {
                 return null;
@@ -31,7 +31,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object OldContent {
             get {
                 return null;
@@ -40,7 +40,7 @@ namespace jQueryApi.UI.Widgets {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object OldHeader {
             get {
                 return null;

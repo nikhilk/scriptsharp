@@ -11,14 +11,13 @@ namespace System {
     /// <summary>
     /// The event argument associated with cancelable events.
     /// </summary>
-    [ScriptNamespace("ss")]
-    [Imported]
+    [ScriptImport]
     public class CancelEventArgs : EventArgs {
 
         /// <summary>
         /// Whether the event has been canceled.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public bool Cancel {
             get {
                 return false;

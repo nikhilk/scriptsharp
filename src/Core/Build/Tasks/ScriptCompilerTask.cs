@@ -9,39 +9,50 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Microsoft.Build;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+
+using ScriptCruncher = Microsoft.Ajax.Utilities.Minifier;
+using ScriptCruncherSettings = Microsoft.Ajax.Utilities.CodeSettings;
+using ScriptSourceMap = Microsoft.Ajax.Utilities.ScriptSharpSourceMap;
 
 namespace ScriptSharp.Tasks {
 
     /// <summary>
     /// The Script# MSBuild task.
     /// </summary>
-    public sealed class ScriptCompilerTask : Task, IErrorHandler {
+    public sealed class ScriptCompilerTask : Task, IErrorHandler, IStreamSourceResolver {
 
         private string _projectPath;
         private ITaskItem[] _references;
         private ITaskItem[] _sources;
         private ITaskItem[] _resources;
-        private ITaskItem _template;
-        private ITaskItem _docCommentFile;
-        private ITaskItem _csharpAssembly;
-
+        private ITaskItem _assembly;
         private string _defines;
-        private bool _copyReferences;
-        private bool _suppressDocumentation;
 
+        private bool _minimize;
+        private bool _copyReferences;
+        private string _copyReferencesPath;
         private string _outputPath;
-        private string _deploymentPath;
-        private bool _localeSubFolders;
-        private bool _configSubFolders;
+        private string _scriptName;
         private List<ITaskItem> _scripts;
 
         private bool _hasErrors;
 
         public ScriptCompilerTask() {
             _copyReferences = true;
+        }
+
+        [Required]
+        public ITaskItem Assembly {
+            get {
+                return _assembly;
+            }
+            set {
+                _assembly = value;
+            }
         }
 
         public bool CopyReferences {
@@ -53,13 +64,15 @@ namespace ScriptSharp.Tasks {
             }
         }
 
-        [Required]
-        public ITaskItem CSharpAssembly {
+        public string CopyReferencesPath {
             get {
-                return _csharpAssembly;
+                if (_copyReferencesPath == null) {
+                    return String.Empty;
+                }
+                return _copyReferencesPath;
             }
             set {
-                _csharpAssembly = value;
+                _copyReferencesPath = value;
             }
         }
 
@@ -75,51 +88,12 @@ namespace ScriptSharp.Tasks {
             }
         }
 
-        public string DeploymentPath {
+        public bool Minimize {
             get {
-                if (_deploymentPath == null) {
-                    return String.Empty;
-                }
-                return _deploymentPath;
+                return _minimize;
             }
             set {
-                _deploymentPath = value;
-            }
-        }
-
-        public bool LocaleSubFolders {
-            get {
-                return _localeSubFolders;
-            }
-            set {
-                _localeSubFolders = value;
-            }
-        }
-
-        public bool ConfigSubFolders {
-            get {
-                return _configSubFolders;
-            }
-            set {
-                _configSubFolders = value;
-            }
-        }
-
-        public ITaskItem Template {
-            get {
-                return _template;
-            }
-            set {
-                _template = value;
-            }
-        }
-
-        public ITaskItem DocumentationFile {
-            get {
-                return _docCommentFile;
-            }
-            set {
-                _docCommentFile = value;
+                _minimize = value;
             }
         }
 
@@ -136,6 +110,7 @@ namespace ScriptSharp.Tasks {
             }
         }
 
+        [Required]
         public string ProjectPath {
             get {
                 return _projectPath;
@@ -164,6 +139,15 @@ namespace ScriptSharp.Tasks {
             }
         }
 
+        public string ScriptName {
+            get {
+                return _scriptName;
+            }
+            set {
+                _scriptName = value;
+            }
+        }
+
         [Output]
         public ITaskItem[] Scripts {
             get {
@@ -184,36 +168,27 @@ namespace ScriptSharp.Tasks {
             }
         }
 
-        public bool SuppressDocumentation {
-            get {
-                return _suppressDocumentation;
-            }
-            set {
-                _suppressDocumentation = value;
-            }
-        }
-
-        private bool Compile(string name, IEnumerable<ITaskItem> sourceItems, IEnumerable<ITaskItem> resourceItems, string locale) {
+        private bool Compile(IEnumerable<ITaskItem> sourceItems, IEnumerable<ITaskItem> resourceItems, string locale) {
             ITaskItem scriptTaskItem;
 
-            CompilerOptions debugOptions =
-                CreateOptions(name, sourceItems, resourceItems, locale,
-                              /* debug */ true, /* includeTests */ false, /* minimize */ false,
+            CompilerOptions options =
+                CreateOptions(sourceItems, resourceItems, locale,
+                              /* includeTests */ false, /* minimize */ false,
                               out scriptTaskItem);
 
             string errorMessage = String.Empty;
-            if (debugOptions.Validate(out errorMessage) == false) {
+            if (options.Validate(out errorMessage) == false) {
                 Log.LogError(errorMessage);
                 return false;
             }
 
-            ScriptCompiler debugCompiler = new ScriptCompiler(this);
-            debugCompiler.Compile(debugOptions);
+            ScriptCompiler compiler = new ScriptCompiler(this);
+            compiler.Compile(options);
             if (_hasErrors == false) {
                 // Only copy references once (when building language neutral scripts)
                 bool copyReferences = String.IsNullOrEmpty(locale) && CopyReferences;
 
-                OnScriptFileGenerated(scriptTaskItem, debugOptions, copyReferences);
+                OnScriptFileGenerated(scriptTaskItem, options, copyReferences);
                 if (_hasErrors) {
                     return false;
                 }
@@ -222,10 +197,10 @@ namespace ScriptSharp.Tasks {
                 return false;
             }
 
-            if (debugOptions.HasTestTypes) {
+            if (options.HasTestTypes) {
                 CompilerOptions testOptions =
-                    CreateOptions(name, sourceItems, resourceItems, locale,
-                                  /* debug */ true, /* includeTests */ true, /* minimize */ false,
+                    CreateOptions(sourceItems, resourceItems, locale,
+                                  /* includeTests */ true, /* minimize */ false,
                                   out scriptTaskItem);
                 ScriptCompiler testCompiler = new ScriptCompiler(this);
                 testCompiler.Compile(testOptions);
@@ -237,43 +212,38 @@ namespace ScriptSharp.Tasks {
                 }
             }
 
-            CompilerOptions releaseOptions =
-                CreateOptions(name, sourceItems, resourceItems, locale,
-                              /* debug */ false, /* includeTests */ false, /* minimize */ true,
-                              out scriptTaskItem);
-            ScriptCompiler releaseCompiler = new ScriptCompiler(this);
-            releaseCompiler.Compile(releaseOptions);
-            if (_hasErrors == false) {
-                OnScriptFileGenerated(scriptTaskItem, releaseOptions, /* copyReferences */ false);
-            }
-            else {
-                return false;
+            if (_minimize) {
+                CompilerOptions minimizeOptions =
+                    CreateOptions(sourceItems, resourceItems, locale,
+                    /* includeTests */ false, /* minimize */ true,
+                                    out scriptTaskItem);
+                ScriptCompiler minimizingCompiler = new ScriptCompiler(this);
+                minimizingCompiler.Compile(minimizeOptions);
+                if (_hasErrors == false) {
+                    ExecuteCruncher(scriptTaskItem);
+                    OnScriptFileGenerated(scriptTaskItem, minimizeOptions, /* copyReferences */ false);
+                }
+                else {
+                    return false;
+                }
             }
 
             return true;
         }
 
-        private CompilerOptions CreateOptions(string name, IEnumerable<ITaskItem> sourceItems, IEnumerable<ITaskItem> resourceItems,
-                                              string locale,
-                                              bool debug, bool includeTests, bool minimize,
+        private CompilerOptions CreateOptions(IEnumerable<ITaskItem> sourceItems, IEnumerable<ITaskItem> resourceItems,
+                                              string locale, bool includeTests, bool minimize,
                                               out ITaskItem outputScriptItem) {
             CompilerOptions options = new CompilerOptions();
-            options.DebugFlavor = debug;
             options.IncludeTests = includeTests;
             options.Minimize = minimize;
-            options.ScriptNameSuffix = name;
-            options.Defines = GetDefines(name, !debug);
+            options.Defines = GetDefines();
             options.References = GetReferences();
             options.Sources = GetSources(sourceItems);
             options.Resources = GetResources(resourceItems, locale);
-            if (_template != null) {
-                options.TemplateFile = new TaskItemInputStreamSource(_template, "Template");
-            }
-            if ((_docCommentFile != null) && (_suppressDocumentation == false)) {
-                options.DocCommentFile = new TaskItemInputStreamSource(_docCommentFile, "DocComment");
-            }
+            options.IncludeResolver = this;
 
-            string scriptFilePath = GetScriptFilePath(name, locale, debug, includeTests);
+            string scriptFilePath = GetScriptFilePath(locale, minimize, includeTests);
             outputScriptItem = new TaskItem(scriptFilePath);
             options.ScriptFile = new TaskItemOutputStreamSource(outputScriptItem);
 
@@ -283,107 +253,82 @@ namespace ScriptSharp.Tasks {
         public override bool Execute() {
             _scripts = new List<ITaskItem>();
 
-#if PARTITIONING
-            if (_webAppPartitioning == false) {
-#endif
-                return ExecuteCore(String.Empty, _sources, _resources);
-#if PARTITIONING
-            }
-            else {
-                CompilationGroup sharedGroup = new CompilationGroup();
-                Dictionary<string, CompilationGroup> compilationGroups =
-                    new Dictionary<string, CompilationGroup>(StringComparer.OrdinalIgnoreCase);
-
-                if (_sources != null) {
-                    foreach (ITaskItem sourceItem in _sources) {
-                        string groupName = CompilationGroup.GetGroupName(sourceItem);
-
-                        CompilationGroup group;
-                        if (groupName == CompilationGroup.SharedGroupName) {
-                            group = sharedGroup;
-                        }
-                        else if (compilationGroups.TryGetValue(groupName, out group) == false) {
-                            group = new CompilationGroup();
-                            compilationGroups[groupName] = group;
-                        }
-
-                        group.Sources.Add(sourceItem);
-                    }
-                }
-
-                if (_resources != null) {
-                    foreach (ITaskItem resourceItem in _resources) {
-                        string groupName = CompilationGroup.GetGroupName(resourceItem);
-
-                        CompilationGroup group;
-                        if (groupName == CompilationGroup.SharedGroupName) {
-                            group = sharedGroup;
-                        }
-                        else if (compilationGroups.TryGetValue(groupName, out group) == false) {
-                            group = new CompilationGroup();
-                            compilationGroups[groupName] = group;
-                        }
-
-                        group.Resources.Add(resourceItem);
-                    }
-                }
-
-                foreach (KeyValuePair<string, CompilationGroup> group in compilationGroups) {
-                    group.Value.Sources.AddRange(sharedGroup.Sources);
-                    group.Value.Resources.AddRange(sharedGroup.Resources);
-
-                    bool success = ExecuteCore(group.Key, group.Value.Sources, group.Value.Resources);
-                    if (success == false) {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-#endif // PARTITIONING
-        }
-
-        private bool ExecuteCore(string name, IEnumerable<ITaskItem> sources, IEnumerable<ITaskItem> resources) {
-            bool success = false;
-
+            bool success;
             try {
-                // Create the neutral culture scripts first
-                success = Compile(name, sources, resources, /* locale */ String.Empty);
-
-                if (success) {
-                    ICollection<string> locales = GetLocales(resources);
-                    foreach (string locale in locales) {
-                        success = Compile(name, sources, resources, locale);
-                        if (success == false) {
-                            break;
-                        }
-                    }
-                }
+                success = ExecuteCore(_sources, _resources);
             }
-            catch {
+            catch (Exception) {
                 success = false;
             }
 
             return success;
         }
 
-        private ICollection<string> GetDefines(string name, bool removeDebug) {
-            if ((Defines.Length == 0) && String.IsNullOrEmpty(name)) {
+        private bool ExecuteCore(IEnumerable<ITaskItem> sources, IEnumerable<ITaskItem> resources) {
+            // Create the neutral culture scripts first, and if that 
+            // succeeds, compile any localized variants that are supposed
+            // to be generated.
+
+            if (Compile(sources, resources, /* locale */ String.Empty)) {
+                ICollection<string> locales = GetLocales(resources);
+
+                foreach (string locale in locales) {
+                    if (Compile(sources, resources, locale) == false) {
+                        return false;
+                    }
+                }
+
+                GenerateDeploymentFile();
+                return true;
+            }
+
+            return false;
+        }
+
+        private void ExecuteCruncher(ITaskItem scriptItem) {
+            string script = File.ReadAllText(scriptItem.ItemSpec);
+
+            ScriptCruncher cruncher = new ScriptCruncher();
+            ScriptCruncherSettings cruncherSettings = new ScriptCruncherSettings() {
+                StripDebugStatements = false,
+                OutputMode = Microsoft.Ajax.Utilities.OutputMode.SingleLine,
+                IgnorePreprocessorDefines = true,
+                IgnoreConditionalCompilation = true,
+                TermSemicolons = true,
+                
+            };
+            cruncherSettings.AddNoAutoRename("$");
+            cruncherSettings.SetDebugNamespaces(null);
+
+            string crunchedScript = cruncher.MinifyJavaScript(script, cruncherSettings);
+
+            File.WriteAllText(scriptItem.ItemSpec, crunchedScript);
+        }
+
+        private void GenerateDeploymentFile() {
+            try {
+                string assemblyFile = Path.GetFileName(_assembly.ItemSpec);
+                string scriptsFilePath = Path.Combine(OutputPath, Path.ChangeExtension(assemblyFile, "scripts"));
+
+                Uri scriptsUri = new Uri(Path.GetFullPath(scriptsFilePath), UriKind.Absolute);
+                IEnumerable<string> scripts =
+                    _scripts.Select(s => {
+                        Uri fileUri = new Uri(s.ItemSpec, UriKind.Absolute);
+                        return Uri.UnescapeDataString(scriptsUri.MakeRelativeUri(fileUri).ToString());
+                    });
+                File.WriteAllLines(scriptsFilePath, scripts);
+            }
+            catch (Exception e) {
+                Log.LogError(e.ToString());
+            }
+        }
+
+        private ICollection<string> GetDefines() {
+            if (Defines.Length == 0) {
                 return new string[0];
             }
-            string[] defines = Defines.Split(';');
-            if (String.IsNullOrEmpty(name) && (removeDebug == false)) {
-                return defines;
-            }
 
-            List<string> definesList = new List<string>(defines);
-            definesList.Add(name);
-
-            if (removeDebug) {
-                definesList.Remove("DEBUG");
-            }
-
-            return definesList;
+            return Defines.Split(';');
         }
 
         private ICollection<string> GetLocales(IEnumerable<ITaskItem> resourceItems) {
@@ -446,48 +391,22 @@ namespace ScriptSharp.Tasks {
             return resources;
         }
 
-        private string GetScriptFilePath(string name, string locale, bool debug, bool includeTests) {
-            if ((_csharpAssembly != null) && (OutputPath.Length != 0)) {
-                string assemblyPath = _csharpAssembly.ItemSpec;
-                string assemblyFile = Path.GetFileName(assemblyPath);
-                string outputPath = OutputPath;
-                string extension = "js";
-
-                if ((assemblyFile.Length > 7) && assemblyFile.StartsWith("Script.", StringComparison.OrdinalIgnoreCase)) {
-                    // Resulting script files don't need a "Script." prefix, since that
-                    // is mostly a naming convention used to separate out script# managed binaries.
-
-                    assemblyFile = assemblyFile.Substring(7);
-                }
-
-                if (_configSubFolders == false) {
-                    extension = includeTests ? "test.js" : (debug ? "debug.js" : "js");
-                }
-                else {
-                    outputPath = Path.Combine(outputPath, includeTests ? "test" : (debug ? "debug" : "release"));
-                }
-
-                if (String.IsNullOrEmpty(locale) == false) {
-                    if (_localeSubFolders == false) {
-                        extension = locale + "." + extension;
-                    }
-                    else {
-                        outputPath = Path.Combine(outputPath, locale);
-                    }
-                }
-
-                if (String.IsNullOrEmpty(name) == false) {
-                    extension = name + "." + extension;
-                }
-
-                if (Directory.Exists(outputPath) == false) {
-                    Directory.CreateDirectory(outputPath);
-                }
-
-                return Path.Combine(outputPath, Path.ChangeExtension(assemblyFile, extension));
+        private string GetScriptFilePath(string locale, bool minimize, bool includeTests) {
+            string scriptName = ScriptName;
+            if (String.IsNullOrEmpty(scriptName)) {
+                scriptName = Path.GetFileName(_assembly.ItemSpec);
             }
 
-            return null;
+            string extension = includeTests ? "test.js" : (minimize ? "min.js" : "js");
+            if (String.IsNullOrEmpty(locale) == false) {
+                extension = locale + "." + extension;
+            }
+
+            if (Directory.Exists(OutputPath) == false) {
+                Directory.CreateDirectory(OutputPath);
+            }
+
+            return Path.GetFullPath(Path.Combine(OutputPath, Path.ChangeExtension(scriptName, extension)));
         }
 
         private ICollection<IStreamSource> GetSources(IEnumerable<ITaskItem> sourceItems) {
@@ -512,15 +431,20 @@ namespace ScriptSharp.Tasks {
         }
 
         private void OnScriptFileGenerated(ITaskItem scriptItem, CompilerOptions options, bool copyReferences) {
-            _scripts.Add(scriptItem);
+            Func<string, bool, string> getScriptFile = delegate(string reference, bool minimized) {
+                string scriptFile = Path.ChangeExtension(reference, minimized ? ".min.js" : ".js");
 
-            Func<string, bool, string> getScriptFile = delegate(string reference, bool debug) {
-                string scriptFile = Path.ChangeExtension(reference, debug ? ".debug.js" : ".js");
+                string fileName = Path.GetFileNameWithoutExtension(scriptFile);
+                if (fileName.StartsWith("mscorlib", StringComparison.OrdinalIgnoreCase)) {
+                    fileName = (minimized ? "ss.min" : "ss") + Path.GetExtension(scriptFile);
+                    scriptFile = Path.Combine(Path.GetDirectoryName(scriptFile), fileName);
+                }
+
                 if (File.Exists(scriptFile)) {
                     return scriptFile;
                 }
 
-                string fileName = Path.GetFileName(scriptFile);
+                fileName = Path.GetFileName(scriptFile);
                 if ((fileName.Length > 7) && fileName.StartsWith("Script.", StringComparison.OrdinalIgnoreCase)) {
                     fileName = fileName.Substring(7);
                     scriptFile = Path.Combine(Path.GetDirectoryName(scriptFile), fileName);
@@ -535,6 +459,11 @@ namespace ScriptSharp.Tasks {
 
             Action<string, string> safeCopyFile = delegate(string sourceFilePath, string targetFilePath) {
                 try {
+                    string directory = Path.GetDirectoryName(targetFilePath);
+                    if (Directory.Exists(directory) == false) {
+                        Directory.CreateDirectory(directory);
+                    }
+
                     if (File.Exists(targetFilePath)) {
                         // If the file already exists, make sure it is not read-only, so
                         // it can be overrwritten.
@@ -546,6 +475,8 @@ namespace ScriptSharp.Tasks {
                     // Copy the file, and then make sure it is not read-only (for example, if the
                     // source file for a referenced script is read-only).
                     File.SetAttributes(targetFilePath, FileAttributes.Normal);
+
+                    _scripts.Add(new TaskItem(targetFilePath));
                 }
                 catch (Exception e) {
                     Log.LogError("Unable to copy referenced script '" + sourceFilePath + "' as '" + targetFilePath + "' (" + e.Message + ")");
@@ -553,7 +484,7 @@ namespace ScriptSharp.Tasks {
                 }
             };
 
-            string projectName = (_projectPath != null) ? Path.GetFileNameWithoutExtension(_projectPath) : String.Empty;
+            string projectName = Path.GetFileNameWithoutExtension(_projectPath);
             string scriptFileName = Path.GetFileName(scriptItem.ItemSpec);
             string scriptPath = Path.GetFullPath(scriptItem.ItemSpec);
             string scriptFolder = Path.GetDirectoryName(scriptItem.ItemSpec);
@@ -562,41 +493,21 @@ namespace ScriptSharp.Tasks {
 
             if (copyReferences) {
                 foreach (string reference in options.References) {
-                    string releaseScriptFile = getScriptFile(reference, /* debug */ false);
-                    if (releaseScriptFile != null) {
-                        string path = Path.Combine(scriptFolder, Path.GetFileName(releaseScriptFile));
-                        safeCopyFile(releaseScriptFile, path);
+                    string scriptFile = getScriptFile(reference, /* minimized */ false);
+                    if (scriptFile != null) {
+                        string path = Path.Combine(scriptFolder, CopyReferencesPath, Path.GetFileName(scriptFile));
+                        safeCopyFile(scriptFile, path);
                     }
 
-                    string debugScriptFile = getScriptFile(reference, /* debug */ true);
-                    if (debugScriptFile != null) {
-                        string path = Path.Combine(scriptFolder, Path.GetFileName(debugScriptFile));
-                        safeCopyFile(debugScriptFile, path);
-                    }
-                }
-            }
-
-            string deploymentPath = DeploymentPath;
-            if (DeploymentPath.Length != 0) {
-                string deployedScriptPath = Path.Combine(deploymentPath, scriptFileName);
-                safeCopyFile(scriptPath, deployedScriptPath);
-
-                if (copyReferences) {
-                    foreach (string reference in options.References) {
-                        string releaseScriptFile = getScriptFile(reference, /* debug */ false);
-                        if (releaseScriptFile != null) {
-                            string path = Path.Combine(deploymentPath, Path.GetFileName(releaseScriptFile));
-                            safeCopyFile(releaseScriptFile, path);
-                        }
-
-                        string debugScriptFile = getScriptFile(reference, /* debug */ true);
-                        if (debugScriptFile != null) {
-                            string path = Path.Combine(deploymentPath, Path.GetFileName(debugScriptFile));
-                            safeCopyFile(debugScriptFile, path);
-                        }
+                    string minScriptFile = getScriptFile(reference, /* minimized */ true);
+                    if (minScriptFile != null) {
+                        string path = Path.Combine(scriptFolder, CopyReferencesPath, Path.GetFileName(minScriptFile));
+                        safeCopyFile(minScriptFile, path);
                     }
                 }
             }
+
+            _scripts.Add(scriptItem);
         }
 
         #region Implementation of IErrorHandler
@@ -626,46 +537,19 @@ namespace ScriptSharp.Tasks {
         }
         #endregion
 
+        #region Implementation of IStreamSourceResolver
 
-        private sealed class CompilationGroup {
-
-            public static readonly string SharedGroupName = "Shared";
-
-            public List<ITaskItem> Sources;
-            public List<ITaskItem> Resources;
-
-            public CompilationGroup() {
-                Sources = new List<ITaskItem>();
-                Resources = new List<ITaskItem>();
+        IStreamSource IStreamSourceResolver.Resolve(string name) {
+            string path = Path.Combine(Path.GetDirectoryName(_projectPath), name);
+            if (File.Exists(path)) {
+                return new FileInputStreamSource(path, name);
             }
 
-            public static string GetGroupName(ITaskItem taskItem) {
-                string groupName = null;
-
-                string itemPath = taskItem.GetMetadata("Link");
-                if (String.IsNullOrEmpty(itemPath)) {
-                    itemPath = taskItem.ItemSpec;
-                }
-
-                if (Path.IsPathRooted(itemPath) ||
-                    (itemPath.IndexOf(Path.DirectorySeparatorChar) < 0)) {
-                    groupName = SharedGroupName;
-                }
-                else {
-                    string path = itemPath;
-                    while (String.IsNullOrEmpty(path) == false) {
-                        groupName = path;
-                        path = Path.GetDirectoryName(path);
-                    }
-                }
-
-                if (groupName.Equals("Properties", StringComparison.Ordinal)) {
-                    groupName = CompilationGroup.SharedGroupName;
-                }
-
-                return groupName;
-            }
+            return null;
         }
+
+        #endregion
+
 
         private sealed class TaskItemInputStreamSource : FileInputStreamSource {
 

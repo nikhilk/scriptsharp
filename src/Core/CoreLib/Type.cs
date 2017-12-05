@@ -12,17 +12,13 @@ namespace System {
     /// <summary>
     /// The Type data type which is mapped to the Function type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class Type {
 
+        [ScriptName("$base")]
+        [ScriptField]
         public Type BaseType {
-            get {
-                return null;
-            }
-        }
-
-        public string FullName {
             get {
                 return null;
             }
@@ -37,29 +33,34 @@ namespace System {
         /// <summary>
         /// Gets the prototype associated with the type.
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Dictionary Prototype {
             get {
                 return null;
             }
         }
 
+        [ScriptAlias("ss.type")]
         public static Type GetType(string typeName) {
             return null;
         }
 
+        [ScriptAlias("ss.canAssign")]
         public bool IsAssignableFrom(Type type) {
             return false;
         }
 
+        [ScriptAlias("ss.isClass")]
         public static bool IsClass(Type type) {
             return false;
         }
 
+        [ScriptAlias("ss.isInterface")]
         public static bool IsInterface(Type type) {
             return false;
         }
 
+        [ScriptAlias("ss.instanceOf")]
         public bool IsInstanceOfType(object instance) {
             return false;
         }

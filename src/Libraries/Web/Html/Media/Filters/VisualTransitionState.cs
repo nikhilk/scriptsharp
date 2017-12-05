@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html.Media.Filters {
 
-    [IgnoreNamespace]
-    [Imported]
-    [NumericValues]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
+    [ScriptConstants]
     public enum VisualTransitionState {
 
         Stopped = 0,

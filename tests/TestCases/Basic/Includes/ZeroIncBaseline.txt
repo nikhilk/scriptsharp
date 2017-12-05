@@ -1,0 +1,19 @@
+// basic.js 
+//
+
+{include:pre.js}
+// Basic.App
+
+function App() {
+}
+var App$ = {
+
+};
+
+
+var $exports = ss.module('basic', null,
+  {
+    App: ss.defineClass(App, App$, [], null)
+  });
+
+

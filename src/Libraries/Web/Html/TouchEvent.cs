@@ -8,28 +8,28 @@ using System.Runtime.CompilerServices;
 
 namespace System.Html {
 
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     public sealed class TouchEvent : ElementEvent {
 
         internal TouchEvent() {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public TouchInfo[] ChangedTouches {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public TouchInfo[] TargetTouches {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public TouchInfo[] Touches {
             get {
                 return null;

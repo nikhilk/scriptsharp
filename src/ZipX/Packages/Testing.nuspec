@@ -2,7 +2,7 @@
 <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>ScriptSharp.Testing</id>
-    <version>0.7.6.0</version>
+    <version>1.0.0.0</version>
     <title>Script# Unit Testing Helpers</title>
     <authors>Nikhil Kothari</authors>
     <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
@@ -21,5 +21,7 @@
   <files>
     <file src="..\..\..\bin\Release\ScriptSharp.Testing.dll" target="lib" />
     <file src="..\..\..\bin\Release\ScriptSharp.Testing.xml" target="lib" />
+    <file src="..\..\..\bin\Release\ssloader.js" target="content\Web" />
+    <file src="..\..\..\bin\Release\ssloader.min.js" target="content\Web" />
   </files>
 </package>

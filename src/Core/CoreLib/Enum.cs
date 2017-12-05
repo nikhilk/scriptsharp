@@ -7,8 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace System {
 
-    [Imported]
-    [ScriptNamespace("ss")]
+    [ScriptImport]
     public abstract class Enum : ValueType {
     }
 }

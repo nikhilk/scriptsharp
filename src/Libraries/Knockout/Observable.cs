@@ -13,8 +13,8 @@ namespace KnockoutApi {
     /// Represents an object containing an observable value.
     /// </summary>
     /// <typeparam name="T">The type of the contained value.</typeparam>
-    [Imported]
-    [IgnoreNamespace]
+    [ScriptImport]
+    [ScriptIgnoreNamespace]
     public class Observable<T> : Subscribable<T> {
 
         internal Observable() {
@@ -56,7 +56,7 @@ namespace KnockoutApi {
         /// For complex types a supplied function can be assigned to improve
         /// change (mutation) detection
         /// </summary>
-        [IntrinsicProperty]
+        [ScriptField]
         public Func<T, T, bool> EqualityComparer {
             get;
             set;

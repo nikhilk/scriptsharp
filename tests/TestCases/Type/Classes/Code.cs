@@ -2,16 +2,23 @@ using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
-[assembly: ScriptNamespace("test")]
 
 namespace TypeTests {
 
-    [ScriptName("FooBarBaz")]
+    [ScriptName("FooBaz")]
     public class Foo {
     }
 
+    [ScriptName("BarBaz")]
+    public class Bar {
+        public Bar(Foo f)
+        {
+
+        }
+    }
+
     public class MyClass {
-        public MyClass() { Foo = new Foo(); }
+        public MyClass() { Foo f = new Foo(); }
     }
 
     public class MyClass2 : MyClass {
@@ -21,5 +28,14 @@ namespace TypeTests {
     }
 
     public class MyClass4 : MyClass, IDisposable {
+
+        public MyClass4(Foo foo, Bar bar, IDisposable disposable)
+        {
+            Foo f = Activator.CreateInstance<Foo>();
+            Bar b = Activator.CreateInstance(typeof(Bar), f);
+        }
+    }
+
+    public static class StaticClass {
     }
 }

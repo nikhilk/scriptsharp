@@ -11,29 +11,29 @@ namespace System {
     /// <summary>
     /// Equivalent to the Error type in Javascript.
     /// </summary>
-    [IgnoreNamespace]
-    [Imported]
+    [ScriptIgnoreNamespace]
+    [ScriptImport]
     [ScriptName("Error")]
-    public sealed class Exception {
+    public class Exception {
 
         public Exception(string message) {
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public Exception InnerException {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public string Message {
             get {
                 return null;
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         [ScriptName("stack")]
         public string StackTrace {
             get {
@@ -41,19 +41,19 @@ namespace System {
             }
         }
 
-        [IntrinsicProperty]
+        [ScriptField]
         public object this[string key] {
             get {
                 return null;
             }
         }
 
-        [ScriptAlias("Error.createError")]
+        [ScriptAlias("ss.error")]
         public static Exception Create(string message, Dictionary errorInfo) {
             return null;
         }
 
-        [ScriptAlias("Error.createError")]
+        [ScriptAlias("ss.error")]
         public static Exception Create(string message, Dictionary errorInfo, Exception innerException) {
             return null;
         }
