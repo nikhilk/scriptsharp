@@ -31,15 +31,39 @@ define('test', ['ss'], function(ss) {
   // TypeTests.Foo
 
   function Foo() {
+    this._someValues = {};
   }
   var Foo$ = {
-    get_canRun: function() {
+    $get_canRun: function() {
       return true;
     },
     run: function() {
     },
     serialize: function() {
       return null;
+    },
+    dispose: function() {
+    },
+    get_item: function(key) {
+      return this._someValues[key];
+    },
+    set_item: function(key, value) {
+      this._someValues[key] = value;
+      return value;
+    }
+  };
+
+
+  // TypeTests.Program
+
+  function Program() {
+  }
+  var Program$ = {
+    useInterfaces: function(runnable) {
+      runnable.dispose();
+      var s = [];
+      ss.enumerate(s);
+      var someValue = new Foo().get_item('someValuesKey');
     }
   };
 
@@ -50,7 +74,7 @@ define('test', ['ss'], function(ss) {
     MyObject.call(this);
   }
   var MyObject2$ = {
-    get_canRun: function() {
+    $get_canRun: function() {
       return true;
     },
     run: function() {
@@ -60,12 +84,13 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IMarker: [ IMarker ],
-      ISerializable: [ ISerializable ],
-      IRunnable: [ IRunnable ],
-      MyObject: [ MyObject, MyObject$, null, ss.IDisposable ],
-      Foo: [ Foo, Foo$, null, IMarker, ISerializable, IRunnable ],
-      MyObject2: [ MyObject2, MyObject2$, MyObject, IRunnable ]
+      IMarker: ss.defineInterface(IMarker),
+      ISerializable: ss.defineInterface(ISerializable),
+      IRunnable: ss.defineInterface(IRunnable, [IMarker, ss.IDisposable]),
+      MyObject: ss.defineClass(MyObject, MyObject$, [], null, [ss.IDisposable]),
+      Foo: ss.defineClass(Foo, Foo$, [], null, [IMarker, ISerializable, IRunnable]),
+      Program: ss.defineClass(Program, Program$, [], null),
+      MyObject2: ss.defineClass(MyObject2, MyObject2$, [], MyObject, [IRunnable])
     });
 
 

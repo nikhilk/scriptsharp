@@ -11,6 +11,7 @@
 
   #include "Runtime\Misc.js"
   #include "Runtime\Collections.js"
+  #include "Runtime\Guid.js"
   #include "Runtime\String.js"
   #include "Runtime\Delegate.js"
   #include "Runtime\EventArgs.js"
@@ -23,25 +24,26 @@
   #include "Runtime\TypeSystem.js"
 
   return extend(module('ss', null, {
-      IDisposable: [ IDisposable ],
-      IEnumerable: [ IEnumerable ],
-      IEnumerator: [ IEnumerator ],
-      IObserver: [ IObserver ],
-      IApplication: [ IApplication ],
-      IContainer: [ IContainer ],
-      IObjectFactory: [ IObjectFactory ],
-      IEventManager: [ IEventManager ],
-      IInitializable: [ IInitializable ],
-      EventArgs: [ EventArgs, { } ],
-      CancelEventArgs: [ CancelEventArgs, { }, EventArgs ],
-      StringBuilder: [ StringBuilder, StringBuilder$ ],
-      Stack: [ Stack, Stack$ ],
-      Queue: [ Queue, Queue$ ],
-      Observable: [ Observable, Observable$ ],
-      ObservableCollection: [ ObservableCollection, ObservableCollection$, null, IEnumerable ],
-      Task: [ Task, Task$ ]
+      IDisposable: defineInterface(IDisposable),
+      IEnumerable: defineInterface(IEnumerable),
+      IEnumerator: defineInterface(IEnumerator),
+      IObserver: defineInterface(IObserver),
+      IApplication: defineInterface(IApplication),
+      IContainer: defineInterface(IContainer),
+      IObjectFactory: defineInterface(IObjectFactory),
+      IEventManager: defineInterface(IEventManager),
+      IInitializable: defineInterface(IInitializable),
+      EventArgs: defineClass(EventArgs, { }, [], null),
+      CancelEventArgs: defineClass(CancelEventArgs, { }, [], null),
+      StringBuilder: defineClass(StringBuilder, StringBuilder$, [], null),
+      Stack: defineClass(Stack, Stack$, [], null),
+      Queue: defineClass(Queue, Queue$, [], null),
+      Observable: defineClass(Observable, Observable$, [], null),
+      ObservableCollection: defineClass(ObservableCollection, ObservableCollection$, [], null, [IEnumerable]),
+      Task: defineClass(Task, Task$, [], null),
+      Guid: defineClass(Guid, Guid$, [], null)
     }), {
-      version: '0.8',
+      version: '1.0',
 
       isValue: isValue,
       value: value,
@@ -82,7 +84,10 @@
       bindSub: bindSub,
       bindExport: bindExport,
       deferred: deferred,
-
+      paramsGenerator: paramsGenerator,
+      createPropertyGet: createPropertyGet,
+      createPropertySet: createPropertySet,
+      
       module: module,
       modules: _modules,
 
@@ -95,7 +100,12 @@
       safeCast: safeCast,
       canAssign: canAssign,
       instanceOf: instanceOf,
-
+      baseProperty : baseProperty,
+      defineClass : defineClass,
+      defineInterface : defineInterface,
+      getConstructorParams : getConstructorParams,
+      createInstance : paramsGenerator(1, createInstance),
+      
       culture: {
         neutral: neutralCulture,
         current: currentCulture

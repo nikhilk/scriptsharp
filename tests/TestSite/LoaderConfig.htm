@@ -45,7 +45,7 @@ asyncTest('ss dependency', function() {
 
     QUnit.equal(this, window, 'Expected this to be set to the global window object');
     QUnit.notEqual(ss, null, 'Expected scriptsharp dependency reference');
-    QUnit.equal(ss.version, '0.8', 'Expected valid scriptsharp module');
+    QUnit.equal(ss.version, '1.0', 'Expected valid scriptsharp module');
 
     QUnit.stop();
   });
@@ -61,7 +61,7 @@ asyncTest('multiple dependencies', function() {
 
     QUnit.equal(this, window, 'Expected this to be set to the global window object');
     QUnit.notEqual(ss, null, 'Expected scriptsharp dependency reference');
-    QUnit.equal(ss.version, '0.8', 'Expected valid scriptsharp module');
+    QUnit.equal(ss.version, '1.0', 'Expected valid scriptsharp module');
     QUnit.notEqual($, null, 'Expected jquery dependency reference');
     QUnit.notEqual($.fn, null, 'Expected valid jquery dependency reference');
 

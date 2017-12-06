@@ -88,6 +88,11 @@ namespace System.Collections.Generic {
             return null;
         }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return null;
+        }
+
         public List<T> GetRange(int index) {
             return null;
         }
@@ -214,6 +219,12 @@ namespace System.Collections.Generic {
         }
 
         public void Unshift(params T[] items) {
+        }
+
+        [ScriptSkip]
+        public T[] ToArray()
+        {
+            return null;
         }
 
         public static explicit operator Array(List<T> list) {

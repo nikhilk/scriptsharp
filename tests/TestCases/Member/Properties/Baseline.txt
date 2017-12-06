@@ -3,35 +3,51 @@
 define('test', ['ss'], function(ss) {
   var $global = this;
 
+  // MemberTests.ITest
+
+  function ITest() { }
+
+
   // MemberTests.Test
 
   function Test() {
-    this.set_XYZ(1);
-    this.set_XYZ(this.get_name().length);
-    this.set_XYZ(this.get_name().length);
-    var v = Test.get_staticProp();
-    v = Test.get_staticProp();
+    this.isFoo = false;
+    this.XYZ = 1;
+    this.XYZ = this.Name.length;
+    var inter = this;
+    inter.XYZ = this.Name.length;
+    inter.XYZ++;
+    --this.XYZ;
+    var v = Test.StaticProp;
+    v = Test.StaticProp;
+    var foo = this.IsFoo;
+    this.IsFoo = true;
+    this.ISet = 'set me';
   }
-  Test.get_staticProp = function() {
+  ss.createPropertyGet(Test, 'StaticProp', function() {
     return 2006;
-  };
-  Test.set_staticProp = function(value) {
-    return value;
-  };
+  });
   var Test$ = {
-    get_XYZ: function() {
+    $get_XYZ: function() {
       return 0;
     },
-    set_XYZ: function(value) {
+    $set_XYZ: function(value) {
       return value;
     },
-    get_isFoo: function() {
-      return true;
+    $get_IsFoo: function() {
+      return this.isFoo;
     },
-    get_name: function() {
+    $set_IsFoo: function(value) {
+      this.isFoo = value;
+      return value;
+    },
+    $set_ISet: function(value) {
+      return value;
+    },
+    $get_Name: function() {
       return 'nk';
     },
-    get__isInitialized: function() {
+    $get_IsInitialized: function() {
       return false;
     }
   };
@@ -41,12 +57,13 @@ define('test', ['ss'], function(ss) {
 
   function Test2() {
     Test.call(this);
-    var n = Test.prototype.get_XYZ.call(this);
-    if (n === this.get_XYZ()) {
+    var n = ss.baseProperty(Test2, 'XYZ').get.call(this);
+    ss.baseProperty(Test2, 'XYZ').set.call(this, 6);
+    if (n === this.XYZ) {
     }
-    if (this.get_XYZ() === n) {
+    if (this.XYZ === n) {
     }
-    n = Test.get_staticProp();
+    n = Test.StaticProp;
   }
   var Test2$ = {
 
@@ -55,8 +72,9 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Test: [ Test, Test$, null ],
-      Test2: [ Test2, Test2$, Test ]
+      ITest: ss.defineInterface(ITest),
+      Test: ss.defineClass(Test, Test$, [], null),
+      Test2: ss.defineClass(Test2, Test2$, [], Test)
     });
 
 

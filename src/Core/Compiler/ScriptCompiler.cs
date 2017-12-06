@@ -238,7 +238,7 @@ namespace ScriptSharp {
                     return;
                 }
 
-                outputWriter = new StreamWriter(outputStream);
+                outputWriter = new StreamWriter(outputStream, new UTF8Encoding(false));
 
 #if DEBUG
                 if (_options.InternalTestMode) {

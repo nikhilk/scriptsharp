@@ -67,6 +67,11 @@ namespace System.Collections.Generic {
             return null;
         }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return null;
+        }
+
         public void Remove(TKey key) {
         }
 

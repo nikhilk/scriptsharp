@@ -8,7 +8,7 @@ function _commaFormatNumber(number, groups, decimal, comma) {
     number = number.substr(0, decimalIndex);
   }
 
-  var negative = number.startsWith('-');
+  var negative = startsWith(number, '-');
   if (negative) {
     number = number.substr(1);
   }

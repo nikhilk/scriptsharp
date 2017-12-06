@@ -9,8 +9,13 @@ namespace Test {
 
     public interface IMammal {
     }
-    
-    public interface IPet {
+
+    public interface IAnimal
+    {
+        string Species { get; }
+    }
+
+    public interface IPet : IAnimal {
     
         string Name {
             get;
@@ -20,8 +25,9 @@ namespace Test {
             get;
         }
     }
-    
-    public class Animal {
+
+    public class Animal
+    {
     
         private string _species;
         
@@ -46,11 +52,19 @@ namespace Test {
 
     public class Cat : Animal, IMammal {
 
+        private string speak;
+
         public Cat() : base("Cat") {
+            this.speak = "meow";
+        }
+
+        public bool SetSpeak
+        {
+            set { speak = value; }
         }
 
         public virtual string Speak() {
-            return "meow";
+            return speak;
         }
 
         public override string Die() {
@@ -228,6 +242,62 @@ namespace Test.Bases {
             set {
                 base[key] = value + "+" + key.ToString() + "IC5";
             }
+        }
+    }
+
+    public class PublicBaseClass
+    {
+        public bool baseField;
+
+        public PublicBaseClass()
+        {
+            this.baseField = true;
+        }
+
+        public bool BaseMethod()
+        {
+            return true;
+        }
+
+        public bool BaseProperty
+        {
+            get { return true; }
+        }
+    }
+
+    internal class InternalDerivedClass : PublicBaseClass
+    {
+
+    }
+
+    public class PublicAccessorClass
+    {
+        public PublicBaseClass Create()
+        {
+            return new InternalDerivedClass();
+        }
+    }
+
+    public enum E1
+    {
+        Zero = 0,
+        One = 1,
+        Two = 2
+    }
+
+    [ScriptConstants(UseNames = true)]
+    public enum E2
+    {
+        Zero = 0,
+        One = 1,
+        Two = 2
+    }
+
+    public class C6
+    {
+        public C6(Nullable<int> i, Type t, Func<string> f, Action<string,int> a, E1 e1, E2 e2)
+        {
+
         }
     }
 

@@ -26,7 +26,7 @@
     remove_click: function(value) {
       this.__click = ss.bindSub(this.__click, value);
     },
-    get_text: function() {
+    $get_text: function() {
       return this._text;
     },
     performClick: function() {
@@ -55,19 +55,19 @@
     _echo: function(s) {
     },
     _onClickButton: function(sender, e) {
-      this._echo((sender).get_text() + ' was clicked!');
+      this._echo((sender).text + ' was clicked!');
     },
     _onClickButtonDup: function(sender, e) {
-      this._echo((sender).get_text() + ' was clicked as well!');
+      this._echo((sender).text + ' was clicked as well!');
     }
   };
 
 
   var $exports = ss.module('basic', null,
     {
-      EventArgs: [ EventArgs, EventArgs$, null ],
-      Button: [ Button, Button$, null ],
-      App: [ App, App$, null ]
+      EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null),
+      Button: ss.defineClass(Button, Button$, [String], null),
+      App: ss.defineClass(App, App$, [], null)
     });
 
   EventArgs.Empty = new EventArgs();

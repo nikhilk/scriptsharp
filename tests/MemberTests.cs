@@ -69,5 +69,13 @@ namespace ScriptSharp.Tests {
                   AddSource("Code.cs");
             });
         }
+
+        [TestMethod]
+        public void TestStaticConstructorsPrivateInstance()
+        {
+            RunTest((c) => {
+                c.AddSource("Code.cs");
+            });
+        }
     }
 }

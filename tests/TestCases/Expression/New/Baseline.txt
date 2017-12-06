@@ -52,10 +52,10 @@ define('test', ['ss'], function(ss) {
     var p = Point(0, 0);
     var cd = {};
     var cd2 = { abc: 123, def: true };
-    var o1 = new Test();
+    var o1 = ss.createInstance(Test);
     var type1 = Foo;
-    var o2 = new type1(1, 2);
-    var o3 = new Bar(1, 2, o2);
+    var o2 = ss.createInstance(type1, 1, 2);
+    var o3 = ss.createInstance(Bar, 1, 2, o2);
     var f1 = new Function("alert('hello');");
     var f2 = new Function('s', 'alert(s);');
     var f3 = new Function('greeting', 'name', "alert(greeting + ' ' + name + '!');");
@@ -68,9 +68,9 @@ define('test', ['ss'], function(ss) {
   var $exports = ss.module('test', null,
     {
       Point: Point,
-      Foo: [ Foo, Foo$, null ],
-      Bar: [ Bar, Bar$, null ],
-      Test: [ Test, Test$, null ]
+      Foo: ss.defineClass(Foo, Foo$, [Number, Number], null),
+      Bar: ss.defineClass(Bar, Bar$, [Number, Number, Foo], null),
+      Test: ss.defineClass(Test, Test$, [], null)
     });
 
 

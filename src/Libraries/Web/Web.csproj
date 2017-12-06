@@ -17,6 +17,7 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -27,7 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\bin\Debug\Script.Web.xml</DocumentationFile>
-    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <NoWarn>1591, 0661, 0660, 1684, 0626</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -38,7 +39,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\bin\Release\Script.Web.xml</DocumentationFile>
-    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <NoWarn>1591, 0661, 0660, 1684, 0626</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Html\ActiveXObject.cs" />
@@ -47,8 +48,15 @@
     <Compile Include="Html\AudioElement.cs" />
     <Compile Include="Html\CheckBoxElement.cs" />
     <Compile Include="Html\CanvasElement.cs" />
+    <Compile Include="Html\Console.cs" />
     <Compile Include="Html\ClientRectList.cs" />
+    <Compile Include="Html\Html5Timings.cs" />
+    <Compile Include="Html\Html5Performance.cs" />
     <Compile Include="Html\LinkElement.cs" />
+    <Compile Include="Html\PopStateEvent.cs" />
+    <Compile Include="Html\WheelEvent.cs" />
+    <Compile Include="Html\UIEvent.cs" />
+    <Compile Include="Html\MouseEvent.cs" />
     <Compile Include="Html\StyleSheets\StyleRuleType.cs" />
     <Compile Include="Html\StyleSheets\StylePageRule.cs" />
     <Compile Include="Html\StyleSheets\StyleCharsetRule.cs" />
@@ -197,4 +205,5 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)version.targets" Condition="Exists('$(SolutionDir)version.targets')" />
 </Project>

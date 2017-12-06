@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ParamsGenerator</title>
+  <link rel="stylesheet" href="QUnit/QUnit.css" type="text/css" />
+  <script type="text/javascript" src="QUnit/QUnit.js"></script>
+  <script type="text/javascript" src="QUnit/QUnitExt.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Test Results</h1>
+  <h2 id="qunit-banner"></h2>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <br />
+  <textarea id="qunit-log" rows="10" cols="100"></textarea>
+</body>
+
+<script type="text/javascript" src="Scripts/ssloader.min.js"></script>
+<script type="text/script" data-name="ss" data-src="Scripts/ss.min.js"></script>
+
+<script type="text/script">
+
+    define(['ss'], function(ss) {
+      module('ParamsGenerator');
+
+      test('params', function() {
+        var fn1 = ss.paramsGenerator(0, function(p) {
+            return p.length;
+        });
+
+        var fn2 = ss.paramsGenerator(3, function(a, b, c, p) {
+            return p.length;
+        });
+
+        var fn3 = ss.paramsGenerator(1, function(a, p) {
+            return a;
+        });
+
+        var greet = ss.paramsGenerator(1, function(greeting, names) {
+            var result = "";
+            for(var i = 0; i<names.length; ++i) {
+                result += greeting + " " + names[i] + ";";
+            }
+            return result;
+        });
+
+        QUnit.equal(fn1(), 0, 'Expected length of params array to be 0');
+        QUnit.equal(fn1(1,2), 2, 'Expected length of params array to be 2');
+        QUnit.equal(fn1(1,2,3,4,5,'6','7','8','9','10'), 10, 'Expected length of params array to be 10');
+        QUnit.equal(fn2(1,2,3,4,5,'6','7','8','9','10'), 7, 'Expected length of params array to be 7');
+        QUnit.equal(fn3("hello"), "hello", 'Expected argument a to equal "hello"');
+        QUnit.equal(fn3("hello","world"), "hello", 'Expected argument a to equal "hello"');
+        QUnit.equal(greet("hello","bob"), "hello bob;", 'Expected "hello bob;"');
+        QUnit.equal(greet("hello","bob", "fred"), "hello bob;hello fred;", 'Expected "hello bob;hello fred;"');
+        QUnit.equal(greet("hello","bob", "fred", "jim"), "hello bob;hello fred;hello jim;", 'Expected "hello bob;hello fred;hello jim;"');
+        QUnit.equal(greet("hello",["bob", "fred", "jim"]), "hello bob;hello fred;hello jim;", 'Expected "hello bob;hello fred;hello jim;"');
+      });
+    });
+</script>
+</html>

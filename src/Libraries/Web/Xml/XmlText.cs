@@ -9,6 +9,7 @@ namespace System.Xml {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
+    [ScriptName(Object.NAME_DEFINITION)]
     public sealed class XmlText : XmlNode {
 
         internal XmlText() {

@@ -17,13 +17,15 @@ define('test', ['ss'], function(ss) {
       s = decodeURI(s2);
       s2 = encodeURIComponent(s);
       s = decodeURIComponent(s2);
+      s = s.toUpperCase();
+      s = s.toLowerCase();
     }
   };
 
 
   var $exports = ss.module('test', null,
     {
-      App: [ App, App$, null ]
+      App: ss.defineClass(App, App$, [], null)
     });
 
 

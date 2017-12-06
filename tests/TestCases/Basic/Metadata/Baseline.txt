@@ -75,13 +75,13 @@ Types:
             Property: Prop1
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: prop1
+                Generated Name: Prop1
                 ReadOnly: True
                 Abstract: False
             Property: Prop2
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: prop2
+                Generated Name: Prop2
                 ReadOnly: False
                 Abstract: False
             Method: ShowHelp
@@ -274,6 +274,19 @@ Types:
                 Generated Name: 
                 Abstract: True
         
+    Class: Activator
+        Application Type: False
+        Public: True
+        Generated Name: ss
+        Extension Methods: False
+        BaseClass: Object
+        Members:
+            Method: CreateInstance
+                AssociatedType: Object
+                Visibility: Public, Static
+                Generated Name: createInstance
+                Abstract: False
+        
     Class: Arguments
         Application Type: False
         Public: True
@@ -313,6 +326,8 @@ Types:
         Generated Name: Array
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -908,6 +923,8 @@ Types:
         Generated Name: Export
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IDisposable
         Members:
             Field: Name
                 AssociatedType: String
@@ -1043,6 +1060,23 @@ Types:
                 AssociatedType: Object
                 Visibility: Public
                 Generated Name: call
+                Abstract: False
+        
+    Class: Guid
+        Application Type: False
+        Public: True
+        Generated Name: Guid
+        Extension Methods: False
+        Members:
+            Method: NewGuid
+                AssociatedType: Guid
+                Visibility: Public, Static
+                Generated Name: NewGuid
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
                 Abstract: False
         
     Interface: IDisposable
@@ -1256,22 +1290,30 @@ Types:
                 Generated Name: ss.truncate
                 Abstract: False
         
+    Class: NotImplementedException
+        Application Type: False
+        Public: True
+        Generated Name: Error
+        Extension Methods: False
+        BaseClass: Exception
+        Members:
+        
     Class: Nullable`1
         Application Type: False
         Public: True
-        Generated Name: Nullable`1
+        Generated Name: Nullable_$1
         Extension Methods: False
         Members:
             Property: HasValue
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: hasValue
+                Generated Name: HasValue
                 ReadOnly: True
                 Abstract: False
             Property: Value
                 AssociatedType: T
                 Visibility: Public
-                Generated Name: value
+                Generated Name: Value
                 ReadOnly: True
                 Abstract: False
             Method: GetValueOrDefault
@@ -1364,6 +1406,10 @@ Types:
         Generated Name: Object
         Extension Methods: False
         Members:
+            Field: NAME_DEFINITION
+                AssociatedType: String
+                Visibility: Public, Static
+                Generated Name: name
             Method: GetType
                 AssociatedType: Type
                 Visibility: Public
@@ -1476,7 +1522,7 @@ Types:
             Method: CreateInstance
                 AssociatedType: Object
                 Visibility: Public, Static
-                Generated Name: createInstance
+                Generated Name: ss.createInstance
                 Abstract: False
             Method: DeleteField
                 AssociatedType: Void
@@ -1487,6 +1533,11 @@ Types:
                 AssociatedType: Object
                 Visibility: Public, Static
                 Generated Name: eval
+                Abstract: False
+            Method: GetConstructorParameterTypes
+                AssociatedType: Array
+                Visibility: Public, Static
+                Generated Name: ss.getConstructorParams
                 Abstract: False
             Method: GetField
                 AssociatedType: Object
@@ -1828,7 +1879,17 @@ Types:
                 Visibility: Public
                 Generated Name: toLowerCase
                 Abstract: False
+            Method: ToLower
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toLowerCase
+                Abstract: False
             Method: ToUpperCase
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toUpperCase
+                Abstract: False
+            Method: ToUpper
                 AssociatedType: String
                 Visibility: Public
                 Generated Name: toUpperCase
@@ -1852,38 +1913,6 @@ Types:
                 AssociatedType: String
                 Visibility: Public
                 Generated Name: unescape
-                Abstract: False
-        
-    Class: StringBuilder
-        Application Type: False
-        Public: True
-        Generated Name: StringBuilder
-        Extension Methods: False
-        BaseClass: Object
-        Members:
-            Field: IsEmpty
-                AssociatedType: Boolean
-                Visibility: Public
-                Generated Name: isEmpty
-            Method: Append
-                AssociatedType: StringBuilder
-                Visibility: Public
-                Generated Name: append
-                Abstract: False
-            Method: AppendLine
-                AssociatedType: StringBuilder
-                Visibility: Public
-                Generated Name: appendLine
-                Abstract: False
-            Method: Clear
-                AssociatedType: Void
-                Visibility: Public
-                Generated Name: clear
-                Abstract: False
-            Method: ToString
-                AssociatedType: String
-                Visibility: Public
-                Generated Name: toString
                 Abstract: False
         
     Delegate: StringReplaceCallback
@@ -1971,7 +2000,7 @@ Types:
             Property: Name
                 AssociatedType: String
                 Visibility: Public
-                Generated Name: name
+                Generated Name: Name
                 ReadOnly: True
                 Abstract: False
             Field: Prototype
@@ -2128,6 +2157,8 @@ Types:
         Generated Name: Array
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2314,6 +2345,8 @@ Types:
         Generated Name: Object
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2325,13 +2358,13 @@ Types:
             Property: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: count
+                Generated Name: Count
                 ReadOnly: True
                 Abstract: False
             Property: Keys
                 AssociatedType: Array
                 Visibility: Public
-                Generated Name: keys
+                Generated Name: Keys
                 ReadOnly: True
                 Abstract: False
             Method: Clear
@@ -2438,6 +2471,8 @@ Types:
         Generated Name: ObservableCollection
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: Object
@@ -2593,6 +2628,9 @@ Types:
         Generated Name: Object
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable`1
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: TValue
@@ -2604,13 +2642,13 @@ Types:
             Property: Count
                 AssociatedType: Int32
                 Visibility: Public
-                Generated Name: count
+                Generated Name: Count
                 ReadOnly: True
                 Abstract: False
             Property: Keys
                 AssociatedType: IReadonlyCollection`1
                 Visibility: Public
-                Generated Name: keys
+                Generated Name: Keys
                 ReadOnly: True
                 Abstract: False
             Method: Add
@@ -2722,6 +2760,10 @@ Types:
         Generated Name: Array
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            ICollection`1
+            IEnumerable`1
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: T
@@ -2874,6 +2916,11 @@ Types:
                 Visibility: Public
                 Generated Name: unshift
                 Abstract: False
+            Method: ToArray
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: toArray
+                Abstract: False
         
     Delegate: ListCallback`1
         Application Type: False
@@ -2969,6 +3016,9 @@ Types:
         Generated Name: ObservableCollection
         Extension Methods: False
         BaseClass: Object
+        Interfaces:
+            IEnumerable`1
+            IEnumerable
         Indexer:
             Indexer: Item
                 AssociatedType: T
@@ -3102,6 +3152,98 @@ Types:
                 Visibility: Public
                 Generated Name: push
                 Abstract: False
+        
+
+Namespace: System.Collections.ObjectModel
+HasApplicationTypes: False
+Types:
+    Class: Collection`1
+        Application Type: False
+        Public: True
+        Generated Name: Array
+        Extension Methods: False
+        BaseClass: Object
+        Interfaces:
+            ICollection`1
+            IEnumerable`1
+            IEnumerable
+        Indexer:
+            Indexer: Item
+                AssociatedType: T
+                Visibility: Public
+                Generated Name: item
+                ReadOnly: False
+                Abstract: True
+        Members:
+            Field: Count
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: length
+            Method: GetEnumerator
+                AssociatedType: IEnumerator
+                Visibility: Public
+                Generated Name: getEnumerator
+                Abstract: False
+            Method: Add
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: push
+                Abstract: True
+            Method: AddRange
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: push
+                Abstract: True
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: True
+            Method: Contains
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: contains
+                Abstract: True
+            Method: CopyTo
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: copyTo
+                Abstract: True
+            Method: IndexOf
+                AssociatedType: Int32
+                Visibility: Public
+                Generated Name: indexOf
+                Abstract: True
+            Method: Insert
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: insert
+                Abstract: True
+            Method: Remove
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: ss.remove
+                Abstract: True
+            Method: RemoveAt
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: removeAt
+                Abstract: True
+            Method: Select
+                AssociatedType: Collection`1
+                Visibility: Public
+                Generated Name: map
+                Abstract: True
+            Method: ToArray
+                AssociatedType: Array
+                Visibility: Public
+                Generated Name: sse.TypeExtension.Cast
+                Abstract: True
+            Method: ToList
+                AssociatedType: List`1
+                Visibility: Public
+                Generated Name: sse.TypeExtension.Cast
+                Abstract: True
         
 
 Namespace: System.ComponentModel
@@ -3591,6 +3733,42 @@ Types:
                 Abstract: False
         
 
+Namespace: System.Text
+HasApplicationTypes: False
+Types:
+    Class: StringBuilder
+        Application Type: False
+        Public: True
+        Generated Name: StringBuilder
+        Extension Methods: False
+        BaseClass: Object
+        Members:
+            Field: IsEmpty
+                AssociatedType: Boolean
+                Visibility: Public
+                Generated Name: isEmpty
+            Method: Append
+                AssociatedType: StringBuilder
+                Visibility: Public
+                Generated Name: append
+                Abstract: False
+            Method: AppendLine
+                AssociatedType: StringBuilder
+                Visibility: Public
+                Generated Name: appendLine
+                Abstract: False
+            Method: Clear
+                AssociatedType: Void
+                Visibility: Public
+                Generated Name: clear
+                Abstract: False
+            Method: ToString
+                AssociatedType: String
+                Visibility: Public
+                Generated Name: toString
+                Abstract: False
+        
+
 Namespace: System.Threading
 HasApplicationTypes: False
 Types:
@@ -3648,7 +3826,7 @@ Types:
             Property: Completed
                 AssociatedType: Boolean
                 Visibility: Public
-                Generated Name: completed
+                Generated Name: Completed
                 ReadOnly: True
                 Abstract: False
             Field: Error
@@ -3821,13 +3999,13 @@ define('test', ['ss'], function(ss) {
   function AppHelper() {
   }
   var AppHelper$ = {
-    get_prop1: function() {
+    $get_Prop1: function() {
       return 0;
     },
-    get_prop2: function() {
+    $get_Prop2: function() {
       return 0;
     },
-    set_prop2: function(value) {
+    $set_Prop2: function(value) {
       return value;
     },
     _showHelp: function() {
@@ -3846,15 +4024,15 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test',
     {
-      IFoo: [ IFoo ],
+      IFoo: ss.defineInterface(IFoo),
       Point: Point,
-      AppHelper: [ AppHelper, AppHelper$, null ]
+      AppHelper: ss.defineClass(AppHelper, AppHelper$, [], null)
     },
     {
       AppFlags: AppFlags,
       Mode: Mode,
-      IApp: [ IApp ],
-      App: [ App, App$, null, IApp ]
+      IApp: ss.defineInterface(IApp),
+      App: ss.defineClass(App, App$, [], null, [IApp])
     });
 
 

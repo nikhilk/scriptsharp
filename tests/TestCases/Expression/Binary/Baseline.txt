@@ -9,17 +9,17 @@ define('test', ['ss'], function(ss) {
     this._value = 0;
   }
   var Data$ = {
-    get_value: function() {
+    $get_Value: function() {
       return this._value;
     },
-    set_value: function(value) {
+    $set_Value: function(value) {
       this._value = value;
       return value;
     },
-    get_flag: function() {
+    $get_Flag: function() {
       return true;
     },
-    set_flag: function(value) {
+    $set_Flag: function(value) {
       return value;
     }
   };
@@ -30,28 +30,28 @@ define('test', ['ss'], function(ss) {
   function App() {
   }
   var App$ = {
-    get__foo: function() {
+    $get_Foo: function() {
       return 0;
     },
-    set__foo: function(value) {
+    $set_Foo: function(value) {
       return value;
     },
-    get__bar: function() {
+    $get_Bar: function() {
       return 0;
     },
-    set__bar: function(value) {
+    $set_Bar: function(value) {
       return value;
     },
-    get_data: function() {
+    $get_Data: function() {
       return new Data();
     },
-    set_data: function(value) {
+    $set_Data: function(value) {
       return value;
     },
-    get_flag1: function() {
-      return this.get_data().get_flag();
+    $get_Flag1: function() {
+      return this.Data.Flag;
     },
-    get_flag2: function() {
+    $get_Flag2: function() {
       return Data.staticFlag;
     },
     test: function(arg1, arg2) {
@@ -72,8 +72,8 @@ define('test', ['ss'], function(ss) {
       sum = arg1 + (arg2 + ~arg1) * (arg1 - 10);
       var b2 = ss.canCast(sum, Number);
       var o = ss.safeCast(b, ss.IDisposable);
-      this.set__foo(this.get__foo() + 10);
-      this.set__foo(this.get__foo() - this.get__bar());
+      this.Foo = this.Foo + 10;
+      this.Foo = this.Foo - this.Bar;
       sum = sum << 1;
       sum <<= 1;
       var xyz;
@@ -83,8 +83,8 @@ define('test', ['ss'], function(ss) {
       abc <<= 1;
       xyz >>>= 1;
       var d = new Data();
-      d.set_value(d.get_value() + 5);
-      d.set_flag((d.get_flag() | true) === 1);
+      d.Value = d.Value + 5;
+      d.Flag = (d.Flag | true) === 1;
       var o1 = ss.value(null, {});
       var s2 = (10).toString();
       s2 = (100).toString();
@@ -101,17 +101,17 @@ define('test', ['ss'], function(ss) {
       c = (c ^ true) === 1;
       a = (a | (a || a)) === 1;
       var d = new Data();
-      d.set_flag((d.get_flag() & true) === 1);
-      d.set_flag((d.get_flag() | true) === 1);
-      d.set_flag((d.get_flag() ^ true) === 1);
+      d.Flag = (d.Flag & true) === 1;
+      d.Flag = (d.Flag | true) === 1;
+      d.Flag = (d.Flag ^ true) === 1;
     }
   };
 
 
   var $exports = ss.module('test', null,
     {
-      Data: [ Data, Data$, null ],
-      App: [ App, App$, null ]
+      Data: ss.defineClass(Data, Data$, [], null),
+      App: ss.defineClass(App, App$, [], null)
     });
 
   Data.staticFlag = false;

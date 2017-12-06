@@ -57,6 +57,8 @@ namespace System {
         public static void ClearTimeout(int timeoutID) {
         }
 
+        [Obsolete("Switch to using Activator.CreateInstance")]
+        [ScriptAlias("ss.createInstance")]
         public static object CreateInstance(Type type, params object[] arguments) {
             return null;
         }
@@ -76,6 +78,12 @@ namespace System {
         /// <returns>The result of the evaluation.</returns>
         [ScriptAlias("eval")]
         public static object Eval(string s) {
+            return null;
+        }
+
+        [ScriptAlias("ss.getConstructorParams")]
+        public static Type[] GetConstructorParameterTypes(Type type)
+        {
             return null;
         }
 

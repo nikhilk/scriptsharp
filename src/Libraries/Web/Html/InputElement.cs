@@ -10,6 +10,7 @@ namespace System.Html {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
+    [ScriptName("HTMLInputElement")]
     public class InputElement : Element {
 
         protected internal InputElement() {
@@ -55,6 +56,12 @@ namespace System.Html {
             set {
             }
         }
+
+        [ScriptField]
+        public extern int SelectionStart { get; }
+
+        [ScriptField]
+        public extern int SelectionEnd { get; }
 
         public void Select() {
         }

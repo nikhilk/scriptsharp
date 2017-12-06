@@ -1,0 +1,26 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+
+  // ListTests.PublicClass
+
+  function PublicClass() {
+    var list = [];
+    list.push('one');
+    list.push('two', 'three');
+    var array = list;
+  }
+  var PublicClass$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null)
+    });
+
+
+  return $exports;
+});

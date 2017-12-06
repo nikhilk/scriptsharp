@@ -1,0 +1,23 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+
+  // GuidTests.PublicClass
+
+  function PublicClass() {
+    var guid = ss.Guid.NewGuid();
+  }
+  var PublicClass$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null)
+    });
+
+
+  return $exports;
+});

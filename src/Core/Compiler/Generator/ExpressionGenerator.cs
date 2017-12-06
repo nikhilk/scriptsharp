@@ -43,10 +43,12 @@ namespace ScriptSharp.Generator {
                     Debug.Assert(propExpression.Type == ExpressionType.PropertySet);
 
                     if (propExpression.ObjectReference is BaseExpression) {
-                        writer.Write(((BaseExpression)propExpression.ObjectReference).EvaluatedType.FullGeneratedName);
-                        writer.Write(".prototype.set_");
+                        ClassSymbol classSymbol = (ClassSymbol)symbol.Parent;
+					    writer.Write("ss.baseProperty(");
+                        writer.Write(classSymbol.FullGeneratedName);
+                        writer.Write(", '");
                         writer.Write(propExpression.Property.GeneratedName);
-                        writer.Write(".call(");
+                        writer.Write("').set.call(");
                         writer.Write(generator.CurrentImplementation.ThisIdentifier);
                         writer.Write(", ");
                         GenerateExpression(generator, symbol, expression.RightOperand);
@@ -54,11 +56,10 @@ namespace ScriptSharp.Generator {
                     }
                     else {
                         GenerateExpression(generator, symbol, propExpression.ObjectReference);
-                        writer.Write(".set_");
+                        writer.Write(".");
                         writer.Write(propExpression.Property.GeneratedName);
-                        writer.Write("(");
+                        writer.Write(" = ");
                         GenerateExpression(generator, symbol, expression.RightOperand);
-                        writer.Write(")");
                     }
 
                     return;
@@ -113,16 +114,12 @@ namespace ScriptSharp.Generator {
                     Debug.Assert(propExpression.Type == ExpressionType.PropertyGet);
 
                     GenerateExpression(generator, symbol, propExpression.ObjectReference);
-                    writer.Write(".set_");
+                    writer.Write(".");
                     writer.Write(propExpression.Property.GeneratedName);
-                    writer.Write("(");
+                    writer.Write(" = ");
                     GenerateExpression(generator, symbol, propExpression.ObjectReference);
-                    writer.Write(".get_");
-                    writer.Write(propExpression.Property.GeneratedName);
-                    writer.Write("()");
                     writer.Write(OperatorConverter.OperatorToString(expression.Operator - 1));
                     GenerateExpression(generator, symbol, expression.RightOperand);
-                    writer.Write(")");
 
                     return;
                 }
@@ -852,21 +849,20 @@ namespace ScriptSharp.Generator {
             if (expression.ObjectReference is BaseExpression) {
                 Debug.Assert(symbol.Parent is ClassSymbol);
 
-                ClassSymbol baseClass = ((ClassSymbol)symbol.Parent).BaseClass;
-                Debug.Assert(baseClass != null);
-
-                writer.Write(baseClass.FullGeneratedName);
-                writer.Write(".prototype.get_");
+                ClassSymbol classSymbol = (ClassSymbol)symbol.Parent;
+                Debug.Assert(classSymbol.BaseClass != null);
+				writer.Write("ss.baseProperty(");
+                writer.Write(classSymbol.FullGeneratedName);
+                writer.Write(", '");
                 writer.Write(expression.Property.GeneratedName);
-                writer.Write(".call(");
+                writer.Write("').get.call(");
                 writer.Write(generator.CurrentImplementation.ThisIdentifier);
                 writer.Write(")");
             }
             else {
                 ExpressionGenerator.GenerateExpression(generator, symbol, expression.ObjectReference);
-                writer.Write(".get_");
+                writer.Write(".");
                 writer.Write(expression.Property.GeneratedName);
-                writer.Write("()");
             }
         }
 
@@ -882,41 +878,6 @@ namespace ScriptSharp.Generator {
 
         private static void GenerateUnaryExpression(ScriptGenerator generator, MemberSymbol symbol, UnaryExpression expression) {
             ScriptTextWriter writer = generator.Writer;
-
-            PropertyExpression propExpression = expression.Operand as PropertyExpression;
-            if ((propExpression != null) &&
-                ((expression.Operator == Operator.PreIncrement) || (expression.Operator == Operator.PostIncrement) ||
-                 (expression.Operator == Operator.PreDecrement) || (expression.Operator == Operator.PostDecrement))) {
-                Debug.Assert(propExpression.Type == ExpressionType.PropertyGet);
-
-                string fudgeOperator;
-
-                GenerateExpression(generator, symbol, propExpression.ObjectReference);
-                writer.Write(".set_");
-                writer.Write(propExpression.Property.GeneratedName);
-                writer.Write("(");
-                GenerateExpression(generator, symbol, propExpression.ObjectReference);
-                writer.Write(".get_");
-                writer.Write(propExpression.Property.GeneratedName);
-                writer.Write("()");
-                if ((expression.Operator == Operator.PreIncrement) || (expression.Operator == Operator.PostIncrement)) {
-                    writer.Write(" + ");
-                    fudgeOperator = " - ";
-                }
-                else {
-                    writer.Write(" - ");
-                    fudgeOperator = " + ";
-                }
-                writer.Write("1");
-                writer.Write(")");
-
-                if ((expression.Operator == Operator.PreIncrement) || (expression.Operator == Operator.PreDecrement)) {
-                    writer.Write(fudgeOperator);
-                    writer.Write("1");
-                }
-
-                return;
-            }
 
             if ((expression.Operator == Operator.PreIncrement) ||
                 (expression.Operator == Operator.PreDecrement)) {

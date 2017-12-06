@@ -14,8 +14,8 @@ namespace ScriptSharp.Validator {
         bool IParseNodeValidator.Validate(ParseNode node, CompilerOptions options, IErrorHandler errorHandler) {
             ParameterNode paramNode = (ParameterNode)node;
 
-            if (paramNode.Flags != ParameterFlags.None) {
-                errorHandler.ReportError("Out, Ref and Params style of parameters are not yet implemented.",
+            if (paramNode.Flags == ParameterFlags.Ref || paramNode.Flags == ParameterFlags.Out) {
+                errorHandler.ReportError("Out and Ref style of parameters are not yet implemented.",
                                          paramNode.Token.Location);
                 return false;
             }

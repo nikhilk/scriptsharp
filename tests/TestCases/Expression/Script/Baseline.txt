@@ -13,8 +13,8 @@ define('test', ['ss'], function(ss) {
       arg = (arg || 10 || 100);
       var s = (arg || 10).toString(10);
       var b = !!arg;
-      var sb = new ss.StringBuilder();
-      sb = new ss.StringBuilder('aaa');
+      var sb = ss.createInstance(ss.StringBuilder);
+      sb = ss.createInstance(ss.StringBuilder, 'aaa');
       var i;
       var tick = function() {
         i = 10;
@@ -44,7 +44,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      App: [ App, App$, null ]
+      App: ss.defineClass(App, App$, [], null)
     });
 
 

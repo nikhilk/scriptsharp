@@ -11,7 +11,7 @@ namespace System.Html {
 
     [ScriptIgnoreNamespace]
     [ScriptImport]
-    [ScriptName("Object")]
+    [ScriptName(PreserveCase = true)]
     public class Element {
 
         protected internal Element() {
@@ -412,6 +412,11 @@ namespace System.Html {
         }
 
         public ClientRectList GetClientRects() {
+            return null;
+        }
+
+        public ClientRect GetBoundingClientRect()
+        {
             return null;
         }
 
