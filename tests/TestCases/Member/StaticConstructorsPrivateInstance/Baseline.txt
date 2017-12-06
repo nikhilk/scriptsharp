@@ -1,0 +1,25 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+
+  // MemberTests.PrivateStaticConstructorPrivateInstanceMember
+
+  function PrivateStaticConstructorPrivateInstanceMember() {
+    this.state = 0;
+  }
+  var PrivateStaticConstructorPrivateInstanceMember$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      PrivateStaticConstructorPrivateInstanceMember: ss.defineClass(PrivateStaticConstructorPrivateInstanceMember, PrivateStaticConstructorPrivateInstanceMember$, [], null)
+    });
+
+  PrivateStaticConstructorPrivateInstanceMember._source = new PrivateStaticConstructorPrivateInstanceMember();
+  PrivateStaticConstructorPrivateInstanceMember._source.state = 1;
+
+  return $exports;
+});
