@@ -2,7 +2,7 @@
 <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>ScriptSharp.Lib.jQuery.History</id>
-    <version>1.0.0.0</version>
+    <version>$version$</version>
     <title>Script# jQuery History (BBQ plugin) Reference Assembly</title>
     <authors>Nikhil Kothari</authors>
     <copyright>Copyright (c) 2012, Nikhil Kothari</copyright>
@@ -17,9 +17,9 @@
     <language>en-US</language>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
-      <dependency id="ScriptSharp" version="1.0.0.0" />
-      <dependency id="ScriptSharp.Lib.HTML" version="1.0.0.0" />
-      <dependency id="ScriptSharp.Lib.jQuery" version="1.0.0.0" />
+      <dependency id="ScriptSharp" version="$version$" />
+      <dependency id="ScriptSharp.Lib.HTML" version="$version$" />
+      <dependency id="ScriptSharp.Lib.jQuery" version="$version$" />
     </dependencies>
   </metadata>
   <files>
