@@ -674,7 +674,18 @@ namespace ScriptSharp.Compiler {
 
                 if ((methodNode.Parameters != null) && (methodNode.Parameters.Count != 0)) {
                     foreach (ParameterNode parameterNode in methodNode.Parameters) {
-                        ParameterSymbol paramSymbol = BuildParameter(parameterNode, method);
+                        ParameterSymbol paramSymbol;
+
+                        if (IsGenericTypeParameter(methodNode, parameterNode))
+                        {
+                            TypeSymbol baseIntrensicType = method.SymbolSet.ResolveIntrinsicType(IntrinsicType.Object);
+                            paramSymbol = BuildParameter(parameterNode, method, baseIntrensicType);
+                        }
+                        else
+                        {
+                            paramSymbol = BuildParameter(parameterNode, method);
+                        }
+                        
                         if (paramSymbol != null) {
                             paramSymbol.SetParseContext(parameterNode);
                             method.AddParameter(paramSymbol);
@@ -691,7 +702,28 @@ namespace ScriptSharp.Compiler {
             return method;
         }
 
-        private ParameterSymbol BuildParameter(ParameterNode parameterNode, MethodSymbol methodSymbol) {
+        private bool IsGenericTypeParameter(MethodDeclarationNode methodNode, ParameterNode parameterNode)
+        {
+            Debug.Assert(methodNode != null, "methodNode can't be null when resolving a generic parameter");
+            Debug.Assert(parameterNode != null, "parameterNode can't be null when resolving a generic parameter");
+
+            if(methodNode.TypeParameters == null || methodNode.TypeParameters.Count <= 0)
+            {
+                return false;
+            }
+
+            foreach (TypeParameterNode typeParemeterNode in methodNode.TypeParameters)
+            {
+                if(typeParemeterNode.NameNode.Name == ((AtomicNameNode)parameterNode.Type).Name)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private ParameterSymbol BuildParameter(ParameterNode parameterNode, MethodSymbol methodSymbol, TypeSymbol parameterType = null) {
             ParameterMode parameterMode = ParameterMode.In;
 
             if ((parameterNode.Flags == ParameterFlags.Out) ||
@@ -702,8 +734,11 @@ namespace ScriptSharp.Compiler {
                 parameterMode = ParameterMode.List;
             }
 
-            TypeSymbol parameterType = methodSymbol.SymbolSet.ResolveType(parameterNode.Type, _symbolTable, methodSymbol);
-            Debug.Assert(parameterType != null);
+            if(parameterType == null)
+            {
+                parameterType = methodSymbol.SymbolSet.ResolveType(parameterNode.Type, _symbolTable, methodSymbol);
+                Debug.Assert(parameterType != null);
+            }
 
             if (parameterType != null) {
                 return new ParameterSymbol(parameterNode.Name, methodSymbol, parameterType, parameterMode);

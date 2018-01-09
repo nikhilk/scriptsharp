@@ -94,5 +94,13 @@ namespace ScriptSharp.CodeModel {
                 return _returnType;
             }
         }
+
+        public ParseNodeList TypeParameters
+        {
+            get
+            {
+                return _typeParameters;
+            }
+        }
     }
 }

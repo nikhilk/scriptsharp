@@ -20,5 +20,13 @@ namespace ScriptSharp.CodeModel {
             _attributes = attributes;
             _name = name;
         }
+
+        internal AtomicNameNode NameNode
+        {
+            get
+            {
+                return _name;
+            }
+        }
     }
 }
