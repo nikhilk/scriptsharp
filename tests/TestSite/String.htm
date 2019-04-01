@@ -117,6 +117,16 @@ define(['ss'], function(ss) {
     QUnit.equal(ss.whitespace("\t"), true, 'tab should be true');
     QUnit.equal(ss.whitespace("aaa"), false, 'aaa, should be false');
   });
+
+  test('format', function () {
+    QUnit.equal(ss.format("{0:N2}", -1234.56), "-1,234.56", 'negative number formatting');
+    QUnit.equal(ss.format("{0:N2}", -14.56), "-14.56", 'negative number formatting');
+    QUnit.equal(ss.format("{0:N0}", -1), "-1", 'negative number formatting');
+    QUnit.equal(ss.format("{0:N0}", 1234567890), "1,234,567,890", 'positive number formatting');
+    QUnit.equal(ss.format("{0:N2}", 1234.56), "1,234.56", 'positive number formatting');
+    QUnit.equal(ss.format("{0:N2}", 14.56), "14.56", 'positive number formatting');
+    QUnit.equal(ss.format("{0:N}", 1), "1.00", 'positive number formatting');
+  });
 });
 </script>
 </html>

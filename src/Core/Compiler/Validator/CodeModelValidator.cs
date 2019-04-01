@@ -102,6 +102,8 @@ namespace ScriptSharp.Validator {
                 case ParseNodeType.AnonymousMethod:
                 case ParseNodeType.BinaryExpression:
                 case ParseNodeType.Using:
+                case ParseNodeType.TypeParameter:
+                case ParseNodeType.ConstraintClause:
                     // No validation required
                     break;
                 case ParseNodeType.PointerType:
@@ -121,8 +123,6 @@ namespace ScriptSharp.Validator {
                 case ParseNodeType.DefaultValueExpression:
                 case ParseNodeType.ExternAlias:
                 case ParseNodeType.AliasQualifiedName:
-                case ParseNodeType.TypeParameter:
-                case ParseNodeType.ConstraintClause:
                     return typeof(UnsupportedParseNodeValidator);
                 default:
                     Debug.Fail("Unexpected node type in validator: " + nodeType);

@@ -15,12 +15,16 @@ function _commaFormatNumber(number, groups, decimal, comma) {
 
   var groupIndex = 0;
   var groupSize = groups[groupIndex];
+  var s = '';
   if (number.length < groupSize) {
-    return decimalPart ? number + decimalPart : number;
+    s = decimalPart ? number + decimalPart : number;
+    if (negative) {
+      s = '-' + s;
+    }
+    return s;
   }
 
   var index = number.length;
-  var s = '';
   var done = false;
   while (!done) {
     var length = groupSize;

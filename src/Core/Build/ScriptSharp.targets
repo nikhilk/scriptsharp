@@ -26,7 +26,7 @@ Copyright (c) 2013. Script# Project. All rights reserved.
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL">
+    <Reference Include="mscorlib, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL">
       <HintPath>$(MSBuildThisFileDirectory)mscorlib.dll</HintPath>
     </Reference>
     <GeneratedResourceCode Include="$(IntermediateOutputPath)Resources.g.cs" />

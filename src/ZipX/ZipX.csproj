@@ -72,9 +72,10 @@
   <Import Project="$(SolutionDir)version.targets" Condition="Exists('$(SolutionDir)version.targets')" />
   <Target Name="Build">
     <MakeDir Directories="$(OutputPath)Packages" />
-    <XmlPoke Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd' /&gt;" Query="/package/x:metadata/x:version" Value="$(PackageVersion)" XmlInputPath="%(NuSpec.Identity)" />
-    <XmlPoke Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd' /&gt;" Query="//x:dependencies/x:dependency/@version" Value="$(PackageVersion)" XmlInputPath="%(NuSpec.Identity)" />
-    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack %(NuSpec.Identity) -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis" />
+
+    <XmlPoke Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/developer/vsx-schema/2010' /&gt;" Query="//x:Identifier[@Id='ScriptSharp.Extension.Templates']/x:Version" Value="$(PackageVersion)" XmlInputPath="VSIX\Extension.vsixmanifest" />
+    
+    <Exec Command="$(ProjectDir)..\..\tools\bin\nuget pack %(NuSpec.Identity) -OutputDirectory $(OutputPath)Packages -NoPackageAnalysis -Properties Version=$(PackageVersion)" />
     <Zip ZipLevel="9" Files="@(ItemClass)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Class.zip" WorkingDirectory="ItemTemplates\Class" />
     <Zip ZipLevel="9" Files="@(ItemPage)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\Page.zip" WorkingDirectory="ItemTemplates\Page" />
     <Zip ZipLevel="9" Files="@(ItemJQueryPage)" ZipFileName="$(OutputPath)ItemTemplates\Script%2523\jQueryPage.zip" WorkingDirectory="ItemTemplates\jQueryPage" />
@@ -91,17 +92,20 @@
     <Zip ZipLevel="9" Files="@(ProjectImportLibrary)" ZipFileName="$(OutputPath)ProjectTemplates\Script%2523\ImportLibrary.zip" WorkingDirectory="ProjectTemplates\ImportLibrary" />
     <Copy SourceFiles="@(Content)" DestinationFolder="$(OutputPath)" />
     <ItemGroup>
-      <VsixFiles Include="$(OutputPath)**\*.*" Exclude="*.vsix" />
+      <VsixFiles Include="$(OutputPath)ProjectTemplates\**\*.*" />
+      <VsixFiles Include="$(OutputPath)ItemTemplates\**\*.*" />
+      <VsixFiles Include="$(OutputPath)Packages\**\*.$(PackageVersion).nupkg" />
+      <VsixFiles Include="$(OutputPath)*.*" Exclude="*.vsix" />
     </ItemGroup>
-    <Zip ZipLevel="9" Files="@(VsixFiles)" WorkingDirectory="$(OutputPath)" ZipFileName="$(OutputPath)..\ScriptSharp.vsix" />
+    <Zip ZipLevel="9" Files="@(VsixFiles)" WorkingDirectory="$(OutputPath)" ZipFileName="$(OutputPath)..\ScriptSharp.$(PackageVersion).vsix" />
   </Target>
+  
   <Target Name="Clean">
-    <Delete Files="$(OutputPath)..\ScriptSharp.vsix" />
+    <Delete Files="$(OutputPath)..\ScriptSharp.*.vsix" />
     <RemoveDir Directories="$(OutputPath)" />
   </Target>
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
   <Target Name="RestorePackageVersion" AfterTargets="Build">
-    <XmlPoke Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd' /&gt;" Query="/package/x:metadata/x:version" Value="$(AssemblyVersion)" XmlInputPath="%(NuSpec.Identity)" />
-    <XmlPoke Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd' /&gt;" Query="//x:dependencies/x:dependency/@version" Value="$(AssemblyVersion)" XmlInputPath="%(NuSpec.Identity)" />
+    <XmlPoke Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/developer/vsx-schema/2010' /&gt;" Query="//x:Identifier[@Id='ScriptSharp.Extension.Templates']/x:Version" Value="$(AssemblyVersion)" XmlInputPath="VSIX\Extension.vsixmanifest" />
   </Target>
 </Project>
