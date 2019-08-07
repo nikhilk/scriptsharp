@@ -1,0 +1,51 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // ExpressionTests.App
+
+  function App() {
+  }
+  var App$ = {
+    test: function(arg) {
+      var numbers = [];
+      numbers.push(1);
+      numbers[1] = numbers[0];
+      ss.addRange(numbers, numbers);
+      ss.clear(numbers);
+      var b2 = ss.contains(numbers, 4);
+      ss.insert(numbers, 1, 10);
+      ss.removeAt(numbers, 4);
+      var words = new Array(5);
+      words[0] = 'hello';
+      words[1] = 'world';
+      var b3 = ss.contains(words, 'hi');
+      var enumerator;
+      var count;
+      var x = [];
+      x.push(2);
+      ss.setItem(x, 1, ss.getItem(x, 0));
+      enumerator = ss.enumerate(x);
+      count = x.length;
+      var a = [];
+      a.push(2);
+      ss.setItem(a, 1, ss.getItem(a, 0));
+      enumerator = ss.enumerate(a);
+      count = a.length;
+      var c = [];
+      c.push(2);
+      enumerator = ss.enumerate(c);
+      count = c.length;
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, App$, [], null)
+    });
+
+
+  return $exports;
+});
+

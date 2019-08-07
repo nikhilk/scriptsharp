@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(SolutionDir)NuGetCommon.props" Condition="Exists('$(SolutionDir)NuGetCommon.props')" />
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    
+    <PackageId>DSharp.Sdk</PackageId>
+    <Title>DSharp Sdk</Title>
+    <Description>Defines the MSBuild Compliant DSharp project sdk</Description>
+    <PackageType>MSBuildSdk</PackageType>
+    <NuspecFile>DSharp.Sdk.nuspec</NuspecFile>
+
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="*\**\*.*" Pack="true" PackagePath="." Exclude="$(DefaultItemExcludes)" />
+    <None Remove="Sdk\Pack.targets" />
+    <UpToDateCheckInput Include="@(Content)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DSharp.Build\DSharp.Build.csproj" />
+    <ProjectReference Include="..\DSharp.Script\DSharp.Scripts.csproj" />
+  </ItemGroup>
+
+  <Import Project="PackScripts.targets" Condition="Exists('PackScripts.targets')" />
+</Project>

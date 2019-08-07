@@ -1,0 +1,66 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+
+  // ExpressionTests.EventArgs
+
+  function EventArgs() {
+  }
+  var EventArgs$ = {
+
+  };
+
+
+  // ExpressionTests.SomeClass
+
+  function SomeClass(handler) {
+  }
+  var SomeClass$ = {
+
+  };
+
+
+  // ExpressionTests.Test
+
+  function Test() {
+    this._handler = ss.bind('onEvent', this);
+    this._handler = ss.bind('onEvent', this);
+    this._handler = ss.bind('onEvent', this);
+    this._handler = Test2.onGlobalEvent;
+    var s1 = new SomeClass(ss.bind('onEvent', this));
+    var s2 = new SomeClass(this._handler);
+  }
+  var Test$ = {
+    doStuff: function() {
+      if (this._handler != null) {
+        this._handler(this, null);
+      }
+    },
+    onEvent: function(sender, e) {
+    }
+  };
+
+
+  // ExpressionTests.Test2
+
+  function Test2() {
+  }
+  Test2.onGlobalEvent = function(sender, e) {
+  };
+  var Test2$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null),
+      SomeClass: ss.defineClass(SomeClass, SomeClass$, [Function], null),
+      Test: ss.defineClass(Test, Test$, [], null),
+      Test2: ss.defineClass(Test2, Test2$, [], null)
+    });
+
+
+  return $exports;
+});

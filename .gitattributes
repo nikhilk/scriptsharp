@@ -1,4 +1,20 @@
-* text=auto
+# Auto detect text files and perform LF normalization
+*        text=auto encoding=UTF-8
 
-*.pkgdef      text
-*.vstemplate  text
+*.cs     text diff=csharp
+*.html   text diff=html
+*.css    text
+*.js     text
+*.sql    text
+
+*.csproj text merge=union
+*.sln    text merge=union eol=crlf
+
+*.docx   diff=astextplain
+*.DOCX   diff=astextplain
+
+# absolute paths are ok, as are globs
+/**/postinst* text eol=lf
+
+# paths that don't start with / are treated relative to the .gitattributes folder
+relative/path/*.txt text eol=lf

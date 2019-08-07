@@ -1,0 +1,69 @@
+<Project>
+  <PropertyGroup>
+    <GenerateNuspecDependsOn>PackPackagedScripts;PackScripts;$(GenerateNuspecDependsOn)</GenerateNuspecDependsOn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvailableItemName Include="PackagedScript" />
+  </ItemGroup>
+
+  <Target Name="GetTfmOutputDirs">
+    <ItemGroup>
+      <_TargetFrameworks Include="$(TargetFrameworks)"/>
+    </ItemGroup>
+
+    <MSBuild
+      Projects="$(MSBuildProjectFullPath)"
+      Targets="_GetTfmOutputDirs"
+      Properties="TargetFramework=%(_TargetFrameworks.Identity);">
+
+      <Output
+          TaskParameter="TargetOutputs"
+          ItemName="TfmOutputDirs"/>
+    </MSBuild>
+  </Target>
+
+  <Target Name="GetScriptOutputPath" Condition="'$(IsImportLibrary)' != 'true'" DependsOnTargets="GetTfmOutputDirs">
+    <ItemGroup>
+      <ScriptOutput Include="%(TfmOutputDirs.Identity)$(ScriptName).js;%(Identity)$(ScriptName).min.js" Condition="%(IsDSharpBuild) == 'true'" >
+        <PackagePath>%(PackagePath)</PackagePath>
+      </ScriptOutput>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="PackPackagedScripts" DependsOnTargets="GetTfmOutputDirs" Inputs="%(TfmOutputDirs.Identity)" Outputs="batch">
+    <PropertyGroup>
+      <_tfmoutdir>%(TfmOutputDirs.Identity)</_tfmoutdir>
+    </PropertyGroup>
+    <ItemGroup>
+      <None Include="@(PackagedScript)">
+        <Pack Condition="%(TfmOutputDirs.IsDSharpBuild)">true</Pack>
+        <PackagePath>%(TfmOutputDirs.PackagePath)</PackagePath>
+      </None>
+      <None Include="@(PackagedScript -> '$(_tfmoutdir)%(Filename).min.js')">
+        <Pack Condition="Exists('@(PackagedScript -> '$(_tfmoutdir)%(Filename).min.js')')">true</Pack>
+        <PackagePath>%(TfmOutputDirs.PackagePath)</PackagePath>
+      </None>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="PackScripts" DependsOnTargets="GetTfmOutputDirs;GetScriptOutputPath">
+    <ItemGroup>
+      <None Include="@(ScriptOutput)">
+        <Pack Condition="Exists(%(Identity))">true</Pack>
+        <PackagePath>%(PackagePath)</PackagePath>
+      </None>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_GetTfmOutputDirs" Returns="@(TfmOutputDirs)" Label="inner build to determine tfm specific output paths">
+    <ItemGroup>
+      <TfmOutputDirs Include="$(OutputPath)">
+        <TargetFramework>$(TargetFramework)</TargetFramework>
+        <TargetFrameworkIdentifier>$(TargetFrameworkIdentifier)</TargetFrameworkIdentifier>
+        <PackagePath>lib\$(TargetFramework)\</PackagePath>
+        <IsDSharpBuild>$(IsDSharpBuild)</IsDSharpBuild>
+      </TfmOutputDirs>
+    </ItemGroup>
+  </Target>
+</Project>

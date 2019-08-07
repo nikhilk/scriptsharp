@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <CoreLibDirectory>$(SolutionDir)DSharp.Mscorlib\bin\$(Configuration)\net471\</CoreLibDirectory>
+    <WebLibDirectory>$(SolutionDir)DSharp.Web\bin\$(Configuration)\net471\</WebLibDirectory>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <RequiredResources Include="$(CoreLibDirectory)DSharp.Mscorlib.dll;
+                                $(WebLibDirectory)DSharp.Web.dll" />
+  </ItemGroup>
+  <Target Name="CopyRequiredResources" AfterTargets="Build">
+    <Copy SourceFiles="@(RequiredResources)" DestinationFolder="$(OutputPath)" />
+  </Target>
+
+  <Target Name="RemoveCopiedResources" AfterTargets="Clean">
+  </Target>
+
+  <Target Name="RebuildCopiedResources" DependsOnTargets="CopyRequiredResources;RemoveCopiedResources" AfterTargets="Rebuild" />
+</Project>

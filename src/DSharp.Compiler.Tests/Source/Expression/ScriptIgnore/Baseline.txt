@@ -1,0 +1,27 @@
+﻿"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // ExpressionTests.Program
+
+  function Program() {
+  }
+  var Program$ = {
+    main: function() {
+      var e1 = ss.enumerate(this);
+      var e2 = ss.enumerate((this));
+    },
+    getEnumerator: function() {
+      return null;
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      Program: ss.defineClass(Program, Program$, [], null, [ss.IEnumerable])
+    });
+
+
+  return $exports;
+});

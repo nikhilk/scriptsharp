@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{590D7427-81A9-469C-B393-2CCCFFC1B23E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DSharp.Compiler.TestFramework.Web</RootNamespace>
+    <AssemblyName>DSharp.Compiler.TestFramework.Web</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(SolutionDir)DSharp.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\net461\ScriptSharp.Testing.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DSharp.Compiler.TestFramework\DSharp.Compiler.TestFramework.csproj" />
+  </ItemGroup>
+</Project>

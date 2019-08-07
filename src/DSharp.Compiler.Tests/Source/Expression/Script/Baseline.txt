@@ -1,0 +1,50 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+
+  // ExpressionTests.App
+
+  function App() {
+  }
+  var App$ = {
+    test: function(arg) {
+      arg = (arg || 10);
+      arg = (arg || 10 || 100);
+      var s = (arg || 10).toString(10);
+      var b = !!arg;
+      var i;
+      var tick = function() {
+        i = 10;
+      };
+      var cookie = setInterval(tick, 500);
+      clearInterval(cookie);
+      var isNotSet = !ss.isValue(i);
+      b = (i === null);
+      b = (i === undefined);
+      b = ss.isValue(i);
+      b = isNaN(0);
+      b = isFinite(3);
+      b = !!(0);
+      b = !!b;
+      b = !!(b && b);
+      b = !(1);
+      b = !(b && b);
+      var addition = eval('2 + 2');
+      addition = 2 + 2;
+      addition = 2 + 3;
+      var g = $global;
+      var u = undefined;
+      var coreModule = ss.modules['ss'];
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, App$, [], null)
+    });
+
+
+  return $exports;
+});

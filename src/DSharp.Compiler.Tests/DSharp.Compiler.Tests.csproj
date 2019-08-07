@@ -1,0 +1,836 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <IsTestProject>true</IsTestProject>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Source\Validation\AllowSystemNamespace\**" />
+    <EmbeddedResource Remove="Source\Validation\AllowSystemNamespace\**" />
+    <None Remove="Source\Validation\AllowSystemNamespace\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Source\Basic\Conditionals\Code.cs" />
+    <Compile Remove="Source\Basic\Dependencies\Code1.cs" />
+    <Compile Remove="Source\Basic\Dependencies\Code2.cs" />
+    <Compile Remove="Source\Basic\Dependencies\Code3.cs" />
+    <Compile Remove="Source\Basic\Dependencies\Code4.cs" />
+    <Compile Remove="Source\Basic\Dependencies\Lib1.cs" />
+    <Compile Remove="Source\Basic\Dependencies\Lib2.cs" />
+    <Compile Remove="Source\Basic\Dependencies\Lib3.cs" />
+    <Compile Remove="Source\Basic\DocComments\Code.cs" />
+    <Compile Remove="Source\Basic\Flags\Code.cs" />
+    <Compile Remove="Source\Basic\Guid\Code.cs" />
+    <Compile Remove="Source\Basic\Includes\Code.cs" />
+    <Compile Remove="Source\Basic\GenericInheritance\Code.cs" />
+    <Compile Remove="Source\Basic\Lists\Code.cs" />
+    <Compile Remove="Source\Basic\Minimization\Code.cs" />
+    <Compile Remove="Source\Basic\Minimization\Lib.cs" />
+    <Compile Remove="Source\Basic\Resources\Code.cs" />
+    <Compile Remove="Source\Basic\Resources\Strings1.Designer.cs" />
+    <Compile Remove="Source\Basic\Resources\Strings2.Designer.cs" />
+    <Compile Remove="Source\Basic\Simple\Code.cs" />
+    <Compile Remove="Source\Expression\AnonymousMethods\Code.cs" />
+    <Compile Remove="Source\Expression\Arguments\Code.cs" />
+    <Compile Remove="Source\Expression\Array\Code.cs" />
+    <Compile Remove="Source\Expression\Base\Code.cs" />
+    <Compile Remove="Source\Expression\Binary\Code.cs" />
+    <Compile Remove="Source\Expression\Cast\Code.cs" />
+    <Compile Remove="Source\Expression\Conditional\Code.cs" />
+    <Compile Remove="Source\Expression\Date\Code.cs" />
+    <Compile Remove="Source\Expression\Delegates\Code.cs" />
+    <Compile Remove="Source\Expression\Dictionary\Code.cs" />
+    <Compile Remove="Source\Expression\EnumToString\Code1.cs" />
+    <Compile Remove="Source\Expression\EnumToString\Code2.cs" />
+    <Compile Remove="Source\Expression\Events\Code.cs" />
+    <Compile Remove="Source\Expression\ExtensionMethods\Code.cs" />
+    <Compile Remove="Source\Expression\Generics2\Code.cs" />
+    <Compile Remove="Source\Expression\Generics3\Code.cs" />
+    <Compile Remove="Source\Expression\Generics\Code.cs" />
+    <Compile Remove="Source\Expression\GetType\Code.cs" />
+    <Compile Remove="Source\Expression\InlineScript\Code.cs" />
+    <Compile Remove="Source\Expression\LateBound\Code.cs" />
+    <Compile Remove="Source\Expression\Literals\Code.cs" />
+    <Compile Remove="Source\Expression\Locals\Code.cs" />
+    <Compile Remove="Source\Expression\Members\Code.cs" />
+    <Compile Remove="Source\Expression\New\Code.cs" />
+    <Compile Remove="Source\Expression\Number\Code.cs" />
+    <Compile Remove="Source\Expression\ScriptIgnore\Code.cs" />
+    <Compile Remove="Source\Expression\Script\Code.cs" />
+    <Compile Remove="Source\Expression\String\Code.cs" />
+    <Compile Remove="Source\Expression\Truthy\Code.cs" />
+    <Compile Remove="Source\Expression\Tuples\Code.cs" />
+    <Compile Remove="Source\Expression\Unary\Code.cs" />
+    <Compile Remove="Source\Member\Constructors\Code.cs" />
+    <Compile Remove="Source\Member\Events\Code.cs" />
+    <Compile Remove="Source\Member\Fields\Code.cs" />
+    <Compile Remove="Source\Member\Indexers\Code.cs" />
+    <Compile Remove="Source\Member\Methods\Code.cs" />
+    <Compile Remove="Source\Member\Overloads\Code.cs" />
+    <Compile Remove="Source\Member\Properties\Code.cs" />
+    <Compile Remove="Source\Member\StaticConstructors\Code.cs" />
+    <Compile Remove="Source\Mscorlib\Collections\Code.cs" />
+    <Compile Remove="Source\Mscorlib\DateTime\Code.cs" />
+    <Compile Remove="Source\Statement\Exceptions\Code.cs" />
+    <Compile Remove="Source\Statement\Expression\Code.cs" />
+    <Compile Remove="Source\Statement\Foreach\Code.cs" />
+    <Compile Remove="Source\Statement\For\Code.cs" />
+    <Compile Remove="Source\Statement\IfElse\Code.cs" />
+    <Compile Remove="Source\Statement\Return\Code.cs" />
+    <Compile Remove="Source\Statement\Switch\Code.cs" />
+    <Compile Remove="Source\Statement\Using\Code.cs" />
+    <Compile Remove="Source\Statement\Variables\Code.cs" />
+    <Compile Remove="Source\Statement\While\Code.cs" />
+    <Compile Remove="Source\Type\Classes\Code.cs" />
+    <Compile Remove="Source\Type\Delegates\Code.cs" />
+    <Compile Remove="Source\Type\Enumerator\Code.cs" />
+    <Compile Remove="Source\Type\Enums\Code.cs" />
+    <Compile Remove="Source\Type\Globals\Code.cs" />
+    <Compile Remove="Source\Type\Imported\Code.cs" />
+    <Compile Remove="Source\Type\Interfaces\Code.cs" />
+    <Compile Remove="Source\Type\Modules\Code.cs" />
+    <Compile Remove="Source\Type\Namespaces\Code.cs" />
+    <Compile Remove="Source\Type\Nullable\Code.cs" />
+    <Compile Remove="Source\Type\Partials\Code1.cs" />
+    <Compile Remove="Source\Type\Partials\Code2.cs" />
+    <Compile Remove="Source\Type\Records\Code.cs" />
+    <Compile Remove="Source\Type\UsingAlias\Code.cs" />
+    <Compile Remove="Source\Validation\ConflictingTypes\Code.cs" />
+    <Compile Remove="Source\Validation\Exceptions\Code.cs" />
+    <Compile Remove="Source\Validation\ImplicitEnums\Code.cs" />
+    <Compile Remove="Source\Validation\InlineScript\Code.cs" />
+    <Compile Remove="Source\Validation\Keywords\Code.cs" />
+    <Compile Remove="Source\Validation\Modules\Code.cs" />
+    <Compile Remove="Source\Validation\NestedTypes\Code.cs" />
+    <Compile Remove="Source\Validation\Overloads\Code.cs" />
+    <Compile Remove="Source\Validation\Properties\Code.cs" />
+    <Compile Remove="Source\Validation\Records\Code.cs" />
+    <Compile Remove="Source\Validation\ScriptExtension\Code.cs" />
+    <Compile Remove="Source\Validation\Unsupported\Code1.cs" />
+    <Compile Remove="Source\Validation\Unsupported\Code2.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Source\Basic\Resources\Strings1.fr-FR.resx" />
+    <EmbeddedResource Remove="Source\Basic\Resources\Strings1.fr.resx" />
+    <EmbeddedResource Remove="Source\Basic\Resources\Strings1.resx" />
+    <EmbeddedResource Remove="Source\Basic\Resources\Strings2.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Source\Basic\Conditionals\DebugBaseline.txt" />
+    <None Remove="Source\Basic\Conditionals\TraceBaseline.txt" />
+    <None Remove="Source\Basic\Dependencies\Code1Baseline.txt" />
+    <None Remove="Source\Basic\Dependencies\Code2Baseline.txt" />
+    <None Remove="Source\Basic\Dependencies\Code3Baseline.txt" />
+    <None Remove="Source\Basic\Dependencies\Code4Baseline.txt" />
+    <None Remove="Source\Basic\Dependencies\Lib1.dll" />
+    <None Remove="Source\Basic\Dependencies\Lib2.dll" />
+    <None Remove="Source\Basic\Dependencies\Lib3.dll" />
+    <None Remove="Source\Basic\DocComments\Baseline.txt" />
+    <None Remove="Source\Basic\DocComments\DocComments.xml" />
+    <None Remove="Source\Basic\Flags\Baseline.txt" />
+    <None Remove="Source\Basic\Guid\Baseline.txt" />
+    <None Remove="Source\Basic\Includes\MultipleIncBaseline.txt" />
+    <None Remove="Source\Basic\Includes\Post.js" />
+    <None Remove="Source\Basic\Includes\Pre.js" />
+    <None Remove="Source\Basic\Includes\SingleIncBaseline.txt" />
+    <None Remove="Source\Basic\GenericInheritance\Baseline.txt" />
+    <None Remove="Source\Basic\Lists\Baseline.txt" />
+    <None Remove="Source\Basic\Minimization\Baseline.txt" />
+    <None Remove="Source\Basic\Minimization\Lib.bat" />
+    <None Remove="Source\Basic\Minimization\Lib.dll" />
+    <None Remove="Source\Basic\Resources\Baseline.txt" />
+    <None Remove="Source\Basic\Simple\AMDBaseline.txt" />
+    <None Remove="Source\Basic\Simple\DefaultBaseline.txt" />
+    <None Remove="Source\Basic\Simple\SimpleBaseline.txt" />
+    <None Remove="Source\Expression\AnonymousMethods\Baseline.txt" />
+    <None Remove="Source\Expression\Arguments\Baseline.txt" />
+    <None Remove="Source\Expression\Array\Baseline.txt" />
+    <None Remove="Source\Expression\Base\Baseline.txt" />
+    <None Remove="Source\Expression\Binary\Baseline.txt" />
+    <None Remove="Source\Expression\Cast\Baseline.txt" />
+    <None Remove="Source\Expression\Conditional\Baseline.txt" />
+    <None Remove="Source\Expression\Date\Baseline.txt" />
+    <None Remove="Source\Expression\Delegates\Baseline.txt" />
+    <None Remove="Source\Expression\Dictionary\Baseline.txt" />
+    <None Remove="Source\Expression\EnumToString\MinBaseline.txt" />
+    <None Remove="Source\Expression\EnumToString\NormalBaseline.txt" />
+    <None Remove="Source\Expression\Events\Baseline.txt" />
+    <None Remove="Source\Expression\ExtensionMethods\Baseline.txt" />
+    <None Remove="Source\Expression\Generics2\Baseline.txt" />
+    <None Remove="Source\Expression\Generics\Baseline.txt" />
+    <None Remove="Source\Expression\GetType\Baseline.txt" />
+    <None Remove="Source\Expression\InlineScript\Baseline.txt" />
+    <None Remove="Source\Expression\LateBound\Baseline.txt" />
+    <None Remove="Source\Expression\Literals\Baseline.txt" />
+    <None Remove="Source\Expression\Locals\Baseline.txt" />
+    <None Remove="Source\Expression\Members\Baseline.txt" />
+    <None Remove="Source\Expression\New\Baseline.txt" />
+    <None Remove="Source\Expression\Number\Baseline.txt" />
+    <None Remove="Source\Expression\ScriptIgnore\Baseline.txt" />
+    <None Remove="Source\Expression\Script\Baseline.txt" />
+    <None Remove="Source\Expression\String\Baseline.txt" />
+    <None Remove="Source\Expression\Truthy\Baseline.txt" />
+    <None Remove="Source\Expression\Tuples\Baseline.txt" />
+    <None Remove="Source\Expression\Unary\Baseline.txt" />
+    <None Remove="Source\Member\Constructors\Baseline.txt" />
+    <None Remove="Source\Member\Events\Baseline.txt" />
+    <None Remove="Source\Member\Fields\Baseline.txt" />
+    <None Remove="Source\Member\Indexers\Baseline.txt" />
+    <None Remove="Source\Member\Methods\Baseline.txt" />
+    <None Remove="Source\Member\Overloads\Baseline.txt" />
+    <None Remove="Source\Member\Properties\Baseline.txt" />
+    <None Remove="Source\Member\StaticConstructors\Baseline.txt" />
+    <None Remove="Source\Mscorlib\DateTime\Baseline.txt" />
+    <None Remove="Source\Mscorlib\Collections\Baseline.txt" />
+    <None Remove="Source\Statement\Exceptions\Baseline.txt" />
+    <None Remove="Source\Statement\Expression\Baseline.txt" />
+    <None Remove="Source\Statement\Foreach\Baseline.txt" />
+    <None Remove="Source\Statement\For\Baseline.txt" />
+    <None Remove="Source\Statement\IfElse\Baseline.txt" />
+    <None Remove="Source\Statement\Return\Baseline.txt" />
+    <None Remove="Source\Statement\Switch\Baseline.txt" />
+    <None Remove="Source\Statement\Using\Baseline.txt" />
+    <None Remove="Source\Statement\Variables\Baseline.txt" />
+    <None Remove="Source\Statement\While\Baseline.txt" />
+    <None Remove="Source\Type\Classes\Baseline.txt" />
+    <None Remove="Source\Type\Delegates\Baseline.txt" />
+    <None Remove="Source\Type\Enumerator\Baseline.txt" />
+    <None Remove="Source\Type\Enums\Baseline.txt" />
+    <None Remove="Source\Type\Globals\Baseline.txt" />
+    <None Remove="Source\Type\Imported\Baseline.txt" />
+    <None Remove="Source\Type\Interfaces\Baseline.txt" />
+    <None Remove="Source\Type\Modules\Baseline.txt" />
+    <None Remove="Source\Type\Modules\ZeroExportsBaseline.txt" />
+    <None Remove="Source\Type\Namespaces\Baseline.txt" />
+    <None Remove="Source\Type\Nullable\Baseline.txt" />
+    <None Remove="Source\Type\Partials\Baseline.txt" />
+    <None Remove="Source\Type\Records\Baseline.txt" />
+    <None Remove="Source\Type\UsingAlias\Baseline.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Source\Basic\Conditionals\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Conditionals\DebugBaseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Conditionals\TraceBaseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Code1.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Code1Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Code2.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Code2Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Code3.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Code3Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Code4.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Code4Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Lib1.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Lib1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Lib2.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Lib2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Lib3.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Dependencies\Lib3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\DocComments\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\DocComments\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\DocComments\DocComments.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Flags\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Flags\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Guid\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Guid\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Includes\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Includes\MultipleIncBaseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Includes\Post.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Includes\Pre.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Includes\SingleIncBaseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\GenericInheritance\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Lists\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Lists\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Minimization\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Minimization\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Minimization\Lib.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Minimization\Lib.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Minimization\Lib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Resources\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Resources\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Resources\Strings1.fr-FR.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Resources\Strings1.fr.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Resources\Strings1.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Resources\Strings2.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Simple\AMDBaseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Simple\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Simple\DefaultBaseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Basic\Simple\SimpleBaseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\AnonymousMethods\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\AnonymousMethods\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Arguments\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Arguments\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Array\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Array\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Base\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Base\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Binary\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Binary\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Cast\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Cast\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Conditional\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Conditional\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Date\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Date\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Delegates\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Delegates\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Dictionary\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Dictionary\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\EnumToString\Code1.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\EnumToString\Code2.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\EnumToString\MinBaseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\EnumToString\NormalBaseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Events\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Events\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\ExtensionMethods\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\ExtensionMethods\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Generics2\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Generics\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Generics\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\GetType\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\GetType\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\InlineScript\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\InlineScript\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\LateBound\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\LateBound\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Literals\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Literals\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Locals\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Locals\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Members\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Members\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\New\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\New\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Number\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Number\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\ScriptIgnore\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\ScriptIgnore\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Script\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Script\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\String\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\String\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Truthy\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Truthy\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Tuples\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Tuples\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Unary\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Expression\Unary\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Constructors\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Constructors\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Events\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Events\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Fields\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Fields\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Indexers\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Indexers\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Methods\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Methods\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Overloads\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Overloads\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Properties\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\Properties\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\StaticConstructors\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Member\StaticConstructors\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Mscorlib\Collections\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Mscorlib\DateTime\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Mscorlib\DateTime\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Mscorlib\Collections\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Exceptions\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Exceptions\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Expression\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Expression\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Foreach\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Foreach\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\For\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\For\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\IfElse\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\IfElse\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Return\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Return\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Switch\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Switch\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Using\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Using\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Variables\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\Variables\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\While\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Statement\While\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Classes\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Classes\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Delegates\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Delegates\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Enumerator\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Enumerator\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Enums\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Enums\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Globals\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Globals\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Imported\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Imported\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Interfaces\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Interfaces\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Modules\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Modules\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Modules\ZeroExportsBaseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Namespaces\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Namespaces\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Nullable\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Nullable\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Partials\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Partials\Code1.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Partials\Code2.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Records\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\Records\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\UsingAlias\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Type\UsingAlias\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\ConflictingTypes\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\Exceptions\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\ImplicitEnums\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\InlineScript\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\Keywords\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\Modules\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\NestedTypes\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\Overloads\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\Properties\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\Records\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\ScriptExtension\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\Unsupported\Code1.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Source\Validation\Unsupported\Code2.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.2" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Source\Basic\GenericInheritance\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Source\Basic\Resources\Strings1.Designer.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\Basic\Resources\Strings2.Designer.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\Expression\Generics3\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Source\Expression\Generics2\Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DSharp.Compiler\DSharp.Compiler.csproj" />
+    <ProjectReference Include="..\TestFramework\DSharp.Compiler.TestFramework.Web\DSharp.Compiler.TestFramework.Web.csproj" />
+    <ProjectReference Include="..\TestFramework\DSharp.Compiler.TestFramework\DSharp.Compiler.TestFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Source\Basic\Lists\SourceCode.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Source\Basic\Dependencies\Lib.bat">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Source\Basic\Lists\ExpectedOutput.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Source\CompilerTests.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Source\Expression\Generics3\Baseline.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Import Project="$(ProjectDir)DSharp.Compiler.Tests.targets" Condition="Exists('$(ProjectDir)DSharp.Compiler.Tests.targets')" />
+</Project>

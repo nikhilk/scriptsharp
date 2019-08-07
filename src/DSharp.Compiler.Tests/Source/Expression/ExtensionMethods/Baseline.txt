@@ -1,0 +1,57 @@
+"use strict";
+
+define('ExpressionTests.ExtensionMethods', ['ss'], function(ss) {
+  var $global = this;
+  // ExpressionTests.StringExtensions
+
+  function StringExtensions() {
+  }
+  StringExtensions.padRightC = function(str, times, value) {
+    return str + new String(value, times);
+  };
+
+
+  // ExpressionTests.IntExtensions
+
+  function IntExtensions() {
+  }
+  IntExtensions.increment = function(source) {
+    return InternalIntExtensions.add(source, 1);
+  };
+
+
+  // ExpressionTests.InternalIntExtensions
+
+  function InternalIntExtensions() {
+  }
+  InternalIntExtensions.add = function(source, other) {
+    return source + other;
+  };
+
+
+  // ExpressionTests.Program
+
+  function Program() {
+  }
+  Program.main = function(args) {
+    var value = StringExtensions.padRightC(StringExtensions.padRightC(StringExtensions.padRightC('', 10, 'F'), 10, 'F'), 10, 'F');
+    return IntExtensions.increment(0);
+  };
+  var Program$ = {
+
+  };
+
+
+  var $exports = ss.module('ExpressionTests.ExtensionMethods',
+    {
+      InternalIntExtensions: ss.defineClass(InternalIntExtensions, null, [], null)
+    },
+    {
+      StringExtensions: ss.defineClass(StringExtensions, null, [], null),
+      IntExtensions: ss.defineClass(IntExtensions, null, [], null),
+      Program: ss.defineClass(Program, Program$, [], null)
+    });
+
+
+  return $exports;
+});

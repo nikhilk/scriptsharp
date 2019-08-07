@@ -1,0 +1,66 @@
+<Project>
+
+  <PropertyGroup>
+    <DSharpBuildAssembly Condition="'$(DSharpBuildAssembly)' == ''">$(ToolsPath)DSharp.Build.dll</DSharpBuildAssembly>
+    <NoWarn>CS0626;$(NoWarn)</NoWarn>
+  </PropertyGroup>
+  
+  <UsingTask TaskName="ScriptCompilerTask" AssemblyFile="$(DSharpBuildAssembly)" />
+  <UsingTask TaskName="ResXCodeGeneratorTask" AssemblyFile="$(DSharpBuildAssembly)" />
+
+  <Target Name="ValidateMinimumFrameworkVersion" BeforeTargets="Compile">
+    <Error Text="Invalid .NetFramework version specified. Please specify $(MinimumFrameworkVersion) or greater"
+           File="$(MSBuildProjectFullPath)"
+           Code="DS0011"
+      Condition="$([System.Version]::Parse('$(TargetFrameworkVersion.Substring(1))')) &lt; $([System.Version]::Parse('$(MinimumFrameworkVersion)'))" />
+  </Target>
+
+  <Target Name="BuildScript" Returns="@(Scripts)" AfterTargets="Build" Condition="'$(IsImportLibrary)' != 'true'">
+    <ScriptCompilerTask
+      Sources="@(Compile)"
+      Resources="@(EmbeddedResource)"
+      References="@(ReferencePath);@(ReferenceDependencyPaths)"
+      AssemblyName ="$(AssemblyName)"
+      Defines="$(DefineConstants)"
+      Minimize="$(MinimizeScript)"
+      CopyReferences="$(CopyReferences)"
+      CopyReferencesPath="$(CopyReferencesPath)"
+      OutputPath="$(OutputPath)"
+      Assembly="@(IntermediateAssembly)"
+      ScriptName="$(ScriptName)"
+      TemplatePath="$(ScriptTemplatePath)"
+      ProjectPath="$(MSBuildProjectFullPath)">
+      <Output TaskParameter="Scripts" ItemName="Scripts" />
+    </ScriptCompilerTask>
+  </Target>
+
+  <Target Name="GenerateResourcesCode" Inputs="@(EmbeddedResource)" Outputs="@(GeneratedResourceCode)">
+    <ResXCodeGeneratorTask
+      Resources="@(EmbeddedResource)"
+      GeneratedCode="@(GeneratedResourceCode)"
+      Namespace="$(RootNamespace)" />
+    <ItemGroup>
+      <Compile Include="@(GeneratedResourceCode)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="CopyScripts" AfterTargets="BuildScript" Condition="'$(SkipScriptCopy)' == 'false' AND '$(IsImportLibrary)' != 'true'">
+    <PropertyGroup>
+      <ScriptsPath>$(MSBuildThisFileDirectory)..\content\scripts\</ScriptsPath>
+    </PropertyGroup>
+    <Copy SourceFiles="$(ScriptsPath)ss.js;$(ScriptsPath)ss.min.js" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+  </Target>
+
+  <PropertyGroup>
+    <BuildDependsOn Condition="'$(GenerateScript)' == 'True'">$(BuildDependsOn);BuildScript</BuildDependsOn>
+    <CompileDependsOn Condition="'$(GenerateResources)' == 'True'">GenerateResourcesCode;$(CompileDependsOn)</CompileDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CleanScripts" AfterTargets="Clean">
+    <ItemGroup>
+      <DeleteFile Include="$(OutputPath)*.js"/>
+      <DeleteFile Include="$(OutputPath)$(AssemblyName).scripts"/>
+    </ItemGroup>
+    <Delete Files="@(DeleteFile)" />
+  </Target>
+</Project>

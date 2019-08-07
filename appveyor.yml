@@ -1,0 +1,50 @@
+version: 1.0.{build}
+
+pull_requests:
+  do_not_increment_build_number: true
+
+branches:
+  only:
+    - feature/Build-Modernisation
+
+image: Visual Studio 2017
+
+nuget:
+  disable_publish_on_pr: true
+
+configuration: Release
+
+before_build:
+  - ps: mkdir src/Output/Packages
+  - cmd: nuget restore src/DSharp.sln
+  - cmd: dotnet restore .\src\
+
+build:
+  project: src/DSharp.sln
+  verbosity: detailed
+
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj;**\*.props'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+
+artifacts:
+  - path: src\Output\Packages\*.nupkg
+
+deploy:
+- provider: NuGet
+  server: https://www.myget.org/F/dsharptest/api/v2/package
+  api_key:
+    secure: ai0SCQmu5aYBepeAYVjCylgRhjqH6VuSVQyn+Clmwdl+SE0yFCMH84oeyFgh8gqO
+  skip_symbols: true
+
+notifications:
+- provider: Slack
+  incoming_webhook: https://hooks.slack.com/services/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
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true

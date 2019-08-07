@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "expres": "0.0.4",
-    "mongodb": "~1.2.10"
-  }
-}

@@ -1,0 +1,183 @@
+﻿"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // MscorlibTests.MyCollection
+
+  function MyCollection() {
+  }
+  var MyCollection$ = {
+    $get_length: function() {
+      return 2;
+    },
+    push: function(item) {
+    },
+    clear: function() {
+    },
+    contains: function(item) {
+      return false;
+    },
+    copyTo: function(array, arrayIndex) {
+    },
+    getEnumerator: function() {
+      return null;
+    },
+    remove: function(item) {
+      return false;
+    },
+    indexOf: function(item) {
+      return 1;
+    },
+    insert: function(index, item) {
+    },
+    removeAt: function(index) {
+    },
+    get_item: function(index) {
+      return 1;
+    },
+    set_item: function(index, value) {
+      return value;
+    }
+  };
+
+
+  // MscorlibTests.X
+
+  function X() {
+  }
+  X.testList = function() {
+    var c = [];
+    c.push(12);
+    ss.addRange(c, c);
+    ss.addRangeParams(c, 1, 2, 3);
+    ss.clear(c);
+    ss.contains(c, 12);
+    ss.removeItem(c, 12);
+    ss.removeAt(c, 1);
+    ss.insert(c, 0, 11);
+    var e = ss.enumerate(c);
+    var i = c.indexOf(12);
+    c.forEach(function(n) {
+      ++n;
+    });
+    var cc = c.length;
+    ss.insert(c, 1, 22);
+    var ca = ss.toArray(c);
+  };
+  X.testIList_T = function() {
+    var c = [];
+    var n = ss.getItem(c, 0);
+    ss.setItem(c, 0, ss.getItem(c, 1));
+    c.push(12);
+    ss.clear(c);
+    ss.contains(c, 12);
+    ss.removeItem(c, 12);
+    ss.removeAt(c, 1);
+    var e = ss.enumerate(c);
+    var i = c.indexOf(12);
+    var cc = c.length;
+    ss.insert(c, 1, 22);
+  };
+  X.testIList = function() {
+    var c = [];
+    var n = ss.getItem(c, 0);
+    ss.setItem(c, 0, ss.getItem(c, 1));
+    c.push(12);
+    ss.clear(c);
+    ss.contains(c, 12);
+    ss.removeItem(c, 12);
+    ss.removeAt(c, 1);
+    var e = ss.enumerate(c);
+    var i = c.indexOf(12);
+    var cc = c.length;
+    ss.insert(c, 1, 22);
+  };
+  X.testICollection_T = function() {
+    var c = [];
+    c.push(12);
+    ss.clear(c);
+    ss.contains(c, 12);
+    ss.removeItem(c, 12);
+    var e = ss.enumerate(c);
+    var cc = c.length;
+  };
+  X.testICollection = function() {
+    var c = [];
+    var e = ss.enumerate(c);
+    var cc = c.length;
+  };
+  X.testIReadOnlyList = function() {
+    var c = [];
+    var n = ss.getItem(c, 0);
+    var e = ss.enumerate(c);
+    var cc = c.length;
+  };
+  X.testArray = function() {
+    var c = new Array(4);
+    var cl = c.length;
+    var e = ss.enumerate(c);
+  };
+  X.testIReadOnlyCollection = function() {
+    var c = [];
+    var e = ss.enumerate(c);
+    var cc = c.length;
+  };
+  X.testIEnumerable_T = function() {
+    var c = [];
+    var e = ss.enumerate(c);
+  };
+  X.testIEnumerable = function() {
+    var c = [];
+    var e = ss.enumerate(c);
+  };
+  X.testCustomList = function() {
+    var c = new MyCollection();
+    var n = c.get_item(0);
+    c.set_item(0, c.get_item(1));
+    c.push(12);
+    ss.clear(c);
+    ss.contains(c, 12);
+    ss.removeItem(c, 12);
+    ss.removeAt(c, 1);
+    ss.insert(c, 0, 11);
+    var e = ss.enumerate(c);
+    var i = c.indexOf(12);
+    var cc = c.length;
+    ss.insert(c, 1, 22);
+  };
+  X.testCustomInheritedList = function() {
+    var c = new MyChildrenCollection();
+    var n = c.get_item(0);
+    c.set_item(0, c.get_item(1));
+    c.push(12);
+    ss.clear(c);
+    ss.contains(c, 12);
+    ss.removeItem(c, 12);
+    ss.removeAt(c, 1);
+    ss.insert(c, 0, 11);
+    var e = ss.enumerate(c);
+    var i = c.indexOf(12);
+    var cc = c.length;
+    ss.insert(c, 1, 22);
+  };
+
+
+  // MscorlibTests.MyChildrenCollection
+
+  function MyChildrenCollection() {
+    MyCollection.call(this);
+  }
+  var MyChildrenCollection$ = {
+
+  };
+
+  var $exports = ss.module('test', null,
+    {
+      MyCollection: ss.defineClass(MyCollection, MyCollection$, [], null, [ss.IList]),
+      X: ss.defineClass(X, null, [], null),
+      MyChildrenCollection: ss.defineClass(MyChildrenCollection, MyChildrenCollection$, [], MyCollection)
+    });
+
+
+  return $exports;
+});

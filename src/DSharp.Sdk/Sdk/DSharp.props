@@ -1,0 +1,34 @@
+<Project>
+  <PropertyGroup Label="SetDefaults">
+    <GenerateScript Condition="'$(GenerateScript)' == ''">true</GenerateScript>
+    <LangVersion Condition="'$(GenerateScript)' == 'True'">ISO-2</LangVersion>
+    <ExcludeCoreLib Condition="'$(ExcludeCoreLib)' == ''">false</ExcludeCoreLib>
+    <SkipScriptCopy Condition="'$(SkipScriptCopy)' == ''">false</SkipScriptCopy>
+    <DefineConstants>DSHARP;@(DefineConstants)</DefineConstants>
+    <GenerateScriptAssemblyAttribute Condition="'$(GenerateScriptAssemblyAttributeCondition)' == ''">true</GenerateScriptAssemblyAttribute>
+  </PropertyGroup>
+  <PropertyGroup Label="DisableStdLib">
+    <DisableHandlePackageFileConflicts>true</DisableHandlePackageFileConflicts>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <AdditionalExplicitAssemblyReferences />
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <NoStdLib>True</NoStdLib>
+    <Optimize>false</Optimize>
+    <AutoUnifyAssemblyReferences>false</AutoUnifyAssemblyReferences>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+  </PropertyGroup>
+  <!--<PropertyGroup Label="OutputPaths">
+    <OutputPath>bin\$(Configuration)\dsharp\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\dsharp\</IntermediateOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>-->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.ScriptAssemblyAttribute" Condition="'$(GenerateScriptAssemblyAttribute)' == 'true'">
+      <_Parameter1>$(ScriptName)</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+  <ItemGroup Condition="'$(ExcludeCoreLib)' == 'false'">
+    <PackageReference Include="DSharp.Mscorlib" Version="1.0.0-dev.137" IsImplicitlyDefined="true" PrivateAssets="All" />
+  </ItemGroup>
+</Project>

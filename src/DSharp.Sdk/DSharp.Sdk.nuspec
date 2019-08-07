@@ -1,0 +1,22 @@
+﻿<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>DSharp.Sdk</id>
+    <title>DSharp Sdk</title>
+    <authors>$authors$</authors>
+    <version>$version$</version>
+    <copyright>$copyright$</copyright>
+    <description>Defines the DSharp Sdk</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>true</developmentDependency>
+    <serviceable>true</serviceable>
+    <packageTypes>
+      <packageType name="MSBuildSdk" />
+    </packageTypes>
+  </metadata>
+  <files>
+    <file src="Sdk\**\*" target="Sdk" />
+    <file src="bin\$configuration$\net461\*.*" target="tools\net461" />
+    <file src="bin\$configuration$\netstandard2.0\*.*" target="tools\netstandard2.0" exclude="**\System.*" />
+    <file src="bin\$configuration$\scripts\**" target="content/scripts"/>
+  </files>
+</package>

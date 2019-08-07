@@ -5,9 +5,9 @@
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ScriptSharp.Tests.Core;
+using DSharp.Tests.Core;
 
-namespace ScriptSharp.Tests {
+namespace DSharp.Tests {
 
     [TestClass]
     public class ScriptTests : BrowserTest {

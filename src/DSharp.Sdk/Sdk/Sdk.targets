@@ -1,0 +1,15 @@
+<Project TreatAsLocalProperty="TaskFolder">
+  <PropertyGroup>
+    <TaskFolder Condition=" '$(MSBuildRuntimeType)' == 'Core' ">netstandard2.0</TaskFolder>
+    <TaskFolder Condition=" '$(MSBuildRuntimeType)' != 'Core' ">net461</TaskFolder>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <ToolsPath Condition="'$(ToolsPath)' == ''">$(MSBuildThisFileDirectory)..\tools\$(TaskFolder)\</ToolsPath>
+    <ImportedSdks>DSharp.Sdk.targets;$(ImportedSdks)</ImportedSdks>
+    <IsImportLibrary Condition="'$(IsImportLibrary)' == ''">false</IsImportLibrary>
+    <ScriptName Condition="'$(ScriptName)' == '' AND '$(IsImportLibrary)' != 'true'">$([System.Text.RegularExpressions.Regex]::Replace($(AssemblyName), `\.`, `_`))</ScriptName>
+  </PropertyGroup>
+
+  <Import Project="DSharp.targets" Condition="$(IsDSharpBuild)"/>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk"/>
+  <Import Project="Pack.targets" />
+</Project>

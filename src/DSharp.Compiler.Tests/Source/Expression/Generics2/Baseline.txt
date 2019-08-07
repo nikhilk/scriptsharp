@@ -1,0 +1,71 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // ExpressionTests.TestBase
+
+  function TestBase() {
+  }
+  var TestBase$ = {
+    performAction: function() {
+    }
+  };
+
+
+  // ExpressionTests.Program
+
+  function Program() {
+  }
+  var Program$ = {
+    main: function() {
+      this.noParameters();
+      this.noParameters();
+      this.noParametersConstrained();
+      this.noParametersConstrained();
+      this.inParameter(1234);
+      this.inParameter(1234);
+      this.inParameter(1234);
+      this.inParameterConstrained(new TestDisposableBase());
+      this.inParameterConstrained(new TestDisposableBase());
+      this.complexInGenerics(new TestDisposableBase(), new TestDisposableBase());
+    },
+    noParameters: function() {
+    },
+    noParametersConstrained: function() {
+    },
+    inParameter: function(inGenericParameter) {
+      return inGenericParameter;
+    },
+    inParameterConstrained: function(x) {
+      var xType = ss.typeOf(x);
+      x.dispose();
+    },
+    complexInGenerics: function(a1, a2) {
+      a1.dispose();
+      a2.performAction();
+      a2.dispose();
+    }
+  };
+
+
+  // ExpressionTests.TestDisposableBase
+
+  function TestDisposableBase() {
+    TestBase.call(this);
+  }
+  var TestDisposableBase$ = {
+    dispose: function() {
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      TestBase: ss.defineClass(TestBase, TestBase$, [], null),
+      Program: ss.defineClass(Program, Program$, [], null),
+      TestDisposableBase: ss.defineClass(TestDisposableBase, TestDisposableBase$, [], TestBase, [ss.IDisposable])
+    });
+
+
+  return $exports;
+});

@@ -1,0 +1,78 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // StatementTests.Set
+
+  function Set() {
+  }
+  var Set$ = {
+    getEnumerator: function() {
+      return ss.enumerate(this._items);
+    }
+  };
+
+
+  // StatementTests.App
+
+  function App() {
+  }
+  var App$ = {
+    test: function(arg) {
+      var items = [ 1, 2, 3 ];
+      var sum = 0;
+      var $enum1 = (items);
+      for(var $enum1_index = 0; $enum1_index < $enum1.length; ++$enum1_index) {
+        var i = $enum1[$enum1_index];
+        sum += i;
+      }
+      sum = 0;
+      var $enum2 = (items);
+      for(var $enum2_index = 0; $enum2_index < $enum2.length; ++$enum2_index) {
+        var i = ss.getItem($enum2, $enum2_index);
+        sum += i;
+      }
+      sum = 0;
+      var $enum3 = ([1, 2, 3]);
+      for(var $enum3_index = 0; $enum3_index < $enum3.length; ++$enum3_index) {
+        var i = $enum3[$enum3_index];
+        sum += i;
+      }
+      var d = {};
+      for (var $key4 in d) {
+        var entry = { key: $key4, value: d[$key4] };
+        var s = entry.key + ' = ' + entry.value;
+      }
+      var s = new Set();
+      var $enum5 = ss.enumerate(s);
+      while ($enum5.moveNext()) {
+        var o = $enum5.current;
+        this._doStuff(o);
+      }
+      var $dict6 = this._getDictionary();
+      for (var $key7 in $dict6) {
+        var entry = { key: $key7, value: $dict6[$key7] };
+        var s = entry.key + ' = ' + entry.value;
+      }
+    },
+    _doStuff: function(o) {
+      var $dict1 = o;
+      for (var $key2 in $dict1) {
+        var entry = { key: $key2, value: $dict1[$key2] };
+      }
+    },
+    _getDictionary: function() {
+      return null;
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      Set: ss.defineClass(Set, Set$, [], null, [ss.IEnumerable]),
+      App: ss.defineClass(App, App$, [], null)
+    });
+
+
+  return $exports;
+});

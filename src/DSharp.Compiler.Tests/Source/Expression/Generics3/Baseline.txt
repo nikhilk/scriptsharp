@@ -1,0 +1,43 @@
+﻿"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // DSharp.Compiler.Tests.Source.Expression.Generics3.IReadonlyProperties
+
+  function IReadonlyProperties() { }
+
+
+  // DSharp.Compiler.Tests.Source.Expression.Generics3.Program
+
+  function Program() {
+  }
+  Program.main = function(args) {
+    var props = new ReadonlyProperties();
+    var dict = ss.safeCast(props.get_item('someDictionary'), Object);
+  };
+  var Program$ = {
+
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Expression.Generics3.ReadonlyProperties
+
+  function ReadonlyProperties() {
+  }
+  var ReadonlyProperties$ = {
+    get_item: function(key) {
+      return null;
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      IReadonlyProperties: ss.defineInterface(IReadonlyProperties),
+      Program: ss.defineClass(Program, Program$, [], null),
+      ReadonlyProperties: ss.defineClass(ReadonlyProperties, ReadonlyProperties$, [], null, [IReadonlyProperties])
+    });
+
+
+  return $exports;
+});

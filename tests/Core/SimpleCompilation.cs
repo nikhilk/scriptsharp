@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ScriptSharp;
+using DSharp;
 
-namespace ScriptSharp.Tests.Core {
+namespace DSharp.Tests.Core {
 
     public sealed class SimpleCompilation : IErrorHandler {
 

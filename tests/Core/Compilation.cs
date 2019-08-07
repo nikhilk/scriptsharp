@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ScriptSharp.Tests.Core {
+namespace DSharp.Tests.Core {
 
     public sealed class Compilation : IErrorHandler, IStreamSourceResolver {
 
@@ -35,7 +35,6 @@ namespace ScriptSharp.Tests.Core {
 
             _options = new CompilerOptions();
             _options.Minimize = false;
-            _options.InternalTestMode = true;
             _options.Defines = new string[] { };
         }
 

@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DSharp.Compiler</RootNamespace>
+    <AssemblyName>DSharp.Compiler</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(SolutionDir)DSharp.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\FileInputStreamSource.cs">
+      <Link>FileInputStreamSource.cs</Link>
+    </Compile>
+    <Compile Include="..\ResXItem.cs">
+      <Link>ResXItem.cs</Link>
+    </Compile>
+    <Compile Include="..\ResXParser.cs">
+      <Link>ResXParser.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Mono.Cecil" Version="0.10.0">
+    </PackageReference>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+</Project>

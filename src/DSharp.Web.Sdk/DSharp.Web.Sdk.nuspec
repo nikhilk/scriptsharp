@@ -1,0 +1,19 @@
+﻿<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>DSharp.Web.Sdk</id>
+    <title>DSharp Web Sdk</title>
+    <authors>$authors$</authors>
+    <version>$version$</version>
+    <copyright>$copyright$</copyright>
+    <description>Defines the DSharp Sdk, with additional browser api imports</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>true</developmentDependency>
+    <serviceable>true</serviceable>
+    <packageTypes>
+      <packageType name="MSBuildSdk" />
+    </packageTypes>
+  </metadata>
+  <files>
+    <file src="Sdk\**\*" target="Sdk" />
+  </files>
+</package>

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(SolutionDir)NuGetCommon.props" Condition="Exists('$(SolutionDir)NuGetCommon.props')" />
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <PackageId>DSharp.Web.Sdk</PackageId>
+    <Title>DSharp Web Sdk</Title>
+    <Description>Defines the MSBuild Compliant DSharp project sdk, with additional browser api imports</Description>
+    <PackageType>MSBuildSdk</PackageType>
+    <NuspecFile>DSharp.Web.Sdk.nuspec</NuspecFile>
+
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="*\**\*.*" Pack="true" PackagePath="." Exclude="$(DefaultItemExcludes)" />
+    <None Remove="Sdk\DSharp.props" />
+    <None Remove="Sdk\Sdk.props" />
+    <None Remove="Sdk\Sdk.targets" />
+    <ProjectReference Include="..\DSharp.Sdk\DSharp.Sdk.csproj" />
+    <UpToDateCheckInput Include="@(Content)" />
+  </ItemGroup>
+
+  <Import Project="PackScripts.targets" Condition="Exists('PackScripts.targets')" />
+</Project>

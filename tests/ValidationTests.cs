@@ -6,9 +6,9 @@
 using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ScriptSharp.Tests.Core;
+using DSharp.Tests.Core;
 
-namespace ScriptSharp.Tests {
+namespace DSharp.Tests {
 
     [TestClass]
     public sealed class ValidationTests : CompilationTest {

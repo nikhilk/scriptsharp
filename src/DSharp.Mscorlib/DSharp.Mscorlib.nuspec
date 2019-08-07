@@ -1,0 +1,16 @@
+﻿<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>DSharp.Mscorlib</id>
+    <title>DSharp Mscorlib</title>
+    <authors>$authors$</authors>
+    <version>$version$</version>
+    <copyright>$copyright$</copyright>
+    <description>Provides the default mscorlib library for all DSharp projects</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>true</developmentDependency>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\net40\**" target="lib\net40" />
+    <file src="bin\$configuration$\net471\**" target="lib\net471" />
+  </files>
+</package>

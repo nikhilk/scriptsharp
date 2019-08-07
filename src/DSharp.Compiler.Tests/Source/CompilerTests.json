@@ -1,0 +1,487 @@
+﻿[
+  {
+    "Category": "Mscorlib",
+    "Tests": [
+      {
+        "Name": "DateTime",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Collections",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      }
+    ]
+  },
+  {
+    "Category": "Basic",
+    "Tests": [
+      {
+        "Name": "Lists",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt",
+        "Defines": [ "DEBUG" ]
+      },
+      {
+        "Name": "Guid",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt",
+        "Defines": [ "DEBUG" ]
+      },
+      {
+        "Name": "Conditionals_Debug",
+        "SourceFolder": "Conditionals",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "DebugBaseline.txt",
+        "Defines": [ "DEBUG" ]
+      },
+      {
+        "Name": "Conditionals_Trace",
+        "SourceFolder": "Conditionals",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "TraceBaseline.txt",
+        "Defines": [ "TRACE" ]
+      },
+      {
+        "Name": "Dependencies_Baseline_1",
+        "SourceFolder": "Dependencies",
+        "SourceFiles": [ "Code1.cs" ],
+        "ComparisonFile": "Code1Baseline.txt",
+        "References": [ "Lib1.dll", "Lib2.dll", "Lib3.dll" ]
+      },
+      {
+        "Name": "Dependencies_Baseline_2",
+        "SourceFolder": "Dependencies",
+        "SourceFiles": [ "Code2.cs" ],
+        "ComparisonFile": "Code2Baseline.txt",
+        "References": [ "Lib1.dll", "Lib2.dll", "Lib3.dll" ]
+      },
+      {
+        "Name": "Dependencies_Baseline_3",
+        "SourceFolder": "Dependencies",
+        "SourceFiles": [ "Code3.cs" ],
+        "ComparisonFile": "Code3Baseline.txt",
+        "References": [ "DSharp.Web.dll", "Lib1.dll", "Lib2.dll", "Lib3.dll" ]
+      },
+      {
+        "Name": "Dependencies_Baseline_4",
+        "SourceFolder": "Dependencies",
+        "SourceFiles": [ "Code4.cs" ],
+        "ComparisonFile": "Code4Baseline.txt",
+        "References": [ "DSharp.Web.dll", "Lib1.dll", "Lib2.dll", "Lib3.dll" ]
+      },
+      {
+        "Name": "DocComments",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt",
+        "References": [ "DSharp.Web.dll" ],
+        "DocumentCommentFile": "DocComments.xml"
+      },
+      {
+        "Name": "Flags",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt",
+        "Defines": [ "ABC" ]
+      },
+      {
+        "Name": "Single_Includes",
+        "SourceFolder": "Includes",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "SingleIncBaseline.txt"
+      },
+      {
+        "Name": "Multiple_Includes",
+        "SourceFolder": "Includes",
+        "SourceFiles": [ "Code.cs" ],
+        "Defines": [ "MULTIPLE_INCLUDE" ],
+        "ComparisonFile": "MultipleIncBaseline.txt"
+      },
+      {
+        "Name": "GenericInheritance",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Default_Loader",
+        "SourceFolder": "Simple",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "DefaultBaseline.txt"
+      },
+      {
+        "Name": "Simple_Loader",
+        "SourceFolder": "Simple",
+        "SourceFiles": [ "Code.cs" ],
+        "Defines": [ "SIMPLE_TEMPLATE" ],
+        "ComparisonFile": "SimpleBaseline.txt"
+      },
+      {
+        "Name": "AMD_Loader",
+        "SourceFolder": "Simple",
+        "SourceFiles": [ "Code.cs" ],
+        "Defines": [ "AMD_TEMPLATE" ],
+        "ComparisonFile": "AMDBaseline.txt"
+      },
+      {
+        "Name": "Resources",
+        "SourceFiles": [ "Code.cs", "Strings1.Designer.cs", "Strings2.Designer.cs" ],
+        "Resources": [ "Strings1.resx", "Strings1.fr.resx", "Strings1.fr-FR.resx", "Strings2.resx" ],
+        "Defines": [ "DEBUG" ],
+        "ComparisonFile": "Baseline.txt"
+      }
+    ]
+  },
+  {
+    "Category": "Expression",
+    "Tests": [
+      {
+        "Name": "AnonymousMethods",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Arguments",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Array",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Base",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Binary",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Cast",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Conditional",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Date",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Delegates",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Dictionary",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "EnumToString_Normal",
+        "SourceFolder": "EnumToString",
+        "SourceFiles": [ "Code1.cs" ],
+        "ComparisonFile": "NormalBaseline.txt"
+      },
+      {
+        "Name": "EnumToString_Minified",
+        "SourceFolder": "EnumToString",
+        "SourceFiles": [ "Code2.cs" ],
+        "ComparisonFile": "MinBaseline.txt",
+        "Options": {
+          "Minimize": true
+        }
+      },
+      {
+        "Name": "Events",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "ExtensionMethods",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Generics",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt",
+        "References": [ "DSharp.Web.dll" ]
+      },
+      {
+        "Name": "Generics2",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt",
+        "References": []
+      },
+      {
+        "Name": "Generics3",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt",
+        "References": []
+      },
+      {
+        "Name": "GetType",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "InlineScript",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "LateBound",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Literals",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Locals",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Members",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "New",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Number",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Script",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "ScriptIgnore",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "String",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Truthy",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Tuples",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Unary",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      }
+    ]
+  },
+  {
+    "Category": "Member",
+    "Tests": [
+      {
+        "Name": "Constructors",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Events",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Fields",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Indexers",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Methods",
+        "SourceFiles": [ "Code.cs" ],
+        "References": [ "DSharp.Web.dll" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Overloads",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Properties",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "StaticConstructors",
+        "SourceFiles": [ "Code.cs" ],
+        "References": [ "DSharp.Web.dll" ],
+        "ComparisonFile": "Baseline.txt"
+      }
+    ]
+  },
+  {
+    "Category": "Statement",
+    "Tests": [
+      {
+        "Name": "Exceptions",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Expression",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "For",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Foreach",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "IfElse",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Return",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Switch",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Using",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Variables",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "While",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      }
+    ]
+  },
+  {
+    "Category": "Type",
+    "Tests": [
+      {
+        "Name": "Classes",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Delegates",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Enumerator",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Enums",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Globals",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Imported",
+        "SourceFiles": [ "Code.cs" ],
+        "References": [ "DSharp.Web.dll" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Interfaces",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Modules_Included_Export",
+        "SourceFolder": "Modules",
+        "SourceFiles": [ "Code.cs" ],
+        "References": [ "DSharp.Web.dll" ],
+        "Defines": [ "INCLUDE_EXPORT" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Modules_Without_Export",
+        "SourceFolder": "Modules",
+        "SourceFiles": [ "Code.cs" ],
+        "References": [ "DSharp.Web.dll" ],
+        "ComparisonFile": "ZeroExportsBaseline.txt"
+      },
+      {
+        "Name": "Namespaces",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Nullable",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Partials",
+        "SourceFiles": [ "Code1.cs", "Code2.cs" ],
+        "References": [ "DSharp.Web.dll" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Records",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "UsingAlias",
+        "SourceFiles": [ "Code.cs" ],
+        "References": [ "DSharp.Web.dll" ],
+        "ComparisonFile": "Baseline.txt"
+      }
+    ]
+  }
+]

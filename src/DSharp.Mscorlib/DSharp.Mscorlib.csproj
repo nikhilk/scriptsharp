@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(SolutionDir)NuGetCommon.props" Condition="Exists('$(SolutionDir)NuGetCommon.props')" />
+
+  <PropertyGroup>
+    <RootNamespace>System</RootNamespace>
+    <AssemblyName>DSharp.Mscorlib</AssemblyName>
+    <NoStdLib>True</NoStdLib>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(SolutionDir)DSharp.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <DisableHandlePackageFileConflicts>true</DisableHandlePackageFileConflicts>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <AdditionalExplicitAssemblyReferences />
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <TargetFrameworks>net40;net471</TargetFrameworks>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NuspecFile>DSharp.Mscorlib.nuspec</NuspecFile>
+    <Authors>Derivco Ipswich</Authors>
+    <Company>Derivco</Company>
+    <Description>DSharps Mscorlib implementation which provides all base types</Description>
+    <RuntimeMetadataVersion>v4.0.30319</RuntimeMetadataVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1705;1591;0626</NoWarn>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="AdditionalCompilerOptions.txt" />
+  </ItemGroup>
+</Project>

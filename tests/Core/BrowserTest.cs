@@ -9,9 +9,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ScriptSharp.Testing;
+using DSharp.Testing;
 
-namespace ScriptSharp.Tests.Core {
+namespace DSharp.Tests.Core {
 
     public abstract class BrowserTest {
 

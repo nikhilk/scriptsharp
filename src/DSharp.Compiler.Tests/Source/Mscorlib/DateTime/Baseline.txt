@@ -1,0 +1,45 @@
+﻿"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // DateTimeTest.TestClass
+
+  function TestClass() {
+    var jsDate = new Date();
+    var dateTime;
+    dateTime = jsDate;
+    jsDate = dateTime;
+    dateTime = new Date(2019, 12, 24);
+    dateTime = new Date(2019, 12, 24, 23, 45, 0);
+    dateTime = new Date(2019, 12, 24, 23, 45, 0, 2);
+    ss.DateTime.Equals(dateTime, dateTime);
+    var same = dateTime === dateTime;
+    var dayOfWeek = ss.DateTime.DayOfWeek(dateTime);
+    var enumComparison = dayOfWeek === ss.DayOfWeek.saturday;
+    dateTime = ss.DateTime.Now;
+    dateTime = ss.DateTime.Today;
+    dateTime = ss.DateTime.AddMilliseconds(dateTime, 123);
+    dateTime = ss.DateTime.AddSeconds(dateTime, 4);
+    dateTime = ss.DateTime.AddMinutes(dateTime, 10);
+    dateTime = ss.DateTime.AddHours(dateTime, 1);
+    dateTime = ss.DateTime.AddDays(dateTime, 2);
+    var longDate = ss.DateTime.ToLongDateString(dateTime);
+    var longTime = ss.DateTime.ToLongTimeString(dateTime);
+    var shortDate = ss.DateTime.ToShortDateString(dateTime);
+    var shortTime = ss.DateTime.ToShortTimeString(dateTime);
+    var toString = ss.DateTime.ToStringFormatted(dateTime);
+    var formattedString = ss.DateTime.ToStringFormatted(dateTime, '');
+  }
+  var TestClass$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      TestClass: ss.defineClass(TestClass, TestClass$, [], null)
+    });
+
+
+  return $exports;
+});

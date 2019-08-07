@@ -1,0 +1,28 @@
+﻿"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // BasicTests.IMyThing
+
+  function IMyThing() { }
+
+
+  // BasicTests.Wow
+
+  function Wow() {
+    Object.call(this);
+  }
+  var Wow$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      IMyThing: ss.defineInterface(IMyThing, [ss.IList]),
+      Wow: ss.defineClass(Wow, Wow$, [], Object)
+    });
+
+
+  return $exports;
+});

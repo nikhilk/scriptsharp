@@ -1,0 +1,19 @@
+﻿<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>DSharp.Web</id>
+    <title>DSharp Web</title>
+    <authors>$authors$</authors>
+    <version>$version$</version>
+    <copyright>$copyright$</copyright>
+    <description>DSharp web definitions for JS and Html bindings</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>true</developmentDependency>
+    <dependencies>
+      <dependency id="DSharp.Mscorlib" version="$version$" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\net40\DSharp.Web.*" target="lib\net0" />
+    <file src="bin\$configuration$\net471\DSharp.Web.*" target="lib\net471" />
+  </files>
+</package>
