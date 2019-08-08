@@ -1,0 +1,59 @@
+assembly-versioning-scheme: MajorMinorPatchTag
+assembly-file-versioning-scheme: MajorMinorPatchTag
+commit-message-incrementing: Disabled
+mode: ContinuousDelivery
+branches:
+  master: 
+    mode: ContinuousDeployment
+    tag: beta
+    regex: master$
+    increment: minor
+    source-branches:                                                                                           
+    - feature
+    - hotfix
+    tracks-release-branches: false
+    is-release-branch: true
+  feature:
+    mode: ContinuousDeployment
+    regex: features?[/-]
+    tag: useBranchName
+    increment: Inherit
+    source-branches:
+    - master
+    - feature
+    - hotfix
+    is-release-branch: false    
+  task:
+    mode: ContinuousDeployment
+    regex: tasks?[/-]
+    tag: useBranchName
+    increment: Inherit
+    source-branches:
+    - master
+    - feature
+    - hotfix
+    is-release-branch: false
+  hotfix:
+    mode: ContinuousDeployment
+    regex: hotfix[/-]
+    tag: 'patch'
+    increment: Patch
+    prevent-increment-of-merged-branch-version: true
+    source-branches:
+    - master
+    - feature
+    - hotfix
+    tracks-release-branches: false                                                                             
+    is-release-branch: false
+  bugfix:
+    mode: ContinuousDeployment
+    regex: bugfixs?[/-]
+    tag: useBranchName
+    increment: Inherit
+    source-branches:
+    - master
+    - feature
+    - hotfix
+    is-release-branch: false 
+ignore:
+  sha: []
