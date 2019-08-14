@@ -105,6 +105,6 @@ var getItem = createFallbackFunction("get_item", function (obj, key) {
     return obj[key];
 });
 
-var setItem = createFallbackFunction("set_item", function (obj, key) {
-    return obj[key] = value;
+var setItem = createFallbackFunction("set_item", function (obj, key, val) {
+    return obj[key] = val;
 });
