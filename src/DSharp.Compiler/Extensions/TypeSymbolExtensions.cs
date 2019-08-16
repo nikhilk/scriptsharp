@@ -7,6 +7,8 @@ namespace DSharp.Compiler.Extensions
 {
     public static class TypeSymbolExtensions
     {
+        private static readonly StringComparer stringComparer = StringComparer.InvariantCultureIgnoreCase;
+
         internal static ICollection<InterfaceSymbol> GetInterfaces(this TypeSymbol symbol)
         {
             if (symbol is ClassSymbol classSymbol)
@@ -50,6 +52,11 @@ namespace DSharp.Compiler.Extensions
         internal static bool IsArgumentsType(this TypeSymbol symbol)
         {
             return symbol.FullName == "System.Arguments";
+        }
+
+        internal static bool IsNativeObject(this TypeSymbol typeSymbol)
+        {
+            return stringComparer.Equals(typeSymbol.FullGeneratedName, nameof(Object));
         }
     }
 }

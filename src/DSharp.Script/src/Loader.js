@@ -54,6 +54,7 @@
             removeString: removeString,
             replaceString: replaceString,
             bind: bind,
+            baseBind: baseBind,
             bindAdd: bindAdd,
             bindSub: bindSub,
             bindExport: bindExport,

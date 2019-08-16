@@ -1,16 +1,16 @@
 function createFallbackFunction(name, fallback) {
     return function (instance) {
         if (typeof instance[name] === "function") {
-            return instance[name].apply(instance, arguments.splice(1));
+            return instance[name].apply(instance, Array.prototype.splice.call(arguments, 1));
         }
 
         return fallback.apply(null, arguments);
-    }
+    };
 }
 
 function toArray(obj) {
     return obj
-        ? typeof obj == "string"
+        ? typeof obj === "string"
             ? JSON.parse("(" + obj + ")")
             : Array.prototype.slice.call(obj)
         : null;

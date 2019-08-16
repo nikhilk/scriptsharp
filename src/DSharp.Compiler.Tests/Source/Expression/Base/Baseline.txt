@@ -2,6 +2,45 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
+  // ExpressionTests.IExecutor
+
+  function IExecutor() { }
+
+
+  // ExpressionTests.Program
+
+  function Program() {
+  }
+  Program.main = function(args) {
+    var concreteClass = new ConcreteClass();
+    concreteClass.execute();
+  };
+  var Program$ = {
+
+  };
+
+
+  // ExpressionTests.BaseClass
+
+  function BaseClass() {
+  }
+  var BaseClass$ = {
+    onResourceLoaded: function() {
+    }
+  };
+
+
+  // ExpressionTests.Executor
+
+  function Executor() {
+  }
+  var Executor$ = {
+    execute: function(success, failure) {
+      success();
+      failure();
+    }
+  };
+
 
   // ExpressionTests.Foo
 
@@ -13,6 +52,24 @@ define('test', ['ss'], function(ss) {
     },
     sum: function(i) {
       return 0;
+    }
+  };
+
+
+  // ExpressionTests.ConcreteClass
+
+  function ConcreteClass(executor) {
+    this._executor$1 = null;
+    BaseClass.call(this);
+    this._executor$1 = executor;
+  }
+  var ConcreteClass$ = {
+    execute: function() {
+      this._executor$1.execute(ss.baseBind('onResourceLoaded', this), ss.bind('onResourceFailed', this));
+    },
+    onResourceFailed: function() {
+    },
+    onResourceLoaded: function() {
     }
   };
 
@@ -34,7 +91,12 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
+      IExecutor: ss.defineInterface(IExecutor),
+      Program: ss.defineClass(Program, Program$, [], null),
+      BaseClass: ss.defineClass(BaseClass, BaseClass$, [], null),
+      Executor: ss.defineClass(Executor, Executor$, [], null, [IExecutor]),
       Foo: ss.defineClass(Foo, Foo$, [Number, Number], null),
+      ConcreteClass: ss.defineClass(ConcreteClass, ConcreteClass$, [IExecutor], BaseClass),
       Bar: ss.defineClass(Bar, Bar$, [Number, Number, Foo], Foo)
     });
 

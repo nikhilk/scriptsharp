@@ -20,18 +20,42 @@ function bind(fn, o) {
     }
 
     var name = null;
-    fn = typeof fn == 'string'
+    fn = typeof fn === 'string'
         ? o[name = fn]
         : fn;
 
-    var cache = name ? o.$$b || (o.$$b = {}) : null;
+    return internalBind(fn, o, name);
+}
+
+function baseBind(fn, o) {
+    if (!o) {
+        return fn;
+    }
+
+    var name = null;
+    if (typeof fn === 'string') {
+        name = fn;
+        fn = o.constructor.$base.prototype[name];
+        if (!fn) {
+            throw new Error("Unable to find '" + name + "' on any of the prototype hierarcy for " + o);
+        }
+    }
+
+    return internalBind(fn, o, name);
+}
+
+function internalBind(fn, instance, name) {
+    if (typeof fn !== 'function') {
+        throw new Error("binding requires a function instance!");
+    }
+    var cache = name ? instance.$$b || (instance.$$b = {}) : null;
     var binding = cache ? cache[name] : null;
 
     if (!binding) {
         // Create a function that invokes the specified function, in the
         // context of the specified object.
         binding = function () {
-            return fn.apply(o, arguments);
+            return fn.apply(instance, arguments);
         };
 
         if (cache) {
@@ -64,7 +88,7 @@ function bindSub(binding, value) {
     var fnList = binding._fnList || [binding];
     var index = fnList.indexOf(value);
     if (index >= 0) {
-        if (fnList.length == 1) {
+        if (fnList.length === 1) {
             return null;
         }
 

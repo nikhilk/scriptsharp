@@ -46,9 +46,7 @@ namespace DSharp.Compiler.Generator
 
                     break;
                 default:
-                    Debug.Fail("Unexpected symbol type");
-
-                    break;
+                    throw new ScriptGeneratorException(symbol, "Unexpected symbol type");
             }
         }
 
