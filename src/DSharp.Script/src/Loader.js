@@ -80,11 +80,7 @@
             getConstructorParams: getConstructorParams,
             createInstance: paramsGenerator(1, createInstance),
 
-            culture: {
-                neutral: neutralCulture,
-                current: currentCulture
-            },
-
+            culture: culture,
             fail: fail,
 
             contains: contains,

@@ -71,3 +71,8 @@ var currentCulture = {
     dtf: neutralCulture.dtf,
     nf: neutralCulture.nf
 };
+
+var culture = {
+    neutral: neutralCulture,
+    current: currentCulture
+};
