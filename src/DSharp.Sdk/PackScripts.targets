@@ -1,8 +1,0 @@
-﻿<Project>
-  <Target Name="CopyScriptsToOutput" AfterTargets="Build">
-    <PropertyGroup>
-      <ScriptsDistPath>$(SolutionDir)DSharp.Script\dist\</ScriptsDistPath>
-    </PropertyGroup>
-    <Copy SourceFiles="$(ScriptsDistPath)ss.js;$(ScriptsDistPath)ss.min.js" DestinationFolder="$(OutputPath)scripts\" SkipUnchangedFiles="true" />
-  </Target>
-</Project>

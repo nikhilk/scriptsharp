@@ -24,6 +24,4 @@
     <ProjectReference Include="..\DSharp.Build\DSharp.Build.csproj" />
     <ProjectReference Include="..\DSharp.Script\DSharp.Scripts.csproj" />
   </ItemGroup>
-
-  <Import Project="PackScripts.targets" Condition="Exists('PackScripts.targets')" />
 </Project>

@@ -1,0 +1,20 @@
+﻿<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>DSharp.Scripts</id>
+    <title>DSharp Runtime Scripts</title>
+    <authors>$authors$</authors>
+    <version>$version$</version>
+    <copyright>$copyright$</copyright>
+    <description>Provides the DSharp runtime library</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>true</developmentDependency>
+    <contentFiles>
+      <files include="any\any\ss.js" buildAction="Content" copyToOutput="true" />
+      <files include="any\any\ss.min.js" buildAction="Content" copyToOutput="true" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="dist\ss.js" target="contentFiles\any\any" />
+    <file src="dist\ss.min.js" target="contentFiles\any\any" />
+  </files>
+</package>

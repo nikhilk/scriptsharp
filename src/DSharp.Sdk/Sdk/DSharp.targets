@@ -44,13 +44,6 @@
     </ItemGroup>
   </Target>
 
-  <Target Name="CopyScripts" AfterTargets="BuildScript" Condition="'$(SkipScriptCopy)' == 'false' AND '$(IsImportLibrary)' != 'true'">
-    <PropertyGroup>
-      <ScriptsPath>$(MSBuildThisFileDirectory)..\content\scripts\</ScriptsPath>
-    </PropertyGroup>
-    <Copy SourceFiles="$(ScriptsPath)ss.js;$(ScriptsPath)ss.min.js" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
-  </Target>
-
   <PropertyGroup>
     <BuildDependsOn Condition="'$(GenerateScript)' == 'True'">$(BuildDependsOn);BuildScript</BuildDependsOn>
     <CompileDependsOn Condition="'$(GenerateResources)' == 'True'">GenerateResourcesCode;$(CompileDependsOn)</CompileDependsOn>

@@ -17,6 +17,5 @@
     <file src="Sdk\**\*" target="Sdk" />
     <file src="bin\$configuration$\net461\*.*" target="tools\net461" />
     <file src="bin\$configuration$\netstandard2.0\*.*" target="tools\netstandard2.0" exclude="**\System.*" />
-    <file src="bin\$configuration$\scripts\**" target="content/scripts"/>
   </files>
 </package>

@@ -1,5 +1,6 @@
 {
   "msbuild-sdks": {
-    "DSharp.Sdk": "1.0.0"
+    "DSharp.Sdk": "1.0.0-dev.137",
+    "DSharp.Web.Sdk": "1.0.0-dev.137"
   }
 }

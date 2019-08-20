@@ -8,6 +8,10 @@
     <description>Provides the default mscorlib library for all DSharp projects</description>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <developmentDependency>true</developmentDependency>
+    
+    <dependencies>
+      <dependency id="DSharp.Scripts" version="$version$" include="contentFiles" />
+    </dependencies>
   </metadata>
   <files>
     <file src="bin\$configuration$\net40\**" target="lib\net40" />

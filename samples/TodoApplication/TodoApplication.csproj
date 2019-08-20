@@ -1,12 +1,8 @@
-﻿<Project Sdk="DSharp.Sdk">
+﻿<Project Sdk="DSharp.Web.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net471</TargetFrameworks>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="DSharp.Web" Version="1.0.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ComponentLibrary\ComponentLibrary.csproj" />

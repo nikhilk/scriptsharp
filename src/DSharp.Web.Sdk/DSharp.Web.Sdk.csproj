@@ -22,6 +22,4 @@
     <ProjectReference Include="..\DSharp.Sdk\DSharp.Sdk.csproj" />
     <UpToDateCheckInput Include="@(Content)" />
   </ItemGroup>
-
-  <Import Project="PackScripts.targets" Condition="Exists('PackScripts.targets')" />
 </Project>

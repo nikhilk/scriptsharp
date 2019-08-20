@@ -17,12 +17,14 @@
     <AutoUnifyAssemblyReferences>false</AutoUnifyAssemblyReferences>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
-  <!--<PropertyGroup Label="OutputPaths">
-    <OutputPath>bin\$(Configuration)\dsharp\</OutputPath>
-    <IntermediateOutputPath>obj\$(Configuration)\dsharp\</IntermediateOutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-  </PropertyGroup>-->
+  <ItemGroup Condition="Script Includes">
+    <Content Include="ss.js">
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="ss.min.js">
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <AssemblyAttribute Include="System.ScriptAssemblyAttribute" Condition="'$(GenerateScriptAssemblyAttribute)' == 'true'">
       <_Parameter1>$(ScriptName)</_Parameter1>
