@@ -26,7 +26,9 @@
   <Target Name="GetScriptOutputPath" Condition="'$(IsImportLibrary)' != 'true'" DependsOnTargets="GetTfmOutputDirs">
     <ItemGroup>
       <ScriptOutput Include="%(TfmOutputDirs.Identity)$(ScriptName).js;%(Identity)$(ScriptName).min.js" Condition="%(IsDSharpBuild) == 'true'" >
-        <PackagePath>%(PackagePath)</PackagePath>
+        <PackagePath>%(TfmOutputDirs.PackageContentPath)</PackagePath>
+        <PackageCopyToOutput>true</PackageCopyToOutput>
+        <BuildAction>Content</BuildAction>
       </ScriptOutput>
     </ItemGroup>
   </Target>
@@ -38,11 +40,15 @@
     <ItemGroup>
       <None Include="@(PackagedScript)">
         <Pack Condition="%(TfmOutputDirs.IsDSharpBuild)">true</Pack>
-        <PackagePath>%(TfmOutputDirs.PackagePath)</PackagePath>
+        <PackagePath>%(TfmOutputDirs.PackageContentPath)</PackagePath>
+        <PackageCopyToOutput>true</PackageCopyToOutput>
+        <BuildAction>Content</BuildAction>
       </None>
       <None Include="@(PackagedScript -> '$(_tfmoutdir)%(Filename).min.js')">
         <Pack Condition="Exists('@(PackagedScript -> '$(_tfmoutdir)%(Filename).min.js')')">true</Pack>
-        <PackagePath>%(TfmOutputDirs.PackagePath)</PackagePath>
+        <PackagePath>%(TfmOutputDirs.PackageContentPath)</PackagePath>
+        <PackageCopyToOutput>true</PackageCopyToOutput>
+        <BuildAction>Content</BuildAction>
       </None>
     </ItemGroup>
   </Target>
@@ -51,7 +57,9 @@
     <ItemGroup>
       <None Include="@(ScriptOutput)">
         <Pack Condition="Exists(%(Identity))">true</Pack>
-        <PackagePath>%(PackagePath)</PackagePath>
+        <PackagePath>%(ScriptOutput.PackagePath)</PackagePath>
+        <PackageCopyToOutput>true</PackageCopyToOutput>
+        <BuildAction>Content</BuildAction>
       </None>
     </ItemGroup>
   </Target>
@@ -61,7 +69,7 @@
       <TfmOutputDirs Include="$(OutputPath)">
         <TargetFramework>$(TargetFramework)</TargetFramework>
         <TargetFrameworkIdentifier>$(TargetFrameworkIdentifier)</TargetFrameworkIdentifier>
-        <PackagePath>lib\$(TargetFramework)\</PackagePath>
+        <PackageContentPath>contentFiles\any\$(TargetFramework)\</PackageContentPath>
         <IsDSharpBuild>$(IsDSharpBuild)</IsDSharpBuild>
       </TfmOutputDirs>
     </ItemGroup>

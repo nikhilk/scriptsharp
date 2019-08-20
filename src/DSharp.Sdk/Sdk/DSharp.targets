@@ -44,6 +44,26 @@
     </ItemGroup>
   </Target>
 
+  <Target Name="CopyReferencedScripts" AfterTargets="BuildScript" >
+    <MSBuild
+      Projects="@(ProjectReference)"
+      Properties="Configuration=$(Configuration);Platform=$(Platform);TargetFramework=$(TargetFramework)"
+      SkipNonexistentTargets="true"
+      Targets="_GetScriptOutputPath"
+          >
+      <Output TaskParameter="TargetOutputs" ItemName="_AllReferencedScripts"/>
+    </MSBuild>
+
+    <Copy SourceFiles="%(_AllReferencedScripts.Identity)" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true"  Condition="Exists('%(Identity)')"/>
+  </Target>
+  
+  <Target Name="CopyScripts" AfterTargets="BuildScript" Condition="'$(SkipScriptCopy)' == 'false' AND '$(IsImportLibrary)' != 'true'">
+    <PropertyGroup>
+      <ScriptsPath>$(MSBuildThisFileDirectory)..\content\scripts\</ScriptsPath>
+    </PropertyGroup>
+    <Copy SourceFiles="$(ScriptsPath)ss.js;$(ScriptsPath)ss.min.js" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+  </Target>
+
   <PropertyGroup>
     <BuildDependsOn Condition="'$(GenerateScript)' == 'True'">$(BuildDependsOn);BuildScript</BuildDependsOn>
     <CompileDependsOn Condition="'$(GenerateResources)' == 'True'">GenerateResourcesCode;$(CompileDependsOn)</CompileDependsOn>
@@ -56,4 +76,8 @@
     </ItemGroup>
     <Delete Files="@(DeleteFile)" />
   </Target>
+
+  <!--GetScriptOutputPath defined in pack.targets -->
+  <Target Name="_GetScriptOutputPath" DependsOnTargets="GetScriptOutputPath" Returns="@(ScriptOutput -> '%(FullPath)');@(PackagedScript -> '%(FullPath)')" Label="to determine script output files from referenced projects"/>
+
 </Project>

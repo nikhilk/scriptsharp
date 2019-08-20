@@ -31,6 +31,6 @@
     </AssemblyAttribute>
   </ItemGroup>
   <ItemGroup Condition="'$(ExcludeCoreLib)' == 'false'">
-    <PackageReference Include="DSharp.Mscorlib" Version="1.0.0-dev.137" IsImplicitlyDefined="true" PrivateAssets="All" />
+    <PackageReference Include="DSharp.Mscorlib" Version="1.0.0-dev.0" IsImplicitlyDefined="true" PrivateAssets="All" />
   </ItemGroup>
 </Project>

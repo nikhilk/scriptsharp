@@ -2,7 +2,7 @@
   <PropertyGroup>
     <PackageOutputPath Condition="'$(PackageOutputPath)' == ''">$(SolutionDir)Output\Packages</PackageOutputPath>
     <NuspecFile Condition="'$(NuspecFile)' == ''">$(AssemblyName).nuspec</NuspecFile>
-    <PackageVersion Condition="'$(PackageVersion)' == ''">1.0.0-dev.137</PackageVersion>
+    <PackageVersion Condition="'$(PackageVersion)' == ''">1.0.0-dev.0</PackageVersion>
   </PropertyGroup>
 
   <Target Name="UpdateNuspecFileProperties" BeforeTargets="GenerateNuspec">
