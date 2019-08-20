@@ -17,7 +17,7 @@
     <AutoUnifyAssemblyReferences>false</AutoUnifyAssemblyReferences>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
-  <ItemGroup Condition="Script Includes">
+  <ItemGroup Label="ScriptIncludes">
     <Content Include="ss.js">
       <Visible>false</Visible>
     </Content>
