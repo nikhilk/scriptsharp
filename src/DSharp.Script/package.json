@@ -1,16 +1,23 @@
 {
   "name": "dsharp.script",
   "version": "1.0.0",
-  "description": "",
+  "description": "The DSharp runtime library",
   "main": "index.js",
+  "author": "Derivco Ipswich",
   "scripts": {
     "start": "node build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {},
-  "dependencies": {
-    "buildify": "^0.4.0"
+  "devDependencies": {
+    "buildify": "^0.4.0",
+    "jest": "^24.9.0",
+    "jest-editor-support": "^25.0.1",
+    "jest-teamcity-reporter": "^0.9.0"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>setup.js"
+    ],
+    "testResultsProcessor": "jest-teamcity-reporter"
   }
 }

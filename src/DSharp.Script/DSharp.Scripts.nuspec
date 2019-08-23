@@ -5,7 +5,7 @@
     <authors>$authors$</authors>
     <version>$version$</version>
     <copyright>$copyright$</copyright>
-    <description>Provides the DSharp runtime library</description>
+    <description>The DSharp runtime library</description>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <developmentDependency>true</developmentDependency>
     <contentFiles>

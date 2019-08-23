@@ -27,7 +27,10 @@ buildify()
             './src/TypeSystem.js'
         ]), '\r\n')
     .wrap('src/Loader.js', {
-        version: 1.0
+        version: process.env['version']
+    })
+    .perform(function (content) {
+        return content.replace(/[\ufeff]/g, '');
     })
     .save('dist/ss.js')
     .uglify()

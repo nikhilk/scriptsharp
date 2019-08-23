@@ -16,7 +16,7 @@
         Guid: defineClass(Guid, Guid$, [], null),
         DateTime: defineClass(DateTime, {}, [], null)
     }), {
-            version: {{version}},
+            version: '{{version}}',
             isValue: isValue,
             value: value,
             extend: extend,

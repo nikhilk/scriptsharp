@@ -22,6 +22,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DSharp.Build\DSharp.Build.csproj" />
-    <ProjectReference Include="..\DSharp.Script\DSharp.Scripts.csproj" />
   </ItemGroup>
 </Project>
