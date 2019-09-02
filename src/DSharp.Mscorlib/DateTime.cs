@@ -28,11 +28,8 @@ namespace System
 
         public DateTime(int year, int month, int day, int hour, int minute, int second, int millisecond) { }
 
-        public extern DayOfWeek DayOfWeek
-        {
-            [ScriptAlias("ss.DateTime.DayOfWeek")]
-            get;
-        }
+        [ScriptAlias("DayOfWeek")]
+        public extern DayOfWeek DayOfWeek { get; }
 
         [ScriptAlias("ss.DateTime.AddMilliseconds")]
         public extern DateTime AddMilliseconds(double value);

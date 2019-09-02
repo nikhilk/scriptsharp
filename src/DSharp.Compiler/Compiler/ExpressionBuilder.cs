@@ -898,23 +898,6 @@ namespace DSharp.Compiler.Compiler
                         return methodExpression;
                     }
                 }
-                else if (memberSymbol.IsTransformed)
-                {
-                    // if the property getter is transformed, we wanna replace it with a proper static method call
-
-                    MethodSymbol methodSymbol = new MethodSymbol(memberSymbol.Name, null, memberSymbol.AssociatedType);
-                    methodSymbol.SetTransformName(memberSymbol.GeneratedName);
-                    methodSymbol.SetVisibility(MemberVisibility.Public | MemberVisibility.Static);
-
-                    MethodExpression methodExpression =
-                            new MethodExpression(
-                                new TypeExpression(null, SymbolFilter.Public | SymbolFilter.StaticMembers),
-                                methodSymbol);
-
-                    methodExpression.AddParameterValue(objectExpression);
-
-                    return methodExpression;
-                }
             }
             else if (memberSymbol.Type == SymbolType.Method)
             {

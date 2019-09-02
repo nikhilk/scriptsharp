@@ -14,7 +14,7 @@ define('test', ['ss'], function(ss) {
     dateTime = new Date(2019, 12, 24, 23, 45, 0, 2);
     ss.DateTime.Equals(dateTime, dateTime);
     var same = dateTime === dateTime;
-    var dayOfWeek = ss.DateTime.DayOfWeek(dateTime);
+    var dayOfWeek = dateTime.DayOfWeek;
     var enumComparison = dayOfWeek === ss.DayOfWeek.saturday;
     dateTime = ss.DateTime.Now;
     dateTime = ss.DateTime.Today;
