@@ -94,7 +94,7 @@ namespace System.Globalization
         public extern int NumberDecimalDigits { get; }
 
         [ScriptField]
-        [ScriptName(DSharpStringResources.ASSEMBLY_NAME)]
+        [ScriptName("ds")]
         public extern string NumberDecimalSeparator { get; }
 
         [ScriptField]
