@@ -44,6 +44,11 @@ function keyExists(obj, key) {
 function keyValueExists(obj, keyValue) {
     return obj[keyValue.key] === keyValue.value;
 }
+
+function addKeyValue(obj, key, value) {
+    return obj[key] = value;
+}
+
 function keys(obj) {
     if (Object.keys) {
         return Object.keys(obj);

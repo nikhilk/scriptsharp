@@ -18,11 +18,14 @@ namespace System.Collections.Generic
 
         ICollection<TValue> Values { get; }
 
-        [DSharpScriptMemberName("keyExists")]
-        bool ContainsKey(TKey key);
-
         [DSharpScriptMemberName("addKeyValue")]
         void Add(TKey key, TValue value);
+
+        [DSharpScriptMemberName("clearKeys")]
+        void Clear();
+
+        [DSharpScriptMemberName("keyExists")]
+        bool ContainsKey(TKey key);
 
         bool Remove(TKey key);
     }

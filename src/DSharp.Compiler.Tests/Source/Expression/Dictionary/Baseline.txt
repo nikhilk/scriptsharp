@@ -7,28 +7,18 @@ define('test', ['ss'], function(ss) {
   function App() {
   }
   var App$ = {
-    getData: function() {
-      return null;
-    },
-    getData2: function() {
-      return null;
-    },
-    test: function(arg) {
-      var dictionary1 = {};
-    },
-    test2: function(arg) {
+    testDictionary: function(arg) {
       var dictionary1 = {};
       var key = 'blah';
       var c = ss.keys(dictionary1).length;
-      var c2 = ss.keys(this.getData()).length;
       delete dictionary1.aaa;
       delete dictionary1['Proxy-Connection'];
+      delete dictionary1['Proxy.Connection'];
       delete dictionary1[key];
       ss.clearKeys(dictionary1);
       dictionary1['asd'] = 3;
       var val = dictionary1['asd'];
       ss.addKeyValue(dictionary1, 'hello', 'bye');
-      ss.keyExists(dictionary1, 'asd');
       ss.keyExists(dictionary1, 'asd');
       for (var $key1 in dictionary1) {
         var pair = { key: $key1, value: dictionary1[$key1] };
@@ -38,23 +28,41 @@ define('test', ['ss'], function(ss) {
       var keys = ss.keys(dictionary1);
       var values = ss.values(dictionary1);
     },
-    test3: function(arg) {
+    testIDictionary_T: function(arg) {
       var dictionary1 = {};
       var key = 'blah';
       var c = ss.keys(dictionary1).length;
-      var c2 = ss.keys(this.getData2()).length;
-      var b = ss.keyExists(dictionary1, 'aaa');
       delete dictionary1.aaa;
+      delete dictionary1['Proxy-Connection'];
+      delete dictionary1['Proxy.Connection'];
+      delete dictionary1[key];
+      ss.clearKeys(dictionary1);
+      ss.setItem(dictionary1, 'asd', 3);
+      var val = ss.getItem(dictionary1, 'asd');
+      ss.addKeyValue(dictionary1, 'hello', 'bye');
+      ss.keyExists(dictionary1, 'asd');
+      for (var $key1 in dictionary1) {
+        var pair = { key: $key1, value: dictionary1[$key1] };
+        var myKey = pair.key;
+        var myValue = pair.value;
+      }
+      var keys = ss.keys(dictionary1);
+      var values = ss.values(dictionary1);
+    },
+    testIDictionary: function(arg) {
+      var dictionary1 = {};
+      var key = 'blah';
+      var c = ss.keys(dictionary1).length;
+      delete dictionary1.aaa;
+      delete dictionary1['Proxy.Connection'];
       delete dictionary1['Proxy-Connection'];
       delete dictionary1[key];
       ss.clearKeys(dictionary1);
+      ss.setItem(dictionary1, 'asd', 3);
+      var val = ss.getItem(dictionary1, 'asd');
+      ss.addKeyValue(dictionary1, 'hello', 'bye');
       var keys = ss.keys(dictionary1);
-    },
-    test4: function(arg) {
-      var d1 = {};
-      d1[1] = d1[arg] = 'aaa';
-      delete d1[1];
-      delete d1[arg];
+      var values = ss.values(dictionary1);
     }
   };
 
