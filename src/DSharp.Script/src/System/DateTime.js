@@ -26,7 +26,7 @@ DateTime.Equals = function (d1, d2)
     return parsedDate1.getTime() === parsedDate2.getTime();
 };
 
-createPropertyGet(Date, 'DayOfWeek', function () {
+createPropertyGet(Date.prototype, 'DayOfWeek', function () {
     return DateTime.GetDayOfWeek(this);
 });
 
