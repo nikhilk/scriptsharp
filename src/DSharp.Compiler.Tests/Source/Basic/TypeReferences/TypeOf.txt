@@ -1,0 +1,25 @@
+"use strict";
+
+define('test', ['ss', 'lib'], function(ss, lib) {
+  var $global = this;
+  // BasicTests.App
+
+  function App() {
+  }
+  var App$ = {
+    _foo: function() {
+      if (lib.ClassInLib == null) {
+        return;
+      }
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, App$, [], null)
+    });
+
+
+  return $exports;
+});

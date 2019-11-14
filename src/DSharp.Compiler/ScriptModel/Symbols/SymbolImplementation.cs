@@ -1,4 +1,4 @@
-// SymbolImplementation.cs
+﻿// SymbolImplementation.cs
 // Script#/Core/Compiler
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -13,7 +13,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
         public SymbolImplementation(ICollection<Statement> statements, SymbolScope scope, string thisIdentifier)
         {
             Scope = scope;
-            Statements = statements;
+            Statements = statements ?? System.Array.Empty<Statement>();
             ThisIdentifier = thisIdentifier;
         }
 

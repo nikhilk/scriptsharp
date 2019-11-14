@@ -1,5 +1,5 @@
 <Project>
   <ItemGroup>
-    <PackageReference Include="DSharp.Web" Version="1.0.0-dev.0" IsImplicitlyDefined="true" PrivateAssets="All" />
+    <PackageReference Include="DSharp.Web" Version="2.0.0-dev.1" IsImplicitlyDefined="true" PrivateAssets="All" />
   </ItemGroup>
 </Project>

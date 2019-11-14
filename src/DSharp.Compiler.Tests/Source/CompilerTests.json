@@ -72,6 +72,209 @@
         "References": [ "DSharp.Web.dll", "Lib1.dll", "Lib2.dll", "Lib3.dll" ]
       },
       {
+        "Name": "TypeReferences_AutoProperty",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "AutoProperty.cs" ],
+        "ComparisonFile": "AutoProperty.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_Constants",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "Constants.cs" ],
+        "ComparisonFile": "Constants.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_Event",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "Event.cs" ],
+        "ComparisonFile": "Event.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_Field",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "Field.cs" ],
+        "ComparisonFile": "Field.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_FieldArray",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "FieldArray.cs" ],
+        "ComparisonFile": "FieldArray.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_FieldEnum",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "FieldEnum.cs" ],
+        "ComparisonFile": "FieldEnum.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_FieldStruct",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "FieldStruct.cs" ],
+        "ComparisonFile": "FieldStruct.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_GenericParameter",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "GenericParameter.cs" ],
+        "ComparisonFile": "GenericParameter.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_Indexer",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "Indexer.cs" ],
+        "ComparisonFile": "Indexer.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_IndexerParameter",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "IndexerParameter.cs" ],
+        "ComparisonFile": "IndexerParameter.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_InheritanceClass",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "InheritanceClass.cs" ],
+        "ComparisonFile": "InheritanceClass.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_InheritanceGeneric",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "InheritanceGeneric.cs" ],
+        "ComparisonFile": "InheritanceGeneric.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_InheritanceInterface",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "InheritanceInterface.cs" ],
+        "ComparisonFile": "InheritanceInterface.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_MembersNoReference",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "MembersNoReference.cs" ],
+        "ComparisonFile": "MembersNoReference.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_MethodExtension",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "MethodExtension.cs" ],
+        "ComparisonFile": "MethodExtension.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_MethodGeneric",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "MethodGeneric.cs" ],
+        "ComparisonFile": "MethodGeneric.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_MethodParameter",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "MethodParameter.cs" ],
+        "ComparisonFile": "MethodParameter.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_MethodParameterParams",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "MethodParameterParams.cs" ],
+        "ComparisonFile": "MethodParameterParams.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_OperatorCast",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "OperatorCast.cs" ],
+        "ComparisonFile": "OperatorCast.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_Property",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "Property.cs" ],
+        "ComparisonFile": "Property.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_ReturnType",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "ReturnType.cs" ],
+        "ComparisonFile": "ReturnType.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_MethodParameterParams",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "MethodParameterParams.cs" ],
+        "ComparisonFile": "MethodParameterParams.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_StatementFor",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "StatementFor.cs" ],
+        "ComparisonFile": "StatementFor.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_StatementForeach",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "StatementForeach.cs" ],
+        "ComparisonFile": "StatementForeach.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_StatementsNoReference",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "StatementsNoReference.cs" ],
+        "ComparisonFile": "StatementsNoReference.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_StatementStaticUsage",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "StatementStaticUsage.cs" ],
+        "ComparisonFile": "StatementStaticUsage.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_TypeOf",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "TypeOf.cs" ],
+        "ComparisonFile": "TypeOf.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_TypeOfGeneric",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "TypeOfGeneric.cs" ],
+        "ComparisonFile": "TypeOfGeneric.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
+        "Name": "TypeReferences_Variable",
+        "SourceFolder": "TypeReferences",
+        "SourceFiles": [ "Variable.cs" ],
+        "ComparisonFile": "Variable.txt",
+        "References": [ "Lib.dll" ]
+      },
+      {
         "Name": "DocComments",
         "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "Baseline.txt",
@@ -121,13 +324,6 @@
         "SourceFiles": [ "Code.cs" ],
         "Defines": [ "AMD_TEMPLATE" ],
         "ComparisonFile": "AMDBaseline.txt"
-      },
-      {
-        "Name": "Resources",
-        "SourceFiles": [ "Code.cs", "Strings1.Designer.cs", "Strings2.Designer.cs" ],
-        "Resources": [ "Strings1.resx", "Strings1.fr.resx", "Strings1.fr-FR.resx", "Strings2.resx" ],
-        "Defines": [ "DEBUG" ],
-        "ComparisonFile": "Baseline.txt"
       }
     ]
   },
@@ -151,6 +347,11 @@
       },
       {
         "Name": "Base",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "TypeDeclarations",
         "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "Baseline.txt"
       },
@@ -210,6 +411,16 @@
         "ComparisonFile": "Baseline.txt"
       },
       {
+        "Name": "ExtensionMethods2",
+        "SourceFiles": [ "Code1.cs", "Code2.cs", "CodeEx1.cs", "CodeEx2.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "GenericExtensionMethods",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
         "Name": "Generics",
         "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "Baseline.txt",
@@ -223,6 +434,12 @@
       },
       {
         "Name": "Generics3",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt",
+        "References": []
+      },
+      {
+        "Name": "Generics4",
         "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "Baseline.txt",
         "References": []
@@ -268,6 +485,11 @@
         "ComparisonFile": "Baseline.txt"
       },
       {
+        "Name": "ObjectInitializers",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
         "Name": "Script",
         "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "Baseline.txt"
@@ -302,6 +524,12 @@
   {
     "Category": "Member",
     "Tests": [
+      {
+        "Name": "Constants",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt",
+        "References": [ "Lib1.dll" ]
+      },
       {
         "Name": "Constructors",
         "SourceFiles": [ "Code.cs" ],
@@ -425,6 +653,11 @@
         "ComparisonFile": "Baseline.txt"
       },
       {
+        "Name": "GenericClasses",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
         "Name": "Globals",
         "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "Baseline.txt"
@@ -439,21 +672,6 @@
         "Name": "Interfaces",
         "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "Baseline.txt"
-      },
-      {
-        "Name": "Modules_Included_Export",
-        "SourceFolder": "Modules",
-        "SourceFiles": [ "Code.cs" ],
-        "References": [ "DSharp.Web.dll" ],
-        "Defines": [ "INCLUDE_EXPORT" ],
-        "ComparisonFile": "Baseline.txt"
-      },
-      {
-        "Name": "Modules_Without_Export",
-        "SourceFolder": "Modules",
-        "SourceFiles": [ "Code.cs" ],
-        "References": [ "DSharp.Web.dll" ],
-        "ComparisonFile": "ZeroExportsBaseline.txt"
       },
       {
         "Name": "Namespaces",

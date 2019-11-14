@@ -55,10 +55,12 @@ namespace System
 
         public extern static object GetField(object instance, string name);
 
+        [ScriptIgnoreGenericArguments]
         public extern static T GetField<T>(object instance, string name);
 
         public extern static object GetField(Type type, string name);
 
+        [ScriptIgnoreGenericArguments]
         public extern static T GetField<T>(Type type, string name);
 
         public extern static string GetScriptType(object instance);
@@ -73,10 +75,12 @@ namespace System
 
         public extern static object InvokeMethod(object instance, string name, params object[] args);
 
+        [ScriptIgnoreGenericArguments]
         public extern static T InvokeMethod<T>(object instance, string name, params object[] args);
 
         public extern static object InvokeMethod(Type type, string name, params object[] args);
 
+        [ScriptIgnoreGenericArguments]
         public extern static T InvokeMethod<T>(Type type, string name, params object[] args);
 
         /// <summary>
@@ -156,6 +160,7 @@ namespace System
         /// <param name="alternateValue">The alternate value to use if the first is invalid.</param>
         /// <param name="alternateValues">Additional alternative values to use if the first is invalid.</param>
         /// <returns>The first valid value.</returns>
+        [ScriptIgnoreGenericArguments]
         public extern static TValue Or<TValue>(TValue value, TValue alternateValue, params TValue[] alternateValues);
 
         public extern static void SetField(object instance, string name, object value);
@@ -169,9 +174,11 @@ namespace System
         public extern static int SetInterval(Action callback, int milliseconds);
 
         [ScriptAlias("setInterval")]
+        [ScriptIgnoreGenericArguments]
         public extern static int SetInterval<T>(Action<T> callback, int milliseconds, T arg);
 
         [ScriptAlias("setInterval")]
+        [ScriptIgnoreGenericArguments]
         public extern static int SetInterval<T1, T2>(Action<T1, T2> callback, int milliseconds, T1 arg1, T2 arg2);
 
         [ScriptAlias("setInterval")]
@@ -184,9 +191,11 @@ namespace System
         public extern static int SetTimeout(Action callback, int milliseconds);
 
         [ScriptAlias("setTimeout")]
+        [ScriptIgnoreGenericArguments]
         public extern static int SetTimeout<T>(Action<T> callback, int milliseconds, T arg);
 
         [ScriptAlias("setTimeout")]
+        [ScriptIgnoreGenericArguments]
         public extern static int SetTimeout<T1, T2>(Action<T1, T2> callback, int milliseconds, T1 arg1, T2 arg2);
 
         [ScriptAlias("setTimeout")]
@@ -201,6 +210,7 @@ namespace System
         /// <param name="alternateValues">Additional alternative values to use if the first is invalid.</param>
         /// <returns>The first valid value.</returns>
         [DSharpScriptMemberName("value")]
+        [ScriptIgnoreGenericArguments]
         public extern static TValue Value<TValue>(TValue value, TValue alternateValue, params TValue[] alternateValues);
     }
 }

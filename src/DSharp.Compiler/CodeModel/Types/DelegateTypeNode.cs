@@ -1,4 +1,4 @@
-// DelegateTypeNode.cs
+﻿// DelegateTypeNode.cs
 // Script#/Core/Compiler
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -18,9 +18,10 @@ namespace DSharp.Compiler.CodeModel.Types
                                 AtomicNameNode name,
                                 ParseNodeList typeParameters,
                                 ParseNodeList parameters,
-                                ParseNodeList constraintClauses)
+                                ParseNodeList constraintClauses,
+                                bool isNestedType)
             : base(ParseNodeType.Delegate, token, TokenType.Delegate, attributes, modifiers, name, typeParameters,
-                constraintClauses)
+                constraintClauses, isNestedType)
         {
             ReturnType = GetParentedNode(returnType);
             Parameters = GetParentedNodeList(parameters);

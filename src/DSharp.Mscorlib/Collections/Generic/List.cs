@@ -61,6 +61,8 @@ namespace System.Collections.Generic
 
         public extern void ForEach(Action<T> action);
 
+        public extern void Reverse();
+
         [DSharpScriptMemberName("toArray")]
         public extern T[] ToArray();
 

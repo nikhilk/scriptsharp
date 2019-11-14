@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // TypeTests.Colors
 
   var Colors = {
@@ -95,12 +94,12 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Colors: Colors,
-      Sequence: Sequence,
-      Mode: Mode,
-      UInt32Mask: UInt32Mask,
-      ShortMask: ShortMask,
-      Errors: Errors,
+      Colors: new ss.Enum('Colors', Colors),
+      Sequence: new ss.Enum('Sequence', Sequence),
+      Mode: new ss.Enum('Mode', Mode),
+      UInt32Mask: new ss.Enum('UInt32Mask', UInt32Mask),
+      ShortMask: new ss.Enum('ShortMask', ShortMask),
+      Errors: new ss.Enum('Errors', Errors),
       App: ss.defineClass(App, App$, [], null),
       App2: ss.defineClass(App2, App2$, [], null)
     });
@@ -108,3 +107,4 @@ define('test', ['ss'], function(ss) {
 
   return $exports;
 });
+

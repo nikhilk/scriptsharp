@@ -593,7 +593,7 @@ namespace DSharp.Compiler.Parser
             return null;
         }
 
-        private TypeNode ParseTypeDeclaration(Token token, ParseNodeList attributes, Modifiers modifiers)
+        private TypeNode ParseTypeDeclaration(Token token, ParseNodeList attributes, Modifiers modifiers, bool isNestedType = false)
         {
             TokenType type = PeekType();
             NextToken();
@@ -609,7 +609,8 @@ namespace DSharp.Compiler.Parser
                     new ParseNodeList(),
                     ParseBaseList(true),
                     new ParseNodeList(),
-                    ParseEnumBody());
+                    ParseEnumBody(),
+                    isNestedType);
             }
 
             return new CustomTypeNode(
@@ -621,7 +622,8 @@ namespace DSharp.Compiler.Parser
                 ParseTypeParametersOpt(),
                 ParseBaseList(false),
                 ParseConstraintClauses(),
-                ParseClassOrStructBody());
+                ParseClassOrStructBody(),
+                isNestedType);
         }
 
         private ParseNodeList ParseTypeParametersOpt()
@@ -669,8 +671,19 @@ namespace DSharp.Compiler.Parser
                     hasConstructorConstraint = true;
 
                     Eat(TokenType.New);
-                    Eat(TokenType.OpenParen);
-                    Eat(TokenType.CloseParen);
+                    if(PeekType() == TokenType.OpenParen)
+                    {
+                        Eat(TokenType.OpenParen);
+                        Eat(TokenType.CloseParen);
+                    }
+                }
+                else if (PeekType() == TokenType.Class)
+                {
+                    Eat(TokenType.Class);
+                }
+                else if(PeekType() == TokenType.Struct)
+                {
+                    Eat(TokenType.Struct);
                 }
                 else
                 {
@@ -1071,21 +1084,21 @@ namespace DSharp.Compiler.Parser
                 case TokenType.Delegate:
                     NextToken();
 
-                    return ParseDelegate(token, attributes, CheckModifiers(Modifiers.DelegateModifiers, modifiers));
+                    return ParseDelegate(token, attributes, CheckModifiers(Modifiers.DelegateModifiers, modifiers), true);
                 case TokenType.Class:
 
-                    return ParseTypeDeclaration(token, attributes, CheckModifiers(Modifiers.ClassModifiers, modifiers));
+                    return ParseTypeDeclaration(token, attributes, CheckModifiers(Modifiers.ClassModifiers, modifiers), true);
                 case TokenType.Struct:
 
                     return ParseTypeDeclaration(token, attributes,
-                        CheckModifiers(Modifiers.StructModifiers, modifiers));
+                        CheckModifiers(Modifiers.StructModifiers, modifiers), true);
                 case TokenType.Enum:
 
-                    return ParseTypeDeclaration(token, attributes, CheckModifiers(Modifiers.EnumModifiers, modifiers));
+                    return ParseTypeDeclaration(token, attributes, CheckModifiers(Modifiers.EnumModifiers, modifiers), true);
                 case TokenType.Interface:
 
                     return ParseTypeDeclaration(token, attributes,
-                        CheckModifiers(Modifiers.InterfaceModifiers, modifiers));
+                        CheckModifiers(Modifiers.InterfaceModifiers, modifiers), true);
                 default:
                     Debug.Fail("Bad token type");
 
@@ -1691,7 +1704,8 @@ namespace DSharp.Compiler.Parser
         private ParseNodeList ParseFieldInitializersStatement(bool isFixed)
         {
             ParseNodeList returnValue = ParseFieldInitializers(isFixed);
-            Eat(TokenType.Semicolon);
+            if(PeekType() == TokenType.Semicolon)
+                Eat(TokenType.Semicolon);
 
             return returnValue;
         }
@@ -1764,7 +1778,7 @@ namespace DSharp.Compiler.Parser
             return new StackAllocNode(token, type, numberOfElements);
         }
 
-        private DelegateTypeNode ParseDelegate(Token token, ParseNodeList attributes, Modifiers modifiers)
+        private DelegateTypeNode ParseDelegate(Token token, ParseNodeList attributes, Modifiers modifiers, bool isNestedType = false)
         {
             ParseNode returnType = ParseReturnType();
             AtomicNameNode name = ParseIdentifier();
@@ -1781,7 +1795,8 @@ namespace DSharp.Compiler.Parser
                 name,
                 typeParameters,
                 formals,
-                constraints);
+                constraints,
+                isNestedType);
         }
 
         private ParseNode ParseNonArrayType()
@@ -3121,6 +3136,7 @@ namespace DSharp.Compiler.Parser
                 case TokenType.True:
                 case TokenType.False:
                 case TokenType.Literal:
+                case TokenType.Default:
                     expr = new LiteralNode(NextToken());
 
                     break;
@@ -3317,10 +3333,27 @@ namespace DSharp.Compiler.Parser
                 return new ArrayNewNode(token, type, exprList, initExpr);
             }
 
-            return new NewNode(
-                token,
-                type,
-                ParseParenArgumentList());
+            var typeInitialiser = new NewNode(token, type, ParseParenArgumentList());
+            if(PeekType() == TokenType.OpenCurly)
+            {
+                NextToken();
+
+                ParseNodeList objectAssignmentExpressions = new ParseNodeList();
+                while (PeekType() != TokenType.CloseCurly && PeekType() != TokenType.Eof)
+                {
+                    objectAssignmentExpressions.Append(ParseExpression());
+
+                    if (null == EatOpt(TokenType.Comma))
+                    {
+                        break;
+                    }
+                }
+
+                Eat(TokenType.CloseCurly);
+                return new ObjectInitializerNode(token, typeInitialiser, objectAssignmentExpressions);
+            }
+
+            return typeInitialiser;
         }
 
         private ArrayInitializerNode ParseArrayInitializer()
@@ -3355,20 +3388,23 @@ namespace DSharp.Compiler.Parser
         {
             Token token = PeekToken();
 
-            Eat(TokenType.OpenParen);
             ParseNodeList list = new ParseNodeList();
-
-            while (PeekType() != TokenType.CloseParen)
+            if(PeekType() == TokenType.OpenParen)
             {
-                list.Append(ParseArgument());
+                Eat(TokenType.OpenParen);
 
-                if (null == EatOpt(TokenType.Comma))
+                while (PeekType() != TokenType.CloseParen)
                 {
-                    break;
-                }
-            }
+                    list.Append(ParseArgument());
 
-            Eat(TokenType.CloseParen);
+                    if (null == EatOpt(TokenType.Comma))
+                    {
+                        break;
+                    }
+                }
+
+                Eat(TokenType.CloseParen);
+            }
 
             return new ExpressionListNode(token, list);
         }

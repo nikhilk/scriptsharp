@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Html;
 using System.Runtime.CompilerServices;
 
@@ -245,18 +245,5 @@ namespace BasicTests {
         /// Executes code.
         /// </summary>
         void Execute();
-    }
-
-    /// <summary>
-    /// Class with extension methods.
-    /// </summary>
-    [ScriptExtension("$global")]
-    public static class GlobalMethodsClass {
-
-        /// <summary>
-        /// Runs.
-        /// </summary>
-        public static void Run() {
-        }
     }
 }

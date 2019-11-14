@@ -2,7 +2,6 @@
 
 namespace System.Collections
 {
-    [ScriptImport]
     public interface IList : ICollection
     {
         [ScriptField]

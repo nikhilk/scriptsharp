@@ -31,6 +31,8 @@ namespace DSharp.Compiler
 
         public bool EnableDocComments => DocCommentFile != null;
 
+        public bool DebugMode { get; set; } = false;
+
         //TODO: Remove this mechanism
         public bool Validate(out string errorMessage)
         {

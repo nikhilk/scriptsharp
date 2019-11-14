@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // MyEnum
 
   var MyEnum = {
@@ -72,7 +71,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      MyEnum: MyEnum,
+      MyEnum: new ss.Enum('MyEnum', MyEnum),
       IXyzInterface: ss.defineInterface(IXyzInterface),
       MyRecord: MyRecord,
       MyClass: ss.defineClass(MyClass, MyClass$, [], null),
@@ -85,3 +84,4 @@ define('test', ['ss'], function(ss) {
 
   return $exports;
 });
+

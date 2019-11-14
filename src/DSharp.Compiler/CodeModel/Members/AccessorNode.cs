@@ -1,4 +1,4 @@
-// AccessorNode.cs
+﻿// AccessorNode.cs
 // Script#/Core/Compiler
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -25,6 +25,7 @@ namespace DSharp.Compiler.CodeModel.Members
             Implementation = (BlockStatementNode) GetParentedNode(body);
             this.attributes = GetParentedNodeList(attributes);
             Modifiers = modifiers;
+            IsAutoProperty = body == null;
         }
 
         public BlockStatementNode Implementation { get; }
@@ -43,5 +44,7 @@ namespace DSharp.Compiler.CodeModel.Members
                 return AccessorType.Set;
             }
         }
+
+        public bool IsAutoProperty { get; }
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Html;
 using System.Runtime.CompilerServices;
 using ScriptFX;
@@ -6,13 +6,6 @@ using ScriptFX;
 [assembly: ScriptAssembly("test")]
 
 namespace BasicTests {
-
-    [ScriptExtension("$global")]
-    public static class GlobalMethodsClass {
-
-        public static void Run() {
-        }
-    }
 
     public class App {
 

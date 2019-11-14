@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
@@ -10,6 +10,18 @@ namespace MemberTests {
         int XYZ { get; set; }
         bool IsFoo { get; }
         string ISet { set; }
+    }
+
+    public class Program
+    {
+        public static int Main(string[] args)
+        {
+            Properties properties = new Properties("Private String");
+            properties.Standard = "Standard Property!";
+            properties.Normal = "test2";
+            var readWrite = properties.ReadLocalWrite;
+            var readonlyValue = properties.ReadonlyValue;
+        }
     }
 
     public class Test {
@@ -71,6 +83,45 @@ namespace MemberTests {
             }
 
             n = Test.StaticProp;
+        }
+    }
+
+    public class Properties
+    {
+        private string readWriteWithBacking;
+
+        public string Normal { get; set; }
+
+        public string Standard { get; set; }
+
+        public string ReadLocalWrite { get; private set; }
+
+        public string ReadonlyValue { get; } //CSharp 6!
+
+        public string ReadWriteWithBacking
+        {
+            get { return readWriteWithBacking; }
+            set { readWriteWithBacking = value; }
+        }
+
+        public Properties(string readonlyVal)
+        {
+            ReadonlyValue = readonlyVal ?? "InitialState_ReadonlyValue";
+            ReadLocalWrite = "InitialState_ReadLocalWrite";
+            Normal = ReadLocalWrite ?? CreateNormalExpression(delegate ()
+            {
+                return "TestValue";
+            });
+        }
+
+        public void Change(string value)
+        {
+            ReadLocalWrite = value;
+        }
+
+        private static string CreateNormalExpression(Func<string> returnValue)
+        {
+            returnValue.Invoke();
         }
     }
 }

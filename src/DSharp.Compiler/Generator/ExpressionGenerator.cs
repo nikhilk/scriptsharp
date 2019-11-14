@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using DSharp.Compiler.Extensions;
 using DSharp.Compiler.ScriptModel.Expressions;
 using DSharp.Compiler.ScriptModel.Symbols;
@@ -28,7 +29,20 @@ namespace DSharp.Compiler.Generator
             ClassSymbol baseClass = ((ClassSymbol)symbol.Parent).BaseClass;
             Debug.Assert(baseClass != null);
 
-            writer.Write(baseClass.FullGeneratedName);
+            if(baseClass.GenericArguments?.Any() ?? false)
+            {
+                writer.Write(DSharpStringResources.ScriptExportMember("getGenericConstructor"));
+                writer.Write("(");
+                writer.Write(baseClass.FullGeneratedName);
+                writer.Write(", ");
+                generator.WriteGenericTypeArgumentsMap(baseClass.GenericArguments, baseClass.GenericParameters);
+                writer.Write(")");
+            }
+            else
+            {
+                writer.Write(baseClass.FullGeneratedName);
+            }
+
             writer.Write(".call(this");
 
             if (expression.Parameters != null)
@@ -73,6 +87,7 @@ namespace DSharp.Compiler.Generator
                         GenerateExpression(generator, symbol, expression.RightOperand);
                     }
 
+                    propExpression.Property.IncrementReferenceCount();
                     return;
                 }
 
@@ -109,6 +124,7 @@ namespace DSharp.Compiler.Generator
                             writer.Write(")");
                         }
 
+                        indexExpression.Indexer.IncrementReferenceCount();
                         return;
                     }
                     else if (indexerSymbol.Parent is TypeSymbol typeSymbol && !typeSymbol.IsNativeArray)
@@ -149,6 +165,7 @@ namespace DSharp.Compiler.Generator
                     writer.Write(OperatorConverter.OperatorToString(expression.Operator - 1));
                     GenerateExpression(generator, symbol, expression.RightOperand);
 
+                    propExpression.Property.IncrementReferenceCount();
                     return;
                 }
             }
@@ -174,7 +191,7 @@ namespace DSharp.Compiler.Generator
                 writer.Write(", ");
                 writer.Write(typeExpression.AssociatedType.FullGeneratedName);
                 writer.Write(")");
-
+                typeExpression.AssociatedType.IncrementReferenceCount();
                 return;
             }
             else if (expression.Operator == Operator.EqualEqualEqual ||
@@ -304,23 +321,9 @@ namespace DSharp.Compiler.Generator
             }
             else if ((expression.Method.Visibility & MemberVisibility.Static) != 0)
             {
-                if (expression.Method.IsExtension)
-                {
-                    Debug.Assert(expression.Method.Parent.Type == SymbolType.Class);
-
-                    ClassSymbol classSymbol = (ClassSymbol)expression.Method.Parent;
-                    Debug.Assert(classSymbol.IsExtenderClass);
-
-                    writer.Write(classSymbol.Extendee);
-                    writer.Write(".");
-                    writer.Write(expression.Method.GeneratedName);
-                }
-                else
-                {
-                    GenerateExpression(generator, symbol, expression.ObjectReference);
-                    writer.Write(".");
-                    writer.Write(expression.Method.GeneratedName);
-                }
+                GenerateExpression(generator, symbol, expression.ObjectReference);
+                writer.Write(".");
+                writer.Write(expression.Method.GeneratedName);
             }
             else
             {
@@ -406,6 +409,8 @@ namespace DSharp.Compiler.Generator
                 GenerateExpression(generator, symbol, expression.Handler);
                 writer.Write(")");
             }
+
+            expression.Event.IncrementReferenceCount();
         }
 
         public static void GenerateExpression(ScriptGenerator generator, MemberSymbol symbol, Expression expression)
@@ -421,87 +426,75 @@ namespace DSharp.Compiler.Generator
             {
                 case ExpressionType.Literal:
                     GenerateLiteralExpression(generator, symbol, (LiteralExpression)expression);
-
                     break;
                 case ExpressionType.Local:
                     GenerateLocalExpression(generator, symbol, (LocalExpression)expression);
-
                     break;
                 case ExpressionType.Member:
-                    throw new ScriptGeneratorException(symbol, "MemberExpression missed from conversion to higher level expression.");
+                    GenerateMemberExpression(generator, symbol, (MemberExpression)expression);
+                    break;
                 case ExpressionType.Field:
                     GenerateFieldExpression(generator, symbol, (FieldExpression)expression);
-
                     break;
                 case ExpressionType.EnumerationField:
                     GenerateEnumerationFieldExpression(generator, symbol, (EnumerationFieldExpression)expression);
-
                     break;
                 case ExpressionType.PropertyGet:
                     GeneratePropertyExpression(generator, symbol, (PropertyExpression)expression);
-
                     break;
                 case ExpressionType.PropertySet:
                     throw new ScriptGeneratorException(symbol, "PropertyExpression(set) should be covered as part of BinaryExpression logic.");
                 case ExpressionType.MethodInvoke:
                 case ExpressionType.DelegateInvoke:
                     GenerateMethodExpression(generator, symbol, (MethodExpression)expression);
-
                     break;
                 case ExpressionType.BaseInitializer:
                     GenerateBaseInitializerExpression(generator, symbol, (BaseInitializerExpression)expression);
-
                     break;
                 case ExpressionType.EventAdd:
                 case ExpressionType.EventRemove:
                     GenerateEventExpression(generator, symbol, (EventExpression)expression);
-
                     break;
                 case ExpressionType.Indexer:
                     GenerateIndexerExpression(generator, symbol, (IndexerExpression)expression);
-
                     break;
                 case ExpressionType.This:
                     GenerateThisExpression(generator);
-
                     break;
                 case ExpressionType.Base:
                     throw new ScriptGeneratorException(symbol, "BaseExpression not handled by container expression");
                 case ExpressionType.New:
                     GenerateNewExpression(generator, symbol, (NewExpression)expression);
-
                     break;
                 case ExpressionType.Unary:
                     GenerateUnaryExpression(generator, symbol, (UnaryExpression)expression);
-
                     break;
                 case ExpressionType.Binary:
                     GenerateBinaryExpression(generator, symbol, (BinaryExpression)expression);
-
                     break;
                 case ExpressionType.Conditional:
                     GenerateConditionalExpression(generator, symbol, (ConditionalExpression)expression);
-
                     break;
                 case ExpressionType.Type:
                     GenerateTypeExpression(generator, symbol, (TypeExpression)expression);
-
                     break;
                 case ExpressionType.Delegate:
                     GenerateDelegateExpression(generator, symbol, (DelegateExpression)expression);
-
                     break;
                 case ExpressionType.LateBound:
                     GenerateLateBoundExpression(generator, symbol, (LateBoundExpression)expression);
-
                     break;
                 case ExpressionType.InlineScript:
                     GenerateInlineScriptExpression(generator, symbol, (InlineScriptExpression)expression);
-
                     break;
                 case ExpressionType.NewDelegate:
                     GenerateExpression(generator, symbol, ((NewDelegateExpression)expression).TypeExpression);
-
+                    break;
+                case ExpressionType.Object:
+                    GenerateObjectExpression(generator, symbol, ((ObjectExpression)expression).Properties);
+                    break;
+                case ExpressionType.ObjectInitializer:
+                    GenerateObjectInitializerExpression(generator, symbol, (ObjectInitializerExpression)expression);
                     break;
                 default:
                     throw new ScriptGeneratorException(symbol, "Unexpected expression type: " + expression.Type);
@@ -509,6 +502,67 @@ namespace DSharp.Compiler.Generator
 
             if (expression.Parenthesized)
             {
+                writer.Write(")");
+            }
+        }
+
+        private static void GenerateMemberExpression(ScriptGenerator generator, MemberSymbol symbol, MemberExpression expression)
+        {
+            ScriptTextWriter writer = generator.Writer;
+
+            GenerateExpression(generator, symbol, expression.ObjectReference);
+            writer.Write(".");
+            writer.Write(expression.Member.GeneratedName);
+        }
+
+        private static void GenerateObjectExpression(ScriptGenerator generator, MemberSymbol symbol, IDictionary<string, Expression> properties)
+        {
+            ScriptTextWriter writer = generator.Writer;
+
+            writer.Write("{");
+            bool commaNeeded = false;
+
+            foreach (var property in properties)
+            {
+                if(commaNeeded)
+                {
+                    writer.Write(", ");
+                }
+
+                writer.Write(property.Key);
+                writer.Write(": ");
+                GenerateExpression(generator, symbol, property.Value);
+
+                commaNeeded = true;
+            }
+
+            writer.Write("}");
+        }
+
+        public static void GenerateObjectInitializerExpression(
+            ScriptGenerator generator,
+            MemberSymbol symbol,
+            ObjectInitializerExpression initializerExpression)
+        {
+            ScriptTextWriter writer = generator.Writer;
+
+            var type = initializerExpression.NewExpression.EvaluatedType;
+
+            if(type.IsReservedType())
+            {
+                //TODO: Implement Dictionary initializer + List Initializer + Custom initializers
+                GenerateNewExpression(generator, symbol, initializerExpression.NewExpression);
+            }
+            else
+            {
+                writer.Write($"{DSharpStringResources.ScriptExportMember("initializeObject")}");
+                writer.Write("(");
+                GenerateNewExpression(generator, symbol, initializerExpression.NewExpression);
+                writer.Write(", ");
+                var properties = initializerExpression.Initializers.ToDictionary(
+                    item => (((BinaryExpression)item).LeftOperand as PropertyExpression).Property.GeneratedName,
+                    item => ((BinaryExpression)item).RightOperand);
+                GenerateObjectExpression(generator, symbol, properties);
                 writer.Write(")");
             }
         }
@@ -588,12 +642,19 @@ namespace DSharp.Compiler.Generator
             {
                 writer.Write(expression.Field.GeneratedName);
             }
+            else if (expression.Field.IsConstant)
+            {
+                GenerateLiteralExpression(generator, symbol,
+                    new LiteralExpression(expression.Field.AssociatedType, expression.Field.Value));
+            }
             else
             {
                 GenerateExpression(generator, symbol, expression.ObjectReference);
                 writer.Write(".");
                 writer.Write(expression.Field.GeneratedName);
             }
+
+            expression.Field.IncrementReferenceCount();
         }
 
         private static void GenerateIndexerExpression(ScriptGenerator generator, MemberSymbol symbol,
@@ -646,6 +707,8 @@ namespace DSharp.Compiler.Generator
                 GenerateExpressionList(generator, expression.Indexer, expression.Indices);
                 writer.Write(")");
             }
+
+            expression.Indexer.IncrementReferenceCount();
         }
 
         private static void GenerateInlineScriptExpression(ScriptGenerator generator, MemberSymbol symbol,
@@ -861,7 +924,14 @@ namespace DSharp.Compiler.Generator
                 }
                 else if (value is char || value is string)
                 {
-                    textValue = Utility.QuoteString(value.ToString());
+                    if (expression.EvaluatedType is TypeSymbol typeSymbol && typeSymbol.IsNativeObject())
+                    {
+                        textValue = value.ToString();
+                    }
+                    else
+                    {
+                        textValue = Utility.QuoteString(value.ToString());
+                    }
                 }
                 else if (value is TypeSymbol typeSymbol)
                 {
@@ -917,8 +987,6 @@ namespace DSharp.Compiler.Generator
 
             if (expression.ObjectReference is BaseExpression baseExpression)
             {
-                Debug.Assert(expression.Method.IsExtension == false);
-
                 writer.Write(baseExpression.EvaluatedType.FullGeneratedName);
                 writer.Write(".prototype.");
                 writer.Write(expression.Method.GeneratedName);
@@ -959,24 +1027,11 @@ namespace DSharp.Compiler.Generator
                 }
                 else
                 {
-                    if (expression.Method.IsExtension)
+                    GenerateExpression(generator, symbol, expression.ObjectReference);
+
+                    if (expression.Method.GeneratedName.Length != 0)
                     {
-                        Debug.Assert(expression.Method.Parent.Type == SymbolType.Class);
-
-                        string extendee = ((ClassSymbol)expression.Method.Parent).Extendee;
-                        Debug.Assert(string.IsNullOrEmpty(extendee) == false);
-
-                        writer.Write(extendee);
                         writer.Write(".");
-                    }
-                    else
-                    {
-                        GenerateExpression(generator, symbol, expression.ObjectReference);
-
-                        if (expression.Method.GeneratedName.Length != 0)
-                        {
-                            writer.Write(".");
-                        }
                     }
 
                     if (expression.Method.GeneratedName.Length != 0)
@@ -994,6 +1049,8 @@ namespace DSharp.Compiler.Generator
                     writer.Write(")");
                 }
             }
+
+            expression.Method.IncrementReferenceCount();
         }
 
         private static void GenerateNewExpression(ScriptGenerator generator, MemberSymbol symbol,
@@ -1098,25 +1155,56 @@ namespace DSharp.Compiler.Generator
                 }
             }
 
-            writer.Write("new ");
-
-            if (expression.IsSpecificType)
+            if (expression.AssociatedType.IsGeneric
+                && expression.AssociatedType.GenericType.IsApplicationType
+                && (expression.AssociatedType.GenericArguments?.Any() ?? false))
             {
-                writer.Write(expression.AssociatedType.FullGeneratedName);
+                writer.Write(DSharpStringResources.ScriptExportMember("createGenericType"));
+                writer.Write("(");
+
+                if (expression.IsSpecificType)
+                {
+                    writer.Write(expression.AssociatedType.FullGeneratedName);
+                }
+                else
+                {
+                    GenerateExpression(generator, symbol, expression.TypeExpression);
+                }
+
+                writer.Write(", ");
+                generator.WriteGenericTypeArgumentsMap(expression.AssociatedType.GenericArguments, expression.AssociatedType.GenericParameters);
+                
+                if (expression.Parameters != null)
+                {
+                    writer.Write(", ");
+                    GenerateExpressionList(generator, symbol, expression.Parameters);
+                }
+
+                writer.Write(")");
             }
             else
             {
-                GenerateExpression(generator, symbol, expression.TypeExpression);
+                writer.Write("new ");
+
+                if (expression.IsSpecificType)
+                {
+                    writer.Write(expression.AssociatedType.FullGeneratedName);
+                }
+                else
+                {
+                    GenerateExpression(generator, symbol, expression.TypeExpression);
+                }
+
+                writer.Write("(");
+
+                if (expression.Parameters != null)
+                {
+                    GenerateExpressionList(generator, symbol, expression.Parameters);
+                }
+
+                writer.Write(")");
+                expression.AssociatedType.IncrementReferenceCount();
             }
-
-            writer.Write("(");
-
-            if (expression.Parameters != null)
-            {
-                GenerateExpressionList(generator, symbol, expression.Parameters);
-            }
-
-            writer.Write(")");
         }
 
         private static void GeneratePropertyExpression(ScriptGenerator generator, MemberSymbol symbol,
@@ -1145,6 +1233,8 @@ namespace DSharp.Compiler.Generator
                 writer.Write(".");
                 writer.Write(expression.Property.GeneratedName);
             }
+
+            expression.Property.IncrementReferenceCount();
         }
 
 
@@ -1159,6 +1249,7 @@ namespace DSharp.Compiler.Generator
         {
             ScriptTextWriter writer = generator.Writer;
             writer.Write(expression.AssociatedType.FullGeneratedName);
+            expression.AssociatedType.IncrementReferenceCount();
         }
 
         private static void GenerateUnaryExpression(ScriptGenerator generator, MemberSymbol symbol,

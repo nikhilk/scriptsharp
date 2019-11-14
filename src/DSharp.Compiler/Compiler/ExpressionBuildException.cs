@@ -1,12 +1,16 @@
 ﻿using System;
+using DSharp.Compiler.CodeModel;
 
 namespace DSharp.Compiler
 {
-    public sealed class ExpressionBuildException : Exception
+    internal sealed class ExpressionBuildException : Exception
     {
-        public ExpressionBuildException(string message)
+        public ExpressionBuildException(ParseNode node, string message)
             : base(message)
         {
+            Node = node;
         }
+
+        public ParseNode Node { get; }
     }
 }

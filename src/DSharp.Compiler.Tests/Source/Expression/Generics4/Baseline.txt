@@ -1,0 +1,110 @@
+﻿"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // TypeTests.Usages$IBase
+
+  function Usages$IBase() { }
+
+
+  // TypeTests.Usages
+
+  function Usages() {
+  }
+  Usages.doSomethingAwesome = function($TArgs, value) {
+    return ss.createGenericType(GenericClass_$1, {T : $TArgs['T']}, value);
+  };
+  var Usages$ = {
+    use: function() {
+      var genericClass = ss.createGenericType(GenericClass_$1, {T : Number}, 1);
+      genericClass.doSomethingWith({TNew: Boolean}, false, 1);
+      genericClass.register({TBase: Usages$IBase, TImplementation: Usages$ImplementsBase});
+      var newClass = Usages.doSomethingAwesome({T: Number}, 1);
+      var success1 = ss.typeOf(newClass) === ss.getGenericConstructor(GenericClass_$1, {T: String});
+      var success2 = ss.typeOf(genericClass) === ss.typeOf(newClass);
+      var instance = ss.createGenericType(GenericClass_$1, {T : ss.getGenericConstructor(GenericClass_$1, {T : Number})}, ss.createGenericType(GenericClass_$1, {T : Number}, 1));
+      var outInt = instance.Value.Value;
+      this.parseTheList({T: Number}, []).push(4);
+      var wrapper = new Wrapper();
+      wrapper.Invokee.invoke({T: ss.getGenericConstructor(GenericClass_$1, {T: Number})}, '').doSomethingWith({TNew: Boolean}, true, 0);
+      var val = new Invoker().invokeAll({T: Number}, '1');
+    },
+    parseTheList: function($TArgs, what) {
+      return what;
+    }
+  };
+
+
+  // TypeTests.Usages$ImplementsBase
+
+  function Usages$ImplementsBase() {
+  }
+  var Usages$ImplementsBase$ = {
+
+  };
+
+
+  // TypeTests.GenericClass`1
+
+  function GenericClass_$1(value) {
+    this._value = value;
+  }
+  var GenericClass_$1$ = {
+    $get_Value: function() {
+      return this._value;
+    },
+    $get_Type: function() {
+      return ss.getTypeArgument(this, 'T');
+    },
+    doSomethingWith: function($TArgs, n, o) {
+      var tnewType = $TArgs['TNew'];
+      var oldType = ss.getTypeArgument(this, 'T');
+      if (tnewType === oldType) {
+        return;
+      }
+    },
+    register: function($TArgs) {
+      var baseT = $TArgs['TBase'];
+      var implT = $TArgs['TImplementation'];
+    }
+  };
+
+
+  // TypeTests.Wrapper
+
+  function Wrapper() {
+  }
+  var Wrapper$ = {
+
+  };
+
+
+  // TypeTests.Invoker
+
+  function Invoker() {
+  }
+  var Invoker$ = {
+    invoke: function($TArgs, value) {
+      return null;
+    },
+    invokeAll: function($TArgs, value) {
+      return null;
+    }
+  };
+
+
+  var $exports = ss.module('test',
+    {
+      Usages: ss.defineClass(Usages, Usages$, [], null)
+    },
+    {
+      Usages$IBase: ss.defineInterface(Usages$IBase),
+      Usages$ImplementsBase: ss.defineClass(Usages$ImplementsBase, Usages$ImplementsBase$, [], null, [Usages$IBase]),
+      GenericClass_$1: ss.defineClass(GenericClass_$1, GenericClass_$1$, [Object], null),
+      Wrapper: ss.defineClass(Wrapper, Wrapper$, [], null),
+      Invoker: ss.defineClass(Invoker, Invoker$, [], null)
+    });
+
+
+  return $exports;
+});

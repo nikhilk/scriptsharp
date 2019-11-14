@@ -1,4 +1,4 @@
-// LiteralNode.cs
+﻿// LiteralNode.cs
 // Script#/Core/Compiler
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -21,7 +21,7 @@ namespace DSharp.Compiler.CodeModel.Expressions
 
         private static LiteralToken CreateLiteralToken(Token token)
         {
-            if (token.Type == TokenType.Null)
+            if (token.Type == TokenType.Null || token.Type == TokenType.Default)
             {
                 return new NullToken(token.SourcePath, token.Position);
             }

@@ -1,0 +1,82 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // BasicTests.MyEnum
+
+  var MyEnum = {
+    item1: 0, 
+    item2: 1
+  };
+
+
+  // BasicTests.MyInterface`1
+
+  function MyInterface_$1() { }
+
+
+  // BasicTests.App
+
+  function App() {
+    ss.defineProperty(this, 'AutoProperty');
+    this._field = null;
+  }
+  var App$ = {
+    _method: ss.paramsGenerator(1, function(arg1, args) {
+      return 'text';
+    }),
+    _genericMethod: function($TArgs) {
+      return $TArgs['TArg'];
+    },
+    get_item: function(arg) {
+      return 0;
+    },
+    set_item: function(arg, value) {
+      return value;
+    }
+  };
+
+
+  // BasicTests.Extensions
+
+  function Extensions() {
+  }
+  Extensions._extensionMethod = function(arg) {
+    return;
+  };
+
+
+  // BasicTests.MyClass
+
+  function MyClass() {
+  }
+  var MyClass$ = {
+
+  };
+
+
+  // BasicTests.MyStruct
+
+  function MyStruct() {
+    this._number = 0;
+  }
+  var MyStruct$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      MyEnum: new ss.Enum('MyEnum', MyEnum),
+      MyInterface_$1: ss.defineInterface(MyInterface_$1),
+      App: ss.defineClass(App, App$, [], null, [MyInterface_$1]),
+      Extensions: ss.defineClass(Extensions, null, [], null),
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null),
+      MyStruct: ss.defineClass(MyStruct, MyStruct$, [], null)
+    });
+
+  App._number = 42;
+
+  return $exports;
+});
+

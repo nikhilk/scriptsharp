@@ -2,6 +2,29 @@
 
 define('ExpressionTests.ExtensionMethods', ['ss'], function(ss) {
   var $global = this;
+  // ExpressionTests.MyNumbers
+
+  var MyNumbers = {
+    zero: 0, 
+    one: 1
+  };
+
+
+  // ExpressionTests.IServiceCollection
+
+  function IServiceCollection() { }
+
+
+  // ExpressionTests.ITemp
+
+  function ITemp() { }
+
+
+  // ExpressionTests.IContext
+
+  function IContext() { }
+
+
   // ExpressionTests.StringExtensions
 
   function StringExtensions() {
@@ -18,6 +41,12 @@ define('ExpressionTests.ExtensionMethods', ['ss'], function(ss) {
   IntExtensions.increment = function(source) {
     return InternalIntExtensions.add(source, 1);
   };
+  IntExtensions.isNumber = function(source, number) {
+    return source === number;
+  };
+  IntExtensions.isNumber2 = function(source, number) {
+    return source === number;
+  };
 
 
   // ExpressionTests.InternalIntExtensions
@@ -29,29 +58,147 @@ define('ExpressionTests.ExtensionMethods', ['ss'], function(ss) {
   };
 
 
+  // ExpressionTests.IServiceCollectionExtension
+
+  function IServiceCollectionExtension() {
+  }
+  IServiceCollectionExtension.addSingleton = function($TArgs, services) {
+  };
+  IServiceCollectionExtension.addSingletonMany = function($TArgs, services, value) {
+  };
+
+
+  // ExpressionTests.ServiceProviderExtensions
+
+  function ServiceProviderExtensions() {
+  }
+  ServiceProviderExtensions.getService = function($TArgs, serviceProvider) {
+    return;
+  };
+  ServiceProviderExtensions.getT3 = function($TArgs, serviceProvider) {
+    return;
+  };
+
+
+  // ExpressionTests.ITempExtensions
+
+  function ITempExtensions() {
+  }
+  ITempExtensions.myAwesomeExtension = function(temp) {
+    return temp;
+  };
+
+
+  // ExpressionTests.ServiceCollection
+
+  function ServiceCollection() {
+  }
+  var ServiceCollection$ = {
+    addSpecialSingleton: function($TArgs) {
+      return null;
+    },
+    addSpecialSingleton2: function($TArgs, value) {
+      return null;
+    }
+  };
+
+
   // ExpressionTests.Program
 
   function Program() {
   }
   Program.main = function(args) {
     var value = StringExtensions.padRightC(StringExtensions.padRightC(StringExtensions.padRightC('', 10, 'F'), 10, 'F'), 10, 'F');
+    var services = null;
+    IServiceCollectionExtension.addSingleton({T: Temp}, services);
+    IServiceCollectionExtension.addSingletonMany({TBase: ITemp, TImp: Temp}, services, 1);
+    services.addSpecialSingleton({T: Temp});
+    services.addSpecialSingleton2({T: Temp}, 1);
+    var serviceColection = null;
+    IServiceCollectionExtension.addSingleton({T: Temp}, serviceColection);
+    IServiceCollectionExtension.addSingletonMany({TBase: ITemp, TImp: Temp}, serviceColection, 1);
+    serviceColection.addSpecialSingleton({T: Temp});
+    serviceColection.addSpecialSingleton2({T: Temp}, 1);
+    var myServiceColection = null;
+    IServiceCollectionExtension.addSingleton({T: Temp}, myServiceColection);
+    IServiceCollectionExtension.addSingletonMany({TBase: ITemp, TImp: Temp}, myServiceColection, 1);
+    myServiceColection.addSpecialSingleton({T: Temp});
+    myServiceColection.addSpecialSingleton2({T: Temp}, 1);
+    var myOtherServiceColection = null;
+    IServiceCollectionExtension.addSingleton({T: Temp}, myOtherServiceColection);
+    IServiceCollectionExtension.addSingletonMany({TBase: ITemp, TImp: Temp}, myOtherServiceColection, 1);
+    myOtherServiceColection.addSpecialSingleton({T: Temp});
+    myOtherServiceColection.addSpecialSingleton2({T: Temp}, 1);
+    ServiceProviderExtensions.getService({T: Number}, Program._context.Context.Context.Context.Context.Services);
+    var value2 = Program._context.Context.Services.getService(Number);
+    Program._context.Context.Services.getService(Number);
+    var i = InternalIntExtensions.add(ServiceProviderExtensions.getService({T: Number}, Program._resolve()), 1);
+    var temp = ITempExtensions.myAwesomeExtension(ServiceProviderExtensions.getService({T: Temp}, Program._resolve()));
+    var temp2 = ITempExtensions.myAwesomeExtension(ITempExtensions.myAwesomeExtension(ServiceProviderExtensions.getT3({T1: Number, T2: Boolean, T3: Temp}, Program._resolve())));
+    IntExtensions.isNumber(0, 1);
+    IntExtensions.isNumber2(1, 'constantOne');
+    IntExtensions.isNumber2(1, 'CONSTANT_TWO');
     return IntExtensions.increment(0);
+  };
+  Program._resolve = function() {
+    return null;
   };
   var Program$ = {
 
   };
 
 
+  // ExpressionTests.Temp
+
+  function Temp() {
+  }
+  var Temp$ = {
+
+  };
+
+
+  // ExpressionTests.MyServiceCollection
+
+  function MyServiceCollection() {
+    ServiceCollection.call(this);
+  }
+  var MyServiceCollection$ = {
+
+  };
+
+
+  // ExpressionTests.MyOtherServiceCollection
+
+  function MyOtherServiceCollection() {
+    ServiceCollection.call(this);
+  }
+  var MyOtherServiceCollection$ = {
+
+  };
+
+
   var $exports = ss.module('ExpressionTests.ExtensionMethods',
     {
-      InternalIntExtensions: ss.defineClass(InternalIntExtensions, null, [], null)
+      InternalIntExtensions: ss.defineClass(InternalIntExtensions, null, [], null),
+      IServiceCollectionExtension: ss.defineClass(IServiceCollectionExtension, null, [], null)
     },
     {
+      MyNumbers: new ss.Enum('MyNumbers', MyNumbers),
+      IServiceCollection: ss.defineInterface(IServiceCollection),
+      ITemp: ss.defineInterface(ITemp),
+      IContext: ss.defineInterface(IContext),
       StringExtensions: ss.defineClass(StringExtensions, null, [], null),
       IntExtensions: ss.defineClass(IntExtensions, null, [], null),
-      Program: ss.defineClass(Program, Program$, [], null)
+      ServiceProviderExtensions: ss.defineClass(ServiceProviderExtensions, null, [], null),
+      ITempExtensions: ss.defineClass(ITempExtensions, null, [], null),
+      ServiceCollection: ss.defineClass(ServiceCollection, ServiceCollection$, [], null, [IServiceCollection]),
+      Program: ss.defineClass(Program, Program$, [], null),
+      Temp: ss.defineClass(Temp, Temp$, [], null, [ITemp]),
+      MyServiceCollection: ss.defineClass(MyServiceCollection, MyServiceCollection$, [], ServiceCollection),
+      MyOtherServiceCollection: ss.defineClass(MyOtherServiceCollection, MyOtherServiceCollection$, [], ServiceCollection, [IServiceCollection])
     });
 
 
   return $exports;
 });
+

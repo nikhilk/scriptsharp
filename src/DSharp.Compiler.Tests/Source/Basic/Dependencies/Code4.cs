@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Html;
 using System.Runtime.CompilerServices;
 using Library1;
@@ -8,7 +8,9 @@ using Library3;
 [assembly: ScriptAssembly("test")]
 [assembly: ScriptReference("comp3", Path = "/lib/comp3")]
 [assembly: ScriptReference("comp4", DelayLoad = true)]
-[assembly: ScriptReference("text!data.html", Identifier = "dataTemplate")]
+
+[assembly: ScriptReference("text!data.html", Identifier = "dataTemplate", IsExplicit = true)]
+[assembly: ScriptReference("text!unused.html", Identifier = "nonUsed")]
 
 namespace BasicTests {
 

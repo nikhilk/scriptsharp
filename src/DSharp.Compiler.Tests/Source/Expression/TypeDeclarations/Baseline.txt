@@ -1,0 +1,51 @@
+﻿"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // Nothing.ITest
+
+  function ITest() { }
+
+
+  // Nothing.ITest`1
+
+  function ITest_$1() { }
+
+
+  // Nothing.X
+
+  function X(enumerable, t_enumerable, dict, t_dict, test, t_test, t_equatable) {
+  }
+  var X$ = {
+    getEnumerator: function() {
+      return null;
+    },
+    equals: function(other) {
+      return true;
+    }
+  };
+
+
+  // Nothing.Hello
+
+  function Hello() {
+  }
+  Hello.main = function() {
+    console.debug('Hello World!');
+  };
+  var Hello$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      ITest: ss.defineInterface(ITest),
+      ITest_$1: ss.defineInterface(ITest_$1),
+      X: ss.defineClass(X, X$, [ss.IEnumerable, ss.IEnumerable_$1, ss.IDictionary, ss.IDictionary_$2, ITest, ITest_$1, ss.IEquatable_$1], null, [ss.IEnumerable, ss.IEnumerable_$1, ITest, ITest_$1, ss.IEquatable_$1]),
+      Hello: ss.defineClass(Hello, Hello$, [], null)
+    });
+
+
+  return $exports;
+});

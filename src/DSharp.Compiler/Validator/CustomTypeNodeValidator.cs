@@ -16,8 +16,6 @@ namespace DSharp.Compiler.Validator
         {
             CustomTypeNode typeNode = (CustomTypeNode)node;
 
-            bool extensionRestrictions = false;
-            bool moduleRestrictions = false;
             bool recordRestrictions = false;
             bool hasCodeMembers = false;
             ParseNode codeMemberNode = null;
@@ -29,6 +27,20 @@ namespace DSharp.Compiler.Validator
                 // This is an imported type definition... we'll assume its valid, since
                 // the set of restrictions for such types is fewer, and different, so
                 // for now that translates into skipping the members.
+
+                return false;
+            }
+
+            if ((typeNode.Modifiers & Modifiers.New) != 0)
+            {
+                errorHandler.ReportNodeValidationError(DSharpStringResources.NEW_KEYWORD_ON_TYPE_UNSUPPORTED, typeNode);
+
+                return false;
+            }
+
+            if ((typeNode.Modifiers & (Modifiers.Private | Modifiers.Protected)) != 0)
+            {
+                errorHandler.ReportNodeValidationError(DSharpStringResources.ACCESS_MODIFIER_ON_TYPE_UNSUPPORTED, typeNode);
 
                 return false;
             }
@@ -59,39 +71,6 @@ namespace DSharp.Compiler.Validator
 
                     recordRestrictions = true;
                 }
-
-                AttributeNode extensionAttribute = AttributeNode.FindAttribute(typeNode.Attributes, DSharpStringResources.SCRIPT_EXTENSION_ATTRIBUTE);
-
-                if (extensionAttribute != null)
-                {
-                    extensionRestrictions = true;
-
-                    if ((typeNode.Modifiers & Modifiers.Static) == 0)
-                    {
-                        errorHandler.ReportNodeValidationError(DSharpStringResources.SCRIPT_EXTENSION_NON_STATIC_CLASS_VIOLATION, typeNode);
-                    }
-
-                    if (extensionAttribute.Arguments.Count != 1 ||
-                        !(extensionAttribute.Arguments[0] is LiteralNode) ||
-                        !(((LiteralNode)extensionAttribute.Arguments[0]).Value is string) ||
-                        string.IsNullOrEmpty((string)((LiteralNode)extensionAttribute.Arguments[0]).Value))
-                    {
-                        errorHandler.ReportNodeValidationError(DSharpStringResources.EXTENSION_ATTRIBUTE_ERROR, typeNode);
-                    }
-                }
-
-                AttributeNode moduleAttribute = AttributeNode.FindAttribute(typeNode.Attributes, DSharpStringResources.SCRIPT_MODULE_ATTRIBUTE);
-
-                if (moduleAttribute != null)
-                {
-                    moduleRestrictions = true;
-
-                    if ((typeNode.Modifiers & Modifiers.Static) == 0 ||
-                        (typeNode.Modifiers & Modifiers.Internal) == 0)
-                    {
-                        errorHandler.ReportNodeValidationError(DSharpStringResources.SCRIPT_MODULE_NON_INTERNAL_CLASS_ERROR, typeNode);
-                    }
-                }
             }
 
             if (typeNode.Members != null && typeNode.Members.Count != 0)
@@ -103,8 +82,6 @@ namespace DSharp.Compiler.Validator
                 {
                     if (!(genericMemberNode is MemberNode))
                     {
-                        errorHandler.ReportNodeValidationError(DSharpStringResources.NESTED_TYPE_ERROR, node);
-
                         continue;
                     }
 
@@ -114,16 +91,6 @@ namespace DSharp.Compiler.Validator
                     {
                         // Extern methods are placeholders for creating overload signatures
                         continue;
-                    }
-
-                    if (extensionRestrictions && memberNode.NodeType != ParseNodeType.MethodDeclaration)
-                    {
-                        errorHandler.ReportNodeValidationError(DSharpStringResources.SCRIPT_EXTENSION_MEMBER_VIOLATION_ERROR, memberNode);
-                    }
-
-                    if (moduleRestrictions && memberNode.NodeType != ParseNodeType.ConstructorDeclaration)
-                    {
-                        errorHandler.ReportNodeValidationError(DSharpStringResources.SCRIPT_MODULE_NON_STATIC_CONSTRUCTOR, memberNode);
                     }
 
                     if (recordRestrictions &&
@@ -171,7 +138,11 @@ namespace DSharp.Compiler.Validator
                         errorHandler.ReportNodeValidationError(DSharpStringResources.UNSUPPORTED_METHOD_OVERLOAD, memberNode);
                     }
 
-                    memberNames[name] = null;
+                    // remember the method overload only if it wasn't ignored
+                    if (ignoreAttribute == null)
+                    {
+                        memberNames[name] = null;
+                    }
 
                     string nameToValidate = name;
                     bool preserveCase = false;

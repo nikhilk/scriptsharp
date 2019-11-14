@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CF118BCB-F594-4EBD-9571-107AD2E1B569}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.Build", "DSharp.Build\DSharp.Build.csproj", "{AFF55DAB-FF5C-41DC-9209-0C0B54EE1645}"
+	ProjectSection(ProjectDependencies) = postProject
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50} = {40A2DC00-FD4C-4B91-899F-AD989691DE50}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.Compiler", "DSharp.Compiler\DSharp.Compiler.csproj", "{35E58E1C-E298-44D8-9CA5-FB427C16FD1C}"
 EndProject
@@ -28,7 +31,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.Compiler.TestFramewo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.Compiler.Tests", "DSharp.Compiler.Tests\DSharp.Compiler.Tests.csproj", "{3E60FDD5-9E13-4935-B250-24BBA1E57BD5}"
 	ProjectSection(ProjectDependencies) = postProject
-		{DFA0CF1C-2713-47C7-A6E2-E77E284D6A46} = {DFA0CF1C-2713-47C7-A6E2-E77E284D6A46}
 		{36D4B098-A21C-4725-ACD3-400922885F38} = {36D4B098-A21C-4725-ACD3-400922885F38}
 		{3681A9A8-FC40-4125-B842-7775713C8DCE} = {3681A9A8-FC40-4125-B842-7775713C8DCE}
 		{AFF55DAB-FF5C-41DC-9209-0C0B54EE1645} = {AFF55DAB-FF5C-41DC-9209-0C0B54EE1645}
@@ -38,6 +40,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{9ECDD7B6-4D4A-4578-9157-B99214BEDE6F}"
 	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
 		DSharp.snk = DSharp.snk
 		global.json = global.json
 		NuGet.Config = NuGet.Config
@@ -52,6 +55,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.Sdk", "DSharp.Sdk\DS
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.Web.Sdk", "DSharp.Web.Sdk\DSharp.Web.Sdk.csproj", "{22A3E0ED-39CA-4929-A470-0FF8C057A316}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{035402A0-6ECC-4F02-8A20-0D8055F396DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.CodeAnalysis", "DSharp.CodeAnalysis\DSharp.CodeAnalysis.csproj", "{40A2DC00-FD4C-4B91-899F-AD989691DE50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.CodeAnalysis.Test", "DSharp.CodeAnalysis.Test\DSharp.CodeAnalysis.Test.csproj", "{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -241,6 +250,38 @@ Global
 		{22A3E0ED-39CA-4929-A470-0FF8C057A316}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{22A3E0ED-39CA-4929-A470-0FF8C057A316}.Release|x86.ActiveCfg = Release|Any CPU
 		{22A3E0ED-39CA-4929-A470-0FF8C057A316}.Release|x86.Build.0 = Release|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Debug|.NET.Build.0 = Debug|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Debug|x86.Build.0 = Debug|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Release|.NET.ActiveCfg = Release|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Release|.NET.Build.0 = Release|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Release|x86.ActiveCfg = Release|Any CPU
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50}.Release|x86.Build.0 = Release|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Debug|.NET.Build.0 = Debug|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Debug|x86.Build.0 = Debug|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Release|.NET.ActiveCfg = Release|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Release|.NET.Build.0 = Release|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Release|x86.ActiveCfg = Release|Any CPU
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -258,6 +299,8 @@ Global
 		{A1A548EF-DBE4-4111-BB93-3C65C77E2FDD} = {CF118BCB-F594-4EBD-9571-107AD2E1B569}
 		{DFA0CF1C-2713-47C7-A6E2-E77E284D6A46} = {33DE9F89-1472-4662-8780-22DD0B6E6138}
 		{22A3E0ED-39CA-4929-A470-0FF8C057A316} = {33DE9F89-1472-4662-8780-22DD0B6E6138}
+		{40A2DC00-FD4C-4B91-899F-AD989691DE50} = {035402A0-6ECC-4F02-8A20-0D8055F396DC}
+		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED} = {035402A0-6ECC-4F02-8A20-0D8055F396DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1B1006BD-2201-4F50-8538-98F531B765CF}

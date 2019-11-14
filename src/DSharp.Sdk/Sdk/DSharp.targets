@@ -29,6 +29,7 @@
       Assembly="@(IntermediateAssembly)"
       ScriptName="$(ScriptName)"
       TemplatePath="$(ScriptTemplatePath)"
+      DebugMode ="$(DSharpCompilerDebugMode)"
       ProjectPath="$(MSBuildProjectFullPath)">
       <Output TaskParameter="Scripts" ItemName="Scripts" />
     </ScriptCompilerTask>

@@ -46,9 +46,13 @@ namespace DSharp.Compiler.Compiler
             {
                 statement = BuildStatementCore(statementNode);
             }
-            catch(Exception e)
+            catch(ExpressionBuildException expressionBuildException)
             {
-                string location = statementNode.Token.Location;
+                string message = expressionBuildException.Message + Environment.NewLine + expressionBuildException.StackTrace;
+                errorHandler.ReportExpressionError(message, expressionBuildException.Node);
+            }
+            catch (Exception e) 
+            {
                 errorHandler.ReportGeneralError(e);
             }
 

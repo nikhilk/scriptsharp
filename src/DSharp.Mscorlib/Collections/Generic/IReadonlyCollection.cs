@@ -2,8 +2,6 @@
 
 namespace System.Collections.Generic
 {
-    [ScriptImport]
-    [ScriptName("ICollection")]
     public interface IReadOnlyCollection<T> : IEnumerable<T>
     {
         [ScriptField]

@@ -11,19 +11,28 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using DSharp.Compiler.CodeModel;
+using DSharp.Compiler.CodeModel.Members;
 using DSharp.Compiler.CodeModel.Names;
 using DSharp.Compiler.CodeModel.Tokens;
 using DSharp.Compiler.CodeModel.Types;
+using DSharp.Compiler.Extensions;
+using DSharp.Compiler.References;
+using DSharp.Compiler.ScriptModel.Visitors;
 
 namespace DSharp.Compiler.ScriptModel.Symbols
 {
     internal sealed class SymbolSet : ISymbolTable
     {
-        private readonly Dictionary<string, HashSet<(string method, MethodSymbol relatedType)>>
-            extensionMethods = new Dictionary<string, HashSet<(string method, MethodSymbol relatedType)>>();
+        private class ExtensionMethodInfo
+        {
+            public string MethodNamespace { get; set; }
+            public MethodSymbol MethodSymbol { get; set; }
+        }
+
         private readonly List<ScriptReference> dependencies;
         private readonly Dictionary<string, ScriptReference> dependencySet;
         private readonly Dictionary<string, NamespaceSymbol> namespaceMap;
+        private readonly Dictionary<string, List<ExtensionMethodInfo>> extensionMethods;
 
         private readonly List<NamespaceSymbol> namespaces;
 
@@ -33,12 +42,13 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
         private XmlDocument docComments;
 
-        private Dictionary<string, TypeSymbol> genericTypeTable;
+        private Dictionary<string, TypeSymbol> genericTypeTable = new Dictionary<string, TypeSymbol>();
 
         public SymbolSet()
         {
             namespaces = new List<NamespaceSymbol>();
             namespaceMap = new Dictionary<string, NamespaceSymbol>();
+            extensionMethods = new Dictionary<string, List<ExtensionMethodInfo>>();
 
             GlobalNamespace = new NamespaceSymbol(string.Empty, this);
             GlobalNamespace.SetTransformedName(string.Empty);
@@ -234,111 +244,36 @@ namespace DSharp.Compiler.ScriptModel.Symbols
         public TypeSymbol CreateGenericTypeSymbol(TypeSymbol templateType, IList<TypeSymbol> typeArguments)
         {
             foreach (TypeSymbol typeSymbol in typeArguments)
-                if (typeSymbol.Type == SymbolType.GenericParameter)
+                if (typeSymbol is GenericParameterSymbol genericParameterSymbol && genericParameterSymbol.Owner == null)
                 {
                     return templateType;
                 }
 
-            StringBuilder keyBuilder = new StringBuilder(templateType.FullName);
+            string key = CreateTypeName(templateType, typeArguments);
 
-            foreach (TypeSymbol typeSymbol in typeArguments)
+            if (!genericTypeTable.TryGetValue(key, out TypeSymbol instanceTypeSymbol))
             {
-                keyBuilder.Append("+");
-                keyBuilder.Append(typeSymbol.FullName);
+                // Prepopulate with a placeholder ... if a generic type's member refers to its
+                // parent type it will use the type being created when the return value is null.
+                genericTypeTable[key] = null;
+                instanceTypeSymbol = CreateGenericTypeCore(templateType, typeArguments);
+                genericTypeTable[key] = instanceTypeSymbol;
             }
-
-            string key = keyBuilder.ToString();
-
-            if (genericTypeTable != null && genericTypeTable.ContainsKey(key))
-            {
-                return genericTypeTable[key];
-            }
-
-            if (genericTypeTable == null)
-            {
-                genericTypeTable = new Dictionary<string, TypeSymbol>();
-            }
-
-            // Prepopulate with a placeholder ... if a generic type's member refers to its
-            // parent type it will use the type being created when the return value is null.
-            genericTypeTable[key] = null;
-
-            TypeSymbol instanceTypeSymbol = CreateGenericTypeCore(templateType, typeArguments);
-            genericTypeTable[key] = instanceTypeSymbol;
-
             return instanceTypeSymbol;
+        }
+
+        private static string CreateTypeName(TypeSymbol symbol, IEnumerable<TypeSymbol> arguments)
+        {
+            if (arguments?.Any() ?? false)
+            {
+                return $"{symbol.FullName}<{string.Join(",", arguments.Select(s => CreateTypeName(s, s.GenericArguments)))}>";
+            }
+
+            return symbol.FullName;
         }
 
         private TypeSymbol CreateGenericTypeCore(TypeSymbol templateType, IList<TypeSymbol> typeArguments)
         {
-            if (templateType.Type == SymbolType.Class)
-            {
-                ClassSymbol genericClass = (ClassSymbol)templateType;
-                ClassSymbol instanceClass = new ClassSymbol(genericClass.Name, (NamespaceSymbol) genericClass.Parent);
-
-                instanceClass.SetInheritance(genericClass.BaseClass, genericClass.Interfaces);
-                instanceClass.SetImported(genericClass.Dependency);
-
-                if (genericClass.IgnoreNamespace)
-                {
-                    instanceClass.SetIgnoreNamespace();
-                }
-
-                instanceClass.ScriptNamespace = genericClass.ScriptNamespace;
-
-                if (genericClass.IsTransformed)
-                {
-                    instanceClass.SetTransformedName(genericClass.GeneratedName);
-                }
-                else if (genericClass.IsTransformAllowed == false)
-                {
-                    instanceClass.DisableNameTransformation();
-                }
-
-                if (genericClass.IsNativeArray)
-                {
-                    instanceClass.SetNativeArray();
-                }
-
-                instanceClass.AddGenericParameters(genericClass.GenericParameters);
-                instanceClass.AddGenericArguments(genericClass, typeArguments);
-
-                CreateGenericTypeMembers(genericClass, instanceClass, typeArguments);
-
-                return instanceClass;
-            }
-
-            if (templateType.Type == SymbolType.Interface)
-            {
-                InterfaceSymbol genericInterface = (InterfaceSymbol)templateType;
-                InterfaceSymbol instanceInterface =
-                    new InterfaceSymbol(genericInterface.Name, (NamespaceSymbol)genericInterface.Parent);
-
-                instanceInterface.SetInheritance(genericInterface.Interfaces);
-                instanceInterface.SetImported(genericInterface.Dependency);
-
-                if (genericInterface.IgnoreNamespace)
-                {
-                    instanceInterface.SetIgnoreNamespace();
-                }
-
-                if (genericInterface.IsTransformed)
-                {
-                    instanceInterface.SetTransformedName(genericInterface.GeneratedName);
-                }
-                else if (genericInterface.IsTransformAllowed == false)
-                {
-                    instanceInterface.DisableNameTransformation();
-                }
-
-                instanceInterface.AddGenericParameters(genericInterface.GenericParameters);
-                instanceInterface.AddGenericArguments(genericInterface, typeArguments);
-
-                CreateGenericTypeMembers(genericInterface, instanceInterface, typeArguments);
-
-                return instanceInterface;
-            }
-
             if (templateType.Type == SymbolType.Delegate)
             {
                 DelegateSymbol genericDelegate = (DelegateSymbol)templateType;
@@ -351,6 +286,67 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 CreateGenericTypeMembers(genericDelegate, instanceDelegate, typeArguments);
 
                 return instanceDelegate;
+            }
+
+
+
+            if (templateType.Type == SymbolType.Class
+                || templateType.Type == SymbolType.Interface)
+            {
+                TypeSymbol genericCoreType = null;
+                TypeSymbol instanceCoreType = null;
+
+                if (templateType.Type == SymbolType.Class)
+                {
+                    ClassSymbol genericClass = (ClassSymbol)templateType;
+                    ClassSymbol instanceClass = new ClassSymbol(genericClass.Name, (NamespaceSymbol)genericClass.Parent);
+
+                    instanceClass.SetInheritance(genericClass.BaseClass, genericClass.Interfaces);
+
+                    genericCoreType = genericClass;
+                    instanceCoreType = instanceClass;
+                }
+                else if (templateType.Type == SymbolType.Interface)
+                {
+                    InterfaceSymbol genericInterface = (InterfaceSymbol)templateType;
+                    InterfaceSymbol instanceInterface =
+                        new InterfaceSymbol(genericInterface.Name, (NamespaceSymbol)genericInterface.Parent);
+
+                    instanceInterface.SetInheritance(genericInterface.Interfaces);
+
+                    genericCoreType = genericInterface;
+                    instanceCoreType = instanceInterface;
+                }
+
+                instanceCoreType.SetImported(genericCoreType.Dependency);
+
+                if (genericCoreType.IgnoreNamespace)
+                {
+                    instanceCoreType.SetIgnoreNamespace();
+                }
+
+                instanceCoreType.ScriptNamespace = genericCoreType.ScriptNamespace;
+
+                if (genericCoreType.IsTransformed)
+                {
+                    instanceCoreType.SetTransformedName(genericCoreType.GeneratedName);
+                }
+                else if (genericCoreType.IsTransformAllowed == false)
+                {
+                    instanceCoreType.DisableNameTransformation();
+                }
+
+                if (genericCoreType.IsNativeArray)
+                {
+                    instanceCoreType.SetNativeArray();
+                }
+
+                instanceCoreType.AddGenericParameters(genericCoreType.GenericParameters);
+                instanceCoreType.AddGenericArguments(genericCoreType, typeArguments);
+
+                CreateGenericTypeMembers(genericCoreType, instanceCoreType, typeArguments);
+
+                return instanceCoreType;
             }
 
             return null;
@@ -472,7 +468,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
             if (dependencySet.TryGetValue(name, out ScriptReference reference) == false)
             {
-                reference = new ScriptReference(name, null);
+                reference = ScriptReferenceProvider.Instance.GetReference(name, null);
                 newReference = true;
                 AddDependency(reference);
             }
@@ -726,6 +722,11 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
         public TypeSymbol ResolveIntrinsicToken(Token token)
         {
+            if (token == null)
+            {
+                return null;
+            }
+
             IntrinsicType intrinsicType = IntrinsicType.Void;
 
             switch (token.Type)
@@ -882,6 +883,15 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 return CreateArrayTypeSymbol(itemTypeSymbol);
             }
 
+            if (node is AtomicNameNode atomicNameNode)
+            {
+                TypeSymbol typeSymbol = ResolveAtomicNameNodeType(atomicNameNode, symbolTable, contextSymbol);
+                if (typeSymbol != null)
+                {
+                    return typeSymbol;
+                }
+            }
+
             if (node is GenericNameNode)
             {
                 GenericNameNode genericNameNode = (GenericNameNode)node;
@@ -894,13 +904,17 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 foreach (ParseNode argNode in genericNameNode.TypeArguments)
                 {
                     TypeSymbol argType = ResolveType(argNode, symbolTable, contextSymbol);
+                    Debug.Assert(argType != null);
                     typeArguments.Add(argType);
                 }
 
-                TypeSymbol resolvedSymbol = CreateGenericTypeSymbol(templateType, typeArguments);
-                Debug.Assert(resolvedSymbol != null);
+                if (templateType != null)
+                {
+                    TypeSymbol resolvedSymbol = CreateGenericTypeSymbol(templateType, typeArguments);
+                    Debug.Assert(resolvedSymbol != null);
 
-                return resolvedSymbol;
+                    return resolvedSymbol;
+                }
             }
 
             Debug.Assert(node is NameNode);
@@ -909,30 +923,142 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             return (TypeSymbol)symbolTable.FindSymbol(nameNode.Name, contextSymbol, SymbolFilter.Types);
         }
 
-        public void AddExtensionType(string typeToExtend, string extensionMethodName, MethodSymbol methodSymbol)
+        private TypeSymbol ResolveAtomicNameNodeType(AtomicNameNode atomicNameNode, ISymbolTable symbolTable, Symbol contextSymbol)
         {
-            if (string.IsNullOrWhiteSpace(typeToExtend) || string.IsNullOrWhiteSpace(extensionMethodName))
+            if (atomicNameNode.Parent is GenericNameNode || atomicNameNode.Parent is ArrayTypeNode || atomicNameNode.Parent is MethodDeclarationNode)
             {
-                return;
+                var methodDeclaration = atomicNameNode.FindParent<MethodDeclarationNode>();
+                if (methodDeclaration != null && (methodDeclaration?.TypeParameters?.Count ?? 0) > 0)
+                {
+                    if (contextSymbol is MethodSymbol methodSymbol && methodSymbol.Name == methodDeclaration.Name)
+                    {
+                        var genericArgument = methodSymbol.GenericArguments.FirstOrDefault(arg => arg.Name == atomicNameNode.Name);
+                        if (genericArgument != null)
+                        {
+                            return genericArgument;
+                        }
+                    }
+
+                    for (int i = 0; i < methodDeclaration.TypeParameters.Count; i++)
+                    {
+                        TypeParameterNode typeParameterNode = (TypeParameterNode)methodDeclaration.TypeParameters[i];
+                        if (typeParameterNode.NameNode.Equals(atomicNameNode))
+                        {
+                            return new GenericParameterSymbol(i, atomicNameNode.Name, true, GlobalNamespace);
+                        }
+                    }
+                }
             }
 
-            if (!extensionMethods.TryGetValue(typeToExtend, out HashSet<(string method, MethodSymbol relatedType)> registrations))
+            //TODO: Implement Var resolution mechanism here. Need to evaluate the right hand expression of the node, probably needs roslyn
+            if (atomicNameNode.Name == "var")
             {
-                registrations = new HashSet<(string method, MethodSymbol relatedType)>();
-                extensionMethods.Add(typeToExtend, registrations);
+                return ResolveIntrinsicType(IntrinsicType.Object);
             }
 
-            registrations.Add((extensionMethodName, methodSymbol));
+            return null;
         }
 
-        public MethodSymbol ResolveExtensionMethodSymbol(string typeName, string memberName)
+        public void AddExtensionMethod(MethodSymbol extensionMethod)
         {
-            if (!extensionMethods.TryGetValue(typeName, out HashSet<(string method, MethodSymbol methodSymbol)> registrations))
+            if (!extensionMethods.ContainsKey(extensionMethod.Name))
+            {
+                extensionMethods[extensionMethod.Name] = new List<ExtensionMethodInfo>();
+            }
+
+            extensionMethods[extensionMethod.Name].Add(new ExtensionMethodInfo()
+            { 
+                MethodSymbol = extensionMethod, 
+                MethodNamespace = extensionMethod.GetFirstClassSymbolParent()?.Namespace
+            });
+        }
+
+        //TODO: Migrate this to be on the symbol directly
+        public MethodSymbol ResolveExtensionMethodSymbol(TypeSymbol type, string memberName, IEnumerable<string> visibleNamespaces)
+        {
+            //Try to find none generic extension method
+            var extensionMethods = TypeSymbolVisitor.Visit(type, t => FindExtensionMethodWithNonGenericTarget(t, memberName, visibleNamespaces))
+                .Where(i => i != null)
+                .Distinct()
+                .ToList();
+
+            if (extensionMethods.Any())
+            {
+                return extensionMethods.First();
+            }
+
+            //Try finding none constraint generic version
+            extensionMethods = TypeSymbolVisitor.Visit(type, t => FindExtensionMethodWithGenericTarget(t, memberName, visibleNamespaces))
+                .Where(i => i != null)
+                .Distinct()
+                .ToList();
+
+            if (extensionMethods.Any())
+            {
+                return extensionMethods.First();
+            }
+
+            var objectType = ResolveIntrinsicType(IntrinsicType.Object);
+            return FindExtensionMethodWithNonGenericTarget(objectType, memberName, visibleNamespaces) ?? FindExtensionMethodWithGenericTarget(objectType, memberName, visibleNamespaces);
+        }
+
+        private MethodSymbol FindExtensionMethodWithNonGenericTarget(TypeSymbol type, string name, IEnumerable<string> visibleNamespaces)
+        {
+            if (type == null || !this.extensionMethods.TryGetValue(name, out var extensionMethods))
             {
                 return null;
             }
 
-            return registrations.FirstOrDefault(reg => StringComparer.InvariantCultureIgnoreCase.Equals(reg.method, memberName)).methodSymbol;
+            foreach (ExtensionMethodInfo extensionMethod in extensionMethods)
+            {
+                if (!visibleNamespaces.Any(ns => ns == extensionMethod.MethodNamespace))
+                {
+                    continue;
+                }
+
+                ParameterSymbol targetParameter = extensionMethod.MethodSymbol.Parameters[0];
+
+                if (!(targetParameter.ValueType is GenericParameterSymbol))
+                {
+                    // If the input parameter is a generic parameter we will match any target parameter and rely on the C#
+                    // compiler to detect reference errors
+                    if (type is GenericParameterSymbol genericType)
+                    {
+                        return extensionMethod.MethodSymbol;
+                    }
+                    else if (targetParameter.ValueType.FullName == type.FullName)
+                    {
+                        return extensionMethod.MethodSymbol;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private MethodSymbol FindExtensionMethodWithGenericTarget(TypeSymbol type, string name, IEnumerable<string> visibleNamespaces)
+        {
+            if (type == null || !this.extensionMethods.TryGetValue(name, out var extensionMethods))
+            {
+                return null;
+            }
+
+            foreach (ExtensionMethodInfo extensionMethod in extensionMethods)
+            {
+                if (!visibleNamespaces.Any(ns => ns == extensionMethod.MethodNamespace))
+                {
+                    continue;
+                }
+
+                ParameterSymbol targetParameter = extensionMethod.MethodSymbol.Parameters[0];
+
+                if (targetParameter.ValueType is GenericParameterSymbol genericParameterSymbol)
+                {
+                    return extensionMethod.MethodSymbol;
+                }
+            }
+
+            return null;
         }
 
         public void SetComments(XmlDocument docComments)
@@ -951,11 +1077,15 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             EntryPoint = entryPoint;
         }
 
-        #region ISymbolTable Members
+        public ICollection Symbols => namespaces;
 
-        ICollection ISymbolTable.Symbols => namespaces;
+        private bool CompareTypeName(TypeSymbol typeSymbol, string name)
+        {
+            return name.Equals(typeSymbol.FullName.Replace('$', '.'))
+                || name.Equals(typeSymbol.Name.Replace('$', '.'));
+        }
 
-        Symbol ISymbolTable.FindSymbol(string name, Symbol context, SymbolFilter filter)
+        public Symbol FindSymbol(string name, Symbol context, SymbolFilter filter)
         {
             if ((filter & SymbolFilter.Types) == 0)
             {
@@ -966,16 +1096,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
             if (name.IndexOf('.') > 0)
             {
-                int nameIndex = name.LastIndexOf('.') + 1;
-                Debug.Assert(nameIndex < name.Length);
-
-                string namespaceName = name.Substring(0, nameIndex - 1);
-                name = name.Substring(nameIndex);
-
-                if (namespaceMap.TryGetValue(namespaceName, out NamespaceSymbol namespaceSymbol))
-                {
-                    symbol = ((ISymbolTable)namespaceSymbol).FindSymbol(name, /* context */ null, SymbolFilter.Types);
-                }
+                symbol = FindSymbolFromNamespace(name, context);
             }
             else
             {
@@ -983,7 +1104,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
                 if (context is MethodSymbol methodContext)
                 {
-                    var genericType = methodContext.GenericArguments?.SingleOrDefault(a => a.Name == name);
+                    GenericParameterSymbol genericType = FindGenericType(name, methodContext);
 
                     if (genericType != null)
                     {
@@ -1017,12 +1138,21 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                     return null;
                 }
 
+                if (typeSymbol.IsGeneric)
+                {
+                    var resolved = typeSymbol.GenericParameters.FirstOrDefault(param => param.Name == name);
+                    if (resolved != null)
+                    {
+                        return resolved;
+                    }
+                }
+
                 bool systemNamespaceChecked = false;
 
                 NamespaceSymbol containerNamespace = (NamespaceSymbol)typeSymbol.Parent;
                 Debug.Assert(containerNamespace != null);
 
-                symbol = ((ISymbolTable)containerNamespace).FindSymbol(name, /* context */ null, SymbolFilter.Types);
+                symbol = ((ISymbolTable)containerNamespace).FindSymbol(name, /* context */ typeSymbol, SymbolFilter.Types);
 
                 if (containerNamespace == SystemNamespace)
                 {
@@ -1087,6 +1217,71 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             return symbol;
         }
 
-        #endregion
+        private static GenericParameterSymbol FindGenericType(string name, MethodSymbol methodContext)
+        {
+            var genericType = methodContext.GenericArguments?.SingleOrDefault(a => a.Name == name);
+
+            if (genericType == null && methodContext.Parent.IsGeneric)
+            {
+                genericType = methodContext.Parent.GenericParameters.FirstOrDefault(a => a.Name == name);
+            }
+
+            return genericType;
+        }
+
+        private Symbol FindSymbolFromNamespace(string name, Symbol context)
+        {
+            int nameIndex = name.LastIndexOf('.');
+            string typeName = name.Substring(nameIndex + 1);
+            string namespaceName = name.Substring(0, nameIndex);
+
+            if (namespaceMap.TryGetValue(namespaceName, out NamespaceSymbol namespaceSymbol))
+            {
+                return namespaceSymbol.FindSymbol(typeName, /* context */ null, SymbolFilter.Types);
+            }
+            else
+            {
+                return SearchAllNamespaces(name, context, typeName, namespaceName);
+            }
+        }
+
+        private Symbol SearchAllNamespaces(string name, Symbol context, string typeName, string namespaceName)
+        {
+            foreach (NamespaceSymbol namespaceSymbol in namespaces)
+            {
+                if (namespaceSymbol.FindSymbol(typeName, /* context */ null, SymbolFilter.Types) is TypeSymbol foundType)
+                {
+                    if (IsNamespaceMatch(foundType, name, namespaceName, context))
+                    {
+                        return foundType;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private bool IsNamespaceMatch(TypeSymbol foundType, string name, string namespaceName, Symbol context)
+        {
+            return CompareTypeName(foundType, name)
+                || string.Equals(foundType.Namespace, namespaceName)
+                || GetAliasesFromContext(context)
+                    .Select(a => name.Replace(a.Key, a.Value))
+                    .Any(n => CompareTypeName(foundType, n));
+        }
+
+        private IEnumerable<KeyValuePair<string, string>> GetAliasesFromContext(Symbol context)
+        {
+            if (context is TypeSymbol typeContext)
+            {
+                return typeContext.Aliases ?? Enumerable.Empty<KeyValuePair<string, string>>();
+            }
+            if (context is MemberSymbol memberContext && memberContext.Parent is TypeSymbol parentContext)
+            {
+                return parentContext.Aliases ?? Enumerable.Empty<KeyValuePair<string, string>>();
+            }
+
+            return Enumerable.Empty<KeyValuePair<string, string>>();
+        }
     }
 }

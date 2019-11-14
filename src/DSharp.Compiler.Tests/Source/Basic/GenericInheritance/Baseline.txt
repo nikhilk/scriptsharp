@@ -19,7 +19,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      IMyThing: ss.defineInterface(IMyThing, [ss.IList]),
+      IMyThing: ss.defineInterface(IMyThing, [ss.IList_$1]),
       Wow: ss.defineClass(Wow, Wow$, [], Object)
     });
 

@@ -19,5 +19,7 @@ namespace System
         public string Name { get; }
 
         public string Path { get; set; }
+
+        public bool IsExplicit { get; set; }
     }
 }

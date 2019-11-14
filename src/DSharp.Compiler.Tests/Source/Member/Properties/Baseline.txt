@@ -2,10 +2,25 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // MemberTests.ITest
 
   function ITest() { }
+
+
+  // MemberTests.Program
+
+  function Program() {
+  }
+  Program.main = function(args) {
+    var properties = new Properties('Private String');
+    properties.Standard = 'Standard Property!';
+    properties.Normal = 'test2';
+    var readWrite = properties.ReadLocalWrite;
+    var readonlyValue = properties.ReadonlyValue;
+  };
+  var Program$ = {
+
+  };
 
 
   // MemberTests.Test
@@ -53,6 +68,35 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // MemberTests.Properties
+
+  function Properties(readonlyVal) {
+    ss.defineProperty(this, 'Normal');
+    ss.defineProperty(this, 'Standard');
+    ss.defineProperty(this, 'ReadLocalWrite');
+    this.ReadonlyValue = ss.value(readonlyVal, 'InitialState_ReadonlyValue');
+    this.ReadLocalWrite = 'InitialState_ReadLocalWrite';
+    this.Normal = ss.value(this.ReadLocalWrite, Properties._createNormalExpression(function() {
+      return 'TestValue';
+    }));
+  }
+  Properties._createNormalExpression = function(returnValue) {
+    returnValue();
+  };
+  var Properties$ = {
+    $get_ReadWriteWithBacking: function() {
+      return this._readWriteWithBacking;
+    },
+    $set_ReadWriteWithBacking: function(value) {
+      this._readWriteWithBacking = value;
+      return value;
+    },
+    change: function(value) {
+      this.ReadLocalWrite = value;
+    }
+  };
+
+
   // MemberTests.Test2
 
   function Test2() {
@@ -73,7 +117,9 @@ define('test', ['ss'], function(ss) {
   var $exports = ss.module('test', null,
     {
       ITest: ss.defineInterface(ITest),
+      Program: ss.defineClass(Program, Program$, [], null),
       Test: ss.defineClass(Test, Test$, [], null),
+      Properties: ss.defineClass(Properties, Properties$, [String], null),
       Test2: ss.defineClass(Test2, Test2$, [], Test)
     });
 

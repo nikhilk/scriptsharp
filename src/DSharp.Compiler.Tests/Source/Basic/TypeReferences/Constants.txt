@@ -1,0 +1,26 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // BasicTests.App
+
+  function App() {
+  }
+  var App$ = {
+    foo: function() {
+      var localConstant = 42;
+      return 'Consts: ' + localConstant + '; ' + 'text' + '; ';
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, App$, [], null)
+    });
+
+  App._copY_OF_TEXT_CONSTANT = 'text';
+  App.compleX_NUMBER_CONSTANT = 0 + 42;
+
+  return $exports;
+});

@@ -19,12 +19,7 @@ function value(a, b) {
     return isValue(a) ? a : isValue(b) ? b : _value(arguments);
 }
 
-function extend(o, items) {
-    for (var n in items) {
-        o[n] = items[n];
-    }
-    return o;
-}
+var extend = Object.assign;
 
 function extendType(o, items) {
     for (var n in items) {

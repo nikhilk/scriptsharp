@@ -173,7 +173,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      MyCollection: ss.defineClass(MyCollection, MyCollection$, [], null, [ss.IList]),
+      MyCollection: ss.defineClass(MyCollection, MyCollection$, [], null, [ss.IList_$1]),
       X: ss.defineClass(X, null, [], null),
       MyChildrenCollection: ss.defineClass(MyChildrenCollection, MyChildrenCollection$, [], MyCollection)
     });

@@ -18,25 +18,25 @@ define('test', ['ss'], function(ss) {
   }
   var Program$ = {
     main: function() {
-      this.noParameters();
-      this.noParameters();
-      this.noParametersConstrained();
-      this.noParametersConstrained();
+      this.noParameters({T: Number});
+      this.noParameters({T: TestBase});
+      this.noParametersConstrained({T: TestDisposableBase});
+      this.noParametersConstrained({T: ss.IDisposable});
       this.inParameter(1234);
       this.inParameter(1234);
       this.inParameter(1234);
-      this.inParameterConstrained(new TestDisposableBase());
-      this.inParameterConstrained(new TestDisposableBase());
+      this.inParameterConstrained({T: TestDisposableBase}, new TestDisposableBase());
+      this.inParameterConstrained({T: ss.IDisposable}, new TestDisposableBase());
       this.complexInGenerics(new TestDisposableBase(), new TestDisposableBase());
     },
-    noParameters: function() {
+    noParameters: function($TArgs) {
     },
-    noParametersConstrained: function() {
+    noParametersConstrained: function($TArgs) {
     },
     inParameter: function(inGenericParameter) {
       return inGenericParameter;
     },
-    inParameterConstrained: function(x) {
+    inParameterConstrained: function($TArgs, x) {
       var xType = ss.typeOf(x);
       x.dispose();
     },

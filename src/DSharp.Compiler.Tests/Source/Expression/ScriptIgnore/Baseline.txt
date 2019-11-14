@@ -19,7 +19,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Program: ss.defineClass(Program, Program$, [], null, [ss.IEnumerable])
+      Program: ss.defineClass(Program, Program$, [], null, [ss.IEnumerable_$1])
     });
 
 

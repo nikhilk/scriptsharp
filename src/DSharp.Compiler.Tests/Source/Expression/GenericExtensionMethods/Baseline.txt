@@ -1,0 +1,67 @@
+"use strict";
+
+define('ExpressionTests.GenericExtensionMethods', ['ss'], function(ss) {
+  var $global = this;
+  // TypeTests.ITestData
+
+  function ITestData() {
+  }
+  var ITestData$ = {
+
+  };
+
+
+  // TypeTests.ITestData2
+
+  function ITestData2() {
+  }
+  var ITestData2$ = {
+
+  };
+
+
+  // TypeTests.NoneGenericExtensions
+
+  function NoneGenericExtensions() {
+  }
+  NoneGenericExtensions.noneGenericExtension = function(value, a) {
+    return value;
+  };
+
+
+  // TypeTests.GenericExtensions
+
+  function GenericExtensions() {
+  }
+  GenericExtensions.genericExtension = function($TArgs, value, a) {
+    return value;
+  };
+
+
+  // TypeTests.Test
+
+  function Test() {
+    ss.defineProperty(this, 'Data');
+  }
+  var Test$ = {
+    func: function() {
+      NoneGenericExtensions.noneGenericExtension(NoneGenericExtensions.noneGenericExtension(this.Data, 'A'), 'B');
+      GenericExtensions.genericExtension({}, GenericExtensions.genericExtension({}, this.Data, 'A'), 'B');
+      GenericExtensions.genericExtension({}, NoneGenericExtensions.noneGenericExtension(this.Data, 'A'), 'B');
+      NoneGenericExtensions.noneGenericExtension(GenericExtensions.genericExtension({}, this.Data, 'A'), 'B');
+    }
+  };
+
+
+  var $exports = ss.module('ExpressionTests.GenericExtensionMethods', null,
+    {
+      ITestData: ss.defineClass(ITestData, ITestData$, [], null),
+      ITestData2: ss.defineClass(ITestData2, ITestData2$, [], null),
+      NoneGenericExtensions: ss.defineClass(NoneGenericExtensions, null, [], null),
+      GenericExtensions: ss.defineClass(GenericExtensions, null, [], null),
+      Test: ss.defineClass(Test, Test$, [], null)
+    });
+
+
+  return $exports;
+});

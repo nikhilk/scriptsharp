@@ -1,0 +1,28 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // DSharp.Shell.src.UsageOfConstants
+
+  function UsageOfConstants() {
+  }
+  var UsageOfConstants$ = {
+    foo: function() {
+      var localIntConstant = 42;
+      var localFloatConstant = 42.42;
+      return 'Consts: ' + localIntConstant + '; ' + localFloatConstant + '; ' + '[example text constant]';
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      UsageOfConstants: ss.defineClass(UsageOfConstants, UsageOfConstants$, [], null)
+    });
+
+  UsageOfConstants._copY_OF_TEXT_CONSTANT = '[example text constant]';
+  UsageOfConstants.compleX_TEXT_CONSTANT = 'Hello, ' + '[example text constant]' + ' world!';
+  UsageOfConstants.compleX_NUMBER_CONSTANT = -21 + 42 + 42.42 - 21;
+
+  return $exports;
+});

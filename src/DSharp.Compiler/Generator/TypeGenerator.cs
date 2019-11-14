@@ -3,6 +3,7 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using DSharp.Compiler.ScriptModel.Symbols;
@@ -16,6 +17,74 @@ namespace DSharp.Compiler.Generator
             ScriptTextWriter writer = generator.Writer;
             string name = classSymbol.FullGeneratedName;
 
+            GenerateClassConstructor(generator, classSymbol, writer, name);
+            GenerateClassStaticMembers(generator, classSymbol);
+
+            GenerateClassMembers(generator, classSymbol, writer, name);
+        }
+
+        private static void GenerateClassMembers(ScriptGenerator generator, ClassSymbol classSymbol, ScriptTextWriter writer, string name)
+        {
+            if (classSymbol.IsStaticClass)
+            {
+                return;
+            }
+
+            writer.Write("var ");
+            writer.Write(name);
+            writer.WriteLine("$ = {");
+            writer.Indent++;
+
+            bool firstMember = true;
+
+            foreach (MemberSymbol memberSymbol in classSymbol.Members.Where(member => !member.Visibility.HasFlag(MemberVisibility.Static)))
+            {
+                if (memberSymbol.Type == SymbolType.Field
+                    || (memberSymbol is CodeMemberSymbol codeMemberSymbol && codeMemberSymbol.IsAbstract)
+                    || (memberSymbol is PropertySymbol propertySymbol && propertySymbol.IsAutoProperty()))
+                {
+                    continue;
+                }
+
+                if (firstMember == false)
+                {
+                    writer.WriteLine(",");
+                }
+
+                MemberGenerator.GenerateScript(generator, memberSymbol);
+                firstMember = false;
+            }
+
+            if (classSymbol.Indexer != null)
+            {
+                if (firstMember == false)
+                {
+                    writer.WriteLine(",");
+                }
+
+                MemberGenerator.GenerateScript(generator, classSymbol.Indexer);
+            }
+
+            writer.Indent--;
+            writer.WriteLine();
+            writer.Write("};");
+            writer.WriteLine();
+
+        }
+
+        private static void GenerateClassStaticMembers(ScriptGenerator generator, ClassSymbol classSymbol)
+        {
+            foreach (MemberSymbol memberSymbol in classSymbol.Members)
+            {
+                if (memberSymbol.Type != SymbolType.Field && memberSymbol.Visibility.HasFlag(MemberVisibility.Static))
+                {
+                    MemberGenerator.GenerateScript(generator, memberSymbol);
+                }
+            }
+        }
+
+        private static void GenerateClassConstructor(ScriptGenerator generator, ClassSymbol classSymbol, ScriptTextWriter writer, string name)
+        {
             writer.Write("function ");
             writer.Write(name);
             writer.Write("(");
@@ -44,11 +113,19 @@ namespace DSharp.Compiler.Generator
                 DocCommentGenerator.GenerateComment(generator, classSymbol);
             }
 
+            foreach (var property in GetNonReadonlyAutoProperties(classSymbol))
+            {
+                writer.Write(DSharpStringResources.ScriptExportMember("defineProperty"));
+                writer.Write($"(this, '{property.GeneratedName}');");
+                writer.WriteLine();
+            }
+
             foreach (MemberSymbol memberSymbol in classSymbol.Members)
+            {
                 if (memberSymbol.Type == SymbolType.Field &&
                     (memberSymbol.Visibility & MemberVisibility.Static) == 0)
                 {
-                    FieldSymbol fieldSymbol = (FieldSymbol) memberSymbol;
+                    FieldSymbol fieldSymbol = (FieldSymbol)memberSymbol;
 
                     if (fieldSymbol.HasInitializer)
                     {
@@ -60,12 +137,13 @@ namespace DSharp.Compiler.Generator
                         writer.WriteLine();
                     }
                 }
+            }
 
             if (classSymbol.Constructor != null)
             {
                 CodeGenerator.GenerateScript(generator, classSymbol.Constructor);
             }
-            else if (classSymbol.BaseClass != null && classSymbol.IsTestClass == false)
+            else if (classSymbol.BaseClass != null)
             {
                 writer.Write(classSymbol.BaseClass.FullGeneratedName);
                 writer.Write(".call(this);");
@@ -74,61 +152,14 @@ namespace DSharp.Compiler.Generator
 
             writer.Indent--;
             writer.WriteLine("}");
+        }
 
-            foreach (MemberSymbol memberSymbol in classSymbol.Members)
-                if (memberSymbol.Type != SymbolType.Field &&
-                    (memberSymbol.Visibility & MemberVisibility.Static) != 0)
-                {
-                    MemberGenerator.GenerateScript(generator, memberSymbol);
-                }
-
-            if (classSymbol.IsStaticClass == false)
-            {
-                writer.Write("var ");
-                writer.Write(name);
-                writer.WriteLine("$ = {");
-                writer.Indent++;
-
-                bool firstMember = true;
-
-                foreach (MemberSymbol memberSymbol in classSymbol.Members)
-                    if ((memberSymbol.Visibility & MemberVisibility.Static) == 0)
-                    {
-                        if (memberSymbol.Type == SymbolType.Field)
-                        {
-                            continue;
-                        }
-
-                        if (memberSymbol is CodeMemberSymbol &&
-                            ((CodeMemberSymbol) memberSymbol).IsAbstract)
-                        {
-                            continue;
-                        }
-
-                        if (firstMember == false)
-                        {
-                            writer.WriteLine(",");
-                        }
-
-                        MemberGenerator.GenerateScript(generator, memberSymbol);
-                        firstMember = false;
-                    }
-
-                if (classSymbol.Indexer != null)
-                {
-                    if (firstMember == false)
-                    {
-                        writer.WriteLine(",");
-                    }
-
-                    MemberGenerator.GenerateScript(generator, classSymbol.Indexer);
-                }
-
-                writer.Indent--;
-                writer.WriteLine();
-                writer.Write("};");
-                writer.WriteLine();
-            }
+        private static IEnumerable<PropertySymbol> GetNonReadonlyAutoProperties(ClassSymbol classSymbol)
+        {
+            return classSymbol.Members
+                .Where(symbol => symbol is PropertySymbol)
+                .Cast<PropertySymbol>()
+                .Where(prop => prop.IsAutoProperty() && !prop.IsReadOnly);
         }
 
         private static void GenerateEnumeration(ScriptGenerator generator, EnumerationSymbol enumSymbol)
@@ -196,7 +227,7 @@ namespace DSharp.Compiler.Generator
                 if (memberSymbol.Type == SymbolType.Field &&
                     (memberSymbol.Visibility & MemberVisibility.Static) != 0)
                 {
-                    FieldSymbol fieldSymbol = (FieldSymbol) memberSymbol;
+                    FieldSymbol fieldSymbol = (FieldSymbol)memberSymbol;
 
                     if (fieldSymbol.IsConstant &&
                         (memberSymbol.Visibility & (MemberVisibility.Public | MemberVisibility.Protected)) == 0)
@@ -232,17 +263,6 @@ namespace DSharp.Compiler.Generator
                     writer.Write("})();");
                     writer.WriteLine();
                 }
-            }
-        }
-
-        private static void GenerateExtensionMethods(ScriptGenerator generator, ClassSymbol classSymbol)
-        {
-            foreach (MemberSymbol memberSymbol in classSymbol.Members)
-            {
-                Debug.Assert(memberSymbol.Type == SymbolType.Method);
-                Debug.Assert((memberSymbol.Visibility & MemberVisibility.Static) != 0);
-
-                MemberGenerator.GenerateScript(generator, memberSymbol);
             }
         }
 
@@ -296,13 +316,6 @@ namespace DSharp.Compiler.Generator
 
         public static void GenerateRegistrationScript(ScriptGenerator generator, TypeSymbol typeSymbol)
         {
-            ClassSymbol classSymbol = typeSymbol as ClassSymbol;
-
-            if (classSymbol != null && classSymbol.IsExtenderClass)
-            {
-                return;
-            }
-
             ScriptTextWriter writer = generator.Writer;
 
             writer.Write(typeSymbol.GeneratedName);
@@ -311,16 +324,16 @@ namespace DSharp.Compiler.Generator
             switch (typeSymbol.Type)
             {
                 case SymbolType.Class:
-                    GenerateClassRegistrationScript(generator, classSymbol);
-
+                    GenerateClassRegistrationScript(generator, (ClassSymbol)typeSymbol);
                     break;
                 case SymbolType.Interface:
-                    GenerateInterfaceRegistrationScript(generator, (InterfaceSymbol) typeSymbol);
-
+                    GenerateInterfaceRegistrationScript(generator, (InterfaceSymbol)typeSymbol);
+                    break;
+                case SymbolType.Enumeration:
+                    GenerateEnumerationRegistrationScript(generator, (EnumerationSymbol)typeSymbol);
                     break;
                 case SymbolType.Record:
                 case SymbolType.Resources:
-                case SymbolType.Enumeration:
                     writer.Write(typeSymbol.FullGeneratedName);
 
                     break;
@@ -370,7 +383,7 @@ namespace DSharp.Compiler.Generator
             writer.Write("], ");
 
             //base class
-            if (classSymbol.BaseClass == null || classSymbol.IsTestClass)
+            if (classSymbol.BaseClass == null)
             {
                 // TODO: We need to introduce the notion of a base class that only exists in the metadata
                 //       and not at runtime. At that point this check of IsTestClass can be generalized.
@@ -395,7 +408,8 @@ namespace DSharp.Compiler.Generator
                         writer.Write(", ");
                     }
 
-                    writer.Write(inheritedInterface.FullGeneratedName);
+                    string parameterTypeName = GetParameterTypeName(inheritedInterface);
+                    writer.Write(parameterTypeName);
                     first = false;
                 }
 
@@ -425,7 +439,7 @@ namespace DSharp.Compiler.Generator
 
             if (parameterType.Type == SymbolType.Enumeration)
             {
-                EnumerationSymbol enumType = (EnumerationSymbol) parameterType;
+                EnumerationSymbol enumType = (EnumerationSymbol)parameterType;
 
                 if (enumType.UseNamedValues)
                 {
@@ -437,6 +451,11 @@ namespace DSharp.Compiler.Generator
                     TypeSymbol numberType = symbolSet.ResolveIntrinsicType(IntrinsicType.Number);
                     parameterType = numberType;
                 }
+            }
+
+            if(parameterType is GenericParameterSymbol)
+            {
+                parameterType = symbolSet.ResolveIntrinsicType(IntrinsicType.Object);
             }
 
             return parameterType.FullGeneratedName;
@@ -472,6 +491,19 @@ namespace DSharp.Compiler.Generator
             writer.Write(")");
         }
 
+        private static void GenerateEnumerationRegistrationScript(
+            ScriptGenerator generator, 
+            EnumerationSymbol enumerationSymbol)
+        {
+            ScriptTextWriter writer = generator.Writer;
+
+            writer.Write($"new {DSharpStringResources.ScriptExportMember("Enum")}(");
+            writer.Write($"'{enumerationSymbol.FullGeneratedName}'");
+            writer.Write(", ");
+            writer.Write(enumerationSymbol.FullGeneratedName);
+            writer.Write(")");
+        }
+
         private static void GenerateResources(ScriptGenerator generator, ResourcesSymbol resourcesSymbol)
         {
             ScriptTextWriter writer = generator.Writer;
@@ -496,7 +528,7 @@ namespace DSharp.Compiler.Generator
 
                 writer.Write(member.GeneratedName);
                 writer.Write(": ");
-                writer.Write(Utility.QuoteString((string) member.Value));
+                writer.Write(Utility.QuoteString((string)member.Value));
 
                 firstValue = false;
             }
@@ -521,16 +553,9 @@ namespace DSharp.Compiler.Generator
 
             if (typeSymbol.Type == SymbolType.Record &&
                 typeSymbol.IsPublic == false &&
-                ((RecordSymbol) typeSymbol).Constructor == null)
+                ((RecordSymbol)typeSymbol).Constructor == null)
             {
                 // Nothing to generate for internal records with no explicit ctor
-                return;
-            }
-
-            if (typeSymbol.Type == SymbolType.Class &&
-                ((ClassSymbol) typeSymbol).IsModuleClass)
-            {
-                // No members on script modules, which only contain startup code
                 return;
             }
 
@@ -542,32 +567,19 @@ namespace DSharp.Compiler.Generator
             switch (typeSymbol.Type)
             {
                 case SymbolType.Class:
-
-                    if (((ClassSymbol) typeSymbol).IsExtenderClass)
-                    {
-                        GenerateExtensionMethods(generator, (ClassSymbol) typeSymbol);
-                    }
-                    else
-                    {
-                        GenerateClass(generator, (ClassSymbol) typeSymbol);
-                    }
-
+                    GenerateClass(generator, (ClassSymbol)typeSymbol);
                     break;
                 case SymbolType.Interface:
-                    GenerateInterface(generator, (InterfaceSymbol) typeSymbol);
-
+                    GenerateInterface(generator, (InterfaceSymbol)typeSymbol);
                     break;
                 case SymbolType.Enumeration:
-                    GenerateEnumeration(generator, (EnumerationSymbol) typeSymbol);
-
+                    GenerateEnumeration(generator, (EnumerationSymbol)typeSymbol);
                     break;
                 case SymbolType.Record:
-                    GenerateRecord(generator, (RecordSymbol) typeSymbol);
-
+                    GenerateRecord(generator, (RecordSymbol)typeSymbol);
                     break;
                 case SymbolType.Resources:
-                    GenerateResources(generator, (ResourcesSymbol) typeSymbol);
-
+                    GenerateResources(generator, (ResourcesSymbol)typeSymbol);
                     break;
             }
 

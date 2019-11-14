@@ -1,0 +1,20 @@
+"use strict";
+
+define('test', ['ss', 'lib'], function(ss, lib) {
+  var $global = this;
+  // BasicTests.App
+
+  function App() {
+  }
+  App.foo = function(extendedType) {
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, null, [], null)
+    });
+
+
+  return $exports;
+});

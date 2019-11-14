@@ -8,6 +8,8 @@ namespace DSharp.Compiler.TestFramework.Context
 {
     public class TestContextFactory : ITestContextFactory
     {
+        private const string REFERENCES_FOLDER = "references";
+
         private readonly string rootDirectory;
         private readonly ITestDataProvider testDataProvider;
 
@@ -114,7 +116,7 @@ namespace DSharp.Compiler.TestFramework.Context
 
                 if (!File.Exists(assemblyFilePath))
                 {
-                    assemblyFilePath = Path.Combine(Directory.GetCurrentDirectory(), assemblyFileName);
+                    assemblyFilePath = Path.Combine(Directory.GetCurrentDirectory(), REFERENCES_FOLDER, assemblyFileName);
                     if (!File.Exists(assemblyFilePath))
                     {
                         throw new FileNotFoundException($"Unable to find assembly file at either {Path.Combine(testFilesPath, assemblyFileName)} or {assemblyFilePath}");

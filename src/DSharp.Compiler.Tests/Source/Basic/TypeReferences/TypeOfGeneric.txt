@@ -1,0 +1,32 @@
+"use strict";
+
+define('test', ['ss', 'lib'], function(ss, lib) {
+  var $global = this;
+  // BasicTests.App
+
+  function App() {
+    var type = ss.getGenericConstructor(GenericType_$1, {TArg: lib.InterfaceInLib});
+  }
+  var App$ = {
+
+  };
+
+
+  // BasicTests.GenericType`1
+
+  function GenericType_$1() {
+  }
+  var GenericType_$1$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, App$, [], null),
+      GenericType_$1: ss.defineClass(GenericType_$1, GenericType_$1$, [], null)
+    });
+
+
+  return $exports;
+});

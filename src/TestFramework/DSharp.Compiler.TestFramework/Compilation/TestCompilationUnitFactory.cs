@@ -2,7 +2,7 @@
 {
     public class TestCompilationUnitFactory : ICompilationUnitFactory
     {
-        private const string MSCORLIB = "DSharp.Mscorlib.dll";
+        private const string MSCORLIB = @"references\DSharp.Mscorlib.dll";
 
         public ICompilationUnitBuilder CreateCompilationUnitBuilder()
         {

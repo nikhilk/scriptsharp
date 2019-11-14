@@ -1,4 +1,4 @@
-// PropertyDeclarationNode.cs
+﻿// PropertyDeclarationNode.cs
 // Script#/Core/Compiler
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -68,5 +68,14 @@ namespace DSharp.Compiler.CodeModel.Members
         public AccessorNode SetAccessor { get; }
 
         public override ParseNode Type { get; }
+
+        public bool IsAutoProperty 
+            => (GetAccessor?.IsAutoProperty ?? false) 
+            || (SetAccessor?.IsAutoProperty ?? false);
+
+        public bool IsReadonlyProperty
+            => GetAccessor != null
+            && SetAccessor == null
+            && GetAccessor.IsAutoProperty;
     }
 }

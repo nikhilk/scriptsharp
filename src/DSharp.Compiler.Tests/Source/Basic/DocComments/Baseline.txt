@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // BasicTests.Suit
 
   var Suit = {
@@ -214,15 +213,6 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  // BasicTests.GlobalMethodsClass
-
-  $global.run = function() {
-    /// <summary>
-    /// Runs.
-    /// </summary>
-  };
-
-
   // BasicTests.DerivedClass
 
   function DerivedClass() {
@@ -252,7 +242,7 @@ define('test', ['ss'], function(ss) {
       InternalClassWithNoComments: ss.defineClass(InternalClassWithNoComments, InternalClassWithNoComments$, [], null)
     },
     {
-      Suit: Suit,
+      Suit: new ss.Enum('Suit', Suit),
       IInterface: ss.defineInterface(IInterface),
       RecordClass: RecordClass,
       BaseClass: ss.defineClass(BaseClass, BaseClass$, [Element, String, Number], null),
@@ -263,3 +253,4 @@ define('test', ['ss'], function(ss) {
 
   return $exports;
 });
+

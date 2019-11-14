@@ -2,8 +2,6 @@
 
 namespace System.Collections.Generic
 {
-    [ScriptImport]
-    [ScriptName("IDictionary")]
     public interface IReadOnlyDictionary<TKey, TValue>
         : IEnumerable<KeyValuePair<TKey, TValue>>
     {

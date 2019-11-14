@@ -1,0 +1,54 @@
+"use strict";
+
+define('ExpressionTests.ExtensionMethods', ['ss'], function(ss) {
+  var $global = this;
+  // ExpressionTests.Test1
+
+  function Test1() {
+  }
+  var Test1$ = {
+    func: function() {
+      CodeEx1.apa(this._value);
+    }
+  };
+
+
+  // ExpressionTests.Test2
+
+  function Test2() {
+  }
+  var Test2$ = {
+    func: function() {
+      CodeEx2.apa(this._value);
+    }
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Expression.ExtensionMethods2.Test1.CodeEx1
+
+  function CodeEx1() {
+  }
+  CodeEx1.apa = function(target) {
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Expression.ExtensionMethods2.Test2.CodeEx2
+
+  function CodeEx2() {
+  }
+  CodeEx2.apa = function(target) {
+  };
+
+
+  var $exports = ss.module('ExpressionTests.ExtensionMethods', null,
+    {
+      Test1: ss.defineClass(Test1, Test1$, [], null),
+      Test2: ss.defineClass(Test2, Test2$, [], null),
+      CodeEx1: ss.defineClass(CodeEx1, null, [], null),
+      CodeEx2: ss.defineClass(CodeEx2, null, [], null)
+    });
+
+
+  return $exports;
+});
+

@@ -46,6 +46,7 @@ namespace ExpressionTests
         {
         }
 
+        [ScriptIgnoreGenericArguments]
         public object InParameter<T>(T inGenericParameter)
         {
             return inGenericParameter;
@@ -59,6 +60,7 @@ namespace ExpressionTests
             x.Dispose();
         }
 
+        [ScriptIgnoreGenericArguments]
         public void ComplexInGenerics<T, Y>(T a1, Y a2)
             where T : IDisposable
             where Y : TestBase, IDisposable

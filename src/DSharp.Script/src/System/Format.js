@@ -282,6 +282,7 @@ function _commaFormatNumber(number, groups, decimal, comma) {
     }
 
     var index = number.length;
+    var s = '';
     var done = false;
     while (!done) {
         var length = groupSize;

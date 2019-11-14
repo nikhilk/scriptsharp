@@ -3,6 +3,7 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -33,7 +34,7 @@ namespace DSharp.Compiler.Importer
         {
             CustomAttribute dsharpScriptMemberName = GetAttribute(attributeProvider, "System.Runtime.CompilerServices.DSharpScriptMemberNameAttribute");
 
-            if(dsharpScriptMemberName != null)
+            if (dsharpScriptMemberName != null)
             {
                 return DSharpStringResources.ScriptExportMember(GetAttributeArgument(dsharpScriptMemberName));
             }
@@ -63,7 +64,7 @@ namespace DSharp.Compiler.Importer
 
                 if (scriptAssemblyAttribute.Properties.Count != 0)
                 {
-                    assemblyIdentifier = (string) scriptAssemblyAttribute.Properties[0].Argument.Value;
+                    assemblyIdentifier = (string)scriptAssemblyAttribute.Properties[0].Argument.Value;
                 }
 
                 return name;
@@ -86,7 +87,7 @@ namespace DSharp.Compiler.Importer
 
                 if (scriptDependencyAttribute.Properties.Count != 0)
                 {
-                    dependencyIdentifier = (string) scriptDependencyAttribute.Properties[0].Argument.Value;
+                    dependencyIdentifier = (string)scriptDependencyAttribute.Properties[0].Argument.Value;
                 }
 
                 return name;
@@ -161,11 +162,11 @@ namespace DSharp.Compiler.Importer
                     for (int i = 0; i < nameAttribute.Properties.Count; i++)
                         if (string.CompareOrdinal(nameAttribute.Properties[i].Name, "PreserveName") == 0)
                         {
-                            preserveName = (bool) nameAttribute.Properties[i].Argument.Value;
+                            preserveName = (bool)nameAttribute.Properties[i].Argument.Value;
                         }
                         else
                         {
-                            preserveCase = (bool) nameAttribute.Properties[i].Argument.Value;
+                            preserveCase = (bool)nameAttribute.Properties[i].Argument.Value;
                         }
                 }
             }
@@ -203,25 +204,6 @@ namespace DSharp.Compiler.Importer
             }
 
             return string.CompareOrdinal(type.BaseType.FullName, "System.Enum") == 0;
-        }
-
-        public static bool IsScriptExtension(TypeDefinition type, out string extendee)
-        {
-            extendee = null;
-
-            CustomAttribute extensionAttribute = GetAttribute(type, "System.ScriptExtensionAttribute");
-
-            if (extensionAttribute != null)
-            {
-                extendee = GetAttributeArgument(extensionAttribute);
-
-                if (string.IsNullOrEmpty(extendee) == false)
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         public static bool ShouldIgnoreNamespace(TypeDefinition type)
@@ -283,7 +265,7 @@ namespace DSharp.Compiler.Importer
                     Debug.Assert(string.CompareOrdinal(attribute.Properties[0].Name, "UseNames") == 0);
                     Debug.Assert(attribute.Properties[0].Argument.Value is bool);
 
-                    return (bool) attribute.Properties[0].Argument.Value;
+                    return (bool)attribute.Properties[0].Argument.Value;
                 }
             }
 
@@ -302,10 +284,25 @@ namespace DSharp.Compiler.Importer
                     Debug.Assert(string.CompareOrdinal(attribute.Properties[0].Name, "UseNames") == 0);
                     Debug.Assert(attribute.Properties[0].Argument.Value is bool);
 
-                    return (bool) attribute.Properties[0].Argument.Value == false;
+                    return (bool)attribute.Properties[0].Argument.Value == false;
                 }
 
                 return true;
+            }
+
+            return false;
+        }
+
+        public static bool ShouldIgnoreMethodGeneratedTypeArguments(MethodDefinition method)
+        {
+            foreach (CustomAttribute attribute in method.CustomAttributes)
+            {
+                string typeName = attribute.Constructor.DeclaringType.FullName;
+
+                if (string.Equals(typeName, DSharpStringResources.Mscorlib.SCRIPT_IGNORE_GENERIC_ARGUMENTS_ATTRIBUTE_FULLNAME, StringComparison.InvariantCulture))
+                {
+                    return true;
+                }
             }
 
             return false;

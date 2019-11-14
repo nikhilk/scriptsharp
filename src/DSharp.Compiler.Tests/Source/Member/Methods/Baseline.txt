@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // MemberTests.Test
 
   function Test() {
@@ -21,6 +20,8 @@ define('test', ['ss'], function(ss) {
     }),
     do5: ss.paramsGenerator(0, function(stuff) {
     }),
+    do6: ss.paramsGenerator(1, function($TArgs, someValues) {
+    }),
     run: function() {
       this.do1();
       var v = this.do2();
@@ -29,27 +30,12 @@ define('test', ['ss'], function(ss) {
       i = s.indexOf('A', 1);
       var ln = this.do4(0, 1, 2, 3, 'a', 'b', 'c', true, false);
       this.do5();
+      this.do6({T: Number}, 1, 2, 3);
     },
     toString: function() {
-      window.m1();
       var x = new X();
-      $.fn.extend(x, 10);
       return null;
     }
-  };
-
-
-  // MemberTests.Foo
-
-  $global.doStuff = function() {
-  };
-
-
-  // MemberTests.Bar
-
-  window.m1 = function() {
-  };
-  window.m2 = function() {
   };
 
 
@@ -63,14 +49,6 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  // MemberTests.Plugin
-
-  $.fn.extend = function(x, i) {
-    x.update(i);
-    return x;
-  };
-
-
   var $exports = ss.module('test', null,
     {
       Test: ss.defineClass(Test, Test$, [], null),
@@ -80,3 +58,4 @@ define('test', ['ss'], function(ss) {
 
   return $exports;
 });
+

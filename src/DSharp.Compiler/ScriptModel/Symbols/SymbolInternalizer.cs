@@ -1,4 +1,4 @@
-// SymbolInternalizer.cs
+﻿// SymbolInternalizer.cs
 // Script#/Core/Compiler
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -26,14 +26,6 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                     // If the enum uses named values, then don't transform, as its
                     // unlikely the code wants to use some random generated name as the
                     // named value.
-                    transformChildren = false;
-                }
-
-                if (symbol.Type == SymbolType.Class &&
-                    ((ClassSymbol) symbol).IsExtenderClass)
-                {
-                    // Unlikely that classes adding members to another object contain
-                    // members that should be renamed.
                     transformChildren = false;
                 }
 

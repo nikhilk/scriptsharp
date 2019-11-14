@@ -17,5 +17,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
         public int Index { get; }
 
         public bool IsTypeParameter { get; }
+
+        public Symbol Owner { get; set; }
     }
 }

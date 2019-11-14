@@ -22,7 +22,6 @@ namespace DSharp.Compiler.ScriptModel.Symbols
         private ClassSymbol primaryPartialClass;
         private bool staticClass;
         private ConstructorSymbol staticConstructor;
-        private bool testClass;
         private int transformationCookie;
 
         public ClassSymbol(string name, NamespaceSymbol parent)
@@ -63,8 +62,6 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 return constructor;
             }
         }
-
-        public string Extendee { get; private set; }
 
         public override string GeneratedName
         {
@@ -130,21 +127,6 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             }
         }
 
-        public bool IsExtenderClass
-        {
-            get
-            {
-                if (primaryPartialClass != null)
-                {
-                    return primaryPartialClass.IsExtenderClass;
-                }
-
-                return string.IsNullOrEmpty(Extendee) == false;
-            }
-        }
-
-        public bool IsModuleClass { get; private set; }
-
         public bool IsStaticClass
         {
             get
@@ -155,19 +137,6 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 }
 
                 return staticClass;
-            }
-        }
-
-        public bool IsTestClass
-        {
-            get
-            {
-                if (primaryPartialClass != null)
-                {
-                    return primaryPartialClass.IsTestClass;
-                }
-
-                return testClass;
             }
         }
 
@@ -357,20 +326,6 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             return base.GetMember(name);
         }
 
-        public void SetExtenderClass(string extendee)
-        {
-            Debug.Assert(string.IsNullOrEmpty(extendee) == false);
-
-            if (primaryPartialClass != null)
-            {
-                primaryPartialClass.SetExtenderClass(extendee);
-
-                return;
-            }
-
-            Extendee = extendee;
-        }
-
         public void SetInheritance(ClassSymbol baseClass, ICollection<InterfaceSymbol> interfaces)
         {
             // Inheritance should only be assigned to a primary partial class.
@@ -378,11 +333,6 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
             this.baseClass = baseClass;
             this.interfaces = interfaces;
-        }
-
-        public void SetModuleClass()
-        {
-            IsModuleClass = true;
         }
 
         public void SetPrimaryPartialClass(ClassSymbol primaryPartialClass)

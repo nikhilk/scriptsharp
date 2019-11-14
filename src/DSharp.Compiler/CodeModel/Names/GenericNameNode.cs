@@ -12,7 +12,7 @@ namespace DSharp.Compiler.CodeModel.Names
         public GenericNameNode(IdentifierToken name, ParseNodeList typeArguments)
             : base(ParseNodeType.GenericName, name)
         {
-            TypeArguments = typeArguments;
+            TypeArguments = GetParentedNodeList(typeArguments);
         }
 
         public ParseNodeList TypeArguments { get; }

@@ -87,10 +87,6 @@ namespace DSharp.Compiler.Validator
                     featureName = "Alias-qualified identifiers";
 
                     break;
-                case ParseNodeType.TypeParameter:
-                    featureName = "Generic type parameters";
-
-                    break;
                 case ParseNodeType.ConstraintClause:
                     featureName = "Generic type constraints";
 

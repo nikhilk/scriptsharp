@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
     <PackageOutputPath Condition="'$(PackageOutputPath)' == ''">$(SolutionDir)Output\Packages</PackageOutputPath>
-    <NuspecFile Condition="'$(NuspecFile)' == ''">$(AssemblyName).nuspec</NuspecFile>
-    <PackageVersion Condition="'$(PackageVersion)' == ''">1.0.0-dev.0</PackageVersion>
+    <NuspecFile Condition="'$(NuspecFile)' == '' AND Exists('$(AssemblyName).nuspec')">$(AssemblyName).nuspec</NuspecFile>
+    <PackageVersion Condition="'$(PackageVersion)' == ''">2.0.0-dev.1</PackageVersion>
   </PropertyGroup>
 
   <Target Name="UpdateNuspecFileProperties" BeforeTargets="GenerateNuspec">
@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <VersionSyncedImports Include="DSharp.Mscorlib"/>
+      <VersionSyncedImports Include="DSharp.CodeAnalysis"/>
       <VersionSyncedImports Include="DSharp.Web"/>
     </ItemGroup>
     

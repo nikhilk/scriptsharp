@@ -1,4 +1,5 @@
 var _modules = {};
+var _genericConstructorCache = {};
 
 var _classMarker = 'class';
 var _interfaceMarker = 'interface';
@@ -34,6 +35,9 @@ function createType(typeName, typeInfo, typeRegistry) {
         type.$name = typeName;
         return typeRegistry[typeName] = type;
     }
+    else if (typeInfo.constructor === Enum) {
+        return typeRegistry[typeName] = typeInfo;
+    }
 
     return typeInfo;
 }
@@ -51,26 +55,12 @@ function defineInterface(type, interfaces) {
     return [_interfaceMarker, type];
 }
 
-function createPropertyGet(obj, propertyName, fn) {
-    Object.defineProperty(obj, propertyName, {
-        configurable: true,
-        get: fn
-    });
-}
-
-function createPropertySet(obj, propertyName, fn) {
-    Object.defineProperty(obj, propertyName, {
-        configurable: true,
-        set: fn
-    });
-}
-
 function isClass(fn) {
-    return fn.$type == _classMarker;
+    return fn.$type === _classMarker;
 }
 
 function isInterface(fn) {
-    return fn.$type == _interfaceMarker;
+    return fn.$type === _interfaceMarker;
 }
 
 function typeOf(instance) {
@@ -114,7 +104,7 @@ function typeName(type) {
         return type.name;
     }
     for (var i = 0, len = _typeNames.length; i < len; i += 2) {
-        if (type == _typeNames[i]) {
+        if (type === _typeNames[i]) {
             return _typeNames[i + 1];
         }
     }
@@ -125,19 +115,19 @@ function canAssign(type, otherType) {
     // Checks if the specified type is equal to otherType,
     // or is a parent of otherType
 
-    if ((type == Object) || (type == otherType)) {
+    if ((type === Object) || (type === otherType)) {
         return true;
     }
-    if (type.$type == _classMarker) {
+    if (type.$type === _classMarker) {
         var baseType = otherType.$base;
         while (baseType) {
-            if (type == baseType) {
+            if (type === baseType) {
                 return true;
             }
             baseType = baseType.$base;
         }
     }
-    else if (type.$type == _interfaceMarker) {
+    else if (type.$type === _interfaceMarker) {
         var baseType = otherType;
         while (baseType) {
             if (interfaceOf(baseType, type)) {
@@ -151,7 +141,7 @@ function canAssign(type, otherType) {
 }
 
 function interfaceOf(baseType, otherType) {
-    if (baseType == otherType) {
+    if (baseType === otherType || baseType["$name"] === otherType["$name"]) {
         return true;
     }
 
@@ -174,7 +164,7 @@ function instanceOf(type, instance) {
         return false;
     }
 
-    if ((type == Object) || (instance instanceof type)) {
+    if ((type === Object) || (instance instanceof type)) {
         return true;
     }
 

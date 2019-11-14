@@ -14,6 +14,7 @@ namespace DSharp.Compiler.Generator
     internal sealed class ScriptGenerator
     {
         private readonly Stack<SymbolImplementation> implementationStack;
+        private readonly IComparer<TypeSymbol> typeComparer = new TypeComparer();
 
         private SymbolSet symbols;
 
@@ -44,62 +45,11 @@ namespace DSharp.Compiler.Generator
         {
             Debug.Assert(symbolSet != null);
 
-            List<TypeSymbol> types = new List<TypeSymbol>();
-            List<TypeSymbol> publicTypes = new List<TypeSymbol>();
-            List<TypeSymbol> internalTypes = new List<TypeSymbol>();
-
-            bool hasNonModuleInternalTypes = false;
-
-            foreach (NamespaceSymbol namespaceSymbol in symbolSet.Namespaces)
-                if (namespaceSymbol.HasApplicationTypes)
-                {
-                    foreach (TypeSymbol type in namespaceSymbol.Types)
-                    {
-                        if (type.IsApplicationType == false)
-                        {
-                            continue;
-                        }
-
-                        if (type.Type == SymbolType.Delegate)
-                        {
-                            // Nothing needs to be generated for delegate types.
-                            continue;
-                        }
-
-                        if (type.Type == SymbolType.Enumeration &&
-                            (type.IsPublic == false || ((EnumerationSymbol) type).Constants))
-                        {
-                            // Internal enums can be skipped since their values have been inlined.
-                            // Public enums marked as constants can also be skipped since their
-                            // values will always be inlined.
-                            continue;
-                        }
-
-                        types.Add(type);
-
-                        if (type.IsPublic)
-                        {
-                            publicTypes.Add(type);
-                        }
-                        else
-                        {
-                            if (type.Type != SymbolType.Class ||
-                                ((ClassSymbol) type).IsModuleClass == false)
-                            {
-                                hasNonModuleInternalTypes = true;
-                            }
-
-                            internalTypes.Add(type);
-                        }
-                    }
-                }
+            var types = CollectEmittableTypes(symbolSet)
+                .OrderBy(t => t, typeComparer);
 
             // Sort the types, so similar types of types are grouped, and parent classes
             // come before derived classes.
-            IComparer<TypeSymbol> typeComparer = new TypeComparer();
-            types = types.OrderBy(t => t, typeComparer).ToList();
-            publicTypes = publicTypes.OrderBy(t => t, typeComparer).ToList();
-            internalTypes = internalTypes.OrderBy(t => t, typeComparer).ToList();
 
             bool initialIndent = false;
 
@@ -122,102 +72,20 @@ namespace DSharp.Compiler.Generator
                 Writer.Indent++;
             }
 
-            foreach (TypeSymbol type in types) TypeGenerator.GenerateScript(this, type);
-
-            bool generateModule = publicTypes.Count != 0 ||
-                                  internalTypes.Count != 0 && hasNonModuleInternalTypes;
-
-            if (generateModule)
+            foreach (TypeSymbol type in types)
             {
-                Writer.Write($"var $exports = {DSharpStringResources.ScriptExportMember("module")}('");
-                Writer.Write(symbolSet.ScriptName);
-                Writer.Write("',");
-
-                if (internalTypes.Count != 0 && hasNonModuleInternalTypes)
-                {
-                    Writer.WriteLine();
-                    Writer.Indent++;
-                    Writer.WriteLine("{");
-                    Writer.Indent++;
-                    bool firstType = true;
-
-                    foreach (TypeSymbol type in internalTypes)
-                    {
-                        if (type.Type == SymbolType.Class &&
-                            (((ClassSymbol) type).IsExtenderClass || ((ClassSymbol) type).IsModuleClass))
-                        {
-                            continue;
-                        }
-
-                        if (type.Type == SymbolType.Record &&
-                            ((RecordSymbol) type).Constructor == null)
-                        {
-                            continue;
-                        }
-
-                        if (firstType == false)
-                        {
-                            Writer.WriteLine(",");
-                        }
-
-                        TypeGenerator.GenerateRegistrationScript(this, type);
-                        firstType = false;
-                    }
-
-                    Writer.Indent--;
-                    Writer.WriteLine();
-                    Writer.Write("},");
-                    Writer.Indent--;
-                }
-                else
-                {
-                    Writer.Write(" null,");
-                }
-
-                if (publicTypes.Count != 0)
-                {
-                    Writer.WriteLine();
-                    Writer.Indent++;
-                    Writer.WriteLine("{");
-                    Writer.Indent++;
-                    bool firstType = true;
-
-                    foreach (TypeSymbol type in publicTypes)
-                    {
-                        if (type.Type == SymbolType.Class &&
-                            ((ClassSymbol) type).IsExtenderClass)
-                        {
-                            continue;
-                        }
-
-                        if (firstType == false)
-                        {
-                            Writer.WriteLine(",");
-                        }
-
-                        TypeGenerator.GenerateRegistrationScript(this, type);
-                        firstType = false;
-                    }
-
-                    Writer.Indent--;
-                    Writer.WriteLine();
-                    Writer.Write("}");
-                    Writer.Indent--;
-                }
-                else
-                {
-                    Writer.Write(" null");
-                }
-
-                Writer.WriteLine(");");
-                Writer.WriteLine();
+                TypeGenerator.GenerateScript(this, type);
             }
 
+            GenerateModuleExports(symbolSet, types);
+
             foreach (TypeSymbol type in types)
-                if (type.Type == SymbolType.Class)
+            {
+                if (type is ClassSymbol classSymbol)
                 {
-                    TypeGenerator.GenerateClassConstructorScript(this, (ClassSymbol) type);
+                    TypeGenerator.GenerateClassConstructorScript(this, classSymbol);
                 }
+            }
 
             if (initialIndent)
             {
@@ -225,9 +93,117 @@ namespace DSharp.Compiler.Generator
             }
         }
 
+        private void GenerateModuleExports(SymbolSet symbolSet, IEnumerable<TypeSymbol> types)
+        {
+            if (!types.Any())
+            {
+                return;
+            }
+
+            IEnumerable<TypeSymbol> publicTypes = types.Where(type => type.IsPublic);
+            IEnumerable<TypeSymbol> internalTypes = types.Where(type => type.IsInternal);
+
+            Writer.Write($"var $exports = {DSharpStringResources.ScriptExportMember("module")}('");
+            Writer.Write(symbolSet.ScriptName);
+            Writer.Write("',");
+
+            if (internalTypes.Any())
+            {
+                Writer.WriteLine();
+                Writer.Indent++;
+                Writer.WriteLine("{");
+                Writer.Indent++;
+                bool firstType = true;
+
+                foreach (TypeSymbol type in internalTypes)
+                {
+                    if (type.Type == SymbolType.Record && ((RecordSymbol)type).Constructor == null)
+                    {
+                        continue;
+                    }
+
+                    if (firstType == false)
+                    {
+                        Writer.WriteLine(",");
+                    }
+
+                    TypeGenerator.GenerateRegistrationScript(this, type);
+                    firstType = false;
+                }
+
+                Writer.Indent--;
+                Writer.WriteLine();
+                Writer.Write("},");
+                Writer.Indent--;
+            }
+            else
+            {
+                Writer.Write(" null,");
+            }
+
+            if (publicTypes.Any())
+            {
+                Writer.WriteLine();
+                Writer.Indent++;
+                Writer.WriteLine("{");
+                Writer.Indent++;
+                bool firstType = true;
+
+                foreach (TypeSymbol type in publicTypes)
+                {
+                    if (firstType == false)
+                    {
+                        Writer.WriteLine(",");
+                    }
+
+                    TypeGenerator.GenerateRegistrationScript(this, type);
+                    firstType = false;
+                }
+
+                Writer.Indent--;
+                Writer.WriteLine();
+                Writer.Write("}");
+                Writer.Indent--;
+            }
+            else
+            {
+                Writer.Write(" null");
+            }
+
+            Writer.WriteLine(");");
+            Writer.WriteLine();
+        }
+
+        private static List<TypeSymbol> CollectEmittableTypes(SymbolSet symbolSet)
+        {
+            var types = new List<TypeSymbol>();
+
+            foreach (NamespaceSymbol namespaceSymbol in symbolSet.Namespaces.Where(ns => ns.HasApplicationTypes))
+                foreach (TypeSymbol type in namespaceSymbol.Types.Where(type => type.IsApplicationType))
+                {
+                    if (type.Type == SymbolType.Delegate)
+                    {
+                        // Nothing needs to be generated for delegate types.
+                        continue;
+                    }
+
+                    if (type.Type == SymbolType.Enumeration &&
+                        (type.IsPublic == false || ((EnumerationSymbol)type).Constants))
+                    {
+                        // Internal enums can be skipped since their values have been inlined.
+                        // Public enums marked as constants can also be skipped since their
+                        // values will always be inlined.
+                        continue;
+                    }
+
+                    types.Add(type);
+                }
+
+            return types;
+        }
+
         public void StartImplementation(SymbolImplementation implementation)
         {
-            Debug.Assert(implementation != null);
             implementationStack.Push(implementation);
         }
 
@@ -239,7 +215,7 @@ namespace DSharp.Compiler.Generator
                 {
                     // If types are different, then use the symbol type to
                     // similar types of types together.
-                    return (int) x.Type - (int) y.Type;
+                    return (int)x.Type - (int)y.Type;
                 }
 
                 if (x.Type == SymbolType.Class)
@@ -250,7 +226,7 @@ namespace DSharp.Compiler.Generator
                     // chain for any particular type. A parent class with lesser
                     // inheritance depth has to by definition come first.
 
-                    return ((ClassSymbol) x).InheritanceDepth - ((ClassSymbol) y).InheritanceDepth;
+                    return ((ClassSymbol)x).InheritanceDepth - ((ClassSymbol)y).InheritanceDepth;
                 }
 
                 return 0;

@@ -1,0 +1,167 @@
+﻿"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.IBulkAsyncExecutionManager`1
+
+  function IBulkAsyncExecutionManager_$1() { }
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.Program
+
+  function Program() {
+  }
+  Program.main = function(args) {
+    var genericClass = ss.createGenericType(GenericClass_$1, {T : Number}, 1);
+    var genericClass2 = ss.createGenericType(GenericClass_$1, {T : MyType}, new MyType());
+    var isSame = genericClass2.Type === genericClass.Type;
+    var genericClassType = ss.getGenericConstructor(GenericClass_$1, {T: Number});
+    var array = [ 1, 2, 3, 4, 5 ];
+    var newArr = Program.copy(array, 0, array.length);
+    var values = {};
+    var values2 = {};
+    var copiedValues = Program.copyDictionary(values);
+    var copiedValues2 = Program.copyDictionary(values2);
+    var copiedValuesOfStrings = Program.copyDictionary(Program.copyDictionaryOfStringKeys(values));
+    var bem = ss.createGenericType(BulkAsyncExecutionManager_$1, {T : String});
+    bem.addExecutionKey('');
+    bem.addExecutionKeys([ 'Lol', 'asdasd', 'hashasd' ]);
+    bem.startExecution();
+    if (ss.typeOf(bem) === ss.getGenericConstructor(BulkAsyncExecutionManager_$1, {T: Number})) {
+    }
+    if (ss.typeOf(bem) === ss.getGenericConstructor(BulkAsyncExecutionManager_$1, {T: String})) {
+    }
+    if (ss.canAssign(ss.getGenericConstructor(IBulkAsyncExecutionManager_$1, {T: String}), ss.typeOf(bem))) {
+    }
+    var genericWithMultipleParams = ss.createGenericType(GenericWithMultipleParams_$3, {T1 : Number, T2 : Boolean, T3 : String});
+    var str = genericWithMultipleParams.toString();
+    var specificClassOfGeneric = new SpecificClassOfGeneric();
+    var isInt = specificClassOfGeneric.Type === Number;
+    var myContainer = specificClassOfGeneric.createContainer();
+    isInt = myContainer.Type === Number;
+  };
+  Program.copy = function($TArgs, source, startIndex, count) {
+    var destination = new Array(source.length);
+    ss.copyArray(source, startIndex, destination, 0, count);
+    return destination;
+  };
+  Program.copyDictionary = function($TArgs, source) {
+    var newDictionary = {};
+    for (var $key1 in source) {
+      var item = { key: $key1, value: source[$key1] };
+      ss.addKeyValue(newDictionary, item.key, item.value);
+    }
+    return newDictionary;
+  };
+  Program.copyDictionaryOfStringKeys = function($TArgs, source) {
+    var newDictionary = {};
+    for (var $key1 in source) {
+      var item = { key: $key1, value: source[$key1] };
+      ss.addKeyValue(newDictionary, item.key, item.value);
+    }
+    return newDictionary;
+  };
+  var Program$ = {
+
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.MyType
+
+  function MyType() {
+  }
+  var MyType$ = {
+
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.BaseGenericClass`1
+
+  function BaseGenericClass_$1(baseField) {
+    this.baseField = baseField;
+  }
+  var BaseGenericClass_$1$ = {
+    $get_BaseField: function() {
+      return this.baseField;
+    }
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.BulkAsyncExecutionManager`1
+
+  function BulkAsyncExecutionManager_$1() {
+  }
+  var BulkAsyncExecutionManager_$1$ = {
+    addExecutionKey: function(executionKey) {
+      var typeOfT = ss.getTypeArgument(this, 'T');
+    },
+    addExecutionKeys: function(executionKeys) {
+      var typeOfT = ss.typeOf(executionKeys);
+    },
+    startExecution: function() {
+    }
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericWithMultipleParams`3
+
+  function GenericWithMultipleParams_$3() {
+  }
+  var GenericWithMultipleParams_$3$ = {
+
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericClass`1
+
+  function GenericClass_$1(value, mutator) {
+    ss.getGenericConstructor(BaseGenericClass_$1, {T : ss.getTypeArgument(this, 'T')}).call(this, value);
+    this._value$1 = value;
+    this._mutator$1 = mutator;
+  }
+  var GenericClass_$1$ = {
+    $get_Value: function() {
+      return this._value$1;
+    },
+    $get_Type: function() {
+      return ss.getTypeArgument(this, 'T');
+    },
+    mutate: function() {
+      this._value$1 = this._mutator$1(this._value$1);
+    },
+    createContainer: function() {
+      return ss.createGenericType(GenericClass_$1, {T : ss.getTypeArgument(this, 'T')}, this._value$1, this._mutator$1);
+    }
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.SpecificClassOfGeneric
+
+  function SpecificClassOfGeneric(value) {
+    ss.getGenericConstructor(GenericClass_$1, {T : Number}).call(this, value, SpecificClassOfGeneric._myMutator$2);
+  }
+  SpecificClassOfGeneric._myMutator$2 = function(valIn) {
+    return valIn + 1;
+  };
+  var SpecificClassOfGeneric$ = {
+    returnMyField: function() {
+      return this.BaseField;
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      IBulkAsyncExecutionManager_$1: ss.defineInterface(IBulkAsyncExecutionManager_$1),
+      Program: ss.defineClass(Program, Program$, [], null),
+      MyType: ss.defineClass(MyType, MyType$, [], null),
+      BaseGenericClass_$1: ss.defineClass(BaseGenericClass_$1, BaseGenericClass_$1$, [Object], null),
+      BulkAsyncExecutionManager_$1: ss.defineClass(BulkAsyncExecutionManager_$1, BulkAsyncExecutionManager_$1$, [], null, [IBulkAsyncExecutionManager_$1]),
+      GenericWithMultipleParams_$3: ss.defineClass(GenericWithMultipleParams_$3, GenericWithMultipleParams_$3$, [], null),
+      GenericClass_$1: ss.defineClass(GenericClass_$1, GenericClass_$1$, [Object, Function], BaseGenericClass_$1),
+      SpecificClassOfGeneric: ss.defineClass(SpecificClassOfGeneric, SpecificClassOfGeneric$, [Number], GenericClass_$1)
+    });
+
+
+  return $exports;
+});

@@ -9,8 +9,6 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   
-  
-  
   <ItemGroup>
     <Compile Include="..\FileInputStreamSource.cs">
       <Link>FileInputStreamSource.cs</Link>
@@ -26,12 +24,5 @@
   
   <ItemGroup>
     <ProjectReference Include="..\DSharp.Compiler\DSharp.Compiler.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="src\*.cs" />
-    <None Include="src\*.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>

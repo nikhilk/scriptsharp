@@ -27,7 +27,7 @@ namespace DSharp.Compiler.Generator
 
                 Debug.Assert(eventSymbol.Parent.Type == SymbolType.Class);
 
-                Symbol fieldSymbol = ((ClassSymbol) eventSymbol.Parent).GetMember(fieldName);
+                Symbol fieldSymbol = ((ClassSymbol)eventSymbol.Parent).GetMember(fieldName);
                 Debug.Assert(fieldSymbol != null && fieldSymbol.Type == SymbolType.Field);
 
                 fieldName = fieldSymbol.GeneratedName;
@@ -221,7 +221,7 @@ namespace DSharp.Compiler.Generator
                 DocCommentGenerator.GenerateComment(generator, indexerSymbol);
             }
 
-            CodeGenerator.GenerateScript(generator, (IndexerSymbol) indexerSymbol, /* getter */ true);
+            CodeGenerator.GenerateScript(generator, (IndexerSymbol)indexerSymbol, /* getter */ true);
             writer.Indent--;
             writer.Write("}");
 
@@ -253,7 +253,7 @@ namespace DSharp.Compiler.Generator
                     DocCommentGenerator.GenerateComment(generator, indexerSymbol);
                 }
 
-                CodeGenerator.GenerateScript(generator, (IndexerSymbol) indexerSymbol, /* getter */ false);
+                CodeGenerator.GenerateScript(generator, (IndexerSymbol)indexerSymbol, /* getter */ false);
                 writer.Write("return ");
                 writer.Write(indexerSymbol.Parameters[indexerSymbol.Parameters.Count - 1].GeneratedName);
                 writer.WriteLine(";");
@@ -275,27 +275,7 @@ namespace DSharp.Compiler.Generator
 
             if (instanceMember == false)
             {
-                if (methodSymbol.IsExtension)
-                {
-                    string extendee = null;
-
-                    if (methodSymbol.Parent.Type == SymbolType.Class)
-                    {
-                        extendee = ((ClassSymbol) methodSymbol.Parent).Extendee;
-                    }
-
-                    if (string.IsNullOrEmpty(extendee))
-                    {
-                        extendee = "this";
-                    }
-
-                    writer.Write(extendee);
-                }
-                else
-                {
-                    writer.Write(typeName);
-                }
-
+                writer.Write(typeName);
                 writer.Write(".");
             }
 
@@ -315,11 +295,11 @@ namespace DSharp.Compiler.Generator
             if (hasParams)
             {
                 writer.Write($"{DSharpStringResources.ScriptExportMember("paramsGenerator")}(");
-                writer.Write("{0}, ", methodSymbol.Parameters.Count - 1);
+                writer.Write("{0}, ", methodSymbol.GetGeneratedParamsCount());
             }
 
             writer.Write("function(");
-            WriteParameters(methodSymbol, writer);
+            WriteParameters(methodSymbol, writer, true);
 
             writer.WriteLine(") {");
             writer.Indent++;
@@ -356,12 +336,17 @@ namespace DSharp.Compiler.Generator
             return lastParameterParseContext.Flags.HasFlag(ParameterFlags.Params);
         }
 
-        private static void WriteParameters(MethodSymbol methodSymbol, ScriptTextWriter writer)
+        private static void WriteParameters(MethodSymbol methodSymbol, ScriptTextWriter writer, bool includeGenericParameters = default)
         {
+            int paramIndex = 0;
+            if (includeGenericParameters && (methodSymbol.GenericArguments?.Any() ?? false) && !methodSymbol.IgnoreGeneratedTypeArguments)
+            {
+                writer.Write(DSharpStringResources.GeneratedScript.GENERIC_ARGS_PARAMETER_NAME);
+                paramIndex++;
+            }
+
             if (methodSymbol.Parameters != null)
             {
-                int paramIndex = 0;
-
                 foreach (ParameterSymbol parameterSymbol in methodSymbol.Parameters)
                 {
                     if (paramIndex > 0)
@@ -493,30 +478,30 @@ namespace DSharp.Compiler.Generator
         public static void GenerateScript(ScriptGenerator generator, MemberSymbol memberSymbol)
         {
             Debug.Assert(memberSymbol.Parent is TypeSymbol);
-            TypeSymbol typeSymbol = (TypeSymbol) memberSymbol.Parent;
+            TypeSymbol typeSymbol = (TypeSymbol)memberSymbol.Parent;
 
             string typeName = typeSymbol.FullGeneratedName;
 
             switch (memberSymbol.Type)
             {
                 case SymbolType.Field:
-                    GenerateField(generator, typeName, (FieldSymbol) memberSymbol);
+                    GenerateField(generator, typeName, (FieldSymbol)memberSymbol);
 
                     break;
                 case SymbolType.Indexer:
-                    GenerateIndexer(generator, typeName, (IndexerSymbol) memberSymbol);
+                    GenerateIndexer(generator, typeName, (IndexerSymbol)memberSymbol);
 
                     break;
                 case SymbolType.Property:
-                    GenerateProperty(generator, typeName, (PropertySymbol) memberSymbol);
+                    GenerateProperty(generator, typeName, (PropertySymbol)memberSymbol);
 
                     break;
                 case SymbolType.Method:
-                    GenerateMethod(generator, typeName, (MethodSymbol) memberSymbol);
+                    GenerateMethod(generator, typeName, (MethodSymbol)memberSymbol);
 
                     break;
                 case SymbolType.Event:
-                    GenerateEvent(generator, typeName, (EventSymbol) memberSymbol);
+                    GenerateEvent(generator, typeName, (EventSymbol)memberSymbol);
 
                     break;
             }

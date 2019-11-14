@@ -45,40 +45,47 @@ namespace System.Collections.Generic
         public extern int LastIndexOf(object item, int fromIndex);
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
+        [ScriptIgnoreGenericArguments]
         public extern List<TTarget> Map<TTarget>(ListMapCallback<T, TTarget> mapCallback);
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
+        [ScriptIgnoreGenericArguments]
         public extern List<TTarget> Map<TTarget>(ListItemMapCallback<T, TTarget> mapItemCallback);
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
         public extern static List<T> Parse(string s);
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
+        [ScriptIgnoreGenericArguments]
         public extern TReduced Reduce<TReduced>(ListReduceCallback<TReduced, T> callback);
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
+        [ScriptIgnoreGenericArguments]
         public extern TReduced Reduce<TReduced>(ListReduceCallback<TReduced, T> callback, TReduced initialValue);
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
+        [ScriptIgnoreGenericArguments]
         public extern TReduced Reduce<TReduced>(ListItemReduceCallback<TReduced, T> callback);
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
+        [ScriptIgnoreGenericArguments]
         public extern TReduced Reduce<TReduced>(ListItemReduceCallback<TReduced, T> callback, TReduced initialValue);
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
+        [ScriptIgnoreGenericArguments]
         public extern TReduced ReduceRight<TReduced>(ListReduceCallback<TReduced, T> callback);
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
+        [ScriptIgnoreGenericArguments]
         public extern TReduced ReduceRight<TReduced>(ListReduceCallback<TReduced, T> callback, TReduced initialValue);
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
+        [ScriptIgnoreGenericArguments]
         public extern TReduced ReduceRight<TReduced>(ListItemReduceCallback<TReduced, T> callback);
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
+        [ScriptIgnoreGenericArguments]
         public extern TReduced ReduceRight<TReduced>(ListItemReduceCallback<TReduced, T> callback, TReduced initialValue);
-
-        [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
-        public extern void Reverse();
 
         [Obsolete(ObsoleteConsts.MESSAGE_ON_OBSOLETE, ObsoleteConsts.ERROR_ON_OBSOLETE)]
         public extern List<T> Slice(int start);

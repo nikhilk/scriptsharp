@@ -1,9 +1,11 @@
 <Project>
   <PropertyGroup Label="SetDefaults">
     <GenerateScript Condition="'$(GenerateScript)' == ''">true</GenerateScript>
-    <LangVersion Condition="'$(GenerateScript)' == 'True'">ISO-2</LangVersion>
+    <LangVersion Condition="'$(GenerateScript)' == 'True'">3</LangVersion>
     <ExcludeCoreLib Condition="'$(ExcludeCoreLib)' == ''">false</ExcludeCoreLib>
+    <ExcludeCodeAnalysis Condition="'$(ExcludeCodeAnalysis)' == ''">false</ExcludeCodeAnalysis>
     <SkipScriptCopy Condition="'$(SkipScriptCopy)' == ''">false</SkipScriptCopy>
+    <DSharpCompilerDebugMode Condition="'$(DSharpCompilerDebugMode)' == ''">false</DSharpCompilerDebugMode>
     <DefineConstants>DSHARP;@(DefineConstants)</DefineConstants>
     <GenerateScriptAssemblyAttribute Condition="'$(GenerateScriptAssemblyAttributeCondition)' == ''">true</GenerateScriptAssemblyAttribute>
   </PropertyGroup>
@@ -31,6 +33,9 @@
     </AssemblyAttribute>
   </ItemGroup>
   <ItemGroup Condition="'$(ExcludeCoreLib)' == 'false'">
-    <PackageReference Include="DSharp.Mscorlib" Version="1.0.0-dev.0" IsImplicitlyDefined="true" PrivateAssets="All" />
+    <PackageReference Include="DSharp.Mscorlib" Version="2.0.0-dev.0" IsImplicitlyDefined="true" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(ExcludeCodeAnalysis)' == 'false'">
+    <PackageReference Include="DSharp.CodeAnalysis" Version="2.0.0-dev.0" IsImplicitlyDefined="true" PrivateAssets="All" />
   </ItemGroup>
 </Project>

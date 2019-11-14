@@ -171,5 +171,15 @@ namespace DSharp.Compiler.ScriptModel.Symbols
         {
             Visibility = visibility;
         }
+
+        public virtual void IncrementReferenceCount()
+        {
+            if (Parent == null)
+            {
+                return;
+            }
+
+            ((TypeSymbol)Parent).IncrementReferenceCount();
+        }
     }
 }

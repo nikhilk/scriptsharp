@@ -2,8 +2,8 @@
 
 namespace System.Collections
 {
-    [ScriptImport]
-    public interface IEnumerator {
+    public interface IEnumerator
+    {
 
         [ScriptField]
         object Current { get; }

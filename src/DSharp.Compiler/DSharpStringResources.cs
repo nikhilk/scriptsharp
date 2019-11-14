@@ -13,8 +13,6 @@
         public static readonly string SCRIPT_IGNORE_ATTRIBUTE = "ScriptIgnore";
         public static readonly string SCRIPT_IGNORE_ATTRIBUTE_FULLTYPENAME = "System.ScriptIgnore";
         public static readonly string SCRIPT_OBJECT_ATTRIBUTE = "ScriptObject";
-        public static readonly string SCRIPT_EXTENSION_ATTRIBUTE = "ScriptExtension";
-        public static readonly string SCRIPT_MODULE_ATTRIBUTE = "ScriptModule";
         public static readonly string SCRIPT_NAME_ATTRIBUTE = "ScriptName";
         public static readonly string SCRIPT_REFERENCE_ATTRIBUTE = "ScriptReference";
 
@@ -26,17 +24,14 @@
         public static readonly string SCRIPT_LITERAL_CONSTANT_ERROR = "The argument to Script.Literal must be a constant string.";
         public static readonly string SCRIPT_LITERAL_FORMAT_ERROR = "The argument to Script.Literal must be a valid String.Format string.";
         public static readonly string RESERVED_KEYWORD_ERROR_FORMAT = "{0} is a reserved keyword.";
-        public static readonly string SCRIPT_MODULE_NON_INTERNAL_CLASS_ERROR = "ScriptModule attribute can only be set on internal static classes.";
-        public static readonly string SCRIPT_MODULE_NON_STATIC_CONSTRUCTOR = "Classes marked with ScriptModule attribute should only have a static constructor.";
-        public static readonly string NESTED_TYPE_ERROR = "Only members are allowed inside types. Nested types are not supported.";
         public static readonly string EXTERN_IMPLEMENTATION_FOUND_ERROR = "Extern methods used to declare alternate signatures should have a corresponding non-extern implementation as well.";
         public static readonly string EXTERN_STATIC_MEMBER_MISMATCH_ERROR = "The implemenation method and associated alternate signature methods should have the same access type.";
         public static readonly string SCRIPT_OBJECT_ATTRIBUTE_ERROR = "ScriptObject attribute can only be set on sealed classes.";
         public static readonly string SCRIPT_OBJECT_CLASS_INHERITENCE_ERROR = "Classes marked with ScriptObject must not derive from another class or implement interfaces.";
         public static readonly string SCRIPT_OBJECT_MEMBER_VIOLATION_ERROR = "Classes marked with ScriptObject attribute should only have a constructor and field members.";
-        public static readonly string EXTENSION_ATTRIBUTE_ERROR = "ScriptExtension attribute declaration must specify the object being extended.";
-        public static readonly string SCRIPT_EXTENSION_MEMBER_VIOLATION_ERROR = "Classes marked with ScriptExtension attribute should only have methods.";
         public static readonly string CONFLICTING_TYPE_NAME_ERROR_FORMAT = "The type '{0}' conflicts with with '{1}' as they have the same name.";
+        public static readonly string ACCESS_MODIFIER_ON_TYPE_UNSUPPORTED = "private and protected type declarations are not supported.";
+        public static readonly string NEW_KEYWORD_ON_TYPE_UNSUPPORTED = "The new modifier is not supported on type declarations.";
         //TODO: None of these error messages are tested
         public static readonly string SCRIPT_NAMESPACE_VIOLATION = "A script namespace must be a valid script identifier.";
         public static readonly string SCRIPT_NAMESPACE_TYPE_VIOLATION = "Non-namespaced types are not supported.";
@@ -46,7 +41,6 @@
         public static readonly string UNSUPPORTED_MULTIPLE_DIMENSIONAL_ARRAYS = "Only single dimensional arrays are supported.";
         public static readonly string UNSUPPORTED_NESTED_NAMESPACE = "Nested namespaces are not supported.";
         public static readonly string UNSUPPORTED_PARTIAL_TYPE = "Partial types can only be classes, not enumerations or interfaces.";
-        public static readonly string SCRIPT_EXTENSION_NON_STATIC_CLASS_VIOLATION = "ScriptExtension attribute can only be set on static classes.";
         public static readonly string UNSUPPORTED_CONSTRUCTOR_OVERLOAD = "Constructor overloads are not supported.";
         public static readonly string UNSUPPORTED_METHOD_OVERLOAD = "Duplicate-named member. Method overloads are not supported.";
         public static readonly string RESERVED_KEYWORD_ON_MEMBER_ERROR = "Invalid member name. Member names should not use keywords.";
@@ -66,6 +60,17 @@
         public static string ScriptExportMember(string methodName)
         {
             return $"{DSHARP_SCRIPT_NAME}.{methodName}";
+        }
+
+        public class GeneratedScript
+        {
+            public const string GENERIC_ARGS_PARAMETER_NAME = "$TArgs";
+        }
+
+        public class Mscorlib
+        {
+            public const string SCRIPT_IGNORE_GENERIC_ARGUMENTS_ATTRIBUTE_SHORTNAME = "ScriptIgnoreGenericArguments";
+            public const string SCRIPT_IGNORE_GENERIC_ARGUMENTS_ATTRIBUTE_FULLNAME = "System.Runtime.CompilerServices.ScriptIgnoreGenericArgumentsAttribute";
         }
     }
 }

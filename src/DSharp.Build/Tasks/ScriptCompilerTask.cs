@@ -30,6 +30,8 @@ namespace DSharp.Build.Tasks
 
         public bool CopyReferences { get; set; }
 
+        public bool DebugMode { get; set; }
+
         public string AssemblyName { get; set; }
 
         public string CopyReferencesPath
@@ -170,8 +172,9 @@ namespace DSharp.Build.Tasks
             options.Resources = GetResources(resourceItems, locale);
             options.IncludeResolver = this;
             options.AssemblyName = AssemblyName;
+            options.DebugMode = DebugMode;
 
-            if(!string.IsNullOrEmpty(TemplatePath))
+            if (!string.IsNullOrEmpty(TemplatePath))
             {
                 options.ScriptInfo.Template = GetTemplate();
             }

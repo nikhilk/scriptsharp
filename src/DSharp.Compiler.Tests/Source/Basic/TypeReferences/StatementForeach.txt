@@ -1,0 +1,27 @@
+"use strict";
+
+define('test', ['ss', 'lib'], function(ss, lib) {
+  var $global = this;
+  // BasicTests.App
+
+  function App() {
+  }
+  var App$ = {
+    _foo: function() {
+      var items;
+      var $enum1 = (items);
+      for(var $enum1_index = 0; $enum1_index < $enum1.length; ++$enum1_index) {
+        var item = $enum1[$enum1_index];
+      }
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, App$, [], null)
+    });
+
+
+  return $exports;
+});

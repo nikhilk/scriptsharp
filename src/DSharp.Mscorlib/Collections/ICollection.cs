@@ -2,8 +2,6 @@
 
 namespace System.Collections
 {
-    [ScriptImport]
-    [ScriptName("ICollection")]
     public interface ICollection : IEnumerable
     {
         [ScriptField]

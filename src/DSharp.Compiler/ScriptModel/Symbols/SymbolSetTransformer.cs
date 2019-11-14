@@ -1,4 +1,4 @@
-// SymbolSetTransformer.cs
+﻿// SymbolSetTransformer.cs
 // Script#/Core/Compiler
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -24,7 +24,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             this.excludeImportedTypes = excludeImportedTypes;
         }
 
-        public ICollection<Symbol> TransformSymbolSet(SymbolSet symbols, bool useInheritanceOrder)
+        public void TransformSymbolSet(SymbolSet symbols, bool useInheritanceOrder)
         {
             List<TypeSymbol> symbolsToTransform = new List<TypeSymbol>();
 
@@ -79,8 +79,6 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                     }
                 }
             }
-
-            return transformedSymbols;
         }
 
         private sealed class TypeInheritanceComparer : IComparer<TypeSymbol>

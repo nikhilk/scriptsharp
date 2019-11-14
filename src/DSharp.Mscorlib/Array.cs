@@ -40,5 +40,8 @@ namespace System
         public extern void RemoveAt(int index);
 
         public extern static explicit operator List<object>(Array array);
+
+        [DSharpScriptMemberName("copyArray")]
+        public extern static void Copy(Array sourceArray, int sourceIndex, Array destinationArray, int destinationIndex, int length);
     }
 }

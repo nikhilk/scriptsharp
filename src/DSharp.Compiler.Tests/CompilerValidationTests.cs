@@ -40,13 +40,20 @@ namespace DSharp.Compiler.Tests
                     string.Format(DSharpStringResources.RESERVED_KEYWORD_ERROR_FORMAT, DSharpStringResources.DSHARP_SCRIPT_NAME),
                     string.Format(DSharpStringResources.RESERVED_KEYWORD_ERROR_FORMAT, "instanceof")
                     ),
-                ["Modules"] = CreateContainsErrorMessagesFunction(
-                    DSharpStringResources.SCRIPT_MODULE_NON_INTERNAL_CLASS_ERROR,
-                    DSharpStringResources.SCRIPT_MODULE_NON_STATIC_CONSTRUCTOR
+                ["PrivateNestedTypes"] = CreateContainsErrorMessagesFunction(
+                    DSharpStringResources.ACCESS_MODIFIER_ON_TYPE_UNSUPPORTED,
+                    DSharpStringResources.ACCESS_MODIFIER_ON_TYPE_UNSUPPORTED,
+                    DSharpStringResources.ACCESS_MODIFIER_ON_TYPE_UNSUPPORTED
                     ),
-                ["NestedTypes"] = CreateContainsErrorMessagesFunction(
-                    DSharpStringResources.NESTED_TYPE_ERROR,
-                    DSharpStringResources.NESTED_TYPE_ERROR
+                ["ProtectedNestedTypes"] = CreateContainsErrorMessagesFunction(
+                    DSharpStringResources.ACCESS_MODIFIER_ON_TYPE_UNSUPPORTED,
+                    DSharpStringResources.ACCESS_MODIFIER_ON_TYPE_UNSUPPORTED,
+                    DSharpStringResources.ACCESS_MODIFIER_ON_TYPE_UNSUPPORTED
+                    ),
+                ["NewKeywordOnType"] = CreateContainsErrorMessagesFunction(
+                    DSharpStringResources.NEW_KEYWORD_ON_TYPE_UNSUPPORTED,
+                    DSharpStringResources.NEW_KEYWORD_ON_TYPE_UNSUPPORTED,
+                    DSharpStringResources.NEW_KEYWORD_ON_TYPE_UNSUPPORTED
                     ),
                 ["Overloads"] = CreateContainsErrorMessagesFunction(
                     DSharpStringResources.EXTERN_IMPLEMENTATION_FOUND_ERROR,
@@ -58,10 +65,6 @@ namespace DSharp.Compiler.Tests
                     DSharpStringResources.SCRIPT_OBJECT_CLASS_INHERITENCE_ERROR,
                     DSharpStringResources.SCRIPT_OBJECT_MEMBER_VIOLATION_ERROR,
                     DSharpStringResources.SCRIPT_OBJECT_MEMBER_VIOLATION_ERROR
-                    ),
-                ["ScriptExtension"] = CreateContainsErrorMessagesFunction(
-                    DSharpStringResources.EXTENSION_ATTRIBUTE_ERROR,
-                    DSharpStringResources.SCRIPT_EXTENSION_MEMBER_VIOLATION_ERROR
                     ),
             };
         }

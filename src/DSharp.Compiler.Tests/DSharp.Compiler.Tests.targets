@@ -9,7 +9,7 @@
                                 $(WebLibDirectory)DSharp.Web.dll" />
   </ItemGroup>
   <Target Name="CopyRequiredResources" AfterTargets="Build">
-    <Copy SourceFiles="@(RequiredResources)" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="@(RequiredResources)" DestinationFolder="$(OutputPath)\references\" />
   </Target>
 
   <Target Name="RemoveCopiedResources" AfterTargets="Clean">

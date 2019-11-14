@@ -56,6 +56,7 @@ namespace System.Collections.Generic
         public extern bool Contains(object key);
 
         [Obsolete("This is only for use by the c# compiler, and cannot be used for generating script.", error: true)]
+        [ScriptIgnoreGenericArguments]
         public extern bool Contains(KeyValuePair<TKey, TValue> item);
 
         public extern bool Remove(TKey key);
@@ -63,6 +64,7 @@ namespace System.Collections.Generic
         public extern void Remove(object key);
 
         [Obsolete("This is only for use by the c# compiler, and cannot be used for generating script.", error: true)]
+        [ScriptIgnoreGenericArguments]
         public extern bool Remove(KeyValuePair<TKey, TValue> item);
     }
 }

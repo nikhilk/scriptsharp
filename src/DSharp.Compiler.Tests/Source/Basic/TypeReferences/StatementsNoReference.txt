@@ -1,0 +1,53 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // BasicTests.App
+
+  function App() {
+  }
+  App.main = function() {
+    var value = [ 60, 100, 120 ];
+    var weight = [ 10, 42, 30 ];
+    var capacity = 42 + 18;
+    var itemsCount = 3;
+    var result = App._knapSack(capacity, weight, value, itemsCount);
+    this._foo();
+  };
+  App._knapSack = function(capacity, weight, value, itemsCount) {
+    var K = new Array(itemsCount + 1)[capacity + 1];
+    for (var i = 0; i <= itemsCount; ++i) {
+      for (var w = 0; w <= capacity; ++w) {
+        if (!i || !w) {
+          K[i][w] = 0;
+        }
+        else if (weight[i - 1] <= w) {
+          K[i][w] = Math.max(value[i - 1] + K[i - 1][w - weight[i - 1]], K[i - 1][w]);
+        }
+        else {
+          K[i][w] = K[i - 1][w];
+        }
+      }
+    }
+    return K[itemsCount][capacity];
+  };
+  var App$ = {
+    _foo: function() {
+      var sum = 0;
+      var $enum1 = ss.enumerate('text' + ' ' + ss.typeName(ss.getGenericConstructor(Array, {T: String})));
+      while ($enum1.moveNext()) {
+        var character = $enum1.current;
+        sum = character;
+      }
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, App$, [], null)
+    });
+
+
+  return $exports;
+});

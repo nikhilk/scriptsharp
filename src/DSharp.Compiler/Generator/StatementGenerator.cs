@@ -111,6 +111,8 @@ namespace DSharp.Compiler.Generator
         {
             ScriptTextWriter writer = generator.Writer;
             TypeSymbol evaluatedType = statement.CollectionExpression.EvaluatedType;
+            evaluatedType.IncrementReferenceCount();
+            statement.ItemVariable?.ValueType.IncrementReferenceCount();
 
             if (statement.IsDictionaryEnumeration)
             {
@@ -161,7 +163,7 @@ namespace DSharp.Compiler.Generator
                 writer.Indent--;
                 writer.WriteLine("}");
             }
-            else if (evaluatedType.IsNativeArray || evaluatedType.IsListType())
+            else if (evaluatedType.IsNativeArray || evaluatedType.ImplementsListType())
             {
                 string dataSourceVariableName = statement.LoopVariable.GeneratedName;
                 string indexVariableName = dataSourceVariableName + "_index";
@@ -491,6 +493,7 @@ namespace DSharp.Compiler.Generator
                     writer.Write(", ");
                 }
 
+                variableSymbol.ValueType.IncrementReferenceCount();
                 writer.Write(variableSymbol.GeneratedName);
 
                 if (variableSymbol.Value != null)

@@ -1,0 +1,50 @@
+﻿"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // ExpressionTests.Program
+
+  function Program() {
+  }
+  Program.main = function(args) {
+    var str = null;
+    var mtc = ss.initializeObject(new MyTestClass(), {Act: function(inInt) {
+    }, MyProperty: 1, Prop2: str, Func: function() {
+      return 1;
+    }, InnerClass: Program.getInstance().InnerClass});
+    var list = [];
+  };
+  Program.getInstance = function() {
+    return ss.initializeObject(new MyTestClass(), {MyProperty: (1 + 1 + 2) / 2, InnerClass: ss.initializeObject(new MyTestClass(), {Prop2: 'SomeValue'})});
+  };
+  var Program$ = {
+
+  };
+
+
+  // ExpressionTests.MyTestClass
+
+  function MyTestClass() {
+    ss.defineProperty(this, 'MyProperty');
+    ss.defineProperty(this, 'Prop2');
+    ss.defineProperty(this, 'InnerClass');
+    ss.defineProperty(this, 'Act');
+    ss.defineProperty(this, 'Func');
+  }
+  var MyTestClass$ = {
+
+  };
+
+
+  var $exports = ss.module('test',
+    {
+      Program: ss.defineClass(Program, Program$, [], null)
+    },
+    {
+      MyTestClass: ss.defineClass(MyTestClass, MyTestClass$, [], null)
+    });
+
+
+  return $exports;
+});
+

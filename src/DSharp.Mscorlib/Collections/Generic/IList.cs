@@ -2,8 +2,6 @@
 
 namespace System.Collections.Generic
 {
-    [ScriptImport]
-    [ScriptName("IList")]
     public interface IList<T> : ICollection<T>
     {
         [ScriptField]

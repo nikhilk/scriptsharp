@@ -32,7 +32,7 @@ define('test', ['ss'], function(ss) {
       var t = App;
       var t2 = Number;
       var t3 = Number;
-      var t4 = Object;
+      var t4 = ss.getGenericConstructor(Object, {TKey: Object, TValue: Object});
       var items = [ 1, 2, 3 ];
     }
   };

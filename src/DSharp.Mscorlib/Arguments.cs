@@ -46,6 +46,7 @@ namespace System
         /// <param name="index">The index of the argument to retrieve.</param>
         /// <typeparam name="T">The type of the return value.</typeparam>
         /// <returns>The value of the specified argument.</returns>
+        [ScriptIgnoreGenericArguments]
         public extern static T GetArgument<T>(int index);
 
         [ScriptAlias("Array.toArray")]
