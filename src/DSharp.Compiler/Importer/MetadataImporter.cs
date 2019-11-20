@@ -133,7 +133,8 @@ namespace DSharp.Compiler.Importer
                 {
                     foreach (var method in GetExtensionMethods(typeSymbol.Members))
                     {
-                        symbols.AddExtensionMethod(method);
+                        ParameterDefinition parameter = ((MethodDefinition)method.ParseContext).Parameters.First();
+                        symbols.AddExtensionMethod(method, parameter.ParameterType.FullName, false);
                     }
                 }
             }

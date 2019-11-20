@@ -27,6 +27,8 @@ namespace DSharp.Compiler.ScriptModel.Symbols
         {
             public string MethodNamespace { get; set; }
             public MethodSymbol MethodSymbol { get; set; }
+            public bool IsTargetParameterGeneric { get; set; }
+            public string TargetParameterTypeFullName { get; set; }
         }
 
         private readonly List<ScriptReference> dependencies;
@@ -959,7 +961,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             return null;
         }
 
-        public void AddExtensionMethod(MethodSymbol extensionMethod)
+        public void AddExtensionMethod(MethodSymbol extensionMethod, string targetParameterTypeFullName, bool isTargetParameterGeneric)
         {
             if (!extensionMethods.ContainsKey(extensionMethod.Name))
             {
@@ -967,9 +969,11 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             }
 
             extensionMethods[extensionMethod.Name].Add(new ExtensionMethodInfo()
-            { 
-                MethodSymbol = extensionMethod, 
-                MethodNamespace = extensionMethod.GetFirstClassSymbolParent()?.Namespace
+            {
+                MethodSymbol = extensionMethod,
+                MethodNamespace = extensionMethod.GetFirstClassSymbolParent()?.Namespace,
+                IsTargetParameterGeneric = isTargetParameterGeneric,
+                TargetParameterTypeFullName = targetParameterTypeFullName,
             });
         }
 
@@ -1011,14 +1015,12 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
             foreach (ExtensionMethodInfo extensionMethod in extensionMethods)
             {
-                if (!visibleNamespaces.Any(ns => ns == extensionMethod.MethodNamespace))
+                if (visibleNamespaces != null && !visibleNamespaces.Any(ns => ns == extensionMethod.MethodNamespace))
                 {
                     continue;
                 }
 
-                ParameterSymbol targetParameter = extensionMethod.MethodSymbol.Parameters[0];
-
-                if (!(targetParameter.ValueType is GenericParameterSymbol))
+                if (!extensionMethod.IsTargetParameterGeneric)
                 {
                     // If the input parameter is a generic parameter we will match any target parameter and rely on the C#
                     // compiler to detect reference errors
@@ -1026,7 +1028,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                     {
                         return extensionMethod.MethodSymbol;
                     }
-                    else if (targetParameter.ValueType.FullName == type.FullName)
+                    else if (extensionMethod.TargetParameterTypeFullName == type.FullName)
                     {
                         return extensionMethod.MethodSymbol;
                     }
@@ -1045,14 +1047,12 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
             foreach (ExtensionMethodInfo extensionMethod in extensionMethods)
             {
-                if (!visibleNamespaces.Any(ns => ns == extensionMethod.MethodNamespace))
+                if (visibleNamespaces != null && !visibleNamespaces.Any(ns => ns == extensionMethod.MethodNamespace))
                 {
                     continue;
                 }
 
-                ParameterSymbol targetParameter = extensionMethod.MethodSymbol.Parameters[0];
-
-                if (targetParameter.ValueType is GenericParameterSymbol genericParameterSymbol)
+                if (extensionMethod.IsTargetParameterGeneric)
                 {
                     return extensionMethod.MethodSymbol;
                 }
