@@ -18,7 +18,7 @@ To create a new DSharp project is now as simple as updating the Sdk attribute in
 
 ```xml
 
-<Project Sdk="DSharp.Sdk" Version="1.2.3">
+<Project Sdk="dsharp.sdk" Version="1.2.3">
   <PropertyGroup>
     <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
@@ -36,7 +36,7 @@ Sdk versions can be specified globally using a global.json file. If you are usin
 
 {
   "msbuild-sdks": {
-    "DSharp.Sdk": "1.2.3",
+    "dsharp.sdk": "1.2.3",
   }
 }
 

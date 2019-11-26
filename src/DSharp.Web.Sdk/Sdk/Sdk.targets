@@ -3,5 +3,5 @@
     <ImportedSdks>DSharp.Web.Sdk.targets;$(ImportedSdks)</ImportedSdks>
   </PropertyGroup>
 
-  <Import Project="Sdk.targets" Sdk="DSharp.Sdk" Condition="$(ImportedSdks.Contains('DSharp.Sdk.targets')) == false"/>
+  <Import Project="Sdk.targets" Sdk="dsharp.sdk" Condition="$(ImportedSdks.Contains('DSharp.Sdk.targets')) == false"/>
 </Project>

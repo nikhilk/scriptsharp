@@ -3,6 +3,6 @@
     <ImportedSdks>DSharp.Web.Sdk.props;$(ImportedSdks)</ImportedSdks>
   </PropertyGroup>
 
-  <Import Project="Sdk.props" Sdk="DSharp.Sdk" Condition="$(ImportedSdks.Contains('DSharp.Sdk.props')) == false"/>
+  <Import Project="Sdk.props" Sdk="dsharp.sdk" Condition="$(ImportedSdks.Contains('DSharp.Sdk.props')) == false"/>
   <Import Condition="$(IsDSharpBuild)" Project="$(MSBuildThisFileDirectory)DSharp.props"/>
 </Project>
