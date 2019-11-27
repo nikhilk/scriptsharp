@@ -1,6 +1,6 @@
 ﻿<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>DSharp.Sdk</id>
+    <id>dsharp.sdk</id>
     <title>DSharp Sdk</title>
     <authors>$authors$</authors>
     <version>$version$</version>

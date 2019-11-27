@@ -5,7 +5,7 @@
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
-    <PackageId>DSharp.Web.Sdk</PackageId>
+    <PackageId>dsharp.web.sdk</PackageId>
     <Title>DSharp Web Sdk</Title>
     <Description>Defines the MSBuild Compliant DSharp project sdk, with additional browser api imports</Description>
     <PackageType>MSBuildSdk</PackageType>

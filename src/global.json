@@ -1,5 +1,5 @@
 {
   "msbuild-sdks": {
-    "DSharp.Sdk": "1.0.0"
+    "dsharp.sdk": "1.0.0"
   }
 }
