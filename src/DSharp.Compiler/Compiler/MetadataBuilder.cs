@@ -277,7 +277,12 @@ namespace DSharp.Compiler.Compiler
             {
                 foreach (var method in methods)
                 {
-                    symbols.AddExtensionMethod(method);
+                    var targetParameter = method.Parameters[0];
+
+                    symbols.AddExtensionMethod(
+                        method,
+                        targetParameter.ValueType.FullName,
+                        targetParameter.ValueType is GenericParameterSymbol);
                 }
             }
         }
