@@ -937,39 +937,7 @@ namespace DSharp.Compiler.Compiler
                 symbolSet.AddDependency(dependency);
             }
 
-            MemberExpression expression = new MemberExpression(objectExpression, memberSymbol);
-
-            if (memberSymbol.Type == SymbolType.Method
-                && memberSymbol.AssociatedType.IsGeneric
-                && memberSymbol.AssociatedType.GenericArguments == null
-                && node.RightChild.NodeType == ParseNodeType.GenericName)
-            {
-                Debug.Assert(((GenericNameNode)node.RightChild).TypeArguments != null);
-
-                List<TypeSymbol> typeArgs = new List<TypeSymbol>();
-                foreach (ParseNode typeArgNode in ((GenericNameNode)node.RightChild).TypeArguments)
-                    typeArgs.Add(symbolSet.ResolveType(typeArgNode, symbolTable, symbolContext));
-
-                TypeSymbol returnType = symbolSet.CreateGenericTypeSymbol(memberSymbol.AssociatedType, typeArgs);
-
-                if (returnType != null)
-                {
-                    MethodSymbol genericMethod = (MethodSymbol)memberSymbol;
-                    MethodSymbol instanceMethod =
-                        new MethodSymbol(genericMethod.Name, (TypeSymbol)genericMethod.Parent, returnType);
-
-                    if (genericMethod.IsTransformed)
-                    {
-                        instanceMethod.SetTransformedName(genericMethod.GeneratedName);
-                    }
-
-                    instanceMethod.SetNameCasing(genericMethod.IsCasePreserved);
-
-                    expression = new MemberExpression(objectExpression, instanceMethod);
-                }
-            }
-
-            return expression;
+            return new MemberExpression(objectExpression, memberSymbol);
         }
 
         private TypeSymbol ParseExtensionTypeNode(BinaryExpressionNode node, IdentifierToken identifier)
