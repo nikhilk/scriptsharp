@@ -110,6 +110,7 @@
         setItem: setItem,
         removeAt: removeAt,
         removeItem: removeItem,
+        addKeyValue: addKeyValue,
         createGenericType: createGenericType,
         getGenericConstructor: getGenericConstructor,
         getTypeArgument: getTypeArgument,
