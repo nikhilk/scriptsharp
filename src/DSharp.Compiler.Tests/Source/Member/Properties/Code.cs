@@ -124,4 +124,27 @@ namespace MemberTests {
             returnValue.Invoke();
         }
     }
+
+    public abstract class AbstractPropertiesContainer
+    {
+        protected abstract string MyAbstractProp { get; set; }
+        protected virtual string MyVirtualProp { get; set; }
+    }
+
+    public sealed class ImplementedContainer : AbstractPropertiesContainer
+    {
+        private string value = "";
+
+        protected override string MyAbstractProp
+        {
+            get { return value; }
+            set { this.value = value; }
+        }
+
+        protected override string MyVirtualProp
+        {
+            get { return base.MyVirtualProp; }
+            set { base.MyVirtualProp = value; }
+        }
+    }
 }

@@ -97,6 +97,16 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // MemberTests.AbstractPropertiesContainer
+
+  function AbstractPropertiesContainer() {
+    ss.defineProperty(this, 'MyVirtualProp');
+  }
+  var AbstractPropertiesContainer$ = {
+
+  };
+
+
   // MemberTests.Test2
 
   function Test2() {
@@ -114,13 +124,39 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // MemberTests.ImplementedContainer
+
+  function ImplementedContainer() {
+    this._value$1 = '';
+    AbstractPropertiesContainer.call(this);
+  }
+  var ImplementedContainer$ = {
+    $get_MyAbstractProp: function() {
+      return this._value$1;
+    },
+    $set_MyAbstractProp: function(value) {
+      this._value$1 = value;
+      return value;
+    },
+    $get_MyVirtualProp: function() {
+      return ss.baseProperty(ImplementedContainer, 'MyVirtualProp').get.call(this);
+    },
+    $set_MyVirtualProp: function(value) {
+      ss.baseProperty(ImplementedContainer, 'MyVirtualProp').set.call(this, value);
+      return value;
+    }
+  };
+
+
   var $exports = ss.module('test', null,
     {
       ITest: ss.defineInterface(ITest),
       Program: ss.defineClass(Program, Program$, [], null),
       Test: ss.defineClass(Test, Test$, [], null),
       Properties: ss.defineClass(Properties, Properties$, [String], null),
-      Test2: ss.defineClass(Test2, Test2$, [], Test)
+      AbstractPropertiesContainer: ss.defineClass(AbstractPropertiesContainer, AbstractPropertiesContainer$, [], null),
+      Test2: ss.defineClass(Test2, Test2$, [], Test),
+      ImplementedContainer: ss.defineClass(ImplementedContainer, ImplementedContainer$, [], AbstractPropertiesContainer)
     });
 
 
