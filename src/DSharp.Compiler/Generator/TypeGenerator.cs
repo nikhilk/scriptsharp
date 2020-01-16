@@ -159,7 +159,7 @@ namespace DSharp.Compiler.Generator
             return classSymbol.Members
                 .Where(symbol => symbol is PropertySymbol)
                 .Cast<PropertySymbol>()
-                .Where(prop => prop.IsAutoProperty() && !prop.IsReadOnly);
+                .Where(prop => prop.IsAutoProperty() && !prop.IsReadOnly && !prop.IsAbstract);
         }
 
         private static void GenerateEnumeration(ScriptGenerator generator, EnumerationSymbol enumSymbol)
