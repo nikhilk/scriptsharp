@@ -1156,7 +1156,7 @@ namespace DSharp.Compiler.Generator
             }
 
             if (expression.AssociatedType.IsGeneric
-                && expression.AssociatedType.GenericType.IsApplicationType
+                && !expression.AssociatedType.GenericType.IsCoreType
                 && (expression.AssociatedType.GenericArguments?.Any() ?? false))
             {
                 writer.Write(DSharpStringResources.ScriptExportMember("createGenericType"));
