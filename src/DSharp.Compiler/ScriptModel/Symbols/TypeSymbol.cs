@@ -120,6 +120,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
         public ICollection<string> Imports { get; private set; }
 
         private bool isNativeArray = false;
+        private bool ignoreGenerics;
 
         public bool IsNativeArray
         {
@@ -145,7 +146,8 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
         public bool IsCoreType { get; private set; }
 
-        public bool IsGeneric => GenericParameters != null &&
+        public bool IsGeneric => !ignoreGenerics &&
+                                 GenericParameters != null &&
                                  GenericParameters.Count != 0;
 
         public bool IsPublic { get; set; }
@@ -441,6 +443,11 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             {
                 genericArgument.IncrementReferenceCount();
             }
+        }
+
+        internal void SetIgnoreGenerics()
+        {
+            ignoreGenerics = true;
         }
     }
 }

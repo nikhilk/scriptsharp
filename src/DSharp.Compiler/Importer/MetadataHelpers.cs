@@ -206,6 +206,11 @@ namespace DSharp.Compiler.Importer
             return string.CompareOrdinal(type.BaseType.FullName, "System.Enum") == 0;
         }
 
+        public static bool ShouldIgnoreGenerics(TypeDefinition type)
+        {
+            return GetAttribute(type, "System.Runtime.CompilerServices.ScriptIgnoreGenericArgumentsAttribute") != null;
+        }
+
         public static bool ShouldIgnoreNamespace(TypeDefinition type)
         {
             return GetAttribute(type, "System.Runtime.CompilerServices.ScriptIgnoreNamespaceAttribute") != null;

@@ -901,6 +901,12 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 TypeSymbol templateType =
                     (TypeSymbol)symbolTable.FindSymbol(genericTypeName, contextSymbol, SymbolFilter.Types);
 
+                if(!templateType.IsGeneric)
+                {
+                    //generics ignored
+                    return templateType;
+                }
+
                 List<TypeSymbol> typeArguments = new List<TypeSymbol>();
 
                 foreach (ParseNode argNode in genericNameNode.TypeArguments)

@@ -12,6 +12,7 @@ namespace DSharp.Compiler.Tests.Source.Type.GenericClasses
         {
             GenericClass<int> genericClass = new GenericClass<int>(1);
             GenericClass<MyType> genericClass2 = new GenericClass<MyType>(new MyType());
+            GenericTypeWithIgnore genericClass3 = new GenericTypeWithIgnore();
 
             bool isSame = genericClass2.Type == genericClass.Type;
             Type genericClassType = typeof(GenericClass<int>);
@@ -183,5 +184,11 @@ namespace DSharp.Compiler.Tests.Source.Type.GenericClasses
         {
             return valIn + 1;
         }
+    }
+
+    [ScriptIgnoreGenericArgumentsAttribute]
+    public class GenericTypeWithIgnore<T1,T2>
+    {
+        
     }
 }
