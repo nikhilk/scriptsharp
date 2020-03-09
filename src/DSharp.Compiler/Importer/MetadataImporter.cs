@@ -967,6 +967,11 @@ namespace DSharp.Compiler.Importer
 
             if (typeSymbol != null)
             {
+                if(MetadataHelpers.ShouldIgnoreGenerics(type))
+                {
+                    typeSymbol.SetIgnoreGenerics();
+                }
+
                 if (type.HasGenericParameters)
                 {
                     List<GenericParameterSymbol> genericArguments = new List<GenericParameterSymbol>();

@@ -1176,8 +1176,14 @@ namespace DSharp.Compiler.Compiler
             ParseNodeList attributes = typeNode.Attributes;
 
             string name = outerType is TypeSymbol ? $"{outerType.Name}${typeNode.Name}" : typeNode.Name;
+            bool ignoreGenerics = false;
 
-            if (typeNode.TypeParameters.Any())
+            if (AttributeNode.FindAttribute(typeNode.Attributes, "ScriptIgnoreGenericArguments") != null)
+            {
+                ignoreGenerics = true;
+            }
+
+            if (!ignoreGenerics && typeNode.TypeParameters.Any())
             {
                 name += "`" + typeNode.TypeParameters.Count;
             }
@@ -1235,6 +1241,11 @@ namespace DSharp.Compiler.Compiler
 
             if (typeSymbol != null)
             {
+                if(ignoreGenerics)
+                {
+                    typeSymbol.SetIgnoreGenerics();
+                }
+
                 List<GenericParameterSymbol> genericParameterSymbols = new List<GenericParameterSymbol>();
 
                 for (int i = 0; i < typeNode.TypeParameters.Count; i++)
