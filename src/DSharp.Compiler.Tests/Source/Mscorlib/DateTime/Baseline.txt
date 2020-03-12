@@ -16,6 +16,13 @@ define('test', ['ss'], function(ss) {
     var same = dateTime === dateTime;
     var dayOfWeek = dateTime.DayOfWeek;
     var enumComparison = dayOfWeek === ss.DayOfWeek.saturday;
+    var year = dateTime.Year;
+    var month = dateTime.Month;
+    var day = dateTime.Day;
+    var hour = dateTime.Hour;
+    var minute = dateTime.Minute;
+    var second = dateTime.Second;
+    var millisecond = dateTime.Millisecond;
     dateTime = ss.DateTime.Now;
     dateTime = ss.DateTime.Today;
     dateTime = ss.DateTime.AddMilliseconds(dateTime, 123);
@@ -29,6 +36,12 @@ define('test', ['ss'], function(ss) {
     var shortTime = ss.DateTime.ToShortTimeString(dateTime);
     var toString = ss.DateTime.ToStringFormatted(dateTime);
     var formattedString = ss.DateTime.ToStringFormatted(dateTime, '');
+    var parsedDate = ss.DateTime.Parse('');
+    var notEqual = dateTime !== parsedDate;
+    var greaterThan = dateTime > parsedDate;
+    var greaterOrEqual = dateTime >= parsedDate;
+    var lesserThan = dateTime < parsedDate;
+    var lesserOrEqual = dateTime < parsedDate;
   }
   var TestClass$ = {
 
