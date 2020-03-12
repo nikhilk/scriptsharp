@@ -26,15 +26,100 @@ DateTime.Equals = function (d1, d2)
     return parsedDate1.getTime() === parsedDate2.getTime();
 };
 
-createPropertyGet(Date.prototype, 'DayOfWeek', function () {
+createPropertyGet(Date.prototype, 'Year', function ()
+{
+    return DateTime.GetYear(this);
+});
+
+DateTime.GetYear = function (date)
+{
+    date = DateTime._parseIfString(date);
+
+    return this.getFullYear();
+};
+
+createPropertyGet(Date.prototype, 'Month', function ()
+{
+    return DateTime.GetMonth(this);
+});
+
+DateTime.GetMonth = function (date)
+{
+    date = DateTime._parseIfString(date);
+
+    return this.getMonth();
+};
+
+createPropertyGet(Date.prototype, 'Day', function ()
+{
+    return DateTime.GetDay(this);
+});
+
+DateTime.GetDay = function (date)
+{
+    date = DateTime._parseIfString(date);
+
+    return this.getDate();
+};
+
+createPropertyGet(Date.prototype, 'DayOfWeek', function ()
+{
     return DateTime.GetDayOfWeek(this);
 });
 
-DateTime.GetDayOfWeek = function(date)
+DateTime.GetDayOfWeek = function (date)
 {
     date = DateTime._parseIfString(date);
 
     return date.getDay();
+};
+
+createPropertyGet(Date.prototype, 'Hour', function ()
+{
+    return DateTime.GetHours(this);
+});
+
+DateTime.GetHours = function (date)
+{
+    date = DateTime._parseIfString(date);
+
+    return this.getHours();
+};
+
+createPropertyGet(Date.prototype, 'Minute', function ()
+{
+    return DateTime.GetMinutes(this);
+});
+
+DateTime.GetMinutes = function (date)
+{
+    date = DateTime._parseIfString(date);
+
+    return this.getMinutes();
+};
+
+createPropertyGet(Date.prototype, 'Second', function ()
+{
+    return DateTime.GetSeconds(this);
+});
+
+DateTime.GetSeconds = function (date)
+{
+    date = DateTime._parseIfString(date);
+
+    return this.getSeconds();
+};
+
+createPropertyGet(Date.prototype, 'Millisecond', function ()
+{
+    return DateTime.GetMilliseconds(this);
+});
+
+DateTime.GetMilliseconds = function (date)
+{
+    date = DateTime._parseIfString(date);
+
+    return this.getMilliseconds();
 };
 
 DateTime.AddMilliseconds = function(date, value)
@@ -109,6 +194,16 @@ DateTime.ToString = function(date)
     }
 
     return DateTime._parseIfString(date).toString();
+};
+
+DateTime.Parse = function(date)
+{
+    if (date == null)
+    {
+        return null;
+    }
+
+    return DateTime._parseIfString(date);
 };
 
 DateTime._getFormatter = function(pattern)

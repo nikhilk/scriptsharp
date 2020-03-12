@@ -28,8 +28,29 @@ namespace System
 
         public DateTime(int year, int month, int day, int hour, int minute, int second, int millisecond) { }
 
+        [ScriptAlias("Year")]
+        public extern int Year { get; }
+
+        [ScriptAlias("Month")]
+        public extern int Month { get; }
+
+        [ScriptAlias("Day")]
+        public extern int Day { get; }
+
         [ScriptAlias("DayOfWeek")]
         public extern DayOfWeek DayOfWeek { get; }
+
+        [ScriptAlias("Hour")]
+        public extern int Hour { get; }
+
+        [ScriptAlias("Minute")]
+        public extern int Minute { get; }
+
+        [ScriptAlias("Second")]
+        public extern int Second { get; }
+
+        [ScriptAlias("Millisecond")]
+        public extern int Millisecond { get; }
 
         [ScriptAlias("ss.DateTime.AddMilliseconds")]
         public extern DateTime AddMilliseconds(double value);
@@ -63,5 +84,20 @@ namespace System
 
         [ScriptAlias("ss.DateTime.ToStringFormatted")]
         public extern string ToString(string format);
+
+        [ScriptAlias("ss.DateTime.Parse")]
+        public extern static DateTime Parse(string date);
+
+        public extern static bool operator ==(DateTime left, DateTime right);
+
+        public extern static bool operator !=(DateTime left, DateTime right);
+
+        public extern static bool operator >=(DateTime left, DateTime right);
+
+        public extern static bool operator <=(DateTime left, DateTime right);
+
+        public extern static bool operator >(DateTime left, DateTime right);
+
+        public extern static bool operator <(DateTime left, DateTime right);
     }
 }

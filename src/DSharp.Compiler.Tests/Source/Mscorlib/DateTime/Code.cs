@@ -32,6 +32,27 @@ namespace DateTimeTest
             DayOfWeek dayOfWeek = dateTime.DayOfWeek;
             bool enumComparison = dayOfWeek == DayOfWeek.Saturday;
 
+            // Year
+            int year = dateTime.Year;
+
+            // Month
+            int month = dateTime.Month;
+
+            // Day
+            int day = dateTime.Day;
+
+            // Hour
+            int hour = dateTime.Hour;
+
+            // Minute
+            int minute = dateTime.Minute;
+
+            // Second
+            int second = dateTime.Second;
+
+            // Millisecond
+            int millisecond = dateTime.Millisecond;
+
             // Now
             dateTime = DateTime.Now;
 
@@ -70,6 +91,24 @@ namespace DateTimeTest
 
             // ToFormattedString
             string formattedString = dateTime.ToString("");
+
+            // Parse
+            DateTime parsedDate = DateTime.Parse("");
+
+            // Not equal
+            bool notEqual = dateTime != parsedDate;
+
+            // Greater than
+            bool greaterThan = dateTime > parsedDate;
+
+            // Greater or equal
+            bool greaterOrEqual = dateTime >= parsedDate;
+
+            // Lesser than
+            bool lesserThan = dateTime < parsedDate;
+
+            // Lesser or equal
+            bool lesserOrEqual = dateTime < parsedDate;
         }
     }
 }
