@@ -1183,7 +1183,7 @@ namespace DSharp.Compiler.Compiler
                 ignoreGenerics = true;
             }
 
-            if (!ignoreGenerics && typeNode.TypeParameters.Any())
+            if (typeNode.TypeParameters.Any())
             {
                 name += "`" + typeNode.TypeParameters.Count;
             }
@@ -1279,6 +1279,8 @@ namespace DSharp.Compiler.Compiler
 
             if (AttributeNode.FindAttribute(attributes, "ScriptImport") != null)
             {
+                typeSymbol.SetIgnoreGenerics();
+
                 ScriptReference dependency = null;
 
                 AttributeNode dependencyAttribute = AttributeNode.FindAttribute(attributes, "ScriptDependency");

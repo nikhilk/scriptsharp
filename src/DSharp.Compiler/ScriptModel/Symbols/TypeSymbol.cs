@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using DSharp.Compiler.Extensions;
 
 namespace DSharp.Compiler.ScriptModel.Symbols
@@ -107,7 +108,9 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             }
         }
 
-        public override string GeneratedName => base.GeneratedName.Replace("`", "_$");
+        public override string GeneratedName => IgnoreGenericTypeArguments 
+            ? Regex.Replace(base.GeneratedName, @"`\d+", "") 
+            : base.GeneratedName.Replace("`", "_$");
 
         public IList<TypeSymbol> GenericArguments { get; private set; }
 
@@ -120,7 +123,8 @@ namespace DSharp.Compiler.ScriptModel.Symbols
         public ICollection<string> Imports { get; private set; }
 
         private bool isNativeArray = false;
-        private bool ignoreGenerics;
+
+        public bool IgnoreGenericTypeArguments { get; private set; }
 
         public bool IsNativeArray
         {
@@ -146,9 +150,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
         public bool IsCoreType { get; private set; }
 
-        public bool IsGeneric => !ignoreGenerics &&
-                                 GenericParameters != null &&
-                                 GenericParameters.Count != 0;
+        public bool IsGeneric => (GenericParameters?.Any()).GetValueOrDefault();
 
         public bool IsPublic { get; set; }
 
@@ -447,7 +449,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
         internal void SetIgnoreGenerics()
         {
-            ignoreGenerics = true;
+            IgnoreGenericTypeArguments = true;
         }
     }
 }

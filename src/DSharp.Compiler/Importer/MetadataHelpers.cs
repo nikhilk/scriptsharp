@@ -208,7 +208,8 @@ namespace DSharp.Compiler.Importer
 
         public static bool ShouldIgnoreGenerics(TypeDefinition type)
         {
-            return GetAttribute(type, "System.Runtime.CompilerServices.ScriptIgnoreGenericArgumentsAttribute") != null;
+            return GetAttribute(type, "System.Runtime.CompilerServices.ScriptIgnoreGenericArgumentsAttribute") != null
+                || GetAttribute(type, "System.Runtime.CompilerServices.ScriptImportAttribute") != null;
         }
 
         public static bool ShouldIgnoreNamespace(TypeDefinition type)

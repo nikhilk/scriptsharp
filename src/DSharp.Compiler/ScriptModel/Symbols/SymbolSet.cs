@@ -348,6 +348,11 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
                 CreateGenericTypeMembers(genericCoreType, instanceCoreType, typeArguments);
 
+                if(templateType.IgnoreGenericTypeArguments)
+                {
+                    instanceCoreType.SetIgnoreGenerics();
+                }
+
                 return instanceCoreType;
             }
 

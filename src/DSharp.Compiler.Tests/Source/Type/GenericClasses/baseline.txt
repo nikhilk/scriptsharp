@@ -15,6 +15,8 @@ define('test', ['ss'], function(ss) {
     var genericClass = ss.createGenericType(GenericClass_$1, {T : Number}, 1);
     var genericClass2 = ss.createGenericType(GenericClass_$1, {T : MyType}, new MyType());
     var genericClass3 = new GenericTypeWithIgnore();
+    var importedGenericClass = new lib1.ScriptImportedGenericClass();
+    var referencedGenericClass = ss.createGenericType(lib1.ReferencedGenericClass_$1, {T : MyType});
     var isSame = genericClass2.Type === genericClass.Type;
     var genericClassType = ss.getGenericConstructor(GenericClass_$1, {T: Number});
     var array = [ 1, 2, 3, 4, 5 ];
@@ -113,7 +115,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericTypeWithIgnore
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericTypeWithIgnore`2
 
   function GenericTypeWithIgnore() {
   }

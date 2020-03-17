@@ -655,7 +655,8 @@
       {
         "Name": "GenericClasses",
         "SourceFiles": [ "Code.cs" ],
-        "ComparisonFile": "Baseline.txt"
+        "ComparisonFile": "Baseline.txt",
+        "References": [ "Lib1.dll" ]
       },
       {
         "Name": "Globals",

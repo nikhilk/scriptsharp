@@ -3,7 +3,7 @@
     <CoreLibDirectory>$(SolutionDir)DSharp.Mscorlib\bin\$(Configuration)\net471\</CoreLibDirectory>
     <WebLibDirectory>$(SolutionDir)DSharp.Web\bin\$(Configuration)\net471\</WebLibDirectory>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <RequiredResources Include="$(CoreLibDirectory)DSharp.Mscorlib.dll;
                                 $(WebLibDirectory)DSharp.Web.dll" />
@@ -16,4 +16,16 @@
   </Target>
 
   <Target Name="RebuildCopiedResources" DependsOnTargets="CopyRequiredResources;RemoveCopiedResources" AfterTargets="Rebuild" />
+
+  <Target Name="CompileTestAssemblies" BeforeTargets="Build">
+    <Csc
+      TargetType="library"
+      NoConfig="true"
+      NoLogo="true"
+      NoStandardLib="true"
+      References="$(CoreLibDirectory)DSharp.Mscorlib.dll"
+      OutputAssembly="$(OutputPath)\Source\Type\GenericClasses\Lib1.dll"
+      Sources="$(OutputPath)\Source\Type\GenericClasses\Lib1.cs"
+      />
+  </Target>
 </Project>

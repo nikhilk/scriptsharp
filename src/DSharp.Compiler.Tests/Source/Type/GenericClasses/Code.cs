@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Library1;
 
 [assembly: ScriptAssembly("test")]
 
@@ -12,7 +13,9 @@ namespace DSharp.Compiler.Tests.Source.Type.GenericClasses
         {
             GenericClass<int> genericClass = new GenericClass<int>(1);
             GenericClass<MyType> genericClass2 = new GenericClass<MyType>(new MyType());
-            GenericTypeWithIgnore genericClass3 = new GenericTypeWithIgnore();
+            GenericTypeWithIgnore<int, MyType> genericClass3 = new GenericTypeWithIgnore<int, MyType>();
+            ScriptImportedGenericClass<MyType> importedGenericClass = new ScriptImportedGenericClass<MyType>();
+            ReferencedGenericClass<MyType> referencedGenericClass = new ReferencedGenericClass<MyType>();
 
             bool isSame = genericClass2.Type == genericClass.Type;
             Type genericClassType = typeof(GenericClass<int>);
@@ -187,8 +190,8 @@ namespace DSharp.Compiler.Tests.Source.Type.GenericClasses
     }
 
     [ScriptIgnoreGenericArgumentsAttribute]
-    public class GenericTypeWithIgnore<T1,T2>
+    public class GenericTypeWithIgnore<T1, T2>
     {
-        
+
     }
 }
