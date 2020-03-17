@@ -35,7 +35,7 @@ DateTime.GetYear = function (date)
 {
     date = DateTime._parseIfString(date);
 
-    return this.getFullYear();
+    return date.getFullYear();
 };
 
 createPropertyGet(Date.prototype, 'Month', function ()
@@ -47,7 +47,7 @@ DateTime.GetMonth = function (date)
 {
     date = DateTime._parseIfString(date);
 
-    return this.getMonth();
+    return date.getMonth();
 };
 
 createPropertyGet(Date.prototype, 'Day', function ()
@@ -59,7 +59,7 @@ DateTime.GetDay = function (date)
 {
     date = DateTime._parseIfString(date);
 
-    return this.getDate();
+    return date.getDate();
 };
 
 createPropertyGet(Date.prototype, 'DayOfWeek', function ()
@@ -83,7 +83,7 @@ DateTime.GetHours = function (date)
 {
     date = DateTime._parseIfString(date);
 
-    return this.getHours();
+    return date.getHours();
 };
 
 createPropertyGet(Date.prototype, 'Minute', function ()
@@ -95,7 +95,7 @@ DateTime.GetMinutes = function (date)
 {
     date = DateTime._parseIfString(date);
 
-    return this.getMinutes();
+    return date.getMinutes();
 };
 
 createPropertyGet(Date.prototype, 'Second', function ()
@@ -107,7 +107,7 @@ DateTime.GetSeconds = function (date)
 {
     date = DateTime._parseIfString(date);
 
-    return this.getSeconds();
+    return date.getSeconds();
 };
 
 createPropertyGet(Date.prototype, 'Millisecond', function ()
@@ -119,7 +119,7 @@ DateTime.GetMilliseconds = function (date)
 {
     date = DateTime._parseIfString(date);
 
-    return this.getMilliseconds();
+    return date.getMilliseconds();
 };
 
 DateTime.AddMilliseconds = function(date, value)
