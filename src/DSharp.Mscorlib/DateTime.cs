@@ -2,9 +2,6 @@
 
 namespace System
 {
-    [ScriptIgnoreNamespace]
-    [ScriptImport]
-    [ScriptName("Date")]
     public struct DateTime
     {
         public extern static implicit operator Date(DateTime d);
@@ -22,11 +19,11 @@ namespace System
         [ScriptAlias("ss.DateTime.Equals")]
         public extern static bool Equals(DateTime d1, DateTime d2);
 
-        public DateTime(int year, int month, int day) { }
+        public extern DateTime(int year, int month, int day);
 
-        public DateTime(int year, int month, int day, int hour, int minute, int second) { }
+        public extern DateTime(int year, int month, int day, int hour, int minute, int second);
 
-        public DateTime(int year, int month, int day, int hour, int minute, int second, int millisecond) { }
+        public extern DateTime(int year, int month, int day, int hour, int minute, int second, int millisecond);
 
         [ScriptAlias("Year")]
         public extern int Year { get; }
@@ -88,9 +85,11 @@ namespace System
         [ScriptAlias("ss.DateTime.Parse")]
         public extern static DateTime Parse(string date);
 
-        public extern static bool operator ==(DateTime left, DateTime right);
+        // force the usage of .Equals, operator== behaves weirdly in JS
+        //public extern static bool operator ==(DateTime left, DateTime right);
 
-        public extern static bool operator !=(DateTime left, DateTime right);
+        // force the usage of .Equals, operator== behaves weirdly in JS
+        //public extern static bool operator !=(DateTime left, DateTime right);
 
         public extern static bool operator >=(DateTime left, DateTime right);
 

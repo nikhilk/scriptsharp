@@ -47,7 +47,7 @@ define('test', ['ss'], function(ss) {
     var list = new Array(3);
     var list3 = ['abc', 'def', 'ghi'];
     var list4 = [1, 2, 3];
-    var dates = [ new Date('1/1/2006'), new Date('1/1/2005') ];
+    var dates = [ new ss.DateTime('1/1/2006'), new ss.DateTime('1/1/2005') ];
     var p = Point(0, 0);
     var cd = {};
     var cd2 = { abc: 123, def: true };

@@ -1,4 +1,7 @@
-﻿function DateTime() { }
+﻿function DateTime(year, month, day, hour, minute, second, millisecond)
+{
+    return new Date(year, month != null ? month - 1 : month, day, hour, minute, second, millisecond);
+}
 
 createPropertyGet(DateTime, 'Now', function()
 {
@@ -47,7 +50,7 @@ DateTime.GetMonth = function (date)
 {
     date = DateTime._parseIfString(date);
 
-    return date.getMonth();
+    return date.getMonth() + 1;
 };
 
 createPropertyGet(Date.prototype, 'Day', function ()
