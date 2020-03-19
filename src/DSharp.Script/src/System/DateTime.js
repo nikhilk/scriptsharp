@@ -1,6 +1,15 @@
 ﻿function DateTime(year, month, day, hour, minute, second, millisecond)
 {
-    return new Date(year, month != null ? month - 1 : month, day, hour, minute, second, millisecond);
+    var constructorArgs = [];
+    if (year != null) constructorArgs.push(year);
+    if (month != null) constructorArgs.push(month - 1);
+    if (day != null) constructorArgs.push(day);
+    if (hour != null) constructorArgs.push(hour);
+    if (minute != null) constructorArgs.push(minute);
+    if (second != null) constructorArgs.push(second);
+    if (millisecond != null) constructorArgs.push(millisecond);
+
+    return new Date(...constructorArgs);
 }
 
 createPropertyGet(DateTime, 'Now', function()
