@@ -9,7 +9,9 @@
     if (second != null) constructorArgs.push(second);
     if (millisecond != null) constructorArgs.push(millisecond);
 
-    return new Date(...constructorArgs);
+    return new (Function.prototype.bind.apply(
+        Date, [null].concat(constructorArgs)
+    ));
 }
 
 createPropertyGet(DateTime, 'Now', function()
