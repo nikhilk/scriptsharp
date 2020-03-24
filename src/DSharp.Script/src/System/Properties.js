@@ -24,7 +24,8 @@ function defineProperty(instance, propertyName) {
     var prop = undefined;
     Object.defineProperty(instance, propertyName, {
         get: function () { return prop; },
-        set: function (value) { prop = value; }
+        set: function (value) { prop = value; },
+        enumerable: true
     });
 }
 function initializeObject(obj, initializerMap) {
