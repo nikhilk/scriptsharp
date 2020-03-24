@@ -9,7 +9,7 @@
     if (second != null) constructorArgs.push(second);
     if (millisecond != null) constructorArgs.push(millisecond);
 
-    new (Function.prototype.bind.apply(
+    return new (Function.prototype.bind.apply(
         Date, [null].concat(constructorArgs)
     ));
 }
