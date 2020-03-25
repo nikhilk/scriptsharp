@@ -107,6 +107,29 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // MemberTests.StaticProps
+
+  function StaticProps() {
+    ss.defineProperty(this, 'Index');
+    this.Index = StaticProps$NestedStaticProps.Val;
+  }
+  ss.defineProperty(StaticProps, 'Prop');
+  ss.defineProperty(StaticProps, 'Instance');
+  var StaticProps$ = {
+
+  };
+
+
+  // MemberTests.StaticProps$NestedStaticProps
+
+  function StaticProps$NestedStaticProps() {
+  }
+  ss.defineProperty(StaticProps$NestedStaticProps, 'Val');
+  var StaticProps$NestedStaticProps$ = {
+
+  };
+
+
   // MemberTests.Test2
 
   function Test2() {
@@ -155,10 +178,13 @@ define('test', ['ss'], function(ss) {
       Test: ss.defineClass(Test, Test$, [], null),
       Properties: ss.defineClass(Properties, Properties$, [String], null),
       AbstractPropertiesContainer: ss.defineClass(AbstractPropertiesContainer, AbstractPropertiesContainer$, [], null),
+      StaticProps: ss.defineClass(StaticProps, StaticProps$, [], null),
+      StaticProps$NestedStaticProps: ss.defineClass(StaticProps$NestedStaticProps, StaticProps$NestedStaticProps$, [], null),
       Test2: ss.defineClass(Test2, Test2$, [], Test),
       ImplementedContainer: ss.defineClass(ImplementedContainer, ImplementedContainer$, [], AbstractPropertiesContainer)
     });
 
+  StaticProps.Instance = new StaticProps();
 
   return $exports;
 });
