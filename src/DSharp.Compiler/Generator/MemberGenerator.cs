@@ -391,6 +391,13 @@ namespace DSharp.Compiler.Generator
 
                 GeneratePropertySetter(generator, typeName, propertySymbol, writer, instanceMember);
             }
+
+            if(propertySymbol.Visibility.HasFlag(MemberVisibility.Static) && propertySymbol.IsAutoProperty())
+            {
+                writer.Write(DSharpStringResources.ScriptExportMember("defineProperty"));
+                writer.Write($"({((ClassSymbol)propertySymbol.Parent).FullGeneratedName}, '{propertySymbol.GeneratedName}');");
+                writer.WriteLine();
+            }
         }
 
         private static void GeneratePropertyGetter(ScriptGenerator generator, string typeName,

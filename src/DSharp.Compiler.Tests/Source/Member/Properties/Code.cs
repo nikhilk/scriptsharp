@@ -147,4 +147,28 @@ namespace MemberTests {
             set { base.MyVirtualProp = value; }
         }
     }
+
+    public class StaticProps
+    {
+        public static string Prop { get; set; }
+
+        public static StaticProps Instance { get; private set; }
+
+        public int Index { get; set; }
+
+        static StaticProps()
+        {
+            Instance = new StaticProps();
+        }
+
+        private StaticProps()
+        {
+            Index = NestedStaticProps.Val;
+        }
+
+        public class NestedStaticProps
+        {
+            public static int Val { get; set; }
+        }
+    }
 }
