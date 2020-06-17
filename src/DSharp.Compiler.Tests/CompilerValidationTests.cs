@@ -38,7 +38,8 @@ namespace DSharp.Compiler.Tests
                     DSharpStringResources.SCRIPT_LITERAL_FORMAT_ERROR),
                 ["Keywords"] = CreateContainsErrorMessagesFunction(
                     string.Format(DSharpStringResources.RESERVED_KEYWORD_ERROR_FORMAT, DSharpStringResources.DSHARP_SCRIPT_NAME),
-                    string.Format(DSharpStringResources.RESERVED_KEYWORD_ERROR_FORMAT, "instanceof")
+                    string.Format(DSharpStringResources.RESERVED_KEYWORD_ERROR_FORMAT, "instanceof"),
+                    string.Format(DSharpStringResources.RESERVED_KEYWORD_ERROR_FORMAT, "arguments")
                     ),
                 ["PrivateNestedTypes"] = CreateContainsErrorMessagesFunction(
                     DSharpStringResources.ACCESS_MODIFIER_ON_TYPE_UNSUPPORTED,

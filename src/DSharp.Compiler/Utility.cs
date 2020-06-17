@@ -32,7 +32,7 @@ namespace DSharp.Compiler
             "enum", "implements", "package", "super", "byte", "export",
             "import", "private", "synchronized", "char", "extends", "int",
             "protected", "throws", "class", "sealed", "interface", "public",
-            "const", "float", "long", "short",
+            "const", "float", "long", "short", "arguments",
             // Script specific words
             DSharpStringResources.DSHARP_SCRIPT_NAME, "global"
         };

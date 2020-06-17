@@ -15,5 +15,9 @@ namespace ValidationTests {
         public static void M2() {
             int instanceof = 1;
         }
+
+        public static void M3() {
+            int arguments = 1;
+        }
     }
 }
