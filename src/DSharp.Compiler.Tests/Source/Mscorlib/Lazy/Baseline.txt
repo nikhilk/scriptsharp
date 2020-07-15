@@ -1,0 +1,26 @@
+﻿"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // LazyTest.TestClass
+
+  function TestClass() {
+    var myInt = new ss.Lazy(function() {
+      return 33;
+    });
+    var hasValue = myInt.IsValueCreated;
+    var n = myInt.Value;
+  }
+  var TestClass$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      TestClass: ss.defineClass(TestClass, TestClass$, [], null)
+    });
+
+
+  return $exports;
+});

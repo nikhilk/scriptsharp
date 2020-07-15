@@ -8,6 +8,11 @@
         "ComparisonFile": "Baseline.txt"
       },
       {
+        "Name": "Lazy",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
         "Name": "Collections",
         "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "Baseline.txt"

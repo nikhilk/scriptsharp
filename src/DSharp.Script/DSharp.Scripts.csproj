@@ -48,6 +48,7 @@
     <SourceScript Remove="src\Shims\ObjectAssign.js" />
     <SourceScript Remove="src\System\Enum.js" />
     <SourceScript Remove="src\System\Generics.js" />
+    <SourceScript Remove="src\System\Lazy.js" />
   </ItemGroup>
 
   <ItemGroup>
