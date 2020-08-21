@@ -33,9 +33,9 @@
     </AssemblyAttribute>
   </ItemGroup>
   <ItemGroup Condition="'$(ExcludeCoreLib)' == 'false'">
-    <PackageReference Include="DSharp.Mscorlib" Version="2.0.0-dev.0" IsImplicitlyDefined="true" PrivateAssets="All" />
+    <PackageReference Include="DSharp.Mscorlib" Version="2.0.0-dev.1" IsImplicitlyDefined="true" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup Condition="'$(ExcludeCodeAnalysis)' == 'false'">
-    <PackageReference Include="DSharp.CodeAnalysis" Version="2.0.0-dev.0" IsImplicitlyDefined="true" PrivateAssets="All" />
+    <PackageReference Include="DSharp.CodeAnalysis" Version="2.0.0-dev.1" IsImplicitlyDefined="true" PrivateAssets="All" />
   </ItemGroup>
 </Project>

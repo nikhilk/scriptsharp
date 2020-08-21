@@ -9,3 +9,6 @@ function IEnumerable() { }
 function IEnumerable_$1() { }
 
 function IServiceProvider() { }
+
+function IEquatable_$1() { }
+function IComparable_$1() { }

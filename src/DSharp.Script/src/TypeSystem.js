@@ -118,6 +118,14 @@ function canAssign(type, otherType) {
     if ((type === Object) || (type === otherType)) {
         return true;
     }
+
+    // Arrays in CLR implement IList and IList<T>
+    if (otherType === Array && (
+        type === IList
+        || type == IList_$1)) {
+        return true;
+    }
+
     if (type.$type === _classMarker) {
         var baseType = otherType.$base;
         while (baseType) {

@@ -2,8 +2,8 @@
 
 namespace System
 {
-    public interface IEquatable<T>
+    public interface IComparable<T>
     {
-        bool Equals(T other);
+        int CompareTo(T other);
     }
 }
