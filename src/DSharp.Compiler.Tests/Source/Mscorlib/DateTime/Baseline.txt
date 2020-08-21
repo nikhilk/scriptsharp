@@ -12,8 +12,6 @@ define('test', ['ss'], function(ss) {
     dateTime = new ss.DateTime(2019, 12, 24);
     dateTime = new ss.DateTime(2019, 12, 24, 23, 45, 0);
     dateTime = new ss.DateTime(2019, 12, 24, 23, 45, 0, 2);
-    ss.DateTime.Equals(dateTime, dateTime);
-    var same = dateTime === dateTime;
     var dayOfWeek = dateTime.DayOfWeek;
     var enumComparison = dayOfWeek === ss.DayOfWeek.saturday;
     var year = dateTime.Year;
@@ -42,6 +40,8 @@ define('test', ['ss'], function(ss) {
     var greaterOrEqual = dateTime >= parsedDate;
     var lesserThan = dateTime < parsedDate;
     var lesserOrEqual = dateTime < parsedDate;
+    var isEqual = ss.DateTime.Equals(dateTime, dateTime);
+    var comparison = ss.DateTime.CompareTo(dateTime, dateTime);
   }
   var TestClass$ = {
 

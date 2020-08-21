@@ -40,6 +40,26 @@ DateTime.Equals = function (d1, d2)
     return parsedDate1.getTime() === parsedDate2.getTime();
 };
 
+DateTime.CompareTo = function (d1, d2)
+{
+    var parsedDate1 = DateTime._parseIfString(d1);
+    var parsedDate2 = DateTime._parseIfString(d2);
+
+    if (parsedDate1 == null || parsedDate2 == null)
+    {
+        throw new Error("Cannot compare null Dates");
+    }
+
+    var d1t = parsedDate1.getTime();
+    var d2t = parsedDate2.getTime();
+
+    return d1t === d2t
+        ? 0
+        : d1t < d2t
+            ? -1
+            : 1;
+};
+
 createPropertyGet(Date.prototype, 'Year', function ()
 {
     return DateTime.GetYear(this);

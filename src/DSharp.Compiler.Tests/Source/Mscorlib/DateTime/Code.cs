@@ -24,10 +24,6 @@ namespace DateTimeTest
             dateTime = new DateTime(2019, 12, 24, 23, 45, 0);
             dateTime = new DateTime(2019, 12, 24, 23, 45, 0, 2);
 
-            // Equals
-            DateTime.Equals(dateTime, dateTime);
-            bool same = dateTime == dateTime;
-
             // DayOfWeek
             DayOfWeek dayOfWeek = dateTime.DayOfWeek;
             bool enumComparison = dayOfWeek == DayOfWeek.Saturday;
@@ -109,6 +105,12 @@ namespace DateTimeTest
 
             // Lesser or equal
             bool lesserOrEqual = dateTime < parsedDate;
+
+            // IEquatable
+            bool isEqual = dateTime.Equals(dateTime);
+
+            // IComparable
+            int comparison = dateTime.CompareTo(dateTime);
         }
     }
 }

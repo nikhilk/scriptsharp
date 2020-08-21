@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public struct DateTime
+    public struct DateTime : IEquatable<DateTime>, IComparable<DateTime>
     {
         public extern static implicit operator Date(DateTime d);
 
@@ -15,9 +15,6 @@ namespace System
         [ScriptField]
         [ScriptAlias("ss.DateTime.Today")]
         public extern static DateTime Today { get; }
-
-        [ScriptAlias("ss.DateTime.Equals")]
-        public extern static bool Equals(DateTime d1, DateTime d2);
 
         public extern DateTime(int year, int month, int day);
 
@@ -84,6 +81,12 @@ namespace System
 
         [ScriptAlias("ss.DateTime.Parse")]
         public extern static DateTime Parse(string date);
+
+        [ScriptAlias("ss.DateTime.Equals")]
+        public extern bool Equals(DateTime other);
+
+        [ScriptAlias("ss.DateTime.CompareTo")]
+        public extern int CompareTo(DateTime other);
 
         // force the usage of .Equals, operator== behaves weirdly in JS
         //public extern static bool operator ==(DateTime left, DateTime right);
