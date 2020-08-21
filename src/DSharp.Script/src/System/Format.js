@@ -3,41 +3,6 @@ var _dateFormatRE = /'.*?[^\\]'|dddd|ddd|dd|d|MMMM|MMM|MM|M|yyyy|yy|y|hh|h|HH|H|
 var _formatPlaceHolderRE = /(\{[^\}^\{]+\})/g;
 var _formatters = {};
 
-
-_formatters['JSBI'] = function (number, format, culture) {
-    var nf = culture.nf;
-    var s = '';
-    var precision = -1;
-
-    if (format.length > 1) {
-        precision = parseInt(format.substr(1));
-    }
-    var fs = format.charAt(0);
-    if (precision == -1) {
-        precision = nf.dd;
-    }
-
-    s = number.toString();
-    let isNeg = s.startsWith(nf.neg);
-    let l = s.length;
-    let numberOfDigits = isNeg ? l - nf.neg.length : l;
-
-    if (numberOfDigits <= precision) {
-        if (isNeg) {
-            s = s.substr(nf.neg.length);
-        }
-        s = (isNeg ? nf.neg : '') + '0' + nf.ds + "0".repeat(precision - numberOfDigits) + s;
-    } else {
-        s = s.substr(0, l - precision) + nf.ds + s.substr(l - precision);
-    }
-
-    if ((fs == 'n') || (fs == 'N')) {
-        s = _commaFormatNumber(s, nf.gw, nf.ds, nf.gs);
-    }
-
-    return s;
-};
-
 _formatters['Number'] = function (number, format, culture) {
     var nf = culture.nf;
     var s = '';
