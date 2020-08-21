@@ -119,6 +119,13 @@ function canAssign(type, otherType) {
         return true;
     }
 
+    // DateTime in CLR implements IEquatable and IComparable
+    if (otherType === Date && (
+        type === IEquatable_$1
+        || type == IComparable_$1)) {
+        return true;
+    }
+
     // Arrays in CLR implement IList and IList<T>
     if (otherType === Array && (
         type === IList
