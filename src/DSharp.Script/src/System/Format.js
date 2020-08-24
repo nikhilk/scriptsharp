@@ -3,6 +3,10 @@ var _dateFormatRE = /'.*?[^\\]'|dddd|ddd|dd|d|MMMM|MMM|MM|M|yyyy|yy|y|hh|h|HH|H|
 var _formatPlaceHolderRE = /(\{[^\}^\{]+\})/g;
 var _formatters = {};
 
+function setFormatter(typeName, formatter) {
+    _formatters[typeName] = formatter;
+}
+
 _formatters['Number'] = function (number, format, culture) {
     var nf = culture.nf;
     var s = '';
@@ -54,7 +58,7 @@ _formatters['Number'] = function (number, format, culture) {
                 s = s.substr(0, index) + nf.ds + s.substr(index + 1);
             }
             if ((fs == 'n') || (fs == 'N')) {
-                s = _commaFormatNumber(s, nf.gw, nf.ds, nf.gs);
+                s = commaFormatNumber(s, nf.gw, nf.ds, nf.gs);
             }
             break;
         case 'c': case 'C':
@@ -66,7 +70,7 @@ _formatters['Number'] = function (number, format, culture) {
                 var index = s.indexOf('.');
                 s = s.substr(0, index) + nf.curDS + s.substr(index + 1);
             }
-            s = _commaFormatNumber(s, nf.curGW, nf.curDS, nf.curGS);
+            s = commaFormatNumber(s, nf.curGW, nf.curDS, nf.curGS);
             if (number < 0) {
                 s = format(culture, nf.curNP, s);
             }
@@ -83,7 +87,7 @@ _formatters['Number'] = function (number, format, culture) {
                 var index = s.indexOf('.');
                 s = s.substr(0, index) + nf.perDS + s.substr(index + 1);
             }
-            s = _commaFormatNumber(s, nf.perGW, nf.perDS, nf.perGS);
+            s = commaFormatNumber(s, nf.perGW, nf.perDS, nf.perGS);
             if (number < 0) {
                 s = format(culture, nf.perNP, s);
             }
@@ -257,7 +261,7 @@ _formatters['Date'] = function (dt, format, culture) {
     return sb.toString();
 };
 
-function _commaFormatNumber(number, groups, decimal, comma) {
+function commaFormatNumber(number, groups, decimal, comma) {
     var decimalPart = null;
     var decimalIndex = number.indexOf(decimal);
     if (decimalIndex > 0) {
