@@ -40,6 +40,11 @@ DateTime.Equals = function (d1, d2)
     return parsedDate1.getTime() === parsedDate2.getTime();
 };
 
+Date.prototype.equals = function (other)
+{
+    return DateTime.Equals(this, other);
+}
+
 DateTime.CompareTo = function (d1, d2)
 {
     var parsedDate1 = DateTime._parseIfString(d1);
@@ -59,6 +64,11 @@ DateTime.CompareTo = function (d1, d2)
             ? -1
             : 1;
 };
+
+Date.prototype.compareTo = function (other)
+{
+    return DateTime.CompareTo(this, other);
+}
 
 createPropertyGet(Date.prototype, 'Year', function ()
 {

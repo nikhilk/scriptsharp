@@ -82,10 +82,8 @@ namespace System
         [ScriptAlias("ss.DateTime.Parse")]
         public extern static DateTime Parse(string date);
 
-        [ScriptAlias("ss.DateTime.Equals")]
         public extern bool Equals(DateTime other);
 
-        [ScriptAlias("ss.DateTime.CompareTo")]
         public extern int CompareTo(DateTime other);
 
         // force the usage of .Equals, operator== behaves weirdly in JS
