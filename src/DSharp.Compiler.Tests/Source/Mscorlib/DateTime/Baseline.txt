@@ -40,8 +40,8 @@ define('test', ['ss'], function(ss) {
     var greaterOrEqual = dateTime >= parsedDate;
     var lesserThan = dateTime < parsedDate;
     var lesserOrEqual = dateTime < parsedDate;
-    var isEqual = ss.DateTime.Equals(dateTime, dateTime);
-    var comparison = ss.DateTime.CompareTo(dateTime, dateTime);
+    var isEqual = dateTime.equals(dateTime);
+    var comparison = dateTime.compareTo(dateTime);
   }
   var TestClass$ = {
 
