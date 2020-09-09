@@ -1,5 +1,7 @@
 # DSharp Project #
 
+![.NET Core](https://github.com/DerivcoIpswich/dsharp/workflows/.NET%20Core/badge.svg)
+
 DSharp is a development tool that generates JavaScript by compiling C# source code. It is especially interesting for scripting-in-the-large scenarios that is commonplace in the current generation of HTML5, node.js and script-based Web applications.
 
 The driving principle behind DSharp is that JavaScript is the "assembly language of the Web" ... the idea isn't to dislike JavaScript, but rather appreciate it for its flexibility and ubiquity, while bringing the productivity and familiarity of C# when building large scale (large codebase, large team or project over a longer period) application where stronger tools, more maintainable codebases are of utmost importance. You might have heard of this described as "application scale".
