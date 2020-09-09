@@ -1,0 +1,25 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ master, feature/lowering ]
+  pull_request:
+    branches: [ master, feature/lowering ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.100-preview.5
+    - name: Install dependencies
+      run: dotnet restore ".\src\DSharp.sln"
+    - name: Build
+      run: dotnet build ".\src\DSharp.sln" --configuration Release --no-restore
+    - name: Test
+      run: dotnet test ".\src\DSharp.sln" --no-restore --verbosity normal
