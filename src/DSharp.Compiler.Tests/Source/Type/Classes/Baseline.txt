@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // TypeTests.Foo
 
   function FooBaz() {
@@ -31,6 +30,15 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // TypeTests.MyClass$NestedClass
+
+  function MyClass$NestedClass() {
+  }
+  var MyClass$NestedClass$ = {
+
+  };
+
+
   // TypeTests.MyClass3
 
   function MyClass3() {
@@ -44,6 +52,17 @@ define('test', ['ss'], function(ss) {
 
   function StaticClass() {
   }
+
+
+  // TypeTests.TypeWithParamsInCtor
+
+  var TypeWithParamsInCtor = ss.namedFunction('TypeWithParamsInCtor',ss.paramsGenerator(1, function(arg, args) {
+  }
+  ));
+  var TypeWithParamsInCtor$ = {
+    methodWithParams: ss.paramsGenerator(1, function(arg, args) {
+    })
+  };
 
 
   // TypeTests.MyClass2
@@ -73,8 +92,10 @@ define('test', ['ss'], function(ss) {
       FooBaz: ss.defineClass(FooBaz, FooBaz$, [], null),
       BarBaz: ss.defineClass(BarBaz, BarBaz$, [FooBaz], null),
       MyClass: ss.defineClass(MyClass, MyClass$, [], null),
+      MyClass$NestedClass: ss.defineClass(MyClass$NestedClass, MyClass$NestedClass$, [], null),
       MyClass3: ss.defineClass(MyClass3, MyClass3$, [], null, [ss.IDisposable]),
       StaticClass: ss.defineClass(StaticClass, null, [], null),
+      TypeWithParamsInCtor: ss.defineClass(TypeWithParamsInCtor, TypeWithParamsInCtor$, [Object, Array], null),
       MyClass2: ss.defineClass(MyClass2, MyClass2$, [], MyClass),
       MyClass4: ss.defineClass(MyClass4, MyClass4$, [FooBaz, BarBaz, ss.IDisposable], MyClass, [ss.IDisposable])
     });

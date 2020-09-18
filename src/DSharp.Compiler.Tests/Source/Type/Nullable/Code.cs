@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 
@@ -29,6 +29,8 @@ namespace TypeTests {
             bool boolVal = flag.GetValueOrDefault();
             char textVal = ch.GetValueOrDefault();
             int numVal = num3.GetValueOrDefault();
+            Type t = typeof(Nullable<int>);
+            Type t2 = typeof(Nullable<string>);
         }
     }
 }

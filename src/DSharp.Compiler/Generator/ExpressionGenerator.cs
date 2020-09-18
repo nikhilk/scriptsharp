@@ -553,6 +553,13 @@ namespace DSharp.Compiler.Generator
                 //TODO: Implement Dictionary initializer + List Initializer + Custom initializers
                 GenerateNewExpression(generator, symbol, initializerExpression.NewExpression);
             }
+            else if(type.IsAnonymousType)
+            {
+                var properties = initializerExpression.Initializers.ToDictionary(
+                    item => (((BinaryExpression)item).LeftOperand as PropertyExpression).Property.GeneratedName,
+                    item => ((BinaryExpression)item).RightOperand);
+                GenerateObjectExpression(generator, symbol, properties);
+            }
             else
             {
                 writer.Write($"{DSharpStringResources.ScriptExportMember("initializeObject")}");
@@ -897,7 +904,7 @@ namespace DSharp.Compiler.Generator
             }
         }
 
-        private static void GenerateLiteralExpression(ScriptGenerator generator, MemberSymbol symbol,
+        public static void GenerateLiteralExpression(ScriptGenerator generator, MemberSymbol symbol,
                                                       LiteralExpression expression)
         {
             ScriptTextWriter writer = generator.Writer;

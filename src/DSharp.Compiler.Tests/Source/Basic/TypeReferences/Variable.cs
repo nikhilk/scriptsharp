@@ -10,7 +10,7 @@ namespace BasicTests
         private void Foo()
         {
             DelegateInLib scopeVariable;
-            var temp;
+            var temp = "temp";
         }
     }
 }

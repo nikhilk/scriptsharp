@@ -31,7 +31,6 @@ namespace DSharp.Compiler.Tests
                     DSharpStringResources.NODE_VALIDATION_ERROR_TRY_CATCH,
                     DSharpStringResources.THROW_NODE_VALIDATION_ERROR),
                 ["ImplicitEnums"] = CreateContainsErrorMessagesFunction(
-                    DSharpStringResources.ENUM_CONSTANT_VALUE_MISSING_ERROR,
                     DSharpStringResources.ENUM_VALUE_TYPE_ERROR),
                 ["InlineScript"] = CreateContainsErrorMessagesFunction(
                     DSharpStringResources.SCRIPT_LITERAL_CONSTANT_ERROR,

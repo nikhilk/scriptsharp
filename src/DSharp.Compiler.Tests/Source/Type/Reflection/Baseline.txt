@@ -1,0 +1,63 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // TypeTests.MyClass
+
+  function MyClass() {
+    ss.defineProperty(this, 'Other', null);
+    ss.defineProperty(this, 'Getter', 0);
+    ss.defineProperty(this, 'Tyyype', null);
+    var members = ss.getMembers((MyClass));
+    MyClass._assert(members[0].Name === 'get_Item');
+    MyClass._assert(members[1].Name === 'set_Item');
+    MyClass._assert(members[2].Name === 'Getter');
+    MyClass._assert((members[2]).Type === Number);
+    MyClass._assert(members[3].Name === 'Method');
+    MyClass._assert((members[3]).Type == null);
+  }
+  MyClass._assert = function(assertion) {
+  };
+  var MyClass$ = {
+    getDelegate: function() {
+      throw new Error();
+    },
+    method: function() {
+    },
+    method2: function($TArgs) {
+      throw new Error();
+    },
+    method3: function() {
+      throw new Error();
+    },
+    method4: function() {
+      throw new Error();
+    },
+    get_item: function(index) {
+      return index;
+    },
+    set_item: function(index, value) {
+      return value;
+    }
+  };
+
+
+  // TypeTests.MyClass`1
+
+  function MyClass_$1() {
+    ss.defineProperty(this, 'Other', null);
+  }
+  var MyClass_$1$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      MyClass: ss.defineClass(MyClass, MyClass$, [], null),
+      MyClass_$1: ss.defineClass(MyClass_$1, MyClass_$1$, [], null)
+    });
+
+
+  return $exports;
+});

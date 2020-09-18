@@ -1,0 +1,13 @@
+﻿<Project>
+  <Target Name="CopyScriptsToProject" BeforeTargets="Build" Condition="'$(DSharpScriptsCopyPath)' != ''">
+    <ItemGroup>
+      <SourceScriptFiles Include="$(MSBuildThisFileDirectory)..\contentFiles\any\any\*.js" />
+    </ItemGroup>
+    <PropertyGroup>
+      <CopyOutputDir>$([System.IO.Path]::Combine($(MSBuildProjectDirectory),$(DSharpScriptsCopyPath)))</CopyOutputDir>
+    </PropertyGroup>
+
+    <Message Text="Copying DSharp script files to $(CopyOutputDir)" />
+    <Copy SourceFiles="@(SourceScriptFiles)" DestinationFolder="$(CopyOutputDir)"/>
+  </Target>
+</Project>

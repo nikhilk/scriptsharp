@@ -10,6 +10,13 @@ namespace System
     [ScriptImport]
     public sealed class Function
     {
+        public static extern implicit operator Function(Action action);
+
+        /// <summary>
+        /// Creates a new function with an empty body
+        /// </summary>
+        public Function() { }
+
         /// <summary>
         /// Creates a new function with the specified implementation.
         /// </summary>
@@ -61,5 +68,8 @@ namespace System
         public extern object Call(object instance, params object[] arguments);
 
         public extern static explicit operator Type(Function f);
+
+        [ScriptSkip]
+        public extern T As<T>() where T : Delegate;
     }
 }

@@ -1,0 +1,85 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // LoweringTests.App
+
+  function App() {
+  }
+  var App$ = {
+    _foo: function() {
+      var array = [ false, 1, '2' ];
+      var list = (function() {
+        var _obj_ = [];
+        _obj_.push(false);
+        _obj_.push(1);
+        _obj_.push('2');
+        return _obj_;
+      })();
+      var c = (function() {
+        var _obj_ = new C1();
+        _obj_.BoolProp = false;
+        _obj_.StringProp = null;
+        _obj_.C1Prop = (function() {
+          var _obj_ = new C1();
+          _obj_.BoolProp = true;
+          return _obj_;
+        })();
+        _obj_.DictProp = (function() {
+          var _obj_ = {};
+          ss.addKeyValue(_obj_, 'test', true);
+          ss.addKeyValue(_obj_, 'test2', false);
+          return _obj_;
+        })();
+        return _obj_;
+      })();
+      var c2 = (function() {
+        var _obj_ = new C2('hello');
+        _obj_.Prop = 'world';
+        return _obj_;
+      })();
+      this._testFunc((function() {
+        var _obj_ = new C1();
+        _obj_.BoolProp = false;
+        return _obj_;
+      })());
+    },
+    _testFunc: function(obj) {
+      throw new Error();
+    }
+  };
+
+
+  // LoweringTests.C1
+
+  function C1() {
+    ss.defineProperty(this, 'BoolProp', false);
+    ss.defineProperty(this, 'StringProp', null);
+    ss.defineProperty(this, 'C1Prop', null);
+    ss.defineProperty(this, 'DictProp', null);
+  }
+  var C1$ = {
+
+  };
+
+
+  // LoweringTests.C2
+
+  function C2(arg) {
+    ss.defineProperty(this, 'Prop', null);
+  }
+  var C2$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, App$, [], null),
+      C1: ss.defineClass(C1, C1$, [], null),
+      C2: ss.defineClass(C2, C2$, [String], null)
+    });
+
+
+  return $exports;
+});

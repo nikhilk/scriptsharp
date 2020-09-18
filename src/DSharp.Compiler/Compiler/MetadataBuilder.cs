@@ -154,8 +154,12 @@ namespace DSharp.Compiler.Compiler
 
             if ((userTypeNode.Modifiers & Modifiers.Partial) != 0)
             {
+                var name = userTypeNode.TypeParameters.Any()
+                    ? $"{userTypeNode.Name}`{userTypeNode.TypeParameters.Count()}"
+                    : userTypeNode.Name;
+
                 partialTypeSymbol =
-                    (ClassSymbol)((ISymbolTable)namespaceSymbol).FindSymbol(userTypeNode.Name, /* context */
+                    (ClassSymbol)((ISymbolTable)namespaceSymbol).FindSymbol(name, /* context */
                         null, SymbolFilter.Types);
 
                 if (partialTypeSymbol != null && partialTypeSymbol.IsApplicationType)
@@ -229,8 +233,7 @@ namespace DSharp.Compiler.Compiler
 
                 types.Add(typeSymbol);
 
-                var nestedTypes = (typeNode as CustomTypeNode)?.Members.Where(m => m.NodeType == ParseNodeType.Type).Cast<TypeNode>() ?? Enumerable.Empty<TypeNode>();
-
+                var nestedTypes = (typeNode as CustomTypeNode)?.Members.Where(m => m.NodeType == ParseNodeType.Type || m.NodeType == ParseNodeType.Delegate).Cast<TypeNode>() ?? Enumerable.Empty<TypeNode>();
                 foreach (var nestedTypeNode in nestedTypes)
                 {
                     TryAddType(symbols, types, namespaceSymbol, imports, aliases, nestedTypeNode, typeSymbol);
@@ -555,7 +558,8 @@ namespace DSharp.Compiler.Compiler
                     if (initializer.Value != null && initializer.Value.NodeType == ParseNodeType.Literal)
                     {
                         symbol.SetConstant();
-                        symbol.Value = ((LiteralToken)initializer.Value.Token).LiteralValue;
+                        var literalToken = initializer?.Value?.Token as LiteralToken;
+                        symbol.Value = literalToken?.LiteralValue;
                     }
 
                     // TODO: Handle other constant cases that can be evaluated at compile
@@ -772,7 +776,7 @@ namespace DSharp.Compiler.Compiler
 
             CustomTypeNode typeNode = (CustomTypeNode)typeSymbol.ParseContext;
 
-            foreach (MemberNode member in typeNode.Members.Where(m => m.NodeType != ParseNodeType.Type))
+            foreach (MemberNode member in typeNode.Members.Where(m => m.NodeType != ParseNodeType.Type && m.NodeType != ParseNodeType.Delegate))
             {
                 var nodeAttributes = member.Attributes.Cast<AttributeNode>();
 
@@ -792,6 +796,13 @@ namespace DSharp.Compiler.Compiler
 
                         break;
                     case ParseNodeType.PropertyDeclaration:
+
+                        if ((member.Modifiers & Modifiers.Extern) != 0)
+                        {
+                            // skip extern properties.
+                            continue;
+                        }
+
                         memberSymbol = BuildPropertyAsField((PropertyDeclarationNode)member, typeSymbol);
 
                         if (memberSymbol == null)
@@ -1009,7 +1020,7 @@ namespace DSharp.Compiler.Compiler
                     .Cast<TypeParameterConstraintNode>()
                     .Where(c => c.TypeParameter.Name == genericParameter.NameNode.Name)
                     .SelectMany(c => c.TypeConstraints)
-                    .Select(c => typeSymbol.SymbolSet.ResolveType(c, symbolTable, typeSymbol))
+                    .Select(c => ResolveTypeConstraint(typeSymbol, c))
                     .Distinct()
                     .ToList();
 
@@ -1028,6 +1039,27 @@ namespace DSharp.Compiler.Compiler
             }
 
             method.AddGenericArguments(genericArguments);
+        }
+
+        private TypeSymbol ResolveTypeConstraint(TypeSymbol typeSymbol, ParseNode c)
+        {
+            var type = typeSymbol.SymbolSet.ResolveType(c, symbolTable, typeSymbol);
+            if (type != null)
+            {
+                return type;
+            }
+
+            string name = string.Empty;
+            if (c is GenericNameNode genericNameNode)
+            {
+                name = genericNameNode.FullGenericName;
+            }
+            else if (c is NameNode nameNode)
+            {
+                name = nameNode.Name;
+            }
+
+            return symbolTable.FindSymbol<TypeSymbol>(name, typeSymbol, SymbolFilter.All);
         }
 
         private ParameterSymbol BuildParameter(ParameterNode parameterNode, MethodSymbol methodSymbol)
@@ -1241,7 +1273,7 @@ namespace DSharp.Compiler.Compiler
 
             if (typeSymbol != null)
             {
-                if(ignoreGenerics)
+                if (ignoreGenerics)
                 {
                     typeSymbol.SetIgnoreGenerics();
                 }

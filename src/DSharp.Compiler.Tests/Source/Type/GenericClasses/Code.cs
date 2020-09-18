@@ -55,10 +55,14 @@ namespace DSharp.Compiler.Tests.Source.Type.GenericClasses
             bool isInt = specificClassOfGeneric.Type == typeof(int);
             GenericClass<int> myContainer = specificClassOfGeneric.CreateContainer();
             isInt = myContainer.Type == typeof(int);
+
+            bool isType1 = typeof(GenericClass<>).MakeGenericType(typeof(string)) == typeof(GenericClass<string>);
+            bool isType2 = typeof(Generic_2<,>).MakeGenericType(typeof(string), typeof(int)) == typeof(Generic_2<string,int>);
         }
 
         public static T[] Copy<T>(T[] source, int startIndex, int count)
         {
+            Type type = typeof(T);
             T[] destination = new T[source.Length];
             Array.Copy(source, startIndex, destination, 0, count);
             return destination;
@@ -191,6 +195,24 @@ namespace DSharp.Compiler.Tests.Source.Type.GenericClasses
 
     [ScriptIgnoreGenericArgumentsAttribute]
     public class GenericTypeWithIgnore<T1, T2>
+    {
+
+    }
+
+    public class GenericTypeWithParamsInCtor<T>
+    {
+        public GenericTypeWithParamsInCtor(T arg, params object[] args)
+        {
+            string x = typeof(T).Name;
+        }
+
+        public void GenericMethodWithParams<T2>(T2 arg, params object[] args)
+        {
+
+        }
+    }
+
+    public class Generic_2<T1,T2>
     {
 
     }

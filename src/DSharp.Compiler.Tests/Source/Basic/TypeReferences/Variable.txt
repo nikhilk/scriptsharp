@@ -9,7 +9,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   var App$ = {
     _foo: function() {
       var scopeVariable;
-      var temp;
+      var temp = 'temp';
     }
   };
 

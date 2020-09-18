@@ -864,6 +864,16 @@ namespace DSharp.Compiler.Importer
                 new ParameterSymbol("typeArgumentName", getTypeArgument, stringType, ParameterMode.In));
 
             classSymbol.AddMember(getTypeArgument);
+
+            MethodSymbol getGenericTemplateMethod
+                            = new MethodSymbol("getGenericTemplate", classSymbol, typeSymbol, MemberVisibility.Public | MemberVisibility.Static);
+            getGenericTemplateMethod.SetTransformName(DSharpStringResources.ScriptExportMember("getGenericTemplate"));
+            getGenericTemplateMethod.AddParameter(
+                new ParameterSymbol("ctorMethod", getGenericTemplateMethod, typeSymbol, ParameterMode.In));
+            getGenericTemplateMethod.AddParameter(
+                new ParameterSymbol("typeParameters", getGenericTemplateMethod, objectType, ParameterMode.In));
+
+            classSymbol.AddMember(getGenericTemplateMethod);
         }
 
         private void ImportScriptAssembly(MetadataSource mdSource, string assemblyPath, bool coreAssembly)

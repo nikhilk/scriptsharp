@@ -4,10 +4,10 @@ define('test', ['ss'], function(ss) {
   var $global = this;
   // StatementTests.Mode
 
-  var Mode = {
+  var Mode = new ss.Enum('Mode', {
     foo: 0, 
     bar: 1
-  };
+  });
 
 
   // StatementTests.App
@@ -55,7 +55,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Mode: new ss.Enum('Mode', Mode),
+      Mode: Mode,
       App: ss.defineClass(App, App$, [], null)
     });
 

@@ -8,6 +8,9 @@ namespace System
         [ScriptAlias("ss.Enum.hasFlag")]
         public extern bool HasFlag(Enum flag);
 
+        [DSharpScriptMemberName("Enum.isDefined")]
+        public extern static bool IsDefined(Type enumType, object value);
+
         [DSharpScriptMemberName("Enum.getName")]
         public extern static string GetName(Type enumType, object value);
 

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using DSharp.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis;
 
 namespace DSharp.CodeAnalysis.Diagnostics
@@ -12,7 +11,10 @@ namespace DSharp.CodeAnalysis.Diagnostics
         public static IDiagnostic[] RuleDefinitions
             => new IDiagnostic[]
                 {
-                    GenericTypeArgumentMissing,
+                    
+                    // No longer needed. This should always have a Type which will be stamped by `GenericArgumentRewriter`
+                    // GenericTypeArgumentMissing,
+
                     ScriptIgnoreGenericArgumentsAttributeMissing
                 };
 

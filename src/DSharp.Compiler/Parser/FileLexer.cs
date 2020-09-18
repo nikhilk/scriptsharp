@@ -12,7 +12,7 @@ namespace DSharp.Compiler.Parser
     /// <summary>
     ///     Preprocesses and Lexes a C# compilation Unit.
     /// </summary>
-    internal sealed class FileLexer
+    internal sealed class FileLexer : IFilePathProvider
     {
         private readonly Lexer lexer;
         private readonly PreprocessorLineParser parser;
@@ -463,5 +463,10 @@ namespace DSharp.Compiler.Parser
                 OnError(this, new FileLexerErrorEventArgs(e, lineMap));
             }
         }
+    }
+
+    internal interface IFilePathProvider
+    {
+        string FilePath { get; }
     }
 }

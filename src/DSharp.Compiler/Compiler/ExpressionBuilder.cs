@@ -54,61 +54,67 @@ namespace DSharp.Compiler.Compiler
         public Expression BuildExpression(ParseNode node)
         {
             Expression expression = null;
-
-            switch (node.NodeType)
+            try
             {
-                case ParseNodeType.Literal:
-                    expression = ProcessLiteralNode((LiteralNode)node);
-                    break;
-                case ParseNodeType.Name:
-                case ParseNodeType.GenericName:
-                    expression = ProcessNameNode((NameNode)node);
-                    break;
-                case ParseNodeType.Typeof:
-                    expression = ProcessTypeofNode((TypeofNode)node);
-                    break;
-                case ParseNodeType.This:
-                    expression = ProcessThisNode((ThisNode)node);
-                    break;
-                case ParseNodeType.Base:
-                    expression = ProcessBaseNode((BaseNode)node);
-                    break;
-                case ParseNodeType.UnaryExpression:
-                    expression = ProcessUnaryExpressionNode((UnaryExpressionNode)node);
-                    break;
-                case ParseNodeType.BinaryExpression:
-                    expression = ProcessBinaryExpressionNode((BinaryExpressionNode)node);
-                    break;
-                case ParseNodeType.Conditional:
-                    expression = ProcessConditionalNode((ConditionalNode)node);
-                    break;
-                case ParseNodeType.ObjectInitializer:
-                    expression = ProcessObjectInitializerNode((ObjectInitializerNode)node);
-                    break;
-                case ParseNodeType.New:
-                    expression = ProcessNewNode((NewNode)node);
-                    break;
-                case ParseNodeType.ArrayNew:
-                    expression = ProcessArrayNewNode((ArrayNewNode)node);
-                    break;
-                case ParseNodeType.ArrayInitializer:
-                    expression = ProcessArrayInitializerNode((ArrayInitializerNode)node);
-                    break;
-                case ParseNodeType.ArrayType:
-                    expression = ProcessArrayTypeNode((ArrayTypeNode)node);
-                    break;
-                case ParseNodeType.PredefinedType:
-                    expression = ProcessIntrinsicType((IntrinsicTypeNode)node);
-                    break;
-                case ParseNodeType.Cast:
-                    expression = ProcessCastNode((CastNode)node);
-                    break;
-                case ParseNodeType.AnonymousMethod:
-                    expression = ProcessAnonymousMethodNode((AnonymousMethodNode)node);
-                    break;
-                default:
-                    Debug.Fail("Unhandled Expression Node: " + node.NodeType);
-                    break;
+                switch (node.NodeType)
+                {
+                    case ParseNodeType.Literal:
+                        expression = ProcessLiteralNode((LiteralNode)node);
+                        break;
+                    case ParseNodeType.Name:
+                    case ParseNodeType.GenericName:
+                        expression = ProcessNameNode((NameNode)node);
+                        break;
+                    case ParseNodeType.Typeof:
+                        expression = ProcessTypeofNode((TypeofNode)node);
+                        break;
+                    case ParseNodeType.This:
+                        expression = ProcessThisNode((ThisNode)node);
+                        break;
+                    case ParseNodeType.Base:
+                        expression = ProcessBaseNode((BaseNode)node);
+                        break;
+                    case ParseNodeType.UnaryExpression:
+                        expression = ProcessUnaryExpressionNode((UnaryExpressionNode)node);
+                        break;
+                    case ParseNodeType.BinaryExpression:
+                        expression = ProcessBinaryExpressionNode((BinaryExpressionNode)node);
+                        break;
+                    case ParseNodeType.Conditional:
+                        expression = ProcessConditionalNode((ConditionalNode)node);
+                        break;
+                    case ParseNodeType.ObjectInitializer:
+                        expression = ProcessObjectInitializerNode((ObjectInitializerNode)node);
+                        break;
+                    case ParseNodeType.New:
+                        expression = ProcessNewNode((NewNode)node);
+                        break;
+                    case ParseNodeType.ArrayNew:
+                        expression = ProcessArrayNewNode((ArrayNewNode)node);
+                        break;
+                    case ParseNodeType.ArrayInitializer:
+                        expression = ProcessArrayInitializerNode((ArrayInitializerNode)node);
+                        break;
+                    case ParseNodeType.ArrayType:
+                        expression = ProcessArrayTypeNode((ArrayTypeNode)node);
+                        break;
+                    case ParseNodeType.PredefinedType:
+                        expression = ProcessIntrinsicType((IntrinsicTypeNode)node);
+                        break;
+                    case ParseNodeType.Cast:
+                        expression = ProcessCastNode((CastNode)node);
+                        break;
+                    case ParseNodeType.AnonymousMethod:
+                        expression = ProcessAnonymousMethodNode((AnonymousMethodNode)node);
+                        break;
+                    default:
+                        Debug.Fail("Unhandled Expression Node: " + node.NodeType);
+                        break;
+                }
+            }
+            catch(Exception e)
+            {
+                errorHandler.ReportExpressionError(e.Message, node);
             }
 
             if (node is ExpressionNode expressionNode && expressionNode.Parenthesized)
@@ -680,6 +686,7 @@ namespace DSharp.Compiler.Compiler
             Debug.Assert(objectExpression.EvaluatedType is ISymbolTable table);
 
             TypeSymbol evaluatedType = objectExpression.EvaluatedType;
+
             if (objectExpression is MethodExpression methodExpression && methodExpression.IsExtensionMethod)
             {
                 evaluatedType = methodExpression.Method.AssociatedType;
@@ -688,13 +695,8 @@ namespace DSharp.Compiler.Compiler
                     evaluatedType = ResolveGenericNameNode(node);
                 }
             }
-            NameNode memberName = node.RightChild as NameNode;
 
-            MethodSymbol extensionSymbol = symbolSet.ResolveExtensionMethodSymbol(evaluatedType, memberName?.Name, classContext?.GetNamespacesVisibleToClass());
-            if ((memberName is GenericNameNode && (extensionSymbol?.IsGeneric ?? false)) || (!(memberName is GenericNameNode) && (!extensionSymbol?.IsGeneric ?? false)))
-            {
-                return null;
-            }
+            NameNode memberName = node.RightChild as NameNode;
 
             memberSymbol = (MemberSymbol)evaluatedType.FindSymbol(memberName?.Name,
                 symbolContext,
@@ -792,6 +794,7 @@ namespace DSharp.Compiler.Compiler
                         return extensionMethodInvocation;
                     }
                 }
+                // namespace?
                 else if (node.LeftChild.Token is IdentifierToken identifier)
                 {
                     TypeSymbol typeNode = ParseExtensionTypeNode(node, identifier);
@@ -880,7 +883,7 @@ namespace DSharp.Compiler.Compiler
                         return methodExpression;
                     }
                 }
-                else if (memberSymbol.Parent == memberInfoType || memberSymbol.Parent == typeType)
+                else if (memberSymbol.Parent == typeType)
                 {
                     if (string.CompareOrdinal(memberSymbol.Name, nameof(MemberInfo.Name)) == 0)
                     {
@@ -1961,20 +1964,55 @@ namespace DSharp.Compiler.Compiler
             }
             else if (referencedType.IsGeneric)
             {
-                TypeSymbol scriptSymbol = symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
+                if (referencedType.GenericArguments == null)
+                {
+                    return CreateGetGenericTemplateInvocation(referencedType);
+                }
 
-                TypeExpression scriptExpression = new TypeExpression(scriptSymbol, SymbolFilter.Public | SymbolFilter.StaticMembers);
-                var methodSymbol = (MethodSymbol)scriptSymbol.GetMember("getGenericConstructor");
-                var methodExpression = new MethodExpression(scriptExpression, methodSymbol);
+                if (referencedType.GenericType == symbolSet.ResolveIntrinsicType(IntrinsicType.Nullable))
+                {
+                    return CreateTypeOfExpression(referencedType.GenericArguments[0]);
+                }
 
-                methodExpression.AddParameterValue(new LiteralExpression(typeSymbol, referencedType));
-                ObjectExpression typeInferenceMap = CreateTypeInterenceMap(referencedType);
-                methodExpression.AddParameterValue(typeInferenceMap);
-
-                return methodExpression;
+                return CreateGetGenericConstructorInvocation(referencedType);
             }
 
             return new LiteralExpression(typeSymbol, referencedType);
+        }
+
+        private Expression CreateGetGenericConstructorInvocation(TypeSymbol referencedType)
+        {
+            TypeSymbol typeSymbol = symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
+            TypeSymbol scriptSymbol = symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
+
+            TypeExpression scriptExpression = new TypeExpression(scriptSymbol, SymbolFilter.Public | SymbolFilter.StaticMembers);
+            var methodSymbol = (MethodSymbol)scriptSymbol.GetMember("getGenericConstructor");
+            var methodExpression = new MethodExpression(scriptExpression, methodSymbol);
+
+            methodExpression.AddParameterValue(new LiteralExpression(typeSymbol, referencedType));
+            ObjectExpression typeInferenceMap = CreateTypeInterenceMap(referencedType);
+            methodExpression.AddParameterValue(typeInferenceMap);
+
+            return methodExpression;
+        }
+
+        private Expression CreateGetGenericTemplateInvocation(TypeSymbol referencedType)
+        {
+            TypeSymbol typeSymbol = symbolSet.ResolveIntrinsicType(IntrinsicType.Type);
+            TypeSymbol scriptSymbol = symbolSet.ResolveIntrinsicType(IntrinsicType.Script);
+            TypeSymbol stringSymbol = symbolSet.ResolveIntrinsicType(IntrinsicType.String);
+
+            TypeExpression scriptExpression = new TypeExpression(scriptSymbol, SymbolFilter.Public | SymbolFilter.StaticMembers);
+            var methodSymbol = (MethodSymbol)scriptSymbol.GetMember("getGenericTemplate");
+            var methodExpression = new MethodExpression(scriptExpression, methodSymbol);
+            methodExpression.AddParameterValue(new LiteralExpression(typeSymbol, referencedType));
+
+            var typeArraySymbol = symbolSet.CreateArrayTypeSymbol(typeSymbol);
+            Expression[] genericParams = referencedType.GenericParameters.Select(p => new LiteralExpression(stringSymbol, p.GeneratedName)).ToArray();
+
+            methodExpression.AddParameterValue(new LiteralExpression(typeArraySymbol, genericParams));
+
+            return methodExpression;
         }
 
         private ObjectExpression CreateTypeInterenceMap(TypeSymbol referencedType)

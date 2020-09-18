@@ -4,10 +4,10 @@ define('ExpressionTests.ExtensionMethods', ['ss'], function(ss) {
   var $global = this;
   // ExpressionTests.MyNumbers
 
-  var MyNumbers = {
+  var MyNumbers = new ss.Enum('MyNumbers', {
     zero: 0, 
     one: 1
-  };
+  });
 
 
   // ExpressionTests.IServiceCollection
@@ -183,7 +183,7 @@ define('ExpressionTests.ExtensionMethods', ['ss'], function(ss) {
       IServiceCollectionExtension: ss.defineClass(IServiceCollectionExtension, null, [], null)
     },
     {
-      MyNumbers: new ss.Enum('MyNumbers', MyNumbers),
+      MyNumbers: MyNumbers,
       IServiceCollection: ss.defineInterface(IServiceCollection),
       ITemp: ss.defineInterface(ITemp),
       IContext: ss.defineInterface(IContext),

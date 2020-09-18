@@ -41,9 +41,9 @@ namespace System.Html
         [ScriptName("Object")]
         public class Handler
         {
-            public delegate object ApplyTrap(object target, string property, params object[] args);
-            public delegate object GetTrap(object target, string property);
-            public delegate void SetTrap(object target, string property, object value);
+            public delegate object ApplyTrap(object target, object thisArg, params object[] args);
+            public delegate object GetTrap(object target, string property, Proxy receiver);
+            public delegate bool SetTrap(object target, string property, object value, Proxy receiver);
             public delegate bool HasTrap(object target, string property);
             public delegate object DeleteTrap(object target, string property);
             public delegate string[] OwnKeysTrap(object target);
@@ -73,9 +73,9 @@ namespace System.Html
         [ScriptIgnoreGenericArguments]
         public class Handler<T> : Handler
         {
-            new public delegate object ApplyTrap(T target, string property, params object[] args);
-            new public delegate object GetTrap(T target, string property);
-            new public delegate void SetTrap(T target, string property, object value);
+            new public delegate object ApplyTrap(T target, object thisArg, params object[] args);
+            new public delegate object GetTrap(T target, string property, Proxy<T> receiver);
+            new public delegate bool SetTrap(T target, string property, object value, Proxy<T> receiver);
             new public delegate bool HasTrap(T target, string property);
             new public delegate object DeleteTrap(T target, string property);
             new public delegate string[] OwnKeysTrap(T target);

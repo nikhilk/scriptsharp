@@ -28,6 +28,7 @@ define('test', ['ss'], function(ss) {
       this.inParameterConstrained({T: TestDisposableBase}, new TestDisposableBase());
       this.inParameterConstrained({T: ss.IDisposable}, new TestDisposableBase());
       this.complexInGenerics(new TestDisposableBase(), new TestDisposableBase());
+      this.nullableGenerics({T: Number});
     },
     noParameters: function($TArgs) {
     },
@@ -44,6 +45,8 @@ define('test', ['ss'], function(ss) {
       a1.dispose();
       a2.performAction();
       a2.dispose();
+    },
+    nullableGenerics: function($TArgs) {
     }
   };
 

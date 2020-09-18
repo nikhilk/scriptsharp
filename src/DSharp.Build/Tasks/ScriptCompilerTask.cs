@@ -32,6 +32,8 @@ namespace DSharp.Build.Tasks
 
         public bool DebugMode { get; set; }
 
+        public string IntermediarySourceFolder { get; set; }
+
         public string AssemblyName { get; set; }
 
         public string CopyReferencesPath
@@ -85,6 +87,8 @@ namespace DSharp.Build.Tasks
             }
         }
 
+        public bool GenerateScriptMetadata { get; set; }
+
         [Required]
         public string ProjectPath { get; set; }
 
@@ -124,8 +128,8 @@ namespace DSharp.Build.Tasks
             }
 
             ScriptCompiler compiler = new ScriptCompiler(this);
-            compiler.Compile(options);
-            if (hasErrors == false)
+
+            if (compiler.Compile(options) && hasErrors == false)
             {
                 // Only copy references once (when building language neutral scripts)
                 bool copyReferences = string.IsNullOrEmpty(locale) && CopyReferences;
@@ -145,8 +149,8 @@ namespace DSharp.Build.Tasks
             {
                 CompilerOptions minimizeOptions = CreateOptions(sourceItems, resourceItems, locale, true, out scriptTaskItem);
                 ScriptCompiler minimizingCompiler = new ScriptCompiler(this);
-                minimizingCompiler.Compile(minimizeOptions);
-                if (hasErrors == false)
+
+                if (minimizingCompiler.Compile(minimizeOptions) && hasErrors == false)
                 {
                     ExecuteCruncher(scriptTaskItem);
                     OnScriptFileGenerated(scriptTaskItem, minimizeOptions, /* copyReferences */ false);
@@ -173,6 +177,7 @@ namespace DSharp.Build.Tasks
             options.IncludeResolver = this;
             options.AssemblyName = AssemblyName;
             options.DebugMode = DebugMode;
+            options.IntermediarySourceFolder = IntermediarySourceFolder;
 
             if (!string.IsNullOrEmpty(TemplatePath))
             {
@@ -182,6 +187,12 @@ namespace DSharp.Build.Tasks
             string scriptFilePath = GetScriptFilePath(locale, minimize);
             outputScriptItem = new TaskItem(scriptFilePath);
             options.ScriptFile = new TaskItemOutputStreamSource(outputScriptItem);
+
+            if(GenerateScriptMetadata)
+            {
+                var metadataPath = Path.ChangeExtension(scriptFilePath, "meta.js");
+                options.MetadataFile = new TaskItemOutputStreamSource(new TaskItem(metadataPath));
+            }
 
             return options;
         }
@@ -533,7 +544,19 @@ namespace DSharp.Build.Tasks
             hasErrors = true;
         }
 
-        #region Implementation of IStreamSourceResolver
+        void IErrorHandler.ReportWarning(CompilerError error)
+        {
+            Log.LogWarning(
+                subcategory: string.Empty,
+                warningCode: error.FormattedErrorCode,
+                helpKeyword: string.Empty,
+                file: error.File,
+                lineNumber: error.LineNumber.GetValueOrDefault(),
+                endLineNumber: error.LineNumber.GetValueOrDefault(),
+                columnNumber: error.ColumnNumber.GetValueOrDefault(),
+                endColumnNumber: error.ColumnNumber.GetValueOrDefault(),
+                message: error.Description);
+        }
 
         IStreamSource IStreamSourceResolver.Resolve(string name)
         {
@@ -545,9 +568,6 @@ namespace DSharp.Build.Tasks
 
             return null;
         }
-
-        #endregion
-
 
         private sealed class TaskItemInputStreamSource : FileInputStreamSource
         {

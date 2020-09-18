@@ -4,10 +4,10 @@ define('test', ['ss'], function(ss) {
   var $global = this;
   // MemberTests.Mode
 
-  var Mode = {
+  var Mode = new ss.Enum('Mode', {
     a: 0, 
     b: 1
-  };
+  });
 
 
   // MemberTests.Point
@@ -61,7 +61,7 @@ define('test', ['ss'], function(ss) {
       Point: Point
     },
     {
-      Mode: new ss.Enum('Mode', Mode),
+      Mode: Mode,
       Test: ss.defineClass(Test, Test$, [], null),
       App: ss.defineClass(App, App$, [], null)
     });

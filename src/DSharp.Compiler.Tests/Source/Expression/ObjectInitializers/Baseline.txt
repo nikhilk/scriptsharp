@@ -8,14 +8,38 @@ define('test', ['ss'], function(ss) {
   }
   Program.main = function(args) {
     var str = null;
-    var mtc = ss.initializeObject(new MyTestClass(), {Act: function(inInt) {
-    }, MyProperty: 1, Prop2: str, Func: function() {
-      return 1;
-    }, InnerClass: Program.getInstance().InnerClass});
-    var list = [];
+    var mtc = (function() {
+      var _obj_ = new MyTestClass();
+      _obj_.Act = function(inInt) {
+      };
+      _obj_.MyProperty = 1;
+      _obj_.Prop2 = str;
+      _obj_.Func = function() {
+        return 1;
+      };
+      _obj_.InnerClass = Program.getInstance().InnerClass;
+      return _obj_;
+    })();
+    var list = (function() {
+      var _obj_ = [];
+      _obj_.push(1);
+      _obj_.push(2);
+      _obj_.push(3);
+      _obj_.push(4);
+      return _obj_;
+    })();
   };
   Program.getInstance = function() {
-    return ss.initializeObject(new MyTestClass(), {MyProperty: (1 + 1 + 2) / 2, InnerClass: ss.initializeObject(new MyTestClass(), {Prop2: 'SomeValue'})});
+    return (function() {
+      var _obj_ = new MyTestClass();
+      _obj_.MyProperty = (1 + 1 + 2) / 2;
+      _obj_.InnerClass = (function() {
+        var _obj_ = new MyTestClass();
+        _obj_.Prop2 = 'SomeValue';
+        return _obj_;
+      })();
+      return _obj_;
+    })();
   };
   var Program$ = {
 
@@ -25,11 +49,11 @@ define('test', ['ss'], function(ss) {
   // ExpressionTests.MyTestClass
 
   function MyTestClass() {
-    ss.defineProperty(this, 'MyProperty');
-    ss.defineProperty(this, 'Prop2');
-    ss.defineProperty(this, 'InnerClass');
-    ss.defineProperty(this, 'Act');
-    ss.defineProperty(this, 'Func');
+    ss.defineProperty(this, 'MyProperty', 0);
+    ss.defineProperty(this, 'Prop2', null);
+    ss.defineProperty(this, 'InnerClass', null);
+    ss.defineProperty(this, 'Act', null);
+    ss.defineProperty(this, 'Func', null);
   }
   var MyTestClass$ = {
 
@@ -47,4 +71,3 @@ define('test', ['ss'], function(ss) {
 
   return $exports;
 });
-

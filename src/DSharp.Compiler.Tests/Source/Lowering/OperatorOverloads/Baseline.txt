@@ -1,0 +1,129 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // LoweringTests.App
+
+  function App() {
+  }
+  App.main = function() {
+    var x = 1 + 2;
+    var y = 'a' + 'b';
+    var z = x + y;
+    var a = new Fraction(5, 4);
+    var b = new Fraction(1, 2);
+    var result;
+    result = Fraction.op_UnaryNegation(a);
+    result = Fraction.op_Addition(a, b);
+    result = Fraction.op_Subtraction(a, b);
+    result = Fraction.op_Multiply(a, b);
+    result = Fraction.op_Division(a, b);
+    Fraction.op_Equality(a, b);
+    Fraction.op_Increment(a);
+    Fraction.op_Increment(b);
+    a = Fraction.op_Addition(a, b);
+    a = Fraction.op_Subtraction(a, b);
+    a = Fraction.op_Multiply(a, b);
+    a = Fraction.op_Division(a, b);
+    a = Fraction.op_Modulus(a, b);
+    Fraction.op_LessThan(a, b);
+    Fraction.op_GreaterThan(b, a);
+    if (Fraction.op_GreaterThanOrEqual(a, b)) {
+    }
+    if (b) {
+    }
+    if (Fraction.op_BitwiseAnd(a, !a)) {
+    }
+    if (a || Fraction.op_LogicalNot(a)) {
+    }
+  };
+
+
+  // LoweringTests.Fraction
+
+  function Fraction(numerator, denominator) {
+    this.num = 0;
+    this.den = 0;
+    this.num = numerator;
+    this.den = denominator;
+  }
+  Fraction.op_Equality = function(a, b) {
+    return a.num === b.num && a.den === b.den;
+  };
+  Fraction.op_Inequality = function(a, b) {
+    return Fraction.op_Inequality(a, b);
+  };
+  Fraction.op_UnaryPlus = function(a) {
+    return a;
+  };
+  Fraction.op_UnaryNegation = function(a) {
+    return new Fraction(-a.num, a.den);
+  };
+  Fraction.op_Addition = function(a, b) {
+    return new Fraction(a.num * b.den + b.num * a.den, a.den * b.den);
+  };
+  Fraction.op_Subtraction = function(a, b) {
+    return Fraction.op_Addition(a, (-b));
+  };
+  Fraction.op_Increment = function(a) {
+    return new Fraction(a.num + a.den, a.den);
+  };
+  Fraction.op_Decrement = function(a) {
+    return new Fraction(a.num - a.den, a.den);
+  };
+  Fraction.op_Multiply = function(a, b) {
+    return new Fraction(a.num * b.num, a.den * b.den);
+  };
+  Fraction.op_Division = function(a, b) {
+    if (!b.num) {
+      throw new Error('Divide by zero');
+    }
+    return new Fraction(a.num * b.den, a.den * b.num);
+  };
+  Fraction.op_Modulus = function(a, b) {
+    throw new Error();
+  };
+  Fraction.op_ExclusiveOr = function(a, b) {
+    throw new Error();
+  };
+  Fraction.op_BitwiseOr = function(a, b) {
+    throw new Error();
+  };
+  Fraction.op_GreaterThan = function(a, b) {
+    throw new Error();
+  };
+  Fraction.op_LessThan = function(a, b) {
+    throw new Error();
+  };
+  Fraction.op_GreaterThanOrEqual = function(a, b) {
+    throw new Error();
+  };
+  Fraction.op_LessThanOrEqual = function(a, b) {
+    throw new Error();
+  };
+  Fraction.op_True = function(a) {
+    throw new Error();
+  };
+  Fraction.op_False = function(a) {
+    throw new Error();
+  };
+  Fraction.op_LogicalNot = function(a) {
+    throw new Error();
+  };
+  Fraction.op_BitwiseAnd = function(a, b) {
+    return a;
+  };
+  var Fraction$ = {
+
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, null, [], null),
+      Fraction: ss.defineClass(Fraction, Fraction$, [Number, Number], null)
+    });
+
+
+  return $exports;
+});

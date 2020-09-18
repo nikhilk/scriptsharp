@@ -1,0 +1,25 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // LoweringTests.TestClass
+
+  function TestClass() {
+  }
+  var TestClass$ = {
+    testMethod: function() {
+      var intArray = [ 1, 2, 3 ];
+      var stringArray = [ 'a', 'b', 'c' ];
+      var nestedArray = [ [ true, false ], [ true, false ] ];
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      TestClass: ss.defineClass(TestClass, TestClass$, [], null)
+    });
+
+
+  return $exports;
+});

@@ -115,6 +115,14 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                     {
                         ClassSymbol baseClass = ((ClassSymbol) type).BaseClass;
 
+                        // When minifying members from a generic base class, we should 
+                        // fallback to the open generic version, since the correct 
+                        // TransformationCookie is only available there
+                        if (baseClass != null && baseClass.IsGeneric)
+                        {
+                            baseClass = baseClass.GenericType as ClassSymbol;
+                        }
+
                         if (baseClass != null && baseClass.IsApplicationType)
                         {
                             // Set current count to the base classes transformation

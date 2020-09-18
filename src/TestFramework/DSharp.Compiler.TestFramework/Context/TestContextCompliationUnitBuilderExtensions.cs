@@ -13,6 +13,7 @@ namespace DSharp.Compiler.TestFramework.Context
                 .AddReferences(testContext.References.Select(file => file.FullName).ToArray())
                 .AddResources(testContext.Resources?.Select(file => file.FullName)?.ToArray())
                 .AddCommentFile(testContext.CommentFile?.FullName)
+                .AddMetadataFile(testContext.ExpectedMetadataOutput?.FullName)
                 .AddStreamResolver(testContext.StreamSourceResolver)
                 .WithCompilationOptions(testContext.CompilationOptions);
         }

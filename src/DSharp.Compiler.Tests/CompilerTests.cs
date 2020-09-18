@@ -32,6 +32,11 @@ namespace ss.Compiler.Tests
 
             string expectedOutput = testContext.GetExpectedOutput();
             Assert.Equal(expectedOutput, result.Output, compilerCompliationFixture.FileComparer);
+
+            if(testContext.GetExpectedMetadata() is string expectedMetadata)
+            {
+                Assert.Equal(expectedMetadata, result.Metadata, compilerCompliationFixture.FileComparer);
+            }
         }
     }
 }

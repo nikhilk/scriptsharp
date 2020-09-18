@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
@@ -7,7 +7,7 @@ namespace ExpressionTests {
 
     enum Mode { A = 0, B = 1 }
     
-    public enum Color { Red = 1, Green = 2, Blue = 3 }
+    enum Color { Red = 1, Green = 2, Blue = 3 }
 
     [ScriptConstants(UseNames = true)]
     public enum State {

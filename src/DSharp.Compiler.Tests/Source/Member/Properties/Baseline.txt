@@ -26,6 +26,7 @@ define('test', ['ss'], function(ss) {
   // MemberTests.Test
 
   function Test() {
+    ss.defineProperty(this, 'Object', null);
     this.isFoo = false;
     this.XYZ = 1;
     this.XYZ = this.Name.length;
@@ -71,9 +72,11 @@ define('test', ['ss'], function(ss) {
   // MemberTests.Properties
 
   function Properties(readonlyVal) {
-    ss.defineProperty(this, 'Normal');
-    ss.defineProperty(this, 'Standard');
-    ss.defineProperty(this, 'ReadLocalWrite');
+    ss.defineProperty(this, 'Normal', null);
+    ss.defineProperty(this, 'Standard', null);
+    ss.defineProperty(this, 'ReadLocalWrite', null);
+    ss.defineProperty(this, 'BoolAutoProp', false);
+    ss.defineProperty(this, 'IntAutoProp', 0);
     this.ReadonlyValue = ss.value(readonlyVal, 'InitialState_ReadonlyValue');
     this.ReadLocalWrite = 'InitialState_ReadLocalWrite';
     this.Normal = ss.value(this.ReadLocalWrite, Properties._createNormalExpression(function() {
@@ -100,7 +103,7 @@ define('test', ['ss'], function(ss) {
   // MemberTests.AbstractPropertiesContainer
 
   function AbstractPropertiesContainer() {
-    ss.defineProperty(this, 'MyVirtualProp');
+    ss.defineProperty(this, 'MyVirtualProp', null);
   }
   var AbstractPropertiesContainer$ = {
 
@@ -110,7 +113,7 @@ define('test', ['ss'], function(ss) {
   // MemberTests.StaticProps
 
   function StaticProps() {
-    ss.defineProperty(this, 'Index');
+    ss.defineProperty(this, 'Index', 0);
     this.Index = StaticProps$NestedStaticProps.Val;
   }
   ss.defineProperty(StaticProps, 'Prop');
@@ -150,6 +153,7 @@ define('test', ['ss'], function(ss) {
   // MemberTests.ImplementedContainer
 
   function ImplementedContainer() {
+    ss.defineProperty(this, 'InstanceProp', null);
     this._value$1 = '';
     AbstractPropertiesContainer.call(this);
   }

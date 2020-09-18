@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
@@ -106,6 +106,20 @@ namespace TypeTests {
             mc.Start();
             mc.Stop();
             mc.Resume();
+        }
+    }
+
+    public partial class PartialGeneric<T>
+    {
+        public void One()
+        { 
+        }
+    }
+
+    public partial class PartialGeneric<T>
+    {
+        public void Two()
+        {
         }
     }
 }

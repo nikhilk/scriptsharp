@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -26,6 +26,12 @@ namespace TypeTests {
         bool canRun { get; }
 
         void run();
+    }
+
+    public interface IOverloded
+    {
+        void Method();
+        void Method(string input);
     }
 
     public class MyObject2 : MyObject, IRunnable {

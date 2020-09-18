@@ -24,7 +24,7 @@ function getGenericConstructor(ctorMethod, typeArguments) {
             genericInstance = function () {
                 this.__proto__.constructor.$typeArguments = typeArguments || {};
                 this.__proto__.constructor.$base = this.__proto__.constructor.$base || ctorMethod.$base;
-                this.__proto__.constructor.$interfaces = this.__proto__.constructor.$interfaces  || ctorMethod.$interfaces;
+                this.__proto__.constructor.$interfaces = this.__proto__.constructor.$interfaces || ctorMethod.$interfaces;
                 this.__proto__.constructor.$type = this.__proto__.constructor.$type || ctorMethod.$type;
                 this.__proto__.constructor.$name = this.__proto__.constructor.$name || ctorMethod.$name;
                 this.__proto__.constructor.$constructorParams = this.__proto__.constructor.$constructorParams || ctorMethod.$constructorParams;
@@ -68,3 +68,37 @@ function getTypeArgument(instance, typeArgumentName) {
 
     return instance.constructor.$typeArguments[typeArgumentName];
 }
+
+function getGenericTemplate(ctorMethod, typeParameters) {
+    if (!isValue(ctorMethod)) {
+        return null;
+    }
+
+    var params = {};
+    for (var i = 0, ln = typeParameters.length; i < ln; ++i) {
+        params[typeParameters[i]] = null;
+    }
+
+    return {
+        $type: ctorMethod.$type,
+        $name: ctorMethod.$name,
+        $interfaces: ctorMethod.$interfaces,
+        $typeArguments: params,
+        IsGenericTypeDefinition: true,
+        makeGenericType: function (typeArguments) {
+            var args = {};
+            for (var i = 0, ln = typeParameters.length; i < ln; ++i) {
+                args[typeParameters[i]] = typeArguments[i];
+            }
+            return getGenericConstructor(ctorMethod, args);
+        }
+    }
+}
+
+var makeGenericType = paramsGenerator(1, function (genericTemplate, typeArguments) {
+    if (!isValue(genericTemplate) || !genericTemplate.IsGenericTypeDefinition) {
+        return null;
+    }
+
+    return genericTemplate.makeGenericType(typeArguments);
+});

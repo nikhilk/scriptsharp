@@ -1,4 +1,4 @@
-using DSharp.CodeAnalysis;
+﻿using DSharp.CodeAnalysis;
 using DSharp.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeFixes;

@@ -26,6 +26,8 @@ define('test', ['ss'], function(ss) {
       var boolVal = (flag || false);
       var textVal = (ch || '');
       var numVal = (num3 || 0);
+      var t = Number;
+      var t2 = String;
     }
   };
 

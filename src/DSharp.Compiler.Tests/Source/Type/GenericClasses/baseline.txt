@@ -20,12 +20,12 @@ define('test', ['ss'], function(ss) {
     var isSame = genericClass2.Type === genericClass.Type;
     var genericClassType = ss.getGenericConstructor(GenericClass_$1, {T: Number});
     var array = [ 1, 2, 3, 4, 5 ];
-    var newArr = Program.copy(array, 0, array.length);
+    var newArr = Program.copy({T: Number}, array, 0, array.length);
     var values = {};
     var values2 = {};
-    var copiedValues = Program.copyDictionary(values);
-    var copiedValues2 = Program.copyDictionary(values2);
-    var copiedValuesOfStrings = Program.copyDictionary(Program.copyDictionaryOfStringKeys(values));
+    var copiedValues = Program.copyDictionary({TKey: String, TValue: Object}, values);
+    var copiedValues2 = Program.copyDictionary({TKey: String, TValue: ss.getGenericConstructor(Object, {TKey: String, TValue: ss.getGenericConstructor(Object, {TKey: String, TValue: Object})})}, values2);
+    var copiedValuesOfStrings = Program.copyDictionary({TKey: String, TValue: Object}, Program.copyDictionaryOfStringKeys({TValue: Object}, values));
     var bem = ss.createGenericType(BulkAsyncExecutionManager_$1, {T : String});
     bem.addExecutionKey('');
     bem.addExecutionKeys([ 'Lol', 'asdasd', 'hashasd' ]);
@@ -42,8 +42,11 @@ define('test', ['ss'], function(ss) {
     var isInt = specificClassOfGeneric.Type === Number;
     var myContainer = specificClassOfGeneric.createContainer();
     isInt = myContainer.Type === Number;
+    var isType1 = ss.makeGenericType(ss.getGenericTemplate(GenericClass_$1, [ 'T' ]), String) === ss.getGenericConstructor(GenericClass_$1, {T: String});
+    var isType2 = ss.makeGenericType(ss.getGenericTemplate(Generic_2_$2, [ 'T1', 'T2' ]), String, Number) === ss.getGenericConstructor(Generic_2_$2, {T1: String, T2: Number});
   };
   Program.copy = function($TArgs, source, startIndex, count) {
+    var type = $TArgs['T'];
     var destination = new Array(source.length);
     ss.copyArray(source, startIndex, destination, 0, count);
     return destination;
@@ -124,6 +127,27 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericTypeWithParamsInCtor`1
+
+  var GenericTypeWithParamsInCtor_$1 = ss.namedFunction('GenericTypeWithParamsInCtor_$1',ss.paramsGenerator(1, function(arg, args) {
+    var x = ss.typeName(ss.getTypeArgument(this, 'T'));
+  }
+  ));
+  var GenericTypeWithParamsInCtor_$1$ = {
+    genericMethodWithParams: ss.paramsGenerator(2, function($TArgs, arg, args) {
+    })
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.Generic_2`2
+
+  function Generic_2_$2() {
+  }
+  var Generic_2_$2$ = {
+
+  };
+
+
   // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericClass`1
 
   function GenericClass_$1(value, mutator) {
@@ -171,6 +195,8 @@ define('test', ['ss'], function(ss) {
       BulkAsyncExecutionManager_$1: ss.defineClass(BulkAsyncExecutionManager_$1, BulkAsyncExecutionManager_$1$, [], null, [IBulkAsyncExecutionManager_$1]),
       GenericWithMultipleParams_$3: ss.defineClass(GenericWithMultipleParams_$3, GenericWithMultipleParams_$3$, [], null),
       GenericTypeWithIgnore: ss.defineClass(GenericTypeWithIgnore, GenericTypeWithIgnore$, [], null),
+      GenericTypeWithParamsInCtor_$1: ss.defineClass(GenericTypeWithParamsInCtor_$1, GenericTypeWithParamsInCtor_$1$, [Object, Array], null),
+      Generic_2_$2: ss.defineClass(Generic_2_$2, Generic_2_$2$, [], null),
       GenericClass_$1: ss.defineClass(GenericClass_$1, GenericClass_$1$, [Object, Function], BaseGenericClass_$1),
       SpecificClassOfGeneric: ss.defineClass(SpecificClassOfGeneric, SpecificClassOfGeneric$, [Number], GenericClass_$1)
     });

@@ -60,14 +60,10 @@ namespace DSharp.Compiler.ScriptModel.Symbols
         {
             get
             {
-                Debug.Assert(value != null);
-
                 return value;
             }
             set
             {
-                Debug.Assert(value != null);
-
                 this.value = value;
             }
         }

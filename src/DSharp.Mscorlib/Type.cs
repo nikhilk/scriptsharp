@@ -32,5 +32,15 @@ namespace System
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public extern static Type GetTypeFromHandle(RuntimeTypeHandle typeHandle);
+
+        [DSharpScriptMemberName("getMembers")]
+        public extern MemberInfo[] GetMembers();
+
+        [DSharpScriptMemberName("makeGenericType")]
+        public extern Type MakeGenericType(params Type[] typeArguments);
+
+        public extern bool IsGenericTypeDefinition { get; }
+
+        public extern override string Name { get; }
     }
 }

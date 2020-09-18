@@ -156,6 +156,8 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
         public bool IsInternal { get; set; }
 
+        public bool IsAnonymousType => Name == "__AnonymousType__";
+
         public ICollection<MemberSymbol> Members => members;
 
         public object MetadataReference
@@ -184,10 +186,17 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
         public virtual void AddMember(MemberSymbol memberSymbol)
         {
-            Debug.Assert(memberSymbol != null);
-            Debug.Assert(string.IsNullOrEmpty(memberSymbol.Name) == false);
-            Debug.Assert(memberTable.ContainsKey(memberSymbol.Name) == false);
+            AddMember(memberSymbol, false);
+        }
 
+        protected void AddMember(MemberSymbol memberSymbol, bool allowOverride)
+        {
+            if(!allowOverride)
+            {
+                Debug.Assert(memberSymbol != null);
+                Debug.Assert(string.IsNullOrEmpty(memberSymbol.Name) == false);
+                Debug.Assert(memberTable.ContainsKey(memberSymbol.Name) == false);
+            }
             members.Add(memberSymbol);
             memberTable[memberSymbol.Name] = memberSymbol;
         }
@@ -335,6 +344,13 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             Debug.Assert(string.IsNullOrEmpty(name) == false);
 
             Symbol symbol = null;
+
+            if(this.IsAnonymousType && (filter & SymbolFilter.Types) == 0)
+            {
+                var anonymousProperty = new PropertySymbol(name, this, this);
+                anonymousProperty.SetNameCasing(preserveCase: true);
+                return anonymousProperty;
+            }
 
             if ((filter & SymbolFilter.Types) != 0)
             {

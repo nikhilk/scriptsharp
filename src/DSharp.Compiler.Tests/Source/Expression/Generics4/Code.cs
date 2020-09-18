@@ -20,7 +20,7 @@ namespace TypeTests
             GenericClass<GenericClass<int>> instance = new GenericClass<GenericClass<int>>(new GenericClass<int>(1));
             var outInt = instance.Value.Value;
 
-            ParseTheList<int>(new List<int>() { 1, 2, 3 }).Add(4);
+            ParseTheList<int>(new List<int>()).Add(4);
 
             Wrapper wrapper = new Wrapper();
             wrapper.Invokee.Invoke<GenericClass<int>>("").DoSomethingWith<bool>(true, 0);

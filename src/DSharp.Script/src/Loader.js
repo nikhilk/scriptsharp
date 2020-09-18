@@ -10,6 +10,7 @@
         IEnumerable: defineInterface(IEnumerable),
         IEquatable_$1: defineInterface(IEquatable_$1),
         IComparable_$1: defineInterface(IComparable_$1),
+        ICloneable: defineInterface(ICloneable),
         IEnumerable_$1: defineInterface(IEnumerable_$1, [IEnumerable]),
         IEnumerator: defineInterface(IEnumerator),
         IEnumerator_$1: defineInterface(IEnumerator_$1, [IEnumerator]),
@@ -37,7 +38,18 @@
         DateTime: defineClass(DateTime, {}, [IEquatable_$1, IComparable_$1], null),
         Lazy: defineClass(Lazy, {}, [], null),
         Nullable: defineClass(Nullable, Nullable$, [], null),
-        Enum: defineClass(Enum, {}, [], null)
+        Enum: defineClass(Enum, {}, [], null),
+        MemberType: new Enum('MemberType', {
+            all: 191,
+            constructor: 1,
+            custom: 64,
+            event: 2,
+            field: 4,
+            method: 8,
+            nestedType: 128,
+            property: 16,
+            typeInfo: 32
+        })
     }),
     {
         version: '{{version}}',
@@ -85,6 +97,7 @@
         bindSub: bindSub,
         bindExport: bindExport,
         paramsGenerator: paramsGenerator,
+        namedFunction: namedFunction,
         createPropertyGet: createPropertyGet,
         createPropertySet: createPropertySet,
         createReadonlyProperty: createReadonlyProperty,
@@ -93,6 +106,9 @@
 
         module: module,
         modules: _modules,
+        dependency: dependency,
+        registerMetadataImporter: registerMetadataImporter,
+        importMetadata: importMetadata,
 
         isClass: isClass,
         isInterface: isInterface,
@@ -108,6 +124,9 @@
         defineInterface: defineInterface,
         getConstructorParams: getConstructorParams,
         createInstance: paramsGenerator(1, createInstance),
+        getMembers: getMembers,
+        getGenericTemplate: getGenericTemplate,
+        makeGenericType: makeGenericType,
 
         culture: culture,
         fail: fail,

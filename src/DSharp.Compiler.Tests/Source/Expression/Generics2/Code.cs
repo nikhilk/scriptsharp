@@ -35,6 +35,7 @@ namespace ExpressionTests
             InParameterConstrained<IDisposable>(new TestDisposableBase());
 
             ComplexInGenerics(new TestDisposableBase(), new TestDisposableBase());
+            NullableGenerics<Nullable<int>>();
         }
 
         public void NoParameters<T>()
@@ -69,6 +70,10 @@ namespace ExpressionTests
 
             a2.PerformAction();
             a2.Dispose();
+        }
+
+        public void NullableGenerics<T>()
+        {
         }
     }
 }

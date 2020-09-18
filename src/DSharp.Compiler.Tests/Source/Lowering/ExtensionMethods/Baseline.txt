@@ -1,0 +1,53 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // Aadasdasd.AAAA
+
+  function AAAA() {
+  }
+  AAAA.what = function($TArgs, left, right) {
+    var x = $TArgs['T'];
+    return 6;
+  };
+
+
+  // LoweringTests.Extensions
+
+  function Extensions() {
+  }
+  Extensions.doSomething = function(left, right) {
+    return left + right;
+  };
+  Extensions.doSomethingElse = function($TArgs, left, right) {
+    var x = $TArgs['T'];
+    return 6;
+  };
+
+
+  // LoweringTests.Main
+
+  function Main() {
+  }
+  Main.main = function(target) {
+    var x = 4;
+    AAAA.what({T: Number}, 1, 2);
+    AAAA.what({T: Number}, AAAA.what({T: Number}, 1, 2), AAAA.what({T: Number}, 3, 4));
+    x = Extensions.doSomething(3, 5);
+    var a = Extensions.doSomethingElse({T: Number}, x, Main.WOW);
+    AAAA.what({T: Number}, Extensions.doSomething(Extensions.doSomethingElse({T: Number}, Main.WOW, a), 234), 56);
+    var b = AAAA.what({T: Number}, Extensions.doSomething(Extensions.doSomethingElse({T: Number}, Main.WOW, a), 234), 56);
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      AAAA: ss.defineClass(AAAA, null, [], null),
+      Extensions: ss.defineClass(Extensions, null, [], null),
+      Main: ss.defineClass(Main, null, [], null)
+    });
+
+  Main.WOW = 666;
+
+  return $exports;
+});

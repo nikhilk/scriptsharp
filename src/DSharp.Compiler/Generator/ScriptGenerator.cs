@@ -207,7 +207,7 @@ namespace DSharp.Compiler.Generator
             implementationStack.Push(implementation);
         }
 
-        private sealed class TypeComparer : IComparer<TypeSymbol>
+        internal sealed class TypeComparer : IComparer<TypeSymbol>
         {
             public int Compare(TypeSymbol x, TypeSymbol y)
             {

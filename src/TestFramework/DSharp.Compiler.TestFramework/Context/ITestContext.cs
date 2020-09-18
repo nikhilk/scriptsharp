@@ -19,5 +19,7 @@ namespace DSharp.Compiler.TestFramework.Context
         IStreamSourceResolver StreamSourceResolver { get; }
 
         TestContextCompliationOptions CompilationOptions { get; }
+
+        FileInfo ExpectedMetadataOutput { get; }
     }
 }

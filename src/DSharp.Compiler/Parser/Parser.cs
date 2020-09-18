@@ -15,7 +15,7 @@ using DSharp.Compiler.CodeModel.Types;
 
 namespace DSharp.Compiler.Parser
 {
-    internal sealed class Parser
+    internal sealed class Parser : IFilePathProvider
     {
         // UNDONE use an array of TID's here instead
         private static readonly string[] ModifierNames =
@@ -57,6 +57,8 @@ namespace DSharp.Compiler.Parser
         private BufferPosition lastErrorPosition;
         private NameTable symbolTable;
         private Token[] tokens;
+
+        public string FilePath => path;
 
         public Parser(NameTable symbolTable, string path)
         {
@@ -286,7 +288,7 @@ namespace DSharp.Compiler.Parser
         {
             if (CheckType(TokenType.Identifier))
             {
-                return new AtomicNameNode((IdentifierToken) Eat(TokenType.Identifier));
+                return new AtomicNameNode((IdentifierToken)Eat(TokenType.Identifier));
             }
 
             return new AtomicNameNode(new IdentifierToken(unknownName, false, path, PeekToken().Position));
@@ -296,9 +298,10 @@ namespace DSharp.Compiler.Parser
         {
             if (CheckType(TokenType.Identifier))
             {
-                IdentifierToken name = (IdentifierToken) Eat(TokenType.Identifier);
+                IdentifierToken name = (IdentifierToken)Eat(TokenType.Identifier);
 
                 int mark = Mark();
+
                 TypeArgumentListScan scan = ScanTypeArgumentListOpt();
 
                 if (scan == TypeArgumentListScan.MayBeTypeArgumentList)
@@ -351,7 +354,14 @@ namespace DSharp.Compiler.Parser
 
             do
             {
-                returnValue.Append(ParseType());
+                if (PeekType() == TokenType.Comma || PeekType() == TokenType.CloseAngle)
+                {
+                    returnValue.Append(new AtomicNameNode(new IdentifierToken(unknownName, false, path, PeekToken().Position)));
+                }
+                else
+                {
+                    returnValue.Append(ParseType());
+                }
             } while (null != EatOpt(TokenType.Comma));
 
             Eat(TokenType.CloseAngle);
@@ -369,6 +379,17 @@ namespace DSharp.Compiler.Parser
             NextToken();
 
             bool couldBeParamList = true;
+
+            var arity = 0;
+            while (PeekType(arity) == TokenType.Comma)
+            {
+                arity++;
+            }
+            if (PeekType(arity) == TokenType.CloseAngle)
+            {
+                //generic template definition only
+                return TypeArgumentListScan.MustBeTypeArgumentList;
+            }
 
             do
             {
@@ -442,7 +463,7 @@ namespace DSharp.Compiler.Parser
             if (name.NodeType == ParseNodeType.Name && PeekType() == TokenType.ColonColon)
             {
                 NextToken();
-                name = new AliasQualifiedNameNode((AtomicNameNode) name, ParseSimpleName(inExpression));
+                name = new AliasQualifiedNameNode((AtomicNameNode)name, ParseSimpleName(inExpression));
             }
 
             return name;
@@ -671,7 +692,7 @@ namespace DSharp.Compiler.Parser
                     hasConstructorConstraint = true;
 
                     Eat(TokenType.New);
-                    if(PeekType() == TokenType.OpenParen)
+                    if (PeekType() == TokenType.OpenParen)
                     {
                         Eat(TokenType.OpenParen);
                         Eat(TokenType.CloseParen);
@@ -681,7 +702,7 @@ namespace DSharp.Compiler.Parser
                 {
                     Eat(TokenType.Class);
                 }
-                else if(PeekType() == TokenType.Struct)
+                else if (PeekType() == TokenType.Struct)
                 {
                     Eat(TokenType.Struct);
                 }
@@ -717,8 +738,8 @@ namespace DSharp.Compiler.Parser
             {
                 for (int index = 0;
                     invalidModifiers != 0;
-                    index += 1, invalidModifiers = (Modifiers) ((int) invalidModifiers >> 1))
-                    if ((1 & (int) invalidModifiers) != 0)
+                    index += 1, invalidModifiers = (Modifiers)((int)invalidModifiers >> 1))
+                    if ((1 & (int)invalidModifiers) != 0)
                     {
                         ReportError(ParseError.InvalidModifier, ModifierNames[index]);
                     }
@@ -734,14 +755,14 @@ namespace DSharp.Compiler.Parser
             switch (token.ToString())
             {
                 case "assembly": return AttributeTargets.Assembly;
-                case "field":    return AttributeTargets.Field;
-                case "event":    return AttributeTargets.Event;
-                case "method":   return AttributeTargets.Method;
-                case "module":   return AttributeTargets.Module;
-                case "param":    return AttributeTargets.Param;
+                case "field": return AttributeTargets.Field;
+                case "event": return AttributeTargets.Event;
+                case "method": return AttributeTargets.Method;
+                case "module": return AttributeTargets.Module;
+                case "param": return AttributeTargets.Param;
                 case "property": return AttributeTargets.Property;
-                case "return":   return AttributeTargets.Return;
-                case "type":     return AttributeTargets.Type;
+                case "return": return AttributeTargets.Return;
+                case "type": return AttributeTargets.Type;
                 default:
                     ReportError(ParseError.InvalidAttributeTarget, token, token.ToString());
 
@@ -819,7 +840,7 @@ namespace DSharp.Compiler.Parser
 
         private bool PeekContextualKeyword(Name contextualKeyword)
         {
-            return PeekType() == TokenType.Identifier && ((IdentifierToken) PeekToken()).Symbol == contextualKeyword;
+            return PeekType() == TokenType.Identifier && ((IdentifierToken)PeekToken()).Symbol == contextualKeyword;
         }
 
         private IdentifierToken EatWhere()
@@ -834,7 +855,7 @@ namespace DSharp.Compiler.Parser
 
         private IdentifierToken EatContextualKeyword(Name contextualKeyword)
         {
-            IdentifierToken token = (IdentifierToken) Eat(TokenType.Identifier);
+            IdentifierToken token = (IdentifierToken)Eat(TokenType.Identifier);
             Debug.Assert(token.Symbol == contextualKeyword);
 
             return token;
@@ -858,20 +879,20 @@ namespace DSharp.Compiler.Parser
             switch (type)
             {
                 case TokenType.Abstract: return Modifiers.Abstract;
-                case TokenType.Sealed:   return Modifiers.Sealed;
+                case TokenType.Sealed: return Modifiers.Sealed;
 
-                case TokenType.Public:    return Modifiers.Public;
-                case TokenType.Internal:  return Modifiers.Internal;
-                case TokenType.Private:   return Modifiers.Private;
+                case TokenType.Public: return Modifiers.Public;
+                case TokenType.Internal: return Modifiers.Internal;
+                case TokenType.Private: return Modifiers.Private;
                 case TokenType.Protected: return Modifiers.Protected;
 
-                case TokenType.New:      return Modifiers.New;
-                case TokenType.Virtual:  return Modifiers.Virtual;
-                case TokenType.Static:   return Modifiers.Static;
+                case TokenType.New: return Modifiers.New;
+                case TokenType.Virtual: return Modifiers.Virtual;
+                case TokenType.Static: return Modifiers.Static;
                 case TokenType.Readonly: return Modifiers.Readonly;
-                case TokenType.Extern:   return Modifiers.Extern;
+                case TokenType.Extern: return Modifiers.Extern;
                 case TokenType.Override: return Modifiers.Override;
-                case TokenType.Unsafe:   return Modifiers.Unsafe;
+                case TokenType.Unsafe: return Modifiers.Unsafe;
                 case TokenType.Volatile: return Modifiers.Volatile;
 
                 default: return Modifiers.None;
@@ -980,8 +1001,8 @@ namespace DSharp.Compiler.Parser
             while (PeekType() == TokenType.OpenSquare &&
                    PeekType(1) == TokenType.Identifier &&
                    PeekType(2) == TokenType.Colon &&
-                   (((IdentifierToken) PeekToken(1)).Symbol == assemblyName ||
-                    ((IdentifierToken) PeekToken(1)).Symbol == moduleName))
+                   (((IdentifierToken)PeekToken(1)).Symbol == assemblyName ||
+                    ((IdentifierToken)PeekToken(1)).Symbol == moduleName))
                 list.Append(ParseAttributeBlock());
 
             return list;
@@ -1177,47 +1198,47 @@ namespace DSharp.Compiler.Parser
                         true);
 
                 default:
-                {
-                    ParseNode type = ParseReturnType();
-
-                    switch (ParseMemberName(out NameNode interfaceType))
                     {
-                        case ScanMemberNameKind.Operator:
+                        ParseNode type = ParseReturnType();
 
-                            return ParseOperator(token, attributes,
-                                CheckModifiers(Modifiers.OperatorModifiers, modifiers), CheckIsType(type, false));
+                        switch (ParseMemberName(out NameNode interfaceType))
+                        {
+                            case ScanMemberNameKind.Operator:
 
-                        case ScanMemberNameKind.Indexer:
+                                return ParseOperator(token, attributes,
+                                    CheckModifiers(Modifiers.OperatorModifiers, modifiers), CheckIsType(type, false));
 
-                            return ParseIndexer(token, attributes,
-                                CheckModifiers(Modifiers.IndexerModifiers, modifiers), CheckIsType(type, false),
-                                interfaceType);
+                            case ScanMemberNameKind.Indexer:
 
-                        case ScanMemberNameKind.Field:
-                            ReportInterfaceVariable(interfaceType);
+                                return ParseIndexer(token, attributes,
+                                    CheckModifiers(Modifiers.IndexerModifiers, modifiers), CheckIsType(type, false),
+                                    interfaceType);
 
-                            return new FieldDeclarationNode(
-                                token,
-                                attributes,
-                                CheckModifiers(Modifiers.FieldModifiers, modifiers),
-                                CheckIsType(type, false),
-                                ParseFieldInitializersStatement(false),
-                                false);
-                        case ScanMemberNameKind.Method:
+                            case ScanMemberNameKind.Field:
+                                ReportInterfaceVariable(interfaceType);
 
-                            return ParseMethod(token, attributes, CheckModifiers(Modifiers.MethodModifiers, modifiers),
-                                type, interfaceType);
-                        case ScanMemberNameKind.Property:
+                                return new FieldDeclarationNode(
+                                    token,
+                                    attributes,
+                                    CheckModifiers(Modifiers.FieldModifiers, modifiers),
+                                    CheckIsType(type, false),
+                                    ParseFieldInitializersStatement(false),
+                                    false);
+                            case ScanMemberNameKind.Method:
 
-                            return ParseProperty(token, attributes,
-                                CheckModifiers(Modifiers.PropertyModifiers, modifiers), CheckIsType(type, false),
-                                interfaceType, false);
-                        default:
-                            Debug.Fail("Invalid Member name kind");
+                                return ParseMethod(token, attributes, CheckModifiers(Modifiers.MethodModifiers, modifiers),
+                                    type, interfaceType);
+                            case ScanMemberNameKind.Property:
 
-                            return null;
+                                return ParseProperty(token, attributes,
+                                    CheckModifiers(Modifiers.PropertyModifiers, modifiers), CheckIsType(type, false),
+                                    interfaceType, false);
+                            default:
+                                Debug.Fail("Invalid Member name kind");
+
+                                return null;
+                        }
                     }
-                }
             }
         }
 
@@ -1704,7 +1725,7 @@ namespace DSharp.Compiler.Parser
         private ParseNodeList ParseFieldInitializersStatement(bool isFixed)
         {
             ParseNodeList returnValue = ParseFieldInitializers(isFixed);
-            if(PeekType() == TokenType.Semicolon)
+            if (PeekType() == TokenType.Semicolon)
                 Eat(TokenType.Semicolon);
 
             return returnValue;
@@ -1843,7 +1864,7 @@ namespace DSharp.Compiler.Parser
         private ParseNode CheckIsType(ParseNode type, bool isArray)
         {
             if (type.NodeType == ParseNodeType.PredefinedType &&
-                ((IntrinsicTypeNode) type).Token.Type == TokenType.Void)
+                ((IntrinsicTypeNode)type).Token.Type == TokenType.Void)
             {
                 ReportError(isArray ? ParseError.ArrayOfVoidType : ParseError.VoidNotType);
             }
@@ -1886,7 +1907,7 @@ namespace DSharp.Compiler.Parser
                 do
                 {
                     lastParam = ParseFormalParameter(allowAttributes);
-                    if(list.Count >= 1 && lastParam.IsExtensionMethodTarget)
+                    if (list.Count >= 1 && lastParam.IsExtensionMethodTarget)
                     {
                         throw new System.InvalidOperationException("Only the first parameter of a method can be an extension parameter");
                     }
@@ -1905,12 +1926,12 @@ namespace DSharp.Compiler.Parser
         private ParameterNode ParseFormalParameter(bool allowAttributes)
         {
             bool containsThis = false;
-            if(PeekType() == TokenType.This)
+            if (PeekType() == TokenType.This)
             {
                 Eat(TokenType.This);
                 containsThis = true;
             }
-            
+
             return new ParameterNode(
                 PeekToken(),
                 allowAttributes ? ParseAttributes() : new ParseNodeList(),
@@ -2030,52 +2051,52 @@ namespace DSharp.Compiler.Parser
                     goto default;
 
                 // selection statements
-                case TokenType.If:     return ParseIf();
+                case TokenType.If: return ParseIf();
                 case TokenType.Switch: return ParseSwitch();
 
                 // iteration statements
-                case TokenType.While:   return ParseWhile();
-                case TokenType.For:     return ParseFor();
-                case TokenType.Do:      return ParseDo();
+                case TokenType.While: return ParseWhile();
+                case TokenType.For: return ParseFor();
+                case TokenType.Do: return ParseDo();
                 case TokenType.Foreach: return ParseForeach();
 
                 // labelled statement
                 case TokenType.Identifier:
-                {
-                    TokenType peek = PeekType(1);
-
-                    if (peek == TokenType.Colon && !embeddedOnly)
                     {
-                        return ParseLabeledStatement();
-                    }
+                        TokenType peek = PeekType(1);
 
-                    if (PeekYield() && peek == TokenType.Break)
-                    {
-                        return ParseYieldBreak();
-                    }
+                        if (peek == TokenType.Colon && !embeddedOnly)
+                        {
+                            return ParseLabeledStatement();
+                        }
 
-                    if (PeekYield() && peek == TokenType.Return)
-                    {
-                        return ParseYieldReturn();
-                    }
+                        if (PeekYield() && peek == TokenType.Break)
+                        {
+                            return ParseYieldBreak();
+                        }
 
-                    goto default;
-                }
+                        if (PeekYield() && peek == TokenType.Return)
+                        {
+                            return ParseYieldReturn();
+                        }
+
+                        goto default;
+                    }
 
                 // jump statements
-                case TokenType.Break:    return ParseBreak();
+                case TokenType.Break: return ParseBreak();
                 case TokenType.Continue: return ParseContinue();
-                case TokenType.Goto:     return ParseGoto();
-                case TokenType.Return:   return ParseReturn();
-                case TokenType.Throw:    return ParseThrow();
+                case TokenType.Goto: return ParseGoto();
+                case TokenType.Return: return ParseReturn();
+                case TokenType.Throw: return ParseThrow();
 
                 // try
                 case TokenType.Try: return ParseTry();
 
                 // checked
-                case TokenType.Checked:   return ParseChecked();
+                case TokenType.Checked: return ParseChecked();
                 case TokenType.Unchecked: return ParseUnchecked();
-                case TokenType.Using:     return ParseUsing();
+                case TokenType.Using: return ParseUsing();
 
                 // lock
                 case TokenType.Lock: return ParseLock();
@@ -2086,14 +2107,14 @@ namespace DSharp.Compiler.Parser
                 case TokenType.Unsafe: return ParseUnsafeStatement();
 
                 default:
-                {
-                    if (!embeddedOnly && ScanLocalVariableDeclaration())
                     {
-                        return ParseDeclarationStatement();
-                    }
+                        if (!embeddedOnly && ScanLocalVariableDeclaration())
+                        {
+                            return ParseDeclarationStatement();
+                        }
 
-                    return ParseExpressionStatement();
-                }
+                        return ParseExpressionStatement();
+                    }
             }
         }
 
@@ -2509,7 +2530,7 @@ namespace DSharp.Compiler.Parser
             {
                 guard = ParseDeclaration();
 
-                foreach (VariableInitializerNode i in ((VariableDeclarationNode) guard).Initializers)
+                foreach (VariableInitializerNode i in ((VariableDeclarationNode)guard).Initializers)
                     if (i.Value == null)
                     {
                         ReportError(ParseError.UsingDeclaratorsMustHaveValue, i.Token);
@@ -2581,7 +2602,7 @@ namespace DSharp.Compiler.Parser
                         // postincrment, postdecrement
                         // method call
                         // assignment
-                        switch (((BinaryExpressionNode) expression).Operator)
+                        switch (((BinaryExpressionNode)expression).Operator)
                         {
                             case TokenType.PlusPlus:
                             case TokenType.MinusMinus:
@@ -2590,7 +2611,7 @@ namespace DSharp.Compiler.Parser
                                 break;
                             default:
 
-                                if (Token.IsAssignmentOperator(((BinaryExpressionNode) expression).Operator))
+                                if (Token.IsAssignmentOperator(((BinaryExpressionNode)expression).Operator))
                                 {
                                     break;
                                 }
@@ -2608,7 +2629,7 @@ namespace DSharp.Compiler.Parser
                     case ParseNodeType.UnaryExpression:
 
                         // preincrement, predecrement
-                        switch (((UnaryExpressionNode) expression).Token.Type)
+                        switch (((UnaryExpressionNode)expression).Token.Type)
                         {
                             case TokenType.PlusPlus:
                             case TokenType.MinusMinus:
@@ -3147,7 +3168,7 @@ namespace DSharp.Compiler.Parser
 
                     if (expr is ExpressionNode)
                     {
-                        ((ExpressionNode) expr).AddParenthesisHint();
+                        ((ExpressionNode)expr).AddParenthesisHint();
                     }
 
                     Eat(TokenType.CloseParen);
@@ -3160,35 +3181,35 @@ namespace DSharp.Compiler.Parser
                     break;
 
                 case TokenType.Typeof:
-                {
-                    Token token = NextToken();
-                    Eat(TokenType.OpenParen);
-                    expr = new TypeofNode(token, ParseReturnType());
-                    Eat(TokenType.CloseParen);
+                    {
+                        Token token = NextToken();
+                        Eat(TokenType.OpenParen);
+                        expr = new TypeofNode(token, ParseReturnType());
+                        Eat(TokenType.CloseParen);
 
-                    break;
-                }
+                        break;
+                    }
 
                 case TokenType.Sizeof:
-                {
-                    Token token = NextToken();
-                    Eat(TokenType.OpenParen);
-                    expr = new SizeofNode(token, ParseType());
-                    Eat(TokenType.CloseParen);
+                    {
+                        Token token = NextToken();
+                        Eat(TokenType.OpenParen);
+                        expr = new SizeofNode(token, ParseType());
+                        Eat(TokenType.CloseParen);
 
-                    break;
-                }
+                        break;
+                    }
 
                 case TokenType.Checked:
                 case TokenType.Unchecked:
-                {
-                    Token token = NextToken();
-                    Eat(TokenType.OpenParen);
-                    expr = new UnaryExpressionNode(token, ParseExpression());
-                    Eat(TokenType.CloseParen);
+                    {
+                        Token token = NextToken();
+                        Eat(TokenType.OpenParen);
+                        expr = new UnaryExpressionNode(token, ParseExpression());
+                        Eat(TokenType.CloseParen);
 
-                    break;
-                }
+                        break;
+                    }
 
                 case TokenType.This:
                     expr = new ThisNode(NextToken());
@@ -3334,7 +3355,7 @@ namespace DSharp.Compiler.Parser
             }
 
             var typeInitialiser = new NewNode(token, type, ParseParenArgumentList());
-            if(PeekType() == TokenType.OpenCurly)
+            if (PeekType() == TokenType.OpenCurly)
             {
                 NextToken();
 
@@ -3389,7 +3410,7 @@ namespace DSharp.Compiler.Parser
             Token token = PeekToken();
 
             ParseNodeList list = new ParseNodeList();
-            if(PeekType() == TokenType.OpenParen)
+            if (PeekType() == TokenType.OpenParen)
             {
                 Eat(TokenType.OpenParen);
 

@@ -66,6 +66,11 @@ namespace DSharp.Compiler.Generator
                 return $"{DSharpStringResources.GeneratedScript.GENERIC_ARGS_PARAMETER_NAME}['{typeArgument.FullGeneratedName}']";
             }
 
+            if(typeArgument.Type == SymbolType.Delegate)
+            {
+                return "Function";
+            }
+
             if(typeArgument.IsGeneric)
             {
                 StringBuilder stringBuilder = new StringBuilder();

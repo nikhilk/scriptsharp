@@ -23,6 +23,8 @@ namespace DSharp.Compiler
 
         public IStreamSource ScriptFile { get; set; }
 
+        public IStreamSource MetadataFile { get; set; }
+
         public ICollection<IStreamSource> Sources { get; set; }
 
         public string AssemblyName { get; set; }
@@ -32,6 +34,8 @@ namespace DSharp.Compiler
         public bool EnableDocComments => DocCommentFile != null;
 
         public bool DebugMode { get; set; } = false;
+
+        public string IntermediarySourceFolder { get; set; }
 
         //TODO: Remove this mechanism
         public bool Validate(out string errorMessage)

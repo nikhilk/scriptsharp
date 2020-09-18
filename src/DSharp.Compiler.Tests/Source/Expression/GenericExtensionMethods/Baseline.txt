@@ -41,14 +41,14 @@ define('ExpressionTests.GenericExtensionMethods', ['ss'], function(ss) {
   // TypeTests.Test
 
   function Test() {
-    ss.defineProperty(this, 'Data');
+    ss.defineProperty(this, 'Data', null);
   }
   var Test$ = {
     func: function() {
       NoneGenericExtensions.noneGenericExtension(NoneGenericExtensions.noneGenericExtension(this.Data, 'A'), 'B');
-      GenericExtensions.genericExtension({}, GenericExtensions.genericExtension({}, this.Data, 'A'), 'B');
-      GenericExtensions.genericExtension({}, NoneGenericExtensions.noneGenericExtension(this.Data, 'A'), 'B');
-      NoneGenericExtensions.noneGenericExtension(GenericExtensions.genericExtension({}, this.Data, 'A'), 'B');
+      GenericExtensions.genericExtension({TValue: ITestData}, GenericExtensions.genericExtension({TValue: ITestData}, this.Data, 'A'), 'B');
+      GenericExtensions.genericExtension({TValue: ITestData}, NoneGenericExtensions.noneGenericExtension(this.Data, 'A'), 'B');
+      NoneGenericExtensions.noneGenericExtension(GenericExtensions.genericExtension({TValue: ITestData}, this.Data, 'A'), 'B');
     }
   };
 

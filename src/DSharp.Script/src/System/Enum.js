@@ -43,3 +43,7 @@ Enum.getName = function (enumeration, value) {
 Enum.hasFlag = function (enumValue, flag) {
     return (enumValue | flag) === enumValue;
 };
+Enum.isDefined = function (enumeration, value) {
+    var map = Enum.map[enumeration._name];
+    return isValue(map.Values[value]) || isValue(map.Keys[value]);
+};

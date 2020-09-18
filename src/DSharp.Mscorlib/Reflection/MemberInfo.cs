@@ -7,5 +7,7 @@ namespace System.Reflection
     public abstract class MemberInfo
     {
         public virtual string Name { get; }
+
+        public virtual MemberType MemberType { get; }
     }
 }

@@ -8,7 +8,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using DSharp.Compiler.CodeModel;
 using DSharp.Compiler.CodeModel.Members;
@@ -320,7 +319,10 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                     instanceCoreType = instanceInterface;
                 }
 
-                instanceCoreType.SetImported(genericCoreType.Dependency);
+                if (genericCoreType.Dependency != null)
+                {
+                    instanceCoreType.SetImported(genericCoreType.Dependency);
+                }
 
                 if (genericCoreType.IgnoreNamespace)
                 {
@@ -348,7 +350,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
                 CreateGenericTypeMembers(genericCoreType, instanceCoreType, typeArguments);
 
-                if(templateType.IgnoreGenericTypeArguments)
+                if (templateType.IgnoreGenericTypeArguments)
                 {
                     instanceCoreType.SetIgnoreGenerics();
                 }
@@ -701,9 +703,14 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                     mappedTypeName = "Nullable`1";
 
                     break;
+
+                case IntrinsicType.Anonymous:
+                    mappedTypeName = "__AnonymousType__";
+                    mappedNamespace = "";
+                    break;
+
                 default:
                     Debug.Fail("Unmapped intrinsic type " + type);
-
                     break;
             }
 
@@ -794,11 +801,9 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
         public TypeSymbol ResolveType(ParseNode node, ISymbolTable symbolTable, Symbol contextSymbol)
         {
-            if (node is IntrinsicTypeNode)
+            if (node is IntrinsicTypeNode intrinsicTypeNode)
             {
                 IntrinsicType intrinsicType = IntrinsicType.Integer;
-
-                IntrinsicTypeNode intrinsicTypeNode = (IntrinsicTypeNode)node;
 
                 switch (intrinsicTypeNode.Type)
                 {
@@ -899,14 +904,13 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 }
             }
 
-            if (node is GenericNameNode)
+            if (node is GenericNameNode genericNameNode)
             {
-                GenericNameNode genericNameNode = (GenericNameNode)node;
                 string genericTypeName = genericNameNode.Name + "`" + genericNameNode.TypeArguments.Count;
                 TypeSymbol templateType =
                     (TypeSymbol)symbolTable.FindSymbol(genericTypeName, contextSymbol, SymbolFilter.Types);
 
-                if(!templateType.IsGeneric)
+                if (!templateType.IsGeneric || genericNameNode.TypeArguments.All(n => n is AtomicNameNode n1 && n1.Name == "__unknown"))
                 {
                     //generics ignored
                     return templateType;
@@ -917,6 +921,10 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 foreach (ParseNode argNode in genericNameNode.TypeArguments)
                 {
                     TypeSymbol argType = ResolveType(argNode, symbolTable, contextSymbol);
+                    if (argType == null)
+                    {
+                        return null;
+                    }
                     Debug.Assert(argType != null);
                     typeArguments.Add(argType);
                 }
@@ -931,9 +939,40 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             }
 
             Debug.Assert(node is NameNode);
-            NameNode nameNode = (NameNode)node;
 
-            return (TypeSymbol)symbolTable.FindSymbol(nameNode.Name, contextSymbol, SymbolFilter.Types);
+            if (node is NameNode nameNode)
+            {
+                if (symbolTable.FindSymbol(nameNode.Name, contextSymbol, SymbolFilter.Types) is TypeSymbol typeSymbol)
+                {
+                    return typeSymbol;
+                }
+            }
+
+            if (node is MultiPartNameNode multiPartNameNode)
+            {
+                var parts = multiPartNameNode.Parts.Reverse();
+                var names = new List<string>();
+
+                string multipartName = string.Join(".", multiPartNameNode.Parts.Select(nn => nn.Identifier.Identifier));
+                if (symbolTable.FindSymbol(multipartName, contextSymbol, SymbolFilter.Types) is TypeSymbol rootedType)
+                {
+                    return rootedType;
+                }
+
+                foreach (var part in parts)
+                {
+                    names.Insert(0, part.Name);
+                    var nestedTypeName = string.Join("$", names);
+
+                    if (symbolTable.FindSymbol(nestedTypeName, contextSymbol, SymbolFilter.Types) is TypeSymbol typeSymbol)
+                    {
+                        return typeSymbol;
+                    }
+                }
+
+            }
+
+            return default;
         }
 
         private TypeSymbol ResolveAtomicNameNodeType(AtomicNameNode atomicNameNode, ISymbolTable symbolTable, Symbol contextSymbol)
@@ -1276,6 +1315,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
         {
             return CompareTypeName(foundType, name)
                 || string.Equals(foundType.Namespace, namespaceName)
+                || foundType.Namespace.EndsWith(namespaceName) // Partial namespace match
                 || GetAliasesFromContext(context)
                     .Select(a => name.Replace(a.Key, a.Value))
                     .Any(n => CompareTypeName(foundType, n));

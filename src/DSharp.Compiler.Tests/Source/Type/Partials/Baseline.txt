@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // TypeTests.IMyInterface
 
   function IMyInterface() { }
@@ -85,6 +84,18 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // TypeTests.PartialGeneric`1
+
+  function PartialGeneric_$1() {
+  }
+  var PartialGeneric_$1$ = {
+    one: function() {
+    },
+    two: function() {
+    }
+  };
+
+
   // TypeTests.DerivedMemberClass
 
   function DerivedMemberClass() {
@@ -131,6 +142,7 @@ define('test', ['ss'], function(ss) {
       MergedMembersClass: ss.defineClass(MergedMembersClass, MergedMembersClass$, [], null),
       MyClass: ss.defineClass(MyClass, MyClass$, [], null, [IMyInterface]),
       App: ss.defineClass(App, App$, [], null),
+      PartialGeneric_$1: ss.defineClass(PartialGeneric_$1, PartialGeneric_$1$, [], null),
       DerivedMemberClass: ss.defineClass(DerivedMemberClass, DerivedMemberClass$, [], SingleMemberClass),
       DerivedMergedMembersClass: ss.defineClass(DerivedMergedMembersClass, DerivedMergedMembersClass$, [], MergedMembersClass)
     });

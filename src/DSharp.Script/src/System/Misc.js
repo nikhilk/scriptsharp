@@ -145,6 +145,7 @@ function paramsGenerator(n, f) {
     return function () {
         var slice = Array.prototype.slice;
         var args = slice.call(arguments, 0, n);
+        while (args.length < n) { args.push(null); }
         if (arguments.length == n + 1 && Array.isArray(arguments[n])) {
             args.push(arguments[n]);
         }
@@ -153,5 +154,11 @@ function paramsGenerator(n, f) {
             args.push(unnamed);
         }
         return f.apply(this, args);
-    }
+    };
+}
+
+function namedFunction(name, fn) {
+    return new Function('fn',
+        "return function " + name + "(){ return fn.apply(this, arguments)}"
+    )(fn);
 }

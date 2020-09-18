@@ -12,6 +12,7 @@ function IServiceProvider() { }
 
 function IEquatable_$1() { }
 function IComparable_$1() { }
+function ICloneable() { }
 
 function IComparer() { }
 function IComparer_$1() { }

@@ -71,6 +71,8 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
         Arguments,
 
-        Nullable
+        Nullable,
+
+        Anonymous
     }
 }

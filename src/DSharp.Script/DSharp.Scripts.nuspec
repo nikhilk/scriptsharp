@@ -16,5 +16,7 @@
   <files>
     <file src="dist\ss.js" target="contentFiles\any\any" />
     <file src="dist\ss.min.js" target="contentFiles\any\any" />
+    <file src="build\*.props" target="build" />
+    <file src="build\*.targets" target="build" />
   </files>
 </package>

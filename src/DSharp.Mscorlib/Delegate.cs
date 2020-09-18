@@ -3,6 +3,8 @@
 namespace System
 {
     [ScriptImport]
+    [ScriptIgnoreNamespace]
+    [ScriptName("Function")]
     public abstract class Delegate
     {
         protected Delegate(object target, string method) { }

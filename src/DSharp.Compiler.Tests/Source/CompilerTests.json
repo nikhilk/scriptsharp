@@ -26,6 +26,11 @@
         "Name": "IComparable",
         "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "ICloneable",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
       }
     ]
   },
@@ -403,13 +408,13 @@
       {
         "Name": "EnumToString_Normal",
         "SourceFolder": "EnumToString",
-        "SourceFiles": [ "Code1.cs" ],
+        "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "NormalBaseline.txt"
       },
       {
         "Name": "EnumToString_Minified",
         "SourceFolder": "EnumToString",
-        "SourceFiles": [ "Code2.cs" ],
+        "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "MinBaseline.txt",
         "Options": {
           "Minimize": true
@@ -582,6 +587,20 @@
         "ComparisonFile": "Baseline.txt"
       },
       {
+        "Name": "PropertiesInheritance",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "PropertiesInheritance_Minified",
+        "SourceFolder": "PropertiesInheritance",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "MinBaseline.txt",
+        "Options": {
+          "Minimize": true
+        }
+      },
+      {
         "Name": "StaticConstructors",
         "SourceFiles": [ "Code.cs" ],
         "References": [ "DSharp.Web.dll" ],
@@ -711,9 +730,65 @@
         "ComparisonFile": "Baseline.txt"
       },
       {
+        "Name": "Reflection",
+        "SourceFiles": [ "Code.cs" ],
+        "MetadataComparisonFile": "Metadata.txt",
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
         "Name": "UsingAlias",
         "SourceFiles": [ "Code.cs" ],
         "References": [ "DSharp.Web.dll" ],
+        "ComparisonFile": "Baseline.txt"
+      }
+    ]
+  },
+  {
+    "Category": "Lowering",
+    "Tests": [
+      {
+        "Name": "Var",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "EnumValues",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "ExtensionMethods",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "Lambdas",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "StaticUsing",
+        "SourceFiles": [ "Code.cs", "Console.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "GenericArguments",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "ObjectInitializers",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "OperatorOverloads",
+        "SourceFiles": [ "Code.cs" ],
+        "ComparisonFile": "Baseline.txt"
+      },
+      {
+        "Name": "ArrayCreation",
+        "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "Baseline.txt"
       }
     ]

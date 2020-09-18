@@ -10,6 +10,7 @@ namespace MemberTests {
         int XYZ { get; set; }
         bool IsFoo { get; }
         string ISet { set; }
+        object Object { get; set; }
     }
 
     public class Program
@@ -46,6 +47,10 @@ namespace MemberTests {
         {
             set {  }
         }
+
+        public string Object { get; set; }
+
+        extern object ITest.Object { get; set; }
 
         protected string Name { get { return "nk"; } }
 
@@ -98,6 +103,10 @@ namespace MemberTests {
 
         public string ReadonlyValue { get; } //CSharp 6!
 
+        public bool BoolAutoProp { get; set; }
+
+        public int IntAutoProp { get; set; }
+
         public string ReadWriteWithBacking
         {
             get { return readWriteWithBacking; }
@@ -133,6 +142,8 @@ namespace MemberTests {
 
     public sealed class ImplementedContainer : AbstractPropertiesContainer
     {
+        private string InstanceProp { get; set; }
+
         private string value = "";
 
         protected override string MyAbstractProp

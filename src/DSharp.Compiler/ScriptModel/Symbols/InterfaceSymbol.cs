@@ -30,7 +30,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             }
             else
             {
-                base.AddMember(memberSymbol);
+                base.AddMember(memberSymbol, true);
             }
         }
 

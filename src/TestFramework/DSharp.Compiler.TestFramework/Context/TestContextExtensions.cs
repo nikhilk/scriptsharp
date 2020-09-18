@@ -4,7 +4,12 @@
     {
         public static string GetExpectedOutput(this ITestContext testContext)
         {
-            return testContext?.ExpectedOutput.OpenText()?.ReadToEnd();
+            return testContext?.ExpectedOutput?.OpenText()?.ReadToEnd();
+        }
+
+        public static string GetExpectedMetadata(this ITestContext testContext)
+        {
+            return testContext?.ExpectedMetadataOutput?.OpenText()?.ReadToEnd();
         }
     }
 }

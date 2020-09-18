@@ -38,7 +38,7 @@ namespace DSharp.CodeAnalysis
         //TODO: Look at cleaning this up and making it easier to register processors and fixers etc.
         private void AnalyzeCodeBlock(CodeBlockAnalysisContext context)
         {
-            if(this.SupportedDiagnostics.Contains(AvailableDiagnostics.GenericTypeArgumentMissing.Rule))
+            if (this.SupportedDiagnostics.Contains(AvailableDiagnostics.GenericTypeArgumentMissing.Rule))
                 AvailableDiagnostics.GenericTypeArgumentMissing.Analyzer.ProcessCodeBlock(context);
         }
 

@@ -13,6 +13,7 @@
         MissingStreamError = 8,
         NodeValidationError = 9,
         UnsupportedFeatureError = 10,
-        UnsupportedFrameworkError = 11
+        UnsupportedFrameworkError = 11,
+        LowererError = 12,
     }
 }

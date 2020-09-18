@@ -199,36 +199,43 @@ namespace System
         /// <summary>
         /// Returns the difference in milliseconds between two dates.
         /// </summary>
+        [ScriptIgnore]
         public extern static int operator -(Date a, Date b);
 
         /// <summary>
         /// Compares two dates
         /// </summary>
+        [ScriptIgnore]
         public extern static bool operator ==(Date a, Date b);
 
         /// <summary>
         /// Compares two dates
         /// </summary>
+        [ScriptIgnore]
         public extern static bool operator !=(Date a, Date b);
 
         /// <summary>
         /// Compares two dates
         /// </summary>
+        [ScriptIgnore]
         public extern static bool operator <(Date a, Date b);
 
         /// <summary>
         /// Compares two dates
         /// </summary>
+        [ScriptIgnore]
         public extern static bool operator >(Date a, Date b);
 
         /// <summary>
         /// Compares two dates
         /// </summary>
+        [ScriptIgnore]
         public extern static bool operator <=(Date a, Date b);
 
         /// <summary>
         /// Compares two dates
         /// </summary>
+        [ScriptIgnore]
         public extern static bool operator >=(Date a, Date b);
     }
 }

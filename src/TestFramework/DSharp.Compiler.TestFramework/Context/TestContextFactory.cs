@@ -40,6 +40,7 @@ namespace DSharp.Compiler.TestFramework.Context
             List<FileInfo> resourceFiles = GetResourceFiles(testData, testFilesPath);
 
             FileInfo comparisonFile = GetComparisonFile(testData, testFilesPath);
+            FileInfo metadataFile = GetMetadataFile(testData, testFilesPath);
             FileInfo commentFile = GetCommentFile(testData, testFilesPath);
 
             return new TestContext
@@ -51,7 +52,8 @@ namespace DSharp.Compiler.TestFramework.Context
                 CommentFile = commentFile,
                 StreamSourceResolver = new LocalTestContextStreamResolver(new DirectoryInfo(testFilesPath)),
                 Resources = resourceFiles.ToArray(),
-                CompilationOptions = testData.Options.Adapt<TestContextCompliationOptions>()
+                CompilationOptions = testData.Options.Adapt<TestContextCompliationOptions>(),
+                ExpectedMetadataOutput = metadataFile
             };
         }
 
@@ -59,6 +61,21 @@ namespace DSharp.Compiler.TestFramework.Context
         {
             string testFilesPath = Path.Combine(rootDirectory, category, testName);
             return Directory.GetFiles(testFilesPath, "*.cs", SearchOption.TopDirectoryOnly);
+        }
+
+        private static FileInfo GetMetadataFile(TestDefinition testData, string testFilesPath)
+        {
+            FileInfo metadataFile = null;
+            if (!string.IsNullOrEmpty(testData.MetadataComparisonFile))
+            {
+                metadataFile = new FileInfo(Path.Combine(testFilesPath, testData.MetadataComparisonFile));
+                if (!metadataFile.Exists)
+                {
+                    throw new FileNotFoundException($"Missing metadata file file: {metadataFile.FullName}");
+                }
+            }
+
+            return metadataFile;
         }
 
         private static FileInfo GetCommentFile(TestDefinition testData, string testFilesPath)

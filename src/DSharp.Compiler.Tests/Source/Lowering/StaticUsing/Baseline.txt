@@ -1,0 +1,23 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // LoweringTests.App
+
+  function App() {
+  }
+  var App$ = {
+    _foo: function() {
+      Console.writeLine('hello');
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      App: ss.defineClass(App, App$, [], null)
+    });
+
+
+  return $exports;
+});

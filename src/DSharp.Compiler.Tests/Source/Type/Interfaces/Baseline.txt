@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // TypeTests.IMarker
 
   function IMarker() { }
@@ -16,6 +15,11 @@ define('test', ['ss'], function(ss) {
   // TypeTests.IRunnable
 
   function IRunnable() { }
+
+
+  // TypeTests.IOverloded
+
+  function IOverloded() { }
 
 
   // TypeTests.MyObject
@@ -87,6 +91,7 @@ define('test', ['ss'], function(ss) {
       IMarker: ss.defineInterface(IMarker),
       ISerializable: ss.defineInterface(ISerializable),
       IRunnable: ss.defineInterface(IRunnable, [IMarker, ss.IDisposable]),
+      IOverloded: ss.defineInterface(IOverloded),
       MyObject: ss.defineClass(MyObject, MyObject$, [], null, [ss.IDisposable]),
       Foo: ss.defineClass(Foo, Foo$, [], null, [IMarker, ISerializable, IRunnable]),
       Program: ss.defineClass(Program, Program$, [], null),

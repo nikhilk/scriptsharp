@@ -5,7 +5,7 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   // BasicTests.App
 
   function App() {
-    ss.defineProperty(this, 'Property');
+    ss.defineProperty(this, 'Property', null);
   }
   var App$ = {
 

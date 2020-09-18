@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
@@ -16,5 +16,11 @@ namespace ValidationTests {
 
         public static void Invoke(Action successCallback, Action errorCallback, object context) {
         }
+    }
+
+    public interface ITest
+    {
+        void DoSomething();
+        void DoSomething(string arg);
     }
 }

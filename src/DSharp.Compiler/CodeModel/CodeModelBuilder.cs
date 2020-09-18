@@ -99,7 +99,7 @@ namespace DSharp.Compiler.CodeModel
 
         private void OnError(object sender, FileLexerErrorEventArgs eventArgs)
         {
-            FileLexer fileLexer = sender as FileLexer;
+            IFilePathProvider fileLexer = sender as IFilePathProvider;
 
             hasErrors = true;
 

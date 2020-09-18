@@ -1,0 +1,65 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // MemberTests.AbstractBase
+
+  function AbstractBase() {
+    this.$0 = false;
+  }
+  var AbstractBase$ = {
+    useSomething: function() {
+      this.$0 = true;
+    }
+  };
+
+
+  // MemberTests.GenericBase`1
+
+  function GenericBase_$1() {
+    this.$0 = false;
+  }
+  var GenericBase_$1$ = {
+    useSomething: function() {
+      this.$0 = true;
+    }
+  };
+
+
+  // MemberTests.MyClass
+
+  function MyClass() {
+    this.$1 = 0;
+    AbstractBase.call(this);
+  }
+  var MyClass$ = {
+    useWow: function() {
+      ++this.$1;
+    }
+  };
+
+
+  // MemberTests.MyGenericClass
+
+  function MyGenericClass() {
+    this.$1 = 0;
+    GenericBase_$1.call(this);
+  }
+  var MyGenericClass$ = {
+    useWow: function() {
+      ++this.$1;
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      AbstractBase: ss.defineClass(AbstractBase, AbstractBase$, [], null),
+      GenericBase_$1: ss.defineClass(GenericBase_$1, GenericBase_$1$, [], null),
+      MyClass: ss.defineClass(MyClass, MyClass$, [], AbstractBase),
+      MyGenericClass: ss.defineClass(MyGenericClass, MyGenericClass$, [], GenericBase_$1)
+    });
+
+
+  return $exports;
+});

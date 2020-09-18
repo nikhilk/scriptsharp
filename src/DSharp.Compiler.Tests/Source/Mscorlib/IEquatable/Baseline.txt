@@ -5,7 +5,11 @@ define('test', ['ss'], function(ss) {
   // EquatableTest.TestClass
 
   function TestClass() {
-    var obj = ss.initializeObject(new TestObject(), {Text: 'Hello'});
+    var obj = (function() {
+      var _obj_ = new TestObject();
+      _obj_.Text = 'Hello';
+      return _obj_;
+    })();
     var x = obj.equals(obj);
     if (ss.canCast(obj, ss.IEquatable_$1)) {
       obj.Text = 'wow';
@@ -19,7 +23,7 @@ define('test', ['ss'], function(ss) {
   // EquatableTest.TestObject
 
   function TestObject() {
-    ss.defineProperty(this, 'Text');
+    ss.defineProperty(this, 'Text', null);
   }
   var TestObject$ = {
     equals: function(other) {

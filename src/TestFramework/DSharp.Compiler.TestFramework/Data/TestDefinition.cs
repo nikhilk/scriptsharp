@@ -18,6 +18,8 @@
 
         public string DocumentCommentFile { get; set; }
 
+        public string MetadataComparisonFile { get; set; }
+
         public TestCompilationOptionsDefintion Options { get; set; }
     }
 

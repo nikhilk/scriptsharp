@@ -71,6 +71,8 @@ namespace DSharp.Build.Tasks
             }
         }
 
+        public bool GenerateScriptMetadata { get; set; }
+
         public string ProjectPath { get; set; }
 
         [Required]
@@ -98,6 +100,12 @@ namespace DSharp.Build.Tasks
             ITaskItem scriptTaskItem = new TaskItem(OutputPath);
             options.ScriptFile = new TaskItemOutputStreamSource(scriptTaskItem);
 
+            if (GenerateScriptMetadata)
+            {
+                var metadataPath = Path.ChangeExtension(OutputPath, "meta.js");
+                options.MetadataFile = new TaskItemOutputStreamSource(new TaskItem(metadataPath));
+            }
+
             string errorMessage = string.Empty;
             if (options.Validate(out errorMessage) == false)
             {
@@ -106,8 +114,8 @@ namespace DSharp.Build.Tasks
             }
 
             ScriptCompiler compiler = new ScriptCompiler(this);
-            compiler.Compile(options);
-            if (hasErrors == false)
+            
+            if (compiler.Compile(options) && hasErrors == false)
             {
                 Script = scriptTaskItem;
 
@@ -241,6 +249,20 @@ namespace DSharp.Build.Tasks
                 endColumnNumber: error.ColumnNumber.GetValueOrDefault(),
                 message: error.Description);
             hasErrors = true;
+        }
+
+        void IErrorHandler.ReportWarning(CompilerError error)
+        {
+            Log.LogWarning(
+                subcategory: string.Empty,
+                warningCode: error.FormattedErrorCode,
+                helpKeyword: string.Empty,
+                file: error.File,
+                lineNumber: error.LineNumber.GetValueOrDefault(),
+                endLineNumber: error.LineNumber.GetValueOrDefault(),
+                columnNumber: error.ColumnNumber.GetValueOrDefault(),
+                endColumnNumber: error.ColumnNumber.GetValueOrDefault(),
+                message: error.Description);
         }
 
         #region Implementation of IStreamSourceResolver

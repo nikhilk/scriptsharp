@@ -1,8 +1,10 @@
-// MultiPartNameNode.cs
+﻿// MultiPartNameNode.cs
 // Script#/Core/Compiler
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
+using System.Collections.Generic;
+using System.Linq;
 using DSharp.Compiler.CodeModel.Tokens;
 
 namespace DSharp.Compiler.CodeModel.Names
@@ -16,5 +18,7 @@ namespace DSharp.Compiler.CodeModel.Names
         }
 
         protected override ParseNodeList List { get; }
+
+        public IEnumerable<AtomicNameNode> Parts => List.Select(n => (AtomicNameNode)n);
     }
 }

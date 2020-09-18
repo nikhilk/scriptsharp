@@ -1,8 +1,26 @@
 var _modules = {};
+var _meta = []; // array of functions
 var _genericConstructorCache = {};
 
 var _classMarker = 'class';
 var _interfaceMarker = 'interface';
+
+/// imports metadata info onto the types, this is needed to avoid namespace conflicts
+function importMetadata() {
+    for (var i = 0; i < _meta.length; ++i) {
+        _meta[i]();
+    }
+}
+
+function registerMetadataImporter(func) {
+    _meta.push(func);
+}
+
+// resolves an internal dependency (module -> global)
+function dependency(name) {
+    if (_modules[name] != null) return _modules[name];
+    return window[name];
+}
 
 function createType(typeName, typeInfo, typeRegistry) {
     // The typeInfo is either an array of information representing
@@ -228,4 +246,18 @@ function createInstance(type, parameters) {
     var instance = Object.create(proto);
     proto.constructor.apply(instance, parameters);
     return instance;
+}
+
+function getMembers(type) {
+    return type ? [].concat(type.$members || [], getMembers(type.$base), getInterfaceMembers(type.$interfaces)) : [];
+}
+
+function getInterfaceMembers(types) {
+    var members = [];
+    if (types) {
+        for (var i = 0, ln = types.length; i < ln; ++i) {
+            members = members.concat(getMembers(types[i]));
+        }
+    }
+    return members;
 }

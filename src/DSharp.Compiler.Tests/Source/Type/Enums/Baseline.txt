@@ -4,55 +4,55 @@ define('test', ['ss'], function(ss) {
   var $global = this;
   // TypeTests.Colors
 
-  var Colors = {
+  var Colors = new ss.Enum('Colors', {
     red: 0, 
     green: 1, 
     blue: 2
-  };
+  });
 
 
   // TypeTests.Sequence
 
-  var Sequence = {
+  var Sequence = new ss.Enum('Sequence', {
     item1: 1, 
     item2: 2, 
     item3: 3, 
     item4: 5
-  };
+  });
 
 
   // TypeTests.Mode
 
-  var Mode = {
+  var Mode = new ss.Enum('Mode', {
     Public: 1, 
     Protected: 2, 
     Private: 4
-  };
+  });
 
 
   // TypeTests.UInt32Mask
 
-  var UInt32Mask = {
+  var UInt32Mask = new ss.Enum('UInt32Mask', {
     v: 4026531840, 
     a: 4278190080
-  };
+  });
 
 
   // TypeTests.ShortMask
 
-  var ShortMask = {
+  var ShortMask = new ss.Enum('ShortMask', {
     v: 1, 
     a: 4096
-  };
+  });
 
 
   // TypeTests.Errors
 
-  var Errors = {
+  var Errors = new ss.Enum('Errors', {
     S_OK: 0, 
     S_FALSE: 1, 
     E_FAIL: -1
-  };
+  });
 
 
   // TypeTests.App
@@ -94,12 +94,12 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Colors: new ss.Enum('Colors', Colors),
-      Sequence: new ss.Enum('Sequence', Sequence),
-      Mode: new ss.Enum('Mode', Mode),
-      UInt32Mask: new ss.Enum('UInt32Mask', UInt32Mask),
-      ShortMask: new ss.Enum('ShortMask', ShortMask),
-      Errors: new ss.Enum('Errors', Errors),
+      Colors: Colors,
+      Sequence: Sequence,
+      Mode: Mode,
+      UInt32Mask: UInt32Mask,
+      ShortMask: ShortMask,
+      Errors: Errors,
       App: ss.defineClass(App, App$, [], null),
       App2: ss.defineClass(App2, App2$, [], null)
     });
@@ -107,4 +107,3 @@ define('test', ['ss'], function(ss) {
 
   return $exports;
 });
-

@@ -1,0 +1,52 @@
+﻿"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // CloneableTest.TestClass
+
+  function TestClass() {
+    var obj = (function() {
+      var _obj_ = new TestObject();
+      _obj_.Text = 'Hello';
+      return _obj_;
+    })();
+    var clonedObj = obj.clone();
+    if (ss.canCast(obj, ss.ICloneable)) {
+      obj.Text = 'wow';
+    }
+    if (ss.canCast(clonedObj, ss.ICloneable)) {
+      clonedObj.Text = 'wow';
+    }
+  }
+  var TestClass$ = {
+
+  };
+
+
+  // CloneableTest.TestObject
+
+  function TestObject() {
+    ss.defineProperty(this, 'Text', null);
+  }
+  var TestObject$ = {
+    clone: function() {
+      var $this = this;
+
+      return (function() {
+        var _obj_ = new TestObject();
+        _obj_.Text = $this.Text;
+        return _obj_;
+      })();
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      TestClass: ss.defineClass(TestClass, TestClass$, [], null),
+      TestObject: ss.defineClass(TestObject, TestObject$, [], null, [ss.ICloneable])
+    });
+
+
+  return $exports;
+});

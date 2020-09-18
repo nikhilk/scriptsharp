@@ -1,0 +1,31 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // LoweringTests.IntEnumeration
+
+  var IntEnumeration = new ss.Enum('IntEnumeration', {
+    zero: 0, 
+    one: 1, 
+    two: 2
+  });
+
+
+  // LoweringTests.ShortEnumeration
+
+  var ShortEnumeration = new ss.Enum('ShortEnumeration', {
+    zero: 0, 
+    one: 1, 
+    two: 2
+  });
+
+
+  var $exports = ss.module('test', null,
+    {
+      IntEnumeration: IntEnumeration,
+      ShortEnumeration: ShortEnumeration
+    });
+
+
+  return $exports;
+});

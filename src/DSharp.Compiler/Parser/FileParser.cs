@@ -1,4 +1,4 @@
-// FileParser.cs
+﻿// FileParser.cs
 // Script#/Core/Compiler
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -12,13 +12,15 @@ namespace DSharp.Compiler.Parser
     ///     Preprocesses, Lexes and Parses a C# Compilation Unit
     ///     Uses a FileLexer and a Parser object.
     /// </summary>
-    internal sealed class FileParser
+    internal sealed class FileParser : IFilePathProvider
     {
         private readonly Parser parser;
 
         private LineMap lineMap;
         private NameTable nameTable;
         private string path;
+
+        public string FilePath => path;
 
         public FileParser(NameTable nameTable, string path)
         {

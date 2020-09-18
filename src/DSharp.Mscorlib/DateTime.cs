@@ -92,12 +92,16 @@ namespace System
         // force the usage of .Equals, operator== behaves weirdly in JS
         //public extern static bool operator !=(DateTime left, DateTime right);
 
+        [ScriptIgnore]
         public extern static bool operator >=(DateTime left, DateTime right);
 
+        [ScriptIgnore]
         public extern static bool operator <=(DateTime left, DateTime right);
 
+        [ScriptIgnore]
         public extern static bool operator >(DateTime left, DateTime right);
 
+        [ScriptIgnore]
         public extern static bool operator <(DateTime left, DateTime right);
     }
 }

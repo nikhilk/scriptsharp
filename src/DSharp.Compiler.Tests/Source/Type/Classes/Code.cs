@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
@@ -19,6 +19,10 @@ namespace TypeTests {
 
     public class MyClass {
         public MyClass() { Foo f = new Foo(); }
+
+        public class NestedClass
+        {
+        }
     }
 
     public class MyClass2 : MyClass {
@@ -37,5 +41,18 @@ namespace TypeTests {
     }
 
     public static class StaticClass {
+    }
+
+    public class TypeWithParamsInCtor
+    {
+        public TypeWithParamsInCtor(object arg, params object[] args)
+        {
+
+        }
+
+        public void MethodWithParams(object arg, params object[] args)
+        {
+
+        }
     }
 }

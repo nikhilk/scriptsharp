@@ -25,7 +25,7 @@
 
   <Target Name="GetScriptOutputPath" Condition="'$(IsImportLibrary)' != 'true'" DependsOnTargets="GetTfmOutputDirs">
     <ItemGroup>
-      <ScriptOutput Include="%(TfmOutputDirs.Identity)$(ScriptName).js;%(Identity)$(ScriptName).min.js" Condition="%(IsDSharpBuild) == 'true'" >
+      <ScriptOutput Include="%(TfmOutputDirs.Identity)$(ScriptName).js;%(Identity)$(ScriptName).min.js;%(Identity)$(ScriptName).meta.js" Condition="%(IsDSharpBuild) == 'true'" >
         <PackagePath>%(TfmOutputDirs.PackageContentPath)</PackagePath>
         <PackageCopyToOutput>true</PackageCopyToOutput>
         <BuildAction>Content</BuildAction>
@@ -46,6 +46,12 @@
       </None>
       <None Include="@(PackagedScript -> '$(_tfmoutdir)%(Filename).min.js')">
         <Pack Condition="Exists('@(PackagedScript -> '$(_tfmoutdir)%(Filename).min.js')')">true</Pack>
+        <PackagePath>%(TfmOutputDirs.PackageContentPath)</PackagePath>
+        <PackageCopyToOutput>true</PackageCopyToOutput>
+        <BuildAction>Content</BuildAction>
+      </None>
+      <None Include="@(PackagedScript -> '$(_tfmoutdir)%(Filename).meta.js')">
+        <Pack Condition="Exists('@(PackagedScript -> '$(_tfmoutdir)%(Filename).meta.js')')">true</Pack>
         <PackagePath>%(TfmOutputDirs.PackageContentPath)</PackagePath>
         <PackageCopyToOutput>true</PackageCopyToOutput>
         <BuildAction>Content</BuildAction>

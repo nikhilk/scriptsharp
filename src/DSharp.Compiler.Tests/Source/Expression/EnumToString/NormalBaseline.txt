@@ -2,23 +2,14 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-  // ExpressionTests.Color
-
-  var Color = {
-    red: 1, 
-    green: 2, 
-    blue: 3
-  };
-
-
   // ExpressionTests.Types
 
-  var Types = {
+  var Types = new ss.Enum('Types', {
     none: 0, 
     type1: 1, 
     type2: 2, 
     type3: 4
-  };
+  });
 
 
   // ExpressionTests.App
@@ -43,8 +34,7 @@ define('test', ['ss'], function(ss) {
 
   var $exports = ss.module('test', null,
     {
-      Color: new ss.Enum('Color', Color),
-      Types: new ss.Enum('Types', Types),
+      Types: Types,
       App: ss.defineClass(App, App$, [], null)
     });
 

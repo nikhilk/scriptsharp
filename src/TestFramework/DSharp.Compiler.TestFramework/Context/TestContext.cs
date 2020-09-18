@@ -8,6 +8,8 @@ namespace DSharp.Compiler.TestFramework.Context
 
         public FileInfo ExpectedOutput { get; internal set; }
 
+        public FileInfo ExpectedMetadataOutput { get; internal set; }
+
         public FileInfo[] References { get; internal set; }
 
         public string[] Defines { get; internal set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using DSharp.Compiler.CodeModel;
 using DSharp.Compiler.Parser;
+using Microsoft.CodeAnalysis;
 
 namespace DSharp.Compiler.Errors
 {
@@ -88,6 +89,13 @@ namespace DSharp.Compiler.Errors
         public static void ReportExpressionError(this IErrorHandler errorHandler, string message, ParseNode node)
         {
             CompilerError error = new CompilerError((ushort)CompilerErrorCode.ExpressionError, message, node.Token.SourcePath, node.Token.Position.Line, node.Token.Position.Column);
+            errorHandler.ReportError(error);
+        }
+
+        public static void ReportExpressionError(this IErrorHandler errorHandler, string message, SyntaxNode node)
+        {
+            var location = node.GetLocation().GetLineSpan();
+            CompilerError error = new CompilerError((ushort)CompilerErrorCode.ExpressionError, message, location.Path, location.StartLinePosition.Line, location.StartLinePosition.Character);
             errorHandler.ReportError(error);
         }
 

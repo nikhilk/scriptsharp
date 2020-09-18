@@ -34,11 +34,16 @@ namespace DSharp.Compiler.TestFramework.Compilation
             {
                 return CompilationUnitResult.CreateErrorResult(compilationErrors);
             }
-
-            return CompilationUnitResult.CreateResult(outputStream.GeneratedOutput);
+            
+            return CompilationUnitResult.CreateResult(outputStream.GeneratedOutput, (compilerOptions.MetadataFile as InMemoryStream)?.GeneratedOutput);
         }
 
         void IErrorHandler.ReportError(CompilerError error)
+        {
+            compilationErrors.Add(error);
+        }
+
+        void IErrorHandler.ReportWarning(CompilerError error)
         {
             compilationErrors.Add(error);
         }

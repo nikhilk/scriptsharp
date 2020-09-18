@@ -66,6 +66,16 @@ namespace DSharp.Compiler.TestFramework.Compilation
             return compilationUnitBuilder;
         }
 
+        public static ICompilationUnitBuilder AddMetadataFile(this ICompilationUnitBuilder compilationUnitBuilder, string filePath)
+        {
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                compilationUnitBuilder.Options.MetadataFile = new InMemoryStream();
+            }
+
+            return compilationUnitBuilder;
+        }
+
         public static ICompilationUnitBuilder AddStreamResolver(this ICompilationUnitBuilder compilationUnitBuilder, IStreamSourceResolver streamSourceResolver)
         {
             compilationUnitBuilder.Options.IncludeResolver = streamSourceResolver;
