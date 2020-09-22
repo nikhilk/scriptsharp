@@ -1974,6 +1974,12 @@ namespace DSharp.Compiler.Compiler
                     return CreateTypeOfExpression(referencedType.GenericArguments[0]);
                 }
 
+                if (referencedType.IgnoreGenericTypeArguments
+                    || referencedType.GenericType?.IgnoreGenericTypeArguments == true)
+                {
+                    return new LiteralExpression(typeSymbol, referencedType.GenericType);
+                }
+
                 return CreateGetGenericConstructorInvocation(referencedType);
             }
 
@@ -1989,7 +1995,7 @@ namespace DSharp.Compiler.Compiler
             var methodSymbol = (MethodSymbol)scriptSymbol.GetMember("getGenericConstructor");
             var methodExpression = new MethodExpression(scriptExpression, methodSymbol);
 
-            methodExpression.AddParameterValue(new LiteralExpression(typeSymbol, referencedType));
+            methodExpression.AddParameterValue(new LiteralExpression(typeSymbol, referencedType.GenericType ?? referencedType));
             ObjectExpression typeInferenceMap = CreateTypeInterenceMap(referencedType);
             methodExpression.AddParameterValue(typeInferenceMap);
 
@@ -2005,7 +2011,7 @@ namespace DSharp.Compiler.Compiler
             TypeExpression scriptExpression = new TypeExpression(scriptSymbol, SymbolFilter.Public | SymbolFilter.StaticMembers);
             var methodSymbol = (MethodSymbol)scriptSymbol.GetMember("getGenericTemplate");
             var methodExpression = new MethodExpression(scriptExpression, methodSymbol);
-            methodExpression.AddParameterValue(new LiteralExpression(typeSymbol, referencedType));
+            methodExpression.AddParameterValue(new LiteralExpression(typeSymbol, referencedType.GenericType ?? referencedType));
 
             var typeArraySymbol = symbolSet.CreateArrayTypeSymbol(typeSymbol);
             Expression[] genericParams = referencedType.GenericParameters.Select(p => new LiteralExpression(stringSymbol, p.GeneratedName)).ToArray();
