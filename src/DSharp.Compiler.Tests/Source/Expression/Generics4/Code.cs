@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Library1;
 
 [assembly: ScriptAssembly("test")]
 
@@ -9,6 +10,8 @@ namespace TypeTests
     {
         public void Use()
         {
+            var x = typeof(MyDelegate);
+
             GenericClass<int> genericClass = new GenericClass<int>(1);
             genericClass.DoSomethingWith<bool>(false, 1);
             genericClass.Register<IBase, ImplementsBase>();
@@ -26,6 +29,10 @@ namespace TypeTests
             wrapper.Invokee.Invoke<GenericClass<int>>("").DoSomethingWith<bool>(true, 0);
 
             int val = new Invoker().InvokeAll<int>("1");
+
+            DoSomethingAwesome<Func<int>>(null);
+            DoSomethingAwesome<Action<int>>(null);
+            DoSomethingAwesome<MyCustomDelegate>(null);
         }
 
         public interface IBase { }
@@ -42,6 +49,8 @@ namespace TypeTests
             return what;
         }
     }
+
+    public delegate void MyCustomDelegate(int x);
 
     public class GenericClass<T>
     {

@@ -961,6 +961,8 @@ namespace DSharp.Compiler.Importer
             {
                 typeSymbol = new DelegateSymbol(name, namespaceSymbol);
                 typeSymbol.SetTransformedName("Function");
+                typeSymbol.SetIgnoreGenerics();
+                typeSymbol.SetIgnoreNamespace();
             }
             else
             {

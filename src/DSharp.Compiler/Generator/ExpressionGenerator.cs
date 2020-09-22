@@ -942,7 +942,14 @@ namespace DSharp.Compiler.Generator
                 }
                 else if (value is TypeSymbol typeSymbol)
                 {
-                    textValue = typeSymbol.FullGeneratedName;
+                    if (typeSymbol.Type == SymbolType.Delegate)
+                    {
+                        textValue = typeSymbol.GeneratedName;
+                    }
+                    else
+                    {
+                        textValue = typeSymbol.FullGeneratedName;
+                    }
                 }
                 else if (value is Expression[] values)
                 {
