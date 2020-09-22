@@ -34,7 +34,7 @@ define('test', ['ss'], function(ss) {
   var App$ = {
     _foo: function() {
       var sum = 0;
-      var $enum1 = ss.enumerate('text' + ' ' + ss.typeName(ss.getGenericConstructor(Array, {T: String})));
+      var $enum1 = ss.enumerate('text' + ' ' + ss.typeName((Array)));
       while ($enum1.moveNext()) {
         var character = $enum1.current;
         sum = character;

@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-define('test', ['ss'], function(ss) {
+define('test', ['ss', 'lib1'], function(ss, lib1) {
   var $global = this;
   // TypeTests.Usages$IBase
 
@@ -16,6 +16,9 @@ define('test', ['ss'], function(ss) {
   };
   var Usages$ = {
     use: function() {
+      var x = Function;
+      var y = Function;
+      var z = Function;
       var genericClass = ss.createGenericType(GenericClass_$1, {T : Number}, 1);
       genericClass.doSomethingWith({TNew: Boolean}, false, 1);
       genericClass.register({TBase: Usages$IBase, TImplementation: Usages$ImplementsBase});
@@ -28,6 +31,9 @@ define('test', ['ss'], function(ss) {
       var wrapper = new Wrapper();
       wrapper.Invokee.invoke({T: ss.getGenericConstructor(GenericClass_$1, {T: Number})}, '').doSomethingWith({TNew: Boolean}, true, 0);
       var val = new Invoker().invokeAll({T: Number}, '1');
+      Usages.doSomethingAwesome({T: Function}, null);
+      Usages.doSomethingAwesome({T: Function}, null);
+      Usages.doSomethingAwesome({T: Function}, null);
     },
     parseTheList: function($TArgs, what) {
       return what;

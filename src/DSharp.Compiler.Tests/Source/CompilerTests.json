@@ -462,7 +462,7 @@
         "Name": "Generics4",
         "SourceFiles": [ "Code.cs" ],
         "ComparisonFile": "Baseline.txt",
-        "References": []
+        "References": [ "Lib1.dll" ],
       },
       {
         "Name": "GetType",

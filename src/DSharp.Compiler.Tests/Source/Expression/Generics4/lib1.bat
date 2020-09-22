@@ -1,0 +1,1 @@
+csc /t:library /noconfig /nologo /nostdlib /r:../../../../DSharp.Mscorlib/bin/Debug/net471/DSharp.Mscorlib.dll /out:Lib1.dll Lib1.cs

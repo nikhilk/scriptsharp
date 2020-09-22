@@ -24,7 +24,7 @@ define('test', ['ss'], function(ss) {
     var values = {};
     var values2 = {};
     var copiedValues = Program.copyDictionary({TKey: String, TValue: Object}, values);
-    var copiedValues2 = Program.copyDictionary({TKey: String, TValue: ss.getGenericConstructor(Object, {TKey: String, TValue: ss.getGenericConstructor(Object, {TKey: String, TValue: Object})})}, values2);
+    var copiedValues2 = Program.copyDictionary({TKey: String, TValue: Object}, values2);
     var copiedValuesOfStrings = Program.copyDictionary({TKey: String, TValue: Object}, Program.copyDictionaryOfStringKeys({TValue: Object}, values));
     var bem = ss.createGenericType(BulkAsyncExecutionManager_$1, {T : String});
     bem.addExecutionKey('');
