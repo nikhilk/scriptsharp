@@ -11,6 +11,8 @@ namespace TypeTests
         public void Use()
         {
             var x = typeof(MyDelegate);
+            var y = typeof(Func<int>);
+            var z = typeof(Action<int>);
 
             GenericClass<int> genericClass = new GenericClass<int>(1);
             genericClass.DoSomethingWith<bool>(false, 1);
