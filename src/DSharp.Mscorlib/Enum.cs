@@ -19,5 +19,8 @@ namespace System
 
         [DSharpScriptMemberName("Enum.getValues")]
         public extern static Array GetValues(Type enumType);
+
+        [DSharpScriptMemberName("Enum.parse")]
+        public extern static object Parse(Type enumType, string value, bool ignoreCase);
     }
 }

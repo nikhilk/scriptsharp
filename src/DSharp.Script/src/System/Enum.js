@@ -47,3 +47,15 @@ Enum.isDefined = function (enumeration, value) {
     var map = Enum.map[enumeration._name];
     return isValue(map.Values[value]) || isValue(map.Keys[value]);
 };
+
+Enum.parse = function (enumeration, value, ignoreCase) {
+    var map = Enum.map[enumeration._name];
+    if (map && ignoreCase) {
+        for (var p in map.Keys) {
+            if (p.toLowerCase() == value.toLowerCase()) {
+                return map.Keys[p];
+            }
+        }
+    }
+    return map && map.Keys[value];
+}
