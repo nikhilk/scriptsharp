@@ -1,4 +1,4 @@
-// Window.cs
+﻿// Window.cs
 // Script#/Libraries/Web
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -474,6 +474,8 @@ namespace System.Html {
 
         public static void PostMessage(string message, string targetOrigin) {
         }
+
+        public static extern void PostMessage(object message, string targetOrigin);
 
         /// <summary>
         /// Delegate that indicates the ability of the browser
