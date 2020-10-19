@@ -24,20 +24,7 @@ function createPropertySet(obj, propertyName, fn) {
 }
 
 function defineProperty(instance, propertyName, value) {
-    var prop = value;
-
-    if (instance.hasOwnProperty(propertyName))
-    {
-        instance[propertyName] = prop;
-        return;
-    }
-
-    Object.defineProperty(instance, propertyName, {
-        get: function () { return prop; },
-        set: function (value) { prop = value; },
-        configurable: true,
-        enumerable: true
-    });
+    instance[propertyName] = value;
 }
 
 function initializeObject(obj, initializerMap) {
