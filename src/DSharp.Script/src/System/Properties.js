@@ -24,7 +24,12 @@ function createPropertySet(obj, propertyName, fn) {
 }
 
 function defineProperty(instance, propertyName, value) {
-    instance[propertyName] = value;
+    Object.defineProperty(instance, propertyName, {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: value
+    });
 }
 
 function initializeObject(obj, initializerMap) {
