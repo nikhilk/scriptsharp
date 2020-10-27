@@ -19,7 +19,7 @@ namespace DSharp.Compiler.CodeModel.Names
 
         protected abstract ParseNodeList List { get; }
 
-        public string Name
+        public virtual string Name
         {
             get
             {

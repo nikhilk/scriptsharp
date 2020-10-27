@@ -18,23 +18,24 @@ function getGenericConstructor(ctorMethod, typeArguments) {
             genericInstance.$type = _interfaceMarker;
             genericInstance.$name = ctorMethod.$name;
             genericInstance.$interfaces = ctorMethod.$interfaces;
-            genericInstance.$typeArguments = typeArguments || {};
         }
         else {
             genericInstance = function () {
-                this.__proto__.constructor.$typeArguments = typeArguments || {};
-                this.__proto__.constructor.$base = this.__proto__.constructor.$base || ctorMethod.$base;
-                this.__proto__.constructor.$interfaces = this.__proto__.constructor.$interfaces || ctorMethod.$interfaces;
-                this.__proto__.constructor.$type = this.__proto__.constructor.$type || ctorMethod.$type;
-                this.__proto__.constructor.$name = this.__proto__.constructor.$name || ctorMethod.$name;
-                this.__proto__.constructor.$constructorParams = this.__proto__.constructor.$constructorParams || ctorMethod.$constructorParams;
                 ctorMethod.apply(this, Array.prototype.slice.call(arguments));
             };
             genericInstance.prototype = Object.create(ctorMethod.prototype);
             genericInstance.prototype.constructor = genericInstance;
+            genericInstance.$base = genericInstance.$base || ctorMethod.$base;
+            genericInstance.$interfaces = genericInstance.$interfaces || ctorMethod.$interfaces;
+            genericInstance.$type = genericInstance.$type || ctorMethod.$type;
+            genericInstance.$name = genericInstance.$name || ctorMethod.$name;
+            genericInstance.$constructorParams = genericInstance.$constructorParams || ctorMethod.$constructorParams;
         }
         genericInstance.prototype = Object.create(ctorMethod.prototype);
         genericInstance.prototype.constructor = genericInstance;
+        genericInstance.$typeArguments = typeArguments || {};
+        genericInstance.IsGenericTypeDefinition = true;
+        genericInstance.GenericTypeArguments = values(typeArguments || {});
         _genericConstructorCache[key] = genericInstance;
     }
 
@@ -85,6 +86,7 @@ function getGenericTemplate(ctorMethod, typeParameters) {
         $interfaces: ctorMethod.$interfaces,
         $typeArguments: params,
         IsGenericTypeDefinition: true,
+        GenericTypeArguments: values(params || {}),
         makeGenericType: function (typeArguments) {
             var args = {};
             for (var i = 0, ln = typeParameters.length; i < ln; ++i) {

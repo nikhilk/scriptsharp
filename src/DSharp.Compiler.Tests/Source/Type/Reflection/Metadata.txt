@@ -4,15 +4,15 @@ ss.registerMetadataImporter(function(){(function(ss) {
   var Type = Function;
   var module = ss.modules['test'];
   module.MyClass.$members = [
-    {MemberType: 8,Name: 'getDelegate', Type: eval("try{Function}catch{}")},
+    {MemberType: 8,Name: 'getDelegate', Type: eval("try{Function}catch{}"), IsGenericMethod: false},
     {MemberType: 16,Name: 'Other', Type: eval("try{module.MyClass_$1}catch{}")},
     {MemberType: 16,Name: 'Getter', Type: eval("try{Number}catch{}")},
-    {MemberType: 8,Name: 'method', Type: eval("try{Void}catch{}")},
-    {MemberType: 16,Name: 'Tyyype', Type: eval("try{Type}catch{}")},
-    {MemberType: 8,Name: 'method2', Type: eval("try{Object}catch{}")},
-    {MemberType: 8,Name: 'method3', Type: eval("try{ss.IEnumerable}catch{}")},
-    {MemberType: 8,Name: 'method4', Type: eval("try{ss.IList_$1}catch{}")},
-    {MemberType: 8,Name: '_assert', Type: eval("try{Void}catch{}")},
+    {MemberType: 8,Name: 'method', Type: eval("try{Void}catch{}"), IsGenericMethod: false},
+    {MemberType: 16,Name: 'Tyyype', Type: eval("try{Function}catch{}")},
+    {MemberType: 8,Name: 'method2', Type: eval("try{Object}catch{}"), IsGenericMethod: true},
+    {MemberType: 8,Name: 'method3', Type: eval("try{ss.IEnumerable}catch{}"), IsGenericMethod: false},
+    {MemberType: 8,Name: 'method4', Type: eval("try{ss.IList_$1}catch{}"), IsGenericMethod: false},
+    {MemberType: 8,Name: '_assert', Type: eval("try{Void}catch{}"), IsGenericMethod: false},
     {MemberType: 8,Name: 'get_item', Type: eval("try{Object}catch{}")},
     {MemberType: 8,Name: 'set_item', Type: eval("try{Object}catch{}")}];
   module.MyClass_$1.$members = [

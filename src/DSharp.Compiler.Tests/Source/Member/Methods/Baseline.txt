@@ -31,6 +31,7 @@ define('test', ['ss'], function(ss) {
       var ln = this.do4(0, 1, 2, 3, 'a', 'b', 'c', true, false);
       this.do5();
       this.do6({T: Number}, 1, 2, 3);
+      this.do6({T: ss.getGenericConstructor(X$Y_$1, {T: String})});
     },
     toString: function() {
       var x = new X();
@@ -49,13 +50,22 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // MemberTests.X$Y`1
+
+  function X$Y_$1() {
+  }
+  var X$Y_$1$ = {
+
+  };
+
+
   var $exports = ss.module('test', null,
     {
       Test: ss.defineClass(Test, Test$, [], null),
-      X: ss.defineClass(X, X$, [], null)
+      X: ss.defineClass(X, X$, [], null),
+      X$Y_$1: ss.defineClass(X$Y_$1, X$Y_$1$, [], null)
     });
 
 
   return $exports;
 });
-

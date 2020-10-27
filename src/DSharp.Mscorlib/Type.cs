@@ -9,6 +9,7 @@ namespace System
     /// </summary>
     [ScriptIgnoreNamespace]
     [ScriptImport]
+    [ScriptName(nameof(Function))]
     public sealed partial class Type : MemberInfo
     {
         [ScriptName("$base")]
@@ -39,7 +40,9 @@ namespace System
         [DSharpScriptMemberName("makeGenericType")]
         public extern Type MakeGenericType(params Type[] typeArguments);
 
-        public extern bool IsGenericTypeDefinition { get; }
+        public bool IsGenericTypeDefinition { get; }
+
+        public Type[] GenericTypeArguments { get; }
 
         public extern override string Name { get; }
     }

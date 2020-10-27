@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 
 [assembly: ScriptAssembly("test")]
 
@@ -47,6 +46,7 @@ namespace MemberTests
             int ln = Do4(0, 1, 2, 3, "a", "b", "c", true, false);
             Do5();
             Do6<int>(1, 2, 3);
+            Do6<X.Y<string>>();
         }
 
         public abstract object getRunOptions();
@@ -61,7 +61,11 @@ namespace MemberTests
 
     public class X
     {
-
         public void Update(int i) { }
+
+        public class Y<T>
+        {
+
+        }
     }
 }

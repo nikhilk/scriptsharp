@@ -103,7 +103,7 @@ namespace DSharp.Compiler.Generator
         {
             MemberSymbol indexerSymbol = null;
 
-            if(type is ClassSymbol classSymbol)
+            if (type is ClassSymbol classSymbol)
             {
                 indexerSymbol = classSymbol.GetIndexer();
             }
@@ -112,7 +112,7 @@ namespace DSharp.Compiler.Generator
                 indexerSymbol = interfaceSymbol.Indexer;
             }
 
-            return type.Members?.Concat(new [] {indexerSymbol}).Where(MemberHasMetadata);
+            return type.Members?.Concat(new[] { indexerSymbol }).Where(MemberHasMetadata);
         }
 
         private void WriteMembers(IEnumerable<MemberSymbol> members, TypeSymbol nullableType)
@@ -128,13 +128,21 @@ namespace DSharp.Compiler.Generator
 
                 var memberType = GetMemberType(member);
 
-                if(memberType.HasValue)
+                if (memberType.HasValue)
                 {
-                    if(member is IndexerSymbol indexerSymbol && !indexerSymbol.UseScriptIndexer)
+                    if (member is IndexerSymbol indexerSymbol && !indexerSymbol.UseScriptIndexer)
                     {
                         WriteMember(memberType.Value, $"get_{member.GeneratedName}", GetType(member.AssociatedType, nullableType));
                         Writer.WriteLine(",");
                         WriteMember(memberType.Value, $"set_{member.GeneratedName}", GetType(member.AssociatedType, nullableType));
+                    }
+                    else if (member is MethodSymbol methodSymbol)
+                    {
+                        var properties = new[]
+                        {
+                            $"IsGenericMethod: {(methodSymbol.IsGeneric ? "true" : "false")}"
+                        };
+                        WriteMember(memberType.Value, member.GeneratedName, GetType(member.AssociatedType, nullableType), properties);
                     }
                     else
                     {
@@ -146,7 +154,7 @@ namespace DSharp.Compiler.Generator
 
         private int? GetMemberType(MemberSymbol member)
         {
-            switch(member.Type)
+            switch (member.Type)
             {
                 case SymbolType.Method:
                 case SymbolType.Indexer:
@@ -186,7 +194,7 @@ namespace DSharp.Compiler.Generator
             return associatedType.FullGeneratedName;
         }
 
-        private void WriteMember(int memberType, string name, string type)
+        private void WriteMember(int memberType, string name, string type, params string[] properties)
         {
             Writer.Write("{");
             Writer.Write($"MemberType: {memberType},");
@@ -195,6 +203,11 @@ namespace DSharp.Compiler.Generator
             Writer.Write("Type: eval(\"try{");
             Writer.Write(type);
             Writer.Write("}catch{}\")");
+            if (properties.Any())
+            {
+                Writer.Write(", ");
+                Writer.Write(string.Join(", ", properties));
+            }
             Writer.Write("}");
         }
 
@@ -206,7 +219,7 @@ namespace DSharp.Compiler.Generator
                 case SymbolType.Field:
                 case SymbolType.Property:
                 case SymbolType.Indexer:
-                //case SymbolType.Event: //todo
+                    //case SymbolType.Event: //todo
                     return true;
                 default:
                     return false;

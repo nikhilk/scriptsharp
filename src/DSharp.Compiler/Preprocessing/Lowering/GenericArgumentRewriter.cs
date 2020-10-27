@@ -65,7 +65,13 @@ namespace DSharp.Compiler.Preprocessing.Lowering
                 //Note: When parsing an aliased type as part of the methods display it will represent it as the non aliased type. As such we need to ensure we add the missing namespaces.
                 var symbolName = methodSymbol.ToDisplayString(displayFormat);
 
+                foreach(var ns in methodSymbol.TypeArguments.Select(t => t.ContainingNamespace.ToDisplayString(namespaceUsingsFormat)))
+                {
+                    requiredUsings.Add(ns);
+                }
+
                 requiredUsings.Add(methodSymbol.ContainingNamespace.ToDisplayString(namespaceUsingsFormat));
+
                 if(methodSymbol.ReturnType is IArrayTypeSymbol array)
                 {
                     requiredUsings.Add(array.ElementType.ContainingNamespace.ToDisplayString(namespaceUsingsFormat));

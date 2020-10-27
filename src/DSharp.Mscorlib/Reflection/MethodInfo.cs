@@ -8,5 +8,7 @@ namespace System.Reflection
     {
         [ScriptName("Type")]
         public virtual Type ReturnType { get; }
+
+        public virtual bool IsGenericMethod { get; }
     }
 }
