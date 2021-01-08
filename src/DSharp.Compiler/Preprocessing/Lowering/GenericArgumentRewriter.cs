@@ -35,6 +35,7 @@ namespace DSharp.Compiler.Preprocessing.Lowering
             if (missingUsings.Any())
             {
                 var missingDirectives = missingUsings.Select(s => UsingDirective(ParseName(s).WithLeadingTrivia(Whitespace(" ")))).ToArray();
+                missingDirectives[missingDirectives.Length-1] = missingDirectives.Last().WithTrailingTrivia(EndOfLine(Environment.NewLine));
                 newRoot = newRoot.AddUsings(missingDirectives);
             }
 

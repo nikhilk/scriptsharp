@@ -3,7 +3,11 @@ ss.registerMetadataImporter(function(){(function(ss) {
   var Void = null;
   var Type = Function;
   var module = ss.modules['test'];
-  module.MyClass.$members = [
+  function setTypeMetadata(typeName, members) {
+    if(module[typeName])
+      module[typeName].$members = members
+    }
+  setTypeMetadata('MyClass', [
     {MemberType: 8,Name: 'getDelegate', Type: eval("try{Function}catch{}"), IsGenericMethod: false},
     {MemberType: 16,Name: 'Other', Type: eval("try{module.MyClass_$1}catch{}")},
     {MemberType: 16,Name: 'Getter', Type: eval("try{Number}catch{}")},
@@ -14,7 +18,9 @@ ss.registerMetadataImporter(function(){(function(ss) {
     {MemberType: 8,Name: 'method4', Type: eval("try{ss.IList_$1}catch{}"), IsGenericMethod: false},
     {MemberType: 8,Name: '_assert', Type: eval("try{Void}catch{}"), IsGenericMethod: false},
     {MemberType: 8,Name: 'get_item', Type: eval("try{Object}catch{}")},
-    {MemberType: 8,Name: 'set_item', Type: eval("try{Object}catch{}")}];
-  module.MyClass_$1.$members = [
-    {MemberType: 16,Name: 'Other', Type: eval("try{module.MyClass}catch{}")}];
+    {MemberType: 8,Name: 'set_item', Type: eval("try{Object}catch{}")}]
+  );
+  setTypeMetadata('MyClass_$1', [
+    {MemberType: 16,Name: 'Other', Type: eval("try{module.MyClass}catch{}")}]
+  );
 })(ss)});

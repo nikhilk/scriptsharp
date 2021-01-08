@@ -15,6 +15,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.Compiler", "DSharp.Compiler\DSharp.Compiler.csproj", "{35E58E1C-E298-44D8-9CA5-FB427C16FD1C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.Mscorlib", "DSharp.Mscorlib\DSharp.Mscorlib.csproj", "{36D4B098-A21C-4725-ACD3-400922885F38}"
+	ProjectSection(ProjectDependencies) = postProject
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A} = {282D7AB2-EF01-40D3-9F93-E8D71D73F80A}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.Scripts", "DSharp.Script\DSharp.Scripts.csproj", "{8780581F-7C26-4B64-9236-BA1C458DF36E}"
 EndProject
@@ -61,6 +64,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.CodeAnalysis", "DSharp.CodeAnalysis\DSharp.CodeAnalysis.csproj", "{40A2DC00-FD4C-4B91-899F-AD989691DE50}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSharp.CodeAnalysis.Test", "DSharp.CodeAnalysis.Test\DSharp.CodeAnalysis.Test.csproj", "{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSharp.ImportedMetadataGenerator", "DSharp.ImportedMetadataGenerator\DSharp.ImportedMetadataGenerator.csproj", "{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -282,6 +287,22 @@ Global
 		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Release|x86.ActiveCfg = Release|Any CPU
 		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED}.Release|x86.Build.0 = Release|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Debug|.NET.Build.0 = Debug|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Debug|x86.Build.0 = Debug|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Release|.NET.ActiveCfg = Release|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Release|.NET.Build.0 = Release|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Release|x86.ActiveCfg = Release|Any CPU
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -301,6 +322,7 @@ Global
 		{22A3E0ED-39CA-4929-A470-0FF8C057A316} = {33DE9F89-1472-4662-8780-22DD0B6E6138}
 		{40A2DC00-FD4C-4B91-899F-AD989691DE50} = {035402A0-6ECC-4F02-8A20-0D8055F396DC}
 		{AF19046F-9A7D-4C5E-B1B5-3822A74B86ED} = {035402A0-6ECC-4F02-8A20-0D8055F396DC}
+		{282D7AB2-EF01-40D3-9F93-E8D71D73F80A} = {D1DF352A-45B6-4130-9A8B-A24C20257B7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1B1006BD-2201-4F50-8538-98F531B765CF}

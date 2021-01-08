@@ -18,7 +18,7 @@ namespace DSharp.Compiler.Generator
 
         private SymbolSet symbols;
 
-        public ScriptMetadataGenerator(TextWriter writer, CompilerOptions options, SymbolSet symbols)
+        public ScriptMetadataGenerator(TextWriter writer, IMetadataCompilerOptions options, SymbolSet symbols)
         {
             Debug.Assert(writer != null);
             Writer = new ScriptTextWriter(writer);
@@ -27,7 +27,7 @@ namespace DSharp.Compiler.Generator
             this.symbols = symbols;
         }
 
-        public CompilerOptions Options { get; }
+        public IMetadataCompilerOptions Options { get; }
 
         public ScriptTextWriter Writer { get; }
 
@@ -51,15 +51,26 @@ namespace DSharp.Compiler.Generator
             Writer.WriteLine("var Type = Function;");
             Writer.WriteLine($"var module = {DSharpStringResources.DSHARP_SCRIPT_NAME}.modules['{symbols.ScriptName}'];");
 
+            Writer.WriteLine("function setTypeMetadata(typeName, members) {");
+            Writer.Indent++;
+
+            Writer.WriteLine("if(module[typeName])");
+            Writer.Indent++;
+            Writer.WriteLine("module[typeName].$members = members");
+            Writer.Indent--;
+            Writer.WriteLine("}");
+            Writer.Indent--;
+
             foreach (TypeSymbol type in types)
             {
                 if (GetMembers(type) is IEnumerable<MemberSymbol> members && members.Any())
                 {
-                    Writer.WriteLine($"module.{type.GeneratedName}.$members = [");
+                    Writer.WriteLine($"setTypeMetadata('{type.GeneratedName}', [");
                     Writer.Indent++;
                     WriteMembers(members, nullableType);
-                    Writer.WriteLine("];");
+                    Writer.WriteLine("]");
                     Writer.Indent--;
+                    Writer.WriteLine(");");
                 }
             }
 
@@ -112,7 +123,14 @@ namespace DSharp.Compiler.Generator
                 indexerSymbol = interfaceSymbol.Indexer;
             }
 
-            return type.Members?.Concat(new[] { indexerSymbol }).Where(MemberHasMetadata);
+            return type.Members?.Concat(new[] { indexerSymbol })
+                .Where(MemberHasMetadata)
+                .Where(MemberIsNotAliased);
+        }
+
+        private bool MemberIsNotAliased(MemberSymbol arg)
+        {
+            return !arg.GeneratedName.Contains('.');
         }
 
         private void WriteMembers(IEnumerable<MemberSymbol> members, TypeSymbol nullableType)
@@ -179,6 +197,7 @@ namespace DSharp.Compiler.Generator
             }
 
             if (associatedType.IsApplicationType
+                && !associatedType.IgnoreNamespace
                 && associatedType.Type != SymbolType.Delegate) // transpile named delegates to native functions
             {
                 if (associatedType is GenericParameterSymbol || associatedType.IsAnonymousType)

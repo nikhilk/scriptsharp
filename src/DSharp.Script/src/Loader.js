@@ -4,7 +4,8 @@
   function _ss() {
     {{body}}
 
-    return extend(module('ss', null, {
+      return extend(module('ss', null, {
+        Attribute: defineClass(function Attribute() { }, {}, [], null, []),
         IServiceProvider: defineInterface(IServiceProvider),
         IDisposable: defineInterface(IDisposable),
         IEnumerable: defineInterface(IEnumerable),

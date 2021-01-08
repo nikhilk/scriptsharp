@@ -153,7 +153,7 @@ namespace DSharp.Build.Tasks
                 if (minimizingCompiler.Compile(minimizeOptions) && hasErrors == false)
                 {
                     ExecuteCruncher(scriptTaskItem);
-                    OnScriptFileGenerated(scriptTaskItem, minimizeOptions, /* copyReferences */ false);
+                    OnScriptFileGenerated(scriptTaskItem, minimizeOptions, copyReferences: false);
                 }
                 else
                 {
@@ -178,6 +178,7 @@ namespace DSharp.Build.Tasks
             options.AssemblyName = AssemblyName;
             options.DebugMode = DebugMode;
             options.IntermediarySourceFolder = IntermediarySourceFolder;
+            options.Assembly = Assembly.ItemSpec;
 
             if (!string.IsNullOrEmpty(TemplatePath))
             {

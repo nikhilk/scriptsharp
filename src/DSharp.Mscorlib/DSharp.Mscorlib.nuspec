@@ -12,9 +12,16 @@
     <dependencies>
       <dependency id="DSharp.Scripts" version="$version$" include="contentFiles" />
     </dependencies>
+
+    <contentFiles>
+      <files include="any\net40\ss.meta.js" buildAction="Content" copyToOutput="true" />
+      <files include="any\net471\ss.meta.js" buildAction="Content" copyToOutput="true" />
+    </contentFiles>
   </metadata>
   <files>
-    <file src="bin\$configuration$\net40\**" target="lib\net40" />
-    <file src="bin\$configuration$\net471\**" target="lib\net471" />
+    <file src="bin\$configuration$\net40\DSharp.Mscorlib.*" target="lib\net40" />
+    <file src="bin\$configuration$\net471\DSharp.Mscorlib.*" target="lib\net471" />
+    <file src="bin\$configuration$\net40\ss.meta.js" target="contentFiles\any\net40" />
+    <file src="bin\$configuration$\net471\ss.meta.js" target="contentFiles\any\net471" />
   </files>
 </package>

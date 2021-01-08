@@ -2,7 +2,7 @@
 
 namespace DSharp.Compiler
 {
-    public sealed class CompilerOptions
+    public sealed class CompilerOptions : ICompilerOptions, IMetadataCompilerOptions
     {
         public CompilerOptions()
         {
@@ -36,6 +36,8 @@ namespace DSharp.Compiler
         public bool DebugMode { get; set; } = false;
 
         public string IntermediarySourceFolder { get; set; }
+
+        public string Assembly { get; set; }
 
         //TODO: Remove this mechanism
         public bool Validate(out string errorMessage)

@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using DSharp.Compiler.Errors;
 using DSharp.Compiler.References;
@@ -30,11 +31,11 @@ namespace DSharp.Compiler.Importer
             this.errorHandler = errorHandler;
         }
 
-        private ICollection<TypeSymbol> ImportAssemblies(MetadataSource mdSource)
+        private ICollection<TypeSymbol> ImportAssemblies(MetadataSource mdSource, string intermediaryAssembly = null)
         {
             importedTypes = new List<TypeSymbol>();
-
-            ImportScriptAssembly(mdSource, mdSource.CoreAssemblyPath, /* coreAssembly */ true);
+            var isApplicationAssembly = Path.GetFullPath(mdSource.CoreAssemblyPath) == intermediaryAssembly;
+            ImportScriptAssembly(mdSource, mdSource.CoreAssemblyPath, coreAssembly: true, applicationAssembly: isApplicationAssembly);
 
             foreach (TypeSymbol typeSymbol in importedTypes)
                 if (typeSymbol.Type == SymbolType.Class &&
@@ -101,7 +102,10 @@ namespace DSharp.Compiler.Importer
             // Types need to be loaded upfront so that they can be used in resolving types associated
             // with members.
             foreach (string assemblyPath in mdSource.Assemblies)
-                ImportScriptAssembly(mdSource, assemblyPath, /* coreAssembly */ false);
+            {
+                isApplicationAssembly = Path.GetFullPath(assemblyPath) == intermediaryAssembly;
+                ImportScriptAssembly(mdSource, assemblyPath, coreAssembly: false, applicationAssembly: isApplicationAssembly);
+            }
 
             // Resolve Base Types
             foreach (TypeSymbol typeSymbol in importedTypes)
@@ -494,6 +498,36 @@ namespace DSharp.Compiler.Importer
                 : importedTypes;
         }
 
+        public ICollection<TypeSymbol> ImportMetadata(ICollection<string> references, SymbolSet symbols, string intermediaryAssembly)
+        {
+            Debug.Assert(references != null);
+            Debug.Assert(symbols != null);
+            Debug.Assert(intermediaryAssembly != null);
+
+            this.symbols = symbols;
+
+            MetadataSource mdSource = new MetadataSource();
+
+            if(!string.IsNullOrEmpty(intermediaryAssembly))
+            {
+                references = new List<string>(references);
+                references.Add(intermediaryAssembly);
+            }
+
+            bool hasLoadErrors = mdSource.LoadReferences(references, errorHandler);
+
+            ICollection<TypeSymbol> importedTypes = null;
+
+            if (!hasLoadErrors)
+            {
+                importedTypes = ImportAssemblies(mdSource, Path.GetFullPath(intermediaryAssembly));
+            }
+
+            return resolveError
+                ? null
+                : importedTypes;
+        }
+
         private void ImportMethods(TypeSymbol typeSymbol)
         {
             // NOTE: We do not import parameters for imported members.
@@ -876,7 +910,7 @@ namespace DSharp.Compiler.Importer
             classSymbol.AddMember(getGenericTemplateMethod);
         }
 
-        private void ImportScriptAssembly(MetadataSource mdSource, string assemblyPath, bool coreAssembly)
+        private void ImportScriptAssembly(MetadataSource mdSource, string assemblyPath, bool coreAssembly, bool applicationAssembly)
         {
             string scriptName = null;
 
@@ -908,7 +942,7 @@ namespace DSharp.Compiler.Importer
                         continue;
                     }
 
-                    ImportType(mdSource, type, coreAssembly, dependency);
+                    ImportType(mdSource, type, inScriptCoreAssembly: coreAssembly, inApplicationAssembly: applicationAssembly, dependency: dependency);
                 }
                 catch (Exception e)
                 {
@@ -916,7 +950,7 @@ namespace DSharp.Compiler.Importer
                 }
         }
 
-        private void ImportType(MetadataSource mdSource, TypeDefinition type, bool inScriptCoreAssembly,
+        private void ImportType(MetadataSource mdSource, TypeDefinition type, bool inScriptCoreAssembly, bool inApplicationAssembly,
                                 ScriptReference dependency, TypeSymbol outerType = null)
         {
             if (!type.IsPublic && !type.IsNestedPublic)
@@ -979,7 +1013,7 @@ namespace DSharp.Compiler.Importer
 
             if (typeSymbol != null)
             {
-                if(MetadataHelpers.ShouldIgnoreGenerics(type))
+                if (MetadataHelpers.ShouldIgnoreGenerics(type))
                 {
                     typeSymbol.SetIgnoreGenerics();
                 }
@@ -1006,7 +1040,11 @@ namespace DSharp.Compiler.Importer
                     dependency = ScriptReferenceProvider.Instance.GetReference(dependencyName, dependencyIdentifier);
                 }
 
-                typeSymbol.SetImported(dependency);
+                if(!inApplicationAssembly)
+                {
+                    typeSymbol.SetImported(dependency);
+                }
+
                 typeSymbol.SetMetadataToken(type, inScriptCoreAssembly);
 
                 bool ignoreNamespace = MetadataHelpers.ShouldIgnoreNamespace(type);
@@ -1042,7 +1080,7 @@ namespace DSharp.Compiler.Importer
                 {
                     foreach (TypeDefinition nestedType in type.NestedTypes)
                     {
-                        ImportType(mdSource, nestedType, inScriptCoreAssembly, dependency, typeSymbol);
+                        ImportType(mdSource, nestedType, inScriptCoreAssembly, inApplicationAssembly, dependency, typeSymbol);
                     }
                 }
             }

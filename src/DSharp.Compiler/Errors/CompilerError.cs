@@ -57,5 +57,10 @@ namespace DSharp.Compiler.Errors
         {
             return HashingUtils.CombineHashCodes(ErrorCode, Description, File, LineNumber);
         }
+
+        public override string ToString()
+        {
+            return $"[{FormattedErrorCode}] {File}({LineNumber},{ColumnNumber}): {Description}";
+        }
     }
 }

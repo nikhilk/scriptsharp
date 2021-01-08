@@ -20,13 +20,16 @@
     <Company>Derivco</Company>
     <Description>DSharps Mscorlib implementation which provides all base types</Description>
     <RuntimeMetadataVersion>v4.0.30319</RuntimeMetadataVersion>
+    <ScriptName>ss</ScriptName>
+    <!--<DSharpCompilerDebugMode>true</DSharpCompilerDebugMode>-->
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;1705;1591;0626</NoWarn>
   </PropertyGroup>
   
-  <ItemGroup>
-    <None Include="AdditionalCompilerOptions.txt" />
-  </ItemGroup>
+  <Target Name="GenerateMetadata" AfterTargets="Build" Condition="'$(TargetFramework)' != ''">
+    <Exec Command="..\DSharp.ImportedMetadataGenerator\bin\$(Configuration)\netcoreapp3.1\DSharp.ImportedMetadataGenerator.exe References=@(ReferencePath);@(ReferenceDependencyPaths) AssemblyName=$(ScriptName) OutputPath=$(OutputPath)\$(ScriptName).meta.js Assembly=@(IntermediateAssembly) DebugMode=$(DSharpCompilerDebugMode) ProjectPath=$(MSBuildProjectFullPath)" />
+  </Target>
+  
 </Project>

@@ -4,8 +4,9 @@
     <DSharpBuildAssembly Condition="'$(DSharpBuildAssembly)' == ''">$(ToolsPath)DSharp.Build.dll</DSharpBuildAssembly>
     <NoWarn>CS0626;$(NoWarn)</NoWarn>
   </PropertyGroup>
-  
+
   <UsingTask TaskName="ScriptCompilerTask" AssemblyFile="$(DSharpBuildAssembly)" />
+  <UsingTask TaskName="MetadataCompilerTask" AssemblyFile="$(DSharpBuildAssembly)" />
   <UsingTask TaskName="ResXCodeGeneratorTask" AssemblyFile="$(DSharpBuildAssembly)" />
 
   <Target Name="ValidateMinimumFrameworkVersion" BeforeTargets="Compile">
@@ -35,6 +36,19 @@
       ProjectPath="$(MSBuildProjectFullPath)">
       <Output TaskParameter="Scripts" ItemName="Scripts" />
     </ScriptCompilerTask>
+  </Target>
+
+  <Target Name="BuildImportMetadata" Returns="@(Scripts)" AfterTargets="Build" Condition="'$(IsImportLibrary)' == 'true' AND '$(TargetFramework)' != ''">
+    <MetadataCompilerTask
+      References="@(ReferencePath);@(ReferenceDependencyPaths)"
+      AssemblyName ="$(AssemblyName)"
+      OutputPath="$(OutputPath)"
+      Assembly="@(IntermediateAssembly)"
+      ScriptName="$(ScriptName)"
+      DebugMode ="$(DSharpCompilerDebugMode)"
+      ProjectPath="$(MSBuildProjectFullPath)">
+      <Output TaskParameter="Scripts" ItemName="Scripts" />
+    </MetadataCompilerTask>
   </Target>
 
   <Target Name="GenerateResourcesCode" Inputs="@(EmbeddedResource)" Outputs="@(GeneratedResourceCode)">
