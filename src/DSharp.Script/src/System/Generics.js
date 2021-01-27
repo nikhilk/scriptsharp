@@ -22,14 +22,19 @@ function getGenericConstructor(ctorMethod, typeArguments) {
         else {
             genericInstance = function () {
                 ctorMethod.apply(this, Array.prototype.slice.call(arguments));
+                var ctr = this.__proto__.constructor;
+                ctr.$typeArguments = typeArguments || {};
+                ctr.$base = ctr.$base || genericInstance.$base;
+                ctr.$interfaces = ctr.$interfaces || genericInstance.$interfaces;
+                ctr.$type = ctr.$type || genericInstance.$type;
+                ctr.$name = ctr.$name || genericInstance.$name;
+                ctr.$constructorParams = ctr.$constructorParams || genericInstance.$constructorParams;
             };
-            genericInstance.prototype = Object.create(ctorMethod.prototype);
-            genericInstance.prototype.constructor = genericInstance;
-            genericInstance.$base = genericInstance.$base || ctorMethod.$base;
-            genericInstance.$interfaces = genericInstance.$interfaces || ctorMethod.$interfaces;
-            genericInstance.$type = genericInstance.$type || ctorMethod.$type;
-            genericInstance.$name = genericInstance.$name || ctorMethod.$name;
-            genericInstance.$constructorParams = genericInstance.$constructorParams || ctorMethod.$constructorParams;
+            genericInstance.$base = ctorMethod.$base;
+            genericInstance.$interfaces = ctorMethod.$interfaces;
+            genericInstance.$type = ctorMethod.$type;
+            genericInstance.$name = ctorMethod.$name;
+            genericInstance.$constructorParams = ctorMethod.$constructorParams;
         }
         genericInstance.prototype = Object.create(ctorMethod.prototype);
         genericInstance.prototype.constructor = genericInstance;
@@ -58,7 +63,7 @@ function getTypeName(instance) {
         return instance["$name"] || instance.constructor.$name || instance["name"];
     }
     catch (ex) {
-        return instance.toString();
+        return instance && instance.toString();
     }
 }
 
