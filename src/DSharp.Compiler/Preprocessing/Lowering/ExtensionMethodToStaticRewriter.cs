@@ -56,7 +56,7 @@ namespace DSharp.Compiler.Preprocessing.Lowering
 
             if (symb != null
                 && symb.IsExtensionMethod
-                && symb.ReceiverType != symb.ContainingSymbol) // ignore extension methods invoked as static methods
+                && !Equals(symb.ReceiverType, symb.ContainingSymbol)) // ignore extension methods invoked as static methods
             {
                 var extensionClass = symb.ContainingSymbol.ToDisplayString();
                 var extensionAlias = extensionClass.Replace(".", "_");

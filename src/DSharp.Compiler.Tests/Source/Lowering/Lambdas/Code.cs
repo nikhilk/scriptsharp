@@ -27,6 +27,8 @@ namespace LoweringTests {
             GenericClass<Test> foo = new GenericClass<Test>();
 
             Action<GenericClass<Test>> nested = x => x.Method(a => a.Bar++);
+            Func<bool, bool> ignored = _ => false;
+            X.Y(z => false);
             foo.Method(a => a.Bar++);
         }
 

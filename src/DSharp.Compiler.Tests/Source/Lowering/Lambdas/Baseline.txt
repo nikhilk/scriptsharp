@@ -33,6 +33,12 @@ define('test', ['ss'], function(ss) {
         return a.bar++;
       });
     };
+    var ignored = function(_) {
+      return false;
+    };
+    X.y(function(z) {
+      return false;
+    });
     foo.method(function(a) {
       return a.bar++;
     });
@@ -74,15 +80,36 @@ define('test', ['ss'], function(ss) {
   });
 
 
+  // LoweringTests.X
+
+  function X() {
+  }
+  X.y = function(z) {
+  };
+  var X$ = {
+
+  };
+
+
+  // MissingUsing.Z
+
+  function Z() {
+  }
+  var Z$ = {
+
+  };
+
+
   var $exports = ss.module('test', null,
     {
       ILogger: ss.defineInterface(ILogger),
       Test: ss.defineClass(Test, Test$, [], null),
       GenericClass_$1: ss.defineClass(GenericClass_$1, GenericClass_$1$, [], null),
-      LoggerExtensions: ss.defineClass(LoggerExtensions, null, [], null)
+      LoggerExtensions: ss.defineClass(LoggerExtensions, null, [], null),
+      X: ss.defineClass(X, X$, [], null),
+      Z: ss.defineClass(Z, Z$, [], null)
     });
 
 
   return $exports;
 });
-
