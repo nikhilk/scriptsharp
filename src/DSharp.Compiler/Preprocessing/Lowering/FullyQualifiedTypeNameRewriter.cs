@@ -13,11 +13,13 @@ namespace DSharp.Compiler.Preprocessing.Lowering
     {
         private SemanticModel sem;
         private HashSet<string> requiredUsings;
+        private Dictionary<string, string> typeAliases;
 
         public CompilationUnitSyntax Apply(Compilation compilation, CompilationUnitSyntax root)
         {
             sem = compilation.GetSemanticModel(root.SyntaxTree);
             requiredUsings = new HashSet<string>();
+            typeAliases = new Dictionary<string, string>();
 
             var newRoot = Visit(root) as CompilationUnitSyntax;
 
@@ -28,7 +30,34 @@ namespace DSharp.Compiler.Preprocessing.Lowering
                 var missingDirectives = missingUsings.Select(s => UsingDirective(ParseName(s).WithLeadingTrivia(Whitespace(" "))).WithTrailingTrivia(CarriageReturn)).ToArray();
                 newRoot = newRoot.AddUsings(missingDirectives);
             }
+            if (typeAliases.Any())
+            {
+                newRoot = newRoot.AddUsings(CreateTypeAliases());
+            }
+
             return newRoot;
+        }
+
+        private UsingDirectiveSyntax[] CreateTypeAliases()
+        {
+            bool isFirstUsing = true;
+
+            return typeAliases.Select(s =>
+            {
+                var line = UsingDirective(
+                    NameEquals(s.Key).WithLeadingTrivia(Whitespace(" ")),
+                    ParseName(s.Value)
+                ).WithTrailingTrivia(CarriageReturn);
+
+                if (isFirstUsing)
+                {
+                    isFirstUsing = false;
+                    line = line.WithLeadingTrivia(line.GetTrailingTrivia());
+                }
+
+                return line;
+
+            }).ToArray();
         }
 
         public override SyntaxNode VisitQualifiedName(QualifiedNameSyntax node)
@@ -36,10 +65,18 @@ namespace DSharp.Compiler.Preprocessing.Lowering
             var type = sem.GetTypeInfo(node).Type 
                 ?? sem.GetTypeInfo(node.Parent).Type;
 
-            if(type is INamedTypeSymbol && !node.Parent.IsKind(SyntaxKind.UsingDirective))
+            if(type is INamedTypeSymbol namedType && !node.Parent.IsKind(SyntaxKind.UsingDirective))
             {
-                requiredUsings.Add(type.ContainingNamespace.ToString());
-                return Visit(node.Right)
+                if(namedType.IsGenericType)
+                {
+                    requiredUsings.Add(type.ContainingNamespace.ToString());
+                    return Visit(node.Right)
+                        .WithTriviaFrom(node);
+                }
+
+                var typeAlias = node.ToString().Replace(".", "_");
+                typeAliases[typeAlias] = node.ToString();
+                return IdentifierName(typeAlias)
                     .WithTriviaFrom(node);
             }
 
