@@ -1,0 +1,38 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // Some.Namespace.Bar
+
+  function Bar(bar) {
+  }
+
+
+  // Some.Namespace.Bar`1
+
+  function Bar_$1(t) {
+  }
+
+
+  // FullyQualifiedTypesTests.Foo
+
+  function Foo() {
+  }
+  var Foo$ = {
+    main: function() {
+      var bar = new Bar(new Bar());
+      var bart = ss.createGenericType(Bar_$1, {T : Bar}, new Bar());
+    }
+  };
+
+
+  var $exports = ss.module('test', null,
+    {
+      Bar: ss.defineClass(Bar, null, [Bar], null),
+      Bar_$1: ss.defineClass(Bar_$1, null, [Object], null),
+      Foo: ss.defineClass(Foo, Foo$, [], null)
+    });
+
+
+  return $exports;
+});
