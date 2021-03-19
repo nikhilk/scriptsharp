@@ -948,6 +948,14 @@ namespace DSharp.Compiler.Compiler
                                 break;
                             }
                     }
+
+                    if (method.AssociatedType.IsGeneric && method.AssociatedType.GenericArguments is null)
+                    {
+                        if (ResolveMethodReturnType(methodNode, method) is TypeSymbol resolvedGenericReturnType)
+                        {
+                            method.UpdateGenericAssociatedType(resolvedGenericReturnType);
+                        }
+                    }
                 }
             }
 
@@ -987,9 +995,9 @@ namespace DSharp.Compiler.Compiler
             return method;
         }
 
-        private TypeSymbol ResolveMethodReturnType(MethodDeclarationNode methodNode, TypeSymbol typeSymbol)
+        private TypeSymbol ResolveMethodReturnType(MethodDeclarationNode methodNode, Symbol contextSymbol)
         {
-            var resolvedType = typeSymbol.SymbolSet.ResolveType(methodNode.Type, symbolTable, typeSymbol);
+            var resolvedType = contextSymbol.SymbolSet.ResolveType(methodNode.Type, symbolTable, contextSymbol);
             if (resolvedType == null)
             {
                 return null;
@@ -997,7 +1005,7 @@ namespace DSharp.Compiler.Compiler
 
             if (resolvedType is GenericParameterSymbol genericParameterSymbol && genericParameterSymbol.Owner == null)
             {
-                genericParameterSymbol.Owner = typeSymbol;
+                genericParameterSymbol.Owner = contextSymbol;
             }
 
             return resolvedType;
@@ -1209,9 +1217,17 @@ namespace DSharp.Compiler.Compiler
 
             string name = outerType is TypeSymbol ? $"{outerType.Name}${typeNode.Name}" : typeNode.Name;
             bool ignoreGenerics = false;
-
-            if (AttributeNode.FindAttribute(typeNode.Attributes, "ScriptIgnoreGenericArguments") != null)
+            bool useGenericName = true;
+            if (AttributeNode.FindAttribute(typeNode.Attributes, "ScriptIgnoreGenericArguments") is AttributeNode attributeNode)
             {
+                useGenericName = (attributeNode.Arguments?.Any(a =>
+                    a is BinaryExpressionNode node
+                    && node.LeftChild is AtomicNameNode property
+                    && property.Name == "UseGenericName"
+                    && node.RightChild is LiteralNode literal
+                    && literal.Value.Equals(true)
+                )).GetValueOrDefault();
+
                 ignoreGenerics = true;
             }
 
@@ -1275,7 +1291,7 @@ namespace DSharp.Compiler.Compiler
             {
                 if (ignoreGenerics)
                 {
-                    typeSymbol.SetIgnoreGenerics();
+                    typeSymbol.SetIgnoreGenerics(useGenericName);
                 }
 
                 List<GenericParameterSymbol> genericParameterSymbols = new List<GenericParameterSymbol>();
@@ -1491,13 +1507,17 @@ namespace DSharp.Compiler.Compiler
                 {
                     string nodeName = node.Name;
 
+                    TypeSymbol baseTypeSymbol;
+
                     if (node is GenericNameNode genericNameNode)
                     {
-                        nodeName += $"`{genericNameNode.TypeArguments.Count}";
+                        baseTypeSymbol = symbols.ResolveType(node, interfaceSymbol, interfaceSymbol);
+                    }
+                    else
+                    {
+                        baseTypeSymbol = (TypeSymbol)symbolTable.FindSymbol(node.Name, interfaceSymbol, SymbolFilter.Types);
                     }
 
-                    TypeSymbol baseTypeSymbol =
-                        (TypeSymbol)symbolTable.FindSymbol(nodeName, interfaceSymbol, SymbolFilter.Types);
 
                     Debug.Assert(baseTypeSymbol.Type == SymbolType.Interface);
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DSharp.Compiler.CodeModel;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -21,63 +22,64 @@ namespace DSharp.Compiler.Preprocessing.Lowering
             .WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Omitted);
 
         private SemanticModel semanticModel;
-        private HashSet<string> requiredUsings;
+        private HashSet<string> requiredUsings = new HashSet<string>();
 
         public CompilationUnitSyntax Apply(Compilation compilation, CompilationUnitSyntax root)
         {
             semanticModel = compilation.GetSemanticModel(root.SyntaxTree);
-            requiredUsings = new HashSet<string>();
 
             var newRoot = Visit(root) as CompilationUnitSyntax;
-
             var missingUsings = requiredUsings.Where(r => !root.Usings.Select(u => u.Name.ToString()).Contains(r));
 
             if (missingUsings.Any())
             {
                 var missingDirectives = missingUsings.Select(s => UsingDirective(ParseName(s).WithLeadingTrivia(Whitespace(" ")))).ToArray();
-                missingDirectives[missingDirectives.Length-1] = missingDirectives.Last().WithTrailingTrivia(EndOfLine(Environment.NewLine));
+                missingDirectives[missingDirectives.Length - 1] = missingDirectives.Last().WithTrailingTrivia(EndOfLine(Environment.NewLine));
                 newRoot = newRoot.AddUsings(missingDirectives);
             }
 
             return newRoot;
         }
 
-        public override SyntaxNode VisitAliasQualifiedName(AliasQualifiedNameSyntax node)
+        public TypeSyntax UseType(ITypeSymbol type)
         {
-            return base.VisitAliasQualifiedName(node);
+            AddUsingForType(type);
+            return IdentifierName(type.ToDisplayString());
         }
 
         public override SyntaxNode VisitIdentifierName(IdentifierNameSyntax node)
         {
-            var symbol = semanticModel.GetSymbolInfo(node).Symbol;
+            var symbol = Try(() => GetMethodSymbol(node), null);
+            var methodSymbol = symbol as IMethodSymbol;
 
-            if (symbol is IMethodSymbol methodSymbol)
+            if (methodSymbol == null
+                || !methodSymbol.IsGenericMethod)
             {
-                return VisitMethodSymbol(methodSymbol, node);
+                return base.VisitIdentifierName(node);
             }
 
-            return base.VisitIdentifierName(node);
+            AddUsingForType(methodSymbol.ContainingType);
+
+            foreach (var typeArgument in methodSymbol.TypeArguments)
+            {
+                AddUsingForType(typeArgument);
+            }
+
+            AddUsingForType(methodSymbol.ReturnType);
+
+            var fullName = methodSymbol.ToDisplayString(displayFormat);
+
+            return ParseExpression(fullName);
         }
 
-        private SyntaxNode VisitMethodSymbol(IMethodSymbol methodSymbol, IdentifierNameSyntax node)
+        private ISymbol GetMethodSymbol(ExpressionSyntax node)
         {
-            if (methodSymbol.Arity != node.Arity)
-            {
-                //Note: When parsing an aliased type as part of the methods display it will represent it as the non aliased type. As such we need to ensure we add the missing namespaces.
-                var symbolName = methodSymbol.ToDisplayString(displayFormat);
+            var symbolInfo = semanticModel.GetSymbolInfo(node);
 
-                foreach(var typeArgument in methodSymbol.TypeArguments)
-                {
-                    AddUsingForType(typeArgument);
-                }
-
-                AddUsingForType(methodSymbol.ContainingType);
-                AddUsingForType(methodSymbol.ReturnType);
-
-                return ParseName(symbolName).WithTriviaFrom(node);
-            }
-
-            return base.VisitIdentifierName(node);
+            return symbolInfo.Symbol
+                ?? symbolInfo.CandidateSymbols
+                    .SingleOrDefault(s => s is IMethodSymbol m
+                        && m.TypeArguments.Count(a => a is ITypeParameterSymbol) == 0);
         }
 
         private void AddUsingForType(ITypeSymbol type)
@@ -91,6 +93,14 @@ namespace DSharp.Compiler.Preprocessing.Lowering
             {
                 requiredUsings.Add(ns.ToDisplayString(namespaceUsingsFormat));
             }
+        }
+
+        private static T Try<T>(Func<T> action, T defaultValue)
+        {
+            try { return action(); }
+            catch (Exception) { }
+
+            return defaultValue;
         }
     }
 }

@@ -29,7 +29,7 @@ define('test', ['ss'], function(ss) {
     };
     var foo = ss.createGenericType(GenericClass_$1, {T : Test});
     var nested = function(x) {
-      return x.method(function(a) {
+      x.method(function(a) {
         return a.bar++;
       });
     };
@@ -100,7 +100,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       ILogger: ss.defineInterface(ILogger),
       Test: ss.defineClass(Test, Test$, [], null),
@@ -109,6 +109,7 @@ define('test', ['ss'], function(ss) {
       X: ss.defineClass(X, X$, [], null),
       Z: ss.defineClass(Z, Z$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

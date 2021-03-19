@@ -1,0 +1,60 @@
+"use strict";
+
+define('test', ['ss'], function(ss) {
+  var $global = this;
+  // DSharp.Compiler.Tests.Source.Expression.GenericsReturnTypeDeduction.X`1
+
+  function X_$1() {
+  }
+  var X_$1$ = {
+
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Expression.GenericsReturnTypeDeduction.Program
+
+  function Program() {
+  }
+  Program.main = function(args) {
+    var length = Program._cast({T: String}, 'TEST_STRING').length;
+    var length2 = ss.getItem(Program._toList({T: String}, [ 'asd' ]), 0).length;
+    var x = ss.createGenericType(X_$1, {T : Number});
+    var isX = ss.canCast(x, ss.getGenericConstructor(X_$1,{T : String}));
+    var isXofX = ss.canCast(x, ss.getGenericConstructor(X_$1,{T : ss.getGenericConstructor(X_$1, {T : String})}));
+    var xAsX = ss.safeCast(x, ss.getGenericConstructor(X_$1,{T : Number}));
+    var xAsXofX = ss.safeCast(x, ss.getGenericConstructor(X_$1,{T : ss.getGenericConstructor(X_$1, {T : String})}));
+    var result = ExtensionMethods.genericExtensionMethod({T: String}, Program._toList({T: String}, [ 'asd' ])).length;
+  };
+  Program._cast = function($TArgs, x) {
+    return x;
+  };
+  Program._toList = function($TArgs, source) {
+    return null;
+  };
+  var Program$ = {
+
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Expression.GenericsReturnTypeDeduction.ExtensionMethods
+
+  function ExtensionMethods() {
+  }
+  ExtensionMethods.genericExtensionMethod = function($TArgs, source) {
+    return null;
+  };
+
+
+  var $module = ss.module('test',
+    {
+      X_$1: ss.defineClass(X_$1, X_$1$, [], null)
+    },
+    {
+      Program: ss.defineClass(Program, Program$, [], null),
+      ExtensionMethods: ss.defineClass(ExtensionMethods, null, [], null)
+    });
+  var $exports = $module.api;
+
+
+  return $exports;
+});

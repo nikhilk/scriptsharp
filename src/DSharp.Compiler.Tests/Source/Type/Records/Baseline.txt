@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // TypeTests.Point
 
   function Point(x, y) {
@@ -18,11 +17,12 @@ define('test', ['ss'], function(ss) {
   function Pair() { return {}; }
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       Point: Point,
       Pair: Pair
     });
+  var $exports = $module.api;
 
 
   return $exports;

@@ -131,7 +131,7 @@ namespace DSharp.Compiler
         private void ImportMetadata()
         {
             MetadataImporter mdImporter = new MetadataImporter(this);
-            mdImporter.ImportMetadata(options.References, symbols);
+            mdImporter.ImportMetadata(options.AssemblyName, options.References, symbols);
         }
 
         private void BuildCodeModel()
@@ -167,13 +167,16 @@ namespace DSharp.Compiler
                 new AnnotatedCSharpRewriter(),
                 new StaticUsingRewriter(),
                 new VarRewriter(this),
-                new GenericArgumentRewriter(),
+                new NamedArgumentsRewriter(this),
+                new ExtensionMethodToStaticRewriter(),
                 new LambdaRewriter(this),
                 new EnumValueRewriter(),
+                new GenericArgumentRewriter(), // avoids ambiguous overloads for the rest of the lowerers
                 new ObjectInitializerRewriter(this),
                 new ImplicitArrayCreationRewriter(),
                 new OperatorOverloadRewriter(),
-                new ExtensionMethodToStaticRewriter(),
+                new OptionalArgumentsRewriter(this),
+                new GenericArgumentRewriter(), // ensures that generic calls always have explicit type params
                 new FullyQualifiedTypeNameRewriter(),
             };
 

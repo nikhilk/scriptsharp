@@ -10,10 +10,11 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       App: ss.defineClass(App, null, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

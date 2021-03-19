@@ -6,8 +6,8 @@ namespace System.Collections.Generic
     /// The Dictionary data type which is mapped to the Object type in Javascript.
     /// </summary>
     [ScriptIgnoreNamespace]
-    [ScriptImport]
     [ScriptName("Object")]
+    [ScriptIgnoreGenericArguments]
     public sealed partial class Dictionary<TKey, TValue>
         : IDictionary<TKey, TValue>
         , IDictionary

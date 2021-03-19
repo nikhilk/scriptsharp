@@ -40,12 +40,13 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       AAAA: ss.defineClass(AAAA, null, [], null),
       Extensions: ss.defineClass(Extensions, null, [], null),
       Main: ss.defineClass(Main, null, [], null)
     });
+  var $exports = $module.api;
 
   Main.WOW = 666;
 

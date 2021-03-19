@@ -15,10 +15,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       TestClass: ss.defineClass(TestClass, TestClass$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

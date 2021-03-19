@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // ListTests.PublicClass
 
   function PublicClass() {
@@ -17,10 +16,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       PublicClass: ss.defineClass(PublicClass, PublicClass$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

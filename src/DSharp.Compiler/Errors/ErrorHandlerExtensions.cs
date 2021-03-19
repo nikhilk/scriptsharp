@@ -112,5 +112,30 @@ namespace DSharp.Compiler.Errors
             CompilerError error = new CompilerError((ushort)CompilerErrorCode.MissingStreamError, message);
             errorHandler.ReportError(error);
         }
+
+        public static void ReportDiagnostic(this IErrorHandler errorHandler, Diagnostic diagnostic)
+        {
+            var compilerError = new CompilerError((ushort)CompilerErrorCode.LowererError, 
+                diagnostic.Descriptor.Description.ToString(), 
+                diagnostic.Location.SourceTree.FilePath,
+                diagnostic.Location.GetLineSpan().StartLinePosition.Line, 
+                diagnostic.Location.GetLineSpan().StartLinePosition.Character);
+
+            switch (diagnostic.Severity)
+            {
+                case DiagnosticSeverity.Hidden:
+                    break;
+                case DiagnosticSeverity.Info:
+                    break;
+                case DiagnosticSeverity.Warning:
+                    errorHandler.ReportWarning(compilerError);
+                    break;
+                case DiagnosticSeverity.Error:
+                    errorHandler.ReportError(compilerError);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

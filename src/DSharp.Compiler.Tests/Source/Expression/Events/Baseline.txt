@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // ExpressionTests.Button
 
   function Button() {
@@ -87,12 +86,13 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       Button: ss.defineClass(Button, Button$, [], null),
       App: ss.defineClass(App, App$, [], null),
-      FooEventArgs: ss.defineClass(FooEventArgs, FooEventArgs$, [], ss.EventArgs)
+      FooEventArgs: ss.defineClass(FooEventArgs, FooEventArgs$, [], function () { return ss.EventArgs})
     });
+  var $exports = $module.api;
 
 
   return $exports;

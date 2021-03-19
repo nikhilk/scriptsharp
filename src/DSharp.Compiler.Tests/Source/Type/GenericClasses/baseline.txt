@@ -1,6 +1,6 @@
-﻿"use strict";
+"use strict";
 
-define('test', ['ss'], function(ss) {
+define('test', ['ss', 'lib1'], function(ss, lib1) {
   var $global = this;
   // DSharp.Compiler.Tests.Source.Type.GenericClasses.IBulkAsyncExecutionManager`1
 
@@ -99,7 +99,7 @@ define('test', ['ss'], function(ss) {
   }
   var BulkAsyncExecutionManager_$1$ = {
     addExecutionKey: function(executionKey) {
-      var typeOfT = ss.getTypeArgument(this, 'T');
+      var typeOfT = ss.getTypeArgument(this, 'T', BulkAsyncExecutionManager_$1);
     },
     addExecutionKeys: function(executionKeys) {
       var typeOfT = ss.typeOf(executionKeys);
@@ -127,10 +127,19 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericTypeWithUseGenericName`3
+
+  function GenericTypeWithUseGenericName_$3() {
+  }
+  var GenericTypeWithUseGenericName_$3$ = {
+
+  };
+
+
   // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericTypeWithParamsInCtor`1
 
   var GenericTypeWithParamsInCtor_$1 = ss.namedFunction('GenericTypeWithParamsInCtor_$1',ss.paramsGenerator(1, function(arg, args) {
-    var x = ss.typeName(ss.getTypeArgument(this, 'T'));
+    var x = ss.typeName(ss.getTypeArgument(this, 'T', GenericTypeWithParamsInCtor_$1));
   }
   ));
   var GenericTypeWithParamsInCtor_$1$ = {
@@ -148,10 +157,20 @@ define('test', ['ss'], function(ss) {
   };
 
 
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericWithGenericInConstructor`1
+
+  function GenericWithGenericInConstructor_$1(genericClass) {
+    this._genericClass = genericClass;
+  }
+  var GenericWithGenericInConstructor_$1$ = {
+
+  };
+
+
   // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericClass`1
 
   function GenericClass_$1(value, mutator) {
-    ss.getGenericConstructor(BaseGenericClass_$1, {T : ss.getTypeArgument(this, 'T')}).call(this, value);
+    ss.getGenericConstructor(BaseGenericClass_$1,{T : ss.getTypeArgument(this, 'T', GenericClass_$1)}).call(this, value);
     this._value$1 = value;
     this._mutator$1 = mutator;
   }
@@ -160,13 +179,13 @@ define('test', ['ss'], function(ss) {
       return this._value$1;
     },
     $get_Type: function() {
-      return ss.getTypeArgument(this, 'T');
+      return ss.getTypeArgument(this, 'T', GenericClass_$1);
     },
     mutate: function() {
       this._value$1 = this._mutator$1(this._value$1);
     },
     createContainer: function() {
-      return ss.createGenericType(GenericClass_$1, {T : ss.getTypeArgument(this, 'T')}, this._value$1, this._mutator$1);
+      return ss.createGenericType(GenericClass_$1, {T : ss.getTypeArgument(this, 'T', GenericClass_$1)}, this._value$1, this._mutator$1);
     }
   };
 
@@ -174,7 +193,7 @@ define('test', ['ss'], function(ss) {
   // DSharp.Compiler.Tests.Source.Type.GenericClasses.SpecificClassOfGeneric
 
   function SpecificClassOfGeneric(value) {
-    ss.getGenericConstructor(GenericClass_$1, {T : Number}).call(this, value, SpecificClassOfGeneric._myMutator$2);
+    ss.getGenericConstructor(GenericClass_$1,{T : Number}).call(this, value, SpecificClassOfGeneric._myMutator$2);
   }
   SpecificClassOfGeneric._myMutator$2 = function(valIn) {
     return valIn + 1;
@@ -186,20 +205,23 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       IBulkAsyncExecutionManager_$1: ss.defineInterface(IBulkAsyncExecutionManager_$1),
       Program: ss.defineClass(Program, Program$, [], null),
       MyType: ss.defineClass(MyType, MyType$, [], null),
-      BaseGenericClass_$1: ss.defineClass(BaseGenericClass_$1, BaseGenericClass_$1$, [Object], null),
-      BulkAsyncExecutionManager_$1: ss.defineClass(BulkAsyncExecutionManager_$1, BulkAsyncExecutionManager_$1$, [], null, [IBulkAsyncExecutionManager_$1]),
+      BaseGenericClass_$1: ss.defineClass(BaseGenericClass_$1, BaseGenericClass_$1$, ['T'], null),
+      BulkAsyncExecutionManager_$1: ss.defineClass(BulkAsyncExecutionManager_$1, BulkAsyncExecutionManager_$1$, [], null, [ss.makeMappedGenericTemplate(IBulkAsyncExecutionManager_$1, {T : 'T'})]),
       GenericWithMultipleParams_$3: ss.defineClass(GenericWithMultipleParams_$3, GenericWithMultipleParams_$3$, [], null),
       GenericTypeWithIgnore: ss.defineClass(GenericTypeWithIgnore, GenericTypeWithIgnore$, [], null),
-      GenericTypeWithParamsInCtor_$1: ss.defineClass(GenericTypeWithParamsInCtor_$1, GenericTypeWithParamsInCtor_$1$, [Object, Array], null),
+      GenericTypeWithUseGenericName_$3: ss.defineClass(GenericTypeWithUseGenericName_$3, GenericTypeWithUseGenericName_$3$, [], null),
+      GenericTypeWithParamsInCtor_$1: ss.defineClass(GenericTypeWithParamsInCtor_$1, GenericTypeWithParamsInCtor_$1$, ['T', Array], null),
       Generic_2_$2: ss.defineClass(Generic_2_$2, Generic_2_$2$, [], null),
-      GenericClass_$1: ss.defineClass(GenericClass_$1, GenericClass_$1$, [Object, Function], BaseGenericClass_$1),
-      SpecificClassOfGeneric: ss.defineClass(SpecificClassOfGeneric, SpecificClassOfGeneric$, [Number], GenericClass_$1)
+      GenericWithGenericInConstructor_$1: ss.defineClass(GenericWithGenericInConstructor_$1, GenericWithGenericInConstructor_$1$, function (registry) { return [ss.makeMappedGenericTemplate(registry.GenericClass_$1, {T : 'X'})]}, null),
+      GenericClass_$1: ss.defineClass(GenericClass_$1, GenericClass_$1$, ['T', Function], function (registry) { return ss.makeMappedGenericTemplate(registry.BaseGenericClass_$1, {T : 'T'})}),
+      SpecificClassOfGeneric: ss.defineClass(SpecificClassOfGeneric, SpecificClassOfGeneric$, [Number], function (registry) { return ss.getGenericConstructor(registry.GenericClass_$1, {T : Number})})
     });
+  var $exports = $module.api;
 
 
   return $exports;

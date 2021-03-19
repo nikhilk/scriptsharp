@@ -42,11 +42,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       App1: ss.defineClass(App1, App1$, [], null, [ss.IEnumerable]),
       App: ss.defineClass(App, App$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

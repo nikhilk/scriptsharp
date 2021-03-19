@@ -13,10 +13,11 @@
   };
 
 
-  var $exports = ss.module('basic', null,
+  var $module = ss.module('basic', null,
     {
       App: ss.defineClass(App, App$, [], null)
     });
+  var $exports = $module.api;
 
 
   // post script

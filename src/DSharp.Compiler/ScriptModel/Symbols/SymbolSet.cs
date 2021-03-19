@@ -139,23 +139,28 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             specificArrayTypeSymbol.AddMember(indexerSymbol);
             specificArrayTypeSymbol.SetIgnoreNamespace();
             specificArrayTypeSymbol.SetNativeArray();
-
+            if (arrayTypeSymbol.Dependency is ScriptReference reference)
+            {
+                specificArrayTypeSymbol.SetImported(reference);
+            }
+            specificArrayTypeSymbol.SetMetadataToken(arrayTypeSymbol.MetadataReference, arrayTypeSymbol.IsCoreType);
             return specificArrayTypeSymbol;
         }
 
         private MemberSymbol CreateGenericMember(MemberSymbol templateMember, IList<TypeSymbol> typeArguments)
         {
             TypeSymbol parentType = (TypeSymbol)templateMember.Parent;
+            TypeSymbol templateAssociatedType = templateMember.AssociatedType;
             TypeSymbol instanceAssociatedType;
 
-            if (templateMember.AssociatedType.Type == SymbolType.GenericParameter)
+            if (templateAssociatedType.Type == SymbolType.GenericParameter)
             {
-                GenericParameterSymbol genericParameter = (GenericParameterSymbol)templateMember.AssociatedType;
+                GenericParameterSymbol genericParameter = (GenericParameterSymbol)templateAssociatedType;
                 instanceAssociatedType = typeArguments[genericParameter.Index];
             }
             else
             {
-                instanceAssociatedType = typeArguments[0];
+                instanceAssociatedType = templateAssociatedType;
             }
 
             if (templateMember.Type == SymbolType.Indexer)
@@ -230,8 +235,45 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                     instanceMethod.SetInterfaceMember(templateMethod.InterfaceMember);
                 }
 
+                if (templateMethod.IsGeneric)
+                {
+                    var genericParameters = templateMethod.GenericArguments
+                        .Select(a => new GenericParameterSymbol(
+                            index: a.Index,
+                            name: a.Name,
+                            typeParameter: a.IsTypeParameter,
+                            parent: (NamespaceSymbol)a.Parent)
+                        )
+                        .OrderBy(a => a.Index)
+                        .ToList();
+
+                    instanceMethod.AddGenericArguments(genericParameters);
+                }
+
+
+                if (templateAssociatedType.IsGeneric)
+                {
+                    var genericParameters = instanceMethod.GenericArguments;
+                    var returnTypeArgs = new List<TypeSymbol>();
+                    foreach (var param in templateAssociatedType.GenericArguments)
+                    {
+                        if (param is GenericParameterSymbol genericParam)
+                        {
+                            returnTypeArgs.Add(typeArguments[genericParameters.FirstOrDefault(p => p.Name == param.Name).Index]);
+                        }
+                        else
+                        {
+                            returnTypeArgs.Add(param);
+                        }
+                    }
+
+                    instanceAssociatedType = CreateGenericTypeSymbol(templateAssociatedType, returnTypeArgs);
+                    instanceMethod.UpdateGenericAssociatedType(instanceAssociatedType);
+                }
+
                 instanceMethod.SetNameCasing(templateMethod.IsCasePreserved);
                 instanceMethod.SetVisibility(templateMethod.Visibility);
+                instanceMethod.IgnoreGeneratedTypeArguments = templateMethod.IgnoreGeneratedTypeArguments;
 
                 return instanceMethod;
             }
@@ -250,7 +292,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                     return templateType;
                 }
 
-            string key = CreateTypeName(templateType, typeArguments);
+            string key = GenerateGenericTypeKey(templateType, typeArguments);
 
             if (!genericTypeTable.TryGetValue(key, out TypeSymbol instanceTypeSymbol))
             {
@@ -263,14 +305,18 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             return instanceTypeSymbol;
         }
 
-        private static string CreateTypeName(TypeSymbol symbol, IEnumerable<TypeSymbol> arguments)
+        private static string GenerateGenericTypeKey(TypeSymbol symbol, IEnumerable<TypeSymbol> arguments)
         {
+            var symbolKey = symbol is GenericParameterSymbol genericParameterSymbol
+                ? $"{genericParameterSymbol.Owner.Name}:{symbol.FullName}"
+                : symbol.FullName;
+
             if (arguments?.Any() ?? false)
             {
-                return $"{symbol.FullName}<{string.Join(",", arguments.Select(s => CreateTypeName(s, s.GenericArguments)))}>";
+                return $"{symbolKey}<{string.Join(",", arguments.Select(s => GenerateGenericTypeKey(s, s.GenericArguments)))}>";
             }
 
-            return symbol.FullName;
+            return symbolKey;
         }
 
         private TypeSymbol CreateGenericTypeCore(TypeSymbol templateType, IList<TypeSymbol> typeArguments)
@@ -284,12 +330,20 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 instanceDelegate.AddGenericParameters(genericDelegate.GenericParameters);
                 instanceDelegate.AddGenericArguments(genericDelegate, typeArguments);
 
+                if (templateType.Dependency != null)
+                {
+                    instanceDelegate.SetImported(templateType.Dependency);
+                }
+
+                if (templateType.IsTransformed)
+                {
+                    instanceDelegate.SetTransformedName(templateType.GeneratedName);
+                }
+
                 CreateGenericTypeMembers(genericDelegate, instanceDelegate, typeArguments);
 
                 return instanceDelegate;
             }
-
-
 
             if (templateType.Type == SymbolType.Class
                 || templateType.Type == SymbolType.Interface)
@@ -352,7 +406,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
                 if (templateType.IgnoreGenericTypeArguments)
                 {
-                    instanceCoreType.SetIgnoreGenerics();
+                    instanceCoreType.SetIgnoreGenerics(templateType.UseGenericName);
                 }
 
                 return instanceCoreType;
@@ -431,6 +485,11 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                     instanceType.AddMember(indexer);
                 }
             }
+        }
+
+        public MethodSymbol CreateGenericMethodSymbol(MethodSymbol templateMethod, IList<TypeSymbol> typeArguments)
+        {
+            return CreateGenericMember(templateMethod, typeArguments) as MethodSymbol;
         }
 
         private void CreateNamespace(string namespaceName)
@@ -910,7 +969,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 TypeSymbol templateType =
                     (TypeSymbol)symbolTable.FindSymbol(genericTypeName, contextSymbol, SymbolFilter.Types);
 
-                if(ResolveGenericTypeArguments(symbolTable, contextSymbol, genericNameNode, templateType) is TypeSymbol typeSymbol)
+                if (ResolveGenericTypeArguments(symbolTable, contextSymbol, genericNameNode, templateType) is TypeSymbol typeSymbol)
                 {
                     return typeSymbol;
                 }
@@ -939,7 +998,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
                 foreach (AtomicNameNode part in parts)
                 {
-                    if(part is GenericNameNode genericName)
+                    if (part is GenericNameNode genericName)
                     {
                         names.Insert(0, genericName.FullGenericName);
                     }
@@ -952,7 +1011,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
                     if (symbolTable.FindSymbol(nestedTypeName, contextSymbol, SymbolFilter.Types) is TypeSymbol typeSymbol)
                     {
-                        if(typeSymbol.IsGeneric)
+                        if (typeSymbol.IsGeneric)
                         {
                             return ResolveGenericTypeArguments(symbolTable, contextSymbol, parts.FirstOrDefault(p => p is GenericNameNode).As<GenericNameNode>(), typeSymbol);
                         }

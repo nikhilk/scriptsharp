@@ -14,6 +14,7 @@ using DSharp.Compiler.Errors;
 using DSharp.Compiler.Extensions;
 using DSharp.Compiler.ScriptModel.Expressions;
 using DSharp.Compiler.ScriptModel.Symbols;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace DSharp.Compiler.Compiler
 {
@@ -424,11 +425,9 @@ namespace DSharp.Compiler.Compiler
                 case TokenType.GreaterEqual:
                 case TokenType.Is:
                     resultType = symbolSet.ResolveIntrinsicType(IntrinsicType.Boolean);
-
                     break;
                 case TokenType.As:
                     resultType = rightExpression.EvaluatedType;
-
                     break;
                 case TokenType.Plus:
 
@@ -1193,8 +1192,27 @@ namespace DSharp.Compiler.Compiler
         {
             if (node is GenericNameNode genericNameNode)
             {
-                return symbolTable.FindSymbol(genericNameNode.FullGenericName, symbolContext, filter)
-                    ?? symbolTable.FindSymbol(node.Name, symbolContext, filter);
+                Symbol genericNameSymbol = symbolTable.FindSymbol(genericNameNode.FullGenericName, symbolContext, filter) ?? symbolTable.FindSymbol(node.Name, symbolContext, filter);
+
+                List<TypeSymbol> types = new List<TypeSymbol>();
+
+                foreach (var typeArg in genericNameNode.TypeArguments)
+                {
+                    Expression typeArgExpression = BuildExpression(typeArg);
+                    TypeSymbol argSymbol = typeArgExpression.EvaluatedType;
+                    types.Add(argSymbol);
+                }
+
+                if (genericNameSymbol is TypeSymbol typeSymbol)
+                {
+                    return symbolSet.CreateGenericTypeSymbol(typeSymbol, types);
+                }
+                else if(genericNameSymbol is MethodSymbol methodSymbol)
+                {
+                    return symbolSet.CreateGenericMethodSymbol(methodSymbol, types);
+                }
+                
+                return genericNameSymbol;
             }
 
             Symbol symbol = symbolTable.FindSymbol(node.Name, symbolContext, filter);
@@ -1785,6 +1803,15 @@ namespace DSharp.Compiler.Compiler
                         return indexExpression;
                     }
 
+                    if (method.Name.Equals("HasArgument", StringComparison.Ordinal))
+                    {
+                        Debug.Assert(args.Count == 1);
+                        int value = (int)((LiteralExpression)args.FirstOrDefault()).Value;
+                        TypeSymbol boolType = symbolSet.ResolveIntrinsicType(IntrinsicType.Boolean);
+
+                        return new InlineScriptExpression($"Object.getOwnPropertyDescriptor(arguments, {value})", boolType, parenthesize:false);
+                    }
+
                     if (method.Name.Equals("ToArray", StringComparison.Ordinal))
                     {
                         // Switch Arguments.ToArray into Array.ToArray(arguments)
@@ -1943,13 +1970,14 @@ namespace DSharp.Compiler.Compiler
                 TypeSymbol stringSymbol = symbolSet.ResolveIntrinsicType(IntrinsicType.String);
                 TypeSymbol objectSymbol = symbolSet.ResolveIntrinsicType(IntrinsicType.Object);
 
-                if (genericParameterSymbol.Owner is ClassSymbol)
+                if (genericParameterSymbol.Owner is ClassSymbol owner)
                 {
                     TypeExpression scriptExpression = new TypeExpression(scriptSymbol, SymbolFilter.Public | SymbolFilter.StaticMembers);
                     var methodSymbol = (MethodSymbol)scriptSymbol.GetMember("getTypeArgument");
                     var methodExpression = new MethodExpression(scriptExpression, methodSymbol);
                     methodExpression.AddParameterValue(new ThisExpression(referencedType.Parent as ClassSymbol, false));
                     methodExpression.AddParameterValue(new LiteralExpression(stringSymbol, genericParameterSymbol.GeneratedName));
+                    methodExpression.AddParameterValue(new LiteralExpression(typeSymbol, owner));
 
                     return methodExpression;
                 }
@@ -1964,26 +1992,33 @@ namespace DSharp.Compiler.Compiler
             }
             else if (referencedType.IsGeneric)
             {
-                if (referencedType.GenericArguments == null)
-                {
-                    return CreateGetGenericTemplateInvocation(referencedType);
-                }
-
-                if (referencedType.GenericType == symbolSet.ResolveIntrinsicType(IntrinsicType.Nullable))
-                {
-                    return CreateTypeOfExpression(referencedType.GenericArguments[0]);
-                }
-
-                if (referencedType.IgnoreGenericTypeArguments
-                    || referencedType.GenericType?.IgnoreGenericTypeArguments == true)
-                {
-                    return new LiteralExpression(typeSymbol, referencedType.GenericType);
-                }
-
-                return CreateGetGenericConstructorInvocation(referencedType);
+                return ConstructSpecificGenericType(referencedType, typeSymbol);
             }
 
             return new LiteralExpression(typeSymbol, referencedType);
+        }
+
+        private Expression ConstructSpecificGenericType(
+            TypeSymbol openGenericType,
+            TypeSymbol typeSymbol)
+        {
+            if (openGenericType.GenericArguments == null)
+            {
+                return CreateGetGenericTemplateInvocation(openGenericType);
+            }
+
+            if (openGenericType.GenericType == symbolSet.ResolveIntrinsicType(IntrinsicType.Nullable))
+            {
+                return CreateTypeOfExpression(openGenericType.GenericArguments[0]);
+            }
+
+            if (openGenericType.IgnoreGenericTypeArguments
+                || openGenericType.GenericType?.IgnoreGenericTypeArguments == true)
+            {
+                return new LiteralExpression(typeSymbol, openGenericType.GenericType);
+            }
+
+            return CreateGetGenericConstructorInvocation(openGenericType);
         }
 
         private Expression CreateGetGenericConstructorInvocation(TypeSymbol referencedType)

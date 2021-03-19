@@ -5,14 +5,15 @@
     this.value = undefined;
 }
 
-createPropertyGet(Lazy.prototype, 'IsValueCreated', function () {
-    return this.isValueCreated;
-});
-
-createPropertyGet(Lazy.prototype, 'Value', function () {
-    if (!this.isValueCreated) {
-        this.value = this.factory();
-        this.isValueCreated = true;
+var Lazy$ = {
+    $get_IsValueCreated: function () {
+        return this.isValueCreated;
+    },
+    $get_Value: function () {
+        if (!this.isValueCreated) {
+            this.value = this.factory();
+            this.isValueCreated = true;
+        }
+        return this.value;
     }
-    return this.value;
-});
+}

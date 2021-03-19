@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // TypeTests.Sub1.Sub2.MyClass
 
   function MyClass() {
@@ -82,7 +81,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       MyClass: ss.defineClass(MyClass, MyClass$, [], null),
       YourClass: ss.defineClass(YourClass, YourClass$, [], null),
@@ -93,6 +92,7 @@ define('test', ['ss'], function(ss) {
       UtilityP: ss.defineClass(UtilityP, UtilityP$, [], null),
       Component: ss.defineClass(Component, Component$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

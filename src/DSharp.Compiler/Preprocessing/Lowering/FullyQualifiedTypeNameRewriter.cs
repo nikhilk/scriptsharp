@@ -64,10 +64,10 @@ namespace DSharp.Compiler.Preprocessing.Lowering
         {
             var type = sem.GetTypeInfo(node).Type 
                 ?? sem.GetTypeInfo(node.Parent).Type;
-
+            //todo: find out what is breaking when using alias solution
             if(type is INamedTypeSymbol namedType && !node.Parent.IsKind(SyntaxKind.UsingDirective))
             {
-                if(namedType.IsGenericType)
+                if(true || namedType.IsGenericType)
                 {
                     requiredUsings.Add(type.ContainingNamespace.ToString());
                     return Visit(node.Right)
@@ -75,7 +75,7 @@ namespace DSharp.Compiler.Preprocessing.Lowering
                 }
 
                 var typeAlias = node.ToString().Replace(".", "_");
-                typeAliases[typeAlias] = node.ToString();
+                typeAliases[typeAlias] = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat.WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Omitted));
                 return IdentifierName(typeAlias)
                     .WithTriviaFrom(node);
             }

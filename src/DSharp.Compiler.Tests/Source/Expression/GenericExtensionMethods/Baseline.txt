@@ -53,7 +53,7 @@ define('ExpressionTests.GenericExtensionMethods', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('ExpressionTests.GenericExtensionMethods', null,
+  var $module = ss.module('ExpressionTests.GenericExtensionMethods', null,
     {
       ITestData: ss.defineClass(ITestData, ITestData$, [], null),
       ITestData2: ss.defineClass(ITestData2, ITestData2$, [], null),
@@ -61,6 +61,7 @@ define('ExpressionTests.GenericExtensionMethods', ['ss'], function(ss) {
       GenericExtensions: ss.defineClass(GenericExtensions, null, [], null),
       Test: ss.defineClass(Test, Test$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // ExpressionTests.SomeClass
 
   function SomeClass(cb) {
@@ -102,11 +101,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       SomeClass: ss.defineClass(SomeClass, SomeClass$, [Function], null),
       Test: ss.defineClass(Test, Test$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

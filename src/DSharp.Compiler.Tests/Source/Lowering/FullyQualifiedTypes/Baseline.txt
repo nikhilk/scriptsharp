@@ -6,12 +6,27 @@ define('test', ['ss'], function(ss) {
 
   function Bar(bar) {
   }
+  var Bar$ = {
+
+  };
+
+
+  // Some.Namespace.Bar$NestedClass
+
+  function Bar$NestedClass(bar) {
+  }
+  var Bar$NestedClass$ = {
+
+  };
 
 
   // Some.Namespace.Bar`1
 
   function Bar_$1(t) {
   }
+  var Bar_$1$ = {
+
+  };
 
 
   // FullyQualifiedTypesTests.Foo
@@ -22,16 +37,31 @@ define('test', ['ss'], function(ss) {
     main: function() {
       var bar = new Bar(new Bar());
       var bart = ss.createGenericType(Bar_$1, {T : Bar}, new Bar());
+      var bar2 = new Bar$NestedClass(new Bar());
+      var bart2 = ss.createGenericType(Bar_$1, {T : Bar$NestedClass}, new Bar$NestedClass());
+      new Foo$NestedFoo();
     }
   };
 
 
-  var $exports = ss.module('test', null,
+  // FullyQualifiedTypesTests.Foo$NestedFoo
+
+  function Foo$NestedFoo() {
+  }
+  var Foo$NestedFoo$ = {
+
+  };
+
+
+  var $module = ss.module('test', null,
     {
-      Bar: ss.defineClass(Bar, null, [Bar], null),
-      Bar_$1: ss.defineClass(Bar_$1, null, [Object], null),
-      Foo: ss.defineClass(Foo, Foo$, [], null)
+      Bar: ss.defineClass(Bar, Bar$, function (registry) { return [registry.Bar]}, null),
+      Bar$NestedClass: ss.defineClass(Bar$NestedClass, Bar$NestedClass$, function (registry) { return [registry.Bar]}, null),
+      Bar_$1: ss.defineClass(Bar_$1, Bar_$1$, ['T'], null),
+      Foo: ss.defineClass(Foo, Foo$, [], null),
+      Foo$NestedFoo: ss.defineClass(Foo$NestedFoo, Foo$NestedFoo$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

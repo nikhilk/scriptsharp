@@ -69,7 +69,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       MyEnum: MyEnum,
       IXyzInterface: ss.defineInterface(IXyzInterface),
@@ -77,11 +77,11 @@ define('test', ['ss'], function(ss) {
       MyClass: ss.defineClass(MyClass, MyClass$, [], null),
       MyClass3: ss.defineClass(MyClass3, MyClass3$, [], null, [ss.IDisposable]),
       MyClassF: ss.defineClass(MyClassF, MyClassF$, [], null),
-      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], MyClass),
-      MyClass4: ss.defineClass(MyClass4, MyClass4$, [], MyClass, [ss.IDisposable])
+      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], function (registry) { return registry.MyClass}),
+      MyClass4: ss.defineClass(MyClass4, MyClass4$, [], function (registry) { return registry.MyClass}, [ss.IDisposable])
     });
+  var $exports = $module.api;
 
 
   return $exports;
 });
-

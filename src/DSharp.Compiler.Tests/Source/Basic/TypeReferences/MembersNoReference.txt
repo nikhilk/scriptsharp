@@ -65,15 +65,16 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       MyEnum: MyEnum,
       MyInterface_$1: ss.defineInterface(MyInterface_$1),
-      App: ss.defineClass(App, App$, [], null, [MyInterface_$1]),
+      App: ss.defineClass(App, App$, [], null, [ss.getGenericConstructor(MyInterface_$1, {TArg : MyClass})]),
       Extensions: ss.defineClass(Extensions, null, [], null),
       MyClass: ss.defineClass(MyClass, MyClass$, [], null),
       MyStruct: ss.defineClass(MyStruct, MyStruct$, [], null)
     });
+  var $exports = $module.api;
 
   App._number = 42;
 

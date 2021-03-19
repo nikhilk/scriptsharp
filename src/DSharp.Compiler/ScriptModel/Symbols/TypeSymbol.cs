@@ -3,7 +3,6 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,6 +37,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             typeMap = new Dictionary<string, TypeSymbol>();
 
             IsApplicationType = true;
+            UseGenericName = true;
         }
 
         public IDictionary<string, string> Aliases { get; private set; }
@@ -103,14 +103,18 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 {
                     return Namespace.Replace(".", "$");
                 }
+                else if(IsInternal && !string.IsNullOrEmpty(ScriptNamespace))
+                {
+                    return $"ss.modules['{ScriptNamespace}']";
+                }
 
                 return ScriptNamespace != null ? ScriptNamespace : string.Empty;
             }
         }
 
-        public override string GeneratedName => IgnoreGenericTypeArguments 
-            ? Regex.Replace(base.GeneratedName, @"`\d+", "") 
-            : base.GeneratedName.Replace("`", "_$");
+        public override string GeneratedName => UseGenericName
+            ? base.GeneratedName.Replace("`", "_$")
+            : Regex.Replace(base.GeneratedName, @"`\d+", "");
 
         public IList<TypeSymbol> GenericArguments { get; private set; }
 
@@ -125,6 +129,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
         private bool isNativeArray = false;
 
         public bool IgnoreGenericTypeArguments { get; private set; }
+        public bool UseGenericName { get; private set; }
 
         public bool IsNativeArray
         {
@@ -191,7 +196,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
         protected void AddMember(MemberSymbol memberSymbol, bool allowOverride)
         {
-            if(!allowOverride)
+            if (!allowOverride)
             {
                 Debug.Assert(memberSymbol != null);
                 Debug.Assert(string.IsNullOrEmpty(memberSymbol.Name) == false);
@@ -246,9 +251,9 @@ namespace DSharp.Compiler.ScriptModel.Symbols
                 return memberTable[name];
             }
 
-            if(GenericType?.memberTable.ContainsKey(name) ?? false)
+            if (GenericType?.GetMember(name) is MemberSymbol member)
             {
-                return GenericType.memberTable[name];
+                return member;
             }
 
             return null;
@@ -298,7 +303,8 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
             if (IsGeneric)
             {
-                IncrementReferenceCountForGenericType();
+                GenericType?.IncrementReferenceCount();
+                IncrementReferenceCountForGenericArguments();
             }
 
             if (Source == null)
@@ -345,7 +351,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
             Symbol symbol = null;
 
-            if(this.IsAnonymousType && (filter & SymbolFilter.Types) == 0)
+            if (this.IsAnonymousType && (filter & SymbolFilter.Types) == 0)
             {
                 var anonymousProperty = new PropertySymbol(name, this, this);
                 anonymousProperty.SetNameCasing(preserveCase: true);
@@ -354,7 +360,8 @@ namespace DSharp.Compiler.ScriptModel.Symbols
 
             if ((filter & SymbolFilter.Types) != 0)
             {
-                symbol = GetNestedType(name, context, filter);
+                symbol = GetNestedType(name, context, filter)
+                    ?? GetGenericParamaterType(name, context, filter);
             }
 
             if (symbol == null && (filter & SymbolFilter.Members) != 0)
@@ -427,6 +434,16 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             return null;
         }
 
+        private Symbol GetGenericParamaterType(string name, Symbol context, SymbolFilter filter)
+        {
+            if(IsGeneric)
+            {
+                return GenericParameters?.FirstOrDefault(p => p.Name == name);
+            }
+
+            return null;
+        }
+
         public void AddType(TypeSymbol typeSymbol)
         {
             Debug.Assert(typeSymbol != null);
@@ -450,7 +467,7 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             }
         }
 
-        private void IncrementReferenceCountForGenericType()
+        private void IncrementReferenceCountForGenericArguments()
         {
             if (GenericArguments == null)
             {
@@ -463,9 +480,10 @@ namespace DSharp.Compiler.ScriptModel.Symbols
             }
         }
 
-        internal void SetIgnoreGenerics()
+        internal void SetIgnoreGenerics(bool useGenericName = false)
         {
             IgnoreGenericTypeArguments = true;
+            UseGenericName = useGenericName;
         }
     }
 }

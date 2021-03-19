@@ -62,12 +62,13 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       TestBase: ss.defineClass(TestBase, TestBase$, [], null),
       Program: ss.defineClass(Program, Program$, [], null),
-      TestDisposableBase: ss.defineClass(TestDisposableBase, TestDisposableBase$, [], TestBase, [ss.IDisposable])
+      TestDisposableBase: ss.defineClass(TestDisposableBase, TestDisposableBase$, [], function (registry) { return registry.TestBase}, [ss.IDisposable])
     });
+  var $exports = $module.api;
 
 
   return $exports;

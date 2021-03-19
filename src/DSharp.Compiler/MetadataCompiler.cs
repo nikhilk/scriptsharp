@@ -88,7 +88,7 @@ namespace DSharp.Compiler
         private void ImportMetadata()
         {
             MetadataImporter mdImporter = new MetadataImporter(this);
-            mdImporter.ImportMetadata(options.References, symbols, options.Assembly);
+            mdImporter.ImportMetadata(options.AssemblyName, options.References, symbols, options.Assembly);
         }
 
         void IErrorHandler.ReportError(CompilerError error)

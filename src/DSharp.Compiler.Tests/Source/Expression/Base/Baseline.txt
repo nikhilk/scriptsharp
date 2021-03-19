@@ -89,16 +89,17 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       IExecutor: ss.defineInterface(IExecutor),
       Program: ss.defineClass(Program, Program$, [], null),
       BaseClass: ss.defineClass(BaseClass, BaseClass$, [], null),
       Executor: ss.defineClass(Executor, Executor$, [], null, [IExecutor]),
       Foo: ss.defineClass(Foo, Foo$, [Number, Number], null),
-      ConcreteClass: ss.defineClass(ConcreteClass, ConcreteClass$, [IExecutor], BaseClass),
-      Bar: ss.defineClass(Bar, Bar$, [Number, Number, Foo], Foo)
+      ConcreteClass: ss.defineClass(ConcreteClass, ConcreteClass$, function (registry) { return [registry.IExecutor]}, function (registry) { return registry.BaseClass}),
+      Bar: ss.defineClass(Bar, Bar$, function (registry) { return [Number, Number, registry.Foo]}, function (registry) { return registry.Foo})
     });
+  var $exports = $module.api;
 
 
   return $exports;

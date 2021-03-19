@@ -2,6 +2,7 @@
 
 namespace System.Collections.Generic
 {
+    [ScriptIgnoreGenericArguments(UseGenericName = true)]
     public interface IReadOnlyList<T> : IReadOnlyCollection<T>
     {
         [ScriptField]

@@ -2597,6 +2597,10 @@ namespace DSharp.Compiler.Parser
             {
                 switch (expression.NodeType)
                 {
+                    case ParseNodeType.Cast:
+                        var expr = (CastNode)expression;
+                        return expr.Child;
+
                     case ParseNodeType.BinaryExpression:
 
                         // postincrment, postdecrement

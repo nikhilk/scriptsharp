@@ -2,6 +2,7 @@
 
 namespace System.Collections.Generic
 {
+    [ScriptIgnoreGenericArguments(UseGenericName = true)]
     public interface ICollection<T> : IEnumerable<T>, IEnumerable
     {
         [ScriptField]

@@ -87,18 +87,19 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       FooBaz: ss.defineClass(FooBaz, FooBaz$, [], null),
-      BarBaz: ss.defineClass(BarBaz, BarBaz$, [FooBaz], null),
+      BarBaz: ss.defineClass(BarBaz, BarBaz$, function (registry) { return [registry.FooBaz]}, null),
       MyClass: ss.defineClass(MyClass, MyClass$, [], null),
       MyClass$NestedClass: ss.defineClass(MyClass$NestedClass, MyClass$NestedClass$, [], null),
       MyClass3: ss.defineClass(MyClass3, MyClass3$, [], null, [ss.IDisposable]),
       StaticClass: ss.defineClass(StaticClass, null, [], null),
       TypeWithParamsInCtor: ss.defineClass(TypeWithParamsInCtor, TypeWithParamsInCtor$, [Object, Array], null),
-      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], MyClass),
-      MyClass4: ss.defineClass(MyClass4, MyClass4$, [FooBaz, BarBaz, ss.IDisposable], MyClass, [ss.IDisposable])
+      MyClass2: ss.defineClass(MyClass2, MyClass2$, [], function (registry) { return registry.MyClass}),
+      MyClass4: ss.defineClass(MyClass4, MyClass4$, function (registry) { return [registry.FooBaz, registry.BarBaz, ss.IDisposable]}, function (registry) { return registry.MyClass}, [ss.IDisposable])
     });
+  var $exports = $module.api;
 
 
   return $exports;

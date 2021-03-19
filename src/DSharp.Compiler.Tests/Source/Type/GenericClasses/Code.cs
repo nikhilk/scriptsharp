@@ -199,6 +199,12 @@ namespace DSharp.Compiler.Tests.Source.Type.GenericClasses
 
     }
 
+    [ScriptIgnoreGenericArgumentsAttribute(UseGenericName = true)]
+    public class GenericTypeWithUseGenericName<T1, T2, T3>
+    {
+
+    }
+
     public class GenericTypeWithParamsInCtor<T>
     {
         public GenericTypeWithParamsInCtor(T arg, params object[] args)
@@ -215,5 +221,15 @@ namespace DSharp.Compiler.Tests.Source.Type.GenericClasses
     public class Generic_2<T1,T2>
     {
 
+    }
+
+    public class GenericWithGenericInConstructor<X>
+    {
+        private readonly GenericClass<X> genericClass;
+
+        public GenericWithGenericInConstructor(GenericClass<X> genericClass)
+        {
+            this.genericClass = genericClass;
+        }
     }
 }

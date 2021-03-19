@@ -2,12 +2,62 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
+  // MemberTests.IGrouping`2
+
+  function IGrouping_$2() { }
+
+
+  // MemberTests.Grouping`2
+
+  function Grouping_$2() {
+  }
+  var Grouping_$2$ = {
+
+  };
+
+
+  // MemberTests.GenericTestExtensions
+
+  function GenericTestExtensions() {
+  }
+  GenericTestExtensions.doExtension = function($TArgs, i, a, b, c) {
+    GenericTest_$2.doStatic3.call(ss.getGenericConstructor(GenericTest_$2,{T1 : $TArgs['T1'], T2 : $TArgs['T2']}),{T: $TArgs['T']}, a, b, c);
+    i.doInstance({T: $TArgs['T']}, a, b, c);
+  };
+  GenericTestExtensions.firstOrDefault = function($TArgs, source, defaultV) {
+    return defaultV;
+  };
+
+
+  // MemberTests.GenericTest`2
+
+  function GenericTest_$2() {
+  }
+  GenericTest_$2.doStatic = function() {
+  };
+  GenericTest_$2.doStatic2 = function(a, b) {
+  };
+  GenericTest_$2.doStatic3 = function($TArgs, a, b, c) {
+  };
+  var GenericTest_$2$ = {
+    doInstance: function($TArgs, a, b, c) {
+    }
+  };
+
+
   // MemberTests.Test
 
   function Test() {
   }
   var Test$ = {
     do1: function() {
+      GenericTest_$2.doStatic.call(ss.getGenericConstructor(GenericTest_$2,{T1 : Number, T2 : String}));
+      GenericTest_$2.doStatic2.call(ss.getGenericConstructor(GenericTest_$2,{T1 : Boolean, T2 : Number}),false, 42);
+      GenericTest_$2.doStatic3.call(ss.getGenericConstructor(GenericTest_$2,{T1 : Boolean, T2 : Number}),{T: String}, false, 42, 'wow');
+      var instance = ss.createGenericType(GenericTest_$2, {T1 : Number, T2 : String});
+      GenericTestExtensions.doExtension({T1: Number, T2: String, T: String}, instance, 42, 'wow', '2');
+      var x = null;
+      GenericTestExtensions.firstOrDefault({T: Number}, x, 1234);
     },
     do2: function() {
       return 0;
@@ -22,6 +72,25 @@ define('test', ['ss'], function(ss) {
     }),
     do6: ss.paramsGenerator(1, function($TArgs, someValues) {
     }),
+    do7: function(a, b) {
+      b = (Object.getOwnPropertyDescriptor(arguments, 1)) ? b : 2;
+    },
+    do8: function(a, b, c, d) {
+      a = (Object.getOwnPropertyDescriptor(arguments, 0)) ? a : 1;
+      b = (Object.getOwnPropertyDescriptor(arguments, 1)) ? b : 2;
+      c = (Object.getOwnPropertyDescriptor(arguments, 2)) ? c : '3';
+      d = (Object.getOwnPropertyDescriptor(arguments, 3)) ? d : '4';
+      this.do8(1, 1, '3', '4');
+      this.do8();
+      this.do8(1);
+      this.do8(1, 2);
+      this.do8(1, 2, '3');
+      this.do8(1, 2, '3', '4');
+      this.do8();
+      this.do8(1, 2, '3', '4');
+      this.do8(1, 2, '3', '2');
+      this.do8(1, 2, '3', '3');
+    },
     run: function() {
       this.do1();
       var v = this.do2();
@@ -32,6 +101,13 @@ define('test', ['ss'], function(ss) {
       this.do5();
       this.do6({T: Number}, 1, 2, 3);
       this.do6({T: ss.getGenericConstructor(X$Y_$1, {T: String})});
+      this.do3(2, 5);
+      this.do7(1);
+      this.doSomethingCrazy('lo', 'co');
+    },
+    doSomethingCrazy: function(a, b) {
+      b = (Object.getOwnPropertyDescriptor(arguments, 1)) ? b : 'co';
+      return a + b;
     },
     toString: function() {
       var x = new X();
@@ -59,12 +135,17 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
+      IGrouping_$2: ss.defineInterface(IGrouping_$2, [ss.IEnumerable_$1, ss.IEnumerable]),
+      Grouping_$2: ss.defineClass(Grouping_$2, Grouping_$2$, [], null, [ss.makeMappedGenericTemplate(IGrouping_$2, {TKey : 'TKey', TElement : 'TElement'})]),
+      GenericTestExtensions: ss.defineClass(GenericTestExtensions, null, [], null),
+      GenericTest_$2: ss.defineClass(GenericTest_$2, GenericTest_$2$, [], null),
       Test: ss.defineClass(Test, Test$, [], null),
       X: ss.defineClass(X, X$, [], null),
       X$Y_$1: ss.defineClass(X$Y_$1, X$Y_$1$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

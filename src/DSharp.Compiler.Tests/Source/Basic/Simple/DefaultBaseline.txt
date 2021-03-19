@@ -2,7 +2,6 @@
 
 define('basic', ['ss'], function(ss) {
   var $global = this;
-
   // Basic.EventArgs
 
   function EventArgs() {
@@ -61,12 +60,13 @@ define('basic', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('basic', null,
+  var $module = ss.module('basic', null,
     {
       EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null),
       Button: ss.defineClass(Button, Button$, [String], null),
       App: ss.defineClass(App, App$, [], null)
     });
+  var $exports = $module.api;
 
   EventArgs.Empty = new EventArgs();
 

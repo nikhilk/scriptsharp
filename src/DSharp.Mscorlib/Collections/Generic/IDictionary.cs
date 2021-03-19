@@ -2,6 +2,7 @@
 
 namespace System.Collections.Generic
 {
+    [ScriptIgnoreGenericArguments(UseGenericName = true)]
     public interface IDictionary<TKey, TValue>
         : IEnumerable<KeyValuePair<TKey, TValue>>
     {

@@ -3,6 +3,7 @@
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace DSharp.Compiler
@@ -44,6 +45,8 @@ namespace DSharp.Compiler
         public int TypeReferenceCount => typeReferenceCount;
 
         public int ConstReferenceCount => constReferenceCount;
+
+        public bool InternalesVisible { get; internal set; }
 
         public void IncrementTypeReferenceCount()
         {

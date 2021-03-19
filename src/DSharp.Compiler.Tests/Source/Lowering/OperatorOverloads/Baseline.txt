@@ -118,11 +118,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       App: ss.defineClass(App, null, [], null),
       Fraction: ss.defineClass(Fraction, Fraction$, [Number, Number], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

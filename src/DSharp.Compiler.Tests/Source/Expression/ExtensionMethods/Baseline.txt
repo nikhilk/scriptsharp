@@ -177,7 +177,7 @@ define('ExpressionTests.ExtensionMethods', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('ExpressionTests.ExtensionMethods',
+  var $module = ss.module('ExpressionTests.ExtensionMethods',
     {
       InternalIntExtensions: ss.defineClass(InternalIntExtensions, null, [], null),
       IServiceCollectionExtension: ss.defineClass(IServiceCollectionExtension, null, [], null)
@@ -194,11 +194,11 @@ define('ExpressionTests.ExtensionMethods', ['ss'], function(ss) {
       ServiceCollection: ss.defineClass(ServiceCollection, ServiceCollection$, [], null, [IServiceCollection]),
       Program: ss.defineClass(Program, Program$, [], null),
       Temp: ss.defineClass(Temp, Temp$, [], null, [ITemp]),
-      MyServiceCollection: ss.defineClass(MyServiceCollection, MyServiceCollection$, [], ServiceCollection),
-      MyOtherServiceCollection: ss.defineClass(MyOtherServiceCollection, MyOtherServiceCollection$, [], ServiceCollection, [IServiceCollection])
+      MyServiceCollection: ss.defineClass(MyServiceCollection, MyServiceCollection$, [], function (registry) { return registry.ServiceCollection}),
+      MyOtherServiceCollection: ss.defineClass(MyOtherServiceCollection, MyOtherServiceCollection$, [], function (registry) { return registry.ServiceCollection}, [IServiceCollection])
     });
+  var $exports = $module.api;
 
 
   return $exports;
 });
-

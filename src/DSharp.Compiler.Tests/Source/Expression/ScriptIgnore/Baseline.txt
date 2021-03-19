@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 define('test', ['ss'], function(ss) {
   var $global = this;
@@ -17,10 +17,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       Program: ss.defineClass(Program, Program$, [], null, [ss.IEnumerable_$1])
     });
+  var $exports = $module.api;
 
 
   return $exports;

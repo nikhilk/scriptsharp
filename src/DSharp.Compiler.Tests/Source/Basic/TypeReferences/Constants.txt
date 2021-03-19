@@ -14,10 +14,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       App: ss.defineClass(App, App$, [], null)
     });
+  var $exports = $module.api;
 
   App._copY_OF_TEXT_CONSTANT = 'text';
   App.compleX_NUMBER_CONSTANT = 0 + 42;

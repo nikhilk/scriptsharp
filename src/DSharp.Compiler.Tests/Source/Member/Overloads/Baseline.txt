@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // MemberTests.Test
 
   function Test(name) {
@@ -33,11 +32,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       Test: ss.defineClass(Test, Test$, [String], null),
       App: ss.defineClass(App, App$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

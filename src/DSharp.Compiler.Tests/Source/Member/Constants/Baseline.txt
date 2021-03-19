@@ -15,10 +15,11 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       UsageOfConstants: ss.defineClass(UsageOfConstants, UsageOfConstants$, [], null)
     });
+  var $exports = $module.api;
 
   UsageOfConstants._copY_OF_TEXT_CONSTANT = '[example text constant]';
   UsageOfConstants.compleX_TEXT_CONSTANT = 'Hello, ' + '[example text constant]' + ' world!';

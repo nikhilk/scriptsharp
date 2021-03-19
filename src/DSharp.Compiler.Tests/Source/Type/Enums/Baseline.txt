@@ -92,7 +92,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       Colors: Colors,
       Sequence: Sequence,
@@ -103,6 +103,7 @@ define('test', ['ss'], function(ss) {
       App: ss.defineClass(App, App$, [], null),
       App2: ss.defineClass(App2, App2$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

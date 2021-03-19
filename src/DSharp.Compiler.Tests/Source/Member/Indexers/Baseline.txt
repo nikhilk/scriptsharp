@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // MemberTests.IIndexable
 
   function IIndexable() { }
@@ -188,7 +187,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       IIndexable: ss.defineInterface(IIndexable),
       Normal: ss.defineClass(Normal, Normal$, [], null),
@@ -199,11 +198,12 @@ define('test', ['ss'], function(ss) {
       ImplementedIndexer2: ss.defineClass(ImplementedIndexer2, ImplementedIndexer2$, [], null, [IIndexable]),
       Test: ss.defineClass(Test, Test$, [], null),
       A: ss.defineClass(A, A$, [], null),
-      OverriddenIndexer: ss.defineClass(OverriddenIndexer, OverriddenIndexer$, [], VirtualIndexer),
-      ImplementedIndexer: ss.defineClass(ImplementedIndexer, ImplementedIndexer$, [], AbstractIndexer),
-      B: ss.defineClass(B, B$, [], A),
-      C: ss.defineClass(C, C$, [], B)
+      OverriddenIndexer: ss.defineClass(OverriddenIndexer, OverriddenIndexer$, [], function (registry) { return registry.VirtualIndexer}),
+      ImplementedIndexer: ss.defineClass(ImplementedIndexer, ImplementedIndexer$, [], function (registry) { return registry.AbstractIndexer}),
+      B: ss.defineClass(B, B$, [], function (registry) { return registry.A}),
+      C: ss.defineClass(C, C$, [], function (registry) { return registry.B})
     });
+  var $exports = $module.api;
 
 
   return $exports;

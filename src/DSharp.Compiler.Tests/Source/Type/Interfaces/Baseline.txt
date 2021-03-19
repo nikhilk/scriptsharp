@@ -86,7 +86,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       IMarker: ss.defineInterface(IMarker),
       ISerializable: ss.defineInterface(ISerializable),
@@ -95,8 +95,9 @@ define('test', ['ss'], function(ss) {
       MyObject: ss.defineClass(MyObject, MyObject$, [], null, [ss.IDisposable]),
       Foo: ss.defineClass(Foo, Foo$, [], null, [IMarker, ISerializable, IRunnable]),
       Program: ss.defineClass(Program, Program$, [], null),
-      MyObject2: ss.defineClass(MyObject2, MyObject2$, [], MyObject, [IRunnable])
+      MyObject2: ss.defineClass(MyObject2, MyObject2$, [], function (registry) { return registry.MyObject}, [IRunnable])
     });
+  var $exports = $module.api;
 
 
   return $exports;

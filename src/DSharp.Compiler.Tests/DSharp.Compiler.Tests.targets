@@ -16,16 +16,19 @@
   </Target>
 
   <Target Name="RebuildCopiedResources" DependsOnTargets="CopyRequiredResources;RemoveCopiedResources" AfterTargets="Rebuild" />
-
-  <Target Name="CompileTestAssemblies" BeforeTargets="Build">
+  <ItemGroup>
+    <ReferencedTestAssemblies Include="$(OutputPath)\Source\Type\GenericClasses\Lib1.cs"/>
+    <ReferencedTestAssemblies Include="$(OutputPath)\Source\Type\GenericInterfaces\Lib1.cs"/>
+  </ItemGroup>
+  <Target Name="CompileTestAssemblies" BeforeTargets="Build" Inputs="@(ReferencedTestAssemblies)" Outputs="@(ReferencedTestAssemblies -> %(RelativeDir)%(filename).dll">
     <Csc
       TargetType="library"
       NoConfig="true"
       NoLogo="true"
       NoStandardLib="true"
       References="$(CoreLibDirectory)DSharp.Mscorlib.dll"
-      OutputAssembly="$(OutputPath)\Source\Type\GenericClasses\Lib1.dll"
-      Sources="$(OutputPath)\Source\Type\GenericClasses\Lib1.cs"
+      OutputAssembly="%(ReferencedTestAssemblies.RelativeDir)%(filename).dll"
+      Sources="%(ReferencedTestAssemblies.Identity)"
       />
   </Target>
 </Project>

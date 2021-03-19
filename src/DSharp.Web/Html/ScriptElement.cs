@@ -1,4 +1,4 @@
-// ScriptElement.cs
+﻿// ScriptElement.cs
 // Script#/Libraries/Web
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
@@ -12,34 +12,18 @@ namespace System.Html {
     [ScriptImport]
     public sealed class ScriptElement : Element {
 
-        private ScriptElement() {
-        }
+        private ScriptElement() { }
 
         [ScriptField]
-        public string Src {
-            get {
-                return null;
-            }
-            set {
-            }
-        }
+        public string Src { get; set; }
 
         [ScriptField]
-        public string Type {
-            get {
-                return null;
-            }
-            set {
-            }
-        }
+        public string Type { get; set; }
 
         [ScriptField]
-        public string ReadyState {
-            get {
-                return null;
-            }
-            set {
-            }
-        }
+        public string ReadyState { get; set; }
+
+        [ScriptField]
+        public bool Async { get; set; }
     }
 }

@@ -196,9 +196,13 @@ namespace DSharp.Compiler.Generator
                 associatedType = associatedType.GenericArguments.First();
             }
 
+            if(associatedType.Type == SymbolType.Delegate)
+            {
+                return "Function";
+            }
+
             if (associatedType.IsApplicationType
-                && !associatedType.IgnoreNamespace
-                && associatedType.Type != SymbolType.Delegate) // transpile named delegates to native functions
+                && !associatedType.IgnoreNamespace)
             {
                 if (associatedType is GenericParameterSymbol || associatedType.IsAnonymousType)
                 {

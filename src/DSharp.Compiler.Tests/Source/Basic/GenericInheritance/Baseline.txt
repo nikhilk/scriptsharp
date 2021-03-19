@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 define('test', ['ss'], function(ss) {
   var $global = this;
@@ -17,11 +17,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       IMyThing: ss.defineInterface(IMyThing, [ss.IList_$1]),
-      Wow: ss.defineClass(Wow, Wow$, [], Object)
+      Wow: ss.defineClass(Wow, Wow$, [], function () { return Object})
     });
+  var $exports = $module.api;
 
 
   return $exports;

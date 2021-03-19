@@ -40,15 +40,15 @@ define('ExpressionTests.ExtensionMethods', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('ExpressionTests.ExtensionMethods', null,
+  var $module = ss.module('ExpressionTests.ExtensionMethods', null,
     {
       Test1: ss.defineClass(Test1, Test1$, [], null),
       Test2: ss.defineClass(Test2, Test2$, [], null),
       CodeEx1: ss.defineClass(CodeEx1, null, [], null),
       CodeEx2: ss.defineClass(CodeEx2, null, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;
 });
-

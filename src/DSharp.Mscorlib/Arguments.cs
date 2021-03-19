@@ -40,6 +40,14 @@ namespace System
         public extern static object GetArgument(int index);
 
         /// <summary>
+        /// Returns whether an argument was passed to the function by index.
+        /// </summary>
+        /// <param name="index">The index of the argument to check.</param>
+        /// <returns>True if an argument was passed, regardless of value (e.g. passing undefined will still return true)</returns>
+        [DSharpScriptMemberName("hasArgument")]
+        public extern static bool HasArgument(int index);
+
+        /// <summary>
         /// Retrieves the specified actual argument value passed to the
         /// function by index.
         /// </summary>

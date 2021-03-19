@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup Label="SetDefaults">
     <GenerateScript Condition="'$(GenerateScript)' == ''">true</GenerateScript>
-    <LangVersion Condition="'$(GenerateScript)' == 'True'">3</LangVersion>
+    <LangVersion Condition="'$(GenerateScript)' == 'True'">4</LangVersion>
     <ExcludeCoreLib Condition="'$(ExcludeCoreLib)' == ''">false</ExcludeCoreLib>
     <ExcludeCodeAnalysis Condition="'$(ExcludeCodeAnalysis)' == ''">false</ExcludeCodeAnalysis>
     <SkipScriptCopy Condition="'$(SkipScriptCopy)' == ''">false</SkipScriptCopy>

@@ -1,0 +1,111 @@
+"use strict";
+
+define('test', ['ss', 'lib1'], function(ss, lib1) {
+  var $global = this;
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.IGenericInterface`1
+
+  function IGenericInterface_$1() { }
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericInterfaceWithIgnore`2
+
+  function GenericInterfaceWithIgnore() { }
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.Program
+
+  function Program() {
+  }
+  Program.main = function(args) {
+    var genericClass = ss.createGenericType(OpenGenericClass_$1, {T : Number}, 1, Program._doubleIt);
+    var genericClass2 = ss.createGenericType(OpenGenericClass_$1, {T : MyType}, new MyType(), Program._identity);
+    var openGenericType = ss.getGenericTemplate(OpenGenericClass_$1, [ 'T' ]);
+    var constructedGenericType = ss.getGenericConstructor(OpenGenericClass_$1, {T: Number});
+    var genericClass3 = new SpecificClassOfGeneric(1, Program._doubleIt);
+  };
+  Program._doubleIt = function(value) {
+    return value * 2;
+  };
+  Program._identity = function($TArgs, value) {
+    return value;
+  };
+  var Program$ = {
+
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.MyType
+
+  function MyType() {
+  }
+  var MyType$ = {
+
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.OpenGenericClass`1
+
+  function OpenGenericClass_$1(value, mutator) {
+    this._value = value;
+    this._mutator = mutator;
+  }
+  var OpenGenericClass_$1$ = {
+    $get_Value: function() {
+      return this._value;
+    },
+    $get_Type: function() {
+      return ss.getTypeArgument(this, 'T', OpenGenericClass_$1);
+    },
+    mutate: function() {
+      this._value = this._mutator(this._value);
+    },
+    createContainer: function() {
+      return ss.createGenericType(OpenGenericClass_$1, {T : ss.getTypeArgument(this, 'T', OpenGenericClass_$1)}, this._value, this._mutator);
+    }
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.GenericWithMultipleParams`3
+
+  function GenericWithMultipleParams_$3() {
+  }
+  var GenericWithMultipleParams_$3$ = {
+
+  };
+
+
+  // DSharp.Compiler.Tests.Source.Type.GenericClasses.SpecificClassOfGeneric
+
+  function SpecificClassOfGeneric(value, mutator) {
+    this._value = 0;
+    this._value = value;
+    this._mutator = mutator;
+  }
+  var SpecificClassOfGeneric$ = {
+    $get_Value: function() {
+      return this._value;
+    },
+    $get_Type: function() {
+      return Number;
+    },
+    mutate: function() {
+      this._value = this._mutator(this._value);
+    }
+  };
+
+
+  var $module = ss.module('test', null,
+    {
+      IGenericInterface_$1: ss.defineInterface(IGenericInterface_$1, [ss.makeMappedGenericTemplate(lib1.IReferencedGenericInterface_$1, {T : 'T'})]),
+      GenericInterfaceWithIgnore: ss.defineInterface(GenericInterfaceWithIgnore),
+      Program: ss.defineClass(Program, Program$, [], null),
+      MyType: ss.defineClass(MyType, MyType$, [], null),
+      OpenGenericClass_$1: ss.defineClass(OpenGenericClass_$1, OpenGenericClass_$1$, ['T', Function], null, [ss.makeMappedGenericTemplate(IGenericInterface_$1, {T : 'T'})]),
+      GenericWithMultipleParams_$3: ss.defineClass(GenericWithMultipleParams_$3, GenericWithMultipleParams_$3$, [], null),
+      SpecificClassOfGeneric: ss.defineClass(SpecificClassOfGeneric, SpecificClassOfGeneric$, [Number, Function], null, [ss.getGenericConstructor(IGenericInterface_$1, {T : Number})])
+    });
+  var $exports = $module.api;
+
+
+  return $exports;
+});

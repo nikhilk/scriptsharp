@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Mono.Cecil;
 
@@ -17,12 +18,26 @@ namespace DSharp.Compiler.Importer
                                                     string attributeTypeName)
         {
             foreach (CustomAttribute attribute in attributeProvider.CustomAttributes)
+            {
                 if (string.CompareOrdinal(attribute.Constructor.DeclaringType.FullName, attributeTypeName) == 0)
                 {
                     return attribute;
                 }
+            }
 
             return null;
+        }
+
+        private static IEnumerable<CustomAttribute> GetAttributes(ICustomAttributeProvider attributeProvider,
+                                            string attributeTypeName)
+        {
+            foreach (CustomAttribute attribute in attributeProvider.CustomAttributes)
+            {
+                if (string.CompareOrdinal(attribute.Constructor.DeclaringType.FullName, attributeTypeName) == 0)
+                {
+                    yield return attribute;
+                }
+            }
         }
 
         private static string GetAttributeArgument(CustomAttribute attribute)
@@ -71,6 +86,13 @@ namespace DSharp.Compiler.Importer
             }
 
             return null;
+        }
+
+        public static IEnumerable<string> InternalesVisibleTo(ICustomAttributeProvider attributeProvider)
+        {
+            var attributes = GetAttributes(attributeProvider, "System.Runtime.CompilerServices.InternalsVisibleToAttribute");
+
+            return attributes.Where(a => a.ConstructorArguments.FirstOrDefault().Value is string).Select(a=>a.ConstructorArguments.FirstOrDefault().Value as string);
         }
 
         public static string GetScriptDependencyName(ICustomAttributeProvider attributeProvider,
@@ -206,10 +228,20 @@ namespace DSharp.Compiler.Importer
             return string.CompareOrdinal(type.BaseType.FullName, "System.Enum") == 0;
         }
 
-        public static bool ShouldIgnoreGenerics(TypeDefinition type)
+        public static bool ShouldIgnoreGenerics(TypeDefinition type, out bool useGenericName)
         {
-            return GetAttribute(type, "System.Runtime.CompilerServices.ScriptIgnoreGenericArgumentsAttribute") != null
-                || GetAttribute(type, "System.Runtime.CompilerServices.ScriptImportAttribute") != null;
+            useGenericName = true;
+            if (GetAttribute(type, "System.Runtime.CompilerServices.ScriptIgnoreGenericArgumentsAttribute") is CustomAttribute scriptIgnoreGenericArgumentsAttribute)
+            {
+                useGenericName = ((bool?)scriptIgnoreGenericArgumentsAttribute.Properties.FirstOrDefault(p => p.Name == "UseGenericName").Argument.Value).GetValueOrDefault();
+                return true;
+            }
+            if (GetAttribute(type, "System.Runtime.CompilerServices.ScriptImportAttribute") != null)
+            {
+                useGenericName = false;
+                return true;
+            }
+            return false;
         }
 
         public static bool ShouldIgnoreNamespace(TypeDefinition type)

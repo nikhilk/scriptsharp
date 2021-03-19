@@ -21,11 +21,12 @@ define('test', ['ss', 'lib'], function(ss, lib) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       App: ss.defineClass(App, App$, [], null),
       GenericClass_$1: ss.defineClass(GenericClass_$1, GenericClass_$1$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

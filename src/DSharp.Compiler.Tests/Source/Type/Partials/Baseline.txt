@@ -131,7 +131,7 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test',
+  var $module = ss.module('test',
     {
       SingleMemberClass: ss.defineClass(SingleMemberClass, SingleMemberClass$, [], null),
       SomeClass: ss.defineClass(SomeClass, SomeClass$, [], null)
@@ -143,9 +143,10 @@ define('test', ['ss'], function(ss) {
       MyClass: ss.defineClass(MyClass, MyClass$, [], null, [IMyInterface]),
       App: ss.defineClass(App, App$, [], null),
       PartialGeneric_$1: ss.defineClass(PartialGeneric_$1, PartialGeneric_$1$, [], null),
-      DerivedMemberClass: ss.defineClass(DerivedMemberClass, DerivedMemberClass$, [], SingleMemberClass),
-      DerivedMergedMembersClass: ss.defineClass(DerivedMergedMembersClass, DerivedMergedMembersClass$, [], MergedMembersClass)
+      DerivedMemberClass: ss.defineClass(DerivedMemberClass, DerivedMemberClass$, [], function (registry) { return registry.SingleMemberClass}),
+      DerivedMergedMembersClass: ss.defineClass(DerivedMergedMembersClass, DerivedMergedMembersClass$, [], function (registry) { return registry.MergedMembersClass})
     });
+  var $exports = $module.api;
 
 
   return $exports;

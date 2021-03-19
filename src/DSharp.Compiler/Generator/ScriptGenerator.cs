@@ -103,7 +103,7 @@ namespace DSharp.Compiler.Generator
             IEnumerable<TypeSymbol> publicTypes = types.Where(type => type.IsPublic);
             IEnumerable<TypeSymbol> internalTypes = types.Where(type => type.IsInternal);
 
-            Writer.Write($"var $exports = {DSharpStringResources.ScriptExportMember("module")}('");
+            Writer.Write($"var $module = {DSharpStringResources.ScriptExportMember("module")}('");
             Writer.Write(symbolSet.ScriptName);
             Writer.Write("',");
 
@@ -171,6 +171,7 @@ namespace DSharp.Compiler.Generator
             }
 
             Writer.WriteLine(");");
+            Writer.WriteLine($"var $exports = $module.api;");
             Writer.WriteLine();
         }
 

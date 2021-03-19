@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // MemberTests.EventArgs
 
   function EventArgs() {
@@ -48,11 +47,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       EventArgs: ss.defineClass(EventArgs, EventArgs$, [], null),
       Button: ss.defineClass(Button, Button$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

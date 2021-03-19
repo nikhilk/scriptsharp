@@ -2,7 +2,6 @@
 
 define('test', ['ss', 'lib1', '/lib/comp3'], function(ss, lib1, comp3) {
   var $global = this;
-
   // BasicTests.App
 
   function App() {
@@ -18,10 +17,11 @@ define('test', ['ss', 'lib1', '/lib/comp3'], function(ss, lib1, comp3) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       App: ss.defineClass(App, App$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

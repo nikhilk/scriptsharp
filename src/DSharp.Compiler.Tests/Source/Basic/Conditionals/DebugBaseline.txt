@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // BasicTests.MyDebug
 
   function MyDebug() {
@@ -46,11 +45,12 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       MyDebug: ss.defineClass(MyDebug, null, [], null),
       App: ss.defineClass(App, App$, [Number], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

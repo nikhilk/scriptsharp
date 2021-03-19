@@ -40,24 +40,15 @@
   </Target>
 
   <ItemGroup>
-    <None Include="dist\**\*" />
+    <None Include="dist\**\*">
+      <Visible>false</Visible>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="test\properties.spec.js" />
   </ItemGroup>
 
-  <ItemGroup>
-    <SourceScript Remove="src\Shims.js" />
-    <SourceScript Remove="src\Shims\ObjectAssign.js" />
-    <SourceScript Remove="src\System\Enum.js" />
-    <SourceScript Remove="src\System\Generics.js" />
-    <SourceScript Remove="src\System\Lazy.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="dist\" />
-  </ItemGroup>
   <Target Name="Buildify" AfterTargets="Build" Inputs="@(SourceScript);build.js" Outputs="dist\ss.js;dist\ss.min.js">
     <Exec Command="npm start" EnvironmentVariables="version=$(PackageVersion)" />
   </Target>

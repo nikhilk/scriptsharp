@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 define('test', ['ss'], function(ss) {
   var $global = this;
@@ -31,12 +31,13 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       IReadonlyProperties: ss.defineInterface(IReadonlyProperties),
       Program: ss.defineClass(Program, Program$, [], null),
       ReadonlyProperties: ss.defineClass(ReadonlyProperties, ReadonlyProperties$, [], null, [IReadonlyProperties])
     });
+  var $exports = $module.api;
 
 
   return $exports;

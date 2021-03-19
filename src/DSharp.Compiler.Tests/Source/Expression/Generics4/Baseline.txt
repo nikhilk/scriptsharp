@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 define('test', ['ss', 'lib1'], function(ss, lib1) {
   var $global = this;
@@ -60,11 +60,11 @@ define('test', ['ss', 'lib1'], function(ss, lib1) {
       return this._value;
     },
     $get_Type: function() {
-      return ss.getTypeArgument(this, 'T');
+      return ss.getTypeArgument(this, 'T', GenericClass_$1);
     },
     doSomethingWith: function($TArgs, n, o) {
       var tnewType = $TArgs['TNew'];
-      var oldType = ss.getTypeArgument(this, 'T');
+      var oldType = ss.getTypeArgument(this, 'T', GenericClass_$1);
       if (tnewType === oldType) {
         return;
       }
@@ -99,17 +99,18 @@ define('test', ['ss', 'lib1'], function(ss, lib1) {
   };
 
 
-  var $exports = ss.module('test',
+  var $module = ss.module('test',
     {
       Usages: ss.defineClass(Usages, Usages$, [], null)
     },
     {
       Usages$IBase: ss.defineInterface(Usages$IBase),
       Usages$ImplementsBase: ss.defineClass(Usages$ImplementsBase, Usages$ImplementsBase$, [], null, [Usages$IBase]),
-      GenericClass_$1: ss.defineClass(GenericClass_$1, GenericClass_$1$, [Object], null),
+      GenericClass_$1: ss.defineClass(GenericClass_$1, GenericClass_$1$, ['T'], null),
       Wrapper: ss.defineClass(Wrapper, Wrapper$, [], null),
       Invoker: ss.defineClass(Invoker, Invoker$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

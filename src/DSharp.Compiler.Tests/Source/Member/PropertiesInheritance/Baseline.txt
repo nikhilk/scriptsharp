@@ -43,7 +43,7 @@ define('test', ['ss'], function(ss) {
 
   function MyGenericClass() {
     this._wow$1 = 0;
-    GenericBase_$1.call(this);
+    ss.getGenericConstructor(GenericBase_$1,{T : Boolean}).call(this);
   }
   var MyGenericClass$ = {
     useWow: function() {
@@ -52,13 +52,14 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       AbstractBase: ss.defineClass(AbstractBase, AbstractBase$, [], null),
       GenericBase_$1: ss.defineClass(GenericBase_$1, GenericBase_$1$, [], null),
-      MyClass: ss.defineClass(MyClass, MyClass$, [], AbstractBase),
-      MyGenericClass: ss.defineClass(MyGenericClass, MyGenericClass$, [], GenericBase_$1)
+      MyClass: ss.defineClass(MyClass, MyClass$, [], function (registry) { return registry.AbstractBase}),
+      MyGenericClass: ss.defineClass(MyGenericClass, MyGenericClass$, [], function (registry) { return ss.getGenericConstructor(registry.GenericBase_$1, {T : Boolean})})
     });
+  var $exports = $module.api;
 
 
   return $exports;

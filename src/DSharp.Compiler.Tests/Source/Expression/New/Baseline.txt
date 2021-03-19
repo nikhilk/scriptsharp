@@ -2,7 +2,6 @@
 
 define('test', ['ss'], function(ss) {
   var $global = this;
-
   // ExpressionTests.Point
 
   function Point(x, y) {
@@ -64,13 +63,14 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       Point: Point,
       Foo: ss.defineClass(Foo, Foo$, [Number, Number], null),
-      Bar: ss.defineClass(Bar, Bar$, [Number, Number, Foo], null),
+      Bar: ss.defineClass(Bar, Bar$, function (registry) { return [Number, Number, registry.Foo]}, null),
       Test: ss.defineClass(Test, Test$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;

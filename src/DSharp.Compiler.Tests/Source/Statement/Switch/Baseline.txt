@@ -53,13 +53,13 @@ define('test', ['ss'], function(ss) {
   };
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       Mode: Mode,
       App: ss.defineClass(App, App$, [], null)
     });
+  var $exports = $module.api;
 
 
   return $exports;
 });
-

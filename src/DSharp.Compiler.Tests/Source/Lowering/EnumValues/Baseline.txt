@@ -20,11 +20,12 @@ define('test', ['ss'], function(ss) {
   });
 
 
-  var $exports = ss.module('test', null,
+  var $module = ss.module('test', null,
     {
       IntEnumeration: IntEnumeration,
       ShortEnumeration: ShortEnumeration
     });
+  var $exports = $module.api;
 
 
   return $exports;

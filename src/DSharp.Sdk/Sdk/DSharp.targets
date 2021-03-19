@@ -85,7 +85,7 @@
       <DeleteFile Include="$(OutputPath)$(AssemblyName).scripts"/>
       <DeleteFile Include="$(IntermediarySourceFolder)*.*"/>
     </ItemGroup>
-    <Delete Files="@(DeleteFile)" />
+    <Delete Files="@(DeleteFile)" ContinueOnError="true"/>
   </Target>
 
   <!--GetScriptOutputPath defined in pack.targets -->

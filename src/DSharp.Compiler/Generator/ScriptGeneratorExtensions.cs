@@ -39,7 +39,7 @@ namespace DSharp.Compiler.Generator
             write("}");
         }
 
-        private static void WriteGenericTypeArguments(Action<string> write, IList<TypeSymbol> typeArguments, IList<GenericParameterSymbol> typeParameters)
+        public static void WriteGenericTypeArguments(Action<string> write, IList<TypeSymbol> typeArguments, IList<GenericParameterSymbol> typeParameters, bool writeNameMap=false)
         {
             var dictionary = new Dictionary<string, string>();
             for (int i = 0; i < typeArguments.Count; i++)
@@ -47,20 +47,49 @@ namespace DSharp.Compiler.Generator
                 var typeArgument = typeArguments[i];
                 var typeParameter = typeParameters[i];
 
-                var typeExpression = CreateTypeArgumentName(typeArgument);
+                var typeExpression = CreateTypeArgumentName(typeArgument, writeNameMap);
                 dictionary.Add(typeParameter.FullName, typeExpression);
             }
 
             WriteObject(write, dictionary);
         }
 
-        private static string CreateTypeArgumentName(TypeSymbol typeArgument)
+        public static void WriteGenericTypeParameter(Action<string> write, IList<GenericParameterSymbol> typeParameters)
         {
-            if(typeArgument is GenericParameterSymbol parameterSymbol)
+            write("[");
+            bool first = true;
+            foreach(var typeParameter in typeParameters)
             {
-                if(parameterSymbol.Owner is ClassSymbol)
+                if(!first)
                 {
-                    return $"{DSharpStringResources.ScriptExportMember("getTypeArgument")}(this, '{typeArgument.FullGeneratedName}')";
+                    write(",");
+                    first = false;
+                }
+                write("'");
+                write(typeParameter.FullName);
+                write("'");
+            }
+            typeParameters.Select(t => t.FullName);
+            write("]");
+        }
+
+        private static string CreateTypeArgumentName(TypeSymbol typeArgument, bool writeNameMap)
+        {
+            if (typeArgument.SymbolSet.ResolveIntrinsicType(IntrinsicType.Nullable).Name == typeArgument.Name)
+            {
+                return CreateTypeArgumentName(typeArgument.GenericArguments.First(), writeNameMap);
+            }
+
+            if (typeArgument is GenericParameterSymbol parameterSymbol)
+            {
+                if (writeNameMap)
+                {
+                    return $"'{typeArgument.FullGeneratedName}'";
+                }
+
+                if (parameterSymbol.Owner is ClassSymbol owner)
+                {
+                    return $"{DSharpStringResources.ScriptExportMember("getTypeArgument")}(this, '{typeArgument.FullGeneratedName}', {owner.FullGeneratedName})";
                 }
 
                 return $"{DSharpStringResources.GeneratedScript.GENERIC_ARGS_PARAMETER_NAME}['{typeArgument.FullGeneratedName}']";

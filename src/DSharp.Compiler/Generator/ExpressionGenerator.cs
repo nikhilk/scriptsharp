@@ -29,20 +29,7 @@ namespace DSharp.Compiler.Generator
             ClassSymbol baseClass = ((ClassSymbol)symbol.Parent).BaseClass;
             Debug.Assert(baseClass != null);
 
-            if(baseClass.GenericArguments?.Any() ?? false)
-            {
-                writer.Write(DSharpStringResources.ScriptExportMember("getGenericConstructor"));
-                writer.Write("(");
-                writer.Write(baseClass.FullGeneratedName);
-                writer.Write(", ");
-                generator.WriteGenericTypeArgumentsMap(baseClass.GenericArguments, baseClass.GenericParameters);
-                writer.Write(")");
-            }
-            else
-            {
-                writer.Write(baseClass.FullGeneratedName);
-            }
-
+            WriteFullTypeName(writer, baseClass);
             writer.Write(".call(this");
 
             if (expression.Parameters != null)
@@ -52,6 +39,24 @@ namespace DSharp.Compiler.Generator
             }
 
             writer.Write(")");
+        }
+
+        public static void WriteFullTypeName(ScriptTextWriter sw, TypeSymbol type)
+        {
+            if (type.GenericParameters?.Any() == true
+                && type.GenericArguments != null
+                && type.UseGenericName
+                && !type.IgnoreGenericTypeArguments
+                && type.IsApplicationType)
+            {
+                sw.Write($"ss.getGenericConstructor({type.FullGeneratedName},");
+                ScriptGeneratorExtensions.WriteGenericTypeArguments(sw.Write, type.GenericArguments, type.GenericParameters);
+                sw.Write(")");
+            }
+            else
+            {
+                sw.Write(type.FullGeneratedName);
+            }
         }
 
         private static void GenerateBinaryExpression(ScriptGenerator generator, MemberSymbol symbol,
@@ -172,9 +177,6 @@ namespace DSharp.Compiler.Generator
             else if (expression.Operator == Operator.Is ||
                      expression.Operator == Operator.As)
             {
-                TypeExpression typeExpression = expression.RightOperand as TypeExpression;
-                Debug.Assert(typeExpression != null);
-
                 writer.Write(DSharpStringResources.ScriptExportMember(string.Empty));
 
                 if (expression.Operator == Operator.Is)
@@ -187,11 +189,10 @@ namespace DSharp.Compiler.Generator
                 }
 
                 GenerateExpression(generator, symbol, expression.LeftOperand);
-
                 writer.Write(", ");
-                writer.Write(typeExpression.AssociatedType.FullGeneratedName);
+                GenerateExpression(generator, symbol, expression.RightOperand);
                 writer.Write(")");
-                typeExpression.AssociatedType.IncrementReferenceCount();
+
                 return;
             }
             else if (expression.Operator == Operator.EqualEqualEqual ||
@@ -1039,6 +1040,33 @@ namespace DSharp.Compiler.Generator
 
                     writer.Write(")");
                 }
+                else if (expression.Method is MethodSymbol methodSymbol
+                    && expression.ObjectReference is TypeExpression objectRef
+                    && objectRef.AssociatedType is TypeSymbol containingType
+                    && methodSymbol.IsStatic
+                    && !methodSymbol.IsExtensionMethod
+                    && containingType.IsGeneric
+                    && containingType.UseGenericName
+                    && containingType.GenericArguments?.Any() == true)
+                {
+                    writer.Write(containingType.FullGeneratedName);
+
+                    if (methodSymbol.GeneratedName.Length != 0)
+                    {
+                        writer.Write(".");
+                        writer.Write(methodSymbol.GeneratedName);
+                    }
+                    writer.Write(".call(");
+                    GenerateExpression(generator, symbol, expression.ObjectReference);
+
+                    if (expression.Parameters?.Any() == true)
+                    {
+                        writer.Write(",");
+                        GenerateExpressionList(generator, symbol, expression.Parameters);
+                    }
+
+                    writer.Write(")");
+                }
                 else
                 {
                     GenerateExpression(generator, symbol, expression.ObjectReference);
@@ -1046,16 +1074,12 @@ namespace DSharp.Compiler.Generator
                     if (expression.Method.GeneratedName.Length != 0)
                     {
                         writer.Write(".");
-                    }
-
-                    if (expression.Method.GeneratedName.Length != 0)
-                    {
                         writer.Write(expression.Method.GeneratedName);
                     }
 
                     writer.Write("(");
 
-                    if (expression.Parameters != null)
+                    if (expression.Parameters?.Any() == true)
                     {
                         GenerateExpressionList(generator, symbol, expression.Parameters);
                     }
@@ -1263,7 +1287,7 @@ namespace DSharp.Compiler.Generator
                                                    TypeExpression expression)
         {
             ScriptTextWriter writer = generator.Writer;
-            writer.Write(expression.AssociatedType.FullGeneratedName);
+            WriteFullTypeName(writer, expression.AssociatedType);
             expression.AssociatedType.IncrementReferenceCount();
         }
 
