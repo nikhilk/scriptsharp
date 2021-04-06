@@ -2,6 +2,7 @@
 {
     public static class DSharpStringResources
     {
+        public static readonly string MSCORLIB_ASSEMBLY_NAME = "mscorlib";
         public static readonly string DSHARP_MSCORLIB_ASSEMBLY_NAME = "DSharp.Mscorlib";
         public static readonly string DSHARP_SCRIPT_NAME = "ss";
 
