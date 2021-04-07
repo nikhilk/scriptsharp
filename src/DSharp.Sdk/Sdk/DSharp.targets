@@ -38,7 +38,7 @@
     </ScriptCompilerTask>
   </Target>
 
-  <Target Name="BuildImportMetadata" Returns="@(Scripts)" AfterTargets="Build" Condition="'$(IsImportLibrary)' == 'true' AND '$(TargetFramework)' != ''">
+  <Target Name="BuildImportMetadata" Returns="@(Scripts)" AfterTargets="Build" Condition="'$(ExcludeCoreLib)' == 'false' AND '$(IsImportLibrary)' == 'true' AND '$(TargetFramework)' != ''">
     <MetadataCompilerTask
       References="@(ReferencePath);@(ReferenceDependencyPaths)"
       AssemblyName ="$(AssemblyName)"

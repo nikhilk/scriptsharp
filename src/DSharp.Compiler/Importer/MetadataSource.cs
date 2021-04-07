@@ -15,7 +15,8 @@ namespace DSharp.Compiler.Importer
 {
     internal sealed class MetadataSource
     {
-        private static readonly string CoreAssemblyName = DSharpStringResources.DSHARP_MSCORLIB_ASSEMBLY_NAME;
+        private static readonly string DSharpCoreAssemblyName = DSharpStringResources.DSHARP_MSCORLIB_ASSEMBLY_NAME;
+        private static readonly string CoreAssemblyName = DSharpStringResources.MSCORLIB_ASSEMBLY_NAME;
 
         private Dictionary<string, AssemblyDefinition> assemblyMap;
 
@@ -72,7 +73,8 @@ namespace DSharp.Compiler.Importer
                         continue;
                     }
 
-                    if (referenceName.Equals(CoreAssemblyName, StringComparison.OrdinalIgnoreCase))
+                    if (referenceName.Equals(CoreAssemblyName, StringComparison.OrdinalIgnoreCase)
+                        || referenceName.Equals(DSharpCoreAssemblyName, StringComparison.OrdinalIgnoreCase))
                     {
                         if (CoreAssemblyPath != null)
                         {
@@ -101,7 +103,7 @@ namespace DSharp.Compiler.Importer
 
             if (CoreAssemblyMetadata == null)
             {
-                errorHandler.ReportMissingAssemblyReferenceError(CoreAssemblyName);
+                errorHandler.ReportMissingAssemblyReferenceError($"{CoreAssemblyName} OR {DSharpCoreAssemblyName}");
                 hasLoadErrors = true;
             }
 

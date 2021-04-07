@@ -4,7 +4,7 @@
   <PropertyGroup>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>DSharp.Mscorlib</AssemblyName>
-    <NoStdLib>True</NoStdLib>
+    <NoStdLib>true</NoStdLib>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(SolutionDir)DSharp.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
