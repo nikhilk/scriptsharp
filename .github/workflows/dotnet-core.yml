@@ -21,5 +21,7 @@ jobs:
       run: dotnet restore ".\src\DSharp.sln"
     - name: Build
       run: dotnet build ".\src\DSharp.sln" --configuration Release --no-restore
-    - name: Test
-      run: dotnet test ".\src\DSharp.sln" --no-restore --verbosity normal
+    - name: Test Compiler
+      run: dotnet test ".\src\DSharp.Compiler\DSharp.Compiler.csproj" --no-restore --verbosity normal
+    - name: Test CodeAnalysis
+      run: dotnet test ".\src\DSharp.CodeAnalysis.Test\DSharp.CodeAnalysis.Test.csproj" --no-restore --verbosity normal
