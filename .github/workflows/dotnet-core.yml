@@ -8,15 +8,28 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
-
+    env:
+      PUSH_PACKAGES: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: '6.x'
+        includePrerelease: true
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v0.9.7
+    - name: Display SemVer
+      run: |
+        echo "SemVer: $GITVERSION_SEMVER"
     - name: Install dependencies
       run: dotnet restore ".\src\DSharp.sln"
     - name: Build
@@ -25,3 +38,8 @@ jobs:
       run: dotnet test ".\src\DSharp.Compiler\DSharp.Compiler.csproj" --no-restore --verbosity normal
     - name: Test CodeAnalysis
       run: dotnet test ".\src\DSharp.CodeAnalysis.Test\DSharp.CodeAnalysis.Test.csproj" --no-restore --verbosity normal
+    - name: Pack
+      run: dotnet pack ".\src\DSharp.sln" --output nupkgs --no-build --configuration Release --verbosity normal /p:Version=$GITVERSION_SEMVER
+    - name: Push to NuGet
+      if: ${{ env.PUSH_PACKAGES }}
+      run: dotnet nuget push -k ${{secrets.NUGET_KEY}} nupkgs\*.nupkg
