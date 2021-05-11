@@ -51,4 +51,4 @@ jobs:
 
     - name: Push to NuGet
       if: success() && ${{ env.PUSH_PACKAGES == 'true' }}
-      run: dotnet nuget push nupkgs\*.nupkg --api-key ${{secrets.NUGET_KEY}} --skip-duplicate
+      run: dotnet nuget push nupkgs\*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_KEY}} --skip-duplicate
