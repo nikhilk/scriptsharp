@@ -50,5 +50,5 @@ jobs:
       run: dotnet pack ".\src\DSharp.sln" --output nupkgs --no-build --configuration Release --verbosity normal /p:Version=${{env.GitVersion_FullSemVer}}
 
     - name: Push to NuGet
-      if: success() && ${{ env.PUSH_PACKAGES == 'true' }}
+      if: success() && env.PUSH_PACKAGES == 'true'
       run: dotnet nuget push nupkgs\*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_KEY}} --skip-duplicate

@@ -4,6 +4,7 @@
   <PropertyGroup>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>DSharp.Mscorlib</AssemblyName>
+    <IsPackable>true</IsPackable>
     <NoStdLib>true</NoStdLib>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(SolutionDir)DSharp.snk</AssemblyOriginatorKeyFile>

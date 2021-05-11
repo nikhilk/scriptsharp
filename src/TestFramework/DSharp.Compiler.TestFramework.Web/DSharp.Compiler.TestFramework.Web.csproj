@@ -2,6 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>{590D7427-81A9-469C-B393-2CCCFFC1B23E}</ProjectGuid>
     <OutputType>Library</OutputType>
+    <IsPackable>false</IsPackable>
     <RootNamespace>DSharp.Compiler.TestFramework.Web</RootNamespace>
     <AssemblyName>DSharp.Compiler.TestFramework.Web</AssemblyName>
     <SignAssembly>true</SignAssembly>

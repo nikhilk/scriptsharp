@@ -3,6 +3,7 @@
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <AssemblyName>DSharp.Build</AssemblyName>
     <RootNamespace>DSharp.Build</RootNamespace>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
   
   <ItemGroup>
