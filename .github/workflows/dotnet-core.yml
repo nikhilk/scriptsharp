@@ -38,7 +38,7 @@ jobs:
     - name: Test CodeAnalysis
       run: dotnet test ".\src\DSharp.CodeAnalysis.Test\DSharp.CodeAnalysis.Test.csproj" --no-restore --verbosity normal
     - name: Pack
-      run: dotnet pack ".\src\DSharp.sln" --output nupkgs --no-build --configuration Release --verbosity normal /p:Version=$GITVERSION_SEMVER
+      run: dotnet pack ".\src\DSharp.sln" --output nupkgs --no-build --configuration Release --verbosity normal /p:Version=${{env.GitVersion_FullSemVer}}
     - name: Push to NuGet
       if: ${{ env.PUSH_PACKAGES }}
       run: dotnet nuget push -k ${{secrets.NUGET_KEY}} nupkgs\*.nupkg
