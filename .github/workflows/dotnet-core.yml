@@ -28,7 +28,7 @@ jobs:
       uses: gittools/actions/gitversion/execute@v0.9.7
     - name: Display SemVer
       run: |
-        echo "SemVer: $GITVERSION_SEMVER"
+        echo "Using SemVer: ${{env.GitVersion_FullSemVer}}"
     - name: Install dependencies
       run: dotnet restore ".\src\DSharp.sln"
     - name: Build
