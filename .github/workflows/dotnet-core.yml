@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-        
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -50,5 +50,5 @@ jobs:
       run: dotnet pack ".\src\DSharp.sln" --output nupkgs --no-build --configuration Release --verbosity normal /p:Version=${{env.GitVersion_FullSemVer}}
 
     - name: Push to NuGet
-      if: success() && ${{ env.PUSH_PACKAGES == '1' }}
+      if: success() && ${{ env.PUSH_PACKAGES == 'true' }}
       run: dotnet nuget push nupkgs\*.nupkg --api-key ${{secrets.NUGET_KEY}} --skip-duplicate
