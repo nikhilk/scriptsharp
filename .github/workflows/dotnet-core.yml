@@ -54,7 +54,7 @@ jobs:
       run: dotnet nuget push nupkgs\*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_KEY}} --skip-duplicate
 
     - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: packages
-          path: nupkgs\*.nupkg
+      uses: actions/upload-artifact@v2
+      with:
+        name: packages
+        path: nupkgs\*.nupkg
