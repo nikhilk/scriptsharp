@@ -16,29 +16,39 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+        
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
+
     - name: Install GitVersion
       uses: gittools/actions/gitversion/setup@v0.9.7
       with:
         versionSpec: '5.x'
+
     - name: Determine Version
       uses: gittools/actions/gitversion/execute@v0.9.7
+
     - name: Display SemVer
       run: |
         echo "Using SemVer: ${{env.GitVersion_FullSemVer}}"
+
     - name: Install dependencies
       run: dotnet restore ".\src\DSharp.sln"
+
     - name: Build
       run: dotnet build ".\src\DSharp.sln" --configuration Release --no-restore
+
     - name: Test Compiler
       run: dotnet test ".\src\DSharp.Compiler\DSharp.Compiler.csproj" --no-restore --verbosity normal
+
     - name: Test CodeAnalysis
       run: dotnet test ".\src\DSharp.CodeAnalysis.Test\DSharp.CodeAnalysis.Test.csproj" --no-restore --verbosity normal
+
     - name: Pack
       run: dotnet pack ".\src\DSharp.sln" --output nupkgs --no-build --configuration Release --verbosity normal /p:Version=${{env.GitVersion_FullSemVer}}
+
     - name: Push to NuGet
-      if: ${{ env.PUSH_PACKAGES }}
-      run: dotnet nuget push -k ${{secrets.NUGET_KEY}} nupkgs\*.nupkg
+      if: success() && ${{ env.PUSH_PACKAGES == '1' }}
+      run: dotnet nuget push nupkgs\*.nupkg --api-key ${{secrets.NUGET_KEY}} --skip-duplicate
