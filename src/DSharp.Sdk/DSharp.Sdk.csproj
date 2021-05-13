@@ -4,7 +4,8 @@
   <PropertyGroup>
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    
+
+    <IsPackable>true</IsPackable>
     <PackageId>dsharp.sdk</PackageId>
     <Title>DSharp Sdk</Title>
     <Description>Defines the MSBuild Compliant DSharp project sdk</Description>

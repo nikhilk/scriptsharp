@@ -5,6 +5,7 @@
     <RootNamespace>System</RootNamespace>
     <AssemblyName>DSharp.Web</AssemblyName>
     <SignAssembly>true</SignAssembly>
+    <IsPackable>true</IsPackable>
     <AssemblyOriginatorKeyFile>$(SolutionDir)DSharp.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
@@ -17,6 +18,7 @@
     <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
     <AdditionalExplicitAssemblyReferences />
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <IsPackable>true</IsPackable>
 
   </PropertyGroup>
 
