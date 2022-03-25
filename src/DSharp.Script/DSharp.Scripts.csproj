@@ -2,7 +2,7 @@
   <Import Project="$(SolutionDir)NuGetCommon.props" Condition="Exists('$(SolutionDir)NuGetCommon.props')" />
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <DefaultItemExcludes>${DefaultItemExcludes};node_modules\**;dist\**;package-lock.json</DefaultItemExcludes>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

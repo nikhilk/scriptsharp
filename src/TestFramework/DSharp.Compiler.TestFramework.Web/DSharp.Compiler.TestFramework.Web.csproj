@@ -11,7 +11,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\net461\ScriptSharp.Testing.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\net471\ScriptSharp.Testing.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
